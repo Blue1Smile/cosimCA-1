@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.casic.datadriver.mapper.DataVersionMapper">
+  <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.DataVersion">
+    <id column="DD_DATA_VERSION_ID" jdbcType="INTEGER" property="ddDataVersionId" />
+    <result column="DD_DATA_ID" jdbcType="INTEGER" property="ddDataId" />
+    <result column="DD_DATA_VERSION" jdbcType="INTEGER" property="ddDataVersion" />
+    <result column="DD_DATA_VALUE" jdbcType="VARCHAR" property="ddDataValue" />
+    <result column="DD_DATA_RECORD_TIME" jdbcType="TIMESTAMP" property="ddDataRecordTime" />
+    <result column="DD_DATA_RECORD_PERSON_ID" jdbcType="INTEGER" property="ddDataRecordPersonId" />
+    <result column="DD_PROJECT_PHASE_ID" jdbcType="INTEGER" property="ddProjectPhaseId" />
+    <result column="DD_PROJECT_DATA_STATE" jdbcType="INTEGER" property="ddProjectDataState" />
+    <result column="DD_DATA_CHANGE_REASON" jdbcType="VARCHAR" property="ddDataChangeReason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DD_DATA_VERSION_ID, DD_DATA_ID, DD_DATA_VERSION, DD_DATA_VALUE, DD_DATA_RECORD_TIME, 
+    DD_DATA_RECORD_PERSON_ID, DD_PROJECT_PHASE_ID, DD_PROJECT_DATA_STATE, DD_DATA_CHANGE_REASON
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dd_data_version
+    where DD_DATA_VERSION_ID = #{ddDataVersionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dd_data_version
+    where DD_DATA_VERSION_ID = #{ddDataVersionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.casic.datadriver.model.data.DataVersion">
+    insert into dd_data_version (DD_DATA_VERSION_ID, DD_DATA_ID, DD_DATA_VERSION, 
+      DD_DATA_VALUE, DD_DATA_RECORD_TIME, DD_DATA_RECORD_PERSON_ID, 
+      DD_PROJECT_PHASE_ID, DD_PROJECT_DATA_STATE, DD_DATA_CHANGE_REASON
+      )
+    values (#{ddDataVersionId,jdbcType=INTEGER}, #{ddDataId,jdbcType=INTEGER}, #{ddDataVersion,jdbcType=INTEGER}, 
+      #{ddDataValue,jdbcType=VARCHAR}, #{ddDataRecordTime,jdbcType=TIMESTAMP}, #{ddDataRecordPersonId,jdbcType=INTEGER}, 
+      #{ddProjectPhaseId,jdbcType=INTEGER}, #{ddProjectDataState,jdbcType=INTEGER}, #{ddDataChangeReason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.casic.datadriver.model.data.DataVersion">
+    insert into dd_data_version
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ddDataVersionId != null">
+        DD_DATA_VERSION_ID,
+      </if>
+      <if test="ddDataId != null">
+        DD_DATA_ID,
+      </if>
+      <if test="ddDataVersion != null">
+        DD_DATA_VERSION,
+      </if>
+      <if test="ddDataValue != null">
+        DD_DATA_VALUE,
+      </if>
+      <if test="ddDataRecordTime != null">
+        DD_DATA_RECORD_TIME,
+      </if>
+      <if test="ddDataRecordPersonId != null">
+        DD_DATA_RECORD_PERSON_ID,
+      </if>
+      <if test="ddProjectPhaseId != null">
+        DD_PROJECT_PHASE_ID,
+      </if>
+      <if test="ddProjectDataState != null">
+        DD_PROJECT_DATA_STATE,
+      </if>
+      <if test="ddDataChangeReason != null">
+        DD_DATA_CHANGE_REASON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ddDataVersionId != null">
+        #{ddDataVersionId,jdbcType=INTEGER},
+      </if>
+      <if test="ddDataId != null">
+        #{ddDataId,jdbcType=INTEGER},
+      </if>
+      <if test="ddDataVersion != null">
+        #{ddDataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="ddDataValue != null">
+        #{ddDataValue,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDataRecordTime != null">
+        #{ddDataRecordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ddDataRecordPersonId != null">
+        #{ddDataRecordPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="ddProjectPhaseId != null">
+        #{ddProjectPhaseId,jdbcType=INTEGER},
+      </if>
+      <if test="ddProjectDataState != null">
+        #{ddProjectDataState,jdbcType=INTEGER},
+      </if>
+      <if test="ddDataChangeReason != null">
+        #{ddDataChangeReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.data.DataVersion">
+    update dd_data_version
+    <set>
+      <if test="ddDataId != null">
+        DD_DATA_ID = #{ddDataId,jdbcType=INTEGER},
+      </if>
+      <if test="ddDataVersion != null">
+        DD_DATA_VERSION = #{ddDataVersion,jdbcType=INTEGER},
+      </if>
+      <if test="ddDataValue != null">
+        DD_DATA_VALUE = #{ddDataValue,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDataRecordTime != null">
+        DD_DATA_RECORD_TIME = #{ddDataRecordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ddDataRecordPersonId != null">
+        DD_DATA_RECORD_PERSON_ID = #{ddDataRecordPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="ddProjectPhaseId != null">
+        DD_PROJECT_PHASE_ID = #{ddProjectPhaseId,jdbcType=INTEGER},
+      </if>
+      <if test="ddProjectDataState != null">
+        DD_PROJECT_DATA_STATE = #{ddProjectDataState,jdbcType=INTEGER},
+      </if>
+      <if test="ddDataChangeReason != null">
+        DD_DATA_CHANGE_REASON = #{ddDataChangeReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DD_DATA_VERSION_ID = #{ddDataVersionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.data.DataVersion">
+    update dd_data_version
+    set DD_DATA_ID = #{ddDataId,jdbcType=INTEGER},
+      DD_DATA_VERSION = #{ddDataVersion,jdbcType=INTEGER},
+      DD_DATA_VALUE = #{ddDataValue,jdbcType=VARCHAR},
+      DD_DATA_RECORD_TIME = #{ddDataRecordTime,jdbcType=TIMESTAMP},
+      DD_DATA_RECORD_PERSON_ID = #{ddDataRecordPersonId,jdbcType=INTEGER},
+      DD_PROJECT_PHASE_ID = #{ddProjectPhaseId,jdbcType=INTEGER},
+      DD_PROJECT_DATA_STATE = #{ddProjectDataState,jdbcType=INTEGER},
+      DD_DATA_CHANGE_REASON = #{ddDataChangeReason,jdbcType=VARCHAR}
+    where DD_DATA_VERSION_ID = #{ddDataVersionId,jdbcType=INTEGER}
+  </update>
+</mapper>
