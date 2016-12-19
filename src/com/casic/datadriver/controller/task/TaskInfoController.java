@@ -128,6 +128,7 @@ public class TaskInfoController extends AbstractController {
         Long id = RequestUtil.getLong(request, "id");
         List<TaskInfo> taskInfoList=  new ArrayList<TaskInfo>();
 
+
         if (id == null || id == 0) {
              taskInfoList = taskInfoService.getAll();
         } else {
@@ -153,12 +154,18 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView addtask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long id = RequestUtil.getLong(request, "id");
-        List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(id);
+        String taskPerson = RequestUtil.getString(request, "taskPerson");
+        taskPerson = new String(taskPerson.getBytes("ISO-8859-1"), "UTF-8");
+        Long taskPersonId = RequestUtil.getLong(request, "userId");
         Project project = projectService.getById(id);
-//        QueryFilter queryFilter = new QueryFilter(request, "TaskItem");
-        ModelAndView mv = this.getAutoView().addObject("taskList", taskInfoList)
-                .addObject("projectItem", project);
-        return mv;
+        if (taskPersonId == null && taskPersonId == 0L) {
+            ModelAndView mv = this.getAutoView().addObject("projectItem", project);
+            return mv;
+        } else {
+            ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("taskPerson", taskPerson)
+                    .addObject("taskPersonId", taskPersonId);
+            return mv;
+        }
     }
 
     /**
@@ -353,9 +360,11 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView userlist(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         Long TaskId = RequestUtil.getLong(request, "TaskId");
+        Long projectId = RequestUtil.getLong(request, "projectId");
         QueryFilter queryFilter = new QueryFilter(request, "sysUserItem");
         ModelAndView mv = this.getAutoView().addObject("sysUserList",
-                this.sysUserService.getUserByQuery(queryFilter)).addObject("TaskId", TaskId);
+                this.sysUserService.getUserByQuery(queryFilter)).addObject("TaskId", TaskId)
+                .addObject("projectId", projectId);
         return mv;
 
     }
@@ -373,14 +382,13 @@ public class TaskInfoController extends AbstractController {
         String msg = request.getParameter("fullname");
         String fullname = new String(msg.getBytes("ISO-8859-1"), "UTF-8");
 
-        Long TaskId = RequestUtil.getLong(request, "TaskId");
+//        Long TaskId = RequestUtil.getLong(request, "TaskId");
+        Long projectId = RequestUtil.getLong(request, "projectId");
         Long userId = RequestUtil.getLong(request, "UserId");
 
-        ModelAndView mv = new ModelAndView("redirect:edit.ht");
-        mv.addObject("id", TaskId)
+        ModelAndView mv = new ModelAndView("redirect:addtask.ht");
+        mv.addObject("userId", userId).addObject("taskPerson", fullname).addObject("id", projectId);
 
-                .addObject("userId", userId)
-                .addObject("taskPerson", fullname);
         return mv;
     }
 

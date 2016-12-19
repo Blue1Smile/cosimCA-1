@@ -53,7 +53,7 @@
 
 
             <display:column title="操作" media="html" style="width:260px">
-                <a href="chooseuser.ht?UserId=${sysUserItem.userId}&TaskId=${TaskId}&fullname=${sysUserItem.fullname}"
+                <a href="chooseuser.ht?UserId=${sysUserItem.userId}&TaskId=${TaskId}&fullname=${sysUserItem.fullname}&projectId=${projectId}"
                    class="layui-btn layui-btn-small">选择人员</a>
             </display:column>
         </display:table>
