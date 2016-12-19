@@ -93,6 +93,12 @@
         WHERE DD_TASK_PROJECT_ID=#{ddTaskProjectId}
     </select>
 
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM dd_task
+    </select>
+
+
     <insert id="add" parameterType="com.casic.datadriver.model.task.TaskInfo">
     insert into dd_task (DD_TASK_ID, DD_TASK_NAME, DD_TASK_DESCRIPTION, 
       DD_TASK_CREATOR_ID, DD_TASK_RESPONSIBLE_PERSON, 

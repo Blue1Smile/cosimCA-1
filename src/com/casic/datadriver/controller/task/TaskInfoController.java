@@ -115,7 +115,7 @@ public class TaskInfoController extends AbstractController {
 
     /**
      * Query task basic info list.
-     *
+     *根据项目id查询项目任务或者查询所有项目
      * @param request  the request
      * @param response the response
      * @return the list
@@ -126,12 +126,20 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView queryTaskBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long id = RequestUtil.getLong(request, "id");
-        List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(id);
+        List<TaskInfo> taskInfoList=  new ArrayList<TaskInfo>();
 
+
+        if (id == null || id == 0) {
+             taskInfoList = taskInfoService.getAll();
+        } else {
+             taskInfoList = taskInfoService.queryTaskInfoByProjectId(id);
+        }
         ModelAndView mv = this.getAutoView().addObject("taskList", taskInfoList)
                 .addObject("projectId", id);
         return mv;
     }
+
+
 
     /**
      * 添加任务
