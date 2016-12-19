@@ -99,6 +99,11 @@
 		where DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
 	</delete>
 
+	<select id="getAll" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List"/>
+		FROM dd_project
+	</select>
+
 
 	<insert id="add" parameterType="com.casic.datadriver.model.project.Project">
 		insert into dd_project
