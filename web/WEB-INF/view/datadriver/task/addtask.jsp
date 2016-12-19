@@ -47,10 +47,10 @@
                 <div style="float:left">
                     <input type="text" id="ddTaskPerson"
                            name="ddTaskPerson"
-                           value="${TaskInfo.ddTaskPerson}" class="layui-input"/>
+                           value="${taskPerson}" class="layui-input"/>
                 </div>
                 <div style="float:left">
-                    <a href="userlist.ht?TaskId=${TaskInfo.ddTaskId}"
+                    <a href="userlist.ht?TaskId=${TaskInfo.ddTaskId}&projectId=${projectItem.ddProjectId}"
                        class="layui-btn">选择</a>
                 </div>
             </td>
@@ -125,7 +125,7 @@
         <input type="hidden" id="ddTaskResourceId" name="ddTaskResourceId"
                value="${TaskInfo.ddTaskResourceId}" class="layui-input"/>
         <input type="hidden" id="ddTaskResponsiblePerson" name="ddTaskResponsiblePerson"
-               value="${TaskInfo.ddTaskResponsiblePerson}" class="layui-input"/>
+               value="${taskPersonId}" class="layui-input"/>
         <input type="hidden" id="ddTaskProjectId" name="ddTaskProjectId"
                value="${projectItem.ddProjectId}" class="layui-input"/>
     </table>
