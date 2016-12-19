@@ -34,7 +34,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/datadriver/personaltask/")
-public class PersonalTaskController extends AbstractController{
+public class PersonalTaskController extends AbstractController {
 
     @Resource
     private TaskInfoService taskInfoService;
@@ -46,28 +46,25 @@ public class PersonalTaskController extends AbstractController{
     private TaskStartService taskStartService;
 
 
-
     /**
-     * 2016/12/4/ÐÞ¸Ä
-     * @param request
-     *            the request
-     * @param response
-     *            the response
+     * 2016/12/4/ï¿½Þ¸ï¿½
+     *
+     * @param request  the request
+     * @param response the response
      * @return the list
-     * @throws Exception
-     *             the exception
+     * @throws Exception the exception
      */
     @RequestMapping("list")
-    @Action(description = "¸ù¾ÝÓÃ»§²é¿´taskstart²¢·µ»ØÓÃ»§ÈÎÎñÁÐ±í")
+    @Action(description = "ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½é¿´taskstartï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½")
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> taskInfo_list = new ArrayList<TaskInfo>();
-        for (TaskStart taskStart:taskStartList){
+        for (TaskStart taskStart : taskStartList) {
 
             Long ddTaskId = taskStart.getDdTaskId();
             long ddTask_Id = ddTaskId;
-            TaskInfo taskInfo =  taskInfoService.getById(ddTask_Id);
+            TaskInfo taskInfo = taskInfoService.getById(ddTask_Id);
             taskInfo_list.add(taskInfo);
         }
         ModelAndView mv = this.getAutoView().addObject("taskList", taskInfo_list);
@@ -76,15 +73,15 @@ public class PersonalTaskController extends AbstractController{
 
 
     @RequestMapping("submitpublish")
-    @Action(description="·µ»ØÈÎÎñ·¢²¼Êý¾ÝÁÐ±í")
+    @Action(description = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ·¢²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½")
     public ModelAndView querysubmitpublish(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Long ddTaskId= RequestUtil.getLong(request, "id");
-        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
+        Long ddTaskId = RequestUtil.getLong(request, "id");
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
-        for (OrderDataRelation orderDataRelation:orderDataRelation_list){
-            Long ddDataId=orderDataRelation.getDdDataId();
-            List<PrivateData>  taskPrivateDatas =  this.privateDataService.getByddDataId(ddDataId);
+        for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
+            Long ddDataId = orderDataRelation.getDdDataId();
+            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
             privateData.addAll(taskPrivateDatas);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
@@ -93,16 +90,16 @@ public class PersonalTaskController extends AbstractController{
     }
 
     @RequestMapping("showorder")
-    @Action(description="·µ»ØÈÎÎñ¶©¹ºÊý¾ÝÁÐ±í")
+    @Action(description = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ¶©¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½")
     public ModelAndView queryshoworder(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Long ddTaskId= RequestUtil.getLong(request, "id");
-        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.queryOrderDataRelationByddTaskID(ddTaskId);
+        Long ddTaskId = RequestUtil.getLong(request, "id");
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryOrderDataRelationByddTaskID(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
-        for (OrderDataRelation orderDataRelation:orderDataRelation_list){
+        for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
 
-            Long ddDataId=orderDataRelation.getDdDataId();
-            List<PrivateData>  taskPrivateDatas =  this.privateDataService.getByddDataId(ddDataId);
+            Long ddDataId = orderDataRelation.getDdDataId();
+            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
             privateData.addAll(taskPrivateDatas);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
@@ -111,26 +108,24 @@ public class PersonalTaskController extends AbstractController{
     }
 
     /**
-     * 2016/12/5/ÐÞ¸Ä
-     * @param request
-     *            the request
-     * @param response
-     *            the response
+     * 2016/12/5/ï¿½Þ¸ï¿½
+     *
+     * @param request  the request
+     * @param response the response
      * @return the list
-     * @throws Exception
-     *             the exception
-     *             ½ñÌìÐÞ¸Ä
+     * @throws Exception the exception
+     *                   ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
      */
     @RequestMapping("submitdatavalue")
-    @Action(description="")
+    @Action(description = "")
     public void submitdatavalue(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // String[] ddDataLastestValeu=(String[])request.getParameter("ddDataLastestValue");
 
-        String[] ddDataLastestValues = RequestUtil.getStringAry(request, "ddDataLastestValue") ;
-        Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId") ;
+        String[] ddDataLastestValues = RequestUtil.getStringAry(request, "ddDataLastestValue");
+        Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId");
         //    String ddDataLastestValue=RequestUtil.getString(request, "ddDataLastestValue");
-        for(int i=0;i<ddDataIds.length;i++){
-            PrivateData privateData =  this.privateDataService.getById(ddDataIds[i]);
+        for (int i = 0; i < ddDataIds.length; i++) {
+            PrivateData privateData = this.privateDataService.getById(ddDataIds[i]);
             privateData.setDdDataLastestValue(ddDataLastestValues[i]);
             this.privateDataService.updatedata(privateData);
 

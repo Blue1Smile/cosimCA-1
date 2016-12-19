@@ -50,78 +50,66 @@
 
 </head>
 <body>
-<%--<div class="tbar-title">--%>
-    <%--<span class="tbar-label">发布数据编辑</span>--%>
+<div class="layui-tab layui-tab-card">
+    <ul class="layui-tab-title">
+        <li class="layui-this">订阅数据列表</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div style="height: 50px;">
 
-<%--</div>--%>
-<div class="panel">
-    <%--<div class="panel-top">--%>
-        <%--<div class="panel-toolbar">--%>
-            <%--<div class="toolBar">--%>
+            <!--20161202-->
+            <form id="datacentreForm" name="datacentreForm" method="post" action="submitdatavalue.ht"
+                  enctype="multipart/form-data">
+                <div class="layui-tab-item layui-show">
+                    <table id="PrivateData" class="layui-table" cellpadding="1" cellspacing="1">
+                        <thead>
+                        <th style="text-align:center !important;">数据编号</th>
+                        <th style="text-align:center !important;">数据名称</th>
+                        <th style="text-align:center !important;">数据类型</th>
+                        <th style="text-align:center !important;">数据描述</th>
+                        <th style="text-align:center !important;">数据所属任务</th>
+                        <th style="text-align:center !important;">发布数据</th>
+                        </thead>
 
-                <%--<div class="l-bar-separator"></div>--%>
-                <%--<div class="group"><a class="link back " href="list.ht">返回</a>--%>
+                        <tbody id="gridtbody">
+                        <c:forEach items="${privateDataList}" var="privateDataItem">
+                            <tr style="cursor:pointer">
+                            <tr style="cursor:pointer">
+                                <td style="text-align: center;">
+                                    <input name="ddDataId" type="hidden" value="${privateDataItem.ddDataId}">
+                                        ${privateDataItem.ddDataId}
+                                </td>
+                                <td style="text-align: center;">
+                                    <input type="hidden" name="ddDataName" value="${privateDataItem.ddDataName}">
+                                        ${privateDataItem.ddDataName}
+                                </td>
+                                <td style="text-align: center;">
+                                    <input type="hidden" name="ddDataType" value="${privateDataItem.ddDataType}">
+                                        ${privateDataItem.ddDataType}
+                                </td>
+                                <td style="text-align: center;">
+                                    <input type="text" name="ddDataLastestValue"
+                                           value="${privateDataItem.ddDataLastestValue}">
 
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-    <div class="panel-body">
+                                </td>
+                                <td style="text-align: center;">
+                                    <input type="hidden" name="ddDataTaskId" value="${privateDataItem.ddDataTaskId}">
+                                        ${privateDataItem.ddDataTaskId}
+                                </td>
+                                <td style="text-align: center;">
 
-        <!--20161202-->
-        <form id="datacentreForm" name="datacentreForm" method="post" action="submitdatavalue.ht"
-              enctype="multipart/form-data">
-            <div class="layui-tab-item layui-show">
-                <table id="PrivateData" class="table-grid table-list" cellpadding="1" cellspacing="1">
-                    <thead>
-                    <th style="text-align:center !important;">数据编号</th>
-                    <th style="text-align:center !important;">数据名称</th>
-                    <th style="text-align:center !important;">数据类型</th>
-                    <th style="text-align:center !important;">数据描述</th>
-                    <th style="text-align:center !important;">数据所属任务</th>
-                    <th style="text-align:center !important;">发布数据</th>
-                    </thead>
+                                        <%--<a href="submitdata?ddDataLastestValue=${privateDataItem.ddDataLastestValue}&ddDataId=${privateDataItem.ddDataId}" >发布</a>--%>
 
-                    <tbody id="gridtbody">
-                    <c:forEach items="${privateDataList}" var="privateDataItem">
-                        <tr style="cursor:pointer">
-                        <tr style="cursor:pointer">
-                            <td style="text-align: center;">
-                                <input name="ddDataId" type="hidden" value="${privateDataItem.ddDataId}">
-                                    ${privateDataItem.ddDataId}
-                            </td>
-                            <td style="text-align: center;">
-                                <input type="hidden" name="ddDataName" value="${privateDataItem.ddDataName}">
-                                    ${privateDataItem.ddDataName}
-                            </td>
-                            <td style="text-align: center;">
-                                <input type="hidden" name="ddDataType" value="${privateDataItem.ddDataType}">
-                                    ${privateDataItem.ddDataType}
-                            </td>
-                            <td style="text-align: center;">
-                                <input type="text" name="ddDataLastestValue"
-                                       value="${privateDataItem.ddDataLastestValue}">
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        <input type="submit" name="sumbit" value="发布"/>
 
-                            </td>
-                            <td style="text-align: center;">
-                                <input type="hidden" name="ddDataTaskId" value="${privateDataItem.ddDataTaskId}">
-                                    ${privateDataItem.ddDataTaskId}
-                            </td>
-                            <td style="text-align: center;">
-
-                                    <%--<a href="submitdata?ddDataLastestValue=${privateDataItem.ddDataLastestValue}&ddDataId=${privateDataItem.ddDataId}" >发布</a>--%>
-
-
-                            </td>
-
-                        </tr>
-                    </c:forEach>
-                    <input type="submit" name="sumbit" value="发布"/>
-
-                    </tbody>
-                </table>
-            </div>
-        </form>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>

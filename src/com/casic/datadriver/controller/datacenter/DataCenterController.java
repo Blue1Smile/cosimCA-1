@@ -99,14 +99,15 @@ public class DataCenterController extends AbstractController {
 
     /**
      * 2016/12/19/修改
-     *返回任务发布订购数据列表
+     * 返回任务发布订购数据列表
+     *
      * @param request  the request
      * @param response the response
      * @return the list
      * @throws Exception the exception
      */
     @RequestMapping("publishOrderData")
-    @Action(description="返回任务发布订购数据列表")
+    @Action(description = "返回任务发布订购数据列表")
     public ModelAndView querysubmitpublish(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long ddTaskId= RequestUtil.getLong(request, "id");
@@ -120,15 +121,15 @@ public class DataCenterController extends AbstractController {
         }
 
         //获得订购数据列表
-        List<OrderDataRelation>  orderDataRelation_list2 =  this.orderDataRelationService.queryOrderDataRelationByddTaskID(ddTaskId);
+        List<OrderDataRelation> orderDataRelation_list2 = this.orderDataRelationService.queryOrderDataRelationByddTaskID(ddTaskId);
         List<PrivateData> privateData2 = new ArrayList<PrivateData>();
-        for (OrderDataRelation orderDataRelation:orderDataRelation_list2){
+        for (OrderDataRelation orderDataRelation : orderDataRelation_list2) {
             Long ddDataId=orderDataRelation.getDdDataId();
-            List<PrivateData>  taskPrivateDatas2 =  this.privateDataService.getByddDataId(ddDataId);
+            List<PrivateData> taskPrivateDatas2 = this.privateDataService.getByddDataId(ddDataId);
             privateData2.addAll(taskPrivateDatas2);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList_publish",
-                privateData).addObject("privateDataList_order",privateData2);
+                privateData).addObject("privateDataList_order", privateData2);
         return mv;
     }
 
