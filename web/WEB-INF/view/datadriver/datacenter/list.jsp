@@ -34,8 +34,7 @@
             <span class="fr"><a class="layui-btn layui-btn-normal" id="Search">查询</a>
                             <%--<a class="layui-btn layui-btn-warm" href="edit.ht">添加</a>--%>
 
-                            <%--<a class="layui-btn" action="edit.ht">修改</a>--%>
-
+                           
                             <%--<a class="layui-btn layui-btn-danger" action="del.ht">删除</a>--%>
                             </span>
         </div>
