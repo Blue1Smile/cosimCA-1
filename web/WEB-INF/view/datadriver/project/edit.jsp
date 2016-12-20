@@ -45,7 +45,11 @@
         }
 
     </script>
-
+    <style>
+        #iframe_tab {
+            margin-top: 0px;
+        }
+    </style>
 </head>
 <body>
 <div class="panel">
@@ -55,7 +59,7 @@
             <div class="panel-body">
                 <form id="projinfoForm" name="projinfoForm" method="post" action="save.ht"
                       enctype="multipart/form-data">
-                    <div class="layui-tab layui-tab-card">
+                    <div class="layui-tab layui-tab-card" id="iframe_tab">
                         <ul class="layui-tab-title">
                             <li class="layui-this">项目参数配置</li>
                             <%--<li>相关任务</li>--%>
@@ -200,7 +204,7 @@
                                 </table>
                             </div>
                             <%--<div class="layui-tab-item">--%>
-                                <%--<iframe src="${ctx}/datadriver/task/list.ht?id=${Project.ddProjectId}" style="width: 100%;height: 500px" scrolling="auto" frameborder="no"></iframe>--%>
+                            <%--<iframe src="${ctx}/datadriver/task/list.ht?id=${Project.ddProjectId}" style="width: 100%;height: 500px" scrolling="auto" frameborder="no"></iframe>--%>
                             <%--</div>--%>
                             <%--<div class="layui-tab-item">--%>
                             <%--&lt;%&ndash;<iframe frameborder="no" scrolling="auto" style="width: 100%;height: 500px"&ndash;%&gt;--%>
