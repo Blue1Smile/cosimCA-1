@@ -44,15 +44,12 @@
         <tr>
             <th width="20%">任务负责人:</th>
             <td>
-                <div style="float:left">
-                    <input type="text" id="ddTaskPerson"
-                           name="ddTaskPerson"
-                           value="${taskPerson}" class="layui-input"/>
-                </div>
-                <div style="float:left">
-                    <a href="userlist.ht?TaskId=${TaskInfo.ddTaskId}&projectId=${projectItem.ddProjectId}"
-                       class="layui-btn">选择</a>
-                </div>
+                <select name="ddTaskResponsiblePerson" class="layui-input">
+            <c:forEach var="personItem" items="${personList}">
+         <option value="${TaskInfo.ddTaskResponsiblePerson}"
+          <c:if test="${personItem=='${TaskInfo.ddTaskPerson}'}">selected</c:if> >${personItem}</option>
+   </c:forEach>
+ </select>
             </td>
 
 
@@ -168,6 +165,16 @@
             $.ligerMessageBox.error("提示信息", obj.getMessage());
         }
     }
+    function userchoose() {
 
+
+
+            document.taskInfoForm.action = "userlist.ht";
+
+
+
+         document.taskInfoForm.submit();
+
+         }
 </script>
 </html>

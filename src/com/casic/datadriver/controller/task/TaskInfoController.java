@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hotent.platform.auth.ISysUser;
+import com.hotent.platform.model.system.SysUser;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
@@ -127,8 +129,6 @@ public class TaskInfoController extends AbstractController {
             throws Exception {
         Long id = RequestUtil.getLong(request, "id");
         List<TaskInfo> taskInfoList=  new ArrayList<TaskInfo>();
-
-
         if (id == null || id == 0) {
              taskInfoList = taskInfoService.getAll();
         } else {
@@ -138,7 +138,6 @@ public class TaskInfoController extends AbstractController {
                 .addObject("projectId", id);
         return mv;
     }
-
 
 
     /**
@@ -153,20 +152,25 @@ public class TaskInfoController extends AbstractController {
     @Action(description = "添加任务")
     public ModelAndView addtask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        List<ISysUser> sysUserList = sysUserService.getAll();
+        ArrayList<String> userNameList = new ArrayList<String>();
+        ArrayList<Long> userIdList = new ArrayList<Long>();
+
+        for (int i = 0; i < sysUserList.size(); i++) {
+            ISysUser sysUser = sysUserList.get(i);
+            Long sysUserId = sysUser.getUserId();
+            userIdList.add(sysUserId);
+            String userName = sysUser.getFullname();
+            userNameList.add(userName);
+        }
+
         Long id = RequestUtil.getLong(request, "id");
-        String taskPerson = RequestUtil.getString(request, "taskPerson");
-        taskPerson = new String(taskPerson.getBytes("ISO-8859-1"), "UTF-8");
-        Long taskPersonId = RequestUtil.getLong(request, "userId");
         Project project = projectService.getById(id);
-        if (taskPersonId == null && taskPersonId == 0L) {
-            ModelAndView mv = this.getAutoView().addObject("projectItem", project);
-            return mv;
-        } else {
-            ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("taskPerson", taskPerson)
-                    .addObject("taskPersonId", taskPersonId);
+        ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("personList", userNameList).addObject("personIdList", userIdList);
             return mv;
         }
-    }
+
+
 
     /**
      * Del.
@@ -253,12 +257,12 @@ public class TaskInfoController extends AbstractController {
             PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
             privateDataList.add(privateData);
         }
-
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
                 this.privateDataService.queryPrivateDataByddTaskID(id))
                 .addObject("publishDataRelationList", privateDataList);
         return mv;
     }
+
 
     @RequestMapping("orderconfig")
     @Action(description = "订阅任务数据")
@@ -299,6 +303,7 @@ public class TaskInfoController extends AbstractController {
                 .addObject("orderDataRelationList", privateDataList);
         return mv;
     }
+
 
     @RequestMapping("savepublish")
     @Action(description = "保存发布")
@@ -358,13 +363,15 @@ public class TaskInfoController extends AbstractController {
     @RequestMapping("userlist")
     @Action(description = "用户列表")
     public ModelAndView userlist(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        TaskInfo taskInfo = getFormObject(request);
 
         Long TaskId = RequestUtil.getLong(request, "TaskId");
         Long projectId = RequestUtil.getLong(request, "projectId");
         QueryFilter queryFilter = new QueryFilter(request, "sysUserItem");
         ModelAndView mv = this.getAutoView().addObject("sysUserList",
                 this.sysUserService.getUserByQuery(queryFilter)).addObject("TaskId", TaskId)
-                .addObject("projectId", projectId);
+                .addObject("projectId", projectId).addObject("TaskInfo", taskInfo);
+
         return mv;
 
     }
