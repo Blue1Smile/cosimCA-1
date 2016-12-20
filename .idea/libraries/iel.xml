@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="iel">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/applet/iel.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

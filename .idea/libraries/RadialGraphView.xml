@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="RadialGraphView">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/applet/showIndustry/RadialGraphView.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
