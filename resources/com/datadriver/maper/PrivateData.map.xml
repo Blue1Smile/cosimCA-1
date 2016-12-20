@@ -23,6 +23,11 @@
     DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS
   </sql>
 
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM dd_private_data
+  </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 

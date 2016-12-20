@@ -1,7 +1,9 @@
 package com.casic.datadriver.controller.data;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -82,10 +84,20 @@ public class PrivateDataController extends AbstractController {
     @Action(description = "私有数据列表")
     public ModelAndView queryPrivateDataBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        QueryFilter queryFilter = new QueryFilter(request, "PrivateDataItem");
-        ModelAndView mv = this.getAutoView().addObject("privateDataList",
-                this.privateDataService.queryPrivateDataBasicInfoList(queryFilter));
+
+
+        Long id = RequestUtil.getLong(request, "id");
+        List<PrivateData> privateDataInfoList=  new ArrayList<PrivateData>();
+
+        if (id == null || id == 0) {
+            privateDataInfoList = privateDataService.getAll();
+        } else {
+            privateDataInfoList = privateDataService.queryPrivateDataByddTaskID(id);
+        }
+        ModelAndView mv = this.getAutoView().addObject("privateDataList", privateDataInfoList)
+                .addObject("ddTaskId", id);
         return mv;
+
     }
 
     /**
