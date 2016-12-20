@@ -25,6 +25,8 @@ import com.hotent.core.util.BeanUtils;
 import com.hotent.core.util.ContextUtil;
 import com.hotent.core.web.util.RequestUtil;
 
+import com.hotent.platform.auth.ISysUser;
+import com.hotent.platform.model.system.SysUser;
 import com.hotent.platform.service.system.SysUserService;
 import net.sf.ezmorph.object.DateMorpher;
 import net.sf.json.JSONObject;
@@ -153,19 +155,27 @@ public class TaskInfoController extends AbstractController {
     @Action(description = "添加任务")
     public ModelAndView addtask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Long id = RequestUtil.getLong(request, "id");
-        String taskPerson = RequestUtil.getString(request, "taskPerson");
-        taskPerson = new String(taskPerson.getBytes("ISO-8859-1"), "UTF-8");
-        Long taskPersonId = RequestUtil.getLong(request, "userId");
-        Project project = projectService.getById(id);
-        if (taskPersonId == null && taskPersonId == 0L) {
-            ModelAndView mv = this.getAutoView().addObject("projectItem", project);
-            return mv;
-        } else {
-            ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("taskPerson", taskPerson)
-                    .addObject("taskPersonId", taskPersonId);
-            return mv;
+
+        List<ISysUser> sysUserList = sysUserService.getAll();
+        ArrayList<String> userNameList = new ArrayList<String>();
+        ArrayList<Long> userIdList = new ArrayList<Long>();
+        for (int i = 0; i < sysUserList.size(); i++) {
+            ISysUser sysUser = sysUserList.get(i);
+
+            Long sysUserId = sysUser.getUserId();
+            userIdList.add(sysUserId);
+
+            String userName = sysUser.getFullname();
+            userNameList.add(userName);
         }
+        Long id = RequestUtil.getLong(request, "id");
+//        taskPerson = new String(taskPerson.getBytes("ISO-8859-1"), "UTF-8");
+//        Long taskPersonId = RequestUtil.getLong(request, "userId");
+        Project project = projectService.getById(id);
+        ModelAndView mv = this.getAutoView().addObject("projectItem", project)
+                .addObject("personList", userNameList).addObject("personIdList", userIdList);
+            return mv;
+
     }
 
     /**
@@ -358,13 +368,13 @@ public class TaskInfoController extends AbstractController {
     @RequestMapping("userlist")
     @Action(description = "用户列表")
     public ModelAndView userlist(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+        TaskInfo taskInfo = getFormObject(request);
         Long TaskId = RequestUtil.getLong(request, "TaskId");
         Long projectId = RequestUtil.getLong(request, "projectId");
         QueryFilter queryFilter = new QueryFilter(request, "sysUserItem");
         ModelAndView mv = this.getAutoView().addObject("sysUserList",
                 this.sysUserService.getUserByQuery(queryFilter)).addObject("TaskId", TaskId)
-                .addObject("projectId", projectId);
+                .addObject("projectId", projectId).addObject("TaskInfo", taskInfo);
         return mv;
 
     }
