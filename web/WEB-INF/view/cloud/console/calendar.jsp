@@ -32,8 +32,8 @@
 		<decorator:body/>
 		<div class="layui-body">
 
-			<iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe"
-					style="width:100%;min-height:800px;"></iframe>
+            <iframe src="${ctx}/datadriver/personaltask/list.ht" frameborder="0" scrolling="no" id="mainframe"
+                    style="width:100%;min-height:800px;"></iframe>
 		</div>
 	</div>
 	<%@include file="/commons/cloud/foot.jsp" %>

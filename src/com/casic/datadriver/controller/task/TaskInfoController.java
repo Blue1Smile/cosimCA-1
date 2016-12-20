@@ -69,7 +69,8 @@ public class TaskInfoController extends AbstractController {
     @Resource
     private SysUserService sysUserService;
     @Resource
-    private  ProjectService projectService;
+    private ProjectService projectService;
+
     /**
      * @param request  the request
      * @param response the response
@@ -117,7 +118,8 @@ public class TaskInfoController extends AbstractController {
 
     /**
      * Query task basic info list.
-     *根据项目id查询项目任务或者查询所有项目
+     * 根据项目id查询项目任务或者查询所有项目
+     *
      * @param request  the request
      * @param response the response
      * @return the list
@@ -128,19 +130,18 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView queryTaskBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long id = RequestUtil.getLong(request, "id");
-        List<TaskInfo> taskInfoList=  new ArrayList<TaskInfo>();
+        List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
 
 
         if (id == null || id == 0) {
-             taskInfoList = taskInfoService.getAll();
+            taskInfoList = taskInfoService.getAll();
         } else {
-             taskInfoList = taskInfoService.queryTaskInfoByProjectId(id);
+            taskInfoList = taskInfoService.queryTaskInfoByProjectId(id);
         }
         ModelAndView mv = this.getAutoView().addObject("taskList", taskInfoList)
                 .addObject("projectId", id);
         return mv;
     }
-
 
 
     /**
@@ -155,26 +156,11 @@ public class TaskInfoController extends AbstractController {
     @Action(description = "添加任务")
     public ModelAndView addtask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         List<ISysUser> sysUserList = sysUserService.getAll();
-        ArrayList<String> userNameList = new ArrayList<String>();
-        ArrayList<Long> userIdList = new ArrayList<Long>();
-        for (int i = 0; i < sysUserList.size(); i++) {
-            ISysUser sysUser = sysUserList.get(i);
-
-            Long sysUserId = sysUser.getUserId();
-            userIdList.add(sysUserId);
-
-            String userName = sysUser.getFullname();
-            userNameList.add(userName);
-        }
         Long id = RequestUtil.getLong(request, "id");
-//        taskPerson = new String(taskPerson.getBytes("ISO-8859-1"), "UTF-8");
-//        Long taskPersonId = RequestUtil.getLong(request, "userId");
         Project project = projectService.getById(id);
-        ModelAndView mv = this.getAutoView().addObject("projectItem", project)
-                .addObject("personList", userNameList).addObject("personIdList", userIdList);
-            return mv;
+        ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
+        return mv;
 
     }
 
@@ -217,6 +203,10 @@ public class TaskInfoController extends AbstractController {
         String returnUrl = RequestUtil.getPrePage(request);
         TaskInfo taskInfo = taskInfoService.getById(id);
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
+
+        List<ISysUser> sysUserList = sysUserService.getAll();
+
+
         if (taskInfo.getDdTaskPerson() == null) {
             //获取负责任ID
             Long userId = RequestUtil.getLong(request, "userId");
@@ -228,7 +218,8 @@ public class TaskInfoController extends AbstractController {
         }
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("privateDataList", privateDataList)
-                .addObject("returnUrl", returnUrl);
+                .addObject("returnUrl", returnUrl)
+                .addObject("sysUserList", sysUserList);
     }
 
     /**
