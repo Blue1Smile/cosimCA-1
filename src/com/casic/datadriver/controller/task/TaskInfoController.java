@@ -173,14 +173,12 @@ public class TaskInfoController extends AbstractController {
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        super.del(request, response, this.taskInfoService);
+
         String preUrl = RequestUtil.getPrePage(request);
         ResultMessage message = null;
         try {
             Long[] TaskId = RequestUtil.getLongAryByStr(request, "id");
-
             taskInfoService.delAll(TaskId);
-//        TaskInfo taskInfo = this.getFormObject(request, TaskInfo.class);
             message = new ResultMessage(ResultMessage.Success, "删除成功");
 
         } catch (Exception ex) {
@@ -206,16 +204,6 @@ public class TaskInfoController extends AbstractController {
 
         List<ISysUser> sysUserList = sysUserService.getAll();
 
-
-        if (taskInfo.getDdTaskPerson() == null) {
-            //获取负责任ID
-            Long userId = RequestUtil.getLong(request, "userId");
-            //获取任务负责任姓名
-            String msg = RequestUtil.getString(request, "taskPerson");
-            String taskPerson = new String(msg.getBytes("ISO-8859-1"), "UTF-8");
-            taskInfo.setDdTaskResponsiblePerson(userId);
-            taskInfo.setDdTaskPerson(taskPerson);
-        }
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("privateDataList", privateDataList)
                 .addObject("returnUrl", returnUrl)
