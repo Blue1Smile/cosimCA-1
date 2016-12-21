@@ -44,6 +44,7 @@
         <tr>
             <th width="20%">任务负责人:</th>
             <td>
+
                 <div class="layui-input-inline">
                     <select name="ddTaskResponsiblePerson" class="layui-select" id="personSelect">
                         <c:forEach var="personItem" items="${sysUserList}">
@@ -52,6 +53,7 @@
                         </c:forEach>
                     </select>
                 </div>
+
             </td>
 
 
@@ -173,7 +175,6 @@
             $.ligerMessageBox.error("提示信息", obj.getMessage());
         }
     }
-
 
 </script>
 </html>
