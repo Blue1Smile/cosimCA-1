@@ -55,61 +55,63 @@
         <li class="layui-this">订阅数据列表</li>
     </ul>
     <div class="layui-tab-content">
-        <div style="height: 50px;">
 
-            <!--20161202-->
-            <form id="datacentreForm" name="datacentreForm" method="post" action="submitdatavalue.ht"
-                  enctype="multipart/form-data">
-                <div class="layui-tab-item layui-show">
-                    <table id="PrivateData" class="layui-table" cellpadding="1" cellspacing="1">
-                        <thead>
-                        <th style="text-align:center !important;">数据编号</th>
-                        <th style="text-align:center !important;">数据名称</th>
-                        <th style="text-align:center !important;">数据类型</th>
-                        <th style="text-align:center !important;">数据描述</th>
-                        <th style="text-align:center !important;">数据所属任务</th>
-                        <th style="text-align:center !important;">发布数据</th>
-                        </thead>
+        <!--20161202-->
+        <form id="datacentreForm" name="datacentreForm" method="post" action="submitdatavalue.ht"
+              enctype="multipart/form-data">
+            <div style="height: 50px;">
+                <input class="layui-btn layui-btn-normal" type="submit" name="sumbit" value="发布"/>
+            </div>
+            <div class="layui-tab-item layui-show">
+                <table id="PrivateData" class="layui-table" cellpadding="1" cellspacing="1">
+                    <thead>
+                    <th style="text-align:center !important;">数据编号</th>
+                    <th style="text-align:center !important;">数据名称</th>
+                    <th style="text-align:center !important;">数据类型</th>
+                    <th style="text-align:center !important;">数据描述</th>
+                    <th style="text-align:center !important;">数据所属任务</th>
+                    <th style="text-align:center !important;">发布数据</th>
+                    </thead>
 
-                        <tbody id="gridtbody">
-                        <c:forEach items="${privateDataList}" var="privateDataItem">
-                            <tr style="cursor:pointer">
-                            <tr style="cursor:pointer">
-                                <td style="text-align: center;">
-                                    <input name="ddDataId" type="hidden" value="${privateDataItem.ddDataId}">
-                                        ${privateDataItem.ddDataId}
-                                </td>
-                                <td style="text-align: center;">
-                                    <input type="hidden" name="ddDataName" value="${privateDataItem.ddDataName}">
-                                        ${privateDataItem.ddDataName}
-                                </td>
-                                <td style="text-align: center;">
-                                    <input type="hidden" name="ddDataType" value="${privateDataItem.ddDataType}">
-                                        ${privateDataItem.ddDataType}
-                                </td>
-                                <td style="text-align: center;">
-                                    <input type="text" name="ddDataLastestValue"
-                                           value="${privateDataItem.ddDataLastestValue}">
+                    <tbody id="gridtbody">
+                    <c:forEach items="${privateDataList}" var="privateDataItem">
+                        <tr style="cursor:pointer">
+                        <tr style="cursor:pointer">
+                            <td style="text-align: center;">
+                                <input name="ddDataId" type="hidden" value="${privateDataItem.ddDataId}">
+                                    ${privateDataItem.ddDataId}
+                            </td>
+                            <td style="text-align: center;">
+                                <input type="hidden" name="ddDataName" value="${privateDataItem.ddDataName}">
+                                    ${privateDataItem.ddDataName}
+                            </td>
+                            <td style="text-align: center;">
+                                <input type="hidden" name="ddDataType" value="${privateDataItem.ddDataType}">
+                                    ${privateDataItem.ddDataType}
+                            </td>
+                            <td style="text-align: center;">
+                                <input type="text" name="ddDataLastestValue"
+                                       value="${privateDataItem.ddDataLastestValue}">
 
-                                </td>
-                                <td style="text-align: center;">
-                                    <input type="hidden" name="ddDataTaskId" value="${privateDataItem.ddDataTaskId}">
-                                        ${privateDataItem.ddDataTaskId}
-                                </td>
-                                <td style="text-align: center;">
+                            </td>
+                            <td style="text-align: center;">
+                                <input type="hidden" name="ddDataTaskId" value="${privateDataItem.ddDataTaskId}">
+                                    ${privateDataItem.ddDataTaskId}
+                            </td>
+                            <td style="text-align: center;">
 
-                                        <%--<a href="submitdata?ddDataLastestValue=${privateDataItem.ddDataLastestValue}&ddDataId=${privateDataItem.ddDataId}" >发布</a>--%>
+                                    <%--<a href="submitdata?ddDataLastestValue=${privateDataItem.ddDataLastestValue}&ddDataId=${privateDataItem.ddDataId}" >发布</a>--%>
 
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        <input type="submit" name="sumbit" value="发布"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
 
-                        </tbody>
-                    </table>
-                </div>
-            </form>
-        </div>
+
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
     </div>
 </div>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>

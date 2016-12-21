@@ -54,12 +54,12 @@
             <input type="checkbox" id="chkall"/>
         </c:set>
         <display:table name="projectList" id="ProjectItem" requestURI="list.ht" sort="external" cellpadding="0"
-                       cellspacing="0" export="false" class="layui-table">
+                       cellspacing="0" export="false" class="layui-table" pagesize="10">
             <display:column title="${checkAll}" media="html" style="width:30px;">
                 <input type="checkbox" class="pk" name="id" value="${ProjectItem.ddProjectId}">
             </display:column>
             <%--<display:column property="ddProjectId" title="项目编号" sortable="true" sortName="DD_PROJECT_ID"--%>
-                            <%--maxLength="80"></display:column>--%>
+            <%--maxLength="80"></display:column>--%>
             <display:column property="ddProjectName" title="项目名称" sortable="true" sortName="DD_PROJECT_NAME"
                             maxLength="80"></display:column>
             <display:column property="ddProjectResponsibleUnits" title="项目责任单位" maxLength="80"></display:column>
@@ -92,14 +92,15 @@
                 <a href="start.ht?id=${ProjectItem.ddProjectId}"
                    class="layui-btn layui-btn-primary layui-btn-small">启动</a>
                 <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
-                   <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
-                <a class="layui-btn layui-btn-small layui-btn-success" href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
+                <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
+                <a class="layui-btn layui-btn-small layui-btn-success"
+                   href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
                 <a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>
                 <a href="del.ht?id=${ProjectItem.ddProjectId}"
                    class="layui-btn layui-btn-small layui-btn-danger">删除</a>
             </display:column>
         </display:table>
-        <hotent:paging tableId="ProjectItem"/>
+        <%--<hotent:paging tableId="ProjectItem"/>--%>
 
     </div>
 

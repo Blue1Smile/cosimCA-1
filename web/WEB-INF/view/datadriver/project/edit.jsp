@@ -134,17 +134,7 @@
                                                    value="${Project.ddProjectBelongModel}"
                                                    class="layui-input"/></td>
                                     </tr>
-                                    <tr>
-                                        <th width="20%">项目密级:</th>
-                                        <td><input type="text" id="ddProjectSecretLevel" name="ddProjectSecretLevel"
-                                                   value="${Project.ddProjectSecretLevel}"
-                                                   class="layui-input"/></td>
-                                        <%--<th width="20%">修改人id:</th>--%>
-                                        <%--<td><input type="text" id="ddProjectChangePersonId"--%>
-                                        <%--name="ddProjectChangePersonId"--%>
-                                        <%--value="${Project.ddProjectChangePersonId}"--%>
-                                        <%--class="layui-input"/></td>--%>
-                                    </tr>
+
                                     <tr>
                                         <th width="20%">优先级:</th>
                                         <td><input type="text" id="ddProjectPriority" name="ddProjectPriority"
@@ -176,7 +166,17 @@
                                         <%--class="layui-input"/></td>--%>
                                     </tr>
 
-
+                                    <tr>
+                                        <th width="20%">项目密级:</th>
+                                        <td><input type="text" id="ddProjectSecretLevel" name="ddProjectSecretLevel"
+                                                   value="${Project.ddProjectSecretLevel}"
+                                                   class="layui-input"/></td>
+                                        <%--<th width="20%">修改人id:</th>--%>
+                                        <%--<td><input type="text" id="ddProjectChangePersonId"--%>
+                                        <%--name="ddProjectChangePersonId"--%>
+                                        <%--value="${Project.ddProjectChangePersonId}"--%>
+                                        <%--class="layui-input"/></td>--%>
+                                    </tr>
                                     <%--<th width="20%">实际结束日期:</th>--%>
                                     <%--<td><input type="text" id="ddProjectActualCompleteData"--%>
                                     <%--name="ddProjectActualCompleteData"--%>

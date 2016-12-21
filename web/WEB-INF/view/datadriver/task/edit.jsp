@@ -75,8 +75,8 @@
                                         <%--<th width="20%">任务编号:</th>--%>
                                         <%--<td><input type="text" id="ddTaskId" name="ddTaskId" value="${TaskInfo.ddTaskId}" class="layui-input"/></td>--%>
                                         <th width="20%">任务所属项目:</th>
-                                        <td><input type="text" id="ddTaskProjectId" name="ddTaskProjectId"
-                                                   value="${TaskInfo.ddTaskProjectId}" class="layui-input"/></td>
+                                        <td><input type="text" id="ddTaskProjectName" name="ddTaskProjectName"
+                                                   value="${TaskInfo.ddTaskProjectName}" class="layui-input"/></td>
                                     </tr>
                                     <tr>
                                         <th width="20%">任务基本描述:</th>
@@ -91,7 +91,7 @@
                                     <tr>
                                         <th width="20%">任务负责人:</th>
                                         <td>
-                                            <select name="ddTaskPerson" class="layui-input"
+                                            <select name="ddTaskResponsiblePerson" class="layui-input"
                                                     id="personSelect">
                                                 <c:forEach var="personItem" items="${sysUserList}">
                                                     <option value="${personItem.userId}"
@@ -164,6 +164,8 @@
                                            class="layui-input"/>
                                     <input type="hidden" id="ddTaskCreatorId" name="ddTaskCreatorId"
                                            value="${TaskInfo.ddTaskCreatorId}" class="layui-input"/>
+                                    <input type="hidden" id="ddTaskProjectId" name="ddTaskProjectId"
+                                           value="${TaskInfo.ddTaskProjectId}" class="layui-input"/>
                                     <input type="hidden" id="ddTaskCompleteState" name="ddTaskCompleteState"
                                            value="${TaskInfo.ddTaskCompleteState}" class="layui-input"/>
                                     <input type="hidden" id="ddTaskResourceId" name="ddTaskResourceId"

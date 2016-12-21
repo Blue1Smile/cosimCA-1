@@ -28,7 +28,7 @@
             <%--<th width="20%">任务编号:</th>--%>
             <%--<td><input type="text" id="ddTaskId" name="ddTaskId" value="${TaskInfo.ddTaskId}" class="layui-input"/></td>--%>
             <th width="20%">任务所属项目:</th>
-            <td><input type="text" id="ddProjectName" name="ddProjectName"
+            <td><input type="text" id="ddTaskProjectName" name="ddTaskProjectName"
                        value="${projectItem.ddProjectName}" class="layui-input"/></td>
         </tr>
         <tr>
@@ -44,12 +44,14 @@
         <tr>
             <th width="20%">任务负责人:</th>
             <td>
-                <select name="ddTaskResponsiblePerson" class="layui-input" id="personSelect">
-                    <c:forEach var="personItem" items="${sysUserList}">
-                        <option value="${personItem.userId}"
-                                <c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>
-                    </c:forEach>
-                </select>
+                <div class="layui-input-inline">
+                    <select name="ddTaskResponsiblePerson" class="layui-select" id="personSelect">
+                        <c:forEach var="personItem" items="${sysUserList}">
+                            <option value="${personItem.userId}"
+                                    <c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>
+                        </c:forEach>
+                    </select>
+                </div>
             </td>
 
 
