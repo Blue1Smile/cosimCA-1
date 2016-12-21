@@ -126,6 +126,7 @@
 <%--<legend>生成一个较深的树</legend>--%>
 <%--</fieldset>--%>
 <div class="layui-tab layui-tab-card">
+
     <ul class="layui-tab-title">
         <li class="layui-this">数据中心</li>
     </ul>
@@ -141,6 +142,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 </body>

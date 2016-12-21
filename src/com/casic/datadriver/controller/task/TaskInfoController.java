@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hotent.platform.auth.ISysUser;
+import com.hotent.platform.model.system.SysUser;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
@@ -130,8 +132,8 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView queryTaskBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long id = RequestUtil.getLong(request, "id");
-        List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
 
+        List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
 
         if (id == null || id == 0) {
             taskInfoList = taskInfoService.getAll();
@@ -161,7 +163,6 @@ public class TaskInfoController extends AbstractController {
         Project project = projectService.getById(id);
         ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
         return mv;
-
     }
 
     /**
@@ -242,12 +243,12 @@ public class TaskInfoController extends AbstractController {
             PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
             privateDataList.add(privateData);
         }
-
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
                 this.privateDataService.queryPrivateDataByddTaskID(id))
                 .addObject("publishDataRelationList", privateDataList);
         return mv;
     }
+
 
     @RequestMapping("orderconfig")
     @Action(description = "订阅任务数据")
@@ -288,6 +289,7 @@ public class TaskInfoController extends AbstractController {
                 .addObject("orderDataRelationList", privateDataList);
         return mv;
     }
+
 
     @RequestMapping("savepublish")
     @Action(description = "保存发布")
