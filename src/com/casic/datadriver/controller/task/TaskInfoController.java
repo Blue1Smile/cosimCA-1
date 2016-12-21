@@ -27,6 +27,8 @@ import com.hotent.core.util.BeanUtils;
 import com.hotent.core.util.ContextUtil;
 import com.hotent.core.web.util.RequestUtil;
 
+import com.hotent.platform.auth.ISysUser;
+import com.hotent.platform.model.system.SysUser;
 import com.hotent.platform.service.system.SysUserService;
 import net.sf.ezmorph.object.DateMorpher;
 import net.sf.json.JSONObject;
@@ -69,7 +71,8 @@ public class TaskInfoController extends AbstractController {
     @Resource
     private SysUserService sysUserService;
     @Resource
-    private  ProjectService projectService;
+    private ProjectService projectService;
+
     /**
      * @param request  the request
      * @param response the response
@@ -117,7 +120,8 @@ public class TaskInfoController extends AbstractController {
 
     /**
      * Query task basic info list.
-     *根据项目id查询项目任务或者查询所有项目
+     * 根据项目id查询项目任务或者查询所有项目
+     *
      * @param request  the request
      * @param response the response
      * @return the list
@@ -128,11 +132,13 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView queryTaskBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long id = RequestUtil.getLong(request, "id");
-        List<TaskInfo> taskInfoList=  new ArrayList<TaskInfo>();
+
+        List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
+
         if (id == null || id == 0) {
-             taskInfoList = taskInfoService.getAll();
+            taskInfoList = taskInfoService.getAll();
         } else {
-             taskInfoList = taskInfoService.queryTaskInfoByProjectId(id);
+            taskInfoList = taskInfoService.queryTaskInfoByProjectId(id);
         }
         ModelAndView mv = this.getAutoView().addObject("taskList", taskInfoList)
                 .addObject("projectId", id);
@@ -153,24 +159,11 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView addtask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         List<ISysUser> sysUserList = sysUserService.getAll();
-        ArrayList<String> userNameList = new ArrayList<String>();
-        ArrayList<Long> userIdList = new ArrayList<Long>();
-
-        for (int i = 0; i < sysUserList.size(); i++) {
-            ISysUser sysUser = sysUserList.get(i);
-            Long sysUserId = sysUser.getUserId();
-            userIdList.add(sysUserId);
-            String userName = sysUser.getFullname();
-            userNameList.add(userName);
-        }
-
         Long id = RequestUtil.getLong(request, "id");
         Project project = projectService.getById(id);
-        ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("personList", userNameList).addObject("personIdList", userIdList);
-            return mv;
-        }
-
-
+        ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
+        return mv;
+    }
 
     /**
      * Del.
@@ -181,14 +174,12 @@ public class TaskInfoController extends AbstractController {
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        super.del(request, response, this.taskInfoService);
+
         String preUrl = RequestUtil.getPrePage(request);
         ResultMessage message = null;
         try {
             Long[] TaskId = RequestUtil.getLongAryByStr(request, "id");
-
             taskInfoService.delAll(TaskId);
-//        TaskInfo taskInfo = this.getFormObject(request, TaskInfo.class);
             message = new ResultMessage(ResultMessage.Success, "删除成功");
 
         } catch (Exception ex) {
@@ -211,18 +202,13 @@ public class TaskInfoController extends AbstractController {
         String returnUrl = RequestUtil.getPrePage(request);
         TaskInfo taskInfo = taskInfoService.getById(id);
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
-        if (taskInfo.getDdTaskPerson() == null) {
-            //获取负责任ID
-            Long userId = RequestUtil.getLong(request, "userId");
-            //获取任务负责任姓名
-            String msg = RequestUtil.getString(request, "taskPerson");
-            String taskPerson = new String(msg.getBytes("ISO-8859-1"), "UTF-8");
-            taskInfo.setDdTaskResponsiblePerson(userId);
-            taskInfo.setDdTaskPerson(taskPerson);
-        }
+
+        List<ISysUser> sysUserList = sysUserService.getAll();
+
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("privateDataList", privateDataList)
-                .addObject("returnUrl", returnUrl);
+                .addObject("returnUrl", returnUrl)
+                .addObject("sysUserList", sysUserList);
     }
 
     /**
@@ -364,14 +350,12 @@ public class TaskInfoController extends AbstractController {
     @Action(description = "用户列表")
     public ModelAndView userlist(HttpServletRequest request, HttpServletResponse response) throws Exception {
         TaskInfo taskInfo = getFormObject(request);
-
         Long TaskId = RequestUtil.getLong(request, "TaskId");
         Long projectId = RequestUtil.getLong(request, "projectId");
         QueryFilter queryFilter = new QueryFilter(request, "sysUserItem");
         ModelAndView mv = this.getAutoView().addObject("sysUserList",
                 this.sysUserService.getUserByQuery(queryFilter)).addObject("TaskId", TaskId)
                 .addObject("projectId", projectId).addObject("TaskInfo", taskInfo);
-
         return mv;
 
     }

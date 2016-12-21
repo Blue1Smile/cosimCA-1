@@ -44,12 +44,13 @@
         <tr>
             <th width="20%">任务负责人:</th>
             <td>
-                <select name="ddTaskResponsiblePerson" class="layui-input">
-            <c:forEach var="personItem" items="${personList}">
-         <option value="${TaskInfo.ddTaskResponsiblePerson}"
-          <c:if test="${personItem=='${TaskInfo.ddTaskPerson}'}">selected</c:if> >${personItem}</option>
-   </c:forEach>
- </select>
+
+                <select name="ddTaskResponsiblePerson" class="layui-input" id="personSelect">
+                    <c:forEach var="personItem" items="${sysUserList}">
+                        <option value="${personItem.userId}"
+                                <c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>
+                    </c:forEach>
+                </select>
             </td>
 
 
@@ -121,10 +122,10 @@
                value="${TaskInfo.ddTaskCompleteState}" class="layui-input"/>
         <input type="hidden" id="ddTaskResourceId" name="ddTaskResourceId"
                value="${TaskInfo.ddTaskResourceId}" class="layui-input"/>
-        <input type="hidden" id="ddTaskResponsiblePerson" name="ddTaskResponsiblePerson"
-               value="${taskPersonId}" class="layui-input"/>
         <input type="hidden" id="ddTaskProjectId" name="ddTaskProjectId"
                value="${projectItem.ddProjectId}" class="layui-input"/>
+        <input type="hidden" id="ddTaskPerson" name="ddTaskPerson"
+               value="${TaskInfo.ddTaskPerson}" class="layui-input"/>
     </table>
 </form>
 <center>
@@ -134,6 +135,11 @@
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script type="text/javascript">
+    $("#personSelect").change(function () {
+        var taskPerson = $("#personSelect").find("option:selected").text();
+        $("#ddTaskPerson").val(taskPerson);
+    });
+
     $(function () {
         var options = {};
         if (showResponse) {
@@ -141,6 +147,7 @@
         }
         var frm = $('#taskInfoForm').form();
         $("#dataFormSave").click(function () {
+
             frm.setData();
             frm.ajaxForm(options);
             if (frm.valid()) {
@@ -165,16 +172,6 @@
             $.ligerMessageBox.error("提示信息", obj.getMessage());
         }
     }
-    function userchoose() {
 
-
-
-            document.taskInfoForm.action = "userlist.ht";
-
-
-
-         document.taskInfoForm.submit();
-
-         }
 </script>
 </html>

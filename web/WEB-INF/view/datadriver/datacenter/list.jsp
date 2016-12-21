@@ -126,23 +126,24 @@
 <%--<legend>生成一个较深的树</legend>--%>
 <%--</fieldset>--%>
 <div class="layui-tab layui-tab-card">
-     <ul class="layui-tab-title">
-         <li class="layui-this">数据中心</li>
-     </ul>
-     <div class="layui-tab-content">
-         div id="layout">
-         <div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-             <ul id="demo2" style="overflow:auto;"></ul>
-         </div>
-         <div position="center">
-             <iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishOrderData.ht" frameborder="no"
-                     width="100%"
-                     height="100%"></iframe>
-         </div>
-     </div>
-</div>
-</div>
 
+    <ul class="layui-tab-title">
+        <li class="layui-this">数据中心</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div id="layout">
+            <div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <ul id="demo2" style="overflow:auto;"></ul>
+            </div>
+            <div position="center">
+                <iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishOrderData.ht" frameborder="no"
+                        width="100%"
+                        height="100%"></iframe>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
 

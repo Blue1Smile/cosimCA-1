@@ -41,7 +41,11 @@
         }
 
     </script>
-
+    <style>
+        #iframe_tab {
+            margin-top: 0px;
+        }
+    </style>
 </head>
 <body>
 <div class="panel">
@@ -55,7 +59,7 @@
             <div class="panel-body">
                 <form id="taskInfoForm" name="taskInfoForm" method="post" action="save.ht"
                       enctype="multipart/form-data">
-                    <div class="layui-tab layui-tab-card">
+                    <div class="layui-tab layui-tab-card" id="iframe_tab">
                         <ul class="layui-tab-title">
                             <li class="layui-this">任务配置</li>
                             <li>任务私有数据</li>
@@ -89,13 +93,15 @@
                                     </tr>
                                     <tr>
                                         <th width="20%">任务负责人:</th>
-                                        <td><input type="text" id="ddTaskPerson"
-                                                   name="ddTaskPerson"
-                                                   value="${TaskInfo.ddTaskPerson}" class="layui-input"/>
-                                        <a href="userlist.ht?TaskId=${TaskInfo.ddTaskId}"
-                                               class="layui-btn layui-btn-small">选择</a>
+                                        <td>
+                                            <select name="ddTaskPerson" class="layui-input"
+                                                    id="personSelect">
+                                                <c:forEach var="personItem" items="${sysUserList}">
+                                                    <option value="${personItem.userId}"
+                                                            <c:if test="${personItem.fullname == TaskInfo.ddTaskPerson}">selected</c:if>>${personItem.fullname}</option>
+                                                </c:forEach>
+                                            </select>
                                         </td>
-
 
                                     <th width="20%">任务是否固化:</th>
                                     <td><input type="text" id="ddTaskFixedPattern" name="ddTaskFixedPattern"
@@ -135,12 +141,12 @@
                                                    value="${TaskInfo.ddTaskCompleteRate}" class="layui-input"/></td>
                                     </tr>
 
-                                    <tr>
-                                        <%--<th width="20%">任务完成状态:</th>--%>
-                                        <%--<td><input type="text" id="ddTaskCompleteState" name="ddTaskCompleteState" value="${TaskInfo.ddTaskCompleteState}" class="layui-input"/></td>--%>
-                                        <%--<th width="20%">任务资源id:</th>--%>
-                                        <%--<td><input type="text" id="ddTaskResourceId" name="ddTaskResourceId" value="${TaskInfo.ddTaskResourceId}" class="layui-input"/></td>--%>
-                                    </tr>
+                                    <%--<tr>--%>
+                                    <%--&lt;%&ndash;<th width="20%">任务完成状态:</th>&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;<td><input type="text" id="ddTaskCompleteState" name="ddTaskCompleteState" value="${TaskInfo.ddTaskCompleteState}" class="layui-input"/></td>&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;<th width="20%">任务资源id:</th>&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;<td><input type="text" id="ddTaskResourceId" name="ddTaskResourceId" value="${TaskInfo.ddTaskResourceId}" class="layui-input"/></td>&ndash;%&gt;--%>
+                                    <%--</tr>--%>
                                     <tr>
                                         <th width="20%">实际工时:</th>
                                         <td><input type="text" id="ddTaskActualTime" name="ddTaskActualTime"
@@ -165,8 +171,10 @@
                                            value="${TaskInfo.ddTaskCompleteState}" class="layui-input"/>
                                     <input type="hidden" id="ddTaskResourceId" name="ddTaskResourceId"
                                            value="${TaskInfo.ddTaskResourceId}" class="layui-input"/>
-                                    <input type="hidden" id="ddTaskResponsiblePerson" name="ddTaskResponsiblePerson"
-                                           value="${TaskInfo.ddTaskResponsiblePerson}" class="layui-input"/>
+                                    <%--<input type="hidden" id="ddTaskResponsiblePerson" name="ddTaskResponsiblePerson"--%>
+                                    <%--value="${TaskInfo.ddTaskResponsiblePerson}" class="layui-input"/>--%>
+                                    <input type="hidden" id="ddTaskPerson" name="ddTaskPerson"
+                                           value="${TaskInfo.ddTaskPerson}" class="layui-input"/>
                                 </table>
                             </div>
                             <!--任务私有数据-->
@@ -303,4 +311,10 @@
 </div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+<script>
+    $("#personSelect").change(function () {
+        var taskPerson = $("#personSelect").find("option:selected").text();
+        $("#ddTaskPerson").val(taskPerson);
+    });
+</script>
 </html>
