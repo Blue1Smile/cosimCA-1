@@ -71,7 +71,6 @@ public class PersonalTaskController extends AbstractController {
         return mv;
     }
 
-
     @RequestMapping("submitpublish")
     @Action(description = "�������񷢲������б�")
     public ModelAndView querysubmitpublish(HttpServletRequest request, HttpServletResponse response)

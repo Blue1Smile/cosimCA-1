@@ -40,7 +40,7 @@
             <input type="checkbox" id="chkall"/>
         </c:set>
         <display:table name="privateDataList" id="PrivateDataItem" requestURI="list.ht" sort="external" cellpadding="1"
-                       cellspacing="1" export="true" class="table-grid">
+                       cellspacing="1" export="true" class="layui-table" pagesize="10">
             <display:column title="${checkAll}" media="html" style="width:30px;">
                 <input type="checkbox" class="pk" name="id" value="${PrivateDataItem.ddDataId}">
             </display:column>
@@ -68,7 +68,7 @@
 
             </display:column>
         </display:table>
-        <hotent:paging tableId="PrivateDataItem"/>
+        <%--<hotent:paging tableId="PrivateDataItem"/>--%>
     </div><!-- end of panel-body -->
 </div> <!-- end of panel -->
 </body>

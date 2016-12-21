@@ -77,15 +77,10 @@ public class TaskStartService  extends BaseService<TaskStart> {
             taskStart.setCreatetime(new Date());
             taskStart.setSortOrder(taskStart.getSortOrder());
             ctx.setTaskStartId(Long.valueOf(taskStart.getDdTaskStartId()));
-            taskStart.setDdTaskStatus(taskStart.STATUS_RUNNING);
+            taskStart.setDdTaskStatus(TaskStart.STATUS_RUNNING);
             taskStartList.add(taskStart);
             dao.add(taskStart);
         }
-
-//        ProcessRun processRun = startProcess(taskInfo,ctx);
-        //new bizInstanceSegment
-//        ctx.setProcessRun(processRun);
-//        taskStart.setActInstId(Math.toIntExact(processRun.getRunId()));
 
         return taskStartList;
     }

@@ -19,7 +19,7 @@
 
 <div class="layui-tab layui-tab-card">
     <ul class="layui-tab-title">
-        <li class="layui-this">项目管理列表</li>
+        <li class="layui-this">个人任务列表</li>
     </ul>
     <div class="layui-tab-content">
         <div style="height: 50px;">
@@ -44,17 +44,18 @@
             <input type="checkbox" id="chkall"/>
         </c:set>
         <display:table name="taskList" id="taskList" requestURI="list.ht" sort="external" cellpadding="1"
-                       cellspacing="1" export="false" class="layui-table">
+                       cellspacing="1" export="false" class="layui-table" pagesize="10">
             <display:column title="${checkAll}" media="html" style="width:30px;">
                 <input type="checkbox" class="pk" name="id" value="${taskList.ddTaskId}">
             </display:column>
-            <display:column property="ddTaskId" title="任务编号" sortable="true" sortName="DD_TASK_ID"
-                            maxLength="80"></display:column>
+            <%--<display:column property="ddTaskId" title="任务编号" sortable="true" sortName="DD_TASK_ID"--%>
+            <%--maxLength="80"></display:column>--%>
             <display:column property="ddTaskName" title="任务名称" sortable="true" maxLength="80"></display:column>
             <%--<display:column property="ddTaskDescription" title="任务描述" maxLength="80"></display:column>--%>
             <%--<display:column property="ddTaskCreatorId" title="任务创建者id"></display:column>--%>
-            <display:column property="ddTaskResponsiblePerson" title="任务负责人" sortable="true"></display:column>
-            <%--<display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>--%>
+            <%--<display:column property="ddTaskResponsiblePerson" title="任务负责人ID" sortable="true"></display:column>--%>
+            <display:column property="ddTaskPerson" title="任务负责人" sortable="true"></display:column>
+            <display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>
 
             <display:column title="操作" media="html" style="width:350px">
                 <a href="submitpublish.ht?id=${taskList.ddTaskId}" class="layui-btn">更新发布数据</a>
@@ -62,7 +63,7 @@
 
             </display:column>
         </display:table>
-        <hotent:paging tableId="taskList"/>
+        <%--<hotent:paging tableId="taskList"/>--%>
 
     </div>
 </div>

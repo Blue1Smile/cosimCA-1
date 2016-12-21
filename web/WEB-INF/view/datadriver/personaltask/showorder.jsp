@@ -69,6 +69,7 @@
                     <th style="text-align:center !important;">数据编号</th>
                     <th style="text-align:center !important;">数据名称</th>
                     <th style="text-align:center !important;">数据类型</th>
+                    <th style="text-align:center !important;">最新数据</th>
                     <th style="text-align:center !important;">数据描述</th>
                     <th style="text-align:center !important;">数据所属任务</th>
                     </thead>
@@ -87,6 +88,11 @@
                             <td style="text-align: center;">
                                 <input type="hidden" name="ddDataType" value="${privateDataItem.ddDataType}">
                                     ${privateDataItem.ddDataType}
+                            </td>
+                            <td style="text-align: center;">
+                                <input type="hidden" name="ddDataDescription"
+                                       value="${privateDataItem.ddDataLastestValue}">
+                                <font color="red">${privateDataItem.ddDataLastestValue}</font>
                             </td>
                             <td style="text-align: center;">
                                 <input type="hidden" name="ddDataDescription"
