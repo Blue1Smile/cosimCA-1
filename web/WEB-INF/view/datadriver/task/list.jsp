@@ -32,7 +32,6 @@
             <span class="fr">
             <a class="layui-btn layui-btn-normal" id="Search">查询</a>
             <a class="layui-btn layui-btn-normal" id="taskInfoForm">添加</a>
-        <a class="layui-btn" id="btnUpd" action="edit.ht">修改</a>
         <%--<a class="layui-btn layui-btn-danger" action="del.ht">删除</a>--%>
         </span>
         </div>
@@ -71,9 +70,15 @@
 
             <display:column title="操作" media="html" style="width:260px">
                 <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-small">编辑</a>
-                <a href="get.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-small">明细</a>
-                <a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>
+                <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
+                   <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
+                <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskInfo.ddTaskId}"
+                   class="layui-btn layui-btn-normal layui-btn-small">私有</a>
+                <a href="publishconfig.ht?id=${TaskInfo.ddTaskId}"
+                   class="layui-btn layui-btn-normal layui-btn-small">发布</a>
+                <a href="orderconfig.ht?id=${TaskInfo.ddTaskId}"
+                   class="layui-btn layui-btn-normal layui-btn-small">订阅</a>
+                <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
                 <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
                 <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>
             </display:column>
