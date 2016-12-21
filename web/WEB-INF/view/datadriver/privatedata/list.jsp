@@ -4,38 +4,46 @@
 <head>
     <title>私有数据列表</title>
     <%@include file="/commons/include/get.jsp" %>
+    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div class="panel">
-    <div class="panel-top">
-        <div class="tbar-title">
-            <span class="tbar-label">私有数据列表</span>
-        </div>
-        <div class="panel-toolbar">
-            <div class="toolBar">
-                <div class="group"><a class="link search" id="Search">查询</a></div>
-                <div class="l-bar-separator"></div>
-                <div class="group"><a class="link add" href="edit.ht">添加</a></div>
-                <div class="l-bar-separator"></div>
-                <div class="group"><a class="link update" id="btnUpd" action="edit.ht">修改</a></div>
-                <div class="l-bar-separator"></div>
-                <div class="group"><a class="link del" action="del.ht">删除</a></div>
-                <div class="l-bar-separator"></div>
-                <div class="group"><a class="link back" href="${ctx}/datadriver/task/list.ht">返回</a></div>
-            </div>
-        </div>
-        <div class="panel-search">
-            <form id="searchForm" method="post" action="list.ht">
-                <div class="row">
-                    <span class="label">私有数据名称:</span><input type="text" name="Q_name_SL " class="inputText"
-                                                             value="${param['Q_name_SL']}"/>
-                    <span class="label">所属任务:</span><input type="text" name="Q_taskid_SL " class="inputText"
-                                                           value="${param['Q_taskid_SL']}"/>
-                </div>
-            </form>
+<div class="layui-tab layui-tab-card">
+    <ul class="layui-tab-title">
+        <li class="layui-this">任务管理列表</li>
+    </ul>
+    <div class="layui-tab-content">
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">日期选择</label>
+        <div class="layui-input-block">
+            <input type="text" name="date" id="date" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
         </div>
     </div>
-    <div class="panel-body">
+    <div class="layui-inline">
+        <label class="layui-form-label">行内表单</label>
+        <div class="layui-input-inline">
+            <input type="number" name="number" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+</div>
+            私有数据列表
+
+                <a class="link search" id="Search">查询</a>
+                <a class="link add" href="edit.ht">添加</a>
+                <a class="link update" id="btnUpd" action="edit.ht">修改</a>
+                <a class="link del" action="del.ht">删除</a>
+                <a class="link back" href="${ctx}/datadriver/task/list.ht">返回</a>
+
+
+            <form id="searchForm" method="post" action="list.ht">
+
+                    私有数据名称:<input type="text" name="Q_name_SL " class="inputText"
+                                                             value="${param['Q_name_SL']}"/>
+                    所属任务:<input type="text" name="Q_taskid_SL " class="inputText"
+                                                           value="${param['Q_taskid_SL']}"/>
+
+            </form>
+
         <c:set var="checkAll">
             <input type="checkbox" id="chkall"/>
         </c:set>
@@ -69,9 +77,10 @@
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="PrivateDataItem"/>--%>
-    </div><!-- end of panel-body -->
-</div> <!-- end of panel -->
+</div>
+    </div>
 </body>
+<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>
 
 
