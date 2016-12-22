@@ -24,6 +24,18 @@ public class DataVersionDao extends BaseDao<DataVersion> {
         return this.getBySqlKey("queryDataVersionBasicInfoList", queryFilter);
     }
 
+    /**
+     * 2016.12.22
+     * Query dataVersion basic info list by DataId.
+     *
+     * @return the list
+     */
+    public List<DataVersion> queryDataVersionListByddDataId(Long  ddDataId) {
+        return this.getBySqlKey("queryDataVersionListByddDataId", ddDataId);
+    }
+
+
+
     /*
      * (non-Javadoc)
      *

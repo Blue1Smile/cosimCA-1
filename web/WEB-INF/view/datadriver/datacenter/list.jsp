@@ -112,7 +112,7 @@
 //                            return;
 //                        }
                         var taskId = item.id;
-                        $("#listFrame").attr("src", "publishOrderData.ht?id=" + taskId);
+                        $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
 //                        alert(taskId);
                     }
                     , nodes: createTree()
@@ -136,7 +136,7 @@
                 <ul id="demo2" style="overflow:auto;"></ul>
             </div>
             <div position="center">
-                <iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishOrderData.ht" frameborder="no"
+                <iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishorderdata.ht" frameborder="no"
                         width="100%"
                         height="100%"></iframe>
             </div>

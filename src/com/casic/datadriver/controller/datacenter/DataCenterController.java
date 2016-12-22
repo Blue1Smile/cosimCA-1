@@ -2,11 +2,13 @@ package com.casic.datadriver.controller.datacenter;
 
 
 import com.casic.datadriver.controller.AbstractController;
+import com.casic.datadriver.model.data.DataVersion;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskStart;
 import com.casic.datadriver.model.task.TaskInfo;
+import com.casic.datadriver.service.data.DataVersionService;
 import com.casic.datadriver.service.data.OrderDataRelationService;
 import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.project.ProjectService;
@@ -51,7 +53,8 @@ public class DataCenterController extends AbstractController {
     private TaskStartService taskStartService;
     @Resource
     private ProjectService projectService;
-
+    @Resource
+    private DataVersionService dataVersionService;
 
 
     /**
@@ -106,7 +109,7 @@ public class DataCenterController extends AbstractController {
      * @return the list
      * @throws Exception the exception
      */
-    @RequestMapping("publishOrderData")
+    @RequestMapping("publishorderdata")
     @Action(description = "返回任务发布订购数据列表")
     public ModelAndView querysubmitpublish(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -133,6 +136,28 @@ public class DataCenterController extends AbstractController {
         return mv;
     }
 
+
+
+    /**
+     * 2016/12/22/修改
+     * 查看任务数据版本变化
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the dataVersionlist
+     * @throws Exception the exception
+     */
+    @RequestMapping("dataversion")
+    @Action(description = "返回任务发布订购数据列表")
+    public ModelAndView showDataVersion(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long ddDataId= RequestUtil.getLong(request, "id");
+        //获得发布数据列表
+        List<DataVersion>  dataVersion_list =  this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
+//        List<PrivateData> privateData = new ArrayList<PrivateData>();
+        ModelAndView mv = this.getAutoView().addObject("dataVersionList", dataVersion_list);
+        return mv;
+    }
 
 
 
