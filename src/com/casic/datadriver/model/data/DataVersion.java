@@ -3,47 +3,55 @@ package com.casic.datadriver.model.data;
 import java.util.Date;
 
 public class DataVersion {
-    private Integer ddDataVersionId;
 
-    private Integer ddDataId;
 
-    private Integer ddDataVersion;
+
+    private Long ddDataVersionId;
+
+    private Long ddDataId;
+
+
+
+    private Long ddDataVersion;
 
     private String ddDataValue;
 
-    private Date ddDataRecordTime;
+    private String ddDataRecordTime;
 
-    private Integer ddDataRecordPersonId;
+    private Long ddDataRecordPersonId;
 
-    private Integer ddProjectPhaseId;
+    private Long ddProjectPhaseId;
 
-    private Integer ddProjectDataState;
+    private Long ddProjectDataState;
 
     private String ddDataChangeReason;
 
-    public Integer getDdDataVersionId() {
+
+    public Long getDdDataVersionID() {
         return ddDataVersionId;
     }
 
-    public void setDdDataVersionId(Integer ddDataVersionId) {
-        this.ddDataVersionId = ddDataVersionId;
+    public void setDdDataVersionID(Long ddDataVersionID) {
+        this.ddDataVersionId = ddDataVersionID;
     }
 
-    public Integer getDdDataId() {
+    public Long getDdDataId() {
         return ddDataId;
     }
 
-    public void setDdDataId(Integer ddDataId) {
+    public void setDdDataId(Long ddDataId) {
         this.ddDataId = ddDataId;
     }
 
-    public Integer getDdDataVersion() {
+
+    public Long getDdDataVersion() {
         return ddDataVersion;
     }
 
-    public void setDdDataVersion(Integer ddDataVersion) {
+    public void setDdDataVersion(Long ddDataVersion) {
         this.ddDataVersion = ddDataVersion;
     }
+
 
     public String getDdDataValue() {
         return ddDataValue;
@@ -53,35 +61,35 @@ public class DataVersion {
         this.ddDataValue = ddDataValue;
     }
 
-    public Date getDdDataRecordTime() {
+    public String getDdDataRecordTime() {
         return ddDataRecordTime;
     }
 
-    public void setDdDataRecordTime(Date ddDataRecordTime) {
+    public void setDdDataRecordTime(String ddDataRecordTime) {
         this.ddDataRecordTime = ddDataRecordTime;
     }
 
-    public Integer getDdDataRecordPersonId() {
+    public Long getDdDataRecordPersonId() {
         return ddDataRecordPersonId;
     }
 
-    public void setDdDataRecordPersonId(Integer ddDataRecordPersonId) {
+    public void setDdDataRecordPersonId(Long ddDataRecordPersonId) {
         this.ddDataRecordPersonId = ddDataRecordPersonId;
     }
 
-    public Integer getDdProjectPhaseId() {
+    public Long getDdProjectPhaseId() {
         return ddProjectPhaseId;
     }
 
-    public void setDdProjectPhaseId(Integer ddProjectPhaseId) {
+    public void setDdProjectPhaseId(Long ddProjectPhaseId) {
         this.ddProjectPhaseId = ddProjectPhaseId;
     }
 
-    public Integer getDdProjectDataState() {
+    public Long getDdProjectDataState() {
         return ddProjectDataState;
     }
 
-    public void setDdProjectDataState(Integer ddProjectDataState) {
+    public void setDdProjectDataState(Long ddProjectDataState) {
         this.ddProjectDataState = ddProjectDataState;
     }
 
@@ -92,4 +100,11 @@ public class DataVersion {
     public void setDdDataChangeReason(String ddDataChangeReason) {
         this.ddDataChangeReason = ddDataChangeReason;
     }
+
+
+
+
+
+
+
 }

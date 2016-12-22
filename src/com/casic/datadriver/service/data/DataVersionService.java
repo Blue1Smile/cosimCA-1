@@ -54,4 +54,20 @@ public class DataVersionService extends BaseService<DataVersion> {
         return this.dataVersionDao.queryDataVersionBasicInfoList(queryFilter);
     }
 
+
+
+    /**
+     * 2016.12.22
+     * Query dataVersion basic info list by DataId.
+     *
+
+
+     * @return the list
+     */
+    public List<DataVersion> queryDataVersionListByddDataId(Long ddDataId) {
+        return this.dataVersionDao.queryDataVersionListByddDataId(ddDataId);
+    }
+
+
+
 }
