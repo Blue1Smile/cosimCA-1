@@ -28,7 +28,7 @@
             <%--<th width="20%">任务编号:</th>--%>
             <%--<td><input type="text" id="ddTaskId" name="ddTaskId" value="${TaskInfo.ddTaskId}" class="layui-input"/></td>--%>
             <th width="20%">任务所属项目:</th>
-            <td><input type="text" id="ddProjectName" name="ddProjectName"
+            <td><input type="text" id="ddTaskProjectName" name="ddTaskProjectName"
                        value="${projectItem.ddProjectName}" class="layui-input"/></td>
         </tr>
         <tr>
@@ -44,15 +44,16 @@
         <tr>
             <th width="20%">任务负责人:</th>
             <td>
-                <div style="float:left">
-                    <input type="text" id="ddTaskPerson"
-                           name="ddTaskPerson"
-                           value="${TaskInfo.ddTaskPerson}" class="layui-input"/>
+
+                <div class="layui-input-inline">
+                    <select name="ddTaskResponsiblePerson" class="layui-select" id="personSelect">
+                        <c:forEach var="personItem" items="${sysUserList}">
+                            <option value="${personItem.userId}"
+                                    <c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>
+                        </c:forEach>
+                    </select>
                 </div>
-                <div style="float:left">
-                    <a href="userlist.ht?TaskId=${TaskInfo.ddTaskId}"
-                       class="layui-btn">选择</a>
-                </div>
+
             </td>
 
 
@@ -124,10 +125,10 @@
                value="${TaskInfo.ddTaskCompleteState}" class="layui-input"/>
         <input type="hidden" id="ddTaskResourceId" name="ddTaskResourceId"
                value="${TaskInfo.ddTaskResourceId}" class="layui-input"/>
-        <input type="hidden" id="ddTaskResponsiblePerson" name="ddTaskResponsiblePerson"
-               value="${TaskInfo.ddTaskResponsiblePerson}" class="layui-input"/>
         <input type="hidden" id="ddTaskProjectId" name="ddTaskProjectId"
                value="${projectItem.ddProjectId}" class="layui-input"/>
+        <input type="hidden" id="ddTaskPerson" name="ddTaskPerson"
+               value="${TaskInfo.ddTaskPerson}" class="layui-input"/>
     </table>
 </form>
 <center>
@@ -137,6 +138,11 @@
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script type="text/javascript">
+    $("#personSelect").change(function () {
+        var taskPerson = $("#personSelect").find("option:selected").text();
+        $("#ddTaskPerson").val(taskPerson);
+    });
+
     $(function () {
         var options = {};
         if (showResponse) {
@@ -144,6 +150,7 @@
         }
         var frm = $('#taskInfoForm').form();
         $("#dataFormSave").click(function () {
+
             frm.setData();
             frm.ajaxForm(options);
             if (frm.valid()) {

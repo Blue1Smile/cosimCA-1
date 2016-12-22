@@ -72,6 +72,7 @@ public class TaskInfoService extends BaseService<TaskInfo> {
         return this.taskInfoDao.queryTaskBasicInfoList(queryFilter);
     }
 
+
     /**
      * Query task basic info list.
      *
@@ -93,6 +94,7 @@ public class TaskInfoService extends BaseService<TaskInfo> {
     public List<TaskInfo> queryTaskInfoByResponceId(long ResponceId) {
         return this.taskInfoDao.queryTaskInfoByResponceId(ResponceId);
     }
+
 
     /**根据任务信息添加私有数据
      */

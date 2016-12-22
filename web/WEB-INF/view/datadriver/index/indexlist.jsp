@@ -49,7 +49,8 @@
     <c:set var="checkAll">
       <input type="checkbox" id="chkall"/>
     </c:set>
-    <display:table name="DDIndexList" id="DDIndexItem" requestURI="list.ht" sort="external" cellpadding="1" cellspacing="1" export="true"  class="table-grid">
+      <display:table name="DDIndexList" id="DDIndexItem" requestURI="list.ht" sort="external" cellpadding="1"
+                     cellspacing="1" export="true" class="table-grid" pagesize="10">
       <display:column title="${checkAll}" media="html" style="width:30px;">
         <input type="checkbox" class="pk" name="" value="">
       </display:column>
@@ -70,7 +71,7 @@
 
       </display:column>
     </display:table>
-    <hotent:paging tableId=""/>
+      <%--<hotent:paging tableId=""/>--%>
   </div><!-- end of panel-body -->
 </div> <!-- end of panel -->
 </body>

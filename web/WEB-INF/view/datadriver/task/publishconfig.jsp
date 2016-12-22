@@ -33,7 +33,7 @@
                 return $(this).html();
             }).get();
         }
-        ;
+
     </script>
     <style type="text/css">
         html {
@@ -43,6 +43,10 @@
         body {
             overflow: auto;
         }
+
+        /*.layui-elem-field {*/
+            /*margin-top: 0px;*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -52,7 +56,7 @@
             <table align="center" cellpadding="0" cellspacing="0" class="layui-table">
                 <tr>
                     <td width="50%" valign="top" style="padding-left:0px !important;">
-                        <fieldset class="layui-elem-field">
+                        <fieldset class="layui-elem-field" id="fieldframe">
                             <legend>私有数据</legend>
                             <div class="layui-field-box">
                                 <br>

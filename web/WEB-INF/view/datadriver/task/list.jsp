@@ -32,7 +32,6 @@
             <span class="fr">
             <a class="layui-btn layui-btn-normal" id="Search">查询</a>
             <a class="layui-btn layui-btn-normal" id="taskInfoForm">添加</a>
-        <a class="layui-btn" id="btnUpd" action="edit.ht">修改</a>
         <%--<a class="layui-btn layui-btn-danger" action="del.ht">删除</a>--%>
         </span>
         </div>
@@ -40,16 +39,16 @@
             <input type="checkbox" id="chkall"/>
         </c:set>
         <display:table name="taskList" id="TaskItem" requestURI="list.ht" sort="external" cellpadding="0"
-                       cellspacing="0" export="false" class="layui-table">
+                       cellspacing="0" export="false" class="layui-table lay-even" pagesize="10">
             <display:column title="${checkAll}" media="html" style="width:30px;">
                 <input type="checkbox" class="pk" name="id" value="${TaskItem.ddTaskId}">
             </display:column>
-            <display:column property="ddTaskId" title="任务ID" sortable="true" sortName="DD_TASK_ID"
-                            maxLength="80"></display:column>
+            <%--<display:column property="ddTaskId" title="任务ID" sortable="true" sortName="DD_TASK_ID"--%>
+            <%--maxLength="80"></display:column>--%>
             <display:column property="ddTaskName" title="任务名称" sortable="true" maxLength="80"></display:column>
             <%--<display:column property="ddTaskDescription" title="任务描述" maxLength="80"></display:column>--%>
             <%--<display:column property="ddTaskCreatorId" title="任务创建者id"></display:column>--%>
-            <%--<display:column property="ddTaskPerson" title="任务负责人" sortable="true"></display:column>--%>
+            <display:column property="ddTaskPerson" title="任务负责人" sortable="true"></display:column>
             <%--<display:column property="ddTaskFixedPattern" title="任务是否固化" maxLength="80"></display:column>--%>
             <display:column property="ddTaskType" title="任务类型" maxLength="80"></display:column>
             <%--<display:column property="ddTaskChildType" title="任务子类型" maxLength="80"></display:column>--%>
@@ -66,20 +65,26 @@
             <%--<display:column property="ddTaskActualStartTime" title="实际开始日期" ></display:column>--%>
             <%--<display:column property="ddTaskActualEndTime" title="实际结束日期" ></display:column>--%>
             <%--<display:column property="ddTaskPlanDuration" title="计划工期" maxLength="80"></display:column>--%>
-            <display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>
+            <%--<display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>--%>
             <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
 
             <display:column title="操作" media="html" style="width:260px">
                 <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-small">编辑</a>
-                <a href="get.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-small">明细</a>
-                <a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>
+                <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
+                   <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
+                <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"
+                   class="layui-btn layui-btn-normal layui-btn-small">私有</a>
+                <a href="publishconfig.ht?id=${TaskItem.ddTaskId}"
+                   class="layui-btn layui-btn-normal layui-btn-small">发布</a>
+                <a href="orderconfig.ht?id=${TaskItem.ddTaskId}"
+                   class="layui-btn layui-btn-normal layui-btn-small">订阅</a>
+                <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
                 <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
                 <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>
             </display:column>
 
         </display:table>
-        <hotent:paging tableId="TaskItem"/>
+        <%--<hotent:paging tableId="TaskItem"/>--%>
 
     </div>
 </div>
