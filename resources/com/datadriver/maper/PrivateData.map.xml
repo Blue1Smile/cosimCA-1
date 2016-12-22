@@ -14,13 +14,14 @@
     <result column="DD_DATA_CREATE_TIME" jdbcType="TIMESTAMP" property="ddDataCreateTime" />
     <result column="DD_DATA_IS_DELIVERY" jdbcType="NUMERIC" property="ddDataIsDelivery" />
     <result column="DD_DATA_SENSITIVENESS" jdbcType="NUMERIC" property="ddDataSensitiveness" />
+    <result column="DD_DATA_TASK_NAME" jdbcType="VARCHAR" property="ddDataTaskName" />
   </resultMap>
 
 
   <sql id="Base_Column_List">
     DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE, DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE, 
     DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
-    DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS
+    DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME
   </sql>
 
   <select id="getAll" resultMap="BaseResultMap">
@@ -87,12 +88,12 @@
     DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE,
     DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE,
     DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME,
-    DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS)
+    DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME)
     values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=NUMERIC},
     #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
     #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
     #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=TIMESTAMP},
-    #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC})
+    #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC}, #{ddDataTaskName,jdbcType=VARCHAR})
   </insert>
 
   <update id="update" parameterType="com.casic.datadriver.model.data.PrivateData">
@@ -107,7 +108,8 @@
     DD_DATA_CREATE_PERSON = #{ddDataCreatePerson,jdbcType=NUMERIC},
     DD_DATA_CREATE_TIME = #{ddDataCreateTime,jdbcType=TIMESTAMP},
     DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
-    DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC}
+    DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
+    DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId}
   </update>
 
@@ -123,7 +125,8 @@
     DD_DATA_CREATE_PERSON = #{ddDataCreatePerson,jdbcType=NUMERIC},
     DD_DATA_CREATE_TIME = #{ddDataCreateTime,jdbcType=TIMESTAMP},
     DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
-    DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC}
+    DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
+    DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId}
   </update>
 
@@ -152,7 +155,7 @@
       #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
       #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
       #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=TIMESTAMP},
-      #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC})
+      #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC}, #{ddDataTaskName,jdbcType=VARCHAR})
   </insert>
 
 
@@ -195,6 +198,9 @@
       <if test="ddDataSensitiveness != null">
         DD_DATA_SENSITIVENESS,
       </if>
+      <if test="ddDataTaskName != null">
+        DD_DATA_TASK_NAME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="ddDataId != null">
@@ -232,6 +238,9 @@
       </if>
       <if test="ddDataSensitiveness != null">
         #{ddDataSensitiveness,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataTaskName != null">
+        #{ddDataTaskName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -273,6 +282,9 @@
       <if test="ddDataSensitiveness != null">
         DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
       </if>
+      <if test="ddDataTaskName != null">
+        DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
+      </if>
     </set>
     where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
   </update>
@@ -290,7 +302,8 @@
       DD_DATA_CREATE_PERSON = #{ddDataCreatePerson,jdbcType=NUMERIC},
       DD_DATA_CREATE_TIME = #{ddDataCreateTime,jdbcType=TIMESTAMP},
       DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
-      DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC}
+      DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
+      DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
   </update>
 

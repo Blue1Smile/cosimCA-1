@@ -39,7 +39,7 @@
             <input type="checkbox" id="chkall"/>
         </c:set>
         <display:table name="taskList" id="TaskItem" requestURI="list.ht" sort="external" cellpadding="0"
-                       cellspacing="0" export="false" class="layui-table" pagesize="10">
+                       cellspacing="0" export="false" class="layui-table lay-even" pagesize="10">
             <display:column title="${checkAll}" media="html" style="width:30px;">
                 <input type="checkbox" class="pk" name="id" value="${TaskItem.ddTaskId}">
             </display:column>
@@ -72,11 +72,11 @@
                 <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-small">编辑</a>
                 <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
                    <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
-                <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskInfo.ddTaskId}"
+                <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"
                    class="layui-btn layui-btn-normal layui-btn-small">私有</a>
-                <a href="publishconfig.ht?id=${TaskInfo.ddTaskId}"
+                <a href="publishconfig.ht?id=${TaskItem.ddTaskId}"
                    class="layui-btn layui-btn-normal layui-btn-small">发布</a>
-                <a href="orderconfig.ht?id=${TaskInfo.ddTaskId}"
+                <a href="orderconfig.ht?id=${TaskItem.ddTaskId}"
                    class="layui-btn layui-btn-normal layui-btn-small">订阅</a>
                 <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
                 <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>

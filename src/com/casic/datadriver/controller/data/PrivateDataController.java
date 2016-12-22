@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.casic.datadriver.model.task.TaskInfo;
+import com.casic.datadriver.service.task.TaskInfoService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -38,6 +40,8 @@ public class PrivateDataController extends AbstractController {
     @Resource
     private PrivateDataService privateDataService;
 
+    @Resource
+    private TaskInfoService taskInfoService;
     /**
      * ?????????.
      *
@@ -57,10 +61,12 @@ public class PrivateDataController extends AbstractController {
             if (privateData.getDdDataId() == null || privateData.getDdDataId() == 0) {
                 privateData.setDdDataId(UniqueIdUtil.genId());
                 privateDataService.addDDPrivateData(privateData);
-                resultMsg = getText("record.added", "添加成功");
+                resultMsg = getText("record.added", "私有数据");
+//                resultMsg = new String(resultMsg.getBytes(),"utf-8");
             } else {
-                privateDataService.update(privateData);
-                resultMsg = getText("record.updated", "更新成功");
+                privateDataService.updatedata(privateData);
+                resultMsg = getText("record.updated", "私有数据");
+//                resultMsg = new String(resultMsg.getBytes(),"utf-8");
             }
             writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
         } catch (Exception e) {
@@ -84,22 +90,48 @@ public class PrivateDataController extends AbstractController {
     @Action(description = "私有数据列表")
     public ModelAndView queryPrivateDataBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
-
         Long id = RequestUtil.getLong(request, "id");
         List<PrivateData> privateDataInfoList=  new ArrayList<PrivateData>();
-
+        TaskInfo taskInfo = taskInfoService.getById(id);
         if (id == null || id == 0) {
             privateDataInfoList = privateDataService.getAll();
         } else {
             privateDataInfoList = privateDataService.queryPrivateDataByddTaskID(id);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList", privateDataInfoList)
-                .addObject("ddTaskId", id);
+                .addObject("taskInfo", taskInfo);
         return mv;
 
     }
 
+    /**
+     * 添加和编辑私有数据
+     *
+     * @param request
+     *            the request
+     * @param response
+     *            the response
+     * @return the list
+     * @throws Exception
+     *             the exception
+     */
+    @RequestMapping("edit")
+    @Action(description = "私有数据添加和编辑")
+    public ModelAndView edit(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long id = RequestUtil.getLong(request, "id");
+        if (id==null||id==0L) {
+            Long ddDataId = RequestUtil.getLong(request, "ddDataId");
+            PrivateData privateData = privateDataService.getById(ddDataId);
+            Long taskId = privateData.getDdDataTaskId();
+            ModelAndView mv = this.getAutoView().addObject("PrivateData", privateData).addObject("taskId", taskId);
+            return mv;
+        }else {
+            TaskInfo taskInfo = taskInfoService.getById(id);
+            ModelAndView mv = this.getAutoView().addObject("taskInfo", taskInfo).addObject("taskId", id);
+            return mv;
+        }
+    }
     /**
      * Del.
      *
