@@ -86,7 +86,7 @@
                         <td style="text-align: center"
                             name="ddDataSensitiveness">${privateDataList.ddDataTaskId}</td>
                         <td style="text-align: center">
-                            <a href="#" class="layui-btn layui-btn-normal layui-btn-small">数据版本</a>
+                            <a href="dataversion.ht?id=${privateDataList.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">数据版本</a>
                         </td>
                     </tr>
                 </c:forEach>
