@@ -31,6 +31,16 @@ public class PrivateData extends BaseModel {
 
     private Long ddDataSensitiveness;
 
+    private String ddDataTaskName;
+
+
+    public String getDdDataTaskName() {
+        return ddDataTaskName;
+    }
+
+    public void setDdDataTaskName(String ddDataTaskName) {
+        this.ddDataTaskName = ddDataTaskName;
+    }
 
     public Long getDdDataId() {
         return ddDataId;

@@ -53,18 +53,18 @@
         <legend>任务详细配置</legend>
         <div class="layui-field-box">
             <a class="layui-btn layui-btn-normal" id="dataFormSave" href="#">保存</a>
-            <a class="layui-btn layui-btn-normal" id="privatedatalist" href="${ctx}/datadriver/privatedata/list.ht?id=${TaskInfo.ddTaskId}">任务私有数据</a>
-            <a class="layui-btn layui-btn-normal" id="dataFormSave" href="publishconfig.ht?id=${TaskInfo.ddTaskId}">任务发布数据</a>
-            <a class="layui-btn layui-btn-normal" id="dataFormSave" href="orderconfig.ht?id=${TaskInfo.ddTaskId}">任务订阅数据</a>
+            <%--<a class="layui-btn layui-btn-normal" id="privatedatalist" href="${ctx}/datadriver/privatedata/list.ht?id=${TaskInfo.ddTaskId}">任务私有数据</a>--%>
+            <%--<a class="layui-btn layui-btn-normal" id="dataFormSave" href="publishconfig.ht?id=${TaskInfo.ddTaskId}">任务发布数据</a>--%>
+            <%--<a class="layui-btn layui-btn-normal" id="dataFormSave" href="orderconfig.ht?id=${TaskInfo.ddTaskId}">任务订阅数据</a>--%>
             <div class="panel-body">
                 <form id="taskInfoForm" name="taskInfoForm" method="post" action="save.ht"
                       enctype="multipart/form-data">
                     <div class="layui-tab layui-tab-card" id="iframe_tab">
                         <ul class="layui-tab-title">
                             <li class="layui-this">任务配置</li>
-                            <li>任务私有数据</li>
-                            <li>任务发布数据</li>
-                            <li>任务订阅数据</li>
+                            <%--<li>任务私有数据</li>--%>
+                            <%--<li>任务发布数据</li>--%>
+                            <%--<li>任务订阅数据</li>--%>
                     </ul>
                         <div class="layui-tab-content" style="height: 100%;">
                             <div class="layui-tab-item layui-show">
@@ -179,134 +179,134 @@
                                            value="${TaskInfo.ddTaskPerson}" class="layui-input"/>
                                 </table>
                             </div>
-                            <!--任务私有数据-->
-                            <div class="layui-tab-item">
-                                <table class="layui-table" cellpadding="1" cellspacing="1" id="privateData"
-                                       formType="window" type="sub">
-                                    <tr>
-                                        <td colspan="11">
-                                            <div class="group" align="left">
-                                                <a id="btnAdd" class="link add">添加</a>
-                                            </div>
-                                            <div align="center">
-                                                任务编辑：添加私有数据
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>数据名称</th>
-                                        <th>数据类型</th>
-                                        <th>灵敏阈</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    <c:forEach items="${privateDataList}" var="privateDataList"
-                                               varStatus="status">
-                                        <tr type="subdata">
-                                            <td style="text-align: center"
-                                                name="ddDataName">${privateDataList.ddDataName}</td>
-                                            <td style="text-align: center"
-                                                name="ddDataType">${privateDataList.ddDataType}</td>
-                                            <td style="text-align: center"
-                                                name="ddDataSensitiveness">${privateDataList.ddDataSensitiveness}</td>
-                                                <%--<td style="text-align: center"--%>
-                                                <%--name="url2">${task.url2}</td>--%>
-                                                <%--<td style="text-align: center"--%>
-                                                <%--name="url2Name">${cloudResourceInstanceListItem.url2Name}</td>--%>
-                                                <%--<td style="text-align: center"--%>
-                                                <%--name="blank1">${cloudResourceInstanceListItem.blank1}</td>--%>
-                                                <%--<td style="text-align: center"--%>
-                                                <%--name="blank2">${cloudResourceInstanceListItem.blank2}</td>--%>
-                                                <%--<td style="text-align: center"--%>
-                                                <%--name="mode">${cloudResourceInstanceListItem.mode}</td>--%>
-                                            <td style="text-align: center">
-                                                <a href="#" class="link del">删除</a>
-                                                <a href="#" class="link edit">编辑</a>
-                                            </td>
-                                            <input type="hidden" name="ddDataId" value="${privateDataList.ddDataId}"/>
-                                            <input type="hidden" name="ddDataName"
-                                                   value="${privateDataList.ddDataName}"/>
-                                            <input type="hidden" name="ddDataType"
-                                                   value="${privateDataList.ddDataType}"/>
-                                            <input type="hidden" name="ddDataDescription"
-                                                   value="${privateDataList.ddDataDescription}"/>
-                                            <input type="hidden" name="ddDataTaskId"
-                                                   value="${privateDataList.ddDataTaskId}"/>
-                                            <input type="hidden" name="ddDataPublishType"
-                                                   value="${privateDataList.ddDataPublishType}"/>
-                                            <input type="hidden" name="ddDataLastestValue"
-                                                   value="${privateDataList.ddDataLastestValue}"/>
-                                            <input type="hidden" name="ddDataSubmiteState"
-                                                   value="${privateDataList.ddDataSubmiteState}"/>
-                                            <input type="hidden" name="ddDataCreatePerson"
-                                                   value="${privateDataList.ddDataCreatePerson}"/>
-                                            <input type="hidden" name="ddDataCreateTime"
-                                                   value="${privateDataList.ddDataCreateTime}"/>
-                                            <input type="hidden" name="ddDataIsDelivery"
-                                                   value="${privateDataList.ddDataIsDelivery}"/>
-                                            <input type="hidden" name="ddDataSensitiveness"
-                                                   value="${privateDataList.ddDataSensitiveness}"/>
-                                        </tr>
-                                    </c:forEach>
-                                    <tr type="append">
-                                        <td style="text-align: center" name="ddDataName"></td>
-                                        <td style="text-align: center" name="ddDataType"></td>
-                                        <td style="text-align: center" name="ddDataSensitiveness"></td>
-                                        <td style="text-align: center">
-                                            <a href="#" class="link del">删除</a>
-                                            <a href="#" class="link edit">编辑</a>
-                                        </td>
-                                        <input type="hidden" name="ddDataId" value=""/>
-                                        <input type="hidden" name="ddDataName" value=""/>
-                                        <input type="hidden" name="ddDataType" value=""/>
-                                        <input type="hidden" name="ddDataDescription" value=""/>
-                                        <input type="hidden" name="ddDataTaskId" value=""/>
-                                        <input type="hidden" name="ddDataPublishType" value=""/>
-                                        <input type="hidden" name="ddDataLastestValue" value=""/>
-                                        <input type="hidden" name="ddDataSubmiteState" value=""/>
-                                        <input type="hidden" name="ddDataCreatePerson" value=""/>
-                                        <input type="hidden" name="ddDataCreateTime" value=""/>
-                                        <input type="hidden" name="ddDataIsDelivery" value=""/>
-                                        <input type="hidden" name="ddDataSensitiveness" value=""/>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!--任务发布数据-->
-                            <div class="layui-tab-item">
-                                <iframe src="${ctx}/datadriver/task/publishconfig.ht?id=${TaskInfo.ddTaskId}"
-                                        style="width: 100%;height: 500px" scrolling="auto" frameborder="no"></iframe>
-                            </div>
-                            <!--任务订阅数据-->
-                            <div class="layui-tab-item">
-                                <iframe src="${ctx}/datadriver/task/orderconfig.ht?id=${TaskInfo.ddTaskId}"
-                                        style="width: 100%;height: 500px" scrolling="auto" frameborder="no"></iframe>
-                            </div>
-                        </div>
-                    </div>
+                            <%--<!--任务私有数据-->--%>
+                            <%--<div class="layui-tab-item">--%>
+                                <%--<table class="layui-table" cellpadding="1" cellspacing="1" id="privateData"--%>
+                                       <%--formType="window" type="sub">--%>
+                                    <%--<tr>--%>
+                                        <%--<td colspan="11">--%>
+                                            <%--<div class="group" align="left">--%>
+                                                <%--<a id="btnAdd" class="link add">添加</a>--%>
+                                            <%--</div>--%>
+                                            <%--<div align="center">--%>
+                                                <%--任务编辑：添加私有数据--%>
+                                            <%--</div>--%>
+                                        <%--</td>--%>
+                                    <%--</tr>--%>
+                                    <%--<tr>--%>
+                                        <%--<th>数据名称</th>--%>
+                                        <%--<th>数据类型</th>--%>
+                                        <%--<th>灵敏阈</th>--%>
+                                        <%--<th>操作</th>--%>
+                                    <%--</tr>--%>
+                                    <%--<c:forEach items="${privateDataList}" var="privateDataList"--%>
+                                               <%--varStatus="status">--%>
+                                        <%--<tr type="subdata">--%>
+                                            <%--<td style="text-align: center"--%>
+                                                <%--name="ddDataName">${privateDataList.ddDataName}</td>--%>
+                                            <%--<td style="text-align: center"--%>
+                                                <%--name="ddDataType">${privateDataList.ddDataType}</td>--%>
+                                            <%--<td style="text-align: center"--%>
+                                                <%--name="ddDataSensitiveness">${privateDataList.ddDataSensitiveness}</td>--%>
+                                                <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;name="url2">${task.url2}</td>&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;name="url2Name">${cloudResourceInstanceListItem.url2Name}</td>&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;name="blank1">${cloudResourceInstanceListItem.blank1}</td>&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;name="blank2">${cloudResourceInstanceListItem.blank2}</td>&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
+                                                <%--&lt;%&ndash;name="mode">${cloudResourceInstanceListItem.mode}</td>&ndash;%&gt;--%>
+                                            <%--<td style="text-align: center">--%>
+                                                <%--<a href="#" class="link del">删除</a>--%>
+                                                <%--<a href="#" class="link edit">编辑</a>--%>
+                                            <%--</td>--%>
+                                            <%--<input type="hidden" name="ddDataId" value="${privateDataList.ddDataId}"/>--%>
+                                            <%--<input type="hidden" name="ddDataName"--%>
+                                                   <%--value="${privateDataList.ddDataName}"/>--%>
+                                            <%--<input type="hidden" name="ddDataType"--%>
+                                                   <%--value="${privateDataList.ddDataType}"/>--%>
+                                            <%--<input type="hidden" name="ddDataDescription"--%>
+                                                   <%--value="${privateDataList.ddDataDescription}"/>--%>
+                                            <%--<input type="hidden" name="ddDataTaskId"--%>
+                                                   <%--value="${privateDataList.ddDataTaskId}"/>--%>
+                                            <%--<input type="hidden" name="ddDataPublishType"--%>
+                                                   <%--value="${privateDataList.ddDataPublishType}"/>--%>
+                                            <%--<input type="hidden" name="ddDataLastestValue"--%>
+                                                   <%--value="${privateDataList.ddDataLastestValue}"/>--%>
+                                            <%--<input type="hidden" name="ddDataSubmiteState"--%>
+                                                   <%--value="${privateDataList.ddDataSubmiteState}"/>--%>
+                                            <%--<input type="hidden" name="ddDataCreatePerson"--%>
+                                                   <%--value="${privateDataList.ddDataCreatePerson}"/>--%>
+                                            <%--<input type="hidden" name="ddDataCreateTime"--%>
+                                                   <%--value="${privateDataList.ddDataCreateTime}"/>--%>
+                                            <%--<input type="hidden" name="ddDataIsDelivery"--%>
+                                                   <%--value="${privateDataList.ddDataIsDelivery}"/>--%>
+                                            <%--<input type="hidden" name="ddDataSensitiveness"--%>
+                                                   <%--value="${privateDataList.ddDataSensitiveness}"/>--%>
+                                        <%--</tr>--%>
+                                    <%--</c:forEach>--%>
+                                    <%--<tr type="append">--%>
+                                        <%--<td style="text-align: center" name="ddDataName"></td>--%>
+                                        <%--<td style="text-align: center" name="ddDataType"></td>--%>
+                                        <%--<td style="text-align: center" name="ddDataSensitiveness"></td>--%>
+                                        <%--<td style="text-align: center">--%>
+                                            <%--<a href="#" class="link del">删除</a>--%>
+                                            <%--<a href="#" class="link edit">编辑</a>--%>
+                                        <%--</td>--%>
+                                        <%--<input type="hidden" name="ddDataId" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataName" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataType" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataDescription" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataTaskId" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataPublishType" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataLastestValue" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataSubmiteState" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataCreatePerson" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataCreateTime" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataIsDelivery" value=""/>--%>
+                                        <%--<input type="hidden" name="ddDataSensitiveness" value=""/>--%>
+                                    <%--</tr>--%>
+                                <%--</table>--%>
+                            <%--</div>--%>
+                            <%--<!--任务发布数据-->--%>
+                            <%--<div class="layui-tab-item">--%>
+                                <%--<iframe src="${ctx}/datadriver/task/publishconfig.ht?id=${TaskInfo.ddTaskId}"--%>
+                                        <%--style="width: 100%;height: 500px" scrolling="auto" frameborder="no"></iframe>--%>
+                            <%--</div>--%>
+                            <%--<!--任务订阅数据-->--%>
+                            <%--<div class="layui-tab-item">--%>
+                                <%--<iframe src="${ctx}/datadriver/task/orderconfig.ht?id=${TaskInfo.ddTaskId}"--%>
+                                        <%--style="width: 100%;height: 500px" scrolling="auto" frameborder="no"></iframe>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </form>
-                <form id="privateDataForm" style="display:none">
-                    <table class="layui-table" cellpadding="1" cellspacing="1" border="1">
-                        <colgroup>
-                            <col width="150">
-                            <col width="200">
-                        </colgroup>
-                        <tr>
-                            <th width="20%">数据名称:</th>
-                            <td><input type="text" name="ddDataName" value="" class="layui-input"
-                                       validate="{required:false,maxlength:96}"/></td>
-                        </tr>
-                        <tr>
-                            <th width="20%">数据类型:</th>
-                            <td><input type="text" name="ddDataType" value="" class="layui-input"
-                                       validate="{required:false}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="20%">灵敏阈:</th>
-                            <td><input type="text" name="ddDataSensitiveness" value="" class="layui-input"
-                                       validate="{required:false,maxlength:768}"/></td>
-                        </tr>
-                    </table>
-                </form>
+                <%--<form id="privateDataForm" style="display:none">--%>
+                    <%--<table class="layui-table" cellpadding="1" cellspacing="1" border="1">--%>
+                        <%--<colgroup>--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="200">--%>
+                        <%--</colgroup>--%>
+                        <%--<tr>--%>
+                            <%--<th width="20%">数据名称:</th>--%>
+                            <%--<td><input type="text" name="ddDataName" value="" class="layui-input"--%>
+                                       <%--validate="{required:false,maxlength:96}"/></td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<th width="20%">数据类型:</th>--%>
+                            <%--<td><input type="text" name="ddDataType" value="" class="layui-input"--%>
+                                       <%--validate="{required:false}"/>--%>
+                            <%--</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<th width="20%">灵敏阈:</th>--%>
+                            <%--<td><input type="text" name="ddDataSensitiveness" value="" class="layui-input"--%>
+                                       <%--validate="{required:false,maxlength:768}"/></td>--%>
+                        <%--</tr>--%>
+                    <%--</table>--%>
+                <%--</form>--%>
             </div>
         </div>
     </fieldset>

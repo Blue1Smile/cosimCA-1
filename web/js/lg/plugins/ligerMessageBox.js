@@ -242,7 +242,7 @@
             type: 'question',
             title: title,
             content: content,
-            buttons: [{ text: '是', onclick: onclick }, { text: '否', onclick: onclick}]
+            buttons: [{ text: '是0000', onclick: onclick }, { text: '否', onclick: onclick}]
         };
 
         return $.ligerMessageBox(p);
