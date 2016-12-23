@@ -112,6 +112,9 @@
 //                            return;
 //                        }
                         var taskId = item.id;
+                        if (taskId == undefined) {
+                            return;
+                        }
                         $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
 //                        alert(taskId);
                     }

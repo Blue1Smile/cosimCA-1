@@ -53,7 +53,9 @@
         <legend>任务详细配置</legend>
         <div class="layui-field-box">
             <a class="layui-btn layui-btn-normal" id="dataFormSave" href="#">保存</a>
-            <%--<a class="layui-btn layui-btn-normal" id="privatedatalist" href="${ctx}/datadriver/privatedata/list.ht?id=${TaskInfo.ddTaskId}">任务私有数据</a>--%>
+            <a class="layui-btn layui-btn-normal" id="dataFormSave" href="list.ht">返回</a>
+
+        <%--<a class="layui-btn layui-btn-normal" id="privatedatalist" href="${ctx}/datadriver/privatedata/list.ht?id=${TaskInfo.ddTaskId}">任务私有数据</a>--%>
             <%--<a class="layui-btn layui-btn-normal" id="dataFormSave" href="publishconfig.ht?id=${TaskInfo.ddTaskId}">任务发布数据</a>--%>
             <%--<a class="layui-btn layui-btn-normal" id="dataFormSave" href="orderconfig.ht?id=${TaskInfo.ddTaskId}">任务订阅数据</a>--%>
             <div class="panel-body">

@@ -61,6 +61,7 @@
               enctype="multipart/form-data">
             <div style="height: 50px;">
                 <input class="layui-btn layui-btn-normal" type="submit" name="sumbit" value="发布"/>
+                <a class="layui-btn layui-btn-normal" href="${ctx}/datadriver/personaltask/list.ht">返回</a>
             </div>
             <div class="layui-tab-item layui-show">
                 <table id="PrivateData" class="layui-table" cellpadding="1" cellspacing="1">
