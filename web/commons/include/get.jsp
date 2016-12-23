@@ -10,7 +10,8 @@
 <!--  <link href="${ctx}/js/lg/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />-->
 <f:link href="Aqua/css/ligerui-all.css"></f:link>
 <f:link href="web.css"></f:link>
-<f:link href="Aqua/css/bootstrap.css"></f:link>
+<%--<f:link href="Aqua/css/bootstrap.css"></f:link>--%>
+<link href="${ctx}/styles/pintuer/pintuer.css" type="text/css">
 <script type="text/javascript" src="${ctx}/js/dynamic.jsp"></script>
 <script type="text/javascript" src="${ctx}/js/jquery/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
@@ -19,7 +20,8 @@
 <script type="text/javascript" src="${ctx}/js/hotent/displaytag.js" ></script>
 <script type="text/javascript" src="${ctx}/js/lg/plugins/ligerDialog.js" ></script>
 <script type="text/javascript" src="${ctx}/js/calendar/My97DatePicker/WdatePicker.js"></script>
-<script type="text/javascript" src="${ctx}/js/lg/plugins/bootstrap.js" ></script>
+<%--<script type="text/javascript" src="${ctx}/js/lg/plugins/bootstrap.js" ></script>--%>
 <script type="text/javascript" src="${ctx}/js/lg/plugins/ligerMessageBox.js"></script>
+<script type="text/javascript" src="${ctx}/styles/pintuer/pintuer.js"></script>
 <%@include file="/js/msg.jsp"%>
 
