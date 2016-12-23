@@ -16,6 +16,7 @@ import com.casic.datadriver.service.task.TaskStartService;
 import com.hotent.core.util.ContextUtil;
 import com.hotent.core.annotion.Action;
 import com.hotent.core.util.UniqueIdUtil;
+import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
 import com.hotent.platform.auth.ISysUser;
@@ -137,33 +138,46 @@ public class PersonalTaskController extends AbstractController {
 
         String[] ddDataValues = RequestUtil.getStringAry(request, "ddDataLastestValue");
         Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId");
-        DataVersion dataVersion = new DataVersion();
-        for (int i = 0; i < ddDataIds.length; i++) {
-            PrivateData privateData = this.privateDataService.getById(ddDataIds[i]);
-            if (privateData.getDdDataLastestValue()!=null&&privateData.getDdDataLastestValue().equals(ddDataValues[i])){
-            }
-            else {
+//        String returnUrl=RequestUtil.getPrePage(request);
+//        returnUrl = returnUrl.replace("submitpublish", "list");
 
-                privateData.setDdDataLastestValue(ddDataValues[i]);
-                this.privateDataService.updatedata(privateData);
-                dataVersion.setDdDataVersionID(UniqueIdUtil.genId());
-                ISysUser sysUser = ContextUtil.getCurrentUser();
-                dataVersion.setDdDataRecordPersonId(sysUser.getUserId());
-                dataVersion.setDdDataId(ddDataIds[i]);
-                dataVersion.setDdDataValue(ddDataValues[i]);
-                Date nowTime = new Date(System.currentTimeMillis());
-                SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
-                String retStrFormatNowDate = sdFormatter.format(nowTime);
-                dataVersion.setDdDataRecordTime(retStrFormatNowDate);    //修改数据类型
-                this.dataVersionService.add(dataVersion);
+        String resultMsg = null;
+
+        try {
+            DataVersion dataVersion = new DataVersion();
+            for (int i = 0; i < ddDataIds.length; i++) {
+                PrivateData privateData = this.privateDataService.getById(ddDataIds[i]);
+                if (privateData.getDdDataLastestValue() != null && privateData.getDdDataLastestValue().equals(ddDataValues[i])) {
+                } else {
+
+                    privateData.setDdDataLastestValue(ddDataValues[i]);
+                    this.privateDataService.updatedata(privateData);
+                    dataVersion.setDdDataVersionID(UniqueIdUtil.genId());
+                    ISysUser sysUser = ContextUtil.getCurrentUser();
+                    dataVersion.setDdDataRecordPersonId(sysUser.getUserId());
+                    dataVersion.setDdDataId(ddDataIds[i]);
+                    dataVersion.setDdDataValue(ddDataValues[i]);
+                    Date nowTime = new Date(System.currentTimeMillis());
+                    SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+                    String retStrFormatNowDate = sdFormatter.format(nowTime);
+                    dataVersion.setDdDataRecordTime(retStrFormatNowDate);    //修改数据类型
+                    this.dataVersionService.add(dataVersion);
+                }
+                resultMsg = getText("record.added", "项目信息");
+
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
             }
+        }catch (Exception e) {
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+
 
         }
-        //      Long ddDataId=RequestUtil.getLong(request, "ddDataId");
+
 
     }
 
 
 
 
-}
+
