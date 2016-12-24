@@ -22,21 +22,25 @@
         <li class="layui-this">任务管理列表</li>
     </ul>
     <div class="layui-tab-content">
-        <div style="height: 50px;">
+        <blockquote class="layui-elem-quote">
+            <div style="height: 40px;">
 <span class="fl">
             <form id="searchForm" method="post" action="list.ht">
                 <input type="text" name="Q_name_SL " class="layui-input"
                        value="${param['Q_name_SL']}" placeholder="任务名称"/>
             </form>
     </span>
-            <span class="fr">
-            <a class="layui-btn layui-btn-normal" id="Search">查询</a>
-            <a class="layui-btn layui-btn-normal" id="taskInfoForm">添加</a>
-        <%--<a class="layui-btn layui-btn-danger" action="del.ht">删除</a>--%>
-                   <a class="layui-btn layui-btn-normal" href="${ctx}/datadriver/project/list.ht">返回</a>
 
-        </span>
-        </div>
+                <span class="fr">
+            <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
+                    <a class="layui-btn" href="edit.ht" id="taskInfoForm"><i class="layui-icon">&#xe61f;</i> 添加</a>
+            <a class="layui-btn layui-btn-danger" action="del.ht"><i class="layui-icon">&#xe640;</i> 删除</a>
+                    <a class="layui-btn layui-btn-primary" action="#"><i class="layui-icon">&#x1002;</i> 刷新</a>
+                            </span>
+                </span>
+            </div>
+        </blockquote>
+
         <c:set var="checkAll">
             <input type="checkbox" id="chkall"/>
         </c:set>
@@ -73,7 +77,7 @@
             <display:column title="操作" media="html" style="width:320px">
                 <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-small">编辑</a>
                 <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
-                   <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
+                <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                 <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"
                    class="layui-btn layui-btn-normal layui-btn-small">私有</a>
                 <a href="publishconfig.ht?id=${TaskItem.ddTaskId}"
