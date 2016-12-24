@@ -123,18 +123,28 @@
                                         <c:forEach items="${publishDataRelationList}" var="publishDataRelationItem">
                                             <tr>
                                                 <td style="text-align: center;" type="hidden">
+                                                    <input type="hidden" name="ddDataId"
+                                                           value="${publishDataRelationItem.ddDataId}" type="hidden">
                                                         ${publishDataRelationItem.ddDataId}
                                                 </td>
                                                 <td style="text-align: center;">
+                                                    <input type="hidden" name="ddDataName"
+                                                           value="${publishDataRelationItem.ddDataName}" type="hidden">
                                                         ${publishDataRelationItem.ddDataName}
                                                 </td>
                                                 <td style="text-align: center;">
+                                                    <input type="hidden" name="ddDataType"
+                                                           value="${publishDataRelationItem.ddDataType}" type="hidden">
                                                         ${publishDataRelationItem.ddDataType}
                                                 </td>
                                                 <td style="text-align: center;">
+                                                    <input type="hidden" name="ddDataDescription"
+                                                           value="${publishDataRelationItem.ddDataDescription}" type="hidden">
                                                         ${publishDataRelationItem.ddDataDescription}
                                                 </td>
                                                 <td style="text-align: center;" type="hidden">
+                                                    <input type="hidden" name="ddDataTaskId"
+                                                           value="${publishDataRelationItem.ddDataTaskId}" type="hidden">
                                                         ${publishDataRelationItem.ddDataTaskId}
                                                 </td>
                                             </tr>

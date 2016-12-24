@@ -24,8 +24,9 @@
         <li class="layui-this">项目管理列表</li>
     </ul>
     <div class="layui-tab-content">
-        <div style="height: 50px;">
-            <form id="searchForm" method="post" action="list.ht">
+        <blockquote class="layui-elem-quote">
+            <div style="height: 40px;">
+                <form id="searchForm" method="post" action="list.ht">
 
 
                             <span class="fl">
@@ -39,17 +40,19 @@
                             <%--value="${param['Q_createEndData_DL']}"/>--%>
 
                             </span>
-                <span class="fr"><a class="link search" id="btnSearch">查询</a>
-                            <a class="layui-btn layui-btn-warm" href="edit.ht">添加</a>
+                    <span class="fr">
+                        <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
+                            <a class="layui-btn" href="edit.ht"><i class="layui-icon">&#xe61f;</i> 添加</a>
 
-                            <a class="layui-btn" action="edit.ht">修改</a>
-
-                            <a class="layui-btn layui-btn-danger" action="del.ht">删除</a>
+                           <a class="layui-btn layui-btn-danger" action="del.ht"><i
+                                   class="layui-icon">&#xe640;</i> 删除</a>
+                    <a class="layui-btn layui-btn-primary" action="#"><i class="layui-icon">&#x1002;</i> 刷新</a>
                             </span>
 
 
-            </form>
-        </div>
+                </form>
+            </div>
+        </blockquote>
         <c:set var="checkAll">
             <input type="checkbox" id="chkall"/>
         </c:set>

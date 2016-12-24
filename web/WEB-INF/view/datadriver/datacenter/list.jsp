@@ -57,14 +57,11 @@
             var k = 0;
             var t = 0;
             var taskInfoName = new Array();
-            //var temp=new Array();
             <c:forEach items="${allTaskInfoName}" var="n">
             taskInfoName.push("${n}"); //js中可以使用此标签，将EL表达式中的值push到数组中
             </c:forEach>
 
             var taskInfoId = new Array();
-
-            //var temp=new Array();
             <c:forEach items="${allTaskInfoId}" var="n">
             taskInfoId.push("${n}"); //js中可以使用此标签，将EL表达式中的值push到数组中
             </c:forEach>
@@ -105,15 +102,9 @@
                     elem: '#demo2' //指定元素
                     , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
                     , click: function (item) { //点击节点回调
-                        // layer.msg('当前节名称：'+ item.name + '<br>全部参数：'+ JSON.stringify(item));
-                        // console.log(item);
-//                        var isRoot = node.isRoot;
-//                        if (isRoot == 1) {
-//                            return;
-//                        }
                         var taskId = item.id;
+                        if (taskId == undefined) return;
                         $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
-//                        alert(taskId);
                     }
                     , nodes: createTree()
                 });
