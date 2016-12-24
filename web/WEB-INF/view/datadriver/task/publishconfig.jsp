@@ -53,10 +53,12 @@
 <div class="panel">
     <div id="tabDataInfo" class="panel-nav" style="overflow:hidden; position:relative;">
         <div title="任务发布数据" tabid="orgdetail">
+            <a class="layui-btn layui-btn-normal" id="dataFormSave" href="list.ht">返回</a>
             <table align="center" cellpadding="0" cellspacing="0" class="layui-table">
                 <tr>
                     <td width="50%" valign="top" style="padding-left:0px !important;">
                         <fieldset class="layui-elem-field" id="fieldframe">
+                            <a class="layui-btn layui-btn-small" id="list.ht">返回</a>
                             <legend>私有数据</legend>
                             <div class="layui-field-box">
                                 <br>

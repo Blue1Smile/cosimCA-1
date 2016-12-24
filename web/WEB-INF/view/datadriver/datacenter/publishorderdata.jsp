@@ -105,6 +105,7 @@
                             class="layui-icon">&#xe615;</i> 数据版本</a>
                 </display:column>
             </display:table>
+
         </div>
     </div>
 </div>

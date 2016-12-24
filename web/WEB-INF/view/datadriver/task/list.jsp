@@ -30,6 +30,7 @@
                        value="${param['Q_name_SL']}" placeholder="任务名称"/>
             </form>
     </span>
+
                 <span class="fr">
             <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
                     <a class="layui-btn" href="edit.ht" id="taskInfoForm"><i class="layui-icon">&#xe61f;</i> 添加</a>
@@ -39,6 +40,7 @@
                 </span>
             </div>
         </blockquote>
+
         <c:set var="checkAll">
             <input type="checkbox" id="chkall"/>
         </c:set>
@@ -49,7 +51,7 @@
             </display:column>
             <%--<display:column property="ddTaskId" title="任务ID" sortable="true" sortName="DD_TASK_ID"--%>
             <%--maxLength="80"></display:column>--%>
-            <display:column property="ddTaskName" title="任务名称" sortable="true" maxLength="80"></display:column>
+            <display:column property="ddTaskName" title="任务名称" sortable="true" maxLength="60"></display:column>
             <%--<display:column property="ddTaskDescription" title="任务描述" maxLength="80"></display:column>--%>
             <%--<display:column property="ddTaskCreatorId" title="任务创建者id"></display:column>--%>
             <display:column property="ddTaskPerson" title="任务负责人" sortable="true"></display:column>
@@ -72,7 +74,7 @@
             <%--<display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>--%>
             <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
 
-            <display:column title="操作" media="html" style="width:260px">
+            <display:column title="操作" media="html" style="width:320px">
                 <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-small">编辑</a>
                 <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
                 <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
@@ -82,6 +84,8 @@
                    class="layui-btn layui-btn-normal layui-btn-small">发布</a>
                 <a href="orderconfig.ht?id=${TaskItem.ddTaskId}"
                    class="layui-btn layui-btn-normal layui-btn-small">订阅</a>
+                <a href="del.ht?id=${TaskItem.ddTaskId}"
+                   class="layui-btn layui-btn-normal layui-btn-small">删除</a>
                 <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
                 <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
                 <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>

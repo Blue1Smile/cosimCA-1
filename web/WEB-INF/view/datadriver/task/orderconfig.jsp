@@ -58,6 +58,8 @@
                 <tr>
                     <td width="50%" valign="top" style="padding-left:2px !important;">
                         <fieldset class="layui-elem-field">
+                            <a class="layui-btn layui-btn-small" id="list.ht">返回</a>
+
                             <legend>可订阅项目数据</legend>
                             <div class="layui-field-box">
                                 <br>
