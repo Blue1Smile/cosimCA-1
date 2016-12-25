@@ -47,8 +47,8 @@
     <div id="logo_zone">
         <%--<div id="logo_zone_left"><a href="#"><img src="${ctx}/testimg/logo6.jpg"/> </a></div>--%>
         <svg width="500" height="100">
-            <text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="SimHei"> Cosim </text>
-            <text x="180" y="40" fill="#369" font-weight="600" font-size="45" font-family="SimHei">协同设计平台 </text>
+            <text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="Impact"> Cosim</text>
+            <text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台 </text>
         </svg>
     </div>
 </div>
