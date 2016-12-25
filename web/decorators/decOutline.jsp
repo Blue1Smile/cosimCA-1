@@ -6,9 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><decorator:title default="工作台"/>-协同设计</title>
+    <title><decorator:title default="工作台"/>协同设计</title>
     <%@include file="/commons/cloud/meta.jsp" %>
-    <%--<f:link href="Aqua/css/bootstrap.css"></f:link>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript">
 
@@ -21,7 +20,13 @@
                 var index = $(".parenttable").index($(this)[0]);
                 $(".sontable:eq(" + index + ")").slideDown();
             });
-
+            //增加导航栏选中效果
+            $("li").each(function(index){
+                $(this).click(function(){
+                    $("li").removeClass("first");
+                    $("li").eq(index).addClass("first");
+                });
+            });
         });
 
     </script>
@@ -38,9 +43,6 @@
         <c:if test="${empty SPRING_SECURITY_LAST_USERNAME}">请<a href="${ctx}/loginCloud.ht" class="link01">登录</a> │
             <a
                     href="${ctx}/reg.ht" class="link01">注册</a></c:if>
-
-
-
     </div>
     <div id="logo_zone">
         <%--<div id="logo_zone_left"><a href="#"><img src="${ctx}/testimg/logo6.jpg"/> </a></div>--%>

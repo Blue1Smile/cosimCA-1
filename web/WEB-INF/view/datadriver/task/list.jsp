@@ -75,17 +75,17 @@
             <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
 
             <display:column title="操作" media="html" style="width:320px">
-                <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-small">编辑</a>
+                <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-mini">编辑</a>
                 <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
                 <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                 <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-small">私有</a>
+                   class="layui-btn layui-btn-normal layui-btn-mini">私有</a>
                 <a href="publishconfig.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-small">发布</a>
+                   class="layui-btn layui-btn-normal layui-btn-mini">发布</a>
                 <a href="orderconfig.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-small">订阅</a>
+                   class="layui-btn layui-btn-normal layui-btn-mini">订阅</a>
                 <a href="del.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-small">删除</a>
+                   class="layui-btn layui-btn-normal layui-btn-mini">删除</a>
                 <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
                 <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
                 <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>
