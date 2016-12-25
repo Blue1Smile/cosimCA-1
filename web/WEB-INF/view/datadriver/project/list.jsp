@@ -46,7 +46,7 @@
 
                            <a class="layui-btn layui-btn-danger" action="del.ht"><i
                                    class="layui-icon">&#xe640;</i> 删除</a>
-                    <a class="layui-btn layui-btn-primary" action="#"><i class="layui-icon">&#x1002;</i> 刷新</a>
+                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
                             </span>
 
 
@@ -58,7 +58,7 @@
         </c:set>
         <display:table name="projectList" id="ProjectItem" requestURI="list.ht" sort="external" cellpadding="0"
                        cellspacing="0" export="false" class="layui-table" pagesize="10">
-            <display:column title="${checkAll}" media="html" style="width:30px;">
+            <display:column title="${checkAll}" media="html" style="width:3%;">
                 <input type="checkbox" class="pk" name="id" value="${ProjectItem.ddProjectId}">
             </display:column>
             <%--<display:column property="ddProjectId" title="项目编号" sortable="true" sortName="DD_PROJECT_ID"--%>
@@ -91,16 +91,15 @@
 
             <display:column title="操作" media="html" style="width:380px">
 
-                <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-mini">编辑</a>
+                <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 编辑</a>
                 <a href="start.ht?id=${ProjectItem.ddProjectId}"
-                   class="layui-btn layui-btn-primary layui-btn-mini">启动</a>
+                   class="layui-btn layui-btn-primary layui-btn-mini"><i class="layui-icon">&#x1005;</i> 启动</a>
                 <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
                 <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
-                <a class="layui-btn layui-btn-mini layui-btn-success"
-                   href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
-                <a href="" class="layui-btn layui-btn-mini layui-btn-warm">引用</a>
+                <a class="layui-btn layui-btn-mini layui-btn-normal"
+                   href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">&#xe62a;</i> 任务</a>
                 <a href="del.ht?id=${ProjectItem.ddProjectId}"
-                   class="layui-btn layui-btn-mini layui-btn-danger">删除</a>
+                   class="layui-btn layui-btn-mini layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</a>
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="ProjectItem"/>--%>

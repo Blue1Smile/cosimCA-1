@@ -36,7 +36,7 @@
                             <a class="layui-btn" href="edit.ht"><i class="layui-icon">&#xe61f;</i> 添加</a>
 
                             <a class="layui-btn layui-btn-danger" action="del.ht"><i class="layui-icon">&#xe640;</i> 删除</a>
-                    <a class="layui-btn layui-btn-primary" action="#"><i class="layui-icon">&#x1002;</i> 刷新</a>
+                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
                             </span>
             </div>
         </blockquote>
@@ -45,7 +45,7 @@
         </c:set>
         <display:table name="taskList" id="taskList" requestURI="list.ht" sort="external" cellpadding="1"
                        cellspacing="1" export="false" class="layui-table" pagesize="10">
-            <display:column title="${checkAll}" media="html" style="width:30px;">
+            <display:column title="${checkAll}" media="html" style="width:3%;">
                 <input type="checkbox" class="pk" name="id" value="${taskList.ddTaskId}">
             </display:column>
             <%--<display:column property="ddTaskId" title="任务编号" sortable="true" sortName="DD_TASK_ID"--%>
@@ -62,7 +62,8 @@
                         class="layui-icon">&#xe642;</i> 更新发布数据</a>
                 <a href="showorder.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
                         class="layui-icon">&#xe615;</i> 查看订阅数据</a>
-
+                <a href="#" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                        class="layui-icon">&#xe639;</i> 任务办理</a>
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="taskList"/>--%>

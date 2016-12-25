@@ -24,19 +24,17 @@
     <div class="layui-tab-content">
         <blockquote class="layui-elem-quote">
             <div style="height: 40px;">
-<span class="fl">
-            <form id="searchForm" method="post" action="list.ht">
-                <input type="text" name="Q_name_SL " class="layui-input"
-                       value="${param['Q_name_SL']}" placeholder="任务名称"/>
-            </form>
-    </span>
-
+                <span class="fl">
+                    <form id="searchForm" method="post" action="list.ht">
+                        <input type="text" name="Q_name_SL " class="layui-input"
+                               value="${param['Q_name_SL']}" placeholder="任务名称"/>
+                    </form>
+                </span>
                 <span class="fr">
-            <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                    <a class="layui-btn" href="edit.ht" id="taskInfoForm"><i class="layui-icon">&#xe61f;</i> 添加</a>
-            <a class="layui-btn layui-btn-danger" action="del.ht"><i class="layui-icon">&#xe640;</i> 删除</a>
-                    <a class="layui-btn layui-btn-primary" action="#"><i class="layui-icon">&#x1002;</i> 刷新</a>
-                            </span>
+                    <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
+                            <a class="layui-btn" href="edit.ht" id="taskInfoForm"><i class="layui-icon">&#xe61f;</i> 添加</a>
+                    <a class="layui-btn layui-btn-danger" action="del.ht"><i class="layui-icon">&#xe640;</i> 删除</a>
+                            <a class="layui-btn layui-btn-primary" action="#" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
                 </span>
             </div>
         </blockquote>
@@ -46,7 +44,7 @@
         </c:set>
         <display:table name="taskList" id="TaskItem" requestURI="list.ht" sort="external" cellpadding="0"
                        cellspacing="0" export="false" class="layui-table lay-even" pagesize="10">
-            <display:column title="${checkAll}" media="html" style="width:30px;">
+            <display:column title="${checkAll}" media="html" style="width:3%;">
                 <input type="checkbox" class="pk" name="id" value="${TaskItem.ddTaskId}">
             </display:column>
             <%--<display:column property="ddTaskId" title="任务ID" sortable="true" sortName="DD_TASK_ID"--%>
@@ -75,17 +73,17 @@
             <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
 
             <display:column title="操作" media="html" style="width:320px">
-                <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-mini">编辑</a>
+                <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 编辑</a>
                 <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
                 <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                 <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-mini">私有</a>
+                   class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 私有</a>
                 <a href="publishconfig.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-mini">发布</a>
+                   class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe63c;</i> 发布</a>
                 <a href="orderconfig.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-mini">订阅</a>
+                   class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe627;</i> 订阅</a>
                 <a href="del.ht?id=${TaskItem.ddTaskId}"
-                   class="layui-btn layui-btn-normal layui-btn-mini">删除</a>
+                   class="layui-btn layui-btn-danger layui-btn-mini"><i class="layui-icon">&#xe640;</i> 删除</a>
                 <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
                 <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
                 <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>
