@@ -32,6 +32,12 @@
         .fr {
             float: right;
         }
+        .pages{
+            float: right;
+        }
+        .page_line{
+            display:inline;
+        }
     </style>
 </head>
 <body>

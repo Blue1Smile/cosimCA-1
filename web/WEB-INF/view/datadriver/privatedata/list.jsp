@@ -5,6 +5,15 @@
     <title>私有数据列表</title>
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .pages{
+            float: right;
+        }
+        .page_line{
+            display:inline;
+        }
+    </style>
+
 </head>
 <body>
 <div class="layui-tab layui-tab-card">
