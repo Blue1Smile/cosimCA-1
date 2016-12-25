@@ -23,8 +23,8 @@
             //增加导航栏选中效果
             $("li").each(function(index){
                 $(this).click(function(){
-                    $("li").removeClass("first");
-                    $("li").eq(index).addClass("first");
+                    $("li").removeClass("layui-this");
+                    $("li").eq(index).addClass("layui-this");
                 });
             });
         });

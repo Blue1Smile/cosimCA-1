@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" %>
 <%@ include file="/commons/cloud/global.jsp" %>
-<f:link href="Aqua/css/bootstrap.css"></f:link>
 <body>
 
 
@@ -37,6 +36,6 @@
     </ul>
 
 </c:forEach>
-
+<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 
 </body>
