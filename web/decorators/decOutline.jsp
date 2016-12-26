@@ -56,8 +56,6 @@
 <div class="layui-layout-admin">
 
     <%@include file="/commons/cloud/top_console.jsp" %>
-
-
     <decorator:body/>
     <div class="layui-body">
 
