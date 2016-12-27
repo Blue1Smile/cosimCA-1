@@ -2,7 +2,7 @@ package com.casic.datadriver.model.flow;
 
 import java.util.Date;
 
-public class Process {
+public class ProcessFlow {
     private Long ddProcessId;
 
     private String ddProcessName;
