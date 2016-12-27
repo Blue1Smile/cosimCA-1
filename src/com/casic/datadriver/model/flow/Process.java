@@ -23,6 +23,26 @@ public class Process {
 
     private Integer ddProcessStatus;
 
+    private byte[] ddProcessFigure;
+
+    private String ddProcessXml;
+
+    public byte[] getDdProcessFigure() {
+        return ddProcessFigure;
+    }
+
+    public void setDdProcessFigure(byte[] ddProcessFigure) {
+        this.ddProcessFigure = ddProcessFigure;
+    }
+
+    public String getDdProcessXml() {
+        return ddProcessXml;
+    }
+
+    public void setDdProcessXml(String ddProcessXml) {
+        this.ddProcessXml = ddProcessXml;
+    }
+
     public Long getDdProcessId() {
         return ddProcessId;
     }
