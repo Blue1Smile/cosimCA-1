@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/datadriver/designflow/")
-public class ProcessController extends AbstractController {
+public class ProcessFlowController extends AbstractController {
 
 }
