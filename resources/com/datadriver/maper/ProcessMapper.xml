@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.casic.datadriver.mapper.ProcessMapper">
-  <resultMap id="BaseResultMap" type="com.casic.datadriver.model.mapper.Process">
+  <resultMap id="BaseResultMap" type="com.casic.datadriver.model.flow.Process">
     <id column="DD_PROCESS_ID" jdbcType="BIGINT" property="ddProcessId" />
     <result column="DD_PROCESS_NAME" jdbcType="VARCHAR" property="ddProcessName" />
     <result column="DD_PROCESS_TYPE" jdbcType="BIGINT" property="ddProcessType" />
@@ -12,32 +12,25 @@
     <result column="DD_PROCESS_CREATEBY" jdbcType="BIGINT" property="ddProcessCreateby" />
     <result column="DD_PROCESS_UPDATEBY" jdbcType="BIGINT" property="ddProcessUpdateby" />
     <result column="DD_PROCESS_STATUS" jdbcType="INTEGER" property="ddProcessStatus" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.casic.datadriver.model.mapper.ProcessWithBLOBs">
     <result column="DD_PROCESS_FIGURE" jdbcType="LONGVARBINARY" property="ddProcessFigure" />
     <result column="DD_PROCESS_XML" jdbcType="LONGVARCHAR" property="ddProcessXml" />
   </resultMap>
   <sql id="Base_Column_List">
     DD_PROCESS_ID, DD_PROCESS_NAME, DD_PROCESS_TYPE, DD_PROCESS_CREATOR_ID, DD_PROCESS_DESCRIPTION, 
     DD_PROCESS_CREATETIME, DD_PROCESS_UPDATETIME, DD_PROCESS_CREATEBY, DD_PROCESS_UPDATEBY, 
-    DD_PROCESS_STATUS
+    DD_PROCESS_STATUS, DD_PROCESS_FIGURE, DD_PROCESS_XML
   </sql>
-  <sql id="Blob_Column_List">
-    DD_PROCESS_FIGURE, DD_PROCESS_XML
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+  <select id="select" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from dd_process
     where DD_PROCESS_ID = #{ddProcessId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="delete" parameterType="java.lang.Long">
     delete from dd_process
     where DD_PROCESS_ID = #{ddProcessId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.casic.datadriver.model.mapper.ProcessWithBLOBs">
+  <insert id="add" parameterType="com.casic.datadriver.model.flow.Process">
     insert into dd_process (DD_PROCESS_ID, DD_PROCESS_NAME, DD_PROCESS_TYPE, 
       DD_PROCESS_CREATOR_ID, DD_PROCESS_DESCRIPTION, 
       DD_PROCESS_CREATETIME, DD_PROCESS_UPDATETIME, 
@@ -51,7 +44,7 @@
       #{ddProcessFigure,jdbcType=LONGVARBINARY}, #{ddProcessXml,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.casic.datadriver.model.mapper.ProcessWithBLOBs">
+  <insert id="insertSelective" parameterType="com.casic.datadriver.model.flow.Process">
     insert into dd_process
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="ddProcessId != null">
@@ -130,7 +123,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.mapper.ProcessWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.flow.Process">
     update dd_process
     <set>
       <if test="ddProcessName != null">
@@ -169,7 +162,7 @@
     </set>
     where DD_PROCESS_ID = #{ddProcessId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.casic.datadriver.model.mapper.ProcessWithBLOBs">
+  <update id="update" parameterType="com.casic.datadriver.model.flow.Process">
     update dd_process
     set DD_PROCESS_NAME = #{ddProcessName,jdbcType=VARCHAR},
       DD_PROCESS_TYPE = #{ddProcessType,jdbcType=BIGINT},
@@ -182,19 +175,6 @@
       DD_PROCESS_STATUS = #{ddProcessStatus,jdbcType=INTEGER},
       DD_PROCESS_FIGURE = #{ddProcessFigure,jdbcType=LONGVARBINARY},
       DD_PROCESS_XML = #{ddProcessXml,jdbcType=LONGVARCHAR}
-    where DD_PROCESS_ID = #{ddProcessId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.mapper.Process">
-    update dd_process
-    set DD_PROCESS_NAME = #{ddProcessName,jdbcType=VARCHAR},
-      DD_PROCESS_TYPE = #{ddProcessType,jdbcType=BIGINT},
-      DD_PROCESS_CREATOR_ID = #{ddProcessCreatorId,jdbcType=BIGINT},
-      DD_PROCESS_DESCRIPTION = #{ddProcessDescription,jdbcType=VARCHAR},
-      DD_PROCESS_CREATETIME = #{ddProcessCreatetime,jdbcType=TIMESTAMP},
-      DD_PROCESS_UPDATETIME = #{ddProcessUpdatetime,jdbcType=TIMESTAMP},
-      DD_PROCESS_CREATEBY = #{ddProcessCreateby,jdbcType=BIGINT},
-      DD_PROCESS_UPDATEBY = #{ddProcessUpdateby,jdbcType=BIGINT},
-      DD_PROCESS_STATUS = #{ddProcessStatus,jdbcType=INTEGER}
     where DD_PROCESS_ID = #{ddProcessId,jdbcType=BIGINT}
   </update>
 </mapper>
