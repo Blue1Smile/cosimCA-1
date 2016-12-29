@@ -57,4 +57,5 @@ public class ProcessFlowController extends AbstractController {
         ModelAndView mv = this.getAutoView().addObject("projectId", projectId);
         return mv;
     }
+
 }

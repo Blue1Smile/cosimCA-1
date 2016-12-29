@@ -65,7 +65,6 @@
 
     <%@include file="/commons/cloud/foot.jsp" %>
 </div>
-</div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>
