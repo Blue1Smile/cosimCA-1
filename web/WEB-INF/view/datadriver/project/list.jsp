@@ -104,7 +104,7 @@
                 <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                 <a class="layui-btn layui-btn-mini layui-btn-normal"
                    href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">&#xe62a;</i> 任务</a>
-                <a class="layui-btn layui-btn-mini layui-btn-warm"
+                <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
                    href="${ctx}/datadriver/designflow/flowframe.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">&#xe641;</i> 流程</a>
                 <a href="del.ht?id=${ProjectItem.ddProjectId}"
                    class="layui-btn layui-btn-mini layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</a>

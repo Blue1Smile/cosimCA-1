@@ -68,7 +68,7 @@
                         class="layui-icon">&#xe642;</i> 更新发布数据</a>
                 <a href="showorder.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
                         class="layui-icon">&#xe615;</i> 查看订阅数据</a>
-                <a href="#" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                <a href="${ctx}/datadriver/task/todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
                         class="layui-icon">&#xe639;</i> 任务办理</a>
             </display:column>
         </display:table>
