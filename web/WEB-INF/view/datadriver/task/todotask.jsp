@@ -25,12 +25,23 @@
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" id="iframe_tab">
             <ul class="layui-tab-title">
                 <li class="layui-this">任务概述</li>
-                <li>私有数据</li>
-                <li>订阅数据</li>
+                <li>更新发布</li>
+                <li>查看订阅</li>
                 <li>任务工具</li>
             </ul>
             <div class="layui-tab-content">
-
+                <div class="layui-tab-item layui-show">
+                    <iframe src="${ctx}/datadriver/personaltask/dashboard.ht?id=${taskList.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
+                </div>
+                <div class="layui-tab-item">
+                    <iframe src="${ctx}/datadriver/personaltask/submitpublish.ht?id=${taskList.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
+                </div>
+                <div class="layui-tab-item">
+                    <iframe src="${ctx}/datadriver/personaltask/showorfer.ht?id=${taskList.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
+                </div>
+                <div class="layui-tab-item">
+                    <iframe src="" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
+                </div>
             </div>
         </div>
     </div>
