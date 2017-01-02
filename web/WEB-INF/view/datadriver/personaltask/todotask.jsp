@@ -31,13 +31,13 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <iframe src="${ctx}/datadriver/personaltask/dashboard.ht?id=${taskList.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
+                    <iframe src="${ctx}/datadriver/personaltask/dashboard.ht?id=${taskInfo.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
                 </div>
                 <div class="layui-tab-item">
-                    <iframe src="${ctx}/datadriver/personaltask/submitpublish.ht?id=${taskList.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
+                    <iframe src="${ctx}/datadriver/personaltask/submitpublish.ht?id=${taskInfo.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
                 </div>
                 <div class="layui-tab-item">
-                    <iframe src="${ctx}/datadriver/personaltask/showorfer.ht?id=${taskList.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
+                    <iframe src="${ctx}/datadriver/personaltask/showorder.ht?id=${taskInfo.ddTaskId}" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>
                 </div>
                 <div class="layui-tab-item">
                     <iframe src="" style="width: 100%;height: 100%" frameborder="no" scrolling="no"></iframe>

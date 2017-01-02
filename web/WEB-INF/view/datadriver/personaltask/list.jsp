@@ -63,12 +63,12 @@
             <display:column property="ddTaskPerson" title="任务负责人" sortable="true"></display:column>
             <display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>
 
-            <display:column title="操作" media="html" style="width:350px">
-                <a href="submitpublish.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-mini"><i
-                        class="layui-icon">&#xe642;</i> 更新发布数据</a>
-                <a href="showorder.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
-                        class="layui-icon">&#xe615;</i> 查看订阅数据</a>
-                <a href="${ctx}/datadriver/task/todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+            <display:column title="操作" media="html" style="width:10%">
+                <%--<a href="submitpublish.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-mini"><i--%>
+                        <%--class="layui-icon">&#xe642;</i> 更新发布数据</a>--%>
+                <%--<a href="showorder.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i--%>
+                        <%--class="layui-icon">&#xe615;</i> 查看订阅数据</a>--%>
+                <a href="todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
                         class="layui-icon">&#xe639;</i> 任务办理</a>
             </display:column>
         </display:table>
