@@ -9,112 +9,33 @@
 <head>
     <title>任务数据中心</title>
     <%@include file="/commons/include/form.jsp" %>
+    <%@include file="/newtable/tablecontext.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript">
-
-
-        $(function () {
-            var options = {};
-            if (showResponse) {
-                options.success = showResponse;
-            }
-            var frm = $('#datacentreForm').form();
-            $("a.save").click(function () {
-                frm.setData();
-                frm.ajaxForm(options);
-                if (frm.valid()) {
-                    form.submit();
-                }
-            });
-        });
-
-        function showResponse(responseText) {
-            var obj = new com.hotent.form.ResultMessage(responseText);
-            if (obj.isSuccess()) {
-                $.ligerMessageBox.confirm("提示信息", obj.getMessage() + ",是否继续操作", function (rtn) {
-                    if (rtn) {
-                        this.close();
-                    } else {
-                        window.location.href = "${ctx}/cloud/account/AccountInfo/list.ht";
-                    }
-                });
-            } else {
-                $.ligerMessageBox.error("提示信息", obj.getMessage());
-            }
-        }
-
-    </script>
-
 </head>
 <body>
-<div class="layui-tab layui-tab-card">
-    <ul class="layui-tab-title">
-        <li class="layui-this">订阅数据列表</li>
-    </ul>
-    <div class="layui-tab-content">
-
-        <!--20161202-->
-        <form id="datacentreForm" name="datacentreForm" method="post" action="submitdatavalue.ht"
-              enctype="multipart/form-data">
-            <div style="height: 50px;">
-                <input class="layui-btn layui-btn-normal" type="submit" name="sumbit" value="发布"/>
-                <a class="layui-btn layui-btn-normal" href="${ctx}/datadriver/personaltask/list.ht">返回</a>
-            </div>
-            <div class="layui-tab-item layui-show">
-                <table id="PrivateData" class="layui-table" cellpadding="1" cellspacing="1">
-                    <thead>
-                    <th style="text-align:center !important;">数据编号</th>
-                    <th style="text-align:center !important;">数据名称</th>
-                    <th style="text-align:center !important;">数据类型</th>
-                    <th style="text-align:center !important;">数据描述</th>
-                    <th style="text-align:center !important;">数据所属任务</th>
-                    <th style="text-align:center !important;">发布数据</th>
-                    </thead>
-
-                    <tbody id="gridtbody">
-                    <c:forEach items="${privateDataList}" var="privateDataItem">
-                        <tr style="cursor:pointer">
-                        <tr style="cursor:pointer">
-                            <td style="text-align: center;">
-                                <input name="ddDataId" type="hidden" value="${privateDataItem.ddDataId}">
-                                    ${privateDataItem.ddDataId}
-                            </td>
-                            <td style="text-align: center;">
-                                <input type="hidden" name="ddDataName" value="${privateDataItem.ddDataName}">
-                                    ${privateDataItem.ddDataName}
-                            </td>
-                            <td style="text-align: center;">
-                                <input type="hidden" name="ddDataType" value="${privateDataItem.ddDataType}">
-                                    ${privateDataItem.ddDataType}
-                            </td>
-                            <td style="text-align: center;">
-                                <input type="text" name="ddDataLastestValue"
-                                       value="${privateDataItem.ddDataLastestValue}">
-
-                            </td>
-                            <td style="text-align: center;">
-                                <input type="hidden" name="ddDataTaskId" value="${privateDataItem.ddDataTaskId}">
-                                    ${privateDataItem.ddDataTaskId}
-                            </td>
-                            <td style="text-align: center;">
-
-                                    <%--<a href="submitdata?ddDataLastestValue=${privateDataItem.ddDataLastestValue}&ddDataId=${privateDataItem.ddDataId}" >发布</a>--%>
-
-                            </td>
-                        </tr>
-                    </c:forEach>
-
-
-                    </tbody>
-                </table>
-            </div>
-        </form>
-
-    </div>
-</div>
+<table id="tablelist"
+       data-search="true"
+       data-show-refresh="true"
+       data-show-toggle="false"
+       data-show-columns="false"
+       data-show-export="false"
+       data-detail-view="false"
+       data-detail-formatter="detailFormatter"
+       data-minimum-count-columns="2"
+       data-show-pagination-switch="true"
+       data-pagination="true"
+       data-id-field="id"
+       data-page-size="10"
+       data-page-list="[10, 25, 50, 100, ALL]"
+       data-show-footer="false"
+       data-side-pagination="server"
+       data-url="submitpublishjson.ht?id=${taskId}"
+       data-response-handler="responseHandler">
+</table>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+<script src="${ctx}/newtable/customtable.js"></script>
 </body>
 </html>

@@ -765,9 +765,9 @@ String.prototype.isEmpty = function() {
 /**
  * 功能：移除首尾空格
  */
-String.prototype.trim = function() {
-	return this.replace(/(^\s*)|(\s*$)/g, "");
-};
+// String.prototype.trim = function() {
+// 	return this.replace(/(^\s*)|(\s*$)/g, "");
+// };
 /**
  * 功能:移除左边空格
  */
