@@ -63,11 +63,7 @@
 </head>
 <body>
 
-<div class="layui-tab layui-tab-card">
-    <ul class="layui-tab-title">
-        <li class="layui-this">订阅数据列表</li>
-    </ul>
-    <div class="layui-tab-content">
+
         <blockquote class="layui-elem-quote">
             <div style="height: 40px;">
                 <form id="searchForm" method="post" action="list.ht">
@@ -166,8 +162,7 @@
                 <%--</table>--%>
             <%--</div>--%>
         <%--</form>--%>
-    </div>
-</div>
+
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </body>
 </html>
