@@ -126,7 +126,7 @@
 
                 </tr>
                 <tr>
-                    <th width="20%">模型文件:</th>
+                    <th width="20%">模型文件1111:</th>
                     <td><input type="text" id="ddDataIsModel" name="ddDataIsModel"
                                value="${PrivateData.ddDataIsDelivery}" class="layui-input"/></td>
 
