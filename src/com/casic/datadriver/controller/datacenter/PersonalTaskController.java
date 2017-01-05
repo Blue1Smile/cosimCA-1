@@ -75,9 +75,16 @@ public class PersonalTaskController extends AbstractController {
             throws Exception {
         List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> taskInfo_list = new ArrayList<TaskInfo>();
-        for (TaskStart taskStart : taskStartList) {
+//        for (TaskStart taskStart : taskStartList) {
+//
+//            Long ddTaskId = taskStart.getDdTaskId();
+//            long ddTask_Id = ddTaskId;
+//            TaskInfo taskInfo = taskInfoService.getById(ddTask_Id);
+//            taskInfo_list.add(taskInfo);
+//        }
 
-            Long ddTaskId = taskStart.getDdTaskId();
+        for (int i = 0; i < taskStartList.size(); i++) {
+            Long ddTaskId = taskStartList.get(i).getDdTaskId();
             long ddTask_Id = ddTaskId;
             TaskInfo taskInfo = taskInfoService.getById(ddTask_Id);
             taskInfo_list.add(taskInfo);
@@ -292,7 +299,97 @@ public class PersonalTaskController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
+
+
+    @RequestMapping("submittask")
+    @Action(description = "提交任务")
+    public void submittask(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        try {
+
+            Long ddTaskId = RequestUtil.getLong(request, "id");
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
+            List<TaskStart> taskStart_list =taskStartService.queryTaskStartByTaskId(ddTaskId);
+
+//            //判断任务的所有发布数据是否已经提交，如果存在未发布的数据，不允许提交任务
+//            while (privateDataService.getById(orderDataRelation_list.get(i).getDdDataId()).getDdDataLastestValue()!=null){
+//                //判断任务的当前状态，只有在正在执行中才允许提交
+//                    if(taskStart_list.get(0).getDdTaskStatus()==1) {
+//                        taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
+//
+//                        taskStartService.update(taskStart_list.get(0));
+//                    }
+//                    else {
+//                        String resultMsg = null;
+//                        writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+//                    }
+//
+//
+//            }
+            //判断任务的所有发布数据是否已经提交，如果存在未发布的数据，不允许提交任务
+//            for(int i=0;i<=orderDataRelation_list.size();i++){
+//                long ddDataId= orderDataRelation_list.get(i).getDdDataId();
+//                PrivateData privateData = privateDataService.getById(ddDataId);
+//                if (privateData.getDdDataLastestValue()==null||privateData.getDdDataLastestValue().equals(null)){
+//                    String resultMsg = null;
+//                    writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
+//                }
+//                else {
+//                    //判断任务的当前状态，只有在正在执行中才允许提交
+//                    if(taskStart_list.get(0).getDdTaskStatus()==1) {
+//                        taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
+//
+//                        taskStartService.update(taskStart_list.get(0));
+//                    }
+//                    else {
+//                        String resultMsg = null;
+//                        writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+//                    }
+//                }
+//            }
+
+
+            //判断任务的当前状态，只有在正在执行中才允许提交
+            if(taskStart_list.get(0).getDdTaskStatus()==1) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
+
+                taskStartService.update(taskStart_list.get(0));
+            }
+            else {
+                String resultMsg = null;
+                writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+            }
+        }catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
+
+    @RequestMapping("recovertask")
+    @Action(description = "收回任务")
+    public void recovertask(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        try {
+            Long ddTaskId = RequestUtil.getLong(request, "id");
+            List<TaskStart> taskStart_list =taskStartService.queryTaskStartByTaskId(ddTaskId);
+
+            //判断任务的当前状态，只有在正在提交中才允许收回
+            if(taskStart_list.get(0).getDdTaskStatus()==0) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_RUNNING);
+                taskStartService.update(taskStart_list.get(0));
+            }
+            else {
+                String resultMsg = null;
+                writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+            }
+
+        }catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
 }
-
-
 
