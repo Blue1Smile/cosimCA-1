@@ -292,6 +292,18 @@ public class PersonalTaskController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
+    @RequestMapping("jobcommit")
+    @Action(description = "提交工作")
+    public ModelAndView jobcommit(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long taskId = RequestUtil.getLong(request, "id");
+
+        TaskInfo taskInfo = taskInfoService.getById(taskId);
+        ModelAndView mv = this.getAutoView().addObject("taskInfo",
+                taskInfo);
+        return mv;
+    }
 }
 
 
