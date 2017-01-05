@@ -22,9 +22,9 @@
 </head>
 <body>
 <div class="fr">
-    <a class="layui-btn layui-btn-normal" id="commit"><i class="layui-icon">&#xe62f;</i> 提交工作</a>
-    <a class="layui-btn layui-btn-normal" id="invite"><i class="layui-icon">&#xe613;</i> 邀请协作</a>
-    <a class="layui-btn" id="jobdone"><i class="layui-icon">&#x1005;</i> 完成任务</a>
+    <a class="layui-btn layui-btn-normal" id="commit" href="jobcommit.ht"><i class="layui-icon">&#xe62f;</i> 提交工作</a>
+    <a class="layui-btn layui-btn-normal" id="invite" href="jobinvite.ht"><i class="layui-icon">&#xe613;</i> 邀请协作</a>
+    <a class="layui-btn" id="jobdone" href="jobdone.ht"><i class="layui-icon">&#x1005;</i> 完成任务</a>
     <a class="layui-btn layui-btn-primary" action="#" onclick="location.reload()"><i
             class="layui-icon">&#x1002;</i> 刷新看板</a>
 </div>
