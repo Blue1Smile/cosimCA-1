@@ -139,5 +139,21 @@ public class TaskStartService  extends BaseService<TaskStart> {
         return dao.queryTaskStartByResponceId(taskResponcePerson);
     }
 
+    /**
+     * 根据任务Id获得任务启动
+     * @param ddTaskId
+     */
+    public  List<TaskStart> queryTaskStartByTaskId(long ddTaskId) {
+        return dao.queryTaskStartByTaskId(ddTaskId);
+    }
+
+
+//    /**
+//     * 更新项目启动
+//     * @param TaskStart
+//     */
+//    public  void update(TaskStart taskStart) {
+//        dao.update(taskStart);
+//    }
 
 }
