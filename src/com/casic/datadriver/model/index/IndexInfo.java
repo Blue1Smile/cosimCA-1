@@ -1,37 +1,37 @@
 package com.casic.datadriver.model.index;
 
-public class Index {
-    private Integer ddIndexId;
+public class IndexInfo {
+    private Long ddIndexId;
 
-    private Integer ddIndexProjectId;
+    private Long ddIndexProjectId;
 
     private String ddIndexName;
 
-    private Integer ddIndexTypeId;
+    private Long ddIndexTypeId;
 
-    private Integer ddIndexProperty;
+    private Long ddIndexProperty;
 
     private String ddIndexOptimum;
 
-    private Integer ddIndexResponsiblePersonId;
+    private Long ddIndexResponsiblePersonId;
 
-    private Integer ddIndexSensitiveness;
+    private Long ddIndexSensitiveness;
 
     private String ddIndexLastestValue;
 
-    public Integer getDdIndexId() {
+    public Long getDdIndexId() {
         return ddIndexId;
     }
 
-    public void setDdIndexId(Integer ddIndexId) {
+    public void setDdIndexId(Long ddIndexId) {
         this.ddIndexId = ddIndexId;
     }
 
-    public Integer getDdIndexProjectId() {
+    public Long getDdIndexProjectId() {
         return ddIndexProjectId;
     }
 
-    public void setDdIndexProjectId(Integer ddIndexProjectId) {
+    public void setDdIndexProjectId(Long ddIndexProjectId) {
         this.ddIndexProjectId = ddIndexProjectId;
     }
 
@@ -43,19 +43,19 @@ public class Index {
         this.ddIndexName = ddIndexName;
     }
 
-    public Integer getDdIndexTypeId() {
+    public Long getDdIndexTypeId() {
         return ddIndexTypeId;
     }
 
-    public void setDdIndexTypeId(Integer ddIndexTypeId) {
+    public void setDdIndexTypeId(Long ddIndexTypeId) {
         this.ddIndexTypeId = ddIndexTypeId;
     }
 
-    public Integer getDdIndexProperty() {
+    public Long getDdIndexProperty() {
         return ddIndexProperty;
     }
 
-    public void setDdIndexProperty(Integer ddIndexProperty) {
+    public void setDdIndexProperty(Long ddIndexProperty) {
         this.ddIndexProperty = ddIndexProperty;
     }
 
@@ -67,19 +67,19 @@ public class Index {
         this.ddIndexOptimum = ddIndexOptimum;
     }
 
-    public Integer getDdIndexResponsiblePersonId() {
+    public Long getDdIndexResponsiblePersonId() {
         return ddIndexResponsiblePersonId;
     }
 
-    public void setDdIndexResponsiblePersonId(Integer ddIndexResponsiblePersonId) {
+    public void setDdIndexResponsiblePersonId(Long ddIndexResponsiblePersonId) {
         this.ddIndexResponsiblePersonId = ddIndexResponsiblePersonId;
     }
 
-    public Integer getDdIndexSensitiveness() {
+    public Long getDdIndexSensitiveness() {
         return ddIndexSensitiveness;
     }
 
-    public void setDdIndexSensitiveness(Integer ddIndexSensitiveness) {
+    public void setDdIndexSensitiveness(Long ddIndexSensitiveness) {
         this.ddIndexSensitiveness = ddIndexSensitiveness;
     }
 
