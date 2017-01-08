@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.casic.datadriver.mapper.IndexMapper">
+<mapper namespace="com.casic.datadriver.model.index.IndexInfo">
   <resultMap id="BaseResultMap" type="com.casic.datadriver.model.index.IndexInfo">
     <id column="DD_INDEX_ID" jdbcType="NUMERIC" property="ddIndexId" />
     <result column="DD_INDEX_PROJECT_ID" jdbcType="NUMERIC" property="ddIndexProjectId" />
@@ -16,11 +16,18 @@
     DD_INDEX_ID, DD_INDEX_PROJECT_ID, DD_INDEX_NAME, DD_INDEX_TYPE_ID, DD_INDEX_PROPERTY, 
     DD_INDEX_OPTIMUM, DD_INDEX_RESPONSIBLE_PERSON_ID, DD_INDEX_SENSITIVENESS, DD_INDEX_LASTEST_VALUE
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from dd_index
     where DD_INDEX_ID = #{ddIndexId,jdbcType=NUMERIC}
+  </select>
+  <select id="getIndexInfoList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM dd_index
+    WHERE
+    DD_INDEX_PROJECT_ID=#{ddIndexProjectId}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from dd_index
