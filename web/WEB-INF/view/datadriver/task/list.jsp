@@ -47,7 +47,7 @@
                 </span>
             </div>
         </blockquote>
-        <div class="layui-tab-item">
+        <div class="layui-tab-item layui-show">
             <c:set var="checkAll">
                 <input type="checkbox" id="chkall"/>
             </c:set>
@@ -160,7 +160,6 @@
 
             </display:table>
             <%--<hotent:paging tableId="TaskItem"/>--%>
-            rejecttask
         </div>
     </div>
 </div>
