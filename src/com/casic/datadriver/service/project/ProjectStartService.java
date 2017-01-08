@@ -50,6 +50,8 @@ public class ProjectStartService extends BaseService<ProjectStart> {
         return dao;
     }
 
+    @Resource
+    protected ProjectStartDao projectStartDao;
 
     /**
      * 创建业务实例
@@ -95,5 +97,15 @@ public class ProjectStartService extends BaseService<ProjectStart> {
         List<TaskStart> taskStart = taskStartService.start(projectStart, taskInfo, projectStartCmd);
 
         return taskStart;
+    }
+
+
+    /**
+     * 启动项目下的所有任务
+     * @param ddProjectId
+     * @return Project
+     */
+    public List<ProjectStart> queryByProjectId(Long ddProjectId){
+        return projectStartDao.queryByProjectId(ddProjectId);
     }
 }
