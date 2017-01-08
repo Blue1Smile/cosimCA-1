@@ -14,11 +14,13 @@
         .fr {
             float: right;
         }
-        .pages{
+
+        .pages {
             float: right;
         }
-        .page_line{
-            display:inline;
+
+        .page_line {
+            display: inline;
         }
     </style>
 </head>
@@ -35,25 +37,26 @@
                 <form id="searchForm" method="post" action="list.ht">
 
 
-                            <span class="fl">
-                            <%--<span class="label">项目编号:</span><input type="text" name="Q_id_SL" class="inputText"--%>
-                            <%--value="${param['Q_id_SL']}"/>--%>
-                            <input type="text" name="Q_name_SL " class="layui-input"
-                                   value="${param['Q_name_SL']}" placeholder="项目名称"/>
-                            <%--<span class="label">创建日期 从:</span> <input name="Q_createStartDate_SL" class="inputText date"--%>
-                            <%--value="${param['Q_createStartDate_DL']}"/>--%>
-                            <%--<span class="label">至: </span><input name="Q_createEndData_SL" class="inputText date"--%>
-                            <%--value="${param['Q_createEndData_DL']}"/>--%>
+                    <div class="fl">
+                        <%--<span class="label">项目编号:</span><input type="text" name="Q_id_SL" class="inputText"--%>
+                        <%--value="${param['Q_id_SL']}"/>--%>
+                        <input type="text" name="Q_name_SL " class="layui-input"
+                               value="${param['Q_name_SL']}" placeholder="项目名称"/>
+                        <%--<span class="label">创建日期 从:</span> <input name="Q_createStartDate_SL" class="inputText date"--%>
+                        <%--value="${param['Q_createStartDate_DL']}"/>--%>
+                        <%--<span class="label">至: </span><input name="Q_createEndData_SL" class="inputText date"--%>
+                        <%--value="${param['Q_createEndData_DL']}"/>--%>
 
-                            </span>
-                    <span class="fr">
+                    </div>
+                    <div class="fr">
                         <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                            <a class="layui-btn" href="edit.ht"><i class="layui-icon">&#xe61f;</i> 添加</a>
+                        <a class="layui-btn" href="edit.ht"><i class="layui-icon">&#xe61f;</i> 添加</a>
 
-                           <a class="layui-btn layui-btn-danger" action="del.ht"><i
-                                   class="layui-icon">&#xe640;</i> 删除</a>
-                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
-                            </span>
+                        <%--<a class="layui-btn layui-btn-danger" action="del.ht"><i--%>
+                        <%--class="layui-icon">&#xe640;</i> 删除</a>--%>
+                        <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">
+                            &#x1002;</i> 刷新</a>
+                    </div>
 
 
                 </form>
@@ -97,15 +100,21 @@
 
             <display:column title="操作" media="html" style="width:380px">
 
-                <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 编辑</a>
+                <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-mini"><i class="layui-icon">
+                    &#xe642;</i> 编辑</a>
                 <a href="start.ht?id=${ProjectItem.ddProjectId}"
                    class="layui-btn layui-btn-primary layui-btn-mini"><i class="layui-icon">&#x1005;</i> 启动</a>
                 <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
                 <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                 <a class="layui-btn layui-btn-mini layui-btn-normal"
-                   href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">&#xe62a;</i> 任务</a>
+                   href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
+                    &#xe62a;</i> 任务</a>
                 <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
-                   href="${ctx}/datadriver/designflow/flowframe.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">&#xe641;</i> 流程</a>
+                   href="${ctx}/datadriver/designflow/flowframe.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
+                    &#xe641;</i> 流程</a>
+                <a class="layui-btn layui-btn-mini layui-btn-normal"
+                   href="${ctx}/datadriver/designflow/flowframe.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
+                    &#xe60a;</i> 指标</a>
                 <a href="del.ht?id=${ProjectItem.ddProjectId}"
                    class="layui-btn layui-btn-mini layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</a>
             </display:column>

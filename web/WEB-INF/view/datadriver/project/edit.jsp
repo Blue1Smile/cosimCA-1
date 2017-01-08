@@ -49,6 +49,10 @@
         #iframe_tab {
             margin-top: 0px;
         }
+
+        .fr {
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -62,12 +66,20 @@
                     <div class="layui-tab layui-tab-card" id="iframe_tab">
                         <ul class="layui-tab-title">
                             <li class="layui-this">项目参数配置</li>
-                            <%--<li>相关任务</li>--%>
+                            <li>项目指标</li>
                         </ul>
                         <div class="layui-tab-content" style="height: 100%;">
                             <div class="layui-tab-item layui-show">
-                                <a class="layui-btn layui-btn-normal" id="dataFormSave" href="#">保存</a>
-
+                                <blockquote class="layui-elem-quote">
+                                    <div style="height: 40px;">
+                                        <div class="fr">
+                                            <a class="layui-btn layui-btn-normal" id="dataFormSave" href="#"><i
+                                                    class="layui-icon">&#xe61e;</i> 保存</a>
+                                            <%--<a class="layui-btn layui-btn-normal" id="pointerexport" href="#"><i--%>
+                                                    <%--class="layui-icon">&#xe60a;</i> 项目指标</a>--%>
+                                        </div>
+                                    </div>
+                                </blockquote>
                                 <table id="AddHandlingFee" class="layui-table" cellpadding="0" cellspacing="0"
                                        border="0"
                                        type="main">
@@ -165,7 +177,6 @@
                                         <%--value="${Project.ddProjectActualStartDate}"--%>
                                         <%--class="layui-input"/></td>--%>
                                     </tr>
-
                                     <tr>
                                         <th width="20%">项目密级:</th>
                                         <td><input type="text" id="ddProjectSecretLevel" name="ddProjectSecretLevel"
@@ -186,7 +197,6 @@
                                     <%--<td><input type="text" id="ddProjectCurrentStage" name="ddProjectCurrentStage"--%>
                                     <%--value="${Project.ddProjectCurrentStage}"--%>
                                     <%--class="layui-input"/></td>--%>
-
                                     <input type="hidden" name="ddProjectId" value="${Project.ddProjectId}">
                                     <input type="hidden" name="ddProjectResponsiblePersonId"
                                            value="${Project.ddProjectResponsiblePersonId}">
@@ -203,169 +213,12 @@
                                            value="${Project.ddProjectCurrentStage}">
                                 </table>
                             </div>
-                            <%--<div class="layui-tab-item">--%>
-                            <%--<iframe src="${ctx}/datadriver/task/list.ht?id=${Project.ddProjectId}" style="width: 100%;height: 500px" scrolling="auto" frameborder="no"></iframe>--%>
-                            <%--</div>--%>
-                            <%--<div class="layui-tab-item">--%>
-                            <%--&lt;%&ndash;<iframe frameborder="no" scrolling="auto" style="width: 100%;height: 500px"&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;src="${ctx}/datadriver/task/list.ht?ddTaskProjectId=${Project.ddProjectId}"></iframe>&ndash;%&gt;--%>
-                            <%--<table class="layui-table" cellpadding="1" cellspacing="1" id="taskInfo"--%>
-                            <%--formType="window" type="sub">--%>
-                            <%--<tr>--%>
-                            <%--<td colspan="11">--%>
-                            <%--<div class="group" align="left">--%>
-                            <%--<a id="btnAdd" class="link add">添加</a>--%>
-                            <%--</div>--%>
-                            <%--<div align="center">--%>
-                            <%--项目创建：添加任务--%>
-                            <%--</div>--%>
-                            <%--</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                            <%--<th>任务名称</th>--%>
-                            <%--<th>任务类型</th>--%>
-                            <%--<th>优先级</th>--%>
-                            <%--<th>里程碑</th>--%>
-                            <%--<th>计划工时</th>--%>
-                            <%--<th>操作</th>--%>
-                            <%--</tr>--%>
-                            <%--<c:forEach items="${taskInfoList}" var="taskInfoList"--%>
-                            <%--varStatus="status">--%>
-                            <%--<tr type="subdata">--%>
-                            <%--<td style="text-align: center"--%>
-                            <%--name="ddTaskName">${taskInfoList.ddTaskName}</td>--%>
-                            <%--<td style="text-align: center"--%>
-                            <%--name="ddTaskType">${taskInfoList.ddTaskType}</td>--%>
-                            <%--<td style="text-align: center"--%>
-                            <%--name="ddTaskPriority">${taskInfoList.ddTaskPriority}</td>--%>
-                            <%--<td style="text-align: center"--%>
-                            <%--name="ddTaskMilestone">${taskInfoList.ddTaskMilestone}</td>--%>
-                            <%--<td style="text-align: center"--%>
-                            <%--name="ddTaskEstimateTime">${taskInfoList.ddTaskEstimateTime}</td>--%>
-                            <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;name="url2">${task.url2}</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;name="url2Name">${cloudResourceInstanceListItem.url2Name}</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;name="blank1">${cloudResourceInstanceListItem.blank1}</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;name="blank2">${cloudResourceInstanceListItem.blank2}</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td style="text-align: center"&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;name="mode">${cloudResourceInstanceListItem.mode}</td>&ndash;%&gt;--%>
-                            <%--<td style="text-align: center">--%>
-                            <%--<a href="#" class="link del">删除</a>--%>
-                            <%--<a href="#" class="link edit">编辑</a>--%>
-                            <%--</td>--%>
-                            <%--<input type="hidden" name="ddTaskId" value="${taskInfoList.ddTaskId}"/>--%>
-                            <%--<input type="hidden" name="ddTaskName" value="${taskInfoList.ddTaskName}"/>--%>
-                            <%--<input type="hidden" name="ddTaskDescription" value="${taskInfoList.ddTaskDescription}"/>--%>
-                            <%--<input type="hidden" name="ddTaskCreatorId" value="${taskInfoList.ddTaskCreatorId}"/>--%>
-                            <%--<input type="hidden" name="ddTaskResponsiblePerson" value="${taskInfoList.ddTaskResponsiblePerson}"/>--%>
-                            <%--<input type="hidden" name="ddTaskFixedPattern" value="${taskInfoList.ddTaskFixedPattern}"/>--%>
-                            <%--<input type="hidden" name="ddTaskType" value="${taskInfoList.ddTaskType}"/>--%>
-                            <%--<input type="hidden" name="ddTaskChildType" value="${taskInfoList.ddTaskChildType}"/>--%>
-                            <%--<input type="hidden" name="ddTaskPriority" value="${taskInfoList.ddTaskPriority}"/>--%>
-                            <%--<input type="hidden" name="ddTaskMilestone" value="${taskInfoList.ddTaskMilestone}"/>--%>
-                            <%--<input type="hidden" name="ddTaskEstimateTime" value="${taskInfoList.ddTaskEstimateTime}"/>--%>
-                            <%--<input type="hidden" name="ddTaskPlanStartTime" value="${taskInfoList.ddTaskPlanStartTime}"/>--%>
-                            <%--<input type="hidden" name="ddTaskPlanEndTime" value="${taskInfoList.ddTaskPlanEndTime}"/>--%>
-                            <%--<input type="hidden" name="ddTaskCompleteRate" value="${taskInfoList.ddTaskCompleteRate}"/>--%>
-                            <%--<input type="hidden" name="ddTaskCompleteState" value="${taskInfoList.ddTaskCompleteState}"/>--%>
-                            <%--<input type="hidden" name="ddTaskResourceId" value="${taskInfoList.ddTaskResourceId}"/>--%>
-                            <%--<input type="hidden" name="ddTaskActualTime" value="${taskInfoList.ddTaskActualTime}"/>--%>
-                            <%--<input type="hidden" name="ddTaskPlanTime" value="${taskInfoList.ddTaskPlanTime}"/>--%>
-                            <%--<input type="hidden" name="ddTaskActualStartTime" value="${taskInfoList.ddTaskActualStartTime}"/>--%>
-                            <%--<input type="hidden" name="ddTaskActualEndTime" value="${taskInfoList.ddTaskActualEndTime}"/>--%>
-                            <%--<input type="hidden" name="ddTaskPlanDuration" value="${taskInfoList.ddTaskPlanDuration}"/>--%>
-                            <%--<input type="hidden" name="ddTaskProjectId" value="${taskInfoList.ddTaskProjectId}"/>--%>
-                            <%--<input type="hidden" name="ddTaskPerson" value="${taskInfoList.ddTaskPerson}"/>--%>
-                            <%--</tr>--%>
-                            <%--</c:forEach>--%>
-                            <%--<tr type="append">--%>
-                            <%--<td style="text-align: center" name="ddTaskName"></td>--%>
-                            <%--<td style="text-align: center" name="ddTaskType"></td>--%>
-                            <%--<td style="text-align: center" name="ddTaskPriority"></td>--%>
-                            <%--<td style="text-align: center" name="ddTaskMilestone"></td>--%>
-                            <%--<td style="text-align: center" name="ddTaskEstimateTime"></td>--%>
-                            <%--<td style="text-align: center">--%>
-                            <%--<a href="#" class="link del">删除</a>--%>
-                            <%--<a href="#" class="link edit">编辑</a>--%>
-                            <%--</td>--%>
-                            <%--<input type="hidden" name="ddTaskId" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskName" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskDescription" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskCreatorId" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskResponsiblePerson" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskFixedPattern" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskType" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskChildType" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskPriority" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskMilestone" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskEstimateTime" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskPlanStartTime" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskPlanEndTime" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskCompleteRate" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskCompleteState" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskResourceId" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskActualTime" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskPlanTime" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskActualStartTime" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskActualEndTime" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskPlanDuration" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskProjectId" value=""/>--%>
-                            <%--<input type="hidden" name="ddTaskPerson" value=""/>--%>
-                            <%--</tr>--%>
-                            <%--</table>--%>
-                            <%--</div>--%>
+                            <div class="layui-tab-item">
+                                <iframe src="${ctx}/datadriver/index/indexedit.ht" style="width: 100%;height: 600px" scrolling="auto" frameborder="no"></iframe>
+                            </div>
                         </div>
                     </div>
                 </form>
-
-                <%--<form id="taskInfoForm" style="display:none">--%>
-                <%--<table class="layui-table" cellpadding="2" cellspacing="2">--%>
-                <%--<colgroup>--%>
-                <%--<col width="200">--%>
-                <%--<col width="300">--%>
-                <%--<col>--%>
-                <%--</colgroup>--%>
-                <%--<tr>--%>
-                <%--<th width="20%">任务名称:</th>--%>
-                <%--<td><input type="text" name="ddTaskName" value="" class="layui-input"--%>
-                <%--validate="{required:false,maxlength:96}"/></td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                <%--<th width="20%">任务类型:</th>--%>
-                <%--<td><input type="text" name="ddTaskType" value="" class="layui-input"--%>
-                <%--validate="{required:false}"/>--%>
-                <%--</td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                <%--<th width="20%">优先级:</th>--%>
-                <%--<td><input type="text" name="ddTaskPriority" value="" class="layui-input"--%>
-                <%--validate="{required:false,maxlength:768}"/></td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                <%--<th width="20%">是否里程碑:</th>--%>
-                <%--<td><input type="text" name="ddTaskMilestone" value="" class="layui-input"--%>
-                <%--validate="{required:false,maxlength:768}"/></td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                <%--<th width="20%">计划工时:</th>--%>
-                <%--<td><input type="text" name="ddTaskEstimateTime" value="" class="layui-input"--%>
-                <%--validate="{required:false,maxlength:768}"/></td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                <%--<th width="20%">任务描述:</th>--%>
-                <%--<td><input type="text" name="ddTaskDescription" value="" class="layui-input"--%>
-                <%--validate="{required:false,maxlength:768}"/></td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                <%--<th width="20%">所需工具:</th>--%>
-                <%--<td><input type="text" name="ddTaskResourceId" value="" class="layui-input"--%>
-                <%--validate="{required:false,maxlength:768}"/></td>--%>
-                <%--</tr>--%>
-                <%--</table>--%>
-                <%--</form>--%>
             </div>
         </div>
     </fieldset>
