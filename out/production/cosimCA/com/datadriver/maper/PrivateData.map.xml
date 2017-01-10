@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.casic.datadriver.model.data.PrivateData">
+  <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.PrivateData">
+    <id column="DD_DATA_ID" jdbcType="NUMERIC" property="ddDataId" />
+    <result column="DD_DATA_NAME" jdbcType="VARCHAR" property="ddDataName" />
+    <result column="DD_DATA_TYPE" jdbcType="NUMERIC" property="ddDataType" />
+    <result column="DD_DATA_DESCRIPTION" jdbcType="VARCHAR" property="ddDataDescription" />
+    <result column="DD_DATA_TASK_ID" jdbcType="NUMERIC" property="ddDataTaskId" />
+    <result column="DD_DATA_PUBLISH_TYPE" jdbcType="NUMERIC" property="ddDataPublishType" />
+    <result column="DD_DATA_LASTEST_VALUE" jdbcType="VARCHAR" property="ddDataLastestValue" />
+    <result column="DD_DATA_SUBMITE_STATE" jdbcType="NUMERIC" property="ddDataSubmiteState" />
+    <result column="DD_DATA_CREATE_PERSON" jdbcType="NUMERIC" property="ddDataCreatePerson" />
+    <result column="DD_DATA_CREATE_TIME" jdbcType="TIMESTAMP" property="ddDataCreateTime" />
+    <result column="DD_DATA_IS_DELIVERY" jdbcType="NUMERIC" property="ddDataIsDelivery" />
+    <result column="DD_DATA_SENSITIVENESS" jdbcType="NUMERIC" property="ddDataSensitiveness" />
+    <result column="DD_DATA_TASK_NAME" jdbcType="VARCHAR" property="ddDataTaskName" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE, DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE, 
+    DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
+    DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME
+  </sql>
+
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM dd_private_data
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dd_private_data
+    where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
+  </select>
+
+
+  <select id="getByddDataId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_private_data
+    where DD_DATA_ID = #{ddDataId}
+  </select>
+
+  <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM dd_private_data
+    WHERE
+    DD_DATA_ID=#{ddDataId}
+  </select>
+
+  <select id="getPrivateDataList" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM dd_private_data
+    WHERE DD_DATA_TASK_ID=#{ddDataTaskId}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dd_private_data
+    where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
+  </delete>
+
+  <delete id="delByMainId">
+    DELETE FROM dd_private_data
+    WHERE
+    DD_DATA_TASK_ID=#{ddDataTaskId}
+  </delete>
+
+  <delete id="delById" parameterType="java.lang.Long">
+    delete from dd_private_data
+    where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
+  </delete>
+
+
+  <select id="queryPrivateDataByddTaskID" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM dd_private_data
+    WHERE
+    DD_DATA_TASK_ID=#{ddDataTaskId}
+  </select>
+
+
+  <insert id="add" parameterType="com.casic.datadriver.model.data.PrivateData">
+    insert into dd_private_data (DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE,
+    DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE,
+    DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE,
+    DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME,
+    DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME)
+    values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=NUMERIC},
+    #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
+    #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
+    #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=TIMESTAMP},
+    #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC}, #{ddDataTaskName,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.casic.datadriver.model.data.PrivateData">
+    update dd_private_data
+    set DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
+    DD_DATA_TYPE = #{ddDataType,jdbcType=NUMERIC},
+    DD_DATA_DESCRIPTION = #{ddDataDescription,jdbcType=VARCHAR},
+    DD_DATA_TASK_ID = #{ddDataTaskId,jdbcType=NUMERIC},
+    DD_DATA_PUBLISH_TYPE = #{ddDataPublishType,jdbcType=NUMERIC},
+    DD_DATA_LASTEST_VALUE = #{ddDataLastestValue,jdbcType=VARCHAR},
+    DD_DATA_SUBMITE_STATE = #{ddDataSubmiteState,jdbcType=NUMERIC},
+    DD_DATA_CREATE_PERSON = #{ddDataCreatePerson,jdbcType=NUMERIC},
+    DD_DATA_CREATE_TIME = #{ddDataCreateTime,jdbcType=TIMESTAMP},
+    DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
+    DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
+    DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR}
+    where DD_DATA_ID = #{ddDataId}
+  </update>
+
+  <update id="updatedata" parameterType="com.casic.datadriver.model.data.PrivateData">
+    update dd_private_data
+    set DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
+    DD_DATA_TYPE = #{ddDataType,jdbcType=NUMERIC},
+    DD_DATA_DESCRIPTION = #{ddDataDescription,jdbcType=VARCHAR},
+    DD_DATA_TASK_ID = #{ddDataTaskId,jdbcType=NUMERIC},
+    DD_DATA_PUBLISH_TYPE = #{ddDataPublishType,jdbcType=NUMERIC},
+    DD_DATA_LASTEST_VALUE = #{ddDataLastestValue,jdbcType=VARCHAR},
+    DD_DATA_SUBMITE_STATE = #{ddDataSubmiteState,jdbcType=NUMERIC},
+    DD_DATA_CREATE_PERSON = #{ddDataCreatePerson,jdbcType=NUMERIC},
+    DD_DATA_CREATE_TIME = #{ddDataCreateTime,jdbcType=TIMESTAMP},
+    DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
+    DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
+    DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR}
+    where DD_DATA_ID = #{ddDataId}
+  </update>
+
+
+  <select id="queryPrivateDataBasicInfoList"
+          parameterType="java.util.Map"
+          resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_private_data
+    where 1=1
+
+    <if test="@Ognl@isNotEmpty(name)"> AND DD_DATA_NAME = #{ddDataName} </if>
+    <if test="@Ognl@isNotEmpty(taskid)"> AND DD_DATA_TASK_ID = #{ddDataTaskId} </if>
+
+  </select>
+
+
+  <insert id="insert" parameterType="com.casic.datadriver.model.data.PrivateData">
+    insert into dd_private_data (DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE, 
+      DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE, 
+      DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, 
+      DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
+      DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS)
+    values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=NUMERIC},
+      #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
+      #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
+      #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=TIMESTAMP},
+      #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC}, #{ddDataTaskName,jdbcType=VARCHAR})
+  </insert>
+
+
+  <insert id="insertSelective" parameterType="com.casic.datadriver.model.data.PrivateData">
+    insert into dd_private_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ddDataId != null">
+        DD_DATA_ID,
+      </if>
+      <if test="ddDataName != null">
+        DD_DATA_NAME,
+      </if>
+      <if test="ddDataType != null">
+        DD_DATA_TYPE,
+      </if>
+      <if test="ddDataDescription != null">
+        DD_DATA_DESCRIPTION,
+      </if>
+      <if test="ddDataTaskId != null">
+        DD_DATA_TASK_ID,
+      </if>
+      <if test="ddDataPublishType != null">
+        DD_DATA_PUBLISH_TYPE,
+      </if>
+      <if test="ddDataLastestValue != null">
+        DD_DATA_LASTEST_VALUE,
+      </if>
+      <if test="ddDataSubmiteState != null">
+        DD_DATA_SUBMITE_STATE,
+      </if>
+      <if test="ddDataCreatePerson != null">
+        DD_DATA_CREATE_PERSON,
+      </if>
+      <if test="ddDataCreateTime != null">
+        DD_DATA_CREATE_TIME,
+      </if>
+      <if test="ddDataIsDelivery != null">
+        DD_DATA_IS_DELIVERY,
+      </if>
+      <if test="ddDataSensitiveness != null">
+        DD_DATA_SENSITIVENESS,
+      </if>
+      <if test="ddDataTaskName != null">
+        DD_DATA_TASK_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ddDataId != null">
+        #{ddDataId,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataName != null">
+        #{ddDataName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDataType != null">
+        #{ddDataType,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataDescription != null">
+        #{ddDataDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDataTaskId != null">
+        #{ddDataTaskId,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataPublishType != null">
+        #{ddDataPublishType,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataLastestValue != null">
+        #{ddDataLastestValue,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDataSubmiteState != null">
+        #{ddDataSubmiteState,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataCreatePerson != null">
+        #{ddDataCreatePerson,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataCreateTime != null">
+        #{ddDataCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ddDataIsDelivery != null">
+        #{ddDataIsDelivery,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataSensitiveness != null">
+        #{ddDataSensitiveness,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataTaskName != null">
+        #{ddDataTaskName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.data.PrivateData">
+    update dd_private_data
+    <set>
+      <if test="ddDataName != null">
+        DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDataType != null">
+        DD_DATA_TYPE = #{ddDataType,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataDescription != null">
+        DD_DATA_DESCRIPTION = #{ddDataDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDataTaskId != null">
+        DD_DATA_TASK_ID = #{ddDataTaskId,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataPublishType != null">
+        DD_DATA_PUBLISH_TYPE = #{ddDataPublishType,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataLastestValue != null">
+        DD_DATA_LASTEST_VALUE = #{ddDataLastestValue,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDataSubmiteState != null">
+        DD_DATA_SUBMITE_STATE = #{ddDataSubmiteState,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataCreatePerson != null">
+        DD_DATA_CREATE_PERSON = #{ddDataCreatePerson,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataCreateTime != null">
+        DD_DATA_CREATE_TIME = #{ddDataCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ddDataIsDelivery != null">
+        DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataSensitiveness != null">
+        DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
+      </if>
+      <if test="ddDataTaskName != null">
+        DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.data.PrivateData">
+    update dd_private_data
+    set DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
+      DD_DATA_TYPE = #{ddDataType,jdbcType=NUMERIC},
+      DD_DATA_DESCRIPTION = #{ddDataDescription,jdbcType=VARCHAR},
+      DD_DATA_TASK_ID = #{ddDataTaskId,jdbcType=NUMERIC},
+      DD_DATA_PUBLISH_TYPE = #{ddDataPublishType,jdbcType=NUMERIC},
+      DD_DATA_LASTEST_VALUE = #{ddDataLastestValue,jdbcType=VARCHAR},
+      DD_DATA_SUBMITE_STATE = #{ddDataSubmiteState,jdbcType=NUMERIC},
+      DD_DATA_CREATE_PERSON = #{ddDataCreatePerson,jdbcType=NUMERIC},
+      DD_DATA_CREATE_TIME = #{ddDataCreateTime,jdbcType=TIMESTAMP},
+      DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
+      DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
+      DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR}
+    where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
+  </update>
+
+</mapper>

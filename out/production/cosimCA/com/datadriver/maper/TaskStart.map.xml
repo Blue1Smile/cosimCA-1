@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.casic.datadriver.model.task.TaskStart">
+  <resultMap id="BaseResultMap" type="com.casic.datadriver.model.task.TaskStart">
+    <result column="DD_TASK_START_ID" jdbcType="INTEGER" property="ddTaskStartId" />
+    <result column="DD_PROJECT_START_ID" jdbcType="INTEGER" property="ddProjectStartId" />
+    <result column="DD_TASK_ID" jdbcType="INTEGER" property="ddTaskId" />
+    <result column="ACT_INST_ID" jdbcType="INTEGER" property="actInstId" />
+    <result column="DD_TASK_STATUS" jdbcType="SMALLINT" property="ddTaskStatus" />
+    <result column="SORT_ORDER" jdbcType="INTEGER" property="sortOrder" />
+    <result column="DD_TASK_RESPONCE_PERSON" jdbcType="INTEGER" property="ddTaskResponcePerson" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+DD_TASK_START_ID,DD_PROJECT_START_ID,DD_TASK_ID,ACT_INST_ID,DD_TASK_STATUS,DD_TASK_STATUS,SORT_ORDER,DD_TASK_RESPONCE_PERSON
+  </sql>
+
+  <insert id="add" parameterType="com.casic.datadriver.model.task.TaskStart">
+    insert into dd_task_start (DD_TASK_START_ID, DD_PROJECT_START_ID,
+      DD_TASK_ID, ACT_INST_ID, DD_TASK_STATUS,
+      SORT_ORDER,DD_TASK_RESPONCE_PERSON)
+    values (#{ddTaskStartId,jdbcType=INTEGER}, #{ddProjectStartId,jdbcType=INTEGER},
+      #{ddTaskId,jdbcType=INTEGER}, #{actInstId,jdbcType=INTEGER}, #{ddTaskStatus,jdbcType=SMALLINT},
+      #{sortOrder,jdbcType=INTEGER},#{ddTaskResponcePerson,jdbcType=INTEGER})
+  </insert>
+
+  <select id="queryTaskStartByResponceId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM dd_task_start
+    WHERE
+    DD_TASK_RESPONCE_PERSON=#{taskResponcePerson}
+  </select>
+
+  <select id="queryTaskStartByTaskId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM dd_task_start
+    WHERE
+    DD_TASK_ID=#{ddTaskID}
+  </select>
+
+  <update id="update" parameterType="com.casic.datadriver.model.task.TaskStart">
+    update dd_task_start
+    set DD_TASK_START_ID = #{ddTaskStartId,jdbcType=INTEGER},
+    DD_PROJECT_START_ID = #{ddProjectStartId,jdbcType=INTEGER},
+    DD_TASK_ID = #{ddTaskId,jdbcType=INTEGER},
+    ACT_INST_ID = #{actInstId,jdbcType=INTEGER},
+    DD_TASK_STATUS = #{ddTaskStatus,jdbcType=SMALLINT},
+    SORT_ORDER = #{sortOrder,jdbcType=INTEGER},
+    DD_TASK_RESPONCE_PERSON = #{ddTaskResponcePerson,jdbcType=INTEGER}
+
+    where DD_TASK_START_ID = #{ddTaskStartId}
+  </update>
+
+
+  <!-- -->
+  <!--<insert id="insertSelective" parameterType="com.casic.datadriver.model.task.TaskStart">-->
+    <!--insert into dd_task_start-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+      <!--<if test="ddTaskStartId != null">-->
+        <!--DD_TASK_START_ID,-->
+      <!--</if>-->
+      <!--<if test="ddProjectStartId != null">-->
+        <!--DD_PROJECT_START_ID,-->
+      <!--</if>-->
+      <!--<if test="ddTaskId != null">-->
+        <!--DD_TASK_ID,-->
+      <!--</if>-->
+      <!--<if test="actInstId != null">-->
+        <!--ACT_INST_ID,-->
+      <!--</if>-->
+      <!--<if test="ddTaskStatus != null">-->
+        <!--DD_TASK_STATUS,-->
+      <!--</if>-->
+      <!--<if test="sortOrder != null">-->
+        <!--SORT_ORDER,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+      <!--<if test="ddTaskStartId != null">-->
+        <!--#{ddTaskStartId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="ddProjectStartId != null">-->
+        <!--#{ddProjectStartId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="ddTaskId != null">-->
+        <!--#{ddTaskId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="actInstId != null">-->
+        <!--#{actInstId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if test="ddTaskStatus != null">-->
+        <!--#{ddTaskStatus,jdbcType=SMALLINT},-->
+      <!--</if>-->
+      <!--<if test="sortOrder != null">-->
+        <!--#{sortOrder,jdbcType=INTEGER},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+</mapper>

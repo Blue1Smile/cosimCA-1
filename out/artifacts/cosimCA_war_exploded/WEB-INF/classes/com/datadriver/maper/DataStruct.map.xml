@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.casic.datadriver.mapper.DataStructMapper">
+  <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.DataStruct">
+    <id column="DD_STRUCT_ID" jdbcType="INTEGER" property="ddStructId" />
+    <result column="DD_DATA_ID" jdbcType="INTEGER" property="ddDataId" />
+    <result column="DD_STRUCT_NAME" jdbcType="VARCHAR" property="ddStructName" />
+    <result column="DD_STRUCT_MEMBER_TYPE" jdbcType="INTEGER" property="ddStructMemberType" />
+    <result column="DD_STRUCT_MEMBER_ID" jdbcType="INTEGER" property="ddStructMemberId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DD_STRUCT_ID, DD_DATA_ID, DD_STRUCT_NAME, DD_STRUCT_MEMBER_TYPE, DD_STRUCT_MEMBER_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dd_data_struct
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.casic.datadriver.model.data.DataStruct">
+    insert into dd_data_struct (DD_STRUCT_ID, DD_DATA_ID, DD_STRUCT_NAME, 
+      DD_STRUCT_MEMBER_TYPE, DD_STRUCT_MEMBER_ID)
+    values (#{ddStructId,jdbcType=INTEGER}, #{ddDataId,jdbcType=INTEGER}, #{ddStructName,jdbcType=VARCHAR}, 
+      #{ddStructMemberType,jdbcType=INTEGER}, #{ddStructMemberId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.casic.datadriver.model.data.DataStruct">
+    insert into dd_data_struct
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ddStructId != null">
+        DD_STRUCT_ID,
+      </if>
+      <if test="ddDataId != null">
+        DD_DATA_ID,
+      </if>
+      <if test="ddStructName != null">
+        DD_STRUCT_NAME,
+      </if>
+      <if test="ddStructMemberType != null">
+        DD_STRUCT_MEMBER_TYPE,
+      </if>
+      <if test="ddStructMemberId != null">
+        DD_STRUCT_MEMBER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ddStructId != null">
+        #{ddStructId,jdbcType=INTEGER},
+      </if>
+      <if test="ddDataId != null">
+        #{ddDataId,jdbcType=INTEGER},
+      </if>
+      <if test="ddStructName != null">
+        #{ddStructName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddStructMemberType != null">
+        #{ddStructMemberType,jdbcType=INTEGER},
+      </if>
+      <if test="ddStructMemberId != null">
+        #{ddStructMemberId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.data.DataStruct">
+    update dd_data_struct
+    <set>
+      <if test="ddDataId != null">
+        DD_DATA_ID = #{ddDataId,jdbcType=INTEGER},
+      </if>
+      <if test="ddStructName != null">
+        DD_STRUCT_NAME = #{ddStructName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddStructMemberType != null">
+        DD_STRUCT_MEMBER_TYPE = #{ddStructMemberType,jdbcType=INTEGER},
+      </if>
+      <if test="ddStructMemberId != null">
+        DD_STRUCT_MEMBER_ID = #{ddStructMemberId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.data.DataStruct">
+    update dd_data_struct
+    set DD_DATA_ID = #{ddDataId,jdbcType=INTEGER},
+      DD_STRUCT_NAME = #{ddStructName,jdbcType=VARCHAR},
+      DD_STRUCT_MEMBER_TYPE = #{ddStructMemberType,jdbcType=INTEGER},
+      DD_STRUCT_MEMBER_ID = #{ddStructMemberId,jdbcType=INTEGER}
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=INTEGER}
+  </update>
+</mapper>
