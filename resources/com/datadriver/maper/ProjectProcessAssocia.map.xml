@@ -9,8 +9,8 @@
         <result column="DD_TASK_ID" jdbcType="NUMERIC" property="ddTaskId"/>
     </resultMap>
     <sql id="Base_Column_List">
-    DD_PRCESS_ASSOCIATION_ID, DD_PRCESS_ID, DD_PRCESS_KEYWORD, DD_PROJECT_ID, DD_TASK_ID
-  </sql>
+        DD_PRCESS_ASSOCIATION_ID, DD_PRCESS_ID, DD_PRCESS_KEYWORD, DD_PROJECT_ID, DD_TASK_ID
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -24,17 +24,17 @@
         where DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from dd_project_process_association
-    where DD_PRCESS_ASSOCIATION_ID = #{ddPrcessAssociationId,jdbcType=NUMERIC}
-  </delete>
+        delete from dd_project_process_association
+        where DD_PRCESS_ASSOCIATION_ID = #{ddPrcessAssociationId,jdbcType=NUMERIC}
+    </delete>
     <insert id="add" parameterType="com.casic.datadriver.model.flow.ProjectProcessAssocia">
-    insert into dd_project_process_association (DD_PRCESS_ASSOCIATION_ID, DD_PRCESS_ID, 
-      DD_PRCESS_KEYWORD, DD_PROJECT_ID, DD_TASK_ID
-      )
-    values (#{ddPrcessAssociationId,jdbcType=NUMERIC}, #{ddPrcessId,jdbcType=NUMERIC},
-      #{ddPrcessKeyword,jdbcType=INTEGER}, #{ddProjectId,jdbcType=NUMERIC}, #{ddTaskId,jdbcType=NUMERIC}
-      )
-  </insert>
+        insert into dd_project_process_association (DD_PRCESS_ASSOCIATION_ID, DD_PRCESS_ID,
+        DD_PRCESS_KEYWORD, DD_PROJECT_ID, DD_TASK_ID
+        )
+        values (#{ddPrcessAssociationId,jdbcType=NUMERIC}, #{ddPrcessId,jdbcType=NUMERIC},
+        #{ddPrcessKeyword,jdbcType=INTEGER}, #{ddProjectId,jdbcType=NUMERIC}, #{ddTaskId,jdbcType=NUMERIC}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.casic.datadriver.model.flow.ProjectProcessAssocia">
         insert into dd_project_process_association
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -91,11 +91,11 @@
         where DD_PRCESS_ASSOCIATION_ID = #{ddPrcessAssociationId,jdbcType=NUMERIC}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.flow.ProjectProcessAssocia">
-    update dd_project_process_association
-    set DD_PRCESS_ID = #{ddPrcessId,jdbcType=NUMERIC},
-      DD_PRCESS_KEYWORD = #{ddPrcessKeyword,jdbcType=INTEGER},
-      DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC},
-      DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC}
-    where DD_PRCESS_ASSOCIATION_ID = #{ddPrcessAssociationId,jdbcType=NUMERIC}
-  </update>
+        update dd_project_process_association
+        set DD_PRCESS_ID = #{ddPrcessId,jdbcType=NUMERIC},
+        DD_PRCESS_KEYWORD = #{ddPrcessKeyword,jdbcType=INTEGER},
+        DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC},
+        DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC}
+        where DD_PRCESS_ASSOCIATION_ID = #{ddPrcessAssociationId,jdbcType=NUMERIC}
+    </update>
 </mapper>
