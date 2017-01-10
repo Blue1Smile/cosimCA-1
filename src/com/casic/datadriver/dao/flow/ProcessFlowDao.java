@@ -15,7 +15,7 @@ public class ProcessFlowDao extends BaseDao<ProcessFlow> {
         return ProcessFlow.class;
     }
 
-    public void addprocess(ProcessFlow processFlow){
+    public void addprocess(ProcessFlow processFlow) {
         this.delBySqlKey("addprocess", processFlow);
     }
 }

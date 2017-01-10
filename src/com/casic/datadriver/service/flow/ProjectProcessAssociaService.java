@@ -24,5 +24,5 @@ public class ProjectProcessAssociaService extends BaseService<ProjectProcessAsso
 
     public ProjectProcessAssocia selectByProjectId(long projectId) {
         return this.projectProcessAssociaDao.selectByProjectId(projectId);
-}
+    }
 }
