@@ -2,14 +2,11 @@ package com.casic.datadriver.controller.project;
 
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.List;
-import java.util.Properties;
+
+import com.casic.datadriver.tool.Token;
 import com.hotent.core.util.ContextUtil;
 
 import javax.annotation.Resource;
@@ -146,6 +143,8 @@ public class ProjectController extends BaseController {
 	public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		QueryFilter queryFilter = new QueryFilter(request, "ProjectItem");
+		List<Project> projectList = this.projectService.queryProjectBasicInfoList(queryFilter);
+
 		ModelAndView mv = this.getAutoView().addObject("projectList",
 				this.projectService.queryProjectBasicInfoList(queryFilter));
 		return mv;
@@ -238,10 +237,16 @@ public class ProjectController extends BaseController {
 	@Action(description="启动项目")
 	public void start(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+
 		PrintWriter out = response.getWriter();
 
 		try{
-			Long id=RequestUtil.getLong(request,"id");
+//			if(!Token.isTokenStringValid(request.getParameter(Token.TOKEN_STRING_NAME), request.getSession())) {
+//				ResultMessage resultMessage = new ResultMessage(
+//						ResultMessage.Fail, "非法访问!");
+//				out.print(resultMessage);
+//			}
+			Long id=RequestUtil.getLong(request, "id");
 
 			ProcessCmd processCmd = BpmUtil.getProcessCmd(request);
 			processCmd.setCurrentUserId(ContextUtil.getCurrentUserId().toString());
@@ -252,6 +257,10 @@ public class ProjectController extends BaseController {
 
 			projectStartCmd.setProcessCmd(processCmd);
 			projectStartService.startProject(id, projectStartCmd);
+			//更新项目状态
+			Project project = projectService.getById(id);
+			project.setDdProjectState(Project.STATUS_RUNNING);
+			projectService.update(project);
 			ResultMessage resultMessage = new ResultMessage(
 					ResultMessage.Success, "启动流程成功!");
 			out.print(resultMessage);

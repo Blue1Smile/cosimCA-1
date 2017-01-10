@@ -14,6 +14,12 @@ import java.util.List;
  */
 public class Project {
 
+
+	public static final Short STATUS_RUNNING		=1;
+	public static final Short STATUS_STOP			=2;
+	public static final Short STATUS_EXCEPTION		=-1;
+
+
 	/** The dd project id. */
 	private Long ddProjectId;
 
@@ -63,7 +69,7 @@ public class Project {
 	private String ddProjectRemark;
 
 	/** The dd project state. */
-	private Long ddProjectState;
+	private Short ddProjectState;
 
 	/** The dd project plan start date. */
 	private String ddProjectPlanStartDate;
@@ -395,7 +401,7 @@ public class Project {
 	 *
 	 * @return the dd project state
 	 */
-	public Long getDdProjectState() {
+	public Short getDdProjectState() {
 		return ddProjectState;
 	}
 
@@ -405,7 +411,7 @@ public class Project {
 	 * @param ddProjectState
 	 *            the new dd project state
 	 */
-	public void setDdProjectState(Long ddProjectState) {
+	public void setDdProjectState(Short ddProjectState) {
 		this.ddProjectState = ddProjectState;
 	}
 

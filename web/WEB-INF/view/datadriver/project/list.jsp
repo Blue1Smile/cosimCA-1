@@ -1,12 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%--<%@ page import="com.casic.datadriver.tool.Token" %>  --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="/commons/include/html_doctype.html" %>
 <html>
 <head>
     <title>项目基础信息列表</title>
     <%@include file="/commons/include/get.jsp" %>
+    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        var Name="1";
+//        $("#start").click(function(){
+//
+//            $(this).attr("disabled","true"); //设置变灰按钮  
+////            $("#messageForm").submit();//提交表单  
+//            setTimeout("$('#submit').removeAttr('disabled')",30); //设置三秒后提交按钮 显示  
+//
+//        })
 
-    <style>
+        </script>
+
+
+        <style>
         .fl {
             float: left;
         }
@@ -15,7 +32,7 @@
             float: right;
         }
     </style>
-</head>
+</head>=
 
 <body>
 
@@ -50,6 +67,7 @@
 
             </form>
         </div>
+
         <c:set var="checkAll">
             <input type="checkbox" id="chkall"/>
         </c:set>
@@ -87,17 +105,34 @@
             <%--<display:column property="ddProjectScheduleState" title="项目研制阶段"></display:column>--%>
 
             <display:column title="操作" media="html" style="width:380px">
-
-                <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-small">编辑</a>
-                <a href="start.ht?id=${ProjectItem.ddProjectId}"
-                   class="layui-btn layui-btn-primary layui-btn-small">启动</a>
-                <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
-                <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
-                <a class="layui-btn layui-btn-small layui-btn-success"
-                   href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
-                <a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>
-                <a href="del.ht?id=${ProjectItem.ddProjectId}"
-                   class="layui-btn layui-btn-small layui-btn-danger">删除</a>
+                <%--          <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-small">编辑</a>--%>
+                <%--<a href="start.ht?id=${ProjectItem.ddProjectId}"--%>
+                <%--class="layui-btn layui-btn-primary layui-btn-small">启动</a>--%>
+                <%--<a class="layui-btn layui-btn-small layui-btn-success"--%>
+                <%--href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>--%>
+                <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
+                <%--<a href="del.ht?id=${ProjectItem.ddProjectId}"--%>
+                <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>
+                <c:choose><c:when test="${ProjectItem.ddProjectState==1}">
+                              <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-disabled">编辑</a>
+                    <a href="start.ht?id=${ProjectItem.ddProjectId}"
+                       class="layui-btn layui-btn-disabled">启动</a>
+                    <a  class="layui-btn layui-btn-disabled"
+                    href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
+                    <a href="" class="layui-btn layui-btn-disabled">引用</a>
+                    <a href="del.ht?id=${ProjectItem.ddProjectId}"
+                       class="layui-btn layui-btn-disabled">删除</a>
+                </c:when>
+                    <c:otherwise>
+                        <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-small">编辑</a>
+                        <a href="start.ht?id=${ProjectItem.ddProjectId}"
+                           class="layui-btn layui-btn-primary layui-btn-small">启动</a>
+                        <a class="layui-btn layui-btn-small layui-btn-success"
+                           href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
+                        <a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>
+                        <a href="del.ht?id=${ProjectItem.ddProjectId}"
+                           class="layui-btn layui-btn-small layui-btn-danger">删除</a>>
+                    </c:otherwise></c:choose>
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="ProjectItem"/>--%>
@@ -108,6 +143,7 @@
 
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+
 </html>
 
 
