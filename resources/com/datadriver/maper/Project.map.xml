@@ -87,6 +87,16 @@
 		<if test="@Ognl@isNotEmpty(createEndDate)"> AND DD_PROJECT_CREATE_DATATIME &lt;= #{createEndDate} </if>
 	</select>
 
+	<select id="queryProjectlistByRes"
+			parameterType="java.lang.Long"
+			resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from dd_project
+		where
+		DD_PROJECT_RESPONSIBLE_PERSON_ID = #{ddProjectResponsiblePersonId,jdbcType=NUMERIC}
+	</select>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from
 		dd_project

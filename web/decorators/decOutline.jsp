@@ -6,9 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><decorator:title default="工作台"/>-协同设计</title>
+    <title><decorator:title default="工作台"/>协同设计</title>
     <%@include file="/commons/cloud/meta.jsp" %>
-    <%--<f:link href="Aqua/css/bootstrap.css"></f:link>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript">
 
@@ -21,7 +20,13 @@
                 var index = $(".parenttable").index($(this)[0]);
                 $(".sontable:eq(" + index + ")").slideDown();
             });
-
+            //增加导航栏选中效果
+            $("li").each(function(index){
+                $(this).click(function(){
+                    $("li").removeClass("layui-this");
+                    $("li").eq(index).addClass("layui-this");
+                });
+            });
         });
 
     </script>
@@ -38,20 +43,19 @@
         <c:if test="${empty SPRING_SECURITY_LAST_USERNAME}">请<a href="${ctx}/loginCloud.ht" class="link01">登录</a> │
             <a
                     href="${ctx}/reg.ht" class="link01">注册</a></c:if>
-
-
-
     </div>
     <div id="logo_zone">
-        <div id="logo_zone_left"><a href="#"><img src="${ctx}/testimg/logo6.jpg"/> </a></div>
+        <%--<div id="logo_zone_left"><a href="#"><img src="${ctx}/testimg/logo6.jpg"/> </a></div>--%>
+        <svg width="500" height="100">
+            <text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="Impact"> Cosim</text>
+            <text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台 </text>
+        </svg>
     </div>
 </div>
 
 <div class="layui-layout-admin">
 
     <%@include file="/commons/cloud/top_console.jsp" %>
-
-
     <decorator:body/>
     <div class="layui-body">
 
@@ -59,8 +63,7 @@
                 style="width:100%;min-height:800px;"></iframe>
     </div>
 
-    <%@include file="/commons/cloud/foot.jsp" %>
-</div>
+    <%--<%@include file="/commons/cloud/foot.jsp" %>--%>
 </div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>

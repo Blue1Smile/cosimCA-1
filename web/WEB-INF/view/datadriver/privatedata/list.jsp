@@ -5,6 +5,15 @@
     <title>私有数据列表</title>
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .pages{
+            float: right;
+        }
+        .page_line{
+            display:inline;
+        }
+    </style>
+
 </head>
 <body>
 <div class="layui-tab layui-tab-card">
@@ -40,7 +49,7 @@
             <display:table name="privateDataList" id="PrivateDataItem" requestURI="list.ht" sort="external"
                            cellpadding="1"
                            cellspacing="1" export="false" class="layui-table" pagesize="10">
-            <display:column title="${checkAll}" media="html" style="width:15px;">
+            <display:column title="${checkAll}" media="html" style="width:3%;">
             <input type="checkbox" class="pk" name="id" value="${PrivateDataItem.ddDataId}">
             </display:column>
                 <%--<display:column property="ddDataId" title="数据编号" sortable="true" sortName="DD_DATA_ID"--%>

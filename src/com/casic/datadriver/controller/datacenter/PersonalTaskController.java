@@ -20,6 +20,9 @@ import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
 import com.hotent.platform.auth.ISysUser;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.compass.core.json.JsonObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,10 +32,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -63,14 +70,21 @@ public class PersonalTaskController extends AbstractController {
      * @throws Exception the exception
      */
     @RequestMapping("list")
-    @Action(description = "�����û��鿴taskstart�������û������б�")
+    @Action(description = "私有任务列表")
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> taskInfo_list = new ArrayList<TaskInfo>();
-        for (TaskStart taskStart : taskStartList) {
+//        for (TaskStart taskStart : taskStartList) {
+//
+//            Long ddTaskId = taskStart.getDdTaskId();
+//            long ddTask_Id = ddTaskId;
+//            TaskInfo taskInfo = taskInfoService.getById(ddTask_Id);
+//            taskInfo_list.add(taskInfo);
+//        }
 
-            Long ddTaskId = taskStart.getDdTaskId();
+        for (int i = 0; i < taskStartList.size(); i++) {
+            Long ddTaskId = taskStartList.get(i).getDdTaskId();
             long ddTask_Id = ddTaskId;
             TaskInfo taskInfo = taskInfoService.getById(ddTask_Id);
             taskInfo_list.add(taskInfo);
@@ -80,31 +94,25 @@ public class PersonalTaskController extends AbstractController {
     }
 
     @RequestMapping("submitpublish")
-    @Action(description = "�������񷢲������б�")
+    @Action(description = "发布数据")
     public ModelAndView querysubmitpublish(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long ddTaskId = RequestUtil.getLong(request, "id");
         List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
         List<PrivateData> privateData_list = new ArrayList<PrivateData>();
-//        for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
-//            Long ddDataId = orderDataRelation.getDdDataId();
-//            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
-//            privateData.addAll(taskPrivateDatas);
-//        }
         for (int i = 0; i < orderDataRelation_list.size(); i++) {
             OrderDataRelation orderDataRelation = orderDataRelation_list.get(i);
             PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
             privateData_list.add(privateData);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
-                privateData_list);
+                privateData_list).addObject("taskId", ddTaskId);
         return mv;
     }
 
 
-
     @RequestMapping("showorder")
-    @Action(description = "�������񶩹������б�")
+    @Action(description = "订阅数据查看")
     public ModelAndView queryshoworder(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long ddTaskId = RequestUtil.getLong(request, "id");
@@ -122,62 +130,267 @@ public class PersonalTaskController extends AbstractController {
     }
 
 
-
     /**
-     * 2016/12/22/�޸�
-     *提交发布数据
+     * 2016/12/22
+     * 提交发布数据
+     *
      * @param request  the request
      * @param response the response
      * @return the list
      * @throws Exception the exception
-     *                   �����޸�
      */
-    @RequestMapping("submitdatavalue")
-    @Action(description = "")
-    public void submitdatavalue(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//    @RequestMapping("submitdatavalue")
+//    @Action(description = "更新发布数据值")
+//    public void submitdatavalue(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//        String[] ddDataValues = RequestUtil.getStringAry(request, "ddDataLastestValue");
+//        Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId");
+////        String returnUrl=RequestUtil.getPrePage(request);
+////        returnUrl = returnUrl.replace("submitpublish", "list");
+//
+//        String resultMsg = null;
+//
+//        try {
+//            DataVersion dataVersion = new DataVersion();
+//            for (int i = 0; i < ddDataIds.length; i++) {
+//                PrivateData privateData = this.privateDataService.getById(ddDataIds[i]);
+//                if (privateData.getDdDataLastestValue() != null && privateData.getDdDataLastestValue().equals(ddDataValues[i])) {
+//                } else {
+//
+//                    privateData.setDdDataLastestValue(ddDataValues[i]);
+//                    this.privateDataService.updatedata(privateData);
+//                    dataVersion.setDdDataVersionID(UniqueIdUtil.genId());
+//                    ISysUser sysUser = ContextUtil.getCurrentUser();
+//                    dataVersion.setDdDataRecordPersonId(sysUser.getUserId());
+//                    dataVersion.setDdDataId(ddDataIds[i]);
+//                    dataVersion.setDdDataValue(ddDataValues[i]);
+//                    Date nowTime = new Date(System.currentTimeMillis());
+//                    SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+//                    String retStrFormatNowDate = sdFormatter.format(nowTime);
+//                    dataVersion.setDdDataRecordTime(retStrFormatNowDate);    //修改数据类型
+//                    this.dataVersionService.add(dataVersion);
+//                }
+//                resultMsg = getText("record.added", "项目信息");
+//
+//                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+//            }
+//        } catch (Exception e) {
+//            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+//        }
+//
+//
+//    }
 
-        String[] ddDataValues = RequestUtil.getStringAry(request, "ddDataLastestValue");
-        Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId");
-//        String returnUrl=RequestUtil.getPrePage(request);
-//        returnUrl = returnUrl.replace("submitpublish", "list");
+    @RequestMapping("todotask")
+    @Action(description = "任务办理")
+    public ModelAndView todotask(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long taskId = RequestUtil.getLong(request, "id");
 
-        String resultMsg = null;
+        TaskInfo taskInfo = taskInfoService.getById(taskId);
+        ModelAndView mv = this.getAutoView().addObject("taskInfo",
+                taskInfo);
+        return mv;
+    }
+
+    @RequestMapping("submitpublishjson")
+    @Action(description = "向前端传送发布的json")
+    public void getSubmitPublishJson(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        JSONObject json=new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+
+        response.setContentType("application/json");
 
         try {
-            DataVersion dataVersion = new DataVersion();
-            for (int i = 0; i < ddDataIds.length; i++) {
-                PrivateData privateData = this.privateDataService.getById(ddDataIds[i]);
-                if (privateData.getDdDataLastestValue() != null && privateData.getDdDataLastestValue().equals(ddDataValues[i])) {
-                } else {
-
-                    privateData.setDdDataLastestValue(ddDataValues[i]);
-                    this.privateDataService.updatedata(privateData);
-                    dataVersion.setDdDataVersionID(UniqueIdUtil.genId());
-                    ISysUser sysUser = ContextUtil.getCurrentUser();
-                    dataVersion.setDdDataRecordPersonId(sysUser.getUserId());
-                    dataVersion.setDdDataId(ddDataIds[i]);
-                    dataVersion.setDdDataValue(ddDataValues[i]);
-                    Date nowTime = new Date(System.currentTimeMillis());
-                    SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
-                    String retStrFormatNowDate = sdFormatter.format(nowTime);
-                    dataVersion.setDdDataRecordTime(retStrFormatNowDate);    //修改数据类型
-                    this.dataVersionService.add(dataVersion);
-                }
-                resultMsg = getText("record.added", "项目信息");
-
-                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+            Long taskId = RequestUtil.getLong(request, "id");
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
+            List<PrivateData> privateData_list = new ArrayList<PrivateData>();
+            JSONObject jsonObject = new JSONObject();
+            for (int i = 0; i < orderDataRelation_list.size(); i++) {
+                OrderDataRelation orderDataRelation = orderDataRelation_list.get(i);
+                PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
+//            privateData_list.add(privateData);
+                jsonObject.put("ddDataId", privateData.getDdDataId());
+                jsonObject.put("ddDataTaskId", privateData.getDdDataTaskId());
+                jsonObject.put("ddDataType", privateData.getDdDataType());
+                jsonObject.put("ddDataTaskName", privateData.getDdDataTaskName());
+                jsonObject.put("ddDataName", privateData.getDdDataName());
+                jsonObject.put("ddDataLastestValue", privateData.getDdDataLastestValue());
+                jsonMembers.add(jsonObject);
             }
+            json.put("total", orderDataRelation_list.size());
+            json.put("rows", jsonMembers);
+//        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
+            String jsonstring = formatJson(json.toString());
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.append(jsonstring);
+            out.flush();
+            out.close();
         }catch (Exception e) {
+            String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
 
+    }
 
+    //格式化json
+    public static String formatJson(String jsonStr) {
+        if (null == jsonStr || "".equals(jsonStr)) return "";
+        StringBuilder sb = new StringBuilder();
+        char last = '\0';
+        char current = '\0';
+        int indent = 0;
+        for (int i = 0; i < jsonStr.length(); i++) {
+            last = current;
+            current = jsonStr.charAt(i);
+            switch (current) {
+                case '{':
+                case '[':
+                    sb.append(current);
+                    sb.append('\n');
+                    indent++;
+                    addIndentBlank(sb, indent);
+                    break;
+                case '}':
+                case ']':
+                    sb.append('\n');
+                    indent--;
+                    addIndentBlank(sb, indent);
+                    sb.append(current);
+                    break;
+                case ',':
+                    sb.append(current);
+                    if (last != '\\') {
+                        sb.append('\n');
+                        addIndentBlank(sb, indent);
+                    }
+                    break;
+                default:
+                    sb.append(current);
+            }
         }
 
+        return sb.toString();
+    }
+    //添加空格
+    private static void addIndentBlank(StringBuilder sb, int indent) {
+        for (int i = 0; i < indent; i++) {
+            sb.append('\t');
+        }
+    }
 
+    @RequestMapping("refreshlastvalue")
+    @Action(description = "更新最新值")
+    public void refreshlastvalue(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        try {
+            String json = request.getParameter("strJson");
+            JSONObject obj = JSONObject.fromObject(json);
+
+            Map<String, Class> map = new HashMap<String, Class>();
+            map.put("privateData", PrivateData.class);
+            PrivateData privateData = (PrivateData) JSONObject.toBean(obj, PrivateData.class, map);
+            privateDataService.updatedata(privateData);
+        }catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
     }
 
 
 
 
+    @RequestMapping("submittask")
+    @Action(description = "提交任务")
+    public void submittask(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        try {
+
+            Long ddTaskId = RequestUtil.getLong(request, "id");
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
+            List<TaskStart> taskStart_list =taskStartService.queryTaskStartByTaskId(ddTaskId);
+
+//            //判断任务的所有发布数据是否已经提交，如果存在未发布的数据，不允许提交任务
+//            while (privateDataService.getById(orderDataRelation_list.get(i).getDdDataId()).getDdDataLastestValue()!=null){
+//                //判断任务的当前状态，只有在正在执行中才允许提交
+//                    if(taskStart_list.get(0).getDdTaskStatus()==1) {
+//                        taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
+//
+//                        taskStartService.update(taskStart_list.get(0));
+//                    }
+//                    else {
+//                        String resultMsg = null;
+//                        writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+//                    }
+//
+//
+//            }
+            //判断任务的所有发布数据是否已经提交，如果存在未发布的数据，不允许提交任务
+//            for(int i=0;i<=orderDataRelation_list.size();i++){
+//                long ddDataId= orderDataRelation_list.get(i).getDdDataId();
+//                PrivateData privateData = privateDataService.getById(ddDataId);
+//                if (privateData.getDdDataLastestValue()==null||privateData.getDdDataLastestValue().equals(null)){
+//                    String resultMsg = null;
+//                    writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
+//                }
+//                else {
+//                    //判断任务的当前状态，只有在正在执行中才允许提交
+//                    if(taskStart_list.get(0).getDdTaskStatus()==1) {
+//                        taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
+//
+//                        taskStartService.update(taskStart_list.get(0));
+//                    }
+//                    else {
+//                        String resultMsg = null;
+//                        writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+//                    }
+//                }
+//            }
+
+
+            //判断任务的当前状态，只有在正在执行中才允许提交
+            if(taskStart_list.get(0).getDdTaskStatus()==1) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
+
+                taskStartService.update(taskStart_list.get(0));
+            }
+            else {
+                String resultMsg = null;
+                writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+            }
+        }catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
+
+    @RequestMapping("recovertask")
+    @Action(description = "收回任务")
+    public void recovertask(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        try {
+            Long ddTaskId = RequestUtil.getLong(request, "id");
+            List<TaskStart> taskStart_list =taskStartService.queryTaskStartByTaskId(ddTaskId);
+
+            //判断任务的当前状态，只有在正在提交中才允许收回
+            if(taskStart_list.get(0).getDdTaskStatus()==0) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_RUNNING);
+                taskStartService.update(taskStart_list.get(0));
+            }
+            else {
+                String resultMsg = null;
+                writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+            }
+
+        }catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
+}
 

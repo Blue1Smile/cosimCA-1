@@ -323,7 +323,7 @@ public class IndexController extends BaseController {
 	}
 
 	@RequestMapping("loginCloudPost")
-	@Action(description = "企业登录")
+	@Action(description = "平台登录")
 	public ModelAndView loginCloudPost(HttpServletRequest request,
 			HttpServletResponse response, SysUser sysUser) throws Exception {
 		String saas = (String)request.getSession().getAttribute("saas");
@@ -339,7 +339,7 @@ public class IndexController extends BaseController {
 		if (sysUser.getOrgSn() == null
 				|| StringUtil.isEmpty(sysUser.getShortAccount())
 				|| StringUtil.isEmpty(sysUser.getPassword())) {
-			errMsg = "登录企业、用户和密码信息均不可以为空。";
+			errMsg = "用户和密码信息均不可以为空";
 			mav.addObject("sysUser", sysUser);
 			mav.addObject("errMsg", errMsg);
 			return mav;
@@ -349,14 +349,14 @@ public class IndexController extends BaseController {
 				sysUser.getOrgSn(), sysUser.getShortAccount());
 		ISysOrg sysOrg = sysOrgService.getOrgBySn(sysUser.getOrgSn());
 		if (sysOrg == null) {
-			errMsg = "该用户没有所属企业。";
+			errMsg = "该用户没有所属部门";
 			mav.addObject("errMsg", errMsg);
 		} else if (sysOrg.getIsSystem() != SysOrg.IS_SYSTEM_N) {
-			errMsg = "该用户所属企业不是注册企业。";
+			errMsg = "该用户所属部门不存在。";
 			mav.addObject("errMsg", errMsg);
 			// 判断是否存在
 		} else if (dbSysUser == null) {
-			errMsg = "企业或用户不存在。";
+			errMsg = "用户不存在。";
 			mav.addObject("sysUser", sysUser);
 			mav.addObject("errMsg", errMsg);
 		}

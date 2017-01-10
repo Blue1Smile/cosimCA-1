@@ -145,10 +145,10 @@ public class ConsoleController extends BaseController {
 		String saas = (String)request.getSession().getAttribute("saas");
 
 		// 新闻
-		List<News> newsList = newsService.getLastNews();
+//		List<News> newsList = newsService.getLastNews();
 
 		// 获得最近使用资源
-		String resName = RequestUtil.getString(request, "name");
+//		String resName = RequestUtil.getString(request, "name");
 		List<CloudUseRes> cloudUseResList = null;
 /*		List<CloudUseRes> cloudUseResList = cloudUseResService.getUseRes(
 				ContextUtil.getCurrentOrgInfoFromSession().getSysOrgInfoId(),
@@ -159,11 +159,11 @@ public class ConsoleController extends BaseController {
 				.getSysOrgInfoId();
 
 		// 获取消息列表
-		QueryFilter queryFilter = new QueryFilter(request, "cloudMessageList");
-		queryFilter.getFilters().put("receiveentId", myEntID);
-		queryFilter.getPageBean().setPagesize(5);
-		List<CloudMessage> cloudMessages = cloudMessageService
-				.getAll(queryFilter);
+//		QueryFilter queryFilter = new QueryFilter(request, "cloudMessageList");
+//		queryFilter.getFilters().put("receiveentId", myEntID);
+//		queryFilter.getPageBean().setPagesize(5);
+//		List<CloudMessage> cloudMessages = cloudMessageService
+//				.getAll(queryFilter);
 
 		Map<String, Object> m = new HashMap<String, Object>();
 		// 商圈分组
@@ -180,10 +180,10 @@ public class ConsoleController extends BaseController {
 		SysOrgInfo myCompany = sysOrgInfoService.getById(myEntID);
 		ModelAndView mav = new ModelAndView("/cloud/console/calendar.jsp")
 //		ModelAndView mav = new ModelAndView("/datadriver/datacenter/list.jsp")
-				.addObject("cloudMessages", cloudMessages)
+//				.addObject("cloudMessages", cloudMessages)
 				.addObject("saas", saas)
 				.addObject("myCompany", myCompany)
-				.addObject("newsList", newsList)
+//				.addObject("newsList", newsList)
 				.addObject("type", getBusinessChangeType())
 				.addObject("info", info)
 				.addObject("userName", userName)

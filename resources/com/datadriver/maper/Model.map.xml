@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.casic.datadriver.mapper.ModelMapper">
   <resultMap id="BaseResultMap" type="com.casic.datadriver.model.model.Model">
-    <id column="DD_MODEL_ID" jdbcType="INTEGER" property="ddModelId" />
-    <result column="DD_MODEL_NAME" jdbcType="VARCHAR" property="ddModelName" />
-    <result column="DD_MODEL_URL" jdbcType="VARCHAR" property="ddModelUrl" />
-    <result column="DD_MODEL_DESCRIPTION" jdbcType="VARCHAR" property="ddModelDescription" />
-  </resultMap>
+  <id column="DD_MODEL_ID" jdbcType="INTEGER" property="ddModelId" />
+  <result column="DD_MODEL_NAME" jdbcType="VARCHAR" property="ddModelName" />
+  <result column="DD_MODEL_URL" jdbcType="VARCHAR" property="ddModelUrl" />
+  <result column="DD_MODEL_DESCRIPTION" jdbcType="VARCHAR" property="ddModelDescription" />
+</resultMap>
   <sql id="Base_Column_List">
     DD_MODEL_ID, DD_MODEL_NAME, DD_MODEL_URL, DD_MODEL_DESCRIPTION
   </sql>

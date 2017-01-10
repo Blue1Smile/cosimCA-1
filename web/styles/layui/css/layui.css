@@ -130,7 +130,7 @@ hr {
 }
 
 a {
-    color: #333
+    color: #428bca
 }
 
 a:hover {
@@ -264,12 +264,12 @@ a cite {
 
 .layui-layout-admin .layui-body {
     top: 100px;
-    bottom: 44px
+    bottom: 0px
 }
 
 .layui-layout-admin .layui-main {
     width: auto;
-    margin: 0 15px
+    margin: 0 0px
 }
 
 .layui-layout-admin .layui-footer {
@@ -1354,7 +1354,7 @@ a cite {
     top: 0;
     width: 0;
     height: 5px;
-    background-color: #5FB878;
+    background-color: #FFA500;
     transition: all .2s;
     -webkit-transition: all .2s
 }

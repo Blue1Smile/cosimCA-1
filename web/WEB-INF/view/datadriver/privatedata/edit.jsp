@@ -125,6 +125,12 @@
                                value="${PrivateData.ddDataIsDelivery}" class="layui-input"/></td>
 
                 </tr>
+                <tr>
+                    <th width="20%">模型文件1111:</th>
+                    <td><input type="text" id="ddDataIsModel" name="ddDataIsModel"
+                               value="${PrivateData.ddDataIsDelivery}" class="layui-input"/></td>
+
+                </tr>
             </table>
             <input type="hidden" name="ddDataId" id="ddDataId" value="${PrivateData.ddDataId}">
             <c:choose>

@@ -31,7 +31,7 @@ public class TaskInfoService extends BaseService<TaskInfo> {
     private PrivateDataDao privateDataDao;
 
     @Resource
-    ProTaskDependanceDao proTaskDependanceDao;
+    private ProTaskDependanceDao proTaskDependanceDao;
     /**
      * Adds the DD taskInfo.
      *

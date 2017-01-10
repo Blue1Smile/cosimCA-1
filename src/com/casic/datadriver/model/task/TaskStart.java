@@ -8,6 +8,10 @@ public class TaskStart  extends BaseModel
     public static final Short STATUS_RUNNING		=1;
     public static final Short STATUS_STOP			=2;
     public static final Short STATUS_EXCEPTION		=-1;
+    public static final Short STATUS_COMPLETE		=-2;
+    public static final Short STATUS_SUBMIT	        =0;
+
+
 
     private Long ddTaskStartId;
 

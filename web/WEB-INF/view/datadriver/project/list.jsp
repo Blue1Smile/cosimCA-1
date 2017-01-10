@@ -31,6 +31,14 @@
         .fr {
             float: right;
         }
+
+        .pages {
+            float: right;
+        }
+
+        .page_line {
+            display: inline;
+        }
     </style>
 </head>=
 
@@ -41,6 +49,7 @@
         <li class="layui-this">项目管理列表</li>
     </ul>
     <div class="layui-tab-content">
+
         <div style="height: 50px;">
             <form id="searchForm" method="post" action="list.ht">
 
@@ -68,12 +77,44 @@
             </form>
         </div>
 
+=======
+        <blockquote class="layui-elem-quote">
+            <div style="height: 40px;">
+                <form id="searchForm" method="post" action="list.ht">
+
+
+                    <div class="fl">
+                        <%--<span class="label">项目编号:</span><input type="text" name="Q_id_SL" class="inputText"--%>
+                        <%--value="${param['Q_id_SL']}"/>--%>
+                        <input type="text" name="Q_name_SL " class="layui-input"
+                               value="${param['Q_name_SL']}" placeholder="项目名称"/>
+                        <%--<span class="label">创建日期 从:</span> <input name="Q_createStartDate_SL" class="inputText date"--%>
+                        <%--value="${param['Q_createStartDate_DL']}"/>--%>
+                        <%--<span class="label">至: </span><input name="Q_createEndData_SL" class="inputText date"--%>
+                        <%--value="${param['Q_createEndData_DL']}"/>--%>
+
+                    </div>
+                    <div class="fr">
+                        <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
+                        <a class="layui-btn" href="edit.ht"><i class="layui-icon">&#xe61f;</i> 添加</a>
+
+                        <%--<a class="layui-btn layui-btn-danger" action="del.ht"><i--%>
+                        <%--class="layui-icon">&#xe640;</i> 删除</a>--%>
+                        <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">
+                            &#x1002;</i> 刷新</a>
+                    </div>
+
+
+                </form>
+            </div>
+        </blockquote>
+
         <c:set var="checkAll">
             <input type="checkbox" id="chkall"/>
         </c:set>
         <display:table name="projectList" id="ProjectItem" requestURI="list.ht" sort="external" cellpadding="0"
                        cellspacing="0" export="false" class="layui-table" pagesize="10">
-            <display:column title="${checkAll}" media="html" style="width:30px;">
+            <display:column title="${checkAll}" media="html" style="width:3%;">
                 <input type="checkbox" class="pk" name="id" value="${ProjectItem.ddProjectId}">
             </display:column>
             <%--<display:column property="ddProjectId" title="项目编号" sortable="true" sortName="DD_PROJECT_ID"--%>
@@ -105,6 +146,7 @@
             <%--<display:column property="ddProjectScheduleState" title="项目研制阶段"></display:column>--%>
 
             <display:column title="操作" media="html" style="width:380px">
+
                 <%--          <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-small">编辑</a>--%>
                 <%--<a href="start.ht?id=${ProjectItem.ddProjectId}"--%>
                 <%--class="layui-btn layui-btn-primary layui-btn-small">启动</a>--%>
@@ -130,15 +172,17 @@
                         <a class="layui-btn layui-btn-small layui-btn-success"
                            href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
                         <a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>
+                        <a class="layui-btn layui-btn-mini layui-btn-normal"
+                   href="${ctx}/datadriver/index/indexedit.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
+                    &#xe60a;</i> 指标</a>
                         <a href="del.ht?id=${ProjectItem.ddProjectId}"
                            class="layui-btn layui-btn-small layui-btn-danger">删除</a>>
                     </c:otherwise></c:choose>
+
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="ProjectItem"/>--%>
-
     </div>
-
 </div>
 
 </body>

@@ -1,5 +1,6 @@
 package com.casic.datadriver.controller.project;
 
+
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -15,16 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
-import com.casic.datadriver.service.task.TaskInfoService;
+import com.casic.datadriver.service.ProjectStartCmd;
 import com.casic.datadriver.service.project.ProjectService;
 import com.casic.datadriver.service.project.ProjectStartService;
+import com.hotent.core.annotion.Action;
 import com.hotent.core.bpm.model.ProcessCmd;
 import com.hotent.core.bpm.util.BpmUtil;
 import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.ExceptionUtil;
 import com.hotent.core.util.StringUtil;
+import com.hotent.core.util.UniqueIdUtil;
+import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.controller.BaseController;
-import com.casic.datadriver.service.ProjectStartCmd;
+import com.hotent.core.web.query.QueryFilter;
+import com.hotent.core.web.util.RequestUtil;
 import com.hotent.platform.auth.ISysUser;
 import com.hotent.platform.service.bpm.thread.MessageUtil;
 import com.hotent.platform.service.system.ResourcesService;
@@ -39,13 +44,15 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casic.datadriver.controller.AbstractController;
-
-import com.hotent.core.annotion.Action;
-import com.hotent.core.util.UniqueIdUtil;
-import com.hotent.core.web.ResultMessage;
-import com.hotent.core.web.query.QueryFilter;
-import com.hotent.core.web.util.RequestUtil;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * ��Ŀ����Ŀ�����.
@@ -280,4 +287,21 @@ public class ProjectController extends BaseController {
 		}
 	}
 
+	/**
+	 * 项目指标
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+
+
+	@RequestMapping("indexedit")
+	@Action(description="查看明细")
+	public ModelAndView indexedit(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		long id=RequestUtil.getLong(request,"id");
+		Project Project = projectService.getById(id);
+		return getAutoView().addObject("Project", Project);
+	}
 }
