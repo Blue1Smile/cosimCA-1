@@ -13,30 +13,34 @@
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <%--<link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>--%>
 </head>
 <body>
 <table id="tablelist"
+       data-height="300"
        data-search="true"
        data-show-refresh="true"
        data-show-toggle="false"
        data-show-columns="false"
        data-show-export="false"
+       data-sort-stable="true"
        data-detail-view="true"
        data-detail-formatter="detailFormatter"
        data-minimum-count-columns="2"
-       data-show-pagination-switch="false"
+       data-show-pagination-switch="true"
        data-pagination="true"
        data-id-field="id"
        data-show-header="true"
-       data-page-size="10"
+       data-page-size="5"
        data-page-list="[10, 25, 50, 100, ALL]"
        data-show-footer="false"
        data-side-pagination="server"
        data-url="submitpublishjson.ht?id=${taskId}"
-       data-response-handler="responseHandler">
+       data-response-handler="responseHandler"
+       class="table table-hover"
+       style="margin-bottom: -81px;">
 </table>
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
 <script src="${ctx}/newtable/customtable.js"></script>
 </body>
 </html>
