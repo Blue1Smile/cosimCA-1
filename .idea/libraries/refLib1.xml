@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="refLib1">
     <CLASSES>
+
       <root url="jar://$PROJECT_DIR$/metadata/codegen/refLib/freemarker.jar!/" />
       <root url="jar://$PROJECT_DIR$/metadata/codegen/refLib/dom4j-1.6.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/metadata/codegen/refLib/db2jcc-4.jar!/" />
@@ -9,6 +10,7 @@
       <root url="jar://$PROJECT_DIR$/metadata/codegen/refLib/ojdbc6.jar!/" />
       <root url="jar://$PROJECT_DIR$/metadata/codegen/refLib/mysql.jar!/" />
       <root url="jar://$PROJECT_DIR$/metadata/codegen/refLib/codegen.jar!/" />
+
     </CLASSES>
     <JAVADOC />
     <SOURCES />

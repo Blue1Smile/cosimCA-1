@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="lib1">
     <CLASSES>
+
       <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/RXTXcomm-1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/spring-aop-3.0.3.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/springmodules-validator-0.2.jar!/" />
@@ -164,6 +165,7 @@
       <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/sms-3.4.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jcl-over-slf4j-1.6.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/spring-asm-3.0.3.RELEASE.jar!/" />
+
     </CLASSES>
     <JAVADOC />
     <SOURCES />
