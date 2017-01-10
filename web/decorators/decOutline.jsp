@@ -63,7 +63,7 @@
                 style="width:100%;min-height:800px;"></iframe>
     </div>
 
-    <%@include file="/commons/cloud/foot.jsp" %>
+    <%--<%@include file="/commons/cloud/foot.jsp" %>--%>
 </div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>

@@ -7,7 +7,7 @@ var $table = $('#tablelist'),
 var curRow = {};
 function initTable() {
     $table.bootstrapTable({
-        height: getHeight(),
+        height: 300,
         columns: [
             {//第一列，数据ID
                 field: 'ddDataId',

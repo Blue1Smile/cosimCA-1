@@ -23,4 +23,8 @@ public class ProcessFlowService extends BaseService<ProcessFlow> {
     protected IEntityDao<ProcessFlow, Long> getEntityDao() {
         return this.processflowDao;
     }
+
+    public void addProcessFlow(ProcessFlow processFlow){
+        this.processflowDao.addprocess(processFlow);
+    }
 }
