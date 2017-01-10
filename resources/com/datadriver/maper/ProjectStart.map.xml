@@ -19,9 +19,15 @@
     from dd_project_start
     where DD_PROJECT_START_ID = #{ddProjectStartId,jdbcType=NUMERIC}
   </select>
+  <select id="queryByProjectId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_project_start
+    where DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from dd_project_start
-    where DD_PROJECT_START_ID = #{ddProjectStartId,jdbcType=NUMERIC}
+    where DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
   </delete>
   <insert id="add" parameterType="com.casic.datadriver.model.project.ProjectStart">
     insert into dd_project_start (DD_PROJECT_START_ID, DD_PROJECT_ID, DD_PROJECT_START_STATUS, 

@@ -127,4 +127,11 @@ public class ProjectService extends BaseService<Project> {
     public List<TaskInfo> getAllTaskInfoList(QueryFilter queryFilter) {
         return taskInfoDao.getAllInstance(queryFilter);
     }
+
+    /**20170107 根据责任人查询项目
+     */
+    public List<Project> queryProjectlistByRes(Long ddProjectResponsiblePersonId) {
+        return projectDao.queryProjectlistByRes(ddProjectResponsiblePersonId);
+    }
+
 }

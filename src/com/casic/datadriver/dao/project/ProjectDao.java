@@ -35,4 +35,12 @@ public class ProjectDao extends BaseDao<Project> {
 		return Project.class;
 	}
 
+
+	/**
+	 * 20170107 根据责任人查询项目
+	 */
+	public List<Project> queryProjectlistByRes(Long ddProjectResponsiblePersonId) {
+		return this.getBySqlKey("queryProjectlistByRes", ddProjectResponsiblePersonId);
+	}
+
 }

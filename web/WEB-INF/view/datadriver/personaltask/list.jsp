@@ -79,7 +79,7 @@
         <%--<hotent:paging tableId="taskList"/>--%>
 
     </div>
-</div>recover
+</div>
 
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
