@@ -11,7 +11,7 @@
 	 * Constructs a new application (note that this returns an mxEditor
 	 * instance).
 	 */
-	function mxApplication(config)
+	function mxApplication(config,s)
 	{
 		var hideSplash = function()
 		{
@@ -59,7 +59,10 @@
 				
 				// Displays version in statusbar
 				editor.setStatus('mxGraph '+mxClient.VERSION);
-
+				//var s=${projectId};
+				editor.graph.getDefaultParent().setAttribute('projectId',s);
+				var enc=new mxCodec();
+				window.console.log(mxUtils.getPrettyXml(enc.encode(editor.graph.getModel())));
 				// Shows the application
 				hideSplash();
 			}

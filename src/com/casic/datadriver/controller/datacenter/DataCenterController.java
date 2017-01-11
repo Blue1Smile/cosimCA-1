@@ -136,8 +136,6 @@ public class DataCenterController extends AbstractController {
         return mv;
     }
 
-
-
     /**
      * 2016/12/22/修改
      * 查看任务数据版本变化
@@ -158,7 +156,4 @@ public class DataCenterController extends AbstractController {
         ModelAndView mv = this.getAutoView().addObject("dataVersionList", dataVersion_list);
         return mv;
     }
-
-
-
 }

@@ -70,6 +70,10 @@
                         <%--class="layui-icon">&#xe615;</i> 查看订阅数据</a>--%>
                 <a href="todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
                         class="layui-icon">&#xe639;</i> 任务办理</a>
+                <a href="submittask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                        class="layui-icon">&#xe639;</i> 任务提交</a>
+                <a href="recovertask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                        class="layui-icon">&#xe639;</i> 任务收回</a>
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="taskList"/>--%>

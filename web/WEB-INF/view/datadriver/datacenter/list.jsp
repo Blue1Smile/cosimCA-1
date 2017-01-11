@@ -5,7 +5,11 @@
     <title>项目树</title>
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <LINK href="${ctx}/styles/jq22/page_style.css" type=text/css rel=stylesheet>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+    <script type="text/javascript"	src="${ctx }/js/lg/plugins/ligerMenu.js"></script>
+    <script src="${ctx}/styles/jq22/jquery.contextmenu.r2.js"></script>
+
     <style type="text/css">
         html, body {
             padding: 0px;
@@ -19,6 +23,24 @@
         $(function () {
             layout();
             loadTree();
+            $('#demo2').contextMenu('myMenu1', {
+                bindings: {
+                    'open': function(t) {
+                        alert('Trigger was '+t.id+'\nAction was Open');
+                    },
+                    'email': function(t) {
+                        alert('Trigger was '+t.id+'\nAction was Email');
+                    },
+                    'save': function(t) {
+                        alert('Trigger was '+t.id+'\nAction was Save');
+                    },
+                    'delete': function(t) {
+                        alert('Trigger was '+t.id+'\nAction was Delete')
+                    }
+                }
+            });
+//            menu();
+//            menu_root();
         });
         //布局
         function layout() {
@@ -95,8 +117,25 @@
                             node[index].children = child;
                         }
                     });
+
                     return node;
                 };
+                $('span.product_tree').contextMenu('myMenu1', {
+                    bindings: {
+                        'open': function(t) {
+                            alert('Trigger was '+t.id+'\nAction was Open');
+                        },
+                        'email': function(t) {
+                            alert('Trigger was '+t.id+'\nAction was Email');
+                        },
+                        'save': function(t) {
+                            alert('Trigger was '+t.id+'\nAction was Save');
+                        },
+                        'delete': function(t) {
+                            alert('Trigger was '+t.id+'\nAction was Delete')
+                        }
+                    }
+                });
                 layui.tree({
                     elem: '#demo2' //指定元素
                     , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
@@ -106,15 +145,30 @@
                         $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
                     }
                     , nodes: createTree()
+
                 });
             });
+
+
+
         }
+
     </script>
 </head>
 <body>
 <%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">--%>
 <%--<legend>生成一个较深的树</legend>--%>
 <%--</fieldset>--%>
+<ul id="product_tree" class="filetree"></ul>
+<DIV class=contextMenu id=myMenu1>
+    <UL>
+        <LI id=open><IMG src="${ctx}/styles/jq22/folder.png"> Open </LI>
+        <LI id=email><IMG src="${ctx}/styles/jq22/email.png"> Email </LI>
+        <LI id=save><IMG src="${ctx}/styles/jq22/disk.png"> Save </LI>
+        <LI id=delete><IMG src="${ctx}/styles/jq22/cross.png"> Delete</LI>
+    </UL>
+</DIV>
+
 <div class="layui-tab layui-tab-card">
 
     <ul class="layui-tab-title">

@@ -8,31 +8,35 @@ import com.hotent.core.service.BaseService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-    /**
-     * Created by Administrator on 2016/11/18 0018.
-     */
-    @Service
-    public class IndexService extends BaseService<IndexInfo> {
+import java.util.List;
+
+/**
+ * Created by Administrator on 2016/11/18 0018.
+ */
+@Service
+public class IndexService extends BaseService<IndexInfo> {
 
 
+    public IndexService() {
+    }
 
-        @Resource
-        private IndexInfoDao indexDao;
+    @Resource
+    private IndexInfoDao indexDao;
 
-        public boolean addDDIndex(IndexInfo index) {
-            this.indexDao.add(index);
-            return true;
-        }
+    public boolean addDDIndex(IndexInfo index) {
+        this.indexDao.add(index);
+        return true;
+    }
 
+    public List<IndexInfo> getByProjectId(long projectId) {
+        return this.indexDao.getByProjectId(projectId);
+    }
 
-        @Override
-        protected IEntityDao<IndexInfo, Long> getEntityDao() {
-            // TODO Auto-generated method stub
-            return this.indexDao;
-        }
-
-
-
+    @Override
+    protected IEntityDao<IndexInfo, Long> getEntityDao() {
+        // TODO Auto-generated method stub
+        return this.indexDao;
+    }
 
 
 }

@@ -12,6 +12,10 @@ public class ProcessFlowDao extends BaseDao<ProcessFlow> {
 
     @Override
     public Class<?> getEntityClass() {
-        return Process.class;
+        return ProcessFlow.class;
+    }
+
+    public void addprocess(ProcessFlow processFlow) {
+        this.delBySqlKey("addprocess", processFlow);
     }
 }

@@ -81,7 +81,7 @@
                 <display:column property="ddDataTaskId" title="数据所属任务id" sortable="true"
                                 maxLength="80"></display:column>
                 <display:column title="操作" media="html" style="width:100px">
-                    <a href="dataversion.ht?id=${privateDataList.ddDataId}"
+                    <a href="dataversion.ht?id=${privateDataList_publish.ddDataId}"
                        class="layui-btn layui-btn-normal  layui-btn-small"><i
                             class="layui-icon">&#xe615;</i> 数据版本</a>
                 </display:column>
@@ -106,7 +106,7 @@
                 <display:column property="ddDataTaskId" title="数据所属任务id" sortable="true"
                                 maxLength="80"></display:column>
                 <display:column title="操作" media="html" style="width:100px">
-                    <a href="dataversion.ht?id=${privateDataList.ddDataId}"
+                    <a href="dataversion.ht?id=${privateDataList_order.ddDataId}"
                        class="layui-btn layui-btn-normal  layui-btn-small"><i
                             class="layui-icon">&#xe615;</i> 数据版本</a>
                 </display:column>

@@ -2,6 +2,7 @@ package com.casic.datadriver.dao.task;
 
 import java.util.List;
 
+import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
 import org.springframework.stereotype.Repository;
 
@@ -78,5 +79,7 @@ public class TaskInfoDao extends BaseDao<TaskInfo> {
     public void delByMainId(Long classId) {
         this.delBySqlKey("delByMainId", classId);
     }
+
+
 
 }

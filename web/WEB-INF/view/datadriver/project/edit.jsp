@@ -66,7 +66,7 @@
                     <div class="layui-tab layui-tab-card" id="iframe_tab">
                         <ul class="layui-tab-title">
                             <li class="layui-this">项目参数配置</li>
-                            <li>项目指标</li>
+                            <%--<li>项目指标</li>--%>
                         </ul>
                         <div class="layui-tab-content" style="height: 100%;">
                             <div class="layui-tab-item layui-show">
@@ -213,9 +213,9 @@
                                            value="${Project.ddProjectCurrentStage}">
                                 </table>
                             </div>
-                            <div class="layui-tab-item">
-                                <iframe src="${ctx}/datadriver/index/indexedit.ht" style="width: 100%;height: 600px" scrolling="auto" frameborder="no"></iframe>
-                            </div>
+                            <%--<div class="layui-tab-item">--%>
+                                <%--<iframe src="${ctx}/datadriver/index/indexedit.ht" style="width: 100%;height: 600px" scrolling="auto" frameborder="no"></iframe>--%>
+                            <%--</div>--%>
                         </div>
                     </div>
                 </form>
