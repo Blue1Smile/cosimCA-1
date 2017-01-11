@@ -7,7 +7,7 @@ import java.util.*;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.casic.datadriver.tool.Token;
+
 import com.hotent.core.util.ContextUtil;
 
 import javax.annotation.Resource;

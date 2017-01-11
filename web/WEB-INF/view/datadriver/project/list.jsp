@@ -159,8 +159,8 @@
                               <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-disabled">编辑</a>
                     <a href="start.ht?id=${ProjectItem.ddProjectId}"
                        class="layui-btn layui-btn-disabled">启动</a>
-                    <a  class="layui-btn layui-btn-disabled"
-                    href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
+                    <a class="layui-btn layui-btn-small layui-btn-success"
+                       href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}">任务</a>
                     <a href="" class="layui-btn layui-btn-disabled">引用</a>
                     <a href="del.ht?id=${ProjectItem.ddProjectId}"
                        class="layui-btn layui-btn-disabled">删除</a>
