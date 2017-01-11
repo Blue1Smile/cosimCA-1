@@ -113,6 +113,7 @@
                    href="${ctx}/datadriver/designflow/flowframe.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
                     &#xe641;</i> 流程</a>
                 <a class="layui-btn layui-btn-mini layui-btn-normal"
+
                    href="${ctx}/datadriver/index/indexedit.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
                     &#xe60a;</i> 指标</a>
                 <a href="del.ht?id=${ProjectItem.ddProjectId}"
