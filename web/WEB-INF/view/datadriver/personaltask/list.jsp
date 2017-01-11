@@ -13,13 +13,11 @@
         .fr {
             float: right;
         }
-
-        .pages {
+        .pages{
             float: right;
         }
-
-        .page_line {
-            display: inline;
+        .page_line{
+            display:inline;
         }
     </style>
 </head>
@@ -32,16 +30,20 @@
     <div class="layui-tab-content">
         <blockquote class="layui-elem-quote">
             <div style="height: 40px;">
-                <div class="fl">
-                    <form id="searchForm" method="post" action="list.ht">
+                <span class="fl">
+                <form id="searchForm" method="post" action="list.ht">
+
                         <input type="text" name="Q_name_SL" class="layui-input"
                                value="${param['Q_name_SL']}" placeholder="任务名称"/>
-                    </form>
-                </div>
-                <div class="fr"><a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">
-                        &#x1002;</i> 刷新</a>
-                </div>
+
+                </form>
+                    </span>
+                <span class="fr"><a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
+                            <a class="layui-btn" href="edit.ht"><i class="layui-icon">&#xe61f;</i> 添加</a>
+
+                            <a class="layui-btn layui-btn-danger" action="del.ht"><i class="layui-icon">&#xe640;</i> 删除</a>
+                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
+                            </span>
             </div>
         </blockquote>
         <c:set var="checkAll">
@@ -61,17 +63,27 @@
             <display:column property="ddTaskPerson" title="任务负责人" sortable="true"></display:column>
             <display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>
 
-            <display:column title="操作" media="html" style="width:15%">
-                <%--<a href="submitpublish.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-mini"><i--%>
-                <%--class="layui-icon">&#xe642;</i> 更新发布数据</a>--%>
-                <%--<a href="showorder.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i--%>
-                <%--class="layui-icon">&#xe615;</i> 查看订阅数据</a>--%>
-                <a href="todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
-                        class="layui-icon">&#xe639;</i> 办理</a>
-                <%--<a href="submittask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i--%>
-                <%--class="layui-icon">&#xe639;</i> 任务提交</a>--%>
-                <a href="recovertask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
-                        class="layui-icon">&#xe639;</i> 收回</a>
+            <display:column title="操作" media="html" style="width:10%">
+
+
+                <c:choose><c:when test="${taskList.ddTaskState==1}">
+                    <a href="todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                            class="layui-icon">&#xe639;</i> 任务办理</a>
+                    <a href="submittask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                            class="layui-icon">&#xe639;</i> 任务提交</a>
+                    <a href="recovertask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-disabled layui-btn-mini"><i
+                            class="layui-icon">&#xe639;</i> 任务收回</a>
+                </c:when>
+                    <c:otherwise>
+                        <a href="todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                                class="layui-icon">&#xe639;</i> 任务办理</a>
+                        <a href="submittask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-disabled layui-btn-mini"><i
+                                class="layui-icon">&#xe639;</i> 任务提交</a>
+                        <a href="recovertask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                                class="layui-icon">&#xe639;</i> 任务收回</a>
+                    </c:otherwise></c:choose>
+
+
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="taskList"/>--%>
