@@ -66,6 +66,13 @@
 		where DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
 	</select>
 
+	<select id="getProjectListbyUserId" parameterType="java.lang.Long"
+			resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from dd_project
+		where DD_PROJECT_CREATOR_ID = #{ddProjectCreatorId,jdbcType=NUMERIC}
+	</select>
 
 	<select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
 		SELECT <include refid="Base_Column_List"/>

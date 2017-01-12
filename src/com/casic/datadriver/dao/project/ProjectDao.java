@@ -17,12 +17,12 @@ public class ProjectDao extends BaseDao<Project> {
 	/**
 	 * Query project basic info list.
 	 *
-	 * @param queryFilter
+	 * @param userId
 	 *            the query filter
 	 * @return the list
 	 */
-	public List<Project> queryProjectBasicInfoList(QueryFilter queryFilter) {
-		return this.getBySqlKey("queryProjectBasicInfoList", queryFilter);
+	public List<Project> queryProjectBasicInfoList(long userId) {
+		return this.getBySqlKey("getProjectListbyUserId", userId);
 	}
 
 	/*
@@ -37,7 +37,7 @@ public class ProjectDao extends BaseDao<Project> {
 
 
 	/**
-	 * 20170107 ¸ù¾ÝÔðÈÎÈË²éÑ¯ÏîÄ¿
+	 * 20170107 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½Ñ¯ï¿½ï¿½Ä¿
 	 */
 	public List<Project> queryProjectlistByRes(Long ddProjectResponsiblePersonId) {
 		return this.getBySqlKey("queryProjectlistByRes", ddProjectResponsiblePersonId);
