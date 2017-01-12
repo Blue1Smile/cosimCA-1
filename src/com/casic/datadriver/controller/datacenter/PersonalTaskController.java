@@ -75,13 +75,6 @@ public class PersonalTaskController extends AbstractController {
             throws Exception {
         List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> taskInfo_list = new ArrayList<TaskInfo>();
-//        for (TaskStart taskStart : taskStartList) {
-//
-//            Long ddTaskId = taskStart.getDdTaskId();
-//            long ddTask_Id = ddTaskId;
-//            TaskInfo taskInfo = taskInfoService.getById(ddTask_Id);
-//            taskInfo_list.add(taskInfo);
-//        }
 
         for (int i = 0; i < taskStartList.size(); i++) {
             Long ddTaskId = taskStartList.get(i).getDdTaskId();
