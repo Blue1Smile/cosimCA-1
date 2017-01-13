@@ -15,7 +15,7 @@ import com.hotent.core.web.query.QueryFilter;
 public class ProjectDao extends BaseDao<Project> {
 
 	/**
-	 * Query project basic info list.
+	 * 根据用户Id获取项目列表
 	 *
 	 * @param userId
 	 *            the query filter

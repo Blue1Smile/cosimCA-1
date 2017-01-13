@@ -7,7 +7,7 @@
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <LINK href="${ctx}/styles/jq22/page_style.css" type=text/css rel=stylesheet>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-    <script type="text/javascript"	src="${ctx }/js/lg/plugins/ligerMenu.js"></script>
+    <script type="text/javascript" src="${ctx }/js/lg/plugins/ligerMenu.js"></script>
     <script src="${ctx}/styles/jq22/jquery.contextmenu.r2.js"></script>
 
     <style type="text/css">
@@ -25,17 +25,17 @@
             loadTree();
             $('#demo2').contextMenu('myMenu1', {
                 bindings: {
-                    'open': function(t) {
-                        alert('Trigger was '+t.id+'\nAction was Open');
+                    'open': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was Open');
                     },
-                    'email': function(t) {
-                        alert('Trigger was '+t.id+'\nAction was Email');
+                    'email': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was Email');
                     },
-                    'save': function(t) {
-                        alert('Trigger was '+t.id+'\nAction was Save');
+                    'save': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was Save');
                     },
-                    'delete': function(t) {
-                        alert('Trigger was '+t.id+'\nAction was Delete')
+                    'delete': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was Delete')
                     }
                 }
             });
@@ -122,17 +122,17 @@
                 };
                 $('span.product_tree').contextMenu('myMenu1', {
                     bindings: {
-                        'open': function(t) {
-                            alert('Trigger was '+t.id+'\nAction was Open');
+                        'open': function (t) {
+                            alert('Trigger was ' + t.id + '\nAction was Open');
                         },
-                        'email': function(t) {
-                            alert('Trigger was '+t.id+'\nAction was Email');
+                        'email': function (t) {
+                            alert('Trigger was ' + t.id + '\nAction was Email');
                         },
-                        'save': function(t) {
-                            alert('Trigger was '+t.id+'\nAction was Save');
+                        'save': function (t) {
+                            alert('Trigger was ' + t.id + '\nAction was Save');
                         },
-                        'delete': function(t) {
-                            alert('Trigger was '+t.id+'\nAction was Delete')
+                        'delete': function (t) {
+                            alert('Trigger was ' + t.id + '\nAction was Delete')
                         }
                     }
                 });
@@ -150,31 +150,26 @@
             });
 
 
-
         }
 
     </script>
 </head>
 <body>
-<%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">--%>
-<%--<legend>生成一个较深的树</legend>--%>
-<%--</fieldset>--%>
 <ul id="product_tree" class="filetree"></ul>
-<DIV class=contextMenu id=myMenu1>
-    <UL>
-        <LI id=open><IMG src="${ctx}/styles/jq22/folder.png"> Open </LI>
-        <LI id=email><IMG src="${ctx}/styles/jq22/email.png"> Email </LI>
-        <LI id=save><IMG src="${ctx}/styles/jq22/disk.png"> Save </LI>
-        <LI id=delete><IMG src="${ctx}/styles/jq22/cross.png"> Delete</LI>
-    </UL>
-</DIV>
+<div class=contextMenu id=myMenu1>
+    <ul>
+        <li id=open><img src="${ctx}/styles/jq22/folder.png"> Open</li>
+        <li id=email><img src="${ctx}/styles/jq22/email.png"> Email</li>
+        <li id=save><img src="${ctx}/styles/jq22/disk.png"> Save</li>
+        <li id=delete><img src="${ctx}/styles/jq22/cross.png"> Delete</li>
+    </ul>
+</div>
 
 <div class="layui-tab layui-tab-card">
-
     <ul class="layui-tab-title">
         <li class="layui-this">数据中心</li>
     </ul>
-    <div class="layui-tab-content">
+    <div class="layui-tab-content" style="height: 100%;">
         <div id="layout">
             <div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                 <ul id="demo2" style="overflow:auto;"></ul>
@@ -182,7 +177,7 @@
             <div position="center">
                 <iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishorderdata.ht" frameborder="no"
                         width="100%"
-                        height="100%"></iframe>
+                        height="100%" scrolling="auto"></iframe>
             </div>
         </div>
     </div>
