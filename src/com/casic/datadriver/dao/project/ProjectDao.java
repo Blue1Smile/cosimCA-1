@@ -15,14 +15,14 @@ import com.hotent.core.web.query.QueryFilter;
 public class ProjectDao extends BaseDao<Project> {
 
 	/**
-	 * Query project basic info list.
+	 * 鏍规嵁鐢ㄦ埛Id鑾峰彇椤圭洰鍒楄〃
 	 *
-	 * @param queryFilter
+	 * @param userId
 	 *            the query filter
 	 * @return the list
 	 */
-	public List<Project> queryProjectBasicInfoList(QueryFilter queryFilter) {
-		return this.getBySqlKey("queryProjectBasicInfoList", queryFilter);
+	public List<Project> queryProjectBasicInfoList(long userId) {
+		return this.getBySqlKey("getProjectListbyUserId", userId);
 	}
 
 	/*
@@ -37,7 +37,7 @@ public class ProjectDao extends BaseDao<Project> {
 
 
 	/**
-	 * 20170107 根据责任人查询项目
+	 * 20170107 锟斤拷锟斤拷锟斤拷锟斤拷锟剿诧拷询锟斤拷目
 	 */
 	public List<Project> queryProjectlistByRes(Long ddProjectResponsiblePersonId) {
 		return this.getBySqlKey("queryProjectlistByRes", ddProjectResponsiblePersonId);

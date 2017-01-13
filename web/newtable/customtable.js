@@ -7,7 +7,7 @@ var $table = $('#tablelist'),
 var curRow = {};
 function initTable() {
     $table.bootstrapTable({
-        height: 300,
+        height: getHeight(),
         columns: [
             {//第一列，数据ID
                 field: 'ddDataId',
@@ -76,6 +76,15 @@ function initTable() {
         onClickRow: function (row, $element) {
             curRow = row;
         },
+        ////查询参数,每次调用是会带上这个参数，可自定义
+        queryParams: function(params) {
+            var name = $('#ddDataName').val();
+            return {
+                pageNumber: params.offset+1,
+                pageSize: params.limit,
+                name:name
+            };
+        },
         onEditableSave: function (field, row, oldValue, $el) {
             $.ajax({
                 type: "post",
@@ -105,6 +114,7 @@ function initTable() {
         //     price: '$2'
         // }]
     });
+
     // sometimes footer render error.
     setTimeout(function () {
         $table.bootstrapTable('resetView');
@@ -136,11 +146,11 @@ function initTable() {
         });
         $remove.prop('disabled', true);
     });
-    $(window).resize(function () {
-        $table.bootstrapTable('resetView', {
-            height: getHeight()
-        });
-    });
+    // $(window).resize(function () {
+    //     $table.bootstrapTable('resetView', {
+    //         height: getHeight()
+    //     });
+    // });
 }
 
 function getIdSelections() {
@@ -216,7 +226,8 @@ function ddDataLastestValueFormatter(data) {
 }
 
 function getHeight() {
-    return $(window).height() - $('h1').outerHeight(true);
+    var length = $(window).height() - $('.layui-tab-title').outerHeight(true);
+    return $(window).height() - $('.layui-tab-title').outerHeight(true);
 }
 
 $(function () {

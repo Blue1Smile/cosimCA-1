@@ -16,7 +16,11 @@
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-
+    <style>
+        .fr {
+            float: right;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-tab layui-tab-card" id="iframe_tab">

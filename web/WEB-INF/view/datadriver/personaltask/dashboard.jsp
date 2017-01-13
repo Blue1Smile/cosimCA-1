@@ -22,7 +22,8 @@
 </head>
 <body>
 <div class="fr">
-    <a class="layui-btn layui-btn-normal" id="commit" href="jobcommit.ht"><i class="layui-icon">&#xe62f;</i> 提交工作</a>
+    <a class="layui-btn layui-btn-normal" id="commit" href="submittask.ht?id=${taskInfo.ddTaskId}"><i
+            class="layui-icon">&#xe62f;</i> 提交工作</a>
     <a class="layui-btn layui-btn-normal" id="invite" href="jobinvite.ht"><i class="layui-icon">&#xe613;</i> 邀请协作</a>
     <a class="layui-btn" id="jobdone" href="jobdone.ht"><i class="layui-icon">&#x1005;</i> 完成任务</a>
     <a class="layui-btn layui-btn-primary" action="#" onclick="location.reload()"><i
@@ -35,43 +36,28 @@
 <script>
     var myChart = echarts.init(document.getElementById('main'));
     var option = {
-        title : {
+        title: {
             text: '数据输出订阅关系',
-            x:'right',
-            y:'bottom'
+            x: 'right',
+            y: 'bottom'
         },
-        tooltip : {
+        tooltip: {
             trigger: 'item',
             formatter: '{a} : {b}'
         },
         toolbox: {
-            show : true,
-            feature : {
-                restore : {show: true},
+            show: true,
+            feature: {
+                restore: {show: true},
                 magicType: {show: true, type: ['force', 'chord']},
-                saveAsImage : {show: true}
+                saveAsImage: {show: true}
             }
         },
-//        legend: {
-//            x: 'left',
-//            data:['任务','任务']
-//        },
-        series : [
+        series: [
             {
-                type:'force',
-                name : "订阅关系",
+                type: 'force',
+                name: "订阅关系",
                 ribbonType: false,
-//                categories : [
-//                    {
-//                        name: '人物'
-//                    },
-//                    {
-//                        name: '家人'
-//                    },
-//                    {
-//                        name:'朋友'
-//                    }
-//                ],
                 itemStyle: {
                     normal: {
                         label: {
@@ -80,10 +66,10 @@
                                 color: '#333'
                             }
                         },
-                        nodeStyle : {
-                            brushType : 'both',
-                            borderColor : 'rgba(255,215,0,0.4)',
-                            borderWidth : 1
+                        nodeStyle: {
+                            brushType: 'both',
+                            borderColor: 'rgba(255,215,0,0.4)',
+                            borderWidth: 1
                         },
                         linkStyle: {
                             type: 'curve'
@@ -94,75 +80,75 @@
                             show: false
                             // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
                         },
-                        nodeStyle : {
+                        nodeStyle: {
                             //r: 30
                         },
-                        linkStyle : {}
+                        linkStyle: {}
                     }
                 },
                 useWorker: false,
-                minRadius : 15,
-                maxRadius : 25,
+                minRadius: 15,
+                maxRadius: 25,
                 gravity: 1.1,
                 scaling: 1.1,
                 roam: 'move',
-                nodes:[
-                    {category:0, name: '项目一', value : 10, label: '项目一\n（主要）'},
-                    {category:1, name: '任务一',value : 2},
-                    {category:1, name: '任务二',value : 3},
-                    {category:1, name: '任务三',value : 3},
-                    {category:1, name: '任务四',value : 7},
-                    {category:2, name: '任务五',value : 5},
-                    {category:2, name: '任务六',value : 8},
-                    {category:2, name: '任务七',value : 9},
-                    {category:2, name: '任务八',value : 4},
-                    {category:2, name: '任务九',value : 4},
-                    {category:2, name: '任务十',value : 1},
+                nodes: [
+                    {category: 0, name: '项目一', value: 10, label: '项目一\n（主要）'},
+                    {category: 1, name: '任务一', value: 2},
+                    {category: 1, name: '任务二', value: 3},
+                    {category: 1, name: '任务三', value: 3},
+                    {category: 1, name: '任务四', value: 7},
+                    {category: 2, name: '任务五', value: 5},
+                    {category: 2, name: '任务六', value: 8},
+                    {category: 2, name: '任务七', value: 9},
+                    {category: 2, name: '任务八', value: 4},
+                    {category: 2, name: '任务九', value: 4},
+                    {category: 2, name: '任务十', value: 1},
                 ],
-                links : [
-                    {source : '任务一', target : '项目一', weight : 1},
-                    {source : '任务二', target : '项目一', weight : 2},
-                    {source : '任务三', target : '项目一', weight : 1},
-                    {source : '任务四', target : '项目一', weight : 2},
-                    {source : '任务五', target : '项目一', weight : 3},
-                    {source : '任务六', target : '项目一', weight : 1},
-                    {source : '任务七', target : '项目一', weight : 6},
-                    {source : '任务八', target : '项目一', weight : 1},
-                    {source : '任务九', target : '项目一', weight : 1},
-                    {source : '任务十', target : '项目一', weight : 1},
-                    {source : '任务三', target : '任务二', weight : 1},
-                    {source : '任务六', target : '任务二', weight : 1},
-                    {source : '任务六', target : '任务三', weight : 1},
-                    {source : '任务六', target : '任务四', weight : 1},
-                    {source : '任务六', target : '任务五', weight : 1},
-                    {source : '任务七', target : '任务六', weight : 6},
-                    {source : '任务七', target : '任务三', weight : 1},
-                    {source : '任务九', target : '任务六', weight : 1}
+                links: [
+                    {source: '任务一', target: '项目一', weight: 1},
+                    {source: '任务二', target: '项目一', weight: 2},
+                    {source: '任务三', target: '项目一', weight: 1},
+                    {source: '任务四', target: '项目一', weight: 2},
+                    {source: '任务五', target: '项目一', weight: 3},
+                    {source: '任务六', target: '项目一', weight: 1},
+                    {source: '任务七', target: '项目一', weight: 6},
+                    {source: '任务八', target: '项目一', weight: 1},
+                    {source: '任务九', target: '项目一', weight: 1},
+                    {source: '任务十', target: '项目一', weight: 1},
+                    {source: '任务三', target: '任务二', weight: 1},
+                    {source: '任务六', target: '任务二', weight: 1},
+                    {source: '任务六', target: '任务三', weight: 1},
+                    {source: '任务六', target: '任务四', weight: 1},
+                    {source: '任务六', target: '任务五', weight: 1},
+                    {source: '任务七', target: '任务六', weight: 6},
+                    {source: '任务七', target: '任务三', weight: 1},
+                    {source: '任务九', target: '任务六', weight: 1}
                 ]
             }
         ]
     };
-//    var ecConfig = require('echarts/config');
-//    function focus(param) {
-//        var data = param.data;
-//        var links = option.series[0].links;
-//        var nodes = option.series[0].nodes;
-//        if (
-//                data.source !== undefined
-//                && data.target !== undefined
-//        ) { //点击的是边
-//            var sourceNode = nodes.filter(function (n) {return n.name == data.source})[0];
-//            var targetNode = nodes.filter(function (n) {return n.name == data.target})[0];
-//            console.log("选中了边 " + sourceNode.name + ' -> ' + targetNode.name + ' (' + data.weight + ')');
-//        } else { // 点击的是点
-//            console.log("选中了" + data.name + '(' + data.value + ')');
-//        }
-//    }
-//    myChart.on(ecConfig.EVENT.CLICK, focus)
-//
-//    myChart.on(ecConfig.EVENT.FORCE_LAYOUT_END, function () {
-//        console.log(myChart.chart.force.getPosition());
-//    });
+    //    var ecConfig = require('echarts/config');
+    //    function focus(param) {
+    //        var data = param.data;
+    //        var links = option.series[0].links;
+    //        var nodes = option.series[0].nodes;
+    //        if (
+    //                data.source !== undefined
+    //                && data.target !== undefined
+    //        ) { //点击的是边
+    //            var sourceNode = nodes.filter(function (n) {return n.name == data.source})[0];
+    //            var targetNode = nodes.filter(function (n) {return n.name == data.target})[0];
+    //            console.log("选中了边 " + sourceNode.name + ' -> ' + targetNode.name + ' (' + data.weight + ')');
+    //        } else { // 点击的是点
+    //            console.log("选中了" + data.name + '(' + data.value + ')');
+    //        }
+    //    }
+    //    myChart.on(ecConfig.EVENT.CLICK, focus)
+    //
+    //    myChart.on(ecConfig.EVENT.FORCE_LAYOUT_END, function () {
+    //        console.log(myChart.chart.force.getPosition());
+    //    });
     myChart.setOption(option);
 </script>
 </html>
