@@ -67,8 +67,8 @@ public class ProjectService extends BaseService<Project> {
 	 *            the query filter
 	 * @return the list
 	 */
-	public List<Project> queryProjectBasicInfoList(QueryFilter queryFilter) {
-		return this.projectDao.queryProjectBasicInfoList(queryFilter);
+	public List<Project> queryProjectBasicInfoList(long userId) {
+		return this.projectDao.queryProjectBasicInfoList(userId);
 	}
 
     private void delByPk(Long id){
