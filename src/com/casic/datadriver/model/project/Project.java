@@ -18,7 +18,7 @@ public class Project {
 	public static final Short STATUS_RUNNING		=1;
 	public static final Short STATUS_STOP			=2;
 	public static final Short STATUS_EXCEPTION		=-1;
-
+	public static final Short STATUS_UNSTART        =-3;
 
 	/** The dd project id. */
 	private Long ddProjectId;
