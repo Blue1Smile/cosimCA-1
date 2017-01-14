@@ -234,6 +234,7 @@ public class PersonalTaskController extends AbstractController {
         }
     }
 
+
     @RequestMapping("refreshlastvalue")
     @Action(description = "更新最新值")
     public void refreshlastvalue(HttpServletRequest request, HttpServletResponse response)
@@ -246,6 +247,17 @@ public class PersonalTaskController extends AbstractController {
             map.put("privateData", PrivateData.class);
             PrivateData privateData = (PrivateData) JSONObject.toBean(obj, PrivateData.class, map);
             privateDataService.updatedata(privateData);
+            //添加数据版本记录
+            DataVersion dataVersion = new DataVersion();
+            dataVersion.setDdDataVersionID(UniqueIdUtil.genId());
+            dataVersion.setDdDataId(privateData.getDdDataId());
+            dataVersion.setDdDataRecordPersonId(ContextUtil.getCurrentUser().getUserId());
+            java.util.Date currentTime = new java.util.Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = formatter.format(currentTime);
+            dataVersion.setDdDataRecordTime(dateString);
+            dataVersion.setDdDataValue(privateData.getDdDataLastestValue());
+            dataVersionService.addDDDataVersion(dataVersion);
         } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
