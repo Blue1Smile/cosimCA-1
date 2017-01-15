@@ -9,9 +9,12 @@
 <html lang="zh-CN">
 <head>
     <title>任务概览</title>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="${ctx}/newtable/jquery.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/iframeresize/iframeResizer.contentWindow.min.js"></script>
     <style>
         .fl {
             float: left;
@@ -21,6 +24,7 @@
             float: right;
         }
     </style>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -42,7 +46,6 @@
                     <h3 class="panel-title">订阅数据</h3>
                 </div>
                 <div class="panel-body">
-
                 </div>
             </div>
         </div>
@@ -52,7 +55,7 @@
                     <h3 class="panel-title">私有数据</h3>
                 </div>
                 <div class="panel-body">
-                    <div id="orderupdate" style="height:400px;"></div>
+                    <div id="orderupdate"></div>
                 </div>
             </div>
         </div>
@@ -64,7 +67,7 @@
                     <h3 class="panel-title">订阅关系图</h3>
                 </div>
                 <div class="panel-body">
-                    <div id="main" style="height:400px;"></div>
+                    <div id="main" style="height:900px;"></div>
                 </div>
             </div>
         </div>
@@ -73,6 +76,7 @@
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script src="${ctx}/echart/echarts-all.js"></script>
+
 <script>
     var myChart = echarts.init(document.getElementById('main'));
     var option = {
@@ -191,4 +195,5 @@
     //    });
     myChart.setOption(option);
 </script>
+
 </html>
