@@ -157,6 +157,7 @@ public class ProcessFlowController extends AbstractController {
         }
 
         //保存流程XML
+        if (projectId!=0)
         saveProcessXml(doc, projectId);
     }
 
