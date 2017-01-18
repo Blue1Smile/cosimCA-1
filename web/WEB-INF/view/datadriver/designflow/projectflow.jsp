@@ -34,8 +34,10 @@
     <script type="text/javascript" src="${ctx}/designflow/editors/js/mxApplication.js"></script>
     <script type="text/javascript">
         mxConstants.DEFAULT_HOTSPOT = 1;
-        //  var s=$('projectID').value;
-        var s = '${processFlowXml}';
+
+        var id='${projectId}';
+var xml='${processFlowXml}';
+
         // Enables guides
         mxGraphHandler.prototype.guidesEnabled = true;
 
@@ -52,7 +54,7 @@
         };
     </script>
 </head>
-<body onload="new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor.xml',s);">
+<body onload="new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor.xml',id,xml);">
 
 <table id="splash" width="100%" height="100%"
        style="background:white;position:relative;top:0px;left:0px;z-index:4;">
