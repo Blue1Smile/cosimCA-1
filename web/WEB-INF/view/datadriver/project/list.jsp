@@ -98,10 +98,10 @@
                     <%--<a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-disabled layui-btn-mini"><i--%>
                     <%--class="layui-icon" id="setup">--%>
                     <%--&#xe614;</i> 项目设置</a>--%>
-                    <button class="layui-btn layui-btn-mini" id="setup"><i
+                    <a class="layui-btn layui-btn-mini" id="setup" href="#"><i
                             class="layui-icon">
                         &#xe614;</i> 项目设置
-                    </button>
+                    </a>
                     <a href="start.ht?id=${projectList.ddProjectId}"
                        class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#x1005;</i> 项目启动</a>
                     <a href="stepinto.ht?id=${projectList.ddProjectId}"
@@ -126,10 +126,10 @@
                         <%--<a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-mini"><i--%>
                         <%--class="layui-icon" id="setup">--%>
                         <%--&#xe614;</i> 项目设置</a>--%>
-                        <button class="layui-btn layui-btn-mini" id="setup"><i
+                        <a class="layui-btn layui-btn-mini" id="setup" href="#"><i
                                 class="layui-icon">
                             &#xe614;</i> 项目设置
-                        </button>
+                        </a>
                         <a href="start.ht?id=${projectList.ddProjectId}"
                            class="layui-btn layui-btn-primary layui-btn-mini"><i class="layui-icon">&#x1005;</i>
                             项目启动</a>
