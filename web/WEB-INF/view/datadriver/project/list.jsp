@@ -65,7 +65,7 @@
         <c:set var="checkAll">
             <input type="checkbox" id="chkall"/>
         </c:set>
-        <display:table name="projectList" id="ProjectItem" requestURI="list.ht" sort="external" cellpadding="0"
+        <display:table name="projectList" id="projectList" requestURI="list.ht" sort="external" cellpadding="0"
                        cellspacing="0" export="false" class="layui-table" pagesize="10">
             <display:column title="${checkAll}" media="html" style="width:3%;">
                 <input type="checkbox" class="pk" name="id" value="${ProjectItem.ddProjectId}">
@@ -99,24 +99,47 @@
             <%--<display:column property="ddProjectScheduleState" title="项目研制阶段"></display:column>--%>
 
             <display:column title="操作" media="html" style="width:380px">
+                <c:choose><c:when test="${projectList.ddProjectState==1}">
+                    <a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">
+                        &#xe642;</i> 编辑</a>
+                    <a href="start.ht?id=${projectList.ddProjectId}"
+                       class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#x1005;</i> 启动</a>
+                    <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
+                    <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
+                    <a class="layui-btn layui-btn-mini layui-btn-normal"
+                       href="${ctx}/datadriver/task/list.ht?id=${projectList.ddProjectId}"><i class="layui-icon">
+                        &#xe62a;</i> 任务</a>
+                    <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
+                       href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i class="layui-icon">
+                        &#xe641;</i> 流程</a>
+                    <a class="layui-btn layui-btn-mini layui-btn-normal"
 
-                <a href="edit.ht?id=${ProjectItem.ddProjectId}" class="layui-btn layui-btn-mini"><i class="layui-icon">
-                    &#xe642;</i> 编辑</a>
-                <a href="start.ht?id=${ProjectItem.ddProjectId}"
-                   class="layui-btn layui-btn-primary layui-btn-mini"><i class="layui-icon">&#x1005;</i> 启动</a>
-                <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
-                <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
-                <a class="layui-btn layui-btn-mini layui-btn-normal"
-                   href="${ctx}/datadriver/task/list.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
-                    &#xe62a;</i> 任务</a>
-                <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
-                   href="${ctx}/datadriver/designflow/flowframe.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
-                    &#xe641;</i> 流程</a>
-                <a class="layui-btn layui-btn-mini layui-btn-normal"
-                   href="${ctx}/datadriver/index/indexedit.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
-                    &#xe60a;</i> 指标</a>
-                <a href="del.ht?id=${ProjectItem.ddProjectId}"
-                   class="layui-btn layui-btn-mini layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</a>
+                       href="${ctx}/datadriver/index/indexedit.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">
+                        &#xe60a;</i> 指标</a>
+                    <a href="del.ht?id=${projectList.ddProjectId}"
+                       class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#xe640;</i> 删除</a>
+                </c:when>
+                    <c:otherwise>
+                        <a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-mini"><i class="layui-icon">
+                            &#xe642;</i> 编辑</a>
+                        <a href="start.ht?id=${projectList.ddProjectId}"
+                           class="layui-btn layui-btn-primary layui-btn-mini"><i class="layui-icon">&#x1005;</i> 启动</a>
+                        <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
+                        <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
+                        <a class="layui-btn layui-btn-mini layui-btn-normal"
+                           href="${ctx}/datadriver/task/list.ht?id=${projectList.ddProjectId}"><i class="layui-icon">
+                            &#xe62a;</i> 任务</a>
+                        <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
+                           href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i class="layui-icon">
+                            &#xe641;</i> 流程</a>
+                        <a class="layui-btn layui-btn-mini layui-btn-normal"
+
+                           href="${ctx}/datadriver/index/indexedit.ht?id=${projectList.ddProjectId}"><i class="layui-icon">
+                            &#xe60a;</i> 指标</a>
+                        <a href="del.ht?id=${projectList.ddProjectId}"
+                           class="layui-btn layui-btn-mini layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</a>
+                    </c:otherwise></c:choose>
+
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="ProjectItem"/>--%>

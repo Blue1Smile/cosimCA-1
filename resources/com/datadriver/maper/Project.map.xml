@@ -30,7 +30,7 @@
 		<result column="DD_PROJECT_PRIORITY" jdbcType="NUMERIC"
 			property="ddProjectPriority" />
 		<result column="DD_PROJECT_REMARK" jdbcType="VARCHAR" property="ddProjectRemark" />
-		<result column="DD_PROJECT_STATE" jdbcType="NUMERIC" property="ddProjectState" />
+		<result column="DD_PROJECT_STATE" jdbcType="SMALLINT" property="ddProjectState" />
 		<result column="DD_PROJECT_PLAN_START_DATE" jdbcType="DATE"
 			property="ddProjectPlanStartDate" />
 		<result column="DD_PROJECT_COMPLETE_DATE" jdbcType="DATE"
@@ -66,6 +66,13 @@
 		where DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
 	</select>
 
+	<select id="getProjectListbyUserId" parameterType="java.lang.Long"
+			resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from dd_project
+		where DD_PROJECT_CREATOR_ID = #{ddProjectCreatorId,jdbcType=NUMERIC}
+	</select>
 
 	<select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
 		SELECT <include refid="Base_Column_List"/>
@@ -147,7 +154,7 @@
 		#{ddProjectChangePersonId,jdbcType=NUMERIC},
 		#{ddProjectPriority,jdbcType=NUMERIC},
 		#{ddProjectRemark,jdbcType=VARCHAR},
-		#{ddProjectState,jdbcType=NUMERIC},
+		#{ddProjectState,jdbcType=SMALLINT},
 		#{ddProjectPlanStartDate,jdbcType=DATE},
 		#{ddProjectCompleteDate,jdbcType=DATE},
 		#{ddProjectActualStartDate,jdbcType=DATE},
@@ -189,7 +196,7 @@
 		DD_PROJECT_REMARK =
 		#{ddProjectRemark,jdbcType=VARCHAR},
 		DD_PROJECT_STATE =
-		#{ddProjectState,jdbcType=NUMERIC},
+		#{ddProjectState,jdbcType=SMALLINT},
 		DD_PROJECT_PLAN_START_DATE =
 		#{ddProjectPlanStartDate,jdbcType=DATE},
 		DD_PROJECT_COMPLETE_DATE
@@ -327,7 +334,7 @@
 				#{ddProjectRemark,jdbcType=VARCHAR},
 			</if>
 			<if test="ddProjectState != null">
-				#{ddProjectState,jdbcType=NUMERIC},
+				#{ddProjectState,jdbcType=SMALLINT},
 			</if>
 			<if test="ddProjectPlanStartDate != null">
 				#{ddProjectPlanStartDate,jdbcType=DATE},
@@ -412,7 +419,7 @@
 				DD_PROJECT_REMARK = #{ddProjectRemark,jdbcType=VARCHAR},
 			</if>
 			<if test="ddProjectState != null">
-				DD_PROJECT_STATE = #{ddProjectState,jdbcType=NUMERIC},
+				DD_PROJECT_STATE = #{ddProjectState,jdbcType=SMALLINT},
 			</if>
 			<if test="ddProjectPlanStartDate != null">
 				DD_PROJECT_PLAN_START_DATE =
@@ -474,7 +481,7 @@
 		DD_PROJECT_REMARK =
 		#{ddProjectRemark,jdbcType=VARCHAR},
 		DD_PROJECT_STATE =
-		#{ddProjectState,jdbcType=NUMERIC},
+		#{ddProjectState,jdbcType=SMALLINT},
 		DD_PROJECT_PLAN_START_DATE =
 		#{ddProjectPlanStartDate,jdbcType=DATE},
 		DD_PROJECT_COMPLETE_DATE
