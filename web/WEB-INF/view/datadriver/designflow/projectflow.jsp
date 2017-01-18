@@ -34,8 +34,8 @@
     <script type="text/javascript" src="${ctx}/designflow/editors/js/mxApplication.js"></script>
     <script type="text/javascript">
         mxConstants.DEFAULT_HOTSPOT = 1;
-      //  var s=$('projectID').value;
-var s='${processFlowXml}';
+        //  var s=$('projectID').value;
+        var s = '${processFlowXml}';
         // Enables guides
         mxGraphHandler.prototype.guidesEnabled = true;
 
