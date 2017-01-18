@@ -13,7 +13,6 @@
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="${ctx}/newtable/jquery.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/iframeresize/iframeResizer.contentWindow.min.js"></script>
     <style>
         .fl {
