@@ -8,6 +8,27 @@ var curRow = {};
 function initTable() {
     $table.bootstrapTable({
         height: getHeight(),
+        //search:false,
+        //showColumns: false,
+        //showToggle: false,
+        //showRefresh: false,
+        //showExport: false,
+        //sortTable: true,
+        //detailView: true,
+        //detailFormatter:"detailFormatter",
+        //minimumCountColumns:2,
+        //showPaginationSwitch:false,
+        //pagination:true,
+        //striped:true,
+        //showHeader:true,
+        //pageSize:10,
+        //pageList:[10,25,50,100,ALL],
+        //showFooter:false,
+        //sidePagination:"server",
+        //method: 'get',
+        //url: "submitpublishjson.ht?id=${taskId}",
+        //responseHandler:"responseHandler",
+        //idField:"id",
         columns: [
             {//第一列，数据ID
                 field: 'ddDataId',
@@ -83,7 +104,11 @@ function initTable() {
         onClickRow: function (row, $element) {
             curRow = row;
         },
-        ////查询参数,每次调用是会带上这个参数，可自定义
+        //注册加载子表的事件。注意下这里的三个参数！
+        onExpandRow: function (index, row, $detail) {
+            InitSubTable(index, row, $detail);
+        },
+        //查询参数,每次调用是会带上这个参数，可自定义
         queryParams: function(params) {
             var name = $('#ddDataName').val();
             return {
@@ -136,12 +161,15 @@ function initTable() {
         // push or splice the selections if you want to save all data selections
     });
     $table.on('expand-row.bs.table', function (e, index, row, $detail) {
-        if (index % 2 == 1) {
-            $detail.html('Loading from ajax request...');
-            $.get('LICENSE', function (res) {
-                $detail.html(res.replace(/\n/g, '<br>'));
-            });
-        }
+        //if (index % 2 == 1) {
+        //    $detail.html('Loading from ajax request...');
+        //    $.get('LICENSE', function (res) {
+        //        $detail.html(res.replace(/\n/g, '<br>'));
+        //    });
+        //}
+       InitSubTable(index, row, $detail);
+
+
     });
     $table.on('all.bs.table', function (e, name, args) {
         console.log(name, args);
@@ -181,6 +209,7 @@ function detailFormatter(index, row) {
     });
     return html.join('');
 }
+
 //原始操作按钮
 function operateFormatter(value, row, index) {
     return [
@@ -192,6 +221,7 @@ function operateFormatter(value, row, index) {
         '</a>'
     ].join('');
 }
+
 //发布数据更新
 function operateFormatterRefresh(value, row, index) {
     return [
@@ -200,6 +230,7 @@ function operateFormatterRefresh(value, row, index) {
         '</a>'
     ].join('');
 }
+
 //操作按钮功能实现
 window.operateEvents = {
     'click .like': function (e, value, row, index) {
@@ -238,6 +269,162 @@ function getHeight() {
     return $(window).height() - $('.layui-tab-title').outerHeight(true);
 }
 
+     InitSubTable = function (index, row, $detail) {
+    var parentid = row.MENU_ID;
+    var cur_table = $detail.html('<table></table>').find('table');
+    $(cur_table).bootstrapTable({
+        url: "submitpublishjson.ht?id=${taskId}",
+        method: 'get',
+        queryParams: {strParentID: parentid},
+        ajaxOptions: {strParentID: parentid},
+        clickToSelect: true,
+        detailView: true,//父子表
+        detailFormatter:"detailFormatter",
+        uniqueId: "MENU_ID",
+        pageSize: 2,
+        pageList: [10, 25, 50, 100, ALL],
+        columns: [
+            //    {
+            //    checkbox: true
+            //},
+            {//第一列，数据ID
+                field: 'ddDataId',
+                title: '数据ID',
+                sortable: true,
+                editable: false,
+                align: 'center',
+                visible: false
+            }, {//第二列，名称
+                field: 'ddDataName',
+                title: '数据名称',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            }, {//所属任务ID
+                field: 'ddDataTaskId',
+                title: '所属任务ID',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: false
+            }
+            , {//第三列，数值
+                field: 'ddDataLastestValue',
+                title: '值',
+                sortable: true,
+                align: 'center',
+                editable: {
+                    type: 'text',
+                    title: '值',
+                    validate: function (v) {
+                        if (isNaN(v)) return '值必须是数字';
+                    }
+                }
+                //,
+                // footerFormatter: ddDataLastestValueFormatter
+            }
+            , {//数据类型
+                field: 'ddDataType',
+                title: '数据类型',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            }, {//所属任务
+                field: 'ddDataTaskName',
+                title: '所属任务',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            }
+        ],
+        ////无线循环取子表，直到子表里面没有记录
+        //onExpandRow: function (index, row, $Subdetail) {
+        //    oInit.InitSubTable(index, row, $Subdetail);
+        //}
+    });
+}
+
+//
+//initTable.InitSubTable = function (index, row, $detail) {
+//    var parentid = row.MENU_ID;
+//    var cur_table = $detail.html('<table></table>').find('table');
+//    $(cur_table).bootstrapTable({
+//        url: 'show.ht?id=${taskId}',
+//        //method: 'post',
+//        queryParams: {strParentID: parentid},
+//        ajaxOptions: {strParentID: parentid},
+//        clickToSelect: true,
+//        detailView: true,//父子表
+//        detailFormatter:"detailFormatter",
+//        uniqueId: "MENU_ID",
+//        pageSize: 2,
+//        pageList: [10, 25, 50, 100, ALL],
+//        columns: [
+//            //    {
+//            //    checkbox: true
+//            //},
+//            {//第一列，数据ID
+//                field: 'ddDataVersionId',
+//                title: '数据版本ID',
+//                sortable: true,
+//                editable: false,
+//                align: 'center',
+//                visible: false
+//            }, {//第二列，名称
+//                field: 'ddDataId',
+//                title: '数据ID',
+//                sortable: true,
+//                editable: false,
+//                // footerFormatter: ddDataNameFormatter,
+//                align: 'center',
+//                visible: true
+//            }, {//所属任务ID
+//                field: 'ddDataRecordTime',
+//                title: '数据记录时间',
+//                sortable: true,
+//                editable: false,
+//                // footerFormatter: ddDataNameFormatter,
+//                align: 'center',
+//                visible: false
+//            }
+//            , {//第三列，数值
+//                field: 'ddDataRecordPersonId',
+//                title: '数据记录人ID',
+//                sortable: true,
+//                align: 'center',
+//                editable: {
+//                    type: 'text',
+//                    title: '值',
+//                    validate: function (v) {
+//                        if (isNaN(v)) return '值必须是数字';
+//                    }
+//                }
+//                //,
+//                // footerFormatter: ddDataLastestValueFormatter
+//            }
+//            , {//数据类型
+//                field: 'ddDataValue',
+//                title: '数据值',
+//                sortable: true,
+//                editable: false,
+//                // footerFormatter: ddDataNameFormatter,
+//                align: 'center',
+//                visible: true
+//            }
+//        ],
+//        ////无线循环取子表，直到子表里面没有记录
+//        //onExpandRow: function (index, row, $Subdetail) {
+//        //    oInit.InitSubTable(index, row, $Subdetail);
+//        //}
+//    });
+//}
 $(function () {
     initTable();
 });
