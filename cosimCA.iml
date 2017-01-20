@@ -59,14 +59,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="refLib1" level="project" />
-    <orderEntry type="library" name="lib1" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="commons-fileupload-1.2.2" level="project" />
+    <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" name="refLib1" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="refLib" level="project" />
-    <orderEntry type="library" name="iel" level="project" />
-    <orderEntry type="library" name="RadialGraphView" level="project" />
-    <orderEntry type="library" name="NtkoOfficeControlSetup" level="project" />
-    <orderEntry type="library" name="source code for imgupload with flash" level="project" />
   </component>
 </module>
