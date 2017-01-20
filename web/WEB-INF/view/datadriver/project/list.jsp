@@ -5,7 +5,7 @@
     <title>项目基础信息列表</title>
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-    <%--<link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
+    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <style>
         .fl {
             float: left;
@@ -45,7 +45,8 @@
                     </div>
                     <div class="fr">
                         <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                        <a class="layui-btn" href="#" id="create"><i class="layui-icon">&#xe61f;</i> 创建</a>
+                        <a class="layui-btn" href="#" id="create" data-toggle="modal" data-remote="create.ht"
+                           data-target="#myCreate"><i class="layui-icon">&#xe61f;</i> 创建</a>
 
                         <%--<a class="layui-btn layui-btn-danger" action="del.ht"><i--%>
                         <%--class="layui-icon">&#xe640;</i> 删除</a>--%>
@@ -61,7 +62,7 @@
         <%--<input type="checkbox" id="chkall"/>--%>
         <%--</c:set>--%>
         <display:table name="projectList" id="projectList" requestURI="list.ht" sort="external" cellpadding="0"
-                       cellspacing="0" export="false" class="layui-table" pagesize="10">
+                       cellspacing="0" export="false" class="table table-hover table-bordered" pagesize="10">
             <%--<display:column title="${checkAll}" media="html" style="width:3%;">--%>
             <%--<input type="checkbox" class="pk" name="id" value="${ProjectItem.ddProjectId}">--%>
             <%--</display:column>--%>
@@ -98,7 +99,9 @@
                     <%--<a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-disabled layui-btn-mini"><i--%>
                     <%--class="layui-icon" id="setup">--%>
                     <%--&#xe614;</i> 项目设置</a>--%>
-                    <a class="layui-btn layui-btn-mini" id="setup" href="#"><i
+                    <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"
+                       data-remote="setup.ht?id=${projectList.ddProjectId}"
+                       data-target="#myModal"><i
                             class="layui-icon">
                         &#xe614;</i> 项目设置
                     </a>
@@ -112,11 +115,10 @@
                     <%--href="${ctx}/datadriver/task/list.ht?id=${projectList.ddProjectId}"><i class="layui-icon">--%>
                     <%--&#xe62a;</i> 任务</a>--%>
                     <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
-                    href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i
-                    class="layui-icon">
-                    &#xe641;</i> 流程</a>
+                       href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i
+                            class="layui-icon">
+                        &#xe641;</i> 流程</a>
                     <%--<a class="layui-btn layui-btn-mini layui-btn-normal"--%>
-
                     <%--href="${ctx}/datadriver/index/indexedit.ht?id=${ProjectItem.ddProjectId}"><i class="layui-icon">--%>
                     <%--&#xe60a;</i> 指标</a>--%>
                     <%--<a href="del.ht?id=${projectList.ddProjectId}"--%>
@@ -126,7 +128,9 @@
                         <%--<a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-mini"><i--%>
                         <%--class="layui-icon" id="setup">--%>
                         <%--&#xe614;</i> 项目设置</a>--%>
-                        <a class="layui-btn layui-btn-mini" id="setup" href="#"><i
+                        <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"
+                           data-remote="setup.ht?id=${projectList.ddProjectId}"
+                           data-target="#myModal"><i
                                 class="layui-icon">
                             &#xe614;</i> 项目设置
                         </a>
@@ -141,11 +145,10 @@
                         <%--href="${ctx}/datadriver/task/list.ht?id=${projectList.ddProjectId}"><i class="layui-icon">--%>
                         <%--&#xe62a;</i> 任务</a>--%>
                         <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
-                        href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i
-                        class="layui-icon">
-                        &#xe641;</i> 流程</a>
+                           href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i
+                                class="layui-icon">
+                            &#xe641;</i> 流程</a>
                         <%--<a class="layui-btn layui-btn-mini layui-btn-normal"--%>
-
                         <%--href="${ctx}/datadriver/index/indexedit.ht?id=${projectList.ddProjectId}"><i--%>
                         <%--class="layui-icon">--%>
                         <%--&#xe60a;</i> 指标</a>--%>
@@ -158,34 +161,26 @@
         <%--<hotent:paging tableId="ProjectItem"/>--%>
     </div>
 </div>
+<%--项目创建--%>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+<%--项目设置--%>
+<div class="modal fade" id="myCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 </body>
+<script src="${ctx}/js/jqueryui/external/jquery/jquery.js"></script>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-<script>
-    //弹出一个页面层，项目新建
-    $('#create').on('click', function () {
-        layer.open({
-            id: 1,
-            type: 2,
-            title: "项目新建",
-            skin: 'demo-class',
-            area: ['600px', '560px'],
-            shadeClose: true, //点击遮罩关闭
-            content: ['create.ht', 'no']
-        });
-    });
-    //弹出一个页面层，项目设置
-    $('#setup').on('click', function () {
-        layer.open({
-            id: 2,
-            type: 2,
-            title: "项目设置",
-            skin: 'demo-class',
-            area: ['700px', '600px'],
-            shadeClose: true, //点击遮罩关闭
-            content: ['setup.ht', 'no']
-        });
-    });
-</script>
+<script src="${ctx}/newtable/bootstrap.js"></script>
 </html>
 
 

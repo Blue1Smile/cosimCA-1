@@ -33,6 +33,7 @@ import java.net.URLDecoder;
 import java.util.Iterator;
 
 import com.casic.datadriver.service.flow.ProjectProcessAssociaService;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * Created by dodo on 2016/12/27.
@@ -64,17 +65,10 @@ public class ProcessFlowController extends AbstractController {
     public ModelAndView flowframe(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ProcessFlow processFlow = new ProcessFlow();
-        ModelAndView mv = new ModelAndView();
+        //跳转到流程设计页面
+        ModelAndView mv = new ModelAndView(new RedirectView("/datadriver/designflow/projectflow.ht"));
         Long projectId = RequestUtil.getLong(request, "id");
-        ProjectProcessAssocia projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectId);
-        if (projectProcessAssocia != null) {
-            Long processFlowId = projectProcessAssocia.getDdPrcessId();
-            processFlow = processFlowService.getById(processFlowId);
-            mv = this.getAutoView().addObject("projectId", projectId)
-                    .addObject("processFlowXml", processFlow);
-        } else {
-            mv = this.getAutoView().addObject("projectId", projectId);
-        }
+        mv.addObject("projectId", projectId);
         return mv;
     }
 
@@ -90,8 +84,19 @@ public class ProcessFlowController extends AbstractController {
     @Action(description = "流程设计")
     public ModelAndView projectflow(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Long projectId = RequestUtil.getLong(request, "id");
-        ModelAndView mv = this.getAutoView().addObject("projectId", projectId);
+        ProcessFlow processFlow = new ProcessFlow();
+        ModelAndView mv = new ModelAndView();
+        Long projectId = RequestUtil.getLong(request, "projectId");
+        ProjectProcessAssocia projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectId);
+        if (projectProcessAssocia != null) {
+            Long processFlowId = projectProcessAssocia.getDdPrcessId();
+            processFlow = processFlowService.getById(processFlowId);
+            String tempXml = processFlow.getDdProcessXml();
+            mv = this.getAutoView().addObject("projectId", projectId)
+                    .addObject("processFlowXml", tempXml);
+        } else {
+            mv = this.getAutoView().addObject("projectId", projectId);
+        }
         return mv;
     }
 
@@ -157,8 +162,8 @@ public class ProcessFlowController extends AbstractController {
         }
 
         //保存流程XML
-        if (projectId!=0)
-        saveProcessXml(doc, projectId);
+        if (projectId != 0)
+            saveProcessXml(doc, projectId);
     }
 
     /**
