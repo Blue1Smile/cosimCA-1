@@ -7,58 +7,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title><decorator:title default="工作台"/>协同设计</title>
-    <%@include file="/commons/cloud/meta.jsp" %>
+    <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $(".sontable").show();
-            $(".parenttable").toggle(function () {
-                var index = $(".parenttable").index($(this)[0]);
-                $(".sontable:eq(" + index + ")").slideUp();
-            }, function () {
-                var index = $(".parenttable").index($(this)[0]);
-                $(".sontable:eq(" + index + ")").slideDown();
-            });
-            //增加导航栏选中效果
-            $("li").each(function(index){
-                $(this).click(function(){
-                    $("li").removeClass("layui-this");
-                    $("li").eq(index).addClass("layui-this");
-                });
-            });
-        });
-
-    </script>
+    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-
-<div id="head">
-    <div id="top_info">
-    <span>
-    <a href="${ctx}/cloud/console/home.ht" class="link01">个人主页</a>
-    </span>
-        <c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}">欢迎您，<a id="username" href="#"><sec:authentication
-                property="principal.fullname"/></a>，<a href="${ctx}/loginCloud.ht" class="link01">注销</a></c:if>
-        <c:if test="${empty SPRING_SECURITY_LAST_USERNAME}">请<a href="${ctx}/loginCloud.ht" class="link01">登录</a> │
-            <a
-                    href="${ctx}/reg.ht" class="link01">注册</a></c:if>
+<div class="container-fluid">
+    <div class="row bg-info" style="height: 30px">
+        <p class="pull-left">
+            <a href="${ctx}/cloud/console/home.ht" class="link01">个人主页</a>
+        </p>
+        <p class="pull-right">
+            <c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}">欢迎您，<a id="username" href="#"><sec:authentication
+                    property="principal.fullname"/></a>，<a href="${ctx}/loginCloud.ht" class="link01">注销</a></c:if>
+        </p>
     </div>
-    <div id="logo_zone">
-        <%--<div id="logo_zone_left"><a href="#"><img src="${ctx}/testimg/logo6.jpg"/> </a></div>--%>
-        <svg width="500" height="100">
+    <br>
+    <div class="row">
+        <svg width="500" height="60">
             <text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="Impact"> Cosim</text>
-            <text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台 </text>
+            <text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台</text>
         </svg>
     </div>
-</div>
-
-<div class="layui-layout-admin">
 
     <%@include file="/commons/cloud/top_console.jsp" %>
-    <decorator:body/>
-    <div class="layui-body">
-
+    <div class="col-xs-2">
+        <decorator:body/>
+    </div>
+    <div class="col-xs-10">
         <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe"
                 style="width:100%;min-height:800px;"></iframe>
     </div>
