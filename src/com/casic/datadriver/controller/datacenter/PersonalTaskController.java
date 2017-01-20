@@ -311,5 +311,48 @@ public class PersonalTaskController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
+
+
+    @RequestMapping("showfiveversion")
+    @Action(description = "显示五条最新的数据版本")
+    public void showfiveversion(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        response.setContentType("application/json");
+
+        try {
+            String dataId = request.getParameter("ddDataId");
+//            JSONObject jsonObject = new JSONObject();
+//           Long dataId = RequestUtil.getLong(request, "ddDataId");
+//
+//            List<DataVersion> dateVersion_list = this.dataVersionService.queryDataVersionListByddDataId(dataId);
+//            JSONObject jsonObject = new JSONObject();
+//            for (int i = 0; i < dateVersion_list.size(); i++) {
+//                DataVersion dataVersion = dateVersion_list.get(i);
+//                jsonObject.put("ddDataVersionId", dataVersion.getDdDataVersionID());
+//                jsonObject.put("ddDataId", dataVersion.getDdDataId());
+//                jsonObject.put("ddDataRecordTime", dataVersion.getDdDataRecordTime());
+//                jsonObject.put("ddDataRecordPersonId", dataVersion.getDdDataRecordPersonId());
+//                jsonObject.put("ddDataValue", dataVersion.getDdDataValue());
+//                jsonMembers.add(jsonObject);
+//            }
+//            json.put("total", dateVersion_list.size());
+//            json.put("rows", jsonMembers);
+////        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
+//            String jsonstring = formatJson(json.toString());
+//            PrintWriter out = null;
+//            out = response.getWriter();
+//            out.append(jsonstring);
+//            out.flush();
+//            out.close();
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
+
 }
 
