@@ -27,23 +27,23 @@
 
 <div class="layui-tab layui-tab-card">
     <ul class="layui-tab-title">
-        <li class="layui-this">个人任务列表</li>
+        <li class="layui-this">我的工作台</li>
     </ul>
     <div class="layui-tab-content">
-        <blockquote class="layui-elem-quote">
-            <div style="height: 40px;">
-                <div class="fl">
-                    <form id="searchForm" method="post" action="list.ht">
-                        <input type="text" name="Q_name_SL" class="layui-input"
-                               value="${param['Q_name_SL']}" placeholder="任务名称"/>
-                    </form>
-                </div>
-                <div class="fr"><a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">
-                        &#x1002;</i> 刷新</a>
-                </div>
-            </div>
-        </blockquote>
+        <%--<blockquote class="layui-elem-quote">--%>
+            <%--<div style="height: 40px;">--%>
+                <%--<div class="fl">--%>
+                    <%--<form id="searchForm" method="post" action="list.ht">--%>
+                        <%--<input type="text" name="Q_name_SL" class="layui-input"--%>
+                               <%--value="${param['Q_name_SL']}" placeholder="任务名称"/>--%>
+                    <%--</form>--%>
+                <%--</div>--%>
+                <%--<div class="fr"><a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>--%>
+                    <%--<a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">--%>
+                        <%--&#x1002;</i> 刷新</a>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</blockquote>--%>
         <c:set var="checkAll">
             <input type="checkbox" id="chkall"/>
         </c:set>

@@ -45,7 +45,11 @@
         }
 
     </script>
-
+    <style>
+        .fr {
+            float: right;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-tab layui-tab-card">
@@ -59,10 +63,17 @@
             </c:otherwise>
         </c:choose>
     </ul>
-    <div class="layui-tab-content">
-        <a class="layui-btn layui-btn-normal" id="dataFormSave" href="#">保存</a>
-        <a class="layui-btn layui-btn-normal" href="list.ht?id=${taskId}">返回</a>
-
+    <div class="layui-tab-content" style="height: 100%;">
+        <blockquote class="layui-elem-quote">
+            <div style="height: 40px;">
+                <div class="fr">
+                    <a class="layui-btn layui-btn-normal" id="dataFormSave" href="#"><i
+                            class="layui-icon">&#xe61e;</i> 保存</a>
+                    <a class="layui-btn layui-btn-normal" href="list.ht?id=${taskId}"><i
+                            class="layui-icon">&#xe603;</i> 返回</a>
+                </div>
+            </div>
+        </blockquote>
         <form id="privateDataForm" name="privateDataForm" method="post" action="save.ht" enctype="multipart/form-data">
             <table id="AddHandlingFee" class="layui-table" cellpadding="0" cellspacing="0" border="0" type="main">
                 <tr>
@@ -89,11 +100,13 @@
                     <td>
                         <c:choose>
                             <c:when test="${!empty taskInfo}">
-                                <input type="text" id="ddDataTaskName" name="ddDataTaskName" value="${taskInfo.ddTaskName}"
+                                <input type="text" id="ddDataTaskName" name="ddDataTaskName"
+                                       value="${taskInfo.ddTaskName}"
                                        class="layui-input"/>
                             </c:when>
                             <c:otherwise>
-                                <input type="text" id="ddDataTaskName" name="ddDataTaskName" value="${PrivateData.ddDataTaskName}"
+                                <input type="text" id="ddDataTaskName" name="ddDataTaskName"
+                                       value="${PrivateData.ddDataTaskName}"
                                        class="layui-input"/>
                             </c:otherwise>
                         </c:choose>
