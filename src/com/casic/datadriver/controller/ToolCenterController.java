@@ -308,7 +308,7 @@ public class ToolCenterController extends BaseController {
 
     }
 
-    @RequestMapping("list")
+    @RequestMapping("list-1")
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 //        String major= RequestUtil.getString(request, "major");
