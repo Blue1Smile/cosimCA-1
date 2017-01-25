@@ -1,27 +1,21 @@
 package com.casic.datadriver.model.data;
 
 public class DataSnapShotId {
-    private Integer ddDataId;
 
-    private Integer ddDataSnapShotId;
 
-    private String ddDataValue;
-
-    private Integer ddDataVersion;
-
-    public Integer getDdDataId() {
+    public Long getDdDataId() {
         return ddDataId;
     }
 
-    public void setDdDataId(Integer ddDataId) {
+    public void setDdDataId(Long ddDataId) {
         this.ddDataId = ddDataId;
     }
 
-    public Integer getDdDataSnapShotId() {
+    public Long getDdDataSnapShotId() {
         return ddDataSnapShotId;
     }
 
-    public void setDdDataSnapShotId(Integer ddDataSnapShotId) {
+    public void setDdDataSnapShotId(Long ddDataSnapShotId) {
         this.ddDataSnapShotId = ddDataSnapShotId;
     }
 
@@ -40,4 +34,18 @@ public class DataSnapShotId {
     public void setDdDataVersion(Integer ddDataVersion) {
         this.ddDataVersion = ddDataVersion;
     }
+
+    private Long ddDataId;
+
+    private Long ddDataSnapShotId;
+
+    private String ddDataValue;
+
+    private Integer ddDataVersion;
+
+
+
+
+
+
 }

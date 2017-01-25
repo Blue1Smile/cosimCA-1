@@ -9,7 +9,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.casic.datadriver.model.data.DataSnapShotId;
 import com.casic.datadriver.model.task.TaskInfo;
+import com.casic.datadriver.service.data.DataSnapShotIdService;
 import com.casic.datadriver.service.task.TaskInfoService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -42,6 +44,9 @@ public class PrivateDataController extends AbstractController {
 
     @Resource
     private TaskInfoService taskInfoService;
+
+    @Resource
+    private DataSnapShotIdService dataSnapShotIdService;
     /**
      * ?????????.
      *
@@ -157,5 +162,8 @@ public class PrivateDataController extends AbstractController {
     public void initBinder(ServletRequestDataBinder bin) {
         bin.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
     }
+
+
+
 
 }

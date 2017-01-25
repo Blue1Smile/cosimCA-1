@@ -2,19 +2,19 @@ package com.casic.datadriver.controller.datacenter;
 
 
 import com.casic.datadriver.controller.AbstractController;
-import com.casic.datadriver.model.data.DataVersion;
-import com.casic.datadriver.model.data.OrderDataRelation;
-import com.casic.datadriver.model.data.PrivateData;
+import com.casic.datadriver.model.data.*;
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskStart;
 import com.casic.datadriver.model.task.TaskInfo;
-import com.casic.datadriver.service.data.DataVersionService;
-import com.casic.datadriver.service.data.OrderDataRelationService;
-import com.casic.datadriver.service.data.PrivateDataService;
+import com.casic.datadriver.service.data.*;
+import com.casic.datadriver.service.data.DataSnapShotIdService;
+
 import com.casic.datadriver.service.project.ProjectService;
 import com.casic.datadriver.service.task.ProTaskDependanceService;
 import com.casic.datadriver.service.task.TaskInfoService;
 import com.casic.datadriver.service.task.TaskStartService;
+import com.hotent.core.web.ResultMessage;
+import com.hotent.platform.auth.ISysUser;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import com.hotent.core.util.ContextUtil;
@@ -32,7 +32,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -55,6 +57,8 @@ public class DataCenterController extends AbstractController {
     private ProjectService projectService;
     @Resource
     private DataVersionService dataVersionService;
+    @Resource
+    private DataSnapshotService dataSnapshotService;
 
 
     /**
@@ -156,4 +160,142 @@ public class DataCenterController extends AbstractController {
         ModelAndView mv = this.getAutoView().addObject("dataVersionList", dataVersion_list);
         return mv;
     }
+
+
+
+    /**
+     * 私有数据数据快照
+     *
+     * @param request
+     *            the request
+     * @param response
+     *            the response
+     * @return the list
+     * @throws Exception
+     *             the exception
+     */
+    @RequestMapping("datasnapshot")
+    @Action(description = "私有数据数据快照")
+    public void datasnapshot(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        Long ddDataVersionId = RequestUtil.getLong(request, "ddDataVersionId");
+//        String ddDataTag = RequestUtil.getString(request, "ddDataTag");
+        DataVersion dataVersion = dataVersionService.getById(ddDataVersionId);
+
+        DataSnapshot dataSnapshot = new DataSnapshot();
+
+        int size = dataSnapshotService.getByddDataId(dataVersion.getDdDataId()).size();
+        if (size==0){
+            dataSnapshot.setDdDataSnapshotId(UniqueIdUtil.genId());
+            dataSnapshot.setDdDataId(dataVersion.getDdDataId());
+            dataSnapshot.setDdDataValue(dataVersion.getDdDataValue());
+            dataSnapshot.setDdDataRecordTime(dataVersion.getDdDataRecordTime());
+
+            ISysUser sysUser = ContextUtil.getCurrentUser();
+            dataSnapshot.setDdSnapshotPersonId(sysUser.getUserId());
+
+            Date currentTime = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = formatter.format(currentTime);
+            dataSnapshot.setDdSnapshotTime(dateString);
+
+//        dataSnapshot.setDdDataTag(ddDataTag);
+            this.dataSnapshotService.add(dataSnapshot);
+        }
+        else
+        {
+            dataSnapshot.setDdDataSnapshotId(UniqueIdUtil.genId());
+            dataSnapshot.setDdDataId(dataVersion.getDdDataId());
+            dataSnapshot.setDdDataValue(dataVersion.getDdDataValue());
+            dataSnapshot.setDdDataRecordTime(dataVersion.getDdDataRecordTime());
+
+            ISysUser sysUser = ContextUtil.getCurrentUser();
+            dataSnapshot.setDdSnapshotPersonId(sysUser.getUserId());
+
+            Date currentTime = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = formatter.format(currentTime);
+            dataSnapshot.setDdSnapshotTime(dateString);
+
+            //        dataSnapshot.setDdDataTag(ddDataTag);
+            this.dataSnapshotService.update(dataSnapshot);
+        }
+
+
+    }
+
+
+
+
+/**
+ * 数据快照列表.
+ *
+ * @param request  the request
+ * @param response the response
+ * @return the list
+ * @throws Exception the exception
+ */
+    @RequestMapping("datasnapshotlist")
+    @Action(description = "根据条件查询项目基本信息列表")
+    public ModelAndView datasnapshotlist(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+//        QueryFilter queryFilter = new QueryFilter(request, "ProjectItem");
+        List<DataSnapshot> dataSnapshots = this.dataSnapshotService.getAll();
+        int i =0;
+        ModelAndView mv = this.getAutoView().addObject("datasnapshotlist",
+                dataSnapshots);
+        return mv;
+    }
+
+
+
+
+
+    /**
+     * ?????????.
+     *
+     * @param request
+     *            the request
+     * @param response
+     *            the response
+     * @throws Exception
+     *             the exception
+     */
+    @RequestMapping("showdatashot")
+    @Action(description = "查看数据快照")
+    public ModelAndView showdatashot(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String resultMsg = null;
+
+
+        Long ddDataSnapshotId = RequestUtil.getLong(request, "ddDataSnapshotId");
+        DataSnapshot dataSnapshot = dataSnapshotService.getById(ddDataSnapshotId);
+        Long ddDataId= dataSnapshot.getDdDataId();
+        PrivateData privateData = privateDataService.getById(ddDataId);
+
+        DataShot dataShot = new DataShot();
+        dataShot.setDdDataCreatePerson(privateData.getDdDataCreatePerson());
+        dataShot.setDdDataCreateTime(privateData.getDdDataCreateTime());
+        dataShot.setDdDataDescription(privateData.getDdDataDescription());
+        dataShot.setDdDataId(privateData.getDdDataId());
+        dataShot.setDdDataName(privateData.getDdDataName());
+        dataShot.setDdDataIsDelivery(privateData.getDdDataIsDelivery());
+        dataShot.setDdDataPublishType(privateData.getDdDataPublishType());
+        dataShot.setDdDataSensitiveness(privateData.getDdDataSensitiveness());
+        dataShot.setDdDataSnapShotId(dataSnapshot.getDdDataSnapshotId());
+        dataShot.setDdDataCreateTime(privateData.getDdDataCreateTime());
+        dataShot.setDdDataSubmiteState(privateData.getDdDataSubmiteState());
+        dataShot.setDdDataTaskName(privateData.getDdDataTaskName());
+        dataShot.setDdDataType(privateData.getDdDataType());
+        dataShot.setDdSnapshotPersonId(dataSnapshot.getDdSnapshotPersonId());
+        dataShot.setDdDataValue(dataSnapshot.getDdDataValue());
+        dataShot.setDdDataTag(dataSnapshot.getDdDataTag());
+        dataShot.setDdSnapshotTime(dataSnapshot.getDdSnapshotTime());
+
+        ModelAndView mv = this.getAutoView().addObject("dataShot", dataShot);
+        return mv;
+
+    }
+
+
 }

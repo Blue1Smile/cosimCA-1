@@ -19,6 +19,10 @@
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css"  media="all">
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
 
     <style>
@@ -39,6 +43,9 @@
             display:inline;
         }
     </style>
+
+
+
 </head>
 <body>
 
@@ -84,6 +91,10 @@
                     <a href="dataversion.ht?id=${privateDataList_publish.ddDataId}"
                        class="layui-btn layui-btn-normal  layui-btn-small"><i
                             class="layui-icon">&#xe615;</i> 数据版本</a>
+                    <%--<a class="layui-btn layui-btn-primary" href="javascript:;">prompt层</a>--%>
+                    <div class="site-demo-button" id="LAY_demo" style="margin-bottom: 0;">
+                        <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
+                    </div>
                 </display:column>
             </display:table>
         </div>
@@ -109,16 +120,95 @@
                     <a href="dataversion.ht?id=${privateDataList_order.ddDataId}"
                        class="layui-btn layui-btn-normal  layui-btn-small"><i
                             class="layui-icon">&#xe615;</i> 数据版本</a>
+                    <a href="showdatashot.ht?id=${privateDataList_order.ddDataId}"
+                       class="layui-btn layui-btn-normal  layui-btn-small"><i
+                            class="layui-icon">&#xe615;</i> 数据快照查看</a>
+                    <%--<a class="layui-btn layui-btn-primary" href="javascript:;">prompt层</a>--%>
+                    <button data-method="offset" data-type="t" class="layui-btn layui-btn-normal">上弹出</button>
                 </display:column>
             </display:table>
 
         </div>
     </div>
 </div>
+
+
+<%--<div class="layui-layer layui-layer-page layui-layer-prompt layer-anim" id="layui-layer7" type="page" times="7" showtime="0" contype="string" style="z-index: 19891021; top: 388.5px; left: 324px;">--%>
+    <%--<div class="layui-layer-title" style="cursor: move;">输入任何口令，并确认--%>
+    <%--</div>--%>
+    <%--<div id="" class="layui-layer-content">--%>
+        <%--<input type="password" class="layui-layer-input" value="">--%>
+<%--</div>--%>
+    <%--<span class="layui-layer-setwin">--%>
+        <%--<a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a>--%>
+    <%--</span>--%>
+    <%--<div class="layui-layer-btn layui-layer-btn-">--%>
+        <%--<a class="layui-layer-btn0">确定</a>--%>
+        <%--<a class="layui-layer-btn1">取消</a>--%>
+    <%--</div>--%>
+<%--</div>--%>
+
+
+
+
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script>
-    $('#init').trigger('click');
+    layui.use('layer', function()
+    { //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+        //触发事件
+        var active =
+        {
+
+            offset: function(othis){
+                var type = othis.data('type')
+                        ,text = othis.text();
+
+                layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){
+                    layer.close(index);
+                    layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
+                        layer.close(index);
+                        layer.msg('演示完毕！您的口令：'+ pass +'您最后写下了：'+text);
+                    });
+                });
+            }
+        };
+        $('#LAY_demo .layui-btn').on('click', function()
+        {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+    });
+
+
+
 </script>
+
+<%--<script type="text/javascript">--%>
+    <%--$('#init').trigger('click');--%>
+    <%--var nowDataId;--%>
+
+
+    <%--function Prompt(index) {--%>
+
+        <%--layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){--%>
+            <%--layer.close(index);--%>
+            <%--layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){--%>
+                <%--layer.close(index);--%>
+                <%--layer.msg('演示完毕！您的口令：'+ pass +您最后写下了:'+text);--%>
+            <%--});--%>
+        <%--});--%>
+
+    <%--}--%>
+
+
+
+
+
+
+
+<%--</script>--%>
+
 </body>
 </html>
 
