@@ -60,7 +60,6 @@ public class DataCenterController extends AbstractController {
     @Resource
     private DataSnapshotService dataSnapshotService;
 
-
     /**
      * 2016/12/19/修改
      *取得项目树

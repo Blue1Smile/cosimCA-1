@@ -68,8 +68,15 @@ function initTable() {
                 }
                 //,
                 // footerFormatter: ddDataLastestValueFormatter
-            }
-            , {//数据类型
+            }, {//变更原因
+                field: 'ddDataChangeReason',
+                title: '变更原因',
+                sortable: false,
+                editable: true,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            }, {//数据类型
                 field: 'ddDataType',
                 title: '数据类型',
                 sortable: true,
@@ -110,6 +117,7 @@ function initTable() {
                 name:name
             };
         },
+        //更新发布数据value
         onEditableSave: function (field, row, oldValue, $el) {
             $.ajax({
                 type: "post",

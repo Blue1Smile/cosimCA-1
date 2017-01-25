@@ -13,11 +13,13 @@
         .fr {
             float: right;
         }
-        .pages{
+
+        .pages {
             float: right;
         }
-        .page_line{
-            display:inline;
+
+        .page_line {
+            display: inline;
         }
     </style>
 
@@ -43,7 +45,8 @@
                     <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
                             <a class="layui-btn" href="edit.ht" id="taskInfoForm"><i class="layui-icon">&#xe61f;</i> 添加</a>
                     <a class="layui-btn layui-btn-danger" action="del.ht"><i class="layui-icon">&#xe640;</i> 删除</a>
-                            <a class="layui-btn layui-btn-primary" action="#" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
+                            <a class="layui-btn layui-btn-primary" action="#" onclick="location.reload()"><i
+                                    class="layui-icon">&#x1002;</i> 刷新</a>
                 </span>
             </div>
         </blockquote>
@@ -82,7 +85,8 @@
                 <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
 
                 <display:column title="操作" media="html" style="width:320px">
-                    <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 编辑</a>
+                    <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-mini"><i class="layui-icon">
+                        &#xe642;</i> 编辑</a>
                     <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
                     <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                     <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"
@@ -109,7 +113,8 @@
             <c:set var="checkAll">
                 <input type="checkbox" id="chkall"/>
             </c:set>
-            <display:table name="taskCheckList" id="TaskCheckItem" requestURI="taskcheck.ht" sort="external" cellpadding="0"
+            <display:table name="taskCheckList" id="TaskCheckItem" requestURI="taskcheck.ht" sort="external"
+                           cellpadding="0"
                            cellspacing="0" export="false" class="layui-table lay-even" pagesize="10">
                 <display:column title="${checkAll}" media="html" style="width:3%;">
                     <input type="checkbox" class="pk" name="id" value="${TaskCheckItem.ddTaskId}">
@@ -140,19 +145,20 @@
                 <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
 
                 <display:column title="审核" media="html" style="width:320px">
-                    <a href="${ctx}/datadriver/datacenter/publishorderdata.ht?id=${TaskCheckItem.ddTaskId}" class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 审核</a>
+                    <a href="${ctx}/datadriver/datacenter/publishorderdata.ht?id=${TaskCheckItem.ddTaskId}"
+                       class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 审核</a>
                     <a href="rejecttask.ht"
-                    class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 驳回</a>
+                       class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 驳回</a>
                     <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
                     <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                     <%--<a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"--%>
-                       <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 私有</a>--%>
+                    <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 私有</a>--%>
                     <%--<a href="publishconfig.ht?id=${TaskItem.ddTaskId}"--%>
-                       <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe63c;</i> 发布</a>--%>
+                    <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe63c;</i> 发布</a>--%>
                     <%--<a href="orderconfig.ht?id=${TaskItem.ddTaskId}"--%>
-                       <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe627;</i> 订阅</a>--%>
+                    <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe627;</i> 订阅</a>--%>
                     <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
-                       <%--class="layui-btn layui-btn-danger layui-btn-mini"><i class="layui-icon">&#xe640;</i> 删除</a>--%>
+                    <%--class="layui-btn layui-btn-danger layui-btn-mini"><i class="layui-icon">&#xe640;</i> 删除</a>--%>
                     <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
                     <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
                     <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>
@@ -163,21 +169,10 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-<script>
-    $('#init').trigger('click');
-</script>
-
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </body>
 <script>
+    $('#init').trigger('click');
     $('#taskInfoForm').on('click', function () {
         layer.open({
             type: 2,

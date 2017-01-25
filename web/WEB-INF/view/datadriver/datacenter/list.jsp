@@ -7,7 +7,7 @@
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <LINK href="${ctx}/styles/jq22/page_style.css" type=text/css rel=stylesheet>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-    <script type="text/javascript"	src="${ctx }/js/lg/plugins/ligerMenu.js"></script>
+    <script type="text/javascript" src="${ctx }/js/lg/plugins/ligerMenu.js"></script>
     <script src="${ctx}/styles/jq22/jquery.contextmenu.r2.js"></script>
 
     <style type="text/css">
@@ -25,17 +25,17 @@
             loadTree();
             $('#demo2').contextMenu('myMenu1', {
                 bindings: {
-                    'open': function(t) {
-                        alert('Trigger was '+t.id+'\nAction was Open');
+                    'open': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was Open');
                     },
-                    'email': function(t) {
-                        alert('Trigger was '+t.id+'\nAction was Email');
+                    'email': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was Email');
                     },
-                    'save': function(t) {
-                        alert('Trigger was '+t.id+'\nAction was Save');
+                    'save': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was Save');
                     },
-                    'delete': function(t) {
-                        alert('Trigger was '+t.id+'\nAction was Delete')
+                    'delete': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was Delete')
                     }
                 }
             });
@@ -122,17 +122,17 @@
                 };
                 $('span.product_tree').contextMenu('myMenu1', {
                     bindings: {
-                        'open': function(t) {
-                            alert('Trigger was '+t.id+'\nAction was Open');
+                        'open': function (t) {
+                            alert('Trigger was ' + t.id + '\nAction was Open');
                         },
-                        'email': function(t) {
-                            alert('Trigger was '+t.id+'\nAction was Email');
+                        'email': function (t) {
+                            alert('Trigger was ' + t.id + '\nAction was Email');
                         },
-                        'save': function(t) {
-                            alert('Trigger was '+t.id+'\nAction was Save');
+                        'save': function (t) {
+                            alert('Trigger was ' + t.id + '\nAction was Save');
                         },
-                        'delete': function(t) {
-                            alert('Trigger was '+t.id+'\nAction was Delete')
+                        'delete': function (t) {
+                            alert('Trigger was ' + t.id + '\nAction was Delete')
                         }
                     }
                 });
