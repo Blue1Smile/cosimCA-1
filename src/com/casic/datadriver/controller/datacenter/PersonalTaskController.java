@@ -249,7 +249,7 @@ public class PersonalTaskController extends AbstractController {
             privateDataService.updatedata(privateData);
             //添加数据版本记录
             DataVersion dataVersion = new DataVersion();
-            dataVersion.setDdDataVersionID(UniqueIdUtil.genId());
+            dataVersion.setDdDataVersionId(UniqueIdUtil.genId());
             dataVersion.setDdDataId(privateData.getDdDataId());
             dataVersion.setDdDataRecordPersonId(ContextUtil.getCurrentUser().getUserId());
             java.util.Date currentTime = new java.util.Date();

@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 public class DataSnapInfoId {
-    private Integer ddDataSnapShotId;
+    private Long ddDataSnapShotId;
 
     private Integer ddSnapShotPersonId;
 
@@ -15,11 +15,11 @@ public class DataSnapInfoId {
 
     private Integer ddProjectId;
 
-    public Integer getDdDataSnapShotId() {
+    public Long getDdDataSnapShotId() {
         return ddDataSnapShotId;
     }
 
-    public void setDdDataSnapShotId(Integer ddDataSnapShotId) {
+    public void setDdDataSnapShotId(Long ddDataSnapShotId) {
         this.ddDataSnapShotId = ddDataSnapShotId;
     }
 
@@ -54,4 +54,5 @@ public class DataSnapInfoId {
     public void setDdProjectId(Integer ddProjectId) {
         this.ddProjectId = ddProjectId;
     }
+
 }

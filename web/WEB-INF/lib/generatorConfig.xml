@@ -2,7 +2,7 @@
         <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration >
 <!-- 配置驱动 -->
-<classPathEntry location="D:\work\workspaceold\cosimCA\web\WEB-INF\lib\mysql-connector-java-5.1.18.jar"/>
+<classPathEntry location="D:\work\workspace\cosimCA\web\WEB-INF\lib\mysql-connector-java-5.1.18.jar"/>
 <context id="context1" >
     <commentGenerator>
         <property name="suppressDate" value="true"/>
@@ -11,11 +11,11 @@
     </commentGenerator>
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.133:3306/cloudnew" userId="root" password="chz123" />
     <!-- 生成实体类 实体bean文件 -->
-    <javaModelGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspaceold\cosimCA\src" />
+    <javaModelGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspace\cosimCA\src" />
     <!-- mapper xml文件 -->
-    <sqlMapGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspaceold\cosimCA\src" />
+    <sqlMapGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspace\cosimCA\src" />
     <!-- mapper 接口文件 ./src-->
-    <javaClientGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspaceold\cosimCA\src" type="XMLMAPPER" />
-    <table schema="" tableName="dd_major" domainObjectName="Major" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+    <javaClientGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspace\cosimCA\src" type="XMLMAPPER" />
+    <table schema="" tableName="dd_data_snapshot" domainObjectName="DataSnapshot" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
 </context>
 </generatorConfiguration>

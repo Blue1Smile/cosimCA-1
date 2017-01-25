@@ -150,26 +150,36 @@
             });
 
 
+
         }
 
     </script>
 </head>
 <body>
+<%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">--%>
+<%--<legend>生成一个较深的树</legend>--%>
+<%--</fieldset>--%>
 <ul id="product_tree" class="filetree"></ul>
-<div class=contextMenu id=myMenu1>
-    <ul>
-        <li id=open><img src="${ctx}/styles/jq22/folder.png"> Open</li>
-        <li id=email><img src="${ctx}/styles/jq22/email.png"> Email</li>
-        <li id=save><img src="${ctx}/styles/jq22/disk.png"> Save</li>
-        <li id=delete><img src="${ctx}/styles/jq22/cross.png"> Delete</li>
-    </ul>
-</div>
+<DIV class=contextMenu id=myMenu1>
+    <UL>
+        <LI id=open><IMG src="${ctx}/styles/jq22/folder.png"> Open </LI>
+        <LI id=email><IMG src="${ctx}/styles/jq22/email.png"> Email </LI>
+        <LI id=save><IMG src="${ctx}/styles/jq22/disk.png"> Save </LI>
+        <LI id=delete><IMG src="${ctx}/styles/jq22/cross.png"> Delete</LI>
+    </UL>
+</DIV>
 
 <div class="layui-tab layui-tab-card">
+
     <ul class="layui-tab-title">
         <li class="layui-this">数据中心</li>
     </ul>
-    <div class="layui-tab-content" style="height: 100%;">
+
+    <div class="fr">
+        <a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">
+            &#x1002;</i> 数据快照</a>
+    </div>
+    <div class="layui-tab-content">
         <div id="layout">
             <div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                 <ul id="demo2" style="overflow:auto;"></ul>
@@ -177,7 +187,7 @@
             <div position="center">
                 <iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishorderdata.ht" frameborder="no"
                         width="100%"
-                        height="100%" scrolling="auto"></iframe>
+                        height="100%"></iframe>
             </div>
         </div>
     </div>
