@@ -228,6 +228,7 @@ public class ProjectController extends BaseController {
         return getAutoView().addObject("Project", Project);
     }
 
+
     /**
      * 启动项目。
      *
@@ -298,5 +299,27 @@ public class ProjectController extends BaseController {
         long id = RequestUtil.getLong(request, "id");
         Project Project = projectService.getById(id);
         return getAutoView().addObject("Project", Project);
+    }
+
+    /**
+     * 进入项目控制台
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+
+
+    @RequestMapping("stepinto")
+    @Action(description = "进入项目")
+    public ModelAndView stepinto(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        long projectId = RequestUtil.getLong(request, "id");
+        Project project = projectService.getById(projectId);
+        Long userId = project.getDdProjectCreatorId();
+        //根据用户ID获取当前用户拥有项目列表
+        List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
+        return getAutoView().addObject("Project", project)
+                .addObject("projectListbyUser", projectListbyUser);
     }
 }
