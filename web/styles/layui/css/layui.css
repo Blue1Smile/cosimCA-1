@@ -1321,8 +1321,8 @@ a cite {
 
 .layui-nav {
     position: relative;
-    top: 100px;
-    padding: 0 20px;
+    top: 0px;
+    padding: 0 220px;
     background-color: #007BB6;
     color: #c2c2c2;
     border-radius: 2px;
@@ -1549,7 +1549,7 @@ a cite {
 }
 
 .layui-tab {
-    margin: 63px 0;
+    margin: 0px 0;
     overflow: hidden;
     text-align: left !important
 }

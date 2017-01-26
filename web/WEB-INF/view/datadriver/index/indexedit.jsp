@@ -16,7 +16,11 @@
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-
+    <style>
+        .fr {
+            float: right;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-tab layui-tab-card" id="iframe_tab">
@@ -87,71 +91,72 @@
             </div>
         </div>
     </div>
-    <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-    <script>
-        $(function () {
-            var options = {};
-            if (showResponse) {
-                options.success = showResponse;
-            }
-            var frm = $('#indexform').form();
-            $("#dataFormSave").click(function () {
-                frm.setData();
-                frm.ajaxForm(options);
-                if (frm.valid()) {
-                    form.submit();
-                }
-            });
-        });
-
-        function showResponse(responseText) {
-            var obj = new com.hotent.form.ResultMessage(responseText);
-            if (obj.isSuccess()) {
-                layer.alert("项目指标提交成功", {
-                    title: '提交信息'
-                })
-            } else {
-                layer.alert("项目指标提交失败", {
-                    title: '提交信息'
-                })
-            }
+</div>
+<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+<script>
+    $(function () {
+        var options = {};
+        if (showResponse) {
+            options.success = showResponse;
         }
-        //    layui.use(['form', 'layedit', 'laydate'], function () {
-        //        var form = layui.form()
-        //                , layer = layui.layer
-        //                , layedit = layui.layedit;
-        ////                ,laydate = layui.laydate;
+        var frm = $('#indexform').form();
+        $("#dataFormSave").click(function () {
+            frm.setData();
+            frm.ajaxForm(options);
+            if (frm.valid()) {
+                form.submit();
+            }
+        });
+    });
 
-        //创建一个编辑器
-        //        var editIndex = layedit.build('LAY_demo_editor');
+    function showResponse(responseText) {
+        var obj = new com.hotent.form.ResultMessage(responseText);
+        if (obj.isSuccess()) {
+            layer.alert("项目指标提交成功", {
+                title: '提交信息'
+            })
+        } else {
+            layer.alert("项目指标提交失败", {
+                title: '提交信息'
+            })
+        }
+    }
+    //    layui.use(['form', 'layedit', 'laydate'], function () {
+    //        var form = layui.form()
+    //                , layer = layui.layer
+    //                , layedit = layui.layedit;
+    ////                ,laydate = layui.laydate;
 
-        //自定义验证规则
-        //        form.verify({
-        //            title: function(value){
-        //                if(value.length < 5){
-        //                    return '标题至少得5个字符啊';
-        //                }
-        //            }
-        //            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-        //            ,content: function(value){
-        //                layedit.sync(editIndex);
-        //            }
-        //        });
-        //        function showResponse() {
-        //            var frm = $('#indexform').form();
-        //            frm.setData();
-        //            frm.ajaxForm(options)
-        //            form.submit()
-        //        }
-        //监听提交
-        //        form.on(form.submit(), function (data) {
-        ////      layer.alert(JSON.stringify(data.field), {
-        //            layer.alert("项目指标提交成功", {
-        //                title: '提交信息'
-        //            })
-        //            return false;
-        //        });
-        //    });
-    </script>
+    //创建一个编辑器
+    //        var editIndex = layedit.build('LAY_demo_editor');
+
+    //自定义验证规则
+    //        form.verify({
+    //            title: function(value){
+    //                if(value.length < 5){
+    //                    return '标题至少得5个字符啊';
+    //                }
+    //            }
+    //            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    //            ,content: function(value){
+    //                layedit.sync(editIndex);
+    //            }
+    //        });
+    //        function showResponse() {
+    //            var frm = $('#indexform').form();
+    //            frm.setData();
+    //            frm.ajaxForm(options)
+    //            form.submit()
+    //        }
+    //监听提交
+    //        form.on(form.submit(), function (data) {
+    ////      layer.alert(JSON.stringify(data.field), {
+    //            layer.alert("项目指标提交成功", {
+    //                title: '提交信息'
+    //            })
+    //            return false;
+    //        });
+    //    });
+</script>
 </body>
 </html>

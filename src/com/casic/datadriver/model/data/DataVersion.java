@@ -10,8 +10,6 @@ public class DataVersion {
 
     private Long ddDataId;
 
-
-
     private Long ddDataVersion;
 
     private String ddDataValue;
@@ -26,13 +24,12 @@ public class DataVersion {
 
     private String ddDataChangeReason;
 
-
-    public Long getDdDataVersionID() {
+    public Long getDdDataVersionId() {
         return ddDataVersionId;
     }
 
-    public void setDdDataVersionID(Long ddDataVersionID) {
-        this.ddDataVersionId = ddDataVersionID;
+    public void setDdDataVersionId(Long ddDataVersionId) {
+        this.ddDataVersionId = ddDataVersionId;
     }
 
     public Long getDdDataId() {

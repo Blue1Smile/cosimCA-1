@@ -153,34 +153,36 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView queryTaskBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long id = RequestUtil.getLong(request, "id");
-
         List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
-
-        if (id == null || id == 0) {
+        if (id == 0 || id == null) {
             taskInfoList = taskInfoService.getAll();
         } else {
             taskInfoList = taskInfoService.queryTaskInfoByProjectId(id);
         }
-
         //根据责任人id得到当前用户的所有项目
         List<Project> projectList = projectService.queryProjectlistByRes(ContextUtil.getCurrentUserId());
         //找到当前用户的所有负责的已经启动的项目
         List<Project> project_list = new ArrayList<Project>();
         for (int i=0;i<projectList.size();i++){
-            List<ProjectStart> projectStartList = projecStartService.queryByProjectId(projectList.get(i).getDdProjectId());
-            if (projectStartList.get(0).getDdProjectStartStatus()==1){
-                Project project = projectService.getById(projectStartList.get(0).getDdProjectId());
-                project_list.add(project);
+            if (projectList.get(i).getDdProjectState()==null){
+                project_list.get(i).setDdProjectState(project_list.get(i).STATUS_UNSTART);
+            }
+            if (projectList.get(i).getDdProjectState()==1){
+                project_list.add(projectList.get(i));
             }
         }
+
         //找到当前用户的所有可以审核的任务
         List<TaskInfo> checkTaskInfoList = new ArrayList<TaskInfo>();
         for (int i=0;i<project_list.size();i++){
             List<TaskInfo> taskInfo_list = taskInfoService.queryTaskInfoByProjectId(project_list.get(i).getDdProjectId());
             for (int j=0;j<taskInfo_list.size();j++){
-                TaskStart taskStart =taskStartService.queryTaskStartByTaskId(taskInfo_list.get(j).getDdTaskId()).get(0);
-                if (taskStart.getDdTaskStatus()==0){
-                    checkTaskInfoList.add(taskInfoService.getById(taskStart.getDdTaskId()));
+                TaskInfo task=taskInfo_list.get(j);
+                if (task.getDdTaskState()==null){
+                    task.setDdTaskState(task.STATUS_UNSTART);
+                }
+                if (task.getDdTaskState()==0){
+                    checkTaskInfoList.add(task);
                 }
             }
         }
@@ -202,10 +204,17 @@ public class TaskInfoController extends AbstractController {
     @Action(description = "添加任务")
     public ModelAndView addtask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<ISysUser> sysUserList = sysUserService.getAll();
-        Long id = RequestUtil.getLong(request, "id");
-        Project project = projectService.getById(id);
-        ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
+        ResultMessage resultMessage = null;
+        ModelAndView mv = new ModelAndView();
+        try{
+            List<ISysUser> sysUserList = sysUserService.getAll();
+            Long id = RequestUtil.getLong(request, "id");
+            Project project = projectService.getById(id);
+            mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
+            resultMessage = new ResultMessage(ResultMessage.Success, "创建成功");
+        }catch (Exception ex) {
+            resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败"+ex.getMessage());
+        }
         return mv;
     }
 

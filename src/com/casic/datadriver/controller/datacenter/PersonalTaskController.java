@@ -75,13 +75,6 @@ public class PersonalTaskController extends AbstractController {
             throws Exception {
         List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> taskInfo_list = new ArrayList<TaskInfo>();
-//        for (TaskStart taskStart : taskStartList) {
-//
-//            Long ddTaskId = taskStart.getDdTaskId();
-//            long ddTask_Id = ddTaskId;
-//            TaskInfo taskInfo = taskInfoService.getById(ddTask_Id);
-//            taskInfo_list.add(taskInfo);
-//        }
 
         for (int i = 0; i < taskStartList.size(); i++) {
             Long ddTaskId = taskStartList.get(i).getDdTaskId();
@@ -129,61 +122,21 @@ public class PersonalTaskController extends AbstractController {
         return mv;
     }
 
-
-    /**
-     * 2016/12/22
-     * 提交发布数据
-     *
-     * @param request  the request
-     * @param response the response
-     * @return the list
-     * @throws Exception the exception
-     */
-//    @RequestMapping("submitdatavalue")
-//    @Action(description = "更新发布数据值")
-//    public void submitdatavalue(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//
-//        String[] ddDataValues = RequestUtil.getStringAry(request, "ddDataLastestValue");
-//        Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId");
-////        String returnUrl=RequestUtil.getPrePage(request);
-////        returnUrl = returnUrl.replace("submitpublish", "list");
-//
-//        String resultMsg = null;
-//
-//        try {
-//            DataVersion dataVersion = new DataVersion();
-//            for (int i = 0; i < ddDataIds.length; i++) {
-//                PrivateData privateData = this.privateDataService.getById(ddDataIds[i]);
-//                if (privateData.getDdDataLastestValue() != null && privateData.getDdDataLastestValue().equals(ddDataValues[i])) {
-//                } else {
-//
-//                    privateData.setDdDataLastestValue(ddDataValues[i]);
-//                    this.privateDataService.updatedata(privateData);
-//                    dataVersion.setDdDataVersionID(UniqueIdUtil.genId());
-//                    ISysUser sysUser = ContextUtil.getCurrentUser();
-//                    dataVersion.setDdDataRecordPersonId(sysUser.getUserId());
-//                    dataVersion.setDdDataId(ddDataIds[i]);
-//                    dataVersion.setDdDataValue(ddDataValues[i]);
-//                    Date nowTime = new Date(System.currentTimeMillis());
-//                    SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
-//                    String retStrFormatNowDate = sdFormatter.format(nowTime);
-//                    dataVersion.setDdDataRecordTime(retStrFormatNowDate);    //修改数据类型
-//                    this.dataVersionService.add(dataVersion);
-//                }
-//                resultMsg = getText("record.added", "项目信息");
-//
-//                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
-//            }
-//        } catch (Exception e) {
-//            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
-//        }
-//
-//
-//    }
-
     @RequestMapping("todotask")
     @Action(description = "任务办理")
     public ModelAndView todotask(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long taskId = RequestUtil.getLong(request, "id");
+
+        TaskInfo taskInfo = taskInfoService.getById(taskId);
+        ModelAndView mv = this.getAutoView().addObject("taskInfo",
+                taskInfo);
+        return mv;
+    }
+
+    @RequestMapping("dashboard")
+    @Action(description = "任务办理")
+    public ModelAndView dashboard(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long taskId = RequestUtil.getLong(request, "id");
 
@@ -198,7 +151,7 @@ public class PersonalTaskController extends AbstractController {
     public void getSubmitPublishJson(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
 
         response.setContentType("application/json");
@@ -229,11 +182,10 @@ public class PersonalTaskController extends AbstractController {
             out.append(jsonstring);
             out.flush();
             out.close();
-        }catch (Exception e) {
+        } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
-
     }
 
     //格式化json
@@ -272,15 +224,16 @@ public class PersonalTaskController extends AbstractController {
                     sb.append(current);
             }
         }
-
         return sb.toString();
     }
+
     //添加空格
     private static void addIndentBlank(StringBuilder sb, int indent) {
         for (int i = 0; i < indent; i++) {
             sb.append('\t');
         }
     }
+
 
     @RequestMapping("refreshlastvalue")
     @Action(description = "更新最新值")
@@ -294,13 +247,22 @@ public class PersonalTaskController extends AbstractController {
             map.put("privateData", PrivateData.class);
             PrivateData privateData = (PrivateData) JSONObject.toBean(obj, PrivateData.class, map);
             privateDataService.updatedata(privateData);
-        }catch (Exception e) {
+            //添加数据版本记录
+            DataVersion dataVersion = new DataVersion();
+            dataVersion.setDdDataVersionId(UniqueIdUtil.genId());
+            dataVersion.setDdDataId(privateData.getDdDataId());
+            dataVersion.setDdDataRecordPersonId(ContextUtil.getCurrentUser().getUserId());
+            java.util.Date currentTime = new java.util.Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = formatter.format(currentTime);
+            dataVersion.setDdDataRecordTime(dateString);
+            dataVersion.setDdDataValue(privateData.getDdDataLastestValue());
+            dataVersionService.addDDDataVersion(dataVersion);
+        } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
-
-
 
 
     @RequestMapping("submittask")
@@ -308,60 +270,20 @@ public class PersonalTaskController extends AbstractController {
     public void submittask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         try {
-
             Long ddTaskId = RequestUtil.getLong(request, "id");
             List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
-            List<TaskStart> taskStart_list =taskStartService.queryTaskStartByTaskId(ddTaskId);
-
-//            //判断任务的所有发布数据是否已经提交，如果存在未发布的数据，不允许提交任务
-//            while (privateDataService.getById(orderDataRelation_list.get(i).getDdDataId()).getDdDataLastestValue()!=null){
-//                //判断任务的当前状态，只有在正在执行中才允许提交
-//                    if(taskStart_list.get(0).getDdTaskStatus()==1) {
-//                        taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
-//
-//                        taskStartService.update(taskStart_list.get(0));
-//                    }
-//                    else {
-//                        String resultMsg = null;
-//                        writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
-//                    }
-//
-//
-//            }
-            //判断任务的所有发布数据是否已经提交，如果存在未发布的数据，不允许提交任务
-//            for(int i=0;i<=orderDataRelation_list.size();i++){
-//                long ddDataId= orderDataRelation_list.get(i).getDdDataId();
-//                PrivateData privateData = privateDataService.getById(ddDataId);
-//                if (privateData.getDdDataLastestValue()==null||privateData.getDdDataLastestValue().equals(null)){
-//                    String resultMsg = null;
-//                    writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
-//                }
-//                else {
-//                    //判断任务的当前状态，只有在正在执行中才允许提交
-//                    if(taskStart_list.get(0).getDdTaskStatus()==1) {
-//                        taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
-//
-//                        taskStartService.update(taskStart_list.get(0));
-//                    }
-//                    else {
-//                        String resultMsg = null;
-//                        writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
-//                    }
-//                }
-//            }
-
+            List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
 
             //判断任务的当前状态，只有在正在执行中才允许提交
-            if(taskStart_list.get(0).getDdTaskStatus()==1) {
+            if (taskStart_list.get(0).getDdTaskStatus() == 1) {
                 taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
 
                 taskStartService.update(taskStart_list.get(0));
-            }
-            else {
+            } else {
                 String resultMsg = null;
-                writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
@@ -374,23 +296,63 @@ public class PersonalTaskController extends AbstractController {
             throws Exception {
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
-            List<TaskStart> taskStart_list =taskStartService.queryTaskStartByTaskId(ddTaskId);
+            List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
 
             //判断任务的当前状态，只有在正在提交中才允许收回
-            if(taskStart_list.get(0).getDdTaskStatus()==0) {
+            if (taskStart_list.get(0).getDdTaskStatus() == 0) {
                 taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_RUNNING);
                 taskStartService.update(taskStart_list.get(0));
-            }
-            else {
+            } else {
                 String resultMsg = null;
-                writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
             }
-
-        }catch (Exception e) {
+        } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
+
+
+    @RequestMapping("showfiveversion")
+    @Action(description = "显示五条最新的数据版本")
+    public void showfiveversion(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        response.setContentType("application/json");
+
+        try {
+            String dataId = request.getParameter("ddDataId");
+//            JSONObject jsonObject = new JSONObject();
+//           Long dataId = RequestUtil.getLong(request, "ddDataId");
+//
+//            List<DataVersion> dateVersion_list = this.dataVersionService.queryDataVersionListByddDataId(dataId);
+//            JSONObject jsonObject = new JSONObject();
+//            for (int i = 0; i < dateVersion_list.size(); i++) {
+//                DataVersion dataVersion = dateVersion_list.get(i);
+//                jsonObject.put("ddDataVersionId", dataVersion.getDdDataVersionID());
+//                jsonObject.put("ddDataId", dataVersion.getDdDataId());
+//                jsonObject.put("ddDataRecordTime", dataVersion.getDdDataRecordTime());
+//                jsonObject.put("ddDataRecordPersonId", dataVersion.getDdDataRecordPersonId());
+//                jsonObject.put("ddDataValue", dataVersion.getDdDataValue());
+//                jsonMembers.add(jsonObject);
+//            }
+//            json.put("total", dateVersion_list.size());
+//            json.put("rows", jsonMembers);
+////        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
+//            String jsonstring = formatJson(json.toString());
+//            PrintWriter out = null;
+//            out = response.getWriter();
+//            out.append(jsonstring);
+//            out.flush();
+//            out.close();
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
 
 }
 

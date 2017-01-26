@@ -26,6 +26,7 @@
         <result column="DD_TASK_PROJECT_ID" jdbcType="NUMERIC" property="ddTaskProjectId"/>
         <result column="DD_TASK_PERSON" jdbcType="VARCHAR" property="ddTaskPerson"/>
         <result column="DD_TASK_PROJECT_NAME" jdbcType="VARCHAR" property="ddTaskProjectName"/>
+        <result column="DD_TASK_STATE" jdbcType="SMALLINT" property="ddTaskState"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -34,7 +35,7 @@
     DD_TASK_ESTIMATE_TIME, DD_TASK_PLAN_START_TIME, DD_TASK_PLAN_END_TIME, DD_TASK_COMPLETE_RATE, 
     DD_TASK_COMPLETE_STATE, DD_TASK_RESOURCE_ID, DD_TASK_ACTUAL_TIME, DD_TASK_PLAN_TIME, 
     DD_TASK_ACTUAL_START_TIME, DD_TASK_ACTUAL_END_TIME, DD_TASK_PLAN_DURATION,DD_TASK_PROJECT_ID, DD_TASK_PERSON,
-    DD_TASK_PROJECT_NAME
+    DD_TASK_PROJECT_NAME,DD_TASK_STATE
   </sql>
 
     <select id="selectByPrimaryKey" parameterType="com.casic.datadriver.model.task.TaskInfo" resultMap="BaseResultMap">
@@ -108,7 +109,7 @@
       DD_TASK_COMPLETE_RATE, DD_TASK_COMPLETE_STATE, 
       DD_TASK_RESOURCE_ID, DD_TASK_ACTUAL_TIME, DD_TASK_PLAN_TIME, 
       DD_TASK_ACTUAL_START_TIME, DD_TASK_ACTUAL_END_TIME, 
-      DD_TASK_PLAN_DURATION,DD_TASK_PROJECT_ID,DD_TASK_PERSON, DD_TASK_PROJECT_NAME)
+      DD_TASK_PLAN_DURATION,DD_TASK_PROJECT_ID,DD_TASK_PERSON, DD_TASK_PROJECT_NAME,DD_TASK_STATE)
     values (#{ddTaskId,jdbcType=NUMERIC}, #{ddTaskName,jdbcType=VARCHAR}, #{ddTaskDescription,jdbcType=VARCHAR},
       #{ddTaskCreatorId,jdbcType=NUMERIC}, #{ddTaskResponsiblePerson,jdbcType=NUMERIC},
       #{ddTaskFixedPattern,jdbcType=NUMERIC}, #{ddTaskType,jdbcType=VARCHAR}, #{ddTaskChildType,jdbcType=VARCHAR},
@@ -118,7 +119,7 @@
       #{ddTaskResourceId,jdbcType=NUMERIC}, #{ddTaskActualTime,jdbcType=VARCHAR}, #{ddTaskPlanTime,jdbcType=VARCHAR},
       #{ddTaskActualStartTime,jdbcType=DATE}, #{ddTaskActualEndTime,jdbcType=DATE},
       #{ddTaskPlanDuration,jdbcType=NUMERIC},#{ddTaskProjectId,jdbcType=NUMERIC},#{ddTaskPerson,jdbcType=VARCHAR}
-      ,#{ddTaskProjectName,jdbcType=VARCHAR})
+      ,#{ddTaskProjectName,jdbcType=VARCHAR},#{ddTaskState,jdbcType=SMALLINT})
   </insert>
 
     <update id="update" parameterType="com.casic.datadriver.model.task.TaskInfo">
@@ -145,7 +146,8 @@
     DD_TASK_PLAN_DURATION = #{ddTaskPlanDuration,jdbcType=NUMERIC},
     DD_TASK_PROJECT_ID = #{ddTaskProjectId,jdbcType=NUMERIC},
     DD_TASK_PERSON = #{ddTaskPerson,jdbcType=VARCHAR},
-    DD_TASK_PROJECT_NAME = #{ddTaskProjectName,jdbcType=VARCHAR}
+    DD_TASK_PROJECT_NAME = #{ddTaskProjectName,jdbcType=VARCHAR},
+    DD_TASK_STATE = #{ddTaskState,jdbcType=SMALLINT}
     where DD_TASK_ID = #{ddTaskId}
   </update>
 
@@ -224,6 +226,9 @@
             <if test="ddTaskProjectName != null">
                 DD_TASK_PROJECT_NAME,
             </if>
+            <if test="ddTaskState != null">
+                DD_TASK_STATE,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="ddTaskId != null">
@@ -296,7 +301,10 @@
                 #{ddTaskPerson,jdbcType=VARCHAR},
             </if>
             <if test="ddTaskProjectName != null">
-                #{ddTaskProjectName,jdbcType=VARCHAR},
+            #{ddTaskProjectName,jdbcType=VARCHAR},
+            </if>
+            <if test="ddTaskState != null">
+                #{ddTaskState,jdbcType=SMALLINT},
             </if>
         </trim>
     </insert>
@@ -384,9 +392,9 @@
             <if test="ddTaskPerson != null">
                 DD_TASK_PERSON = #{ddTaskPerson,jdbcType=VARCHAR},
             </if>
-            <if test="ddTaskPerson != null">
-                DD_TASK_PROJECT_NAME = #{ddTaskProjectName,jdbcType=VARCHAR},
-            </if>
+            <if test="ddTaskState != null">
+            DD_TASK_STATE = #{ddTaskState,jdbcType=SMALLINT},
+        </if>
         </set>
         where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC}
     </update>
@@ -414,7 +422,8 @@
       DD_TASK_PLAN_DURATION = #{ddTaskPlanDuration,jdbcType=NUMERIC},
       DD_TASK_PROJECT_ID = #{ddTaskProjectID,jdbcType=NUMERIC},
       DD_TASK_PERSON = #{ddTaskPerson,jdbcType=VARCHAR},
-      DD_TASK_PROJECT_NAME = #{ddTaskProjectName,jdbcType=VARCHAR}
+      DD_TASK_PROJECT_NAME = #{ddTaskProjectName,jdbcType=VARCHAR},
+      DD_TASK_STATE = #{ddTaskState,jdbcType=SMALLINT}
     where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC}
   </update>
 </mapper>

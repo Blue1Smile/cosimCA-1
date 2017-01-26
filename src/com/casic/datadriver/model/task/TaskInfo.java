@@ -8,6 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 public class TaskInfo extends BaseModel {
+
+
+    public static final Short STATUS_RUNNING		=1;
+    public static final Short STATUS_STOP			=2;
+    public static final Short STATUS_EXCEPTION		=-1;
+    public static final Short STATUS_COMPLETE		=-2;
+    public static final Short STATUS_SUBMIT	        =0;
+    public static final Short STATUS_UNSTART        =-3;
     private Long ddTaskId;
 
     private String ddTaskName;
@@ -55,6 +63,18 @@ public class TaskInfo extends BaseModel {
     private String ddTaskPerson;
 
     private String ddTaskProjectName;
+
+    private Short ddTaskState;
+
+    public Short getDdTaskState() {
+        return ddTaskState;
+    }
+
+    public void setDdTaskState(Short ddTaskState) {
+        this.ddTaskState = ddTaskState;
+    }
+
+
 
     //任务管理中的私有数据管理
     protected List<PrivateData> privateDataList= new ArrayList<PrivateData>();

@@ -29,25 +29,35 @@
                 <%--<th style="text-align:center !important;">数据类型</th>--%>
                 <th style="text-align:center !important;">数据值</th>
                 <th style="text-align:center !important;">数据修改时间</th>
-                <%--<th style="text-align:center !important;">数据描述</th>--%>
+                <th style="text-align:center !important;">数据描述</th>
                 <%--<th style="text-align:center !important;">数据所属任务</th>--%>
                 </thead>
                 <tbody id="gridtbody">
-                <c:forEach items="${dataVersionList}" var="dataVersionItem">
+                <c:forEach items="${dataVersionList}" var="dataVersionList">
+                    <%--<tr style="cursor:pointer">--%>
                     <tr style="cursor:pointer">
-                    <tr style="cursor:pointer">
                         <td style="text-align: center;">
-                            <input name="ddDataRecordPersonId" type="hidden" value="${dataVersionItem.ddDataRecordPersonId}">
-                                ${dataVersionItem.ddDataRecordPersonId}
+                            <input name="ddDataRecordPersonId" type="hidden" value="${dataVersionList.ddDataRecordPersonId}">
+                                ${dataVersionList.ddDataRecordPersonId}
                         </td>
                         <td style="text-align: center;">
-                            <input type="hidden" name="ddDataValue" value="${dataVersionItem.ddDataValue}">
-                                ${dataVersionItem.ddDataValue}
+                            <input type="hidden" name="ddDataValue" value="${dataVersionList.ddDataValue}">
+                                ${dataVersionList.ddDataValue}
                         </td>
                         <td style="text-align: center;">
-                            <input type="hidden" name="ddDataRecordTime" value="${dataVersionItem.ddDataRecordTime}">
-                                ${dataVersionItem.ddDataRecordTime}
+                            <input type="hidden" name="ddDataRecordTime" value="${dataVersionList.ddDataRecordTime}">
+                                ${dataVersionList.ddDataRecordTime}
                         </td>
+                     <td style="text-align: center;">
+                        <a href="datasnapshot.ht?ddDataVersionId=${dataVersionList.ddDataVersionId}"
+                           class="layui-btn layui-btn-normal  layui-btn-small"><i
+                                class="layui-icon">&#xe615;</i> 数据版本</a>
+                            <%--<input type="hidden" name="ddDataRecordTime" value="${dataVersionList.ddDataRecordTime}">--%>
+                                <%--${dataVersionList.ddDataRecordTime}--%>
+                         <%--<input type="hidden" name="ddDataVersionId" value="${dataVersionList.ddDataVersionId}">--%>
+                             <%--${dataVersionList.ddDataVersionId}--%>
+                       </td>
+
                         <%--<td style="text-align: center;">--%>
                             <%--<input type="hidden" name="ddDataDescription"--%>
                                    <%--value="${privateDataItem.ddDataLastestValue}">--%>
@@ -61,13 +71,14 @@
                         <%--<td style="text-align: center;">--%>
                             <%--<input type="hidden" name="ddDataTaskId" value="${privateDataItem.ddDataTaskId}">--%>
                                 <%--${privateDataItem.ddDataTaskId}--%>
-                        </td>
+                        <%--</td>--%>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
     </form>
+</div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>
