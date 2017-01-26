@@ -204,10 +204,17 @@ public class TaskInfoController extends AbstractController {
     @Action(description = "添加任务")
     public ModelAndView addtask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<ISysUser> sysUserList = sysUserService.getAll();
-        Long id = RequestUtil.getLong(request, "id");
-        Project project = projectService.getById(id);
-        ModelAndView mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
+        ResultMessage resultMessage = null;
+        ModelAndView mv = new ModelAndView();
+        try{
+            List<ISysUser> sysUserList = sysUserService.getAll();
+            Long id = RequestUtil.getLong(request, "id");
+            Project project = projectService.getById(id);
+            mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
+            resultMessage = new ResultMessage(ResultMessage.Success, "创建成功");
+        }catch (Exception ex) {
+            resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败"+ex.getMessage());
+        }
         return mv;
     }
 
