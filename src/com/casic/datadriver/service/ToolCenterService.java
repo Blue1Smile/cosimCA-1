@@ -6,6 +6,7 @@ import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
 import org.springframework.stereotype.Service;
 
+
 import javax.annotation.Resource;
 import java.util.List;
 

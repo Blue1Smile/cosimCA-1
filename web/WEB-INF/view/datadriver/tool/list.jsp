@@ -38,70 +38,8 @@
         //布局大小改变的时候通知tab，面板改变大小
         function heightChanged(options) {
             $("#tree").height(options.middleHeight - 60);
-        }
-        ;
-//
-//        list<String> p1;
-//        p1.push("1");
-//        p1.push("2");
-//        p1.push("3");
-//        p1.push("4");
-//        p1.push("5");
-//        p1.push("6");
-//
-//        list<String> p2;
-//        p2.push("1.1");
-//        p2.push("1.2");
-//        p2.push("2.1");
-//        p2.push("3.1");
-//        p2.push("4.1");
-//        p2.push("5.1");
-//        list<String> p3;
-//        p3.push("1.1.1");
-//        p3.push("1.1.2");
-//        p3.push("1.2.1");
-//        p3.push("2.1.1");
-//        p3.push("3.1.1");
-//        p3.push("4.1.1");
-//        list<String> p4;
-//        list<String> p5;
-//        var p1size = p1.size();
-//        var p2size = p2.size();
-//        var p3size = p3.size();
-//
-//        //生成一个模拟树/////////////////////////////
-//        var createTree = function(node, start){j
-//            node = node || function(){
-//                        var arr = [];
-//                        for(var i = 1; i < p1.size(); i++){
-//                            arr.push({
-//                                name: p1.at(i);
-//                            });
-//                        }
-//                        return arr;
-//                    }();
-//            start = start || 1;
-//            layui.each(
-//                    ]
-//            , function(index, item){
-//                if(start < 10 && index < 9){
-//                    var child = [
-//                        {
-//                            name: (1 + index + start).toString().replace(/(\d)/, '$1$1$1$1$1$1$1$1$1')
-//                        }
-//                    ];
-//                    node[index].children = child;
-//                    createTree(child, index + start + 1);
-//                }
-//            });
-//            return node;
-//        };
-//
-//        layui.tree({
-//            elem: '#demo2' //指定元素
-//            ,nodes: createTree()
-//        });
-//
+        };
+
 //        ////////////////////////
         function loadTree() {
         layui.use(['tree', 'layer'], function() {
@@ -170,41 +108,40 @@
             });
         });
         }
-//       function createTree(node, start){
-//            node = node || function(){
-//                        var arr = [];
-//                        for(var i = 1; i < 10; i++){
-//                            arr.push({
-//                                name: i.toString().replace(/(\d)/, '$1$1$1$1$1$1$1$1$1')
-//                            });
-//                        }
-//                        return arr;
-//                    }();
-//            start = start || 1;
-//            layui.each(node, function(index, item){
-//                if(start < 10 && index < 9){
-//                    var child = [
-//                        {
-//                            name: (1 + index + start).toString().replace(/(\d)/, '$1$1$1$1$1$1$1$1$1')
-//                        }
-//                    ];
-//                    node[index].children = child;
-//                    createTree(child, index + start + 1);
-//                }
-//            });
-//            return node;
-//        };
-//        layui.tree({
-//            elem: '#demo2' //指定元素
-//            ,nodes: createTree()
-//        });
+       function createTree(node, start){
+            node = node || function(){
+                        var arr = [];
+                        for(var i = 1; i < 10; i++){
+                            arr.push({
+                                name: i.toString().replace(/(\d)/, '$1$1$1$1$1$1$1$1$1')
+                            });
+                        }
+                        return arr;
+                    }();
+            start = start || 1;
+            layui.each(node, function(index, item){
+                if(start < 10 && index < 9){
+                    var child = [
+                        {
+                            name: (1 + index + start).toString().replace(/(\d)/, '$1$1$1$1$1$1$1$1$1')
+                        }
+                    ];
+                    node[index].children = child;
+                    createTree(child, index + start + 1);
+                }
+            });
+            return node;
+        };
+        layui.tree({
+            elem: '#demo2' //指定元素
+            ,nodes: createTree()
+        });
     </script>
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>生成一个较深的树</legend>
 </fieldset>
-
 <ul id="demo23"></ul>
 <div class="layui-tab layui-tab-card">
 
