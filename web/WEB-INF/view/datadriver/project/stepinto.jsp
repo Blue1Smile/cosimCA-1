@@ -28,7 +28,6 @@
             cursor: pointer;
         }
 
-
         .task {
             display: flex;
             -webkit-flex-direction: row;
@@ -61,7 +60,8 @@
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
             <button id="static" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 统计</button>
-            <a class="btn btn-success" href="#" data-toggle="modal" data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"
+            <a class="btn btn-success" href="#" data-toggle="modal"
+               data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"
                data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建</a>
         </div>
     </ul>
@@ -76,12 +76,11 @@
                             新创建
                         </div>
                         <div class="panel-body">
-                                <ul class="scrum-stage-tasks">
-                                    <li class="task task-card">
-                                        111111
-                                    </li>
-                                </ul>
-                            </section>
+                            <ul class="scrum-stage-tasks">
+                                <c:forEach var="projectListbyUserItem" items="${projectListbyUser}">
+                                    <li class="task task-card">${projectListbyUserItem.ddProjectName}</li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
