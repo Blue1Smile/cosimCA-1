@@ -19,6 +19,9 @@ import com.casic.datadriver.model.task.TaskInfo;
 import com.casic.datadriver.service.ProjectStartCmd;
 import com.casic.datadriver.service.project.ProjectService;
 import com.casic.datadriver.service.project.ProjectStartService;
+import com.casic.datadriver.service.task.TaskInfoService;
+import com.casic.datadriver.service.task.ProTaskDependanceService;
+import com.casic.datadriver.model.task.ProTaskDependance;
 import com.hotent.core.annotion.Action;
 import com.hotent.core.bpm.model.ProcessCmd;
 import com.hotent.core.bpm.util.BpmUtil;
@@ -74,6 +77,10 @@ public class ProjectController extends BaseController {
     private ProjectService projectService;
     @Resource
     private ProjectStartService projectStartService;
+    @Resource
+    private TaskInfoService taskInfoService;
+    @Resource
+    private ProTaskDependanceService proTaskDependanceService;
 
     /**
      * �����Ŀ��Ϣ.
@@ -317,9 +324,19 @@ public class ProjectController extends BaseController {
         long projectId = RequestUtil.getLong(request, "id");
         Project project = projectService.getById(projectId);
         Long userId = project.getDdProjectCreatorId();
+        List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
+        List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(projectId);
+        for (int i=0; i<proTaskDependanceList.size(); i++){
+            ProTaskDependance proTaskDependance = proTaskDependanceList.get(i);
+            long taskId = proTaskDependance.getDdTaskId();
+            TaskInfo taskInfo = taskInfoService.getById(taskId);
+            taskInfoList.add(taskInfo);
+        }
+        //List<TaskInfo> taskInfoList =
         //根据用户ID获取当前用户拥有项目列表
         List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
         return getAutoView().addObject("Project", project)
-                .addObject("projectListbyUser", projectListbyUser);
+                .addObject("projectListbyUser", projectListbyUser)
+                .addObject("taskListbyUser", taskInfoList);
     }
 }

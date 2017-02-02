@@ -12,34 +12,32 @@
     <title>进入任务页面</title>
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/styles/check/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
+    <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
     <style>
-        .task.task-card {
+        .scrum-stage .task.task-card {
             margin: 0 8px 8px;
         }
 
         .task.task-card {
             padding: 0;
-            margin-left: 3px;
-            background-color: #f0f0f0;
+            background-color: #fff;
             border-radius: 3px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
             cursor: pointer;
+            margin-left: -42px;
         }
 
-        .task {
-            display: flex;
-            -webkit-flex-direction: row;
-            -ms-flex-direction: row;
-            flex-direction: row;
-            -webkit-align-items: flex-start;
-            -ms-flex-align: start;
-            align-items: flex-start;
-            position: relative;
-            white-space: normal;
+        .checkbox label {
+            margin: 12px;
         }
 
+        li {
+            list-style-type: none;
+        }
     </style>
 </head>
 <body>
@@ -76,9 +74,17 @@
                             新创建
                         </div>
                         <div class="panel-body">
-                            <ul class="scrum-stage-tasks">
-                                <c:forEach var="projectListbyUserItem" items="${projectListbyUser}">
-                                    <li class="task task-card">${projectListbyUserItem.ddProjectName}</li>
+                            <ul id="list1" class="scrum-stage-tasks">
+                                <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
+                                    <li class="task task-card ui-sortable-handle">
+                                        <div class="checkbox checkbox-primary">
+                                            <input id="checkbox2" class="styled" type="checkbox">
+                                            <label for="checkbox2">
+                                                    ${taskListbyUserItem.ddTaskName}
+                                            </label>
+                                        </div>
+                                        <input type="hidden" value="${taskListbyUserItem.ddTaskId}" name="release"/>
+                                    </li>
                                 </c:forEach>
                             </ul>
                         </div>
@@ -90,7 +96,9 @@
                             已发布
                         </div>
                         <div class="panel-body">
-                            <section></section>
+                            <ul id="list2" class="scrum-stage-tasks">
+
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -131,9 +139,20 @@
     </div>
 </div>
 </body>
-<%--<script>--%>
-<%--$(function(){--%>
-<%--$(".dropdown-toggle").dropdown('toggle');--%>
-<%--});--%>
-<%--</script>--%>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#list1,#list2").dragsort({
+            itemSelector: "li",
+            dragSelector: "li",
+            dragBetween: true,
+            dragEnd: saveOrder,
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+        });
+        function saveOrder() {
+            var data = $(this).children('input').val();
+            var parentid = $(this).parent().attr("id");
+            $.get("${ctx}/datadriver/task/savepublish.ht?id="+data+"&parent="+parentid);
+        }
+    });
+</script>
 </html>

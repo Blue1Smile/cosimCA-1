@@ -28,25 +28,18 @@ public class ProTaskDependanceDao extends BaseDao<ProTaskDependance> {
         return this.getBySqlKey("queryProTaskDependanceBasicInfoList", queryFilter);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.hotent.core.db.GenericDao#getEntityClass()
-     */
     @Override
     public Class<?> getEntityClass() {
         return ProTaskDependance.class;
     }
 
     public void deleteByProjectIdAndTaskId(Long ddProjectID,Long ddTaskID){
-
        this.deleteByProjectIdAndTaskId( ddProjectID,ddTaskID);
-      //  Map<String,Object> m=new HashMap<String,Object>();
-     //   m.put("ddProjectID", ddProjectID);
-     //   m.put("ddTaskID",ddTaskID);
-      //  return this.getBySqlKey("deleteByProjectIdAndTaskId", m);
     }
 
+    public List<ProTaskDependance> getProTaskDependanceList(long projectId){
+        return this.getBySqlKey("getProTaskDependanceList", projectId);
+    }
     /**
      * 映射MAP，删除任务依赖关系
      *
