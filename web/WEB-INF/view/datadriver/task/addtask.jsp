@@ -12,7 +12,10 @@
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+    <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+
     <title>添加任务</title>
 </head>
 <body>
@@ -23,7 +26,7 @@
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <form id="taskInfoForm" name="taskInfoForm" method="post" action="save.ht"
+        <form id="taskInfoForm" name="taskInfoForm" method="post" action="${ctx}/datadriver/task/save.ht"
               enctype="multipart/form-data">
             <table id="AddHandlingFee" class="table table-striped" cellpadding="0" cellspacing="0"
                    border="0"
@@ -31,20 +34,21 @@
                 <tr>
                     <th width="20%">任务名称:</th>
                     <td><input type="text" id="ddTaskName" name="ddTaskName"
-                               value="${TaskInfo.ddTaskName}" class="form-control"/></td>
+                               value="" class="form-control"/></td>
                     <%--<th width="20%">任务编号:</th>--%>
                     <%--<td><input type="text" id="ddTaskId" name="ddTaskId" value="${TaskInfo.ddTaskId}" class="layui-input"/></td>--%>
                     <th width="20%">任务所属项目:</th>
                     <td><input type="text" id="ddTaskProjectName" name="ddTaskProjectName"
-                               value="${projectItem.ddProjectName}" class="form-control"/></td>
+                               value="${projectItem.ddProjectName}" class="form-control" readonly/></td>
                 </tr>
                 <tr>
                     <th width="20%">任务类型:</th>
                     <td><input type="text" id="ddTaskType" name="ddTaskType"
-                               value="${TaskInfo.ddTaskType}" class="form-control"/></td>
+                               value="" class="form-control"/></td>
                     <th width="20%">任务截至时间:</th>
-                    <td><input type="text" id="ddTaskPlanEndTime" name="ddTaskPlanEndTime"
-                               value="${TaskInfo.ddTaskPlanEndTime}" class="form-control"/></td>
+                    <td><input type="text" name="ddTaskPlanEndTime"
+                               value="" readonly
+                               class="form_datetime form-control"/></td>
                     <%--<th width="20%">任务子类型:</th>--%>
                     <%--<td><input type="text" id="ddTaskChildType" name="ddTaskChildType"--%>
                     <%--value="${TaskInfo.ddTaskChildType}" class="form-control"/></td>--%>
@@ -52,10 +56,21 @@
                 <tr>
                     <th width="20%">优先级:</th>
                     <td><input type="text" id="ddTaskPriority" name="ddTaskPriority"
-                               value="${TaskInfo.ddTaskPriority}" class="form-control"/></td>
+                               value="" class="form-control"/></td>
                     <th width="20%">是否里程碑任务:</th>
-                    <td><input type="text" id="ddTaskMilestone" name="ddTaskMilestone"
-                               value="${TaskInfo.ddTaskMilestone}" class="form-control"/></td>
+                    <td>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
+                                是
+                            </label>
+                            <label>
+                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                                否
+                            </label>
+                        </div>
+                        <%--<input type="text" id="ddTaskMilestone" name="ddTaskMilestone"--%>
+                               <%--value="${TaskInfo.ddTaskMilestone}" class="form-control"/></td>--%>
                 </tr>
                 <tr>
                     <th width="20%">任务负责人:</th>
@@ -76,7 +91,8 @@
                 <tr>
                     <th width="20%">任务基本描述:</th>
                     <td colspan="3"><textarea id="ddTaskDescription" name="ddTaskDescription"
-                               value="${TaskInfo.ddTaskDescription}" class="form-control" rows="5"/></textarea>
+                                              value="" class="form-control"
+                                              rows="5"/></textarea>
                     </td>
                     <%--<th width="20%">计划工期:</th>--%>
                     <%--<td><input type="text" id="ddTaskPlanDuration" name="ddTaskPlanDuration"--%>
@@ -94,9 +110,9 @@
                 <%--</tr>--%>
 
 
-                    <%--<th width="20%">任务完成率:</th>--%>
-                    <%--<td><input type="text" id="ddTaskCompleteRate" name="ddTaskCompleteRate"--%>
-                    <%--value="${TaskInfo.ddTaskCompleteRate}" class="form-control"/></td>--%>
+                <%--<th width="20%">任务完成率:</th>--%>
+                <%--<td><input type="text" id="ddTaskCompleteRate" name="ddTaskCompleteRate"--%>
+                <%--value="${TaskInfo.ddTaskCompleteRate}" class="form-control"/></td>--%>
 
 
                 <%--<th width="20%">任务完成状态:</th>--%>
@@ -120,26 +136,16 @@
                 <%--<td><input type="text" id="ddTaskActualEndTime" name="ddTaskActualEndTime"--%>
                 <%--value="${TaskInfo.ddTaskActualEndTime}" class="form-control"/></td>--%>
                 <%--</tr>--%>
-                <input type="hidden" id="ddTaskId" name="ddTaskId" value="${TaskInfo.ddTaskId}"
-                       class="layui-input"/>
-                <input type="hidden" id="ddTaskCreatorId" name="ddTaskCreatorId"
-                       value="${TaskInfo.ddTaskCreatorId}" class="layui-input"/>
-                <input type="hidden" id="ddTaskCompleteState" name="ddTaskCompleteState"
-                       value="${TaskInfo.ddTaskCompleteState}" class="layui-input"/>
-                <input type="hidden" id="ddTaskResourceId" name="ddTaskResourceId"
-                       value="${TaskInfo.ddTaskResourceId}" class="layui-input"/>
                 <input type="hidden" id="ddTaskProjectId" name="ddTaskProjectId"
                        value="${projectItem.ddProjectId}" class="layui-input"/>
-                <input type="hidden" id="ddTaskPerson" name="ddTaskPerson"
-                       value="${TaskInfo.ddTaskPerson}" class="layui-input"/>
             </table>
         </form>
         <div class="row">
             <div class="col-xs-6">
-                <button class="btn btn-primary btn-block" id="dataFormSave">保存</button>
+                <input class="btn btn-primary btn-block" id="dataFormSave" value="创建新任务"/>
             </div>
             <div class="col-xs-6">
-                <button class="btn btn-default btn-block" id="">取消</button>
+                <input class="btn btn-default btn-block" id="" value="从模版创建任务"/>
             </div>
         </div>
 
@@ -151,12 +157,13 @@
         var taskPerson = $("#personSelect").find("option:selected").text();
         $("#ddTaskPerson").val(taskPerson);
     });
-
+    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
     $(function () {
         var options = {};
         if (showResponse) {
             options.success = showResponse;
         }
+
         var frm = $('#taskInfoForm').form();
         $("#dataFormSave").click(function () {
 
@@ -186,4 +193,5 @@
     }
 
 </script>
+<script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.zh-CN.js"></script>
 </html>
