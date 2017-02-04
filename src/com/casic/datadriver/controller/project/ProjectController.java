@@ -83,7 +83,7 @@ public class ProjectController extends BaseController {
     private ProTaskDependanceService proTaskDependanceService;
 
     /**
-     * �����Ŀ��Ϣ.
+     *  保存项目
      *
      * @param request  the request
      * @param response the response
@@ -121,7 +121,7 @@ public class ProjectController extends BaseController {
     }
 
     /**
-     * 取得 CloudResource 实体
+     * 取得对象实体
      *
      * @param request
      * @return
@@ -143,7 +143,7 @@ public class ProjectController extends BaseController {
 
 
     /**
-     * Query project basic info list.
+     * 查询项目列表
      *
      * @param request  the request
      * @param response the response
@@ -187,7 +187,7 @@ public class ProjectController extends BaseController {
     }
 
     /**
-     * ʱ�����Եı༭��.
+     *
      *
      * @param bin the bin
      */
@@ -198,7 +198,7 @@ public class ProjectController extends BaseController {
 
 
     /**
-     * 编辑cloud_account_info
+     * 编辑项目信息
      *
      * @param request
      * @throws Exception
@@ -218,7 +218,7 @@ public class ProjectController extends BaseController {
 
 
     /**
-     * 取得cloud_account_info明细
+     * 取得dd_project明细
      *
      * @param request
      * @param response
@@ -237,7 +237,7 @@ public class ProjectController extends BaseController {
 
 
     /**
-     * 启动项目。
+     * 启动项目 dd_project_start
      *
      * @param request
      * @param response
@@ -326,7 +326,7 @@ public class ProjectController extends BaseController {
         Long userId = project.getDdProjectCreatorId();
         List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
         List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(projectId);
-        for (int i=0; i<proTaskDependanceList.size(); i++){
+        for (int i = 0; i < proTaskDependanceList.size(); i++) {
             ProTaskDependance proTaskDependance = proTaskDependanceList.get(i);
             long taskId = proTaskDependance.getDdTaskId();
             TaskInfo taskInfo = taskInfoService.getById(taskId);
@@ -339,4 +339,28 @@ public class ProjectController extends BaseController {
                 .addObject("projectListbyUser", projectListbyUser)
                 .addObject("taskListbyUser", taskInfoList);
     }
+
+    /**
+     * 任务从新建拖拽到发布
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+
+
+    @RequestMapping("createtopublish")
+    @Action(description = "任务拖拽到发布")
+    public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        long taskId = RequestUtil.getLong(request, "id");
+        String parent = RequestUtil.getString(request, "parent");
+
+        if (parent == "createpanel") {
+
+        } else if (parent == "publishpanel") {
+
+        }
+    }
+
 }

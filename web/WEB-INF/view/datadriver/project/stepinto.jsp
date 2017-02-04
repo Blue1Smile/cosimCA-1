@@ -74,7 +74,7 @@
                             新创建
                         </div>
                         <div class="panel-body">
-                            <ul id="list1" class="scrum-stage-tasks">
+                            <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle">
                                         <div class="checkbox checkbox-primary">
@@ -96,7 +96,7 @@
                             已发布
                         </div>
                         <div class="panel-body">
-                            <ul id="list2" class="scrum-stage-tasks">
+                            <ul id="publishpanel" class="scrum-stage-tasks">
 
                             </ul>
                         </div>
@@ -141,7 +141,7 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#list1,#list2").dragsort({
+        $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
             dragBetween: true,
@@ -151,7 +151,7 @@
         function saveOrder() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
-            $.get("${ctx}/datadriver/task/savepublish.ht?id="+data+"&parent="+parentid);
+            $.get("createtopublish.ht?id="+data+"&parent="+parentid);
         }
     });
 </script>

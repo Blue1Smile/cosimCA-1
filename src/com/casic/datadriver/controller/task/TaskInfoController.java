@@ -58,6 +58,7 @@ import java.util.*;
 
 import java.net.URLDecoder;
 import java.util.Iterator;
+
 import org.jdom.output.XMLOutputter;
 import org.jdom.output.Format;
 
@@ -66,6 +67,7 @@ import org.jdom.Document;
 import org.jdom.input.SAXBuilder;
 
 import java.io.*;
+
 @Controller
 @RequestMapping("/datadriver/task/")
 public class TaskInfoController extends AbstractController {
@@ -89,9 +91,6 @@ public class TaskInfoController extends AbstractController {
     private TaskStartService taskStartService;
     @Resource
     private ProjectStartService projecStartService;
-
-
-
 
 
     /**
@@ -163,25 +162,25 @@ public class TaskInfoController extends AbstractController {
         List<Project> projectList = projectService.queryProjectlistByRes(ContextUtil.getCurrentUserId());
         //找到当前用户的所有负责的已经启动的项目
         List<Project> project_list = new ArrayList<Project>();
-        for (int i=0;i<projectList.size();i++){
-            if (projectList.get(i).getDdProjectState()==null){
+        for (int i = 0; i < projectList.size(); i++) {
+            if (projectList.get(i).getDdProjectState() == null) {
                 project_list.get(i).setDdProjectState(project_list.get(i).STATUS_UNSTART);
             }
-            if (projectList.get(i).getDdProjectState()==1){
+            if (projectList.get(i).getDdProjectState() == 1) {
                 project_list.add(projectList.get(i));
             }
         }
 
         //找到当前用户的所有可以审核的任务
         List<TaskInfo> checkTaskInfoList = new ArrayList<TaskInfo>();
-        for (int i=0;i<project_list.size();i++){
+        for (int i = 0; i < project_list.size(); i++) {
             List<TaskInfo> taskInfo_list = taskInfoService.queryTaskInfoByProjectId(project_list.get(i).getDdProjectId());
-            for (int j=0;j<taskInfo_list.size();j++){
-                TaskInfo task=taskInfo_list.get(j);
-                if (task.getDdTaskState()==null){
+            for (int j = 0; j < taskInfo_list.size(); j++) {
+                TaskInfo task = taskInfo_list.get(j);
+                if (task.getDdTaskState() == null) {
                     task.setDdTaskState(task.STATUS_UNSTART);
                 }
-                if (task.getDdTaskState()==0){
+                if (task.getDdTaskState() == 0) {
                     checkTaskInfoList.add(task);
                 }
             }
@@ -206,14 +205,14 @@ public class TaskInfoController extends AbstractController {
             throws Exception {
         ResultMessage resultMessage = null;
         ModelAndView mv = new ModelAndView();
-        try{
+        try {
             List<ISysUser> sysUserList = sysUserService.getAll();
             Long id = RequestUtil.getLong(request, "id");
             Project project = projectService.getById(id);
             mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
             resultMessage = new ResultMessage(ResultMessage.Success, "创建成功");
-        }catch (Exception ex) {
-            resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败"+ex.getMessage());
+        } catch (Exception ex) {
+            resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败" + ex.getMessage());
         }
         return mv;
     }
@@ -343,7 +342,6 @@ public class TaskInfoController extends AbstractController {
         return mv;
     }
 
-
     @RequestMapping("savepublish")
     @Action(description = "保存发布")
     public void savepublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -452,20 +450,20 @@ public class TaskInfoController extends AbstractController {
         List<Project> projectList = projectService.queryProjectlistByRes(ContextUtil.getCurrentUserId());
         //找到当前用户的所有负责的已经启动的项目
         List<Project> project_list = new ArrayList<Project>();
-        for (int i=0;i<projectList.size();i++){
+        for (int i = 0; i < projectList.size(); i++) {
             List<ProjectStart> projectStartList = projecStartService.queryByProjectId(projectList.get(i).getDdProjectId());
-            if (projectStartList.get(0).getDdProjectStartStatus()==1){
+            if (projectStartList.get(0).getDdProjectStartStatus() == 1) {
                 Project project = projectService.getById(projectStartList.get(0).getDdProjectId());
                 project_list.add(project);
             }
         }
         //找到当前用户的所有可以审核的任务
         List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
-        for (int i=0;i<project_list.size();i++){
+        for (int i = 0; i < project_list.size(); i++) {
             List<TaskInfo> taskInfo_list = taskInfoService.queryTaskInfoByProjectId(project_list.get(i).getDdProjectId());
-            for (int j=0;j<taskInfo_list.size();j++){
-                TaskStart taskStart =taskStartService.queryTaskStartByTaskId(taskInfo_list.get(j).getDdTaskId()).get(0);
-                if (taskStart.getDdTaskStatus()==0){
+            for (int j = 0; j < taskInfo_list.size(); j++) {
+                TaskStart taskStart = taskStartService.queryTaskStartByTaskId(taskInfo_list.get(j).getDdTaskId()).get(0);
+                if (taskStart.getDdTaskStatus() == 0) {
                     taskInfoList.add(taskInfoService.getById(taskStart.getDdTaskId()));
                 }
             }
@@ -488,19 +486,20 @@ public class TaskInfoController extends AbstractController {
     @Action(description = "返回任务发布订购数据列表")
     public ModelAndView check(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Long ddTaskId= RequestUtil.getLong(request, "id");
+        Long ddTaskId = RequestUtil.getLong(request, "id");
         //获得发布数据列表
-        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
-        for (OrderDataRelation orderDataRelation:orderDataRelation_list){
-            Long ddDataId=orderDataRelation.getDdDataId();
-            List<PrivateData>  taskPrivateDatas =  this.privateDataService.getByddDataId(ddDataId);
+        for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
+            Long ddDataId = orderDataRelation.getDdDataId();
+            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
             privateData.addAll(taskPrivateDatas);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
                 privateData);
         return mv;
     }
+
     /**
      * 2016/1/8/
      *
@@ -514,17 +513,16 @@ public class TaskInfoController extends AbstractController {
     public void rejecttask(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
-            List<TaskStart> taskStart_list =taskStartService.queryTaskStartByTaskId(ddTaskId);
+            List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
             //判断任务的当前状态，只有在正在提交中才允许驳回
-            if(taskStart_list.get(0).getDdTaskStatus()==0) {
+            if (taskStart_list.get(0).getDdTaskStatus() == 0) {
                 taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_RUNNING);
                 taskStartService.update(taskStart_list.get(0));
-            }
-            else {
+            } else {
                 String resultMsg = null;
-                writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Fail);
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
