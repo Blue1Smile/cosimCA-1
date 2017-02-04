@@ -10,9 +10,28 @@
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        #layoutAside {
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            z-index: 9;
+            position: relative;
+            padding: 5px 0 5px 0;
+            /*padding-bottom: 5px;*/
+            /*padding-left: 0px;*/
+            /*padding-right: 0px;*/
+        }
+        #layoutAside {
+            width: 200px;
+            height: 100%;
+            background: #e2e2e2;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
+    <br>
     <%--<div class="row bg-info" style="height: 30px">--%>
     <%--<p class="pull-left">--%>
     <%--<a href="${ctx}/cloud/console/home.ht" class="link01">个人主页</a>--%>
@@ -31,7 +50,7 @@
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>
-    <div class="col-xs-2">
+    <div class="col-xs-2" id="layoutAside">
         <decorator:body/>
     </div>
     <div class="col-xs-10">
