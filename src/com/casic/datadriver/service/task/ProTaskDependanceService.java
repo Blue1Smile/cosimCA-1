@@ -54,6 +54,9 @@ public class ProTaskDependanceService extends BaseService<ProTaskDependance> {
         return this.proTaskDependanceDao.queryProTaskDependanceBasicInfoList(queryFilter);
     }
 
+    public List<ProTaskDependance> getProTaskDependanceList(long projectId){
+        return this.proTaskDependanceDao.getProTaskDependanceList(projectId);
+    }
     public void deleteByProjectIdAndTaskId(Long ddProjectID,Long ddTaskID){
 
         this.proTaskDependanceDao.deleteByProjectIdAndTaskId(ddProjectID,ddTaskID);

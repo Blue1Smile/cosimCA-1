@@ -178,7 +178,7 @@
     </div>
 </div>
 </body>
-<script src="${ctx}/js/jqueryui/external/jquery/jquery.js"></script>
+<script src="${ctx}/js/jquery-3.1.1.min.js"></script>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script src="${ctx}/newtable/bootstrap.js"></script>
 </html>

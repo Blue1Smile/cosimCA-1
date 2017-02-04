@@ -63,7 +63,7 @@ public class ProjectService extends BaseService<Project> {
 	/**20161202
 	 * Query project basic info list.
 	 *
-	 * @param queryFilter
+	 * @param userId
 	 *            the query filter
 	 * @return the list
 	 */

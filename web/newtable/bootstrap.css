@@ -2458,8 +2458,8 @@ _:-ms-fullscreen.input-lg,
 .checkbox {
   position: relative;
   display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 2px;
+  margin-bottom: 6px;
 }
 .radio label,
 .checkbox label {
@@ -5098,7 +5098,8 @@ a.list-group-item-danger.active:focus {
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .panel-body {
-  padding: 15px;
+  padding: 5px;
+  background-color: whitesmoke;
 }
 .panel-heading {
   padding: 10px 15px;
