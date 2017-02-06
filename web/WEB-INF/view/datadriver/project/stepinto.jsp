@@ -97,7 +97,17 @@
                         </div>
                         <div class="panel-body">
                             <ul id="publishpanel" class="scrum-stage-tasks">
-
+                                <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
+                                    <li class="task task-card ui-sortable-handle">
+                                        <div class="checkbox checkbox-primary">
+                                            <input id="checkbox" class="styled" type="checkbox">
+                                            <label for="checkbox">
+                                                    ${publishtaskListbyUserItem.ddTaskName}
+                                            </label>
+                                        </div>
+                                        <input type="hidden" value="${publishtaskListbyUserItem.ddTaskId}" name="release"/>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>

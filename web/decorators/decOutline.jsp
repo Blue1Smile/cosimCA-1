@@ -18,9 +18,6 @@
             z-index: 9;
             position: relative;
             padding: 5px 0 5px 0;
-            /*padding-bottom: 5px;*/
-            /*padding-left: 0px;*/
-            /*padding-right: 0px;*/
         }
         #layoutAside {
             width: 200px;

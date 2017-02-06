@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
+import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.task.TaskStartService;
 import com.hotent.core.util.ContextUtil;
 
 import javax.annotation.Resource;
@@ -81,9 +83,11 @@ public class ProjectController extends BaseController {
     private TaskInfoService taskInfoService;
     @Resource
     private ProTaskDependanceService proTaskDependanceService;
+    @Resource
+    private TaskStartService taskStartService;
 
     /**
-     *  保存项目
+     * 保存项目
      *
      * @param request  the request
      * @param response the response
@@ -187,8 +191,6 @@ public class ProjectController extends BaseController {
     }
 
     /**
-     *
-     *
      * @param bin the bin
      */
     @InitBinder
@@ -325,19 +327,31 @@ public class ProjectController extends BaseController {
         Project project = projectService.getById(projectId);
         Long userId = project.getDdProjectCreatorId();
         List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
+        List<TaskInfo> createTaskInfoList = new ArrayList<TaskInfo>();
+        List<TaskInfo> publishTaskInfoList = new ArrayList<TaskInfo>();
         List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(projectId);
         for (int i = 0; i < proTaskDependanceList.size(); i++) {
             ProTaskDependance proTaskDependance = proTaskDependanceList.get(i);
             long taskId = proTaskDependance.getDdTaskId();
             TaskInfo taskInfo = taskInfoService.getById(taskId);
+
             taskInfoList.add(taskInfo);
+        }
+        for (TaskInfo taskInfo : taskInfoList) {
+            if (taskInfo.getDdTaskChildType().equals("publishpanel")) {
+                publishTaskInfoList.add(taskInfo);
+            }
+            if (taskInfo.getDdTaskChildType().equals("createpanel")) {
+                createTaskInfoList.add(taskInfo);
+            }
         }
         //List<TaskInfo> taskInfoList =
         //根据用户ID获取当前用户拥有项目列表
         List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
         return getAutoView().addObject("Project", project)
                 .addObject("projectListbyUser", projectListbyUser)
-                .addObject("taskListbyUser", taskInfoList);
+                .addObject("taskListbyUser", createTaskInfoList)
+                .addObject("publishtaskListbyUser", publishTaskInfoList);
     }
 
     /**
@@ -356,10 +370,29 @@ public class ProjectController extends BaseController {
         long taskId = RequestUtil.getLong(request, "id");
         String parent = RequestUtil.getString(request, "parent");
 
-        if (parent == "createpanel") {
-
-        } else if (parent == "publishpanel") {
-
+        TaskStart taskStart = new TaskStart();
+        TaskInfo taskInfo = new TaskInfo();
+        if (parent.equals("createpanel")) {
+            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
+            //更新taskinfo
+            taskInfo.setDdTaskChildType("createpanel");
+            taskInfoService.updateDDTask(taskInfo);
+        }
+        if (parent.equals("publishpanel")) {
+            taskStart.setDdTaskStartId(UniqueIdUtil.genId());
+//            taskStart.setDdProjectStartId();
+            taskStart.setDdTaskId(taskId);
+//            taskStart.setActInstId();
+            taskStart.setDdTaskStatus((short) 1);
+//            taskStart.setSortOrder();
+            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
+            //更新taskinfo
+            taskInfo.setDdTaskChildType("publishpanel");
+            taskInfoService.updateDDTask(taskInfo);
+            //添加taskstart
+            long userId = taskInfo.getDdTaskResponsiblePerson();
+            taskStart.setDdTaskResponcePerson(userId);
+            taskStartService.taskStart(taskStart);
         }
     }
 

@@ -52,7 +52,7 @@ public class TaskStartService  extends BaseService<TaskStart> {
     }
 
     /**
-     * 启动业务实例环节
+     * 启动业务实例环节，启动任务列表
      * @param projectStart
      * @param taskInfoList
      * @param ctx
@@ -83,6 +83,17 @@ public class TaskStartService  extends BaseService<TaskStart> {
         }
 
         return taskStartList;
+    }
+    /**
+     * 启动业务实例环节，启动单个任务
+     * @param taskStart
+     * @return
+     * @throws Exception
+     */
+    public void taskStart(TaskStart taskStart){
+        taskStart.setDdTaskStatus(TaskStart.STATUS_RUNNING);
+        taskStart.setCreatetime(new Date());
+        dao.add(taskStart);
     }
 
     /**

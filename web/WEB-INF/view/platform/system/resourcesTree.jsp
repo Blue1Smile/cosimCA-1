@@ -257,7 +257,7 @@
 		var url=__ctx +'/platform/system/resources/sortList.ht?resId='+resId;
 		var winArgs="dialogWidth:600px;dialogHeight:300px";
 	 	url=url.getNewUrl();
-	 	var rtn=window.showModalDialog(url,"",winArgs);
+	 	var rtn=window.open(url,"",winArgs);
 	 	reFresh();
 		
 	}

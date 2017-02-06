@@ -109,6 +109,7 @@ public class TaskInfoController extends AbstractController {
         try {
             if (taskInfo.getDdTaskId() == null || taskInfo.getDdTaskId() == 0) {
                 taskInfo.setDdTaskId(UniqueIdUtil.genId());
+                taskInfo.setDdTaskChildType("createpanel");
                 taskInfoService.addDDTask(taskInfo);
                 proTaskDependance.setDdTaskId(UniqueIdUtil.genId());
                 proTaskDependance.setDdTaskId(taskInfo.getDdTaskId());

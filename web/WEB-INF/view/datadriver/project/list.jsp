@@ -105,10 +105,10 @@
                             class="layui-icon">
                         &#xe614;</i> 项目设置
                     </a>
-                    <a href="start.ht?id=${projectList.ddProjectId}"
-                       class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#x1005;</i> 项目启动</a>
+                    <%--<a href="start.ht?id=${projectList.ddProjectId}"--%>
+                       <%--class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#x1005;</i> 项目启动</a>--%>
                     <a href="stepinto.ht?id=${projectList.ddProjectId}"
-                       class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
+                       class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
                     <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
                     <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                     <%--<a class="layui-btn layui-btn-mini layui-btn-normal"--%>
@@ -134,11 +134,11 @@
                                 class="layui-icon">
                             &#xe614;</i> 项目设置
                         </a>
-                        <a href="start.ht?id=${projectList.ddProjectId}"
-                           class="layui-btn layui-btn-primary layui-btn-mini"><i class="layui-icon">&#x1005;</i>
-                            项目启动</a>
+                        <%--<a href="start.ht?id=${projectList.ddProjectId}"--%>
+                           <%--class="layui-btn layui-btn-primary layui-btn-mini"><i class="layui-icon">&#x1005;</i>--%>
+                            <%--项目启动</a>--%>
                         <a href="stepinto.ht?id=${projectList.ddProjectId}"
-                           class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
+                           class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
                         <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
                         <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                         <%--<a class="layui-btn layui-btn-mini layui-btn-normal"--%>

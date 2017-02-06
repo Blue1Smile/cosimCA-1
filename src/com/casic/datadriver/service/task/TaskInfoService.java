@@ -47,8 +47,8 @@ public class TaskInfoService extends BaseService<TaskInfo> {
 
     public boolean updateDDTask(TaskInfo taskInfo) throws Exception {
         update(taskInfo);
-        delByPk(taskInfo.getDdTaskId());
-        addSubList(taskInfo);
+//        delByPk(taskInfo.getDdTaskId());
+//        addSubList(taskInfo);
         return true;
     }
     /*
@@ -83,7 +83,15 @@ public class TaskInfoService extends BaseService<TaskInfo> {
         return this.taskInfoDao.queryTaskInfoByProjectId(ProjectId);
     }
 
-
+    /**
+     * 获取任务负责人ID
+     *
+     *            the query filter
+     * @return the list
+     */
+    public TaskInfo getUserIdbyTaskId(long taskId) {
+        return this.taskInfoDao.getById(taskId);
+    }
 
     /**
      * Query task basic info list.
