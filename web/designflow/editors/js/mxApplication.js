@@ -65,7 +65,7 @@
 				editor.readGraphModel(xmlcontent.documentElement);
 				//editor.filename=filename;
 				var enc=new mxCodec();
-				window.console.log(mxUtils.getPrettyXml(enc.encode(editor.graph.getModel())));
+				//window.console.log(mxUtils.getPrettyXml(enc.encode(editor.graph.getModel())));
 				// Shows the application
 				hideSplash();
 			}
