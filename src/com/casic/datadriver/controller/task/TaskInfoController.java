@@ -528,4 +528,109 @@ public class TaskInfoController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
+
+    /**
+     * 进入项目控制台
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+
+
+    @RequestMapping("stepinto")
+    @Action(description = "进入项目")
+    public ModelAndView stepinto(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        long taskId = RequestUtil.getLong(request, "id");
+        TaskInfo taskInfo = taskInfoService.getById(taskId);
+//        Long userId = taskInfo.getDdProjectCreatorId();
+//        List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
+//        List<TaskInfo> createTaskInfoList = new ArrayList<TaskInfo>();
+//        List<TaskInfo> publishTaskInfoList = new ArrayList<TaskInfo>();
+        List<PrivateData> privateDataListbyTask = new ArrayList<PrivateData>();
+        List<PrivateData> publishDataList = new ArrayList<PrivateData>();
+
+
+        privateDataListbyTask=this.privateDataService.queryPrivateDataByddTaskID(taskId);
+        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
+
+        //循环获取发布数据ID，查找任务的所有私有数据
+        for (int i = 0; i < publishDataRelationList.size(); i++) {
+            OrderDataRelation orderDataRelation = publishDataRelationList.get(i);
+            PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
+            publishDataList.add(privateData);
+        }
+
+
+//        List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(projectId);
+//        for (int i = 0; i < proTaskDependanceList.size(); i++) {
+//            ProTaskDependance proTaskDependance = proTaskDependanceList.get(i);
+//            long taskId = proTaskDependance.getDdTaskId();
+//            TaskInfo taskInfo = taskInfoService.getById(taskId);
+//
+//            taskInfoList.add(taskInfo);
+//        }
+//        for (TaskInfo taskInfo : taskInfoList) {
+//            if (taskInfo.getDdTaskChildType().equals("publishpanel")) {
+//                publishTaskInfoList.add(taskInfo);
+//            }
+//            if (taskInfo.getDdTaskChildType().equals("createpanel")) {
+//                createTaskInfoList.add(taskInfo);
+//            }
+//        }
+        //List<TaskInfo> taskInfoList =
+        //根据用户ID获取当前用户拥有项目列表
+//        List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
+
+//        ModelAndView mv = this.getAutoView().addObject("privateDataList",
+//                this.privateDataService.queryPrivateDataByddTaskID(id))
+//                .addObject("publishDataRelationList", privateDataList);
+        return getAutoView().addObject("TaskInfo", taskInfo)
+                .addObject("privateDataListbyTask",privateDataListbyTask )
+                .addObject("publishDataList", publishDataList);
+    }
+
+
+//    /**
+//     * 任务从新建拖拽到发布
+//     *
+//     * @param request
+//     * @param response
+//     * @return
+//     * @throws Exception
+//     */
+//
+//    @RequestMapping("createtopublish")
+//    @Action(description = "任务拖拽到发布")
+//    public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        long taskId = RequestUtil.getLong(request, "id");
+//        String parent = RequestUtil.getString(request, "parent");
+//
+//        TaskStart taskStart = new TaskStart();
+//        TaskInfo taskInfo = new TaskInfo();
+//        if (parent.equals("createpanel")) {
+//            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
+//            //更新taskinfo
+//            taskInfo.setDdTaskChildType("createpanel");
+//            taskInfoService.updateDDTask(taskInfo);
+//        }
+//        if (parent.equals("publishpanel")) {
+//            taskStart.setDdTaskStartId(UniqueIdUtil.genId());
+////            taskStart.setDdProjectStartId();
+//            taskStart.setDdTaskId(taskId);
+////            taskStart.setActInstId();
+//            taskStart.setDdTaskStatus((short) 1);
+////            taskStart.setSortOrder();
+//            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
+//            //更新taskinfo
+//            taskInfo.setDdTaskChildType("publishpanel");
+//            taskInfoService.updateDDTask(taskInfo);
+//            //添加taskstart
+//            long userId = taskInfo.getDdTaskResponsiblePerson();
+//            taskStart.setDdTaskResponcePerson(userId);
+//            taskStartService.taskStart(taskStart);
+//        }
+//    }
 }

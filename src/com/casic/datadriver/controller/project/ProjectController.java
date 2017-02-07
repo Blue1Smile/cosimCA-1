@@ -360,6 +360,7 @@ public class ProjectController extends BaseController {
                 .addObject("publishtaskListbyUser", publishTaskInfoList);
     }
 
+
     /**
      * 任务从新建拖拽到发布
      *
