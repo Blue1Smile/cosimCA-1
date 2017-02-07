@@ -8,7 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
+import com.casic.datadriver.model.flow.ProcessFlow;
+import com.casic.datadriver.model.flow.ProjectProcessAssocia;
 import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.flow.ProcessFlowService;
+import com.casic.datadriver.service.flow.ProjectProcessAssociaService;
 import com.casic.datadriver.service.task.TaskStartService;
 import com.hotent.core.util.ContextUtil;
 
@@ -85,7 +89,10 @@ public class ProjectController extends BaseController {
     private ProTaskDependanceService proTaskDependanceService;
     @Resource
     private TaskStartService taskStartService;
-
+    @Resource
+    private ProjectProcessAssociaService projectProcessAssociaService;
+    @Resource
+    private ProcessFlowService processFlowService;
     /**
      * 保存项目
      *
@@ -345,7 +352,6 @@ public class ProjectController extends BaseController {
                 createTaskInfoList.add(taskInfo);
             }
         }
-        //List<TaskInfo> taskInfoList =
         //根据用户ID获取当前用户拥有项目列表
         List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
         return getAutoView().addObject("Project", project)
@@ -396,5 +402,31 @@ public class ProjectController extends BaseController {
             taskStartService.taskStart(taskStart);
         }
     }
+    /**
+     * 项目统计
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
 
+    @RequestMapping("statis")
+    @Action(description = "统计")
+    public ModelAndView statis(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ProcessFlow processFlow = new ProcessFlow();
+        ModelAndView mv = new ModelAndView();
+        Long projectId = RequestUtil.getLong(request, "projectId");
+        ProjectProcessAssocia projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectId);
+        if (projectProcessAssocia != null) {
+            Long processFlowId = projectProcessAssocia.getDdPrcessId();
+            processFlow = processFlowService.getById(processFlowId);
+            String tempXml = processFlow.getDdProcessXml();
+            mv = this.getAutoView().addObject("projectId", projectId)
+                    .addObject("processFlowXml", tempXml);
+        } else {
+            mv = this.getAutoView().addObject("projectId", projectId);
+        }
+        return mv;
+    }
 }
