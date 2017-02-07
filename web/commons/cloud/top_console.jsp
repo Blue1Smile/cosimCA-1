@@ -23,7 +23,7 @@
         </c:if>
     </c:forEach>
     <li class="layui-nav-item" style="float: right">
-        <c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}"><a id="username" href="#"><sec:authentication
+        <c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}"><a id="username" href="#"><span class="glyphicon glyphicon-user"></span> <sec:authentication
                 property="principal.fullname"/></a></c:if>
         <dl class="layui-nav-child">
             <dd><a href="${ctx}/loginCloud.ht" class="link01"><span class="glyphicon glyphicon-log-out"

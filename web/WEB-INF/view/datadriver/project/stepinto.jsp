@@ -5,45 +5,68 @@
   Time: 上午10:51
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@ taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
     <title>进入任务页面</title>
-    <%@include file="/commons/include/get.jsp" %>
+    <%--<%@include file="/commons/include/get.jsp" %>--%>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/styles/check/font-awesome.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
+
+    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
     <style>
-        html,body{ margin:0px; height:100%;}
+        html, body {
+            margin: 0px !important;
+            height: 100% !important;
+        }
+
         .scrum-stage .task.task-card {
-            margin: 0 8px 8px;
+            margin: 0 8px 8px !important;
         }
 
         .task.task-card {
-            padding: 0;
-            background-color: #fff;
-            border-radius: 3px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
-            cursor: pointer;
-            margin-left: -42px;
+            padding: 0 !important;
+            background-color: #fff !important;
+            border-radius: 3px !important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
+            cursor: pointer !important;
+            margin-left: -42px !important;
         }
 
         .checkbox label {
-            margin: 12px;
+            margin: 12px !important;
         }
 
         li {
-            list-style-type: none;
+            list-style-type: none !important;
         }
 
-        .panel {height: 100%;}
+        .panel {
+            height: 100% !important;
+        }
     </style>
 </head>
-<body>
+<body class="cbp-spmenu-push">
+<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+
+
+</div>
 <div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="dropdown">
@@ -82,10 +105,11 @@
                         <div class="panel-body">
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
-                                    <li class="task task-card ui-sortable-handle">
+                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
+                                        onclick="showTaskContent(this)">
                                         <div class="checkbox checkbox-primary">
-                                            <input id="checkbox2" class="styled" type="checkbox">
-                                            <label for="checkbox2">
+                                            <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
+                                            <label for="${taskListbyUserItem.ddTaskId}">
                                                     ${taskListbyUserItem.ddTaskName}
                                             </label>
                                         </div>
@@ -104,10 +128,11 @@
                         <div class="panel-body">
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
-                                    <li class="task task-card ui-sortable-handle">
+                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
+                                        onclick="showTaskContent(this)">
                                         <div class="checkbox checkbox-primary">
-                                            <input id="checkbox" class="styled" type="checkbox">
-                                            <label for="checkbox">
+                                            <input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">
+                                            <label for="${publishtaskListbyUserItem.ddTaskId}">
                                                     ${publishtaskListbyUserItem.ddTaskName}
                                             </label>
                                         </div>
@@ -179,5 +204,38 @@
             $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
     });
+</script>
+<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+<script src="${ctx}/styles/slide/js/classie.js"></script>
+
+<script>
+    var menuRight = document.getElementById('cbp-spmenu-s2'),
+            showLeftPush = document.getElementById('showLeftPush'),
+            showRightPush = document.getElementById('showRightPush'),
+            body = document.body;
+
+    function showTaskContent(obj) {
+        classie.toggle(obj, 'active');
+        classie.toggle(body, 'cbp-spmenu-push-toleft');
+        classie.toggle(menuRight, 'cbp-spmenu-open');
+    }
+
+    //    function disableOther(button) {
+    //
+    //
+    //        if (button !== 'showLeftPush') {
+    //
+    //            classie.toggle(showLeftPush, 'disabled');
+    //
+    //        }
+    //
+    //        if (button !== 'showRightPush') {
+    //
+    //            classie.toggle(showRightPush, 'disabled');
+    //
+    //        }
+    //
+    //    }
+
 </script>
 </html>
