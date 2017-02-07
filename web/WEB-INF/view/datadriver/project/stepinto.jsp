@@ -5,19 +5,20 @@
   Time: 上午10:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+
     <title>进入任务页面</title>
     <%--<%@include file="/commons/include/get.jsp" %>--%>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
@@ -79,17 +80,22 @@
                 </c:forEach>
             </ul>
         </li>
-        <li role="presentation" class="active"><a href="#task" data-toggle="tab" role="tab">任务</a></li>
-        <li role="presentation"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
+        <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab">任务</a></li>
+        <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
             <button id="statis_btn" class="btn btn-warning" data-toggle="modal"
                     data-remote="statis.ht?id=${Project.ddProjectId}"
                     data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计
             </button>
-            <a class="btn btn-success" href="#" data-toggle="modal"
+
+            <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
                data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"
                data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建</a>
+
+            <a class="btn btn-info" href="#" data-toggle="modal" id="create_index"
+               data-remote="${ctx}/datadriver/index/indexedit.ht?id=${Project.ddProjectId}"
+               data-target="#addindex"><span class="glyphicon glyphicon-plus"></span> 创建</a>
         </div>
     </ul>
 
@@ -180,6 +186,14 @@
         </div>
     </div>
 </div>
+<%--任务index--%>
+<div class="modal fade" id="addindex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 <%--统计--%>
 <div class="modal fade" id="statis" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -203,6 +217,8 @@
             var parentid = $(this).parent().attr("id");
             $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
+        $("#create_task").show();
+        $("#create_index").hide();
     });
 </script>
 <!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
@@ -219,7 +235,14 @@
         classie.toggle(body, 'cbp-spmenu-push-toleft');
         classie.toggle(menuRight, 'cbp-spmenu-open');
     }
-
+    switch_attr_index.onclick = function () {
+        $("#create_task").hide();
+        $("#create_index").show();
+    }
+    switch_attr_task.onclick = function () {
+        $("#create_task").show();
+        $("#create_index").hide();
+    }
     //    function disableOther(button) {
     //
     //
