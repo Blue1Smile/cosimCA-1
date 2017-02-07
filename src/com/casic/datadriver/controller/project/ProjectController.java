@@ -345,7 +345,6 @@ public class ProjectController extends BaseController {
                 createTaskInfoList.add(taskInfo);
             }
         }
-        //List<TaskInfo> taskInfoList =
         //根据用户ID获取当前用户拥有项目列表
         List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
         return getAutoView().addObject("Project", project)
@@ -395,5 +394,19 @@ public class ProjectController extends BaseController {
             taskStartService.taskStart(taskStart);
         }
     }
+    /**
+     * 项目统计
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
 
+
+    @RequestMapping("statis")
+    @Action(description = "统计")
+    public void statis(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    }
 }

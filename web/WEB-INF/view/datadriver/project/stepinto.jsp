@@ -57,7 +57,10 @@
         <li role="presentation"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
-            <button id="static" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 统计</button>
+            <button id="statis_btn" class="btn btn-warning" data-toggle="modal"
+                    data-remote="statis.ht?id=${Project.ddProjectId}"
+                    data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计
+            </button>
             <a class="btn btn-success" href="#" data-toggle="modal"
                data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"
                data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建</a>
@@ -105,7 +108,8 @@
                                                     ${publishtaskListbyUserItem.ddTaskName}
                                             </label>
                                         </div>
-                                        <input type="hidden" value="${publishtaskListbyUserItem.ddTaskId}" name="release"/>
+                                        <input type="hidden" value="${publishtaskListbyUserItem.ddTaskId}"
+                                               name="release"/>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -148,6 +152,14 @@
         </div>
     </div>
 </div>
+<%--统计--%>
+<div class="modal fade" id="statis" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -161,7 +173,7 @@
         function saveOrder() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
-            $.get("createtopublish.ht?id="+data+"&parent="+parentid);
+            $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
     });
 </script>

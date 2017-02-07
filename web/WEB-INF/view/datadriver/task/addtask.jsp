@@ -59,18 +59,24 @@
                                value="" class="form-control"/></td>
                     <th width="20%">是否里程碑任务:</th>
                     <td>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
+
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
+                            <label for="ddTaskMilestone1">
                                 是
                             </label>
-                            <label>
-                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                        </div>
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                            <label for="ddTaskMilestone0">
                                 否
                             </label>
                         </div>
-                        <%--<input type="text" id="ddTaskMilestone" name="ddTaskMilestone"--%>
-                               <%--value="${TaskInfo.ddTaskMilestone}" class="form-control"/></td>--%>
+
+
+                    </td>
+                    <%--<input type="text" id="ddTaskMilestone" name="ddTaskMilestone"--%>
+                    <%--value="${TaskInfo.ddTaskMilestone}" class="form-control"/></td>--%>
                 </tr>
                 <tr>
                     <th width="20%">任务负责人:</th>
