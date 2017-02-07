@@ -18,6 +18,7 @@
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
     <style>
+        html,body{ margin:0px; height:100%;}
         .scrum-stage .task.task-card {
             margin: 0 8px 8px;
         }
@@ -38,6 +39,8 @@
         li {
             list-style-type: none;
         }
+
+        .panel {height: 100%;}
     </style>
 </head>
 <body>

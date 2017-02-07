@@ -4,13 +4,14 @@
 <%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="zh">
 <head>
     <title><decorator:title default="工作台"/>协同设计</title>
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
+        html,body{ margin:0px; height:100%;}
         #layoutAside {
             top: 0px;
             left: 0px;
