@@ -36,11 +36,9 @@
             margin: 0px !important;
             height: 100% !important;
         }
-
         .scrum-stage .task.task-card {
             margin: 0 8px 8px !important;
         }
-
         .task.task-card {
             padding: 0 !important;
             background-color: #fff !important;
@@ -49,24 +47,21 @@
             cursor: pointer !important;
             margin-left: -42px !important;
         }
-
         .checkbox label {
             margin: 12px !important;
         }
-
         li {
             list-style-type: none !important;
         }
-
-        .panel {
-            height: 100% !important;
+        .cbp-spmenu-push{
+            overflow:scroll !important;
+            overflow-x:hidden !important;
         }
     </style>
 </head>
 <body class="cbp-spmenu-push">
-<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
-
-
+<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2">
+    <iframe src="${ctx}/datadriver/task/edit.ht" style="width: 100%; height: 100%;" frameborder="no"></iframe>
 </div>
 <div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist">
@@ -80,7 +75,8 @@
                 </c:forEach>
             </ul>
         </li>
-        <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab">任务</a></li>
+        <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab">任务</a>
+        </li>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
@@ -112,7 +108,7 @@
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(this)">
+                                        onclick="showTaskContent(this ,${taskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${taskListbyUserItem.ddTaskId}">
@@ -135,7 +131,7 @@
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(this)">
+                                        onclick="showTaskContent(this, ${publishtaskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${publishtaskListbyUserItem.ddTaskId}">
@@ -186,7 +182,7 @@
         </div>
     </div>
 </div>
-<%--任务index--%>
+<%--index--%>
 <div class="modal fade" id="addindex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -217,6 +213,7 @@
             var parentid = $(this).parent().attr("id");
             $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
+
         $("#create_task").show();
         $("#create_index").hide();
     });
@@ -230,7 +227,7 @@
             showRightPush = document.getElementById('showRightPush'),
             body = document.body;
 
-    function showTaskContent(obj) {
+    function showTaskContent(obj, taskId) {
         classie.toggle(obj, 'active');
         classie.toggle(body, 'cbp-spmenu-push-toleft');
         classie.toggle(menuRight, 'cbp-spmenu-open');
