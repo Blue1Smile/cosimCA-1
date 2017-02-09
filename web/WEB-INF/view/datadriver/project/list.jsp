@@ -155,7 +155,6 @@
                         <%--<a href="del.ht?id=${projectList.ddProjectId}"--%>
                         <%--class="layui-btn layui-btn-mini layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</a>--%>
                     </c:otherwise></c:choose>
-
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="ProjectItem"/>--%>

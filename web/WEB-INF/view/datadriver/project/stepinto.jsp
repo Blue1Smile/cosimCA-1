@@ -61,7 +61,7 @@
 </head>
 <body class="cbp-spmenu-push">
 <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2">
-    <iframe src="${ctx}/datadriver/task/edit.ht" style="width: 100%; height: 100%;" frameborder="no"></iframe>
+
 </div>
 <div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist">
@@ -200,6 +200,7 @@
 </div>
 </body>
 <script type="text/javascript">
+    var idforTask = 0;
     $(document).ready(function () {
         $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
@@ -228,6 +229,7 @@
             body = document.body;
 
     function showTaskContent(obj, taskId) {
+        $('<iframe src="${ctx}/datadriver/task/edit.ht?id='+taskId+'" style="width: 100%; height: 100%;" frameborder="no"></iframe>').prependTo('#cbp-spmenu-s2');
         classie.toggle(obj, 'active');
         classie.toggle(body, 'cbp-spmenu-push-toleft');
         classie.toggle(menuRight, 'cbp-spmenu-open');
