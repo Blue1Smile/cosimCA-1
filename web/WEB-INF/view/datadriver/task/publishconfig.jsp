@@ -12,7 +12,7 @@
     <title>任务数据定义</title>
     <%@include file="/commons/include/form.jsp" %>
     <script type="text/javascript" src="${ctx}/servlet/ValidJs?form=sysUser"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/displaytag.js"></script>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/displaytag.js"></script>--%>
     <script type="text/javascript" src="${ctx}/js/lg/plugins/ligerWindow.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/platform/system/SysDialog.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/platform/system/FlexUploadDialog.js"></script>

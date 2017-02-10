@@ -11,19 +11,9 @@
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
-        html,body{ margin:0px; height:100%;}
-        #layoutAside {
-            top: 0px;
-            left: 0px;
-            bottom: 0px;
-            z-index: 9;
-            position: relative;
-            padding: 5px 0 5px 0;
-        }
-        #layoutAside {
-            width: 200px;
-            height: 100%;
-            background: #e2e2e2;
+        body{
+            overflow:scroll;
+            overflow-y:hidden;
         }
     </style>
 </head>
@@ -48,7 +38,7 @@
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>
-    <div class="col-xs-2" id="layoutAside">
+    <div class="col-xs-2">
         <decorator:body/>
     </div>
     <div class="col-xs-10">

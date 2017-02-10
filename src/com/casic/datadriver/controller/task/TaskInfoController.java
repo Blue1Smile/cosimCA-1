@@ -254,6 +254,7 @@ public class TaskInfoController extends AbstractController {
         Long id = RequestUtil.getLong(request, "id");
         String returnUrl = RequestUtil.getPrePage(request);
         TaskInfo taskInfo = taskInfoService.getById(id);
+        ISysUser executorName = sysUserService.getById(taskInfo.getDdTaskResponsiblePerson());
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
 
         List<ISysUser> sysUserList = sysUserService.getAll();
@@ -261,7 +262,8 @@ public class TaskInfoController extends AbstractController {
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("privateDataList", privateDataList)
                 .addObject("returnUrl", returnUrl)
-                .addObject("sysUserList", sysUserList);
+                .addObject("sysUserList", sysUserList)
+                .addObject("executorName", executorName.getFullname());
     }
 
     /**
@@ -629,7 +631,31 @@ public class TaskInfoController extends AbstractController {
                 .addObject("OrderPrivatedataList", OrderPrivatedataList);
     }
 
+    /**
+     * 2017/2/8/
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("saveexecutor")
+    @Action(description = "保存执行者")
+    public void saveexecutor(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            long taskId = RequestUtil.getLong(request, "taskId");
+            String json = request.getParameter("strJson");
+            JSONObject obj = JSONObject.fromObject(json);
+            long temp = obj.getLong("0");
 
+            TaskInfo taskInfo = taskInfoService.getById(taskId);
+            taskInfo.setDdTaskResponsiblePerson(temp);
+            taskInfoService.updateDDTask(taskInfo);
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
 //    /**
 //     * 任务从新建拖拽到发布
 //     *

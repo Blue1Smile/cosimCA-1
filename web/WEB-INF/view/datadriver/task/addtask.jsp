@@ -13,7 +13,7 @@
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
-    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <%--<link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
     <link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
 
     <title>添加任务</title>
