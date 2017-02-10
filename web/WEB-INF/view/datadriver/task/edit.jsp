@@ -1,7 +1,7 @@
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@page import="com.hotent.core.util.ContextUtil" %>
-<html>
+<html style="height: 100%;">
 <head>
     <title>任务基础信息添加</title>
     <%@include file="/commons/include/form.jsp" %>
@@ -30,6 +30,7 @@
     <style>
         .panel {
             margin: 0px;
+            height: 100%;
         }
 
         .panel-heading {
@@ -92,7 +93,7 @@
 
     </style>
 </head>
-<body>
+<body style="height: 100%; margin: 0px;">
 <div class="panel">
     <div class="panel-heading">
         <%--<button type="button" class="panel-button">更多<span aria-hidden="true" class="glyphicon glyphicon-chevron-down"></span></button>--%>
