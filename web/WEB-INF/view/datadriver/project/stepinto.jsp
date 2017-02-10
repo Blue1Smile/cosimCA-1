@@ -33,7 +33,13 @@
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
     <style>
         html, body {
-            margin: 0px !important;
+            margin: 0px 0px !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        iframe{
+            margin: 0px 0px !important;
+            width: 100% !important;
             height: 100% !important;
         }
         .scrum-stage .task.task-card {
@@ -227,12 +233,13 @@
             showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
             body = document.body;
-
     function showTaskContent(obj, taskId) {
-        $('<iframe src="${ctx}/datadriver/task/edit.ht?id='+taskId+'" style="width: 100%; height: 100%;" frameborder="no"></iframe>').prependTo('#cbp-spmenu-s2');
+        $('<iframe src="${ctx}/datadriver/task/edit.ht?id='+taskId+'" frameborder="no"></iframe>').prependTo('#cbp-spmenu-s2');
+
         classie.toggle(obj, 'active');
         classie.toggle(body, 'cbp-spmenu-push-toleft');
         classie.toggle(menuRight, 'cbp-spmenu-open');
+
     }
     switch_attr_index.onclick = function () {
         $("#create_task").hide();
@@ -242,22 +249,5 @@
         $("#create_task").show();
         $("#create_index").hide();
     }
-    //    function disableOther(button) {
-    //
-    //
-    //        if (button !== 'showLeftPush') {
-    //
-    //            classie.toggle(showLeftPush, 'disabled');
-    //
-    //        }
-    //
-    //        if (button !== 'showRightPush') {
-    //
-    //            classie.toggle(showRightPush, 'disabled');
-    //
-    //        }
-    //
-    //    }
-
 </script>
 </html>
