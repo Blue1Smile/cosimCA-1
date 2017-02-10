@@ -27,13 +27,13 @@ public class TaskStartDao extends BaseDao<TaskStart> {
     public void delByMainId(Long projectStartId) {
         this.delBySqlKey("delByMainId", projectStartId);
     }
-
+    public void delByTaskId(Long taskId) {
+        this.delBySqlKey("delByTaskId", taskId);
+    }
     public List<TaskStart> queryTaskStartByTaskId(long ddTaskId) {
         return this.getBySqlKey("queryTaskStartByTaskId", ddTaskId);
     }
-
-//    public void update(TaskStart taskStart) {
-//        this.update(taskStart);
-//    }
-
+    public TaskStart getByTaskId(Long taskId) {
+        return this.getUnique("getByTaskId", taskId);
+    }
 }

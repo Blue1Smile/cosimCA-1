@@ -369,8 +369,6 @@ public class ProjectController extends BaseController {
      * @return
      * @throws Exception
      */
-
-
     @RequestMapping("createtopublish")
     @Action(description = "任务拖拽到发布")
     public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -381,17 +379,15 @@ public class ProjectController extends BaseController {
         TaskInfo taskInfo = new TaskInfo();
         if (parent.equals("createpanel")) {
             taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
-            //更新taskinfo
+            //更新taskinfo?????createpanel属性是否应该放到taskstart里面
             taskInfo.setDdTaskChildType("createpanel");
             taskInfoService.updateDDTask(taskInfo);
+            taskStartService.delByTaskId(taskInfo.getDdTaskId());
         }
         if (parent.equals("publishpanel")) {
             taskStart.setDdTaskStartId(UniqueIdUtil.genId());
-//            taskStart.setDdProjectStartId();
             taskStart.setDdTaskId(taskId);
-//            taskStart.setActInstId();
             taskStart.setDdTaskStatus((short) 1);
-//            taskStart.setSortOrder();
             taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
             //更新taskinfo
             taskInfo.setDdTaskChildType("publishpanel");

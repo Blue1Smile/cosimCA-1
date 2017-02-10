@@ -317,7 +317,7 @@
         curRow[taskItem] = params.value;
         $.ajax({
             type: 'get',
-            url: "saveexecutor.ht?taskId=${TaskInfo.ddTaskId}",
+            url: "onchangetaskinfo.ht?taskId=${TaskInfo.ddTaskId}",
             data: { strJson: JSON.stringify(curRow) }
 //                    success: function (data, textStatus, jqXHR) {
 //                        alert('保存成功！');
