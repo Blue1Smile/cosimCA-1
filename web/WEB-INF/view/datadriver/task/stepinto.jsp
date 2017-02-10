@@ -58,9 +58,14 @@
         <%--<li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>--%>
         <div class="pull-right">
             <button id="static" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 统计</button>
-            <a class="btn btn-success" href="#" data-toggle="modal"
-               data-remote="${ctx}/datadriver/privatedata/edit.ht?id=${TaskInfo.ddTaskId}"
-               data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 新建数据</a>
+            <%--<a class="btn btn-success" href="" data-toggle="modal"--%>
+               <%--data-remote="${ctx}/datadriver/privatedata/edit.ht?id=${TaskInfo.ddTaskId}"--%>
+               <%--data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 新建数据</a>--%>
+            <a class="layui-btn layui-btn-normal" id="newData" href="${ctx}/datadriver/privatedata/edit.ht?id=${TaskInfo.ddTaskId}">新建数据</a>
+            <a class="layui-btn layui-btn-normal" id="saveData" href="savealldata.ht?id=${TaskInfo.ddTaskId}&&privateDataListbyTaskItem
+            =${privateDataListbyTaskItem}">保存</a>
+
+        </div>
         </div>
     </ul>
 
@@ -70,7 +75,7 @@
             <div class="row">
                 <div class="col-xs-3">
                     <div class="panel panel-info">
-                        <div class="panel-heading">
+                        <div class="panel-heading">-----------------------
                             未发布
                         </div>
                         <div class="panel-body">
@@ -96,6 +101,8 @@
                             已发布
                         </div>
                         <div class="panel-body">
+                            <%--<form id="publishDataForm" method="post" action="savepublish.ht">--%>
+                                <%--<input type="submit" class="layui-btn layui-btn-small" value="提交">--%>
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListbyUserItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle">
@@ -113,22 +120,46 @@
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <div class="panel panel-success">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            已完成
+                            可订阅数据
                         </div>
                         <div class="panel-body">
-                            <section></section>
+                            <ul id="canorderpanel" class="scrum-stage-tasks">
+                                <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
+                                    <li class="task task-card ui-sortable-handle">
+                                        <div class="checkbox checkbox-primary">
+                                            <input id="checkbox3" class="styled" type="checkbox">
+                                            <label for="checkbox3">
+                                                    ${canBeOrderPrivatedataListItem.ddDataName}
+                                            </label>
+                                        </div>
+                                        <input type="hidden" value="${canBeOrderPrivatedataListItem.ddDataId}" name="release"/>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            已审核
+                            已订阅数据
                         </div>
                         <div class="panel-body">
-                            <section></section>
+                            <ul id="orderpanel" class="scrum-stage-tasks">
+                                <c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">
+                                    <li class="task task-card ui-sortable-handle">
+                                        <div class="checkbox checkbox-primary">
+                                            <input id="checkbox4" class="styled" type="checkbox">
+                                            <label for="checkbox4">
+                                                    ${OrderPrivatedataListItem.ddDataName}
+                                            </label>
+                                        </div>
+                                        <input type="hidden" value="${OrderPrivatedataListItem.ddDataId}" name="release"/>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
