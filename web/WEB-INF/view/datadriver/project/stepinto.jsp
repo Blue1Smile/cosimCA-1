@@ -59,17 +59,29 @@
         li {
             list-style-type: none !important;
         }
-        .cbp-spmenu-push{
-            overflow:scroll !important;
-            overflow-x:hidden !important;
+        .paneldocker{
+            height: 100%; padding-bottom: 220px;
+        }
+        .panelheight{
+            position: relative;
+            height: 93%;
+        }
+        /*.cbp-spmenu-push{*/
+            /*overflow:scroll !important;*/
+            /*overflow-x:hidden !important;*/
+        /*}*/
+        .bs-callout-danger {
+            border-left-color: #ce4844;
+            border-left-width: 5px;
         }
     </style>
 </head>
+
 <body class="cbp-spmenu-push">
-<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2">
+<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2" style="padding-bottom: 250px">
 
 </div>
-<div class="container-fluid">
+<div class="container-fluid" style="height: 100%">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -102,18 +114,18 @@
     </ul>
 
     <br>
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="task">
-            <div class="row">
-                <div class="col-xs-3">
-                    <div class="panel panel-info">
+    <div class="tab-content" style="height: 100%">
+        <div role="tabpanel" class="tab-pane active" id="task" style="height: 100%">
+            <div class="row paneldocker">
+                <div class="col-xs-3" style="height: 100%">
+                    <div class="panel panel-default" style="height: 100%;">
                         <div class="panel-heading">
                             新创建
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body panelheight">
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
-                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
+                                    <li class="task task-card ui-sortable-handle " id="showRightPush"
                                         onclick="showTaskContent(this ,${taskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
@@ -128,12 +140,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-3">
-                    <div class="panel panel-primary">
+                <div class="col-xs-3" style="height: 100%">
+                    <div class="panel panel-info" style="height: 100%">
                         <div class="panel-heading">
                             已发布
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body panelheight">
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
@@ -152,22 +164,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-3">
-                    <div class="panel panel-success">
+                <div class="col-xs-3" style="height: 100%">
+                    <div class="panel panel-success" style="height: 100%">
                         <div class="panel-heading">
                             已完成
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body panelheight">
                             <section></section>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-3">
-                    <div class="panel panel-warning">
+                <div class="col-xs-3" style="height: 100%">
+                    <div class="panel panel-warning" style="height: 100%">
                         <div class="panel-heading">
                             已审核
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body panelheight">
                             <section></section>
                         </div>
                     </div>
@@ -206,7 +218,6 @@
 </div>
 </body>
 <script type="text/javascript">
-    var idforTask = 0;
     $(document).ready(function () {
         $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
@@ -233,9 +244,11 @@
             showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
             body = document.body;
-    function showTaskContent(obj, taskId) {
-        $('<iframe src="${ctx}/datadriver/task/edit.ht?id='+taskId+'" frameborder="no"></iframe>').prependTo('#cbp-spmenu-s2');
 
+    function showTaskContent(obj, taskId) {
+        $.get("${ctx}/datadriver/task/edit.ht?id="+taskId, function(data) {
+            $('#cbp-spmenu-s2').html(data);
+        });
         classie.toggle(obj, 'active');
         classie.toggle(body, 'cbp-spmenu-push-toleft');
         classie.toggle(menuRight, 'cbp-spmenu-open');
