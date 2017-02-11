@@ -1,6 +1,6 @@
 /* General styles for all menus */
 .cbp-spmenu {
-	background: #EFEFEF;
+	background: transparent;
 	position: fixed;
 }
 /* Orientation-dependent styles for the content of the menu */

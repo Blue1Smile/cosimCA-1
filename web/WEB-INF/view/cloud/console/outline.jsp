@@ -2,16 +2,16 @@
 <%@ include file="/commons/cloud/global.jsp" %>
 <style>
     #cbp-spmenu-s1 {
-        left: 15px !important;
+        left: 0px !important;
     }
     .cbp-spmenu {
         background: #47a3da;
-        position: fixed;
+        /*position: fixed;*/
     }
     .cbp-spmenu-vertical {
         width: 240px !important;
         height: 100% !important;
-        z-index: 1000 !important;
+        /*padding-bottom:100% !important;*/
     }
     nav {
         display: block;

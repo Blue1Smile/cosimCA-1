@@ -258,8 +258,11 @@ public class TaskInfoController extends AbstractController {
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
 
         List<ISysUser> sysUserList = sysUserService.getAll();
-
+//        Date date=new Date();
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+        String time=df.format(taskInfo.getDdTaskPlanEndTime());
         return getAutoView().addObject("TaskInfo", taskInfo)
+                .addObject("endtime", time)
                 .addObject("privateDataList", privateDataList)
                 .addObject("returnUrl", returnUrl)
                 .addObject("sysUserList", sysUserList)
@@ -549,7 +552,7 @@ public class TaskInfoController extends AbstractController {
         TaskInfo taskInfo = taskInfoService.getById(taskId);
         List<PrivateData> privateDataListbyTask = new ArrayList<PrivateData>();
         List<PrivateData> publishDataList = new ArrayList<PrivateData>();
-        privateDataListbyTask=this.privateDataService.queryPrivateDataByddTaskID(taskId);
+        privateDataListbyTask = this.privateDataService.queryPrivateDataByddTaskID(taskId);
         List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
 
         //循环获取发布数据ID，查找任务的所有私有数据
@@ -559,7 +562,7 @@ public class TaskInfoController extends AbstractController {
             publishDataList.add(privateData);
         }
         return getAutoView().addObject("TaskInfo", taskInfo)
-                .addObject("privateDataListbyTask",privateDataListbyTask )
+                .addObject("privateDataListbyTask", privateDataListbyTask)
                 .addObject("publishDataList", publishDataList);
     }
 
@@ -578,13 +581,36 @@ public class TaskInfoController extends AbstractController {
             long taskId = RequestUtil.getLong(request, "taskId");
             String json = request.getParameter("strJson");
             JSONObject obj = JSONObject.fromObject(json);
-            long temp = obj.getLong("0");
-
+            Iterator<String> sIterator = obj.keys();
+            String key = sIterator.next();
             TaskStart taskStart = taskStartService.getByTaskId(taskId);
-            taskStart.setDdTaskResponcePerson(temp);
-            taskStartService.update(taskStart);
             TaskInfo taskInfo = taskInfoService.getById(taskId);
-            taskInfo.setDdTaskResponsiblePerson(temp);
+            switch (Integer.parseInt(key)) {
+                case 0:
+                    long temp0 = obj.getLong("0");
+                    taskStart.setDdTaskResponcePerson(temp0);
+                    taskStartService.update(taskStart);
+                    taskInfo.setDdTaskResponsiblePerson(temp0);
+                    break;
+                case 1:
+                    long temp1 = obj.getLong("1");
+                    taskInfo.setDdTaskPriority(temp1);
+                    break;
+                case 2:
+                    String temp2 = obj.getString("2");
+                    SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD",
+                            Locale.ENGLISH);
+                    Date parsedDate = sdf.parse(temp2);
+                    taskInfo.setDdTaskPlanEndTime(parsedDate);
+                    break;
+                case 3:
+                    String temp3 = obj.getString("3");
+                    taskInfo.setDdTaskDescription(temp3);
+                    break;
+            }
+
+
+
             taskInfoService.updateDDTask(taskInfo);
         } catch (Exception e) {
             String resultMsg = null;
