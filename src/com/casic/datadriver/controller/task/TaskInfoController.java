@@ -259,8 +259,11 @@ public class TaskInfoController extends AbstractController {
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
 
         List<ISysUser> sysUserList = sysUserService.getAll();
-
+//        Date date=new Date();
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+        String time=df.format(taskInfo.getDdTaskPlanEndTime());
         return getAutoView().addObject("TaskInfo", taskInfo)
+                .addObject("endtime", time)
                 .addObject("privateDataList", privateDataList)
                 .addObject("returnUrl", returnUrl)
                 .addObject("sysUserList", sysUserList)
@@ -580,16 +583,10 @@ public class TaskInfoController extends AbstractController {
     public ModelAndView stepinto(HttpServletRequest request, HttpServletResponse response) throws Exception {
         long taskId = RequestUtil.getLong(request, "id");
         TaskInfo taskInfo = taskInfoService.getById(taskId);
-//        Long userId = taskInfo.getDdProjectCreatorId();
-//        List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
-//        List<TaskInfo> createTaskInfoList = new ArrayList<TaskInfo>();
-//        List<TaskInfo> publishTaskInfoList = new ArrayList<TaskInfo>();
-        //任务未发布私有数据
         List<PrivateData> privateDataListbyTask = new ArrayList<PrivateData>();
         //任务已发布私有数据
         List<PrivateData> publishDataList = new ArrayList<PrivateData>();
-
-        privateDataListbyTask=this.privateDataService.queryPrivateDataByddTaskID(taskId);
+        privateDataListbyTask = this.privateDataService.queryPrivateDataByddTaskID(taskId);
         List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
 
         //循环获取发布数据ID，查找任务的所有私有数据
@@ -649,7 +646,6 @@ public class TaskInfoController extends AbstractController {
                 .addObject("canBeOrderPrivatedataList", canBeOrderPrivatedataList)
                 .addObject("OrderPrivatedataList", OrderPrivatedataList);
     }
-
     /**
      * 2017/2/8/
      *
@@ -658,17 +654,43 @@ public class TaskInfoController extends AbstractController {
      * @return the list
      * @throws Exception the exception
      */
-    @RequestMapping("saveexecutor")
-    @Action(description = "保存执行者")
-    public void saveexecutor(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping("onchangetaskinfo")
+    @Action(description = "更改任务详情")
+    public void onchangetaskinfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             long taskId = RequestUtil.getLong(request, "taskId");
             String json = request.getParameter("strJson");
             JSONObject obj = JSONObject.fromObject(json);
-            long temp = obj.getLong("0");
-
+            Iterator<String> sIterator = obj.keys();
+            String key = sIterator.next();
+            TaskStart taskStart = taskStartService.getByTaskId(taskId);
             TaskInfo taskInfo = taskInfoService.getById(taskId);
-            taskInfo.setDdTaskResponsiblePerson(temp);
+            switch (Integer.parseInt(key)) {
+                case 0:
+                    long temp0 = obj.getLong("0");
+                    taskStart.setDdTaskResponcePerson(temp0);
+                    taskStartService.update(taskStart);
+                    taskInfo.setDdTaskResponsiblePerson(temp0);
+                    break;
+                case 1:
+                    long temp1 = obj.getLong("1");
+                    taskInfo.setDdTaskPriority(temp1);
+                    break;
+                case 2:
+                    String temp2 = obj.getString("2");
+                    SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD",
+                            Locale.ENGLISH);
+                    Date parsedDate = sdf.parse(temp2);
+                    taskInfo.setDdTaskPlanEndTime(parsedDate);
+                    break;
+                case 3:
+                    String temp3 = obj.getString("3");
+                    taskInfo.setDdTaskDescription(temp3);
+                    break;
+            }
+
+
+
             taskInfoService.updateDDTask(taskInfo);
         } catch (Exception e) {
             String resultMsg = null;

@@ -70,7 +70,7 @@ public class PersonalTaskController extends AbstractController {
      * @throws Exception the exception
      */
     @RequestMapping("list")
-    @Action(description = "私有任务列表")
+    @Action(description = "个人任务列表")
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
@@ -78,8 +78,7 @@ public class PersonalTaskController extends AbstractController {
 
         for (int i = 0; i < taskStartList.size(); i++) {
             Long ddTaskId = taskStartList.get(i).getDdTaskId();
-            long ddTask_Id = ddTaskId;
-            TaskInfo taskInfo = taskInfoService.getById(ddTask_Id);
+            TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
             taskInfo_list.add(taskInfo);
         }
         ModelAndView mv = this.getAutoView().addObject("taskList", taskInfo_list);

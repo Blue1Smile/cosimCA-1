@@ -39,9 +39,6 @@ public class TaskStartService  extends BaseService<TaskStart> {
     @Resource
     private ProcessRunService processRunService;
 
-    @Resource
-    private BpmDefinitionService bpmDefinitionService;
-
     public TaskStartService()
     {
     }
@@ -134,14 +131,20 @@ public class TaskStartService  extends BaseService<TaskStart> {
     }
 
     /**
-     * 根据业务实例ID，删除业务实例环节
+     * 根据项目ID，删除所有启动任务
      * @param projectStartId
      */
     public void delByBizInstanceId(Long projectStartId) {
         dao.delByMainId(projectStartId);
     }
 
-
+    /**
+     * 根据任务ID，删除启动任务
+     * @param taskId
+     */
+    public void delByTaskId(Long taskId) {
+        dao.delByTaskId(taskId);
+    }
     /**
      * 根据任务责任人获得任务启动列表
      * @param taskResponcePerson
@@ -158,13 +161,5 @@ public class TaskStartService  extends BaseService<TaskStart> {
         return dao.queryTaskStartByTaskId(ddTaskId);
     }
 
-
-//    /**
-//     * 更新项目启动
-//     * @param TaskStart
-//     */
-//    public  void update(TaskStart taskStart) {
-//        dao.update(taskStart);
-//    }
-
+    public TaskStart getByTaskId(long taskId){return dao.getByTaskId(taskId);}
 }
