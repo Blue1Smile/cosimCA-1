@@ -38,6 +38,7 @@ import net.sf.ezmorph.object.DateMorpher;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
 import org.apache.bcel.generic.NEW;
+import org.apache.commons.collections.ListUtils;
 import org.freehep.graphicsio.swf.LineStyleArray;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -395,35 +396,35 @@ public class TaskInfoController extends AbstractController {
     }
 
 
-    @RequestMapping("savealldata")
-    @Action(description = "保存订阅和发布关系")
-    public void savealldata(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        Long nowTaskId = RequestUtil.getLong(request, "id");
-
-        List<PrivateData> privateDataListbyTaskItem = new ArrayList<PrivateData>();
-        privateDataListbyTaskItem = request.getParameter("privateDataListbyTaskItem");
-//        Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId");
-//        Long[] ddDataTaskIds = RequestUtil.getLongAry(request, "ddDataTaskId");
-//        //  System.out.print(ddDataIds.length);
+//    @RequestMapping("savealldata")
+//    @Action(description = "保存订阅和发布关系")
+//    public void savealldata(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //
-//        for (int i = 0; i < ddDataTaskIds.length; i++) {
-//            this.orderDataRelationService.delOrderByddDataTaskId(ddDataTaskIds[i]);
+//        Long nowTaskId = RequestUtil.getLong(request, "id");
 //
-//        }
-
-//        for (int i = 0; i < ddDataIds.length; i++) {
-//            OrderDataRelation orderDataRelation = new OrderDataRelation();
-//            orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
-//            Long DataId = Long.valueOf(ddDataIds[i]);
-//            orderDataRelation.setDdOrderType(1L);
-//            orderDataRelation.setDdDataId(DataId);
-//            orderDataRelation.setDdTaskId(nowTaskId);
-//            this.orderDataRelationService.addDDOrderDataRelation(orderDataRelation);
-//        }
-
-
-    }
+//        List<PrivateData> privateDataListbyTaskItem = new ArrayList<PrivateData>();
+//        privateDataListbyTaskItem = request.getParameter("privateDataListbyTaskItem");
+////        Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId");
+////        Long[] ddDataTaskIds = RequestUtil.getLongAry(request, "ddDataTaskId");
+////        //  System.out.print(ddDataIds.length);
+////
+////        for (int i = 0; i < ddDataTaskIds.length; i++) {
+////            this.orderDataRelationService.delOrderByddDataTaskId(ddDataTaskIds[i]);
+////
+////        }
+//
+////        for (int i = 0; i < ddDataIds.length; i++) {
+////            OrderDataRelation orderDataRelation = new OrderDataRelation();
+////            orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
+////            Long DataId = Long.valueOf(ddDataIds[i]);
+////            orderDataRelation.setDdOrderType(1L);
+////            orderDataRelation.setDdDataId(DataId);
+////            orderDataRelation.setDdTaskId(nowTaskId);
+////            this.orderDataRelationService.addDDOrderDataRelation(orderDataRelation);
+////        }
+//
+//
+//    }
 
 
     /**
@@ -565,7 +566,7 @@ public class TaskInfoController extends AbstractController {
 
 
     /**
-     * 进入项目控制台
+     * 进入任务控制台
      *
      * @param request
      * @param response
@@ -583,18 +584,38 @@ public class TaskInfoController extends AbstractController {
 //        List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
 //        List<TaskInfo> createTaskInfoList = new ArrayList<TaskInfo>();
 //        List<TaskInfo> publishTaskInfoList = new ArrayList<TaskInfo>();
+        //任务未发布私有数据
         List<PrivateData> privateDataListbyTask = new ArrayList<PrivateData>();
+        //任务已发布私有数据
         List<PrivateData> publishDataList = new ArrayList<PrivateData>();
 
         privateDataListbyTask=this.privateDataService.queryPrivateDataByddTaskID(taskId);
         List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
 
         //循环获取发布数据ID，查找任务的所有私有数据
+
         for (int i = 0; i < publishDataRelationList.size(); i++) {
             OrderDataRelation orderDataRelation = publishDataRelationList.get(i);
             PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
             publishDataList.add(privateData);
         }
+
+//        privateDataListbyTask.removeAll(publishDataList);
+//        privateDataListbyTask = ListUtils.subtract(privateDataListbyTask, publishDataList);
+//        Integer Length = privateDataListbyTask.size();
+//        for (int i=0;i<publishDataList.size();i++){
+//            for (int j= 0;j<Length;j++){
+//                if(publishDataList.get(i)==privateDataListbyTask.get(j)){
+//                    privateDataListbyTask.remove(j);
+//                    j--;
+//                    Length--;
+//                }
+//            }
+//        }
+
+
+
+
 
         List<PrivateData> OrderPrivatedataList = new ArrayList<PrivateData>();
         //获取项目id
@@ -603,10 +624,8 @@ public class TaskInfoController extends AbstractController {
         List<TaskInfo> task_list = this.taskInfoService.queryTaskInfoByProjectId(ProjectId);
         List<PrivateData> canBeOrderPrivatedataList = new ArrayList<PrivateData>();
         //获取所有发布数据的私有数据列表
-//        for (TaskInfo taskInfolist : task_list) {
         for (int i = 0; i < task_list.size(); i++) {
             Long ddtaskId = task_list.get(i).getDdTaskId();
-//            Long ddtaskId = taskInfo.getDdTaskId();
             List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddtaskId);
             for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
 
@@ -656,44 +675,53 @@ public class TaskInfoController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
-//    /**
-//     * 任务从新建拖拽到发布
-//     *
-//     * @param request
-//     * @param response
-//     * @return
-//     * @throws Exception
-//     */
-//
-//    @RequestMapping("createtopublish")
-//    @Action(description = "任务拖拽到发布")
-//    public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        long taskId = RequestUtil.getLong(request, "id");
-//        String parent = RequestUtil.getString(request, "parent");
-//
-//        TaskStart taskStart = new TaskStart();
-//        TaskInfo taskInfo = new TaskInfo();
-//        if (parent.equals("createpanel")) {
-//            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
-//            //更新taskinfo
-//            taskInfo.setDdTaskChildType("createpanel");
-//            taskInfoService.updateDDTask(taskInfo);
-//        }
-//        if (parent.equals("publishpanel")) {
-//            taskStart.setDdTaskStartId(UniqueIdUtil.genId());
-////            taskStart.setDdProjectStartId();
-//            taskStart.setDdTaskId(taskId);
-////            taskStart.setActInstId();
-//            taskStart.setDdTaskStatus((short) 1);
-////            taskStart.setSortOrder();
-//            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
-//            //更新taskinfo
-//            taskInfo.setDdTaskChildType("publishpanel");
-//            taskInfoService.updateDDTask(taskInfo);
-//            //添加taskstart
-//            long userId = taskInfo.getDdTaskResponsiblePerson();
-//            taskStart.setDdTaskResponcePerson(userId);
-//            taskStartService.taskStart(taskStart);
-//        }
-//    }
+    /**
+     * 任务从新建拖拽到发布
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+
+    @RequestMapping("savepublishdata")
+
+
+    @Action(description = "任务拖拽到发布")
+    private void savepublishdata(HttpServletRequest request, HttpServletResponse response) throws Exception
+    {
+        long dataId = RequestUtil.getLong(request, "id");
+        long taskId = RequestUtil.getLong(request, "taskId");
+
+        String parent = RequestUtil.getString(request, "parent");
+
+
+
+        if (parent.equals("privatepanel")) {
+           List<OrderDataRelation> publishDataList = new ArrayList<OrderDataRelation>();
+            publishDataList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
+
+            //更新orderDataRelation
+            for (int i=0;i<publishDataList.size();i++){
+                if (publishDataList.get(i).getDdDataId()==dataId&&publishDataList.get(i).getDdOrderType()==0){
+                    long OrderDataId  = publishDataList.get(i).getDdOrderDataId();
+                    orderDataRelationService.delById(OrderDataId);
+                }
+            }
+
+        }
+        if (parent.equals("publishpanel")) {
+
+            OrderDataRelation orderDataRelation = new OrderDataRelation();
+            orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
+            orderDataRelation.setDdOrderType(0L);
+            orderDataRelation.setDdDataId(dataId);
+            orderDataRelation.setDdTaskId(taskId);
+            PrivateData privateData = privateDataService.getById(dataId);
+            orderDataRelation.setDdDataName(privateData.getDdDataName());
+            this.orderDataRelationService.addDDOrderDataRelation(orderDataRelation);
+        }
+
+    }
+
 }

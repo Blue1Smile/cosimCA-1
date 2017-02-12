@@ -75,16 +75,33 @@
             <div class="row">
                 <div class="col-xs-3">
                     <div class="panel panel-info">
-                        <div class="panel-heading">-----------------------
+                        <div class="panel-heading">
                             未发布
                         </div>
+                        <%--<div class="panel-body">--%>
+                            <%--<ul id="createpanel" class="scrum-stage-tasks">--%>
+                                <%--<c:forEach var="taskListbyUserItem" items="${taskListbyUser}">--%>
+                                    <%--<li class="task task-card ui-sortable-handle" id="showRightPush"--%>
+                                        <%--onclick="showTaskContent(this ,${taskListbyUserItem.ddTaskId})">--%>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${taskListbyUserItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${taskListbyUserItem.ddTaskId}">--%>
+                                                    <%--${taskListbyUserItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                        <%--<input type="hidden" value="${taskListbyUserItem.ddTaskId}" name="release"/>--%>
+                                    <%--</li>--%>
+                                <%--</c:forEach>--%>
+                            <%--</ul>--%>
+                        <%--</div>--%>
                         <div class="panel-body">
-                            <ul id="createpanel" class="scrum-stage-tasks">
+                            <ul id="privatepanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
-                                    <li class="task task-card ui-sortable-handle">
+                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
+                                        onclick="showTaskContent(this ,${privateDataListbyTaskItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox2" class="styled" type="checkbox">
-                                            <label for="checkbox2">
+                                            <label for="${privateDataListbyTaskItem.ddDataId}">
                                                     ${privateDataListbyTaskItem.ddDataName}
                                             </label>
                                         </div>
@@ -96,7 +113,7 @@
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <div class="panel panel-primary">
+                    <div class="publishpanel panel-primary">
                         <div class="panel-heading">
                             已发布
                         </div>
@@ -105,10 +122,11 @@
                                 <%--<input type="submit" class="layui-btn layui-btn-small" value="提交">--%>
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListbyUserItem" items="${publishDataList}">
-                                    <li class="task task-card ui-sortable-handle">
+                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
+                                        onclick="showTaskContent(this ,${publishDataListbyUserItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox" class="styled" type="checkbox">
-                                            <label for="checkbox">
+                                            <label for="${publishDataListbyUserItem.ddDataId}">
                                                     ${publishDataListbyUserItem.ddDataName}
                                             </label>
                                         </div>
@@ -182,17 +200,18 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#createpanel,#publishpanel").dragsort({
+        $("#privatepanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
             dragBetween: true,
-            dragEnd: saveOrder,
+            dragEnd: savePublish,
             placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
         });
-        function saveOrder() {
+        function savePublish() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
-            $.get("createtopublish.ht?id="+data+"&parent="+parentid);
+            $.get("savepublishdata.ht?id=" + data + "&parent=" + parentid + "&taskId=${TaskInfo.ddTaskId}");
+//            $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
     });
 </script>

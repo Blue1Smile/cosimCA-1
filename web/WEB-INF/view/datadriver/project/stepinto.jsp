@@ -199,6 +199,7 @@
     </div>
 </div>
 </body>
+
 <script type="text/javascript">
     var idforTask = 0;
     $(document).ready(function () {
@@ -214,7 +215,6 @@
             var parentid = $(this).parent().attr("id");
             $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
-
         $("#create_task").show();
         $("#create_index").hide();
     });
@@ -234,14 +234,17 @@
         classie.toggle(body, 'cbp-spmenu-push-toleft');
         classie.toggle(menuRight, 'cbp-spmenu-open');
     }
+
     switch_attr_index.onclick = function () {
         $("#create_task").hide();
         $("#create_index").show();
     }
+
     switch_attr_task.onclick = function () {
         $("#create_task").show();
         $("#create_index").hide();
     }
+
     //    function disableOther(button) {
     //
     //
