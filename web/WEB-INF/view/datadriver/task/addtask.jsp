@@ -6,6 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <%@include file="/commons/include/form.jsp" %>
@@ -13,7 +19,7 @@
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
-    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <%--<link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
     <link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
 
     <title>添加任务</title>
@@ -59,18 +65,24 @@
                                value="" class="form-control"/></td>
                     <th width="20%">是否里程碑任务:</th>
                     <td>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
+
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
+                            <label for="ddTaskMilestone1">
                                 是
                             </label>
-                            <label>
-                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                        </div>
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                            <label for="ddTaskMilestone0">
                                 否
                             </label>
                         </div>
-                        <%--<input type="text" id="ddTaskMilestone" name="ddTaskMilestone"--%>
-                               <%--value="${TaskInfo.ddTaskMilestone}" class="form-control"/></td>--%>
+
+
+                    </td>
+                    <%--<input type="text" id="ddTaskMilestone" name="ddTaskMilestone"--%>
+                    <%--value="${TaskInfo.ddTaskMilestone}" class="form-control"/></td>--%>
                 </tr>
                 <tr>
                     <th width="20%">任务负责人:</th>
@@ -178,15 +190,10 @@
     function showResponse(responseText) {
         var obj = new com.hotent.form.ResultMessage(responseText);
         if (obj.isSuccess()) {
-            $.ligerMessageBox.confirm("提示信息", obj.getMessage() + ",是否继续操作", function (rtn) {
-                if (rtn) {
-                    this.close();
-                } else {
                     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                     parent.layer.close(index); //再执行关闭
-                    window.location.href = "${ctx}/datadriver/task/list.ht";
-                }
-            });
+                    window.location.href = "${ctx}/datadriver/project/stepinto.ht?id=${projectItem.ddProjectId}";
+
         } else {
             $.ligerMessageBox.error("提示信息", obj.getMessage());
         }

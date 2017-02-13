@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
+import com.casic.datadriver.model.flow.ProcessFlow;
+import com.casic.datadriver.model.flow.ProjectProcessAssocia;
+import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.flow.ProcessFlowService;
+import com.casic.datadriver.service.flow.ProjectProcessAssociaService;
+import com.casic.datadriver.service.task.TaskStartService;
 import com.hotent.core.util.ContextUtil;
 
 import javax.annotation.Resource;
@@ -81,9 +87,14 @@ public class ProjectController extends BaseController {
     private TaskInfoService taskInfoService;
     @Resource
     private ProTaskDependanceService proTaskDependanceService;
-
+    @Resource
+    private TaskStartService taskStartService;
+    @Resource
+    private ProjectProcessAssociaService projectProcessAssociaService;
+    @Resource
+    private ProcessFlowService processFlowService;
     /**
-     * �����Ŀ��Ϣ.
+     * 保存项目
      *
      * @param request  the request
      * @param response the response
@@ -121,7 +132,7 @@ public class ProjectController extends BaseController {
     }
 
     /**
-     * 取得 CloudResource 实体
+     * 取得对象实体
      *
      * @param request
      * @return
@@ -143,7 +154,7 @@ public class ProjectController extends BaseController {
 
 
     /**
-     * Query project basic info list.
+     * 查询项目列表
      *
      * @param request  the request
      * @param response the response
@@ -187,8 +198,6 @@ public class ProjectController extends BaseController {
     }
 
     /**
-     * ʱ�����Եı༭��.
-     *
      * @param bin the bin
      */
     @InitBinder
@@ -198,7 +207,7 @@ public class ProjectController extends BaseController {
 
 
     /**
-     * 编辑cloud_account_info
+     * 编辑项目信息
      *
      * @param request
      * @throws Exception
@@ -218,7 +227,7 @@ public class ProjectController extends BaseController {
 
 
     /**
-     * 取得cloud_account_info明细
+     * 取得dd_project明细
      *
      * @param request
      * @param response
@@ -237,7 +246,7 @@ public class ProjectController extends BaseController {
 
 
     /**
-     * 启动项目。
+     * 启动项目 dd_project_start
      *
      * @param request
      * @param response
@@ -325,18 +334,95 @@ public class ProjectController extends BaseController {
         Project project = projectService.getById(projectId);
         Long userId = project.getDdProjectCreatorId();
         List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
+        List<TaskInfo> createTaskInfoList = new ArrayList<TaskInfo>();
+        List<TaskInfo> publishTaskInfoList = new ArrayList<TaskInfo>();
         List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(projectId);
-        for (int i=0; i<proTaskDependanceList.size(); i++){
+        for (int i = 0; i < proTaskDependanceList.size(); i++) {
             ProTaskDependance proTaskDependance = proTaskDependanceList.get(i);
             long taskId = proTaskDependance.getDdTaskId();
             TaskInfo taskInfo = taskInfoService.getById(taskId);
+
             taskInfoList.add(taskInfo);
         }
-        //List<TaskInfo> taskInfoList =
+        for (TaskInfo taskInfo : taskInfoList) {
+            if (taskInfo.getDdTaskChildType().equals("publishpanel")) {
+                publishTaskInfoList.add(taskInfo);
+            }
+            if (taskInfo.getDdTaskChildType().equals("createpanel")) {
+                createTaskInfoList.add(taskInfo);
+            }
+        }
         //根据用户ID获取当前用户拥有项目列表
         List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
         return getAutoView().addObject("Project", project)
                 .addObject("projectListbyUser", projectListbyUser)
-                .addObject("taskListbyUser", taskInfoList);
+                .addObject("taskListbyUser", createTaskInfoList)
+                .addObject("publishtaskListbyUser", publishTaskInfoList);
+    }
+
+
+    /**
+     * 任务从新建拖拽到发布
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("createtopublish")
+    @Action(description = "任务拖拽到发布")
+    public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        long taskId = RequestUtil.getLong(request, "id");
+        String parent = RequestUtil.getString(request, "parent");
+
+        TaskStart taskStart = new TaskStart();
+        TaskInfo taskInfo = new TaskInfo();
+        if (parent.equals("createpanel")) {
+            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
+            //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+            taskInfo.setDdTaskChildType("createpanel");
+            taskInfoService.updateDDTask(taskInfo);
+            taskStartService.delByTaskId(taskInfo.getDdTaskId());
+        }
+        if (parent.equals("publishpanel")) {
+            taskStart.setDdTaskStartId(UniqueIdUtil.genId());
+            taskStart.setDdTaskId(taskId);
+            taskStart.setDdTaskStatus((short) 1);
+            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
+            //更新taskinfo
+            taskInfo.setDdTaskChildType("publishpanel");
+            taskInfoService.updateDDTask(taskInfo);
+            //添加taskstart
+            long userId = taskInfo.getDdTaskResponsiblePerson();
+            taskStart.setDdTaskResponcePerson(userId);
+            taskStartService.taskStart(taskStart);
+        }
+    }
+    /**
+     * 项目统计
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+
+    @RequestMapping("statis")
+    @Action(description = "统计")
+    public ModelAndView statis(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ProcessFlow processFlow = new ProcessFlow();
+        ModelAndView mv = new ModelAndView();
+        Long projectId = RequestUtil.getLong(request, "projectId");
+        ProjectProcessAssocia projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectId);
+        if (projectProcessAssocia != null) {
+            Long processFlowId = projectProcessAssocia.getDdPrcessId();
+            processFlow = processFlowService.getById(processFlowId);
+            String tempXml = processFlow.getDdProcessXml();
+            mv = this.getAutoView().addObject("projectId", projectId)
+                    .addObject("processFlowXml", tempXml);
+        } else {
+            mv = this.getAutoView().addObject("projectId", projectId);
+        }
+        return mv;
     }
 }

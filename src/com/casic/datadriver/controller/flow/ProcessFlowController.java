@@ -134,6 +134,7 @@ public class ProcessFlowController extends AbstractController {
             taskInfo.setDdTaskProjectId(projectId);
             taskInfo.setDdTaskName(el.getAttributeValue("label"));//任务名称
 
+            taskInfo.setDdTaskChildType("createpanel");
             if (taskid != null) {
                 taskInfo.setDdTaskId(Long.parseLong(taskid));
             }
@@ -182,12 +183,16 @@ public class ProcessFlowController extends AbstractController {
         java.io.StringWriter a = new java.io.StringWriter();
         xmlOutputter.output(doc, a);
         String str = a.toString();
+
+        //要对String str做掐头去尾
+        String xml = str.substring(40,str.lastIndexOf('>')+1);
+
         //需要保存xml 变量str就是xml
 
         //process数据库表存储
         ProcessFlow processflow = new ProcessFlow();
         processflow.setDdProcessId(UniqueIdUtil.genId());
-        processflow.setDdProcessXml(str);
+        processflow.setDdProcessXml(xml);
         processFlowService.addProcessFlow(processflow);
 
         //项目和流程映射关系

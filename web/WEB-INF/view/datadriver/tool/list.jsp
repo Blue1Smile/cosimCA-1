@@ -139,9 +139,6 @@
     </script>
 </head>
 <body>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>生成一个较深的树</legend>
-</fieldset>
 <ul id="demo23"></ul>
 <div class="layui-tab layui-tab-card">
 

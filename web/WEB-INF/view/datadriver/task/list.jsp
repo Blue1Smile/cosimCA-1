@@ -84,13 +84,15 @@
                 <%--<display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>--%>
                 <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
 
-                <display:column title="操作" media="html" style="width:320px">
+                <display:column title="操作" media="html" style="width:400px">
                     <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-mini"><i class="layui-icon">
                         &#xe642;</i> 编辑</a>
                     <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
                     <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                     <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"
                        class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 私有</a>
+                    <a href="stepinto.ht?id=${TaskItem.ddTaskId}"
+                       class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
                     <a href="publishconfig.ht?id=${TaskItem.ddTaskId}"
                        class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe63c;</i> 发布</a>
                     <a href="orderconfig.ht?id=${TaskItem.ddTaskId}"

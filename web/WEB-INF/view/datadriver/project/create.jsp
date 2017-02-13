@@ -129,5 +129,6 @@
             $.ligerMessageBox.error("提示信息", obj.getMessage());
         }
     }
+
 </script>
 </html>

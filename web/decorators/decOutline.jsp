@@ -4,24 +4,21 @@
 <%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="zh"  style="height: 100%; margin: 0px">
 <head>
     <title><decorator:title default="工作台"/>协同设计</title>
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <%--<style type="text/css">--%>
+        <%--body{--%>
+            <%--overflow:scroll;--%>
+            <%--overflow-y:hidden;--%>
+        <%--}--%>
+    <%--</style>--%>
 </head>
-<body>
-<div class="container-fluid">
-    <div class="row bg-info" style="height: 30px">
-        <p class="pull-left">
-            <a href="${ctx}/cloud/console/home.ht" class="link01">个人主页</a>
-        </p>
-        <p class="pull-right">
-            <c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}">欢迎您，<a id="username" href="#"><sec:authentication
-                    property="principal.fullname"/></a>，<a href="${ctx}/loginCloud.ht" class="link01">注销</a></c:if>
-        </p>
-    </div>
+<body style="height: 100%; margin: 0px">
+<div class="container-fluid" style="height: 100%;">
     <br>
     <div class="row">
         <svg width="500" height="60">
@@ -31,12 +28,11 @@
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>
-    <div class="col-xs-2">
+    <div class="col-xs-2" style="height: 100%; padding-left: 0px">
         <decorator:body/>
     </div>
-    <div class="col-xs-10">
-        <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe"
-                style="width:100%;min-height:800px;"></iframe>
+    <div class="col-xs-10" style="height: 100%">
+        <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe" style="width: 100%;height: 100%"></iframe>
     </div>
 
     <%--<%@include file="/commons/cloud/foot.jsp" %>--%>

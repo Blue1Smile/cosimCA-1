@@ -2,7 +2,7 @@
 $(function(){
 	
 	//行高亮
-	jQuery.highlightTableRows();
+	// jQuery.highlightTableRows();
 	//选中一行
 	jQuery.selectTr();
 	//搜索

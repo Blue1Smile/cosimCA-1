@@ -2,7 +2,6 @@ package com.casic.datadriver.dao.task;
 
 import java.util.List;
 
-import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
 import org.springframework.stereotype.Repository;
 
@@ -57,7 +56,7 @@ public class TaskInfoDao extends BaseDao<TaskInfo> {
     }
 
     /**
-     * 映射MAP，根据项目ID获取任务列表，classId是项目ID
+     * 映锟斤拷MAP锟斤拷锟斤拷锟斤拷锟斤拷目ID锟斤拷取锟斤拷锟斤拷锟叫憋拷classId锟斤拷锟斤拷目ID
      * 20161202
      */
     public List<TaskInfo> getByMainId(Long classId) {
@@ -65,7 +64,7 @@ public class TaskInfoDao extends BaseDao<TaskInfo> {
     }
 
     /**
-     * 映射MAP，获取所有任务列表，暂时没用到
+     * 映锟斤拷MAP锟斤拷锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟叫憋拷锟斤拷时没锟矫碉拷
      * 20161202
      */
     public List<TaskInfo> getAllInstance(QueryFilter queryFilter) {
@@ -73,13 +72,11 @@ public class TaskInfoDao extends BaseDao<TaskInfo> {
     }
 
     /**
-     * 映射MAP，删除任务列表，暂时没用到
+     * 映锟斤拷MAP锟斤拷删锟斤拷锟斤拷锟斤拷锟叫憋拷锟斤拷时没锟矫碉拷
      * 20161202
      */
     public void delByMainId(Long classId) {
         this.delBySqlKey("delByMainId", classId);
     }
-
-
 
 }
