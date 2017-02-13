@@ -20,7 +20,31 @@
     <%--out.print("name:"+major);--%>
 <%--%>--%>
 <script type="text/javascript">
+    $(function () {
+        var options = {};
+        if (showResponse) {
+            options.success = showResponse;
+        }
+        var frm = $('#userForm2').form();
+        $("#dataFormSave").click(function () {
+            frm.setData();
+            frm.ajaxForm(options);
+            if (frm.valid()) {
+                form.submit();
+            }
+        });
+    });
 
+    function showResponse(responseText) {
+        var obj = new com.hotent.form.ResultMessage(responseText);
+        if (obj.isSuccess()) {
+
+            window.location.href = "${ctx}/datadriver/privatedata/list.ht?id=${taskId}";
+
+        } else {
+
+        }
+    }
 
 </script>
 

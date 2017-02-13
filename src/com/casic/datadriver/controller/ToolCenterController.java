@@ -131,7 +131,7 @@ public class ToolCenterController extends BaseController {
 
                     tservice.add(m);
 
-                    response.sendRedirect("toollist1.ht?major="+major);//根据实际情况跳转w
+//                    response.sendRedirect("toollist1.ht?major="+major);//根据实际情况跳转w
                 }
                 else {
 

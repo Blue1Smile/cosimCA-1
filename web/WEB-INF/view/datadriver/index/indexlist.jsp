@@ -36,7 +36,7 @@
     </style>
 </head>
 <body>
-<div class="panel panel-info" style="height: 100%">
+<div class="panel panel-primary" style="height: 100%">
     <div class="panel-heading">
         项目指标信息列表
     </div>

@@ -252,22 +252,36 @@ public class TaskInfoController extends AbstractController {
     @RequestMapping("edit")
     @Action(description = "任务编辑")
     public ModelAndView edit(HttpServletRequest request) throws Exception {
+
+        String time = "2017年12月10日";
+        ISysUser executorName;
         Long id = RequestUtil.getLong(request, "id");
         String returnUrl = RequestUtil.getPrePage(request);
         TaskInfo taskInfo = taskInfoService.getById(id);
-        ISysUser executorName = sysUserService.getById(taskInfo.getDdTaskResponsiblePerson());
+        if (taskInfo.getDdTaskResponsiblePerson() != null){
+            executorName  = sysUserService.getById(taskInfo.getDdTaskResponsiblePerson());
+        }else {
+            executorName  = ContextUtil.getCurrentUser();
+        }
+
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
 
         List<ISysUser> sysUserList = sysUserService.getAll();
 //        Date date=new Date();
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-        String time=df.format(taskInfo.getDdTaskPlanEndTime());
+        if (taskInfo.getDdTaskPlanEndTime() != null){
+            time=df.format(taskInfo.getDdTaskPlanEndTime());
+        } else {
+            Date date=new Date();
+            time=df.format(date);
+        }
+
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("endtime", time)
                 .addObject("privateDataList", privateDataList)
                 .addObject("returnUrl", returnUrl)
                 .addObject("sysUserList", sysUserList)
-                .addObject("executorName", executorName.getFullname());
+                .addObject("executorName", executorName);
     }
 
     /**
@@ -668,8 +682,11 @@ public class TaskInfoController extends AbstractController {
             switch (Integer.parseInt(key)) {
                 case 0:
                     long temp0 = obj.getLong("0");
-                    taskStart.setDdTaskResponcePerson(temp0);
-                    taskStartService.update(taskStart);
+                    if (taskStart != null){
+                        taskStart.setDdTaskResponcePerson(temp0);
+                        taskStartService.update(taskStart);
+                    }
+
                     taskInfo.setDdTaskResponsiblePerson(temp0);
                     break;
                 case 1:
