@@ -11,6 +11,7 @@
 <f:link href="web.css"></f:link>
 <script type="text/javascript" src="${ctx}/js/dynamic.jsp"></script>
 <script type="text/javascript" src="${ctx}/js/jquery/jquery-1.7.2.min.js"></script>
+<%--<script src="${ctx}/newtable/jquery.js"></script>--%>
 <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
 <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
 <script type="text/javascript" src="${ctx}/js/lg/ligerui.min.js"></script>

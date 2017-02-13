@@ -92,9 +92,9 @@
                        class="layui-btn layui-btn-normal  layui-btn-small"><i
                             class="layui-icon">&#xe615;</i> 数据版本</a>
                     <%--<a class="layui-btn layui-btn-primary" href="javascript:;">prompt层</a>--%>
-                    <div class="site-demo-button" id="LAY_demo" style="margin-bottom: 0;">
-                        <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
-                    </div>
+                    <%--<div class="site-demo-button" id="LAY_demo" style="margin-bottom: 0;">--%>
+                        <%--<button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>--%>
+                    <%--</div>--%>
                 </display:column>
             </display:table>
         </div>

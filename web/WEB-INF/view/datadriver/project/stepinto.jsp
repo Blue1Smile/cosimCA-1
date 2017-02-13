@@ -109,10 +109,10 @@
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
-            <button id="statis_btn" class="btn btn-warning" data-toggle="modal"
+            <a id="statis_btn" class="btn btn-warning" data-toggle="modal"
                     data-remote="statis.ht?id=${Project.ddProjectId}"
                     data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计
-            </button>
+            </a>
 
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
                data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"

@@ -4,7 +4,6 @@
 --%>
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<%@page import="com.hotent.core.util.ContextUtil" %>
 <html>
 <head>
     <title>私有数据添加</title>

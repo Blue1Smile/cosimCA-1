@@ -154,7 +154,7 @@
                                 执行者
                             </h5>
                             <a class="task-detail-executor" id="executorSelect" data-type="select" data-pk="1" href="#">
-                                ${executorName}
+                                ${executorName.fullname}
                             </a>
                         </div>
                     </div>
@@ -185,9 +185,7 @@
                                             class="label label-danger">紧急</span></c:when>
                                     <c:when test="${TaskInfo.ddTaskPriority==2}"><span
                                             class="label label-warning">重要</span></c:when>
-                                    <c:when test="${TaskInfo.ddTaskPriority==1}"><span
-                                            class="label label-primary">一般</span></c:when>
-                                    <c:otherwise>未设置</c:otherwise>
+                                    <c:otherwise><span class="label label-primary">一般</span></c:otherwise>
                                 </c:choose>
                                 点击设置
                             </a>
@@ -295,13 +293,13 @@
                             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
                                  aria-labelledby="headingThree">
                                 <div class="panel-body">
-                                    <ul>
+                                    <ul class="activities-list">
                                         <c:forEach items="${privateDataList}" var="privateDataItem">
-                                            <li>
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                                <div class="pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
+                                            <li class="activity">
+                                                <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
+                                                <div class="activity-body-coyness muted pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
                                                 </div>
-                                                <div>
+                                                <div class="activity-body-coyness muted">
                                                     <span>${privateDataItem.ddDataCreatePerson} 创建了 ${privateDataItem.ddDataName}</span>
                                                 </div>
                                             </li>
@@ -455,7 +453,7 @@
     $(function () {
         $('#executorSelect').editable({
             showbuttons: false,
-            value: ${TaskInfo.ddTaskResponsiblePerson},
+            value: ${executorName.userId},
             placement: 'bottom',
             source: [
                 <c:forEach var="personItem" items="${sysUserList}">
