@@ -16,7 +16,7 @@
 	        var url=__ctx+"/platform/system/roleResources/edit.ht?roleId="+roleId;
 	    	var winArgs="dialogWidth=350px;dialogHeight=460px;status=0;help=0;";
 	    	url=url.getNewUrl();
-	    	window.showModalDialog(url,"",winArgs);
+	    	window.open(url,"",winArgs);
 	    }
     </script>
 </head>
@@ -121,7 +121,7 @@
 								</c:choose>
 								<f:a alias="roleDetail" css="link detail" href="get.ht?roleId=${sysRoleItem.roleId}">明细</f:a>
 								<f:a alias="copyRole" css="link copy" onclick="copyRole('${sysRoleItem.roleId}','${sysRoleItem.roleName}')" >复制角色</f:a>
-								<f:a alias="sourceRole" css="link flowDesign" href="javascript:editRoleRes(${sysRoleItem.roleId });">资源分配</f:a>
+								<button onclick="editRoleRes(${sysRoleItem.roleId });">资源分配</button>
 								<f:a alias="userRole" css="link auth" href="${ctx}/platform/system/userRole/edit.ht?roleId=${sysRoleItem.roleId}" >人员分配</f:a>
 								
 								<f:a alias="stopRole" css="link lock" href="runEnable.ht?roleId=${sysRoleItem.roleId }" >

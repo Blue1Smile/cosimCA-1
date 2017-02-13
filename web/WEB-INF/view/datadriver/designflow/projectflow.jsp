@@ -36,7 +36,7 @@
         mxConstants.DEFAULT_HOTSPOT = 1;
 
         var id='${projectId}';
-        var xml="${processFlowXml}";
+        var xml='${processFlowXml}';
 
         // Enables guides
         mxGraphHandler.prototype.guidesEnabled = true;
