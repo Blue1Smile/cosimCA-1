@@ -363,6 +363,7 @@ public class TaskInfoController extends AbstractController {
         return mv;
     }
 
+
     @RequestMapping("savepublish")
     @Action(description = "保存发布")
     public void savepublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -384,6 +385,7 @@ public class TaskInfoController extends AbstractController {
             this.orderDataRelationService.addDDOrderDataRelation(orderDataRelation);
         }
     }
+
 
     @RequestMapping("saveorder")
     @Action(description = "保存订阅")
@@ -613,18 +615,21 @@ public class TaskInfoController extends AbstractController {
 
 //        privateDataListbyTask.removeAll(publishDataList);
 //        privateDataListbyTask = ListUtils.subtract(privateDataListbyTask, publishDataList);
-//        Integer Length = privateDataListbyTask.size();
-//        for (int i=0;i<publishDataList.size();i++){
-//            for (int j= 0;j<Length;j++){
-//                if(publishDataList.get(i)==privateDataListbyTask.get(j)){
-//                    privateDataListbyTask.remove(j);
-//                    j--;
-//                    Length--;
-//                }
-//            }
-//        }
 
-
+        if(privateDataListbyTask.size()>0&&publishDataList.size()>0){
+            Integer Length1 = privateDataListbyTask.size();
+            for (int i=0;i<publishDataList.size();i++){
+                for (int j= 0;j<Length1;j++){
+                    Long ddDataId1 = publishDataList.get(i).getDdDataId();
+                    Long ddDataId2 = privateDataListbyTask.get(j).getDdDataId();
+                    if(ddDataId1.equals(ddDataId2)){
+                        privateDataListbyTask.remove(j);
+                        Length1=privateDataListbyTask.size();
+                        j--;
+                    }
+                }
+            }
+        }
 
 
 
@@ -653,6 +658,20 @@ public class TaskInfoController extends AbstractController {
             OrderPrivatedataList.add(privateDataforOrderData);
         }
 
+        if(OrderPrivatedataList.size()>0&&canBeOrderPrivatedataList.size()>0) {
+            Integer Length2 = canBeOrderPrivatedataList.size();
+            for (int i = 0; i < OrderPrivatedataList.size(); i++) {
+                for (int j = 0; j < Length2; j++) {
+                    Long ddDataId1 = OrderPrivatedataList.get(i).getDdDataId();
+                    Long ddDataId2 = canBeOrderPrivatedataList.get(j).getDdDataId();
+                    if (ddDataId1.equals(ddDataId2)) {
+                        canBeOrderPrivatedataList.remove(j);
+                        Length2 = canBeOrderPrivatedataList.size();
+                        j--;
+                    }
+                }
+            }
+        }
 
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("privateDataListbyTask",privateDataListbyTask )
@@ -660,6 +679,7 @@ public class TaskInfoController extends AbstractController {
                 .addObject("canBeOrderPrivatedataList", canBeOrderPrivatedataList)
                 .addObject("OrderPrivatedataList", OrderPrivatedataList);
     }
+
     /**
      * 2017/2/8/
      *
@@ -708,12 +728,58 @@ public class TaskInfoController extends AbstractController {
 
 
 
-            taskInfoService.updateDDTask(taskInfo);
-        } catch (Exception e) {
-            String resultMsg = null;
-            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
-        }
-    }
+
+//    /**
+//     * 2017/2/8/
+//     *
+//     * @param request  the request
+//     * @param response the response
+//     * @return the list
+//     * @throws Exception the exception
+//     */
+//    @RequestMapping("onchangetaskinfo")
+//    @Action(description = "更改任务详情")
+//    public void onchangetaskinfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        try {
+//            long taskId = RequestUtil.getLong(request, "taskId");
+//            String json = request.getParameter("strJson");
+//            JSONObject obj = JSONObject.fromObject(json);
+//            Iterator<String> sIterator = obj.keys();
+//            String key = sIterator.next();
+//            TaskStart taskStart = taskStartService.getByTaskId(taskId);
+//            TaskInfo taskInfo = taskInfoService.getById(taskId);
+//            switch (Integer.parseInt(key)) {
+//                case 0:
+//                    long temp0 = obj.getLong("0");
+//                    taskStart.setDdTaskResponcePerson(temp0);
+//                    taskStartService.update(taskStart);
+//                    taskInfo.setDdTaskResponsiblePerson(temp0);
+//                    break;
+//                case 1:
+//                    long temp1 = obj.getLong("1");
+//                    taskInfo.setDdTaskPriority(temp1);
+//                    break;
+//                case 2:
+//                    String temp2 = obj.getString("2");
+//                    SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD",
+//                            Locale.ENGLISH);
+//                    Date parsedDate = sdf.parse(temp2);
+//                    taskInfo.setDdTaskPlanEndTime(parsedDate);
+//                    break;
+//                case 3:
+//                    String temp3 = obj.getString("3");
+//                    taskInfo.setDdTaskDescription(temp3);
+//                    break;
+//            }
+//
+//
+//
+//            taskInfoService.updateDDTask(taskInfo);
+//        } catch (Exception e) {
+//            String resultMsg = null;
+//            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+//        }
+//    }
     /**
      * 任务从新建拖拽到发布
      *
@@ -734,21 +800,19 @@ public class TaskInfoController extends AbstractController {
 
         String parent = RequestUtil.getString(request, "parent");
 
-
-
         if (parent.equals("privatepanel")) {
-           List<OrderDataRelation> publishDataList = new ArrayList<OrderDataRelation>();
+            List<OrderDataRelation> publishDataList = new ArrayList<OrderDataRelation>();
             publishDataList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
 
             //更新orderDataRelation
             for (int i=0;i<publishDataList.size();i++){
-                if (publishDataList.get(i).getDdDataId()==dataId&&publishDataList.get(i).getDdOrderType()==0){
+                if (publishDataList.get(i).getDdDataId().equals(dataId)&&publishDataList.get(i).getDdOrderType().equals(0L)){
                     long OrderDataId  = publishDataList.get(i).getDdOrderDataId();
                     orderDataRelationService.delById(OrderDataId);
                 }
             }
-
         }
+
         if (parent.equals("publishpanel")) {
 
             OrderDataRelation orderDataRelation = new OrderDataRelation();
@@ -760,6 +824,7 @@ public class TaskInfoController extends AbstractController {
             orderDataRelation.setDdDataName(privateData.getDdDataName());
             this.orderDataRelationService.addDDOrderDataRelation(orderDataRelation);
         }
+
 
     }
 
