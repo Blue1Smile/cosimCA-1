@@ -1,29 +1,45 @@
-<%@page language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<%@page import="com.hotent.core.util.ContextUtil" %>
-<html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
+<html style="height: 100%;">
 <head>
     <title>任务基础信息添加</title>
-    <%@include file="/commons/include/form.jsp" %>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <%--<%@include file="/commons/include/form.jsp" %>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
+    <%--<script src="${ctx}/newtable/jquery.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap.js"></script>--%>
+
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript">
-        $(function () {
-            var frm = $('#taskInfoForm').form();
-            $("#dataFormSave").click(function () {
-                frm.setData();
-                frm.ajaxForm(options);
-                if (frm.valid()) {
-                    form.submit();
-                }
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
+    <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
+
+    <%--<script type="text/javascript">--%>
+    <%--$(function () {--%>
+    <%--var frm = $('#taskInfoForm').form();--%>
+    <%--$("#dataFormSave").click(function () {--%>
+    <%--frm.setData();--%>
+    <%--frm.ajaxForm(options);--%>
+    <%--if (frm.valid()) {--%>
+    <%--form.submit();--%>
+    <%--}--%>
+    <%--});--%>
+    <%--});--%>
+    <%--</script>--%>
+    <script src="${ctx}/newtable/bootstrap-editable.js"></script>
+    <script src="${ctx}/timeselect/moment.js"></script>
     <style>
         .panel {
             margin: 0px;
+            height: 100%;
         }
 
         .panel-heading {
@@ -35,54 +51,268 @@
         }
 
         #card1, #card2, #card3 {
-            padding-right: 0px;
-            padding-left: 0px;
+            padding-right: 2px;
+            padding-left: 2px;
         }
 
         #row {
             margin-right: 0px !important;
             margin-left: 0px !important;
         }
+
+        button.panel-button {
+            -webkit-appearance: none;
+            padding: 0;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+        }
+
+        .detail-info {
+            margin-bottom: 4px;
+        }
+
+        .panel-button {
+            float: right;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            filter: alpha(opacity=20);
+            opacity: .2;
+        }
+
+        .task-info-title {
+            margin: 5px 16px 10px;
+            line-height: 12px;
+            color: grey;
+        }
+
+        .card .task-detail-executor {
+            margin: 10px 16px 14px;
+            line-height: 24px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .editable-pre-wrapped {
+            white-space: normal !important;
+        }
+
+        .activities-list {
+            padding: 0;
+            position: relative;
+        }
+
+        .activity {
+            position: relative;
+            overflow: hidden;
+            margin: 15px;
+        }
+
+        .activity .activity-type-icon {
+            width: 36px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .activity .activity-body-coyness {
+            font-size: 12px;
+            margin: 0 0 0 46px;
+        }
+
+        .muted {
+            color: #A6A6A6;
+        }
     </style>
 </head>
-<body>
+<body style="height: 100%; margin: 0px;">
 <div class="panel">
     <div class="panel-heading">
-        111
+        ${TaskInfo.ddTaskName}
+        <div class="btn-group" style="float: right">
+            <button type="button" class="panel-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                更多 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <center>任务菜单</center>
+                <li role="separator" class="divider"></li>
+                <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="panel-body">
-        <div class="row" id="row">
-            <div class="col-xs-4" id="card1">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        执行者
+    <div class="panel-body" style="height: 100%; overflow: scroll">
+        <div class="col-xs-12 detail-info">
+            <div class="row" id="row">
+                <div class="col-xs-4" id="card1">
+                    <div class="panel panel-default">
+                        <div class="panel-body card">
+                            <h5 class="task-info-title">
+                                执行者
+                            </h5>
+                            <a class="task-detail-executor" id="executorSelect" data-type="select" data-pk="1" href="#">
+                                ${executorName}
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-4" id="card2">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        截止时间
+                <div class="col-xs-4" id="card2">
+                    <div class="panel panel-default">
+                        <div class="panel-body card">
+                            <h5 class="task-info-title">
+                                截止时间
+                            </h5>
+                            <a class="task-detail-executor" href="#" id="dob" data-type="combodate" data-pk="1"
+                               data-value="2017年12月10日"><span
+                                    class="glyphicon glyphicon-calendar"></span>${endtime}</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-4" id="card3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        优先级
+                <div class="col-xs-4" id="card3">
+                    <div class="panel panel-default">
+                        <div class="panel-body card">
+                            <h5 class="task-info-title">
+                                优先级
+                            </h5>
+                            <a class="task-detail-executor" id="taskPrioritySelect" data-type="select" data-pk="1"
+                               href="#">
+                                <c:choose>
+                                    <c:when test="${TaskInfo.ddTaskPriority==3}"><span
+                                            class="label label-danger">紧急</span></c:when>
+                                    <c:when test="${TaskInfo.ddTaskPriority==2}"><span
+                                            class="label label-warning">重要</span></c:when>
+                                    <c:when test="${TaskInfo.ddTaskPriority==1}"><span
+                                            class="label label-primary">一般</span></c:when>
+                                    <c:otherwise>未设置</c:otherwise>
+                                </c:choose>
+                                点击设置
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <ul class="list-group">
-            <li class="list-group-item"><a>添加备注</a></li>
-            <li class="list-group-item"><a>添加子任务</a></li>
-            <li class="list-group-item"><a>添加标签</a></li>
-            <li class="list-group-item"><a>添加提醒</a></li>
-            <li class="list-group-item"><a>里程碑</a></li>
-        </ul>
-        <div class="panel panel-default">
-            <div class="panel-body"><a>动态</a></div>
+
+        <div class="col-xs-12 detail-info">
+            <div class="panel panel-default">
+                <div class="list-group">
+                    <a class="list-group-item" href="#" id="comments" data-type="textarea" data-pk="1" href="#">
+                        <c:choose>
+                            <c:when test="${empty TaskInfo.ddTaskDescription}">
+                                <h5 class="task-info-title">添加描述</h5>
+                            </c:when>
+                            <c:otherwise>
+                                <p>${TaskInfo.ddTaskDescription}</p>
+                            </c:otherwise>
+                        </c:choose>
+                    </a>
+                    <a class="list-group-item" href="#">添加子任务</a>
+                    <a class="list-group-item" href="#">添加标签</a>
+                    <a class="list-group-item" href="#">里程碑
+                            <div class="radio radio-info radio-inline">
+                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
+                                <label for="ddTaskMilestone1">
+                                    是
+                                </label>
+                            </div>
+                            <div class="radio radio-info radio-inline">
+                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                                <label for="ddTaskMilestone0">
+                                    否
+                                </label>
+                            </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body"><h5 class="task-info-title">活动</h5>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h5 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                       aria-expanded="true" aria-controls="collapseOne">
+                                        基本动态
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                 aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <ul class="activities-list">
+                                        <li class="activity">
+                                            <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
+                                            <div class="activity-body-coyness muted pull-right"><span>2017年1月16日</span>
+                                            </div>
+                                            <div class="activity-body-coyness muted">
+                                                <span>设计师一 更新了 截止时间</span>
+                                            </div>
+                                        </li>
+                                        <li class="activity">
+                                            <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
+                                            <div class="activity-body-coyness muted pull-right"><span>2017年1月22日</span>
+                                            </div>
+                                            <div class="activity-body-coyness muted">
+                                                <span>设计师一 更新了 优先级</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h5 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        订阅数据
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                                 aria-labelledby="headingTwo">
+                                <div class="panel-body">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h5 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        发布数据
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                                 aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <ul>
+                                        <c:forEach items="${privateDataList}" var="privateDataItem">
+                                            <li>
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                <div class="pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
+                                                </div>
+                                                <div>
+                                                    <span>${privateDataItem.ddDataCreatePerson} 创建了 ${privateDataItem.ddDataName}</span>
+                                                </div>
+                                            </li>
+
+                                        </c:forEach>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <%--<form id="taskInfoForm" name="taskInfoForm" method="post" action="save.ht"--%>
         <%--enctype="multipart/form-data">--%>
@@ -189,17 +419,96 @@
 
         <%--</form>--%>
     </div>
-    <div class="panel-footer">
-        333
+    <div class="panel-footer" style="margin-bottom: 0px">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="输入@选择提醒人员">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="button">发送</button>
+            </span>
+        </div><!-- /input-group -->
     </div>
 </div>
 
 </body>
 
 <script>
+    var curRow = {};
+    var taskItem = 0;
     $("#personSelect").change(function () {
         var taskPerson = $("#personSelect").find("option:selected").text();
         $("#ddTaskPerson").val(taskPerson);
     });
+
+    function onChangeTaskInfo(params, taskItem) {
+        curRow[taskItem] = params.value;
+        $.ajax({
+            type: 'post',
+            url: "${ctx}/datadriver/task/onchangetaskinfo.ht?taskId=${TaskInfo.ddTaskId}",
+            data: {strJson: JSON.stringify(curRow)}
+//                    success: function (data, textStatus, jqXHR) {
+//                        alert('保存成功！');
+//                    },
+//                    error: function () { alert("error");}
+        });
+    }
+    $(function () {
+        $('#executorSelect').editable({
+            showbuttons: false,
+            value: ${TaskInfo.ddTaskResponsiblePerson},
+            placement: 'bottom',
+            source: [
+                <c:forEach var="personItem" items="${sysUserList}">
+                {value: ${personItem.userId}, text: '${personItem.fullname}'},
+                </c:forEach>
+            ],
+
+            url: function (params) {
+                taskItem = 0;
+                onChangeTaskInfo(params, taskItem);
+            }
+        });
+        $('#taskPrioritySelect').editable({
+            showbuttons: false,
+            value: 1,
+            placement: 'left',
+            source: [
+                {value: 3, text: '紧急'},
+                {value: 2, text: '重要'},
+                {value: 1, text: '一般'}
+            ],
+            url: function (params) {
+                taskItem = 1;
+                onChangeTaskInfo(params, taskItem);
+            }
+        });
+
+        $('#dob').editable({
+            showbuttons: true,
+            placement: 'bottom',
+            format: 'YYYY-MM-DD',
+            viewformat: 'YYYY年 MM月 DD日',
+            template: 'YYYY年 MMMM月 DD日',
+            combodate: {
+                minYear: 2000,
+                maxYear: 2030,
+                minuteStep: 1
+            },
+            url: function (params) {
+                taskItem = 2;
+                onChangeTaskInfo(params, taskItem);
+            }
+        });
+        $('#comments').editable({
+            showbuttons: true,
+            placement: 'bottom',
+            rows: 5,
+            url: function (params) {
+                taskItem = 3;
+                onChangeTaskInfo(params, taskItem);
+            }
+        });
+
+    })
+    ;
 </script>
 </html>

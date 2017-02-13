@@ -6,6 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <%@include file="/commons/include/form.jsp" %>
@@ -184,15 +190,10 @@
     function showResponse(responseText) {
         var obj = new com.hotent.form.ResultMessage(responseText);
         if (obj.isSuccess()) {
-            $.ligerMessageBox.confirm("提示信息", obj.getMessage() + ",是否继续操作", function (rtn) {
-                if (rtn) {
-                    this.close();
-                } else {
                     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                     parent.layer.close(index); //再执行关闭
-                    window.location.href = "${ctx}/datadriver/task/list.ht";
-                }
-            });
+                    window.location.href = "${ctx}/datadriver/project/stepinto.ht?id=${projectItem.ddProjectId}";
+
         } else {
             $.ligerMessageBox.error("提示信息", obj.getMessage());
         }
