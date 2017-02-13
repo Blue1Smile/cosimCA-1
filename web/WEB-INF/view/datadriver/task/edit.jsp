@@ -166,8 +166,9 @@
                                 截止时间
                             </h5>
                             <a class="task-detail-executor" href="#" id="dob" data-type="combodate" data-pk="1"
-                               data-value="2017年12月10日"><span
-                                    class="glyphicon glyphicon-calendar"></span>${endtime}</a>
+                               data-value="2017年12月10日">
+                                <%--<span class="glyphicon glyphicon-calendar"></span>--%>
+                                    ${endtime}</a>
                         </div>
                     </div>
                 </div>
@@ -484,7 +485,7 @@
 
         $('#dob').editable({
             showbuttons: true,
-            placement: 'left',
+            placement: 'bottom',
             format: 'YYYY-MM-DD',
             viewformat: 'YYYY年 MM月 DD日',
             template: 'YYYY年 MMMM月 DD日',
