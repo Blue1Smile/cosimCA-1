@@ -45,14 +45,10 @@
            data-page-list="[10, 25, 50, 100, ALL]"
            data-show-footer="false"
            data-side-pagination="server"
-    <%--data-url="submitpublishjson.ht?id=${taskId}"--%>
            data-response-handler="responseHandler"
            class="table table-hover">
     </table>
 </div>
-
-<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
-<%--<script src="${ctx}/newtable/customtable.js">--%>
 <script type="text/javascript">
     var $table = $('#tablelist'),
             $remove = $('#remove'),
@@ -60,28 +56,7 @@
     var curRow = {};
     function initTable() {
         $table.bootstrapTable({
-            <%--height: getHeight(),--%>
-            <%--search:false,--%>
-            <%--showColumns: false,--%>
-            <%--showToggle: false,--%>
-            <%--showRefresh: false,--%>
-            <%--showExport: false,--%>
-            <%--sortTable: true,--%>
-            <%--detailView: true,--%>
-            <%--detailFormatter:"detailFormatter",--%>
-            <%--minimumCountColumns:2,--%>
-            <%--showPaginationSwitch:false,--%>
-            <%--pagination:true,--%>
-            <%--striped:true,--%>
-            <%--showHeader:true,--%>
-            <%--pageSize:10,--%>
-            <%--pageList:[10,25,50,100,ALL],--%>
-            <%--showFooter:false,--%>
-            <%--sidePagination:"server",--%>
-            <%--method: 'get',--%>
             url: "submitpublishjson.ht?id=${taskId}",
-            <%--responseHandler:"responseHandler",--%>
-            <%--idField:"id",--%>
             columns: [
                 {//第一列，数据ID
                     field: 'ddDataId',
@@ -139,13 +114,6 @@
                     align: 'center',
                     visible: true
                 }
-                // , {//第四列，操作
-                //     field: 'operate',
-                //     title: '操作',
-                //     align: 'center',
-                //     events: operateEvents,
-                //     formatter: operateFormatterRefresh
-                // }
             ],
             onClickRow: function (row, $element) {
                 curRow = row;
@@ -182,15 +150,6 @@
 
                 });
             }
-            // data: [{//数据
-            //     id: 1,
-            //     name: 'Item 1',
-            //     price: '$1'
-            // }, {
-            //     id: 2,
-            //     name: 'Item 2',
-            //     price: '$2'
-            // }]
         });
 
         // sometimes footer render error.
@@ -206,12 +165,6 @@
             // push or splice the selections if you want to save all data selections
         });
         $table.on('expand-row.bs.table', function (e, index, row, $detail) {
-//            if (index % 2 == 1) {
-//                $detail.html('Loading from ajax request...');
-//                $.get('LICENSE', function (res) {
-//                    $detail.html(res.replace(/\n/g, '<br>'));
-//                });
-//            }
             $table.InitSubTable(index, row, $detail);
         });
         $table.on('all.bs.table', function (e, name, args) {
@@ -225,12 +178,6 @@
             });
             $remove.prop('disabled', true);
         });
-        // $(window).resize(function () {
-        //     $table.bootstrapTable('resetView', {
-        //         height: getHeight()
-        //     });
-        // });
-
         $table.InitSubTable = function (index, row, $detail){
         var ddDataId = row.ddDataId;
             var cur_table = $detail.html('<table></table>').find('table');
@@ -305,88 +252,6 @@
                 //}
             });
         }
-        <%--$table.InitSubTable = function (index, row, $detail) {--%>
-        <%--var parentid = row.id;--%>
-        <%--var cur_table = $detail.html('<table></table>').find('table');--%>
-        <%--$(cur_table).bootstrapTable({--%>
-        <%--url: "submitpublishjson.ht?id=${taskId}",--%>
-        <%--method: 'get',--%>
-        <%--queryParams: {strParentID: parentid},--%>
-        <%--ajaxOptions: {strParentID: parentid},--%>
-        <%--clickToSelect: true,--%>
-        <%--detailView: true     ,//父子表--%>
-        <%--detailFormatter:"detailFormatter",--%>
-        <%--uniqueId: "MENU_ID",--%>
-        <%--pageSize: 2,--%>
-        <%--pageList: "[10, 25, 50, 100, ALL]",--%>
-        <%--columns: [--%>
-        <%--//    {--%>
-        <%--//    checkbox: true--%>
-        <%--//},--%>
-        <%--{//第一列，数据ID--%>
-        <%--field: 'ddDataId',--%>
-        <%--title: '数据ID',--%>
-        <%--sortable: true,--%>
-        <%--editable: false,--%>
-        <%--align: 'center',--%>
-        <%--visible: false--%>
-        <%--}, {//第二列，名称--%>
-        <%--field: 'ddDataName',--%>
-        <%--title: '数据名称',--%>
-        <%--sortable: true,--%>
-        <%--editable: false,--%>
-        <%--// footerFormatter: ddDataNameFormatter,--%>
-        <%--align: 'center',--%>
-        <%--visible: true--%>
-        <%--}, {//所属任务ID--%>
-        <%--field: 'ddDataTaskId',--%>
-        <%--title: '所属任务ID',--%>
-        <%--sortable: true,--%>
-        <%--editable: false,--%>
-        <%--// footerFormatter: ddDataNameFormatter,--%>
-        <%--align: 'center',--%>
-        <%--visible: false--%>
-        <%--}--%>
-        <%--, {//第三列，数值--%>
-        <%--field: 'ddDataLastestValue',--%>
-        <%--title: '值',--%>
-        <%--sortable: true,--%>
-        <%--align: 'center',--%>
-        <%--editable: {--%>
-        <%--type: 'text',--%>
-        <%--title: '值',--%>
-        <%--validate: function (v) {--%>
-        <%--if (isNaN(v)) return '值必须是数字';--%>
-        <%--}--%>
-        <%--}--%>
-        <%--//,--%>
-        <%--// footerFormatter: ddDataLastestValueFormatter--%>
-        <%--}--%>
-        <%--, {//数据类型--%>
-        <%--field: 'ddDataType',--%>
-        <%--title: '数据类型',--%>
-        <%--sortable: true,--%>
-        <%--editable: false,--%>
-        <%--// footerFormatter: ddDataNameFormatter,--%>
-        <%--align: 'center',--%>
-        <%--visible: true--%>
-        <%--}, {//所属任务--%>
-        <%--field: 'ddDataTaskName',--%>
-        <%--title: '所属任务',--%>
-        <%--sortable: true,--%>
-        <%--editable: false,--%>
-        <%--// footerFormatter: ddDataNameFormatter,--%>
-        <%--align: 'center',--%>
-        <%--visible: true--%>
-        <%--}--%>
-        <%--],--%>
-        <%--////无线循环取子表，直到子表里面没有记录--%>
-        <%--//onExpandRow: function (index, row, $Subdetail) {--%>
-        <%--//    oInit.InitSubTable(index, row, $Subdetail);--%>
-        <%--//}--%>
-        <%--});--%>
-        <%--}--%>
-
     }
 
     function getIdSelections() {
@@ -457,11 +322,6 @@
 
     function ddDataLastestValueFormatter(data) {
         return "<a href=\"#\" name=\"ddDataLastestValue\" data-type=\"text\" data-pk=\""+row.id+"\" data-title=\"值\">" + value + "</a>";
-        // var total = 0;
-        // $.each(data, function (i, row) {
-        //     total += +(row.price.substring(1));
-        // });
-        // return '$' + total;
     }
 
     function getHeight() {
@@ -469,16 +329,9 @@
         return $(window).height() - $('.layui-tab-title').outerHeight(true);
     }
 
-
-
-
-
     $(function () {
         initTable();
     });
-
-
-
 </script>
 </body>
 </html>

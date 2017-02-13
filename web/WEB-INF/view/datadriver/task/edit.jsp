@@ -484,7 +484,7 @@
 
         $('#dob').editable({
             showbuttons: true,
-            placement: 'left',
+            placement: 'bottom',
             format: 'YYYY-MM-DD',
             viewformat: 'YYYY年 MM月 DD日',
             template: 'YYYY年 MMMM月 DD日',

@@ -37,14 +37,17 @@
             width: 100% !important;
             height: 100% !important;
         }
-        iframe{
+
+        iframe {
             margin: 0px 0px !important;
             width: 100% !important;
             height: 100% !important;
         }
+
         .scrum-stage .task.task-card {
             margin: 0 8px 8px !important;
         }
+
         .task.task-card {
             padding: 0 !important;
             background-color: #fff !important;
@@ -53,22 +56,28 @@
             cursor: pointer !important;
             margin-left: -42px !important;
         }
+
         .checkbox label {
             margin: 12px !important;
         }
+
         li {
             list-style-type: none !important;
         }
-        .paneldocker{
-            height: 100%; padding-bottom: 220px;
+
+        .paneldocker {
+            height: 100%;
+            padding-bottom: 220px;
         }
-        .panelheight{
+
+        .panelheight {
             position: relative;
             height: 93%;
         }
+
         /*.cbp-spmenu-push{*/
-            /*overflow:scroll !important;*/
-            /*overflow-x:hidden !important;*/
+        /*overflow:scroll !important;*/
+        /*overflow-x:hidden !important;*/
         /*}*/
         .bs-callout-danger {
             border-left-color: #ce4844;
@@ -78,8 +87,8 @@
 </head>
 
 <body class="cbp-spmenu-push">
-<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2" style="padding-bottom: 250px">
-
+<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"
+     style="padding-bottom: 250px">
 </div>
 <div class="container-fluid" style="height: 100%">
     <ul class="nav nav-tabs" role="tablist">
@@ -89,7 +98,9 @@
             </a>
             <ul class="dropdown-menu">
                 <c:forEach var="projectListbyUserItem" items="${projectListbyUser}">
-                    <li><a href="#">${projectListbyUserItem.ddProjectName}</a></li>
+                    <li>
+                        <a href="stepinto.ht?id=${projectListbyUserItem.ddProjectId}">${projectListbyUserItem.ddProjectName}</a>
+                    </li>
                 </c:forEach>
             </ul>
         </li>
@@ -187,6 +198,7 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="index">
+
         </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
         </div>
@@ -202,7 +214,7 @@
 </div>
 <%--index--%>
 <div class="modal fade" id="addindex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
 
         </div>
@@ -217,6 +229,7 @@
     </div>
 </div>
 </body>
+<script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#createpanel,#publishpanel").dragsort({
@@ -235,32 +248,31 @@
         $("#create_task").show();
         $("#create_index").hide();
     });
-</script>
-<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-<script src="${ctx}/styles/slide/js/classie.js"></script>
 
-<script>
     var menuRight = document.getElementById('cbp-spmenu-s2'),
             showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
             body = document.body;
 
     function showTaskContent(obj, taskId) {
-        $.get("${ctx}/datadriver/task/edit.ht?id="+taskId, function(data) {
+        $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
             $('#cbp-spmenu-s2').html(data);
         });
         classie.toggle(obj, 'active');
         classie.toggle(body, 'cbp-spmenu-push-toleft');
         classie.toggle(menuRight, 'cbp-spmenu-open');
-
     }
     switch_attr_index.onclick = function () {
         $("#create_task").hide();
         $("#create_index").show();
+        $.get("${ctx}/datadriver/index/indexlist.ht?id=${Project.ddProjectId}", function (data) {
+            $('#index').html(data);
+        });
     }
     switch_attr_task.onclick = function () {
         $("#create_task").show();
         $("#create_index").hide();
     }
+
 </script>
 </html>

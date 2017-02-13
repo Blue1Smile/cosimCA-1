@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<%@page import="com.hotent.core.util.ContextUtil" %>
 <html>
 <head>
     <title>指标编辑</title>
@@ -24,7 +23,7 @@
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <form id="indexform" name="indexform" method="post" action="save.ht"
+        <form id="indexform" name="indexform" method="post" action="${ctx}/datadriver/index/save.ht"
               enctype="multipart/form-data">
             <table id="AddHandlingFee" class="table table-striped" cellpadding="0" cellspacing="0"
                    border="0"
@@ -80,6 +79,14 @@
             </table>
             <input id="ddIndexProjectId" name="ddIndexProjectId" type="hidden" value="${projectId}"/>
         </form>
+        <div class="row">
+            <div class="col-xs-6">
+                <input class="btn btn-primary btn-block" id="dataFormSave" value="创建新指标"/>
+            </div>
+            <div class="col-xs-6">
+                <input class="btn btn-default btn-block" id="" value="从模版创建指标"/>
+            </div>
+        </div>
     </div>
 </div>
 <script>
@@ -101,13 +108,11 @@
     function showResponse(responseText) {
         var obj = new com.hotent.form.ResultMessage(responseText);
         if (obj.isSuccess()) {
-            layer.alert("项目指标提交成功", {
-                title: '提交信息'
-            })
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+            window.location.href = "${ctx}/datadriver/index/indexlist.ht?id=${projectId}";
         } else {
-            layer.alert("项目指标提交失败", {
-                title: '提交信息'
-            })
+
         }
     }
 </script>
