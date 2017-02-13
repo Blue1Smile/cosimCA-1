@@ -32,15 +32,11 @@
         function showResponse(responseText) {
             var obj = new com.hotent.form.ResultMessage(responseText);
             if (obj.isSuccess()) {
-                $.ligerMessageBox.confirm("提示信息", obj.getMessage() + ",是否继续操作", function (rtn) {
-                    if (rtn) {
-                        this.close();
-                    } else {
+
                         window.location.href = "${ctx}/datadriver/privatedata/list.ht?id=${taskId}";
-                    }
-                });
+
             } else {
-                $.ligerMessageBox.error("提示信息", obj.getMessage());
+
             }
         }
 
