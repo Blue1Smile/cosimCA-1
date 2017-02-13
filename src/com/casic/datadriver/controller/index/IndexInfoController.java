@@ -3,6 +3,7 @@ package com.casic.datadriver.controller.index;
 import com.casic.datadriver.model.index.IndexInfo;
 import com.casic.datadriver.service.index.IndexService;
 import com.hotent.core.annotion.Action;
+import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.controller.BaseController;
@@ -82,6 +83,25 @@ public class IndexInfoController extends BaseController {
         return index;
     }
 
+    /**
+     * 查询index列表
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("indexlist")
+    @Action(description = "根据条件查询指标基本信息列表")
+    public ModelAndView list(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long projectId = RequestUtil.getLong(request, "id");
+        List<IndexInfo> indexInfoList = indexService.getByProjectId(projectId);
+
+        ModelAndView mv = this.getAutoView().addObject("indexInfoList",
+                indexInfoList);
+        return mv;
+    }
     /**
      * 指标编辑、增加
      *
