@@ -412,7 +412,7 @@ public class ProjectController extends BaseController {
     public ModelAndView statis(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ProcessFlow processFlow = new ProcessFlow();
         ModelAndView mv = new ModelAndView();
-        Long projectId = RequestUtil.getLong(request, "projectId");
+        Long projectId = RequestUtil.getLong(request, "id");
         ProjectProcessAssocia projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectId);
         if (projectProcessAssocia != null) {
             Long processFlowId = projectProcessAssocia.getDdPrcessId();
