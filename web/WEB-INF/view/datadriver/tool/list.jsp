@@ -73,7 +73,7 @@
                 elem: '#demo2' //指定元素
                 , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
                 , click: function (item) { //点击节点回调
-                    layer.msg('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
+//                    layer.msg('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
 //                   window.location.href='edit.ht?id='+item.name;
 
                     if ( item.name == undefined) return;

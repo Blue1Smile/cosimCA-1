@@ -39,7 +39,7 @@
     $('#btn_add').on('click', function () {
         var index =layer.open({
             type: 2,
-            title: false, //不显示标题栏
+            title: "工具上传", //不显示标题栏
             shadeClose: true,
             shade: 0.2,
             area: ['80%', '80%'],
@@ -47,7 +47,7 @@
             moveType: 1,//拖拽模式，0或者1
             content: 'edit.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>'
         });
-        layer.full(index);
+//        layer.full(index);
     });
 </script>
 </html>
