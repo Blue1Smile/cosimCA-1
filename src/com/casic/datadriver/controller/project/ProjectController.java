@@ -418,11 +418,17 @@ public class ProjectController extends BaseController {
             Long processFlowId = projectProcessAssocia.getDdPrcessId();
             processFlow = processFlowService.getById(processFlowId);
             String tempXml = processFlow.getDdProcessXml();
+
+
+
             mv = this.getAutoView().addObject("projectId", projectId)
                     .addObject("processFlowXml", tempXml);
         } else {
             mv = this.getAutoView().addObject("projectId", projectId);
         }
+
+
+
         return mv;
     }
 }
