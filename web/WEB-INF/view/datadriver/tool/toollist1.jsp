@@ -11,22 +11,23 @@
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
 </head>
-<%
-    request.setCharacterEncoding("UTF-8");
-    String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");
-    out.print("name:"+major);
-%>
+<%--<%--%>
+    <%--request.setCharacterEncoding("UTF-8");--%>
+    <%--String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");--%>
+    <%--out.print("name:"+major);--%>
+<%--%>--%>
+
 <body>
 <div id="toolbar" class="btn-group">
     <button id="btn_add" type="button" class="btn btn-success" >
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
     </button>
-    <button id="btn_edit" type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-    </button>
-    <button id="btn_delete" type="button" class="btn btn-danger">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-    </button>
+    <%--<button id="btn_edit" type="button" class="btn btn-default">--%>
+        <%--<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改--%>
+    <%--</button>--%>
+    <%--<button id="btn_delete" type="button" class="btn btn-danger">--%>
+        <%--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除--%>
+    <%--</button>--%>
 </div>
 <table id="tb_departments" data-url="showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>&son=1&">
 </table>
@@ -36,9 +37,9 @@
 </body>
 <script charset=UTF-8>
     $('#btn_add').on('click', function () {
-        layer.open({
+        var index =layer.open({
             type: 2,
-            title: "上传工具", //不显示标题栏
+            title: false, //不显示标题栏
             shadeClose: true,
             shade: 0.2,
             area: ['80%', '80%'],
@@ -46,6 +47,7 @@
             moveType: 1,//拖拽模式，0或者1
             content: 'edit.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>'
         });
+        layer.full(index);
     });
 </script>
 </html>

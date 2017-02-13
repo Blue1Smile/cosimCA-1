@@ -3,11 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <script type="text/javascript" src="../js/jquery-1.7.2.js" charset="UTF-8"></script>
+    <%--<script type="text/javascript" src="../js/jquery-1.7.2.js" charset="UTF-8"></script>--%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <title>上传工具</title>
     <%@include file="/commons/include/form.jsp" %>
     <%@include file="/newtable/tablecontext.jsp" %>
+    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body>
 <%--<%--%>
@@ -15,9 +19,13 @@
     <%--String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");--%>
     <%--out.print("name:"+major);--%>
 <%--%>--%>
+<script type="text/javascript">
+
+
+</script>
 
 <div class="container-fluid" >
-    <form name="userForm2" action="save.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>" enctype="multipart/form-data" method="post">
+    <form name="userForm2"  id ="userForm2" action="save.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>" enctype="multipart/form-data" method="post">
         <div>
             <th width="20%">工具名称:</th>
             <td><input type="text"  id="ddToolName" name="ddToolName"
@@ -36,7 +44,8 @@
             <th width="20%">上传工具:</th>
             <input type="file" name="file" value="上传" >
         </div>
-        <input type="submit" value="上传" class="btn btn-success" >
+        <INPUT TYPE="BUTTON" NAME="close" value="关闭这个窗口" onClick="closeclk()">
+        <input id="dataFormSave"  type="submit" value="上传" class="btn btn-success" onclick="custom_close()">
     </form>
 </div>
 </body>

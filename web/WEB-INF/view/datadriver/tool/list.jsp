@@ -6,6 +6,8 @@
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+
+
     <style type="text/css">
         html, body {
             padding: 0px;
@@ -15,6 +17,7 @@
             overflow: auto;
         }
     </style>
+
     <script type="text/javascript" >
         $(function () {
             layout();
@@ -40,6 +43,26 @@
             $("#tree").height(options.middleHeight - 60);
         };
 
+        var test='';
+        $.ajax({
+            type: "Post",
+            url: "${ctx}/datadriver/tool/showtree.ht",
+            datatype: 'json',
+            async:false,
+            success: function (data) {
+                test = data;
+//                alert("success");
+            },
+            error: function (msg) {
+                alert(msg);
+            }
+        });
+
+        function strToJson(str){
+            var json = eval('(' + str + ')');
+            return json;
+        }
+
 //        ////////////////////////
         function loadTree() {
         layui.use(['tree', 'layer'], function() {
@@ -54,94 +77,18 @@
 //                   window.location.href='edit.ht?id='+item.name;
 
                     if ( item.name == undefined) return;
-                    $("#listFrame").attr("src", "toollist1.ht?major=" +  item.id);
+                    $("#listFrame").attr("src", "toollist1.ht?major=" +  item.ddMajorId);
                     console.log(item);
                 }
-                , nodes: [ //节点
-                    { name: '工具1'
-                        , id: 1
-                        , alias: 'gongju1'
-                        , children: [
-                        {
-                            name: '工具1.1'
-                            , id: 11
-//                            , href:'edit.ht?major='+"工具1.1"
-                            , alias: 'weidu'
-                            , children:[
-                            {name:'dsad'}
-                        ]
-                        }, {
-                            name: '工具1.2'
-                            , id: 12
-                        }, {
-                            name: '工具1.3'
-                            , id: 13
-//                            ,href:'toollist.ht?major='+"工具1"
-                            , alias: 'weidu'
-                        }
-                    ]
-                    },
-                    { name: '工具2'
-                        , id: 2
-                        , alias: 'gongju2'
-                        , children: [
-                        {
-                            name: '工具2.1'
-                            , id: 21
-//                            , href:'edit.ht?major='+"工具1.1"
-                            , alias: 'weidu2'
-                            , children:[
-                            {name:'dsad'}
-                        ]
-                        }, {
-                            name: '工具2.2'
-                            , id: 22
-                        }, {
-                            name: '工具2.3'
-                            , id: 23
-//                            ,href:'toollist.ht?major='+"工具1"
-                            , alias: 'weidu1'
-                        }
-                    ]
-                    },
-                ]
+                , nodes:strToJson(test)
             });
         });
         }
-       function createTree(node, start){
-            node = node || function(){
-                        var arr = [];
-                        for(var i = 1; i < 10; i++){
-                            arr.push({
-                                name: i.toString().replace(/(\d)/, '$1$1$1$1$1$1$1$1$1')
-                            });
-                        }
-                        return arr;
-                    }();
-            start = start || 1;
-            layui.each(node, function(index, item){
-                if(start < 10 && index < 9){
-                    var child = [
-                        {
-                            name: (1 + index + start).toString().replace(/(\d)/, '$1$1$1$1$1$1$1$1$1')
-                        }
-                    ];
-                    node[index].children = child;
-                    createTree(child, index + start + 1);
-                }
-            });
-            return node;
-        };
-        layui.tree({
-            elem: '#demo2' //指定元素
-            ,nodes: createTree()
-        });
+
     </script>
 </head>
 <body>
-<ul id="demo23"></ul>
 <div class="layui-tab layui-tab-card">
-
     <ul class="layui-tab-title">
         <li class="layui-this">工具中心</li>
     </ul>
