@@ -17,7 +17,7 @@
     <h4 class="modal-title" id="myModalLabel">项目统计</h4>
 </div>
 <div class="modal-body">
-
+    <iframe src="${ctx}/datadriver/designflow/projectflow.ht?id=${projectId}&processFlowXml=${processFlowXml}" style="width: 100%;height: 500px" frameborder="no"></iframe>
 </div>
 </body>
 </html>
