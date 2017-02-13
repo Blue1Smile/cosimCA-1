@@ -166,8 +166,9 @@
                                 截止时间
                             </h5>
                             <a class="task-detail-executor" href="#" id="dob" data-type="combodate" data-pk="1"
-                               data-value="2017年12月10日"><span
-                                    class="glyphicon glyphicon-calendar"></span>${endtime}</a>
+                               data-value="2017年12月10日">
+                                <%--<span class="glyphicon glyphicon-calendar"></span>--%>
+                                    ${endtime}</a>
                         </div>
                     </div>
                 </div>

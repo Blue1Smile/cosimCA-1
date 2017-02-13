@@ -134,6 +134,7 @@ public class ProcessFlowController extends AbstractController {
             taskInfo.setDdTaskProjectId(projectId);
             taskInfo.setDdTaskName(el.getAttributeValue("label"));//任务名称
 
+            taskInfo.setDdTaskChildType("createpanel");
             if (taskid != null) {
                 taskInfo.setDdTaskId(Long.parseLong(taskid));
             }
