@@ -51,7 +51,7 @@
                      <td style="text-align: center;">
                         <a href="datasnapshot.ht?ddDataVersionId=${dataVersionList.ddDataVersionId}"
                            class="layui-btn layui-btn-normal  layui-btn-small"><i
-                                class="layui-icon">&#xe615;</i> 数据版本</a>
+                                class="layui-icon">&#xe615;</i> 数据快照</a>
                             <%--<input type="hidden" name="ddDataRecordTime" value="${dataVersionList.ddDataRecordTime}">--%>
                                 <%--${dataVersionList.ddDataRecordTime}--%>
                          <%--<input type="hidden" name="ddDataVersionId" value="${dataVersionList.ddDataVersionId}">--%>

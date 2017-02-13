@@ -412,17 +412,23 @@ public class ProjectController extends BaseController {
     public ModelAndView statis(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ProcessFlow processFlow = new ProcessFlow();
         ModelAndView mv = new ModelAndView();
-        Long projectId = RequestUtil.getLong(request, "projectId");
+        Long projectId = RequestUtil.getLong(request, "id");
         ProjectProcessAssocia projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectId);
         if (projectProcessAssocia != null) {
             Long processFlowId = projectProcessAssocia.getDdPrcessId();
             processFlow = processFlowService.getById(processFlowId);
             String tempXml = processFlow.getDdProcessXml();
+
+
+
             mv = this.getAutoView().addObject("projectId", projectId)
                     .addObject("processFlowXml", tempXml);
         } else {
             mv = this.getAutoView().addObject("projectId", projectId);
         }
+
+
+
         return mv;
     }
 }
