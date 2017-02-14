@@ -44,8 +44,8 @@ public class ProTaskDependanceDao extends BaseDao<ProTaskDependance> {
      * 映射MAP，删除任务依赖关系
      *
      */
-    public void delByMainId(Long classId) {
-        this.delBySqlKey("delByMainId", classId);
+    public void delByTaskId(Long classId) {
+        this.delBySqlKey("delByTaskId", classId);
     }
 
 }

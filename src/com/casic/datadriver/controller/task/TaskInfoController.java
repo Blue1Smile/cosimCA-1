@@ -228,18 +228,18 @@ public class TaskInfoController extends AbstractController {
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
         String preUrl = RequestUtil.getPrePage(request);
         ResultMessage message = null;
         try {
-            Long[] TaskId = RequestUtil.getLongAryByStr(request, "id");
-            taskInfoService.delAll(TaskId);
-            message = new ResultMessage(ResultMessage.Success, "删除成功");
-
+            Long taskId = RequestUtil.getLong(request, "id");
+            taskInfoService.delById(taskId);
+            taskStartService.delByTaskId(taskId);
+            proTaskDependanceService.delByTaskId(taskId);
+//            message = new ResultMessage(ResultMessage.Success, "删除成功");
         } catch (Exception ex) {
-            message = new ResultMessage(ResultMessage.Fail, "删除失败" + ex.getMessage());
+//            message = new ResultMessage(ResultMessage.Fail, "删除失败" + ex.getMessage());
         }
-        addMessage(message, request);
+//        addMessage(message, request);
         response.sendRedirect(preUrl);
     }
 
@@ -265,6 +265,8 @@ public class TaskInfoController extends AbstractController {
         }
 
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
+        List<OrderDataRelation> orderDataList = orderDataRelationService.queryOrderDataRelationByddTaskID(id);
+        List<OrderDataRelation> publishDataList = orderDataRelationService.queryPublishDataRelationByddTaskID(id);
 
         List<ISysUser> sysUserList = sysUserService.getAll();
 //        Date date=new Date();
@@ -279,6 +281,8 @@ public class TaskInfoController extends AbstractController {
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("endtime", time)
                 .addObject("privateDataList", privateDataList)
+                .addObject("orderDataList", orderDataList)
+                .addObject("publishDataList", publishDataList)
                 .addObject("returnUrl", returnUrl)
                 .addObject("sysUserList", sysUserList)
                 .addObject("executorName", executorName);

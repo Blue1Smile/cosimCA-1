@@ -140,7 +140,7 @@
                 <center>任务菜单</center>
                 <li role="separator" class="divider"></li>
                 <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
+                <li><a href="${ctx}/datadriver/task/del.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
             </ul>
         </div>
     </div>
@@ -277,7 +277,18 @@
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
                                  aria-labelledby="headingTwo">
                                 <div class="panel-body">
-
+                                    <ul class="activities-list">
+                                        <c:forEach items="${orderDataList}" var="orderDataItem">
+                                            <li class="activity">
+                                                <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
+                                                <div class="activity-body-coyness muted pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
+                                                </div>
+                                                <div class="activity-body-coyness muted">
+                                                    <span>订阅了 ${orderDataItem.ddDataName} 来自 ${orderDataItem.ddTaskId}</span>
+                                                </div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -294,13 +305,13 @@
                                  aria-labelledby="headingThree">
                                 <div class="panel-body">
                                     <ul class="activities-list">
-                                        <c:forEach items="${privateDataList}" var="privateDataItem">
+                                        <c:forEach items="${publishDataList}" var="publishDataItem">
                                             <li class="activity">
                                                 <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
                                                 <div class="activity-body-coyness muted pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
                                                 </div>
                                                 <div class="activity-body-coyness muted">
-                                                    <span>${privateDataItem.ddDataCreatePerson} 创建了 ${privateDataItem.ddDataName}</span>
+                                                    <span>本任务 发布了 ${publishDataItem.ddDataName}</span>
                                                 </div>
                                             </li>
 

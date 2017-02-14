@@ -27,7 +27,7 @@
     where DD_DEPENGANCE_ID = #{ddDepenganceId,jdbcType=NUMERIC}
   </delete>
 
-  <delete id="delByMainId">
+  <delete id="delByTaskId">
     DELETE FROM dd_project_task_dependance
     WHERE
     DD_TASK_ID=#{ddTaskId}
