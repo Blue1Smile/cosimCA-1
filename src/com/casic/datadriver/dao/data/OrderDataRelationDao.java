@@ -27,14 +27,12 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
     /**
      * Query OrderDataRelation basic info list.
      *
-     * @param queryFilter
      *            the query filter
      * @return the list
      */
     public List<OrderDataRelation> queryOrderDataRelationByddTaskID(Long ddtaskId) {
         return this.getBySqlKey("queryOrderDataRelationByddTaskID", ddtaskId);
     }
-
 
 
 

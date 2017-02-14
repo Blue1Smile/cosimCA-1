@@ -137,7 +137,7 @@ public class TaskInfoService extends BaseService<TaskInfo> {
     /**删除关系表
      */
     private void delByPk(Long id){
-        proTaskDependanceDao.delByMainId(id);
+        proTaskDependanceDao.delByTaskId(id);
         privateDataDao.delByMainId(id);
     }
     /**删除任务和关系表

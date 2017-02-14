@@ -13,6 +13,7 @@
     <sql id="Base_Column_List">
     DD_ORDER_DATA_ID, DD_ORDER_TYPE, DD_DATA_ID, DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME
   </sql>
+
     <insert id="add" parameterType="com.casic.datadriver.model.data.OrderDataRelation">
     insert into dd_order_data_ralation (DD_ORDER_DATA_ID, DD_ORDER_TYPE, DD_DATA_ID,
     DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME)
@@ -27,12 +28,14 @@
         where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
     </select>
 
+
     <select id="queryPublishDataRelationByddTaskID" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
         where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
     </select>
+
 
     <delete id="delPublishByddDataTaskId" parameterType="java.lang.Long">
     delete from dd_order_data_ralation
@@ -56,6 +59,11 @@
     where DD_ORDER_DATA_ID = #{ddOrderDataId,jdbcType=NUMERIC}
   </delete>
 
+    <delete id="delById" parameterType="java.lang.Long">
+        delete from
+        dd_order_data_ralation
+        where DD_ORDER_DATA_ID = #{ddOrderDataId,jdbcType=NUMERIC}
+    </delete>
 
     <insert id="insert" parameterType="com.casic.datadriver.model.data.OrderDataRelation">
     insert into dd_order_data_ralation (DD_ORDER_DATA_ID, DD_ORDER_TYPE, DD_DATA_ID, 

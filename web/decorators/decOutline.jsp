@@ -4,12 +4,14 @@
 <%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="zh"  style="height: 100%; margin: 0px">
+<%--<html lang="zh"  style="height: 100%; margin: 0px">--%>
+<html lang="zh">
 <head>
     <title><decorator:title default="工作台"/>协同设计</title>
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/newtable/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
     <%--<style type="text/css">--%>
         <%--body{--%>
             <%--overflow:scroll;--%>
@@ -17,8 +19,8 @@
         <%--}--%>
     <%--</style>--%>
 </head>
-<body style="height: 100%; margin: 0px">
-<div class="container-fluid" style="height: 100%;">
+<body>
+<div class="container-fluid">
     <br>
     <div class="row">
         <svg width="500" height="60">
@@ -28,11 +30,12 @@
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>
-    <div class="col-xs-2" style="height: 100%; padding-left: 0px">
+
+    <div class="col-xs-2" padding-left: 0px">
         <decorator:body/>
     </div>
-    <div class="col-xs-10" style="height: 100%">
-        <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe" style="width: 100%;height: 100%"></iframe>
+    <div class="col-xs-10">
+        <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe" style="width: 100%;height: 650px"></iframe>
     </div>
 
     <%--<%@include file="/commons/cloud/foot.jsp" %>--%>
