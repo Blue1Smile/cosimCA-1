@@ -10,6 +10,7 @@
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/newtable/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
     <%--<style type="text/css">--%>
         <%--body{--%>
             <%--overflow:scroll;--%>
@@ -28,6 +29,7 @@
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>
+
     <div class="col-xs-2" style="height: 100%; padding-left: 0px">
         <decorator:body/>
     </div>

@@ -41,7 +41,7 @@
                                     <th>项目名称</th>
                                     <td colspan="3">
                                         <input type="text" class="form-control" placeholder="项目名称" id="ddProjectName"
-                                               name="ddProjectName">
+                                               name="ddProjectName" value="${Project.ddProjectName}"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,7 +50,8 @@
                                         <ap:selectDB name="ddProjectPhaseId" id="ddProjectPhaseId"
                                                      where="parentId=10000027440009" optionValue="itemValue"
                                                      optionText="itemName" table="SYS_DIC"
-                                                     selectedValue="${projectPhaseItem.id}" styleClass="form-control">
+                                                     selectedValue="${Project.ddProjectPhaseId}"
+                                                     styleClass="form-control">
                                         </ap:selectDB>
                                     </td>
                                     <th>所属型号</th>
@@ -58,7 +59,8 @@
                                         <ap:selectDB name="ddProjectBelongModel" id="ddProjectBelongModel"
                                                      where="parentId=10000027440014" optionValue="itemValue"
                                                      optionText="itemName" table="SYS_DIC"
-                                                     selectedValue="${projectBelongModelItem.id}" styleClass="form-control">
+                                                     selectedValue="${Project.ddProjectBelongModel}"
+                                                     styleClass="form-control">
                                         </ap:selectDB>
                                     </td>
                                 </tr>
@@ -68,7 +70,8 @@
                                         <ap:selectDB name="ddProjectType" id="ddProjectType"
                                                      where="parentId=10000027440025" optionValue="itemValue"
                                                      optionText="itemName" table="SYS_DIC"
-                                                     selectedValue="${projectTypeListItem.id}" styleClass="form-control">
+                                                     selectedValue="${Project.ddProjectType}"
+                                                     styleClass="form-control">
                                         </ap:selectDB>
                                     </td>
                                     <th>密级</th>
@@ -76,7 +79,8 @@
                                         <ap:selectDB name="ddProjectSecretLevel" id="ddProjectSecretLevel"
                                                      where="parentId=10000027440019" optionValue="itemValue"
                                                      optionText="itemName" table="SYS_DIC"
-                                                     selectedValue="${projectSecretLevelItem.id}" styleClass="form-control">
+                                                     selectedValue="${Project.ddProjectSecretLevel}"
+                                                     styleClass="form-control">
                                         </ap:selectDB>
                                     </td>
                                 </tr>
@@ -84,7 +88,7 @@
                                     <th>项目简述</th>
                                     <td colspan="3">
                                     <textarea class="form-control" rows="5" placeholder="项目简介" id="ddProjectDescription"
-                                              name="ddProjectDescription"></textarea>
+                                              name="ddProjectDescription">${Project.ddProjectDescription}</textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -99,7 +103,7 @@
                                         </div><!-- /input-group -->
                                         <input type="hidden" id="ddProjectResponsiblePersonId"
                                                name="ddProjectResponsiblePersonId"
-                                               value="${projectItem.ddProjectResponsiblePersonId}"/>
+                                               value="${Project.ddProjectResponsiblePersonId}"/>
                                     </td>
                                 </tr>
 
@@ -141,7 +145,8 @@
                     <div class="col-sm-12">
                         <br>
                         <button type="button" class="btn btn-primary btn-block">固化项目</button>
-                        <button type="button" class="btn btn-danger btn-block">删除</button>
+                        <a href="${ctx}/datadriver/project/del.ht?id=${Project.ddProjectId}" type="button"
+                           class="btn btn-danger btn-block">删除</a>
                     </div>
                 </div>
             </div>
@@ -172,15 +177,10 @@
     function showResponse(responseText) {
         var obj = new com.hotent.form.ResultMessage(responseText);
         if (obj.isSuccess()) {
-            $.ligerMessageBox.confirm("提示信息", obj.getMessage() + ",是否继续操作", function (rtn) {
-                if (rtn) {
-                    this.close();
-                } else {
-                    window.location.href = "${ctx}/datadriver/project/list.ht";
-                }
-            });
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+            window.location.href = "${ctx}/datadriver/project/list.ht";
         } else {
-            $.ligerMessageBox.error("提示信息", obj.getMessage());
         }
     }
 </script>
