@@ -6,11 +6,11 @@ $(function () {
 
     //1.初始化Table
     new TableInit();
-    // oTable.Init();
+     // oTable.Init();
 
     // //2.初始化Button的点击事件
     new ButtonInit();
-    // oButtonInit.Init();
+     // oButtonInit.Init();
 
 });
 
@@ -21,7 +21,7 @@ function TableInit () {
 
         $('#tb_departments').bootstrapTable({
             // url: 'showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>',         //请求后台的URL（*）
-          //  url: 'toollist12.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>',         //请求后台的URL（*）
+            // url: 'showtools.ht',
           //   method: 'get',
           //   detailView: true,//父子表
           //   //sidePagination: "server",
@@ -36,8 +36,10 @@ function TableInit () {
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber:1,                       //初始化加载第一页，默认第一页
-            pageSize: 10,                       //每页的记录行数（*）
-            pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+            pageSize: 5,                       //每页的记录行数（*）
+            queryParamsType:'',
+            // queryParams:queryParams,
+            pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
             search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             strictSearch: true,
             showColumns: false,                  //是否显示所有的列
@@ -93,6 +95,14 @@ function TableInit () {
             ], onExpandRow: function (index, row, $detail) {
                 InitSubTable(index, row, $detail);
             },
+            // queryParams: function(params) {
+            //     var name = $('#ddToolName').val();
+            //     return {
+            //         pageNumber: params.offset+1,
+            //         pageSize: params.limit,
+            //         // name:name
+            //     };
+            // },
 
         });
 
@@ -177,6 +187,7 @@ var ButtonInit = function ButtonInit () {
 
     oInit.Init = function () {
         //初始化页面上面的按钮事件
+
     };
 
      return oInit;
