@@ -81,7 +81,6 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
 
     /**
      * Adds the DD OrderDataRelation.
-     *删除任务的发布数据
      * @param ddDataTaskId
      *            the OrderDataRelation
      * @return true, if successful
@@ -91,33 +90,13 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
 
     }
 
-
     /**
      * Adds the DD OrderDataRelation.
-     *删除任务的订购数据
      * @param ddDataTaskId
      *            the OrderDataRelation
      * @return true, if successful
      */
     public void delOrderByddDataTaskId(Long ddDataTaskId) {
         this.orderDataRelationDao.delOrderByddDataTaskId(ddDataTaskId);
-
     }
-
-
-//    /**
-//     * Adds the DD OrderDataRelation.
-//     *查询任务的所有发布数据
-//     * @param OrderDataRelation
-//     *            the OrderDataRelation
-//     * @return true, if successful
-//     */
-//    public  int queryPublishDataRelationByddTaskID(int ddDataTaskId) {
-//        this.orderDataRelationDao.queryPublishDataRelationByddTaskID(ddDataTaskId);
-//
-//    }
-
-
-
-
 }

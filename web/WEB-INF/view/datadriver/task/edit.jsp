@@ -42,13 +42,13 @@
             height: 100%;
         }
 
-        .panel-heading {
-            padding: 10px 15px;
-            border-bottom: 1px solid #ddd;
-            border-top-left-radius: 1px;
-            border-top-right-radius: 1px;
-            background-color: #f5f5f5;
-        }
+        /*.panel-heading {*/
+            /*padding: 10px 15px;*/
+            /*border-bottom: 1px solid #ddd;*/
+            /*border-top-left-radius: 1px;*/
+            /*border-top-right-radius: 1px;*/
+            /*background-color: #f5f5f5;*/
+        /*}*/
 
         #card1, #card2, #card3 {
             padding-right: 2px;
@@ -60,27 +60,9 @@
             margin-left: 0px !important;
         }
 
-        button.panel-button {
-            -webkit-appearance: none;
-            padding: 0;
-            cursor: pointer;
-            background: transparent;
-            border: 0;
-        }
 
         .detail-info {
             margin-bottom: 4px;
-        }
-
-        .panel-button {
-            float: right;
-            font-size: 14px;
-            font-weight: bold;
-            line-height: 1;
-            color: #000;
-            text-shadow: 0 1px 0 #fff;
-            filter: alpha(opacity=20);
-            opacity: .2;
         }
 
         .task-info-title {
@@ -128,23 +110,22 @@
     </style>
 </head>
 <body style="height: 100%; margin: 0px;">
-<div class="panel">
+<div class="panel panel-primary">
     <div class="panel-heading">
         ${TaskInfo.ddTaskName}
-        <div class="btn-group" style="float: right">
-            <button type="button" class="panel-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 更多 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-                <center>任务菜单</center>
+                <li><a href="#"><center>任务菜单</center></a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
                 <li><a href="${ctx}/datadriver/task/del.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
             </ul>
         </div>
     </div>
-    <div class="panel-body" style="height: 100%; overflow: scroll">
+    <div class="panel-body" style="overflow: scroll">
         <div class="col-xs-12 detail-info">
             <div class="row" id="row">
                 <div class="col-xs-4" id="card1">
