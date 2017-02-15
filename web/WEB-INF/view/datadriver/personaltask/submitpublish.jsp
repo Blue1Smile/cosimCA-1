@@ -13,42 +13,11 @@
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-    <%--<link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>--%>
-    <style type="text/css">
-        html, body {
-            padding: 0px;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-        }
-    </style>
 </head>
 <body>
-<div class="panel-body" style="padding-bottom:0px;">
     <table id="tablelist">
-           <%--data-search="false"--%>
-           <%--data-show-refresh="false"--%>
-           <%--data-show-toggle="false"--%>
-           <%--data-show-columns="false"--%>
-           <%--data-show-export="false"--%>
-           <%--data-sort-stable="true"--%>
-           <%--data-detail-view="true"--%>
-    <%--&lt;%&ndash;data-detail-formatter="detailFormatter"&ndash;%&gt;--%>
-           <%--data-minimum-count-columns="2"--%>
-           <%--data-show-pagination-switch="false"--%>
-           <%--data-pagination="true"--%>
-           <%--data-id-field="id"--%>
-           <%--data-striped="true"--%>
-           <%--data-show-header="true"--%>
-           <%--data-page-size="5"--%>
-           <%--data-page-list="[10, 25, 50, 100, ALL]"--%>
-           <%--data-show-footer="false"--%>
-           <%--data-side-pagination="server"--%>
-           <%--data-response-handler="responseHandler"--%>
-           <%--class="table table-hover">--%>
     </table>
-</div>
+
 <script type="text/javascript">
     var $table = $('#tablelist'),
             $remove = $('#remove'),
@@ -58,7 +27,7 @@
         $table.bootstrapTable({
             url: "submitpublishjson.ht?id=${taskId}",
             //   pageList: [10, 25],
-//            method: 'get',                      //请求方式（*）
+            method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -71,13 +40,13 @@
             queryParamsType:'',
             // queryParams:queryParams,
             pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             strictSearch: true,
             showColumns: false,                  //是否显示所有的列
             showRefresh: false,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: false,                //是否启用点击选中行
-            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            height: 380,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
             showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图

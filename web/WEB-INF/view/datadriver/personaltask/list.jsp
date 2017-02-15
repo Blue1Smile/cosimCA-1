@@ -5,23 +5,7 @@
     <title>个人任务</title>
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-    <style>
-        .fl {
-            float: left;
-        }
 
-        .fr {
-            float: right;
-        }
-
-        .pages {
-            float: right;
-        }
-
-        .page_line {
-            display: inline;
-        }
-    </style>
 </head>
 <body>
 
