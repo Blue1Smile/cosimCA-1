@@ -1,11 +1,11 @@
 package com.casic.datadriver.service;
 
 import com.casic.datadriver.dao.ToolCenterDao;
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.tool.ToolCenterModel;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
 import org.springframework.stereotype.Service;
-
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,5 +31,9 @@ public class ToolCenterService extends BaseService<ToolCenterModel> {
 
     public List<ToolCenterModel> querytoolByname(String toolname) {
         return this.toolcenterdao.querytoolByname(toolname);
+    }
+
+    public List<ToolCenterModel> querytoolBymajorF(PageInfo model) {
+        return this.toolcenterdao.querytoolBymajorF(model);
     }
 }

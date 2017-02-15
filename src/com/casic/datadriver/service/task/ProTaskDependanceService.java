@@ -11,21 +11,23 @@ import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
 import com.hotent.core.web.query.QueryFilter;
 import com.casic.datadriver.dao.task.ProTaskDependanceDao;
+
 /**
  * The Class ProTaskDependanceService.
  */
 @Service
 public class ProTaskDependanceService extends BaseService<ProTaskDependance> {
 
-    /** The proTaskDependance dao. */
+    /**
+     * The proTaskDependance dao.
+     */
     @Resource
     private ProTaskDependanceDao proTaskDependanceDao;
 
     /**
      * Adds the DD proTaskDependance.
      *
-     * @param proTaskDependance
-     *            the proTaskDependance
+     * @param proTaskDependance the proTaskDependance
      * @return true, if successful
      */
     public boolean addDDProTaskDependance(ProTaskDependance proTaskDependance) {
@@ -46,21 +48,23 @@ public class ProTaskDependanceService extends BaseService<ProTaskDependance> {
     /**
      * Query proTaskDependance basic info list.
      *
-     * @param queryFilter
-     *            the query filter
+     * @param queryFilter the query filter
      * @return the list
      */
     public List<ProTaskDependance> queryProTaskDependanceBasicInfoList(QueryFilter queryFilter) {
         return this.proTaskDependanceDao.queryProTaskDependanceBasicInfoList(queryFilter);
     }
 
-    public List<ProTaskDependance> getProTaskDependanceList(long projectId){
+    public List<ProTaskDependance> getProTaskDependanceList(long projectId) {
         return this.proTaskDependanceDao.getProTaskDependanceList(projectId);
     }
-    public void deleteByProjectIdAndTaskId(Long ddProjectID,Long ddTaskID){
 
-        this.proTaskDependanceDao.deleteByProjectIdAndTaskId(ddProjectID,ddTaskID);
+    public void deleteByProjectIdAndTaskId(Long ddProjectID, Long ddTaskID) {
+
+        this.proTaskDependanceDao.deleteByProjectIdAndTaskId(ddProjectID, ddTaskID);
     }
 
-
+    public void delByTaskId(long taskId) {
+        this.proTaskDependanceDao.delByTaskId(taskId);
+    }
 }
