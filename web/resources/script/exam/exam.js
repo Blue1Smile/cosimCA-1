@@ -18,64 +18,64 @@ var exam={
 		//
 		this.moveTispFn('.ui-up-btn,.ui-down-btn,.ui-clone-btn,.ui-del-btn');
 		this.moveTispFn('.ui-add-item-btn,.ui-batch-item-btn,.ui-add-answer-btn');
-		
+
 	},
 	//拖拽
 	dragFn:function(){
 		var _this=this;
 		var data={};
 		$( "#ui_sortable_exam li" ).draggable({
-		       /* containment:'#pageContentId',*/
-		        connectToSortable:'.ui-questions-content-list',
-		        cursorAt: { top: 18, left: 20 },
-			    helper: function(event) {
-			    	data={
-						    type:$(this).children('a').attr('data-checkType'),//1为单选，2为多选
-						    name:'xxx1',
-						    //随机数模拟
-						    itmetid:10045+parseInt(100*Math.random()),
-							items:[{
-									value:'0',
-									//随机数模拟,需要绑定你固定id
-									tid:100132+parseInt(100*Math.random())
-								},{
-									value:'0',
-									//随机数模拟,需要绑定你固定id
-									tid:100152+parseInt(100*Math.random())
-								}]
-					}
-			    	return template($(this).attr('data-tempId'),data);
-			    },
-			    revert:'invalid',
-			    start:function(event) {
-			    	_this.titleDelFn();
-			    },  
-			    drag:function(event) {
-			    	
-			    },  
-			    stop:function(event) {
-			    	_this.orderFn($('.ui-questions-content-list'));
-			    }
-			    
-		}).on('click',function(e){
-			data={
-			    type:$(this).children('a').attr('data-checkType'),//1为单选，2为多选
-			    name:'xxx1',
-			    //随机数模拟
-			    itmetid:10045+parseInt(100*Math.random()),
-				items:[{
+			/* containment:'#pageContentId',*/
+			connectToSortable:'.ui-questions-content-list',
+			cursorAt: { top: 18, left: 20 },
+			helper: function(event) {
+				data={
+					type:$(this).children('a').attr('data-checkType'),//1为单选，2为多选
+					name:'xxx1',
+					//随机数模拟
+					itmetid:10045+parseInt(100*Math.random()),
+					items:[{
 						value:'0',
-						//随机数模拟
+						//随机数模拟,需要绑定你固定id
 						tid:100132+parseInt(100*Math.random())
 					},{
 						value:'0',
-						//随机数模拟
+						//随机数模拟,需要绑定你固定id
 						tid:100152+parseInt(100*Math.random())
 					}]
+				}
+				return template($(this).attr('data-tempId'),data);
+			},
+			revert:'invalid',
+			start:function(event) {
+				_this.titleDelFn();
+			},
+			drag:function(event) {
+
+			},
+			stop:function(event) {
+				_this.orderFn($('.ui-questions-content-list'));
+			}
+
+		}).on('click',function(e){
+			data={
+				type:$(this).children('a').attr('data-checkType'),//1为单选，2为多选
+				name:'xxx1',
+				//随机数模拟
+				itmetid:10045+parseInt(100*Math.random()),
+				items:[{
+					value:'0',
+					//随机数模拟
+					tid:100132+parseInt(100*Math.random())
+				},{
+					value:'0',
+					//随机数模拟
+					tid:100152+parseInt(100*Math.random())
+				}]
 			}
 			$('.ui-questions-content-list').append(template($(this).attr('data-tempId'),data));
 			_this.orderFn($('.ui-questions-content-list'));
-	        _this.sortFn();
+			_this.sortFn();
 		}).disableSelection();
 	},
 	//拖拽排序
@@ -88,26 +88,26 @@ var exam={
 			opacity:0.7,
 			placeholder: 'ui-state-highlight',
 			start:function(event) {
-		    	exam.titleDelFn();
-		    },
+				exam.titleDelFn();
+			},
 			stop:function() {
-			    _this.orderFn($(this));
-			    },
-		revert:'invalid'
+				_this.orderFn($(this));
+			},
+			revert:'invalid'
 		});
 	},
 	//标题序列号
 	orderFn:function(obj){
 		obj.find('li.items-questions').each(function(i){
-			      	 $(this).find('.module-menu h4').html("Q"+(i+1));
-			      });
+			$(this).find('.module-menu h4').html("Q"+(i+1));
+		});
 	},
 	//题目菜单滚动固定顶部
 	fixFn:function(){
 		var _this=this;
 		$('#desktop_scroll').scroll(function(){
 			_this.titleDelFn();
-		var parentLeft=$('.exam-nav').parent().offset().left;
+			var parentLeft=$('.exam-nav').parent().offset().left;
 			if($('.exam-nav').offset().top+20+$('.conditionItems').outerHeight()+$('.title').outerHeight()<=$(this).scrollTop()){
 				$('.exam-nav').css({'position':'fixed','top':0+'px','left':parentLeft+'px'});
 				$('.exam-nav').addClass('scrollCurr');
@@ -115,7 +115,7 @@ var exam={
 				$('.exam-nav').removeAttr('style');
 				$('.exam-nav').removeClass('scrollCurr');
 			}
-			
+
 		});
 	},
 	//题目菜单折叠/展开
@@ -143,13 +143,13 @@ var exam={
 				$('body').append(template('drag_T_edit',data));
 				$('.cq-into-edit').attr('data-gettid',$(this).attr('data-tid'));
 			}
-			// if($(this).hasClass('T_plugins')){
-			// 	$('.cq-into-edit').append(template('T_edit_plugins',{}));
-			// }
+			if($(this).hasClass('T_plugins')){
+				$('.cq-into-edit').append(template('T_edit_plugins',{}));
+			}
 			$('.cq-into-edit').css({
 				'top':($(this).offset().top-1)+'px',
 				'left':($(this).offset().left)+'px',
-				'width':$(this).children('div').outerWidth()+'px',
+				'width':$(this).outerWidth()+'px',
 			});
 			if($(this).hasClass('T-center')){
 				$('.cq-into-edit .cq-edit-title').css({
@@ -174,18 +174,18 @@ var exam={
 				'padding-top':($(this).outerHeight()-$(this).height())/2+'px',
 				'padding-bottom':($(this).outerHeight()-$(this).height())/2+'px'
 			}).html($(this).html()).focus();
-			
+
 			$(document).one('click',function(){
-					$('.cq-into-edit').remove();
-				});
+				$('.cq-into-edit').remove();
+			});
 			$(document).on('click','.cq-into-edit',function(e){
-			      e.stopPropagation();
+				e.stopPropagation();
 			});
 			event.stopPropagation();
 		});
 		$(document).on('blur','.cq-into-edit .cq-edit-title',function(){
-					$('.T_edit[data-tid='+$('.cq-into-edit').attr('data-gettid')+']').html($('.cq-into-edit .cq-edit-title').html());
-				});
+			$('.T_edit[data-tid='+$('.cq-into-edit').attr('data-gettid')+']').html($('.cq-into-edit .cq-edit-title').html());
+		});
 	},
 	//关闭标题编辑
 	titleDelFn:function(){
@@ -193,7 +193,7 @@ var exam={
 			$('.T_edit[data-tid='+$('.cq-into-edit').attr('data-gettid')+']').html($('.cq-into-edit .cq-edit-title').html());
 			$('.cq-into-edit').hide();
 		}
-		
+
 	},
 	//鼠标移动上显示
 	moveTispFn:function(obj){
@@ -261,13 +261,13 @@ var exam={
 			var $name=$.trim($parentItems.attr('data-nameStr'));
 			$tid++;
 			var data={
-				 type:parseInt($parentItems.attr('data-checktype')),
-				 name:$name,
-				 index:$parentItems.children('li:last').index()+1,
-				 items:[{value:'0',tid:$tid}]
+				type:parseInt($parentItems.attr('data-checktype')),
+				name:$name,
+				index:$parentItems.children('li:last').index()+1,
+				items:[{value:'0',tid:$tid}]
 			}
 			$parentItems.append(template('ui_additem_content',data));
-			
+
 		});
 		//批量添加选项栏
 		$(document).on('click',parentObj+' '+batchAddObj,function(e){

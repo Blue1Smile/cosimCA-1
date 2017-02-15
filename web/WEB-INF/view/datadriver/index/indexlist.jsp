@@ -149,28 +149,12 @@
                     </div>
                 </div>
                 <div class="ui-drag-area">
-
-                        <div class="cq-title T_edit" data-Tid="{{itmetid}}"><span style="font-size:12px;">{{if type==1}}指标项名称{{/if}}</span>
-                        </div>
-
-                        <div class="cq-title T_edit" data-Tid="{{itmetid}}"><span style="font-size:12px;">{{if type==1}}指标类型{{/if}}</span>
-                        </div>
-
-                        <div class="cq-title T_edit" data-Tid="{{itmetid}}"><span style="font-size:12px;">{{if type==1}}最优值{{/if}}</span>
-                        </div>
-
-                        <div class="cq-title T_edit" data-Tid="{{itmetid}}"><span style="font-size:12px;">{{if type==1}}最新值{{/if}}</span>
-                        </div>
-
+                    <div class="cq-title T_edit" data-Tid="{{itmetid}}"><span style="font-size:16px;">{{if type==1}}填空题目标题{{else if type==2}}完形填空题目标题{{/if}}</span></div>
                 </div>
                 <div class="cq-items-content">
-                    <div class="describe-edit-content T_edit" data-tid="{{items[0].tid}}"><span
-                            style="line-height: 1.6;10px;">{{if type==1}}指标项描述{{/if}}</span>
-                    </div>
+                    <div class="describe-edit-content T_edit" data-tid="{{items[0].tid}}"><span style="line-height: 1.6;12px;">这里是{{if type==1}}填空题目标题{{else if type==2}}完形填空题目标题{{/if}}</span></div>
                 </div>
             </div>
-
-
         </li>
     </script>
 
@@ -185,26 +169,24 @@
             <a href="javascript:void(0);"><i class="icon-title"></i></a>
         </div>
     </script>
-    <%--<script type="text/html" id="ui_additem_content">--%>
-    <%--{{each items as itemData i}}--%>
-    <%--<li><label class="input-check"><input type="{{if type==1}}radio{{else if type==2}}checkbox{{/if}}"--%>
-    <%--name="{{name}}" value="{{itemData.value}}"></label>--%>
-    <%--<div class="cq-answer-content T_edit T_plugins" data-Tid="{{itemData.tid}}">选项{{i+1+index}}</div>--%>
-    <%--</li>--%>
-    <%--{{/each}}--%>
-    <%--</script>--%>
-    <%--<script type="text/html" id="analysis_tmp">--%>
-    <%--<textarea class="exam-textarea analysis_contx" placeholder="请在此填写答案解析"></textarea>--%>
-    <%--</script>--%>
-    <script>
-        $(function () {
+    <script type="text/html" id="ui_additem_content">
+        {{each items as itemData i}}
+        <li><label class="input-check"><input type="{{if type==1}}radio{{else if type==2}}checkbox{{/if}}" name="{{name}}" value="{{itemData.value}}"></label>
+            <div class="cq-answer-content T_edit T_plugins" data-Tid="{{itemData.tid}}">选项{{i+1+index}}</div>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/html" id="analysis_tmp">
+        <textarea class="exam-textarea analysis_contx" placeholder="请在此填写答案解析"></textarea>
+    </script>
+    <script type="text/javascript">
+        $(function() {
             exam.init();
             $("select").dcselect();
         });
     </script>
 </div>
 <!--主体框架结束-->
-
 
 </body>
 </html>
