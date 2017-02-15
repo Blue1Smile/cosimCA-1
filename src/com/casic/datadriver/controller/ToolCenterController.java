@@ -438,7 +438,8 @@ public class ToolCenterController extends BaseController {
             }
             if (son==2){
                 Allnum = this.tservice.querytoolByname(major).size();
-                toolList1 = this.tservice.querytoolBymajorF(pageinfo);
+//                toolList1 = this.tservice.querytoolBymajorF(pageinfo);
+                toolList1= this.tservice.querytoolByname(major);
             }
             for (int i = 0; i < toolList1.size(); i++) {
                 ToolCenterModel mymodel = toolList1.get(i);

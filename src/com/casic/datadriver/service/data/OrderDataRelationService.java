@@ -1,16 +1,15 @@
 package com.casic.datadriver.service.data;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-import org.springframework.stereotype.Service;
-
+import com.casic.datadriver.dao.data.OrderDataRelationDao;
+import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.data.OrderDataRelation;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
 import com.hotent.core.web.query.QueryFilter;
+import org.springframework.stereotype.Service;
 
-import com.casic.datadriver.dao.data.OrderDataRelationDao;
-import com.casic.datadriver.model.data.OrderDataRelation;
+import javax.annotation.Resource;
+import java.util.List;
 /**
  * The Class OrderDataRelationService.
  */
@@ -78,6 +77,9 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
         return this.orderDataRelationDao.queryPublishDataRelationByddTaskID(ddtaskId);
     }
 
+    public List<OrderDataRelation> queryPublishDataRelationByddTaskIDF(PageInfo model) {
+        return this.orderDataRelationDao.queryPublishDataRelationByddTaskIDF(model);
+    }
 
     /**
      * Adds the DD OrderDataRelation.

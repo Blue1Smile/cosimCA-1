@@ -2,39 +2,32 @@ package com.casic.datadriver.controller.datacenter;
 
 
 import com.casic.datadriver.controller.AbstractController;
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.DataVersion;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
-import com.casic.datadriver.model.task.TaskStart;
 import com.casic.datadriver.model.task.TaskInfo;
+import com.casic.datadriver.model.task.TaskStart;
 import com.casic.datadriver.service.data.DataVersionService;
 import com.casic.datadriver.service.data.OrderDataRelationService;
 import com.casic.datadriver.service.data.PrivateDataService;
-import com.casic.datadriver.service.task.ProTaskDependanceService;
 import com.casic.datadriver.service.task.TaskInfoService;
 import com.casic.datadriver.service.task.TaskStartService;
-import com.hotent.core.util.ContextUtil;
 import com.hotent.core.annotion.Action;
+import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
-import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
-import com.hotent.platform.auth.ISysUser;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.compass.core.json.JsonObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -152,12 +145,21 @@ public class PersonalTaskController extends AbstractController {
 
         JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
+        Long pageSize =RequestUtil.getLong(request, "pageSize");
+        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
+
+        PageInfo pageinfo = new PageInfo();
+
+        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageNumber((pageNumber-1)*pageSize+pageSize);
 
         response.setContentType("application/json");
 
         try {
             Long taskId = RequestUtil.getLong(request, "id");
-            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
+            pageinfo.setId(taskId);
+            int allnum= this.orderDataRelationService.queryPublishDataRelationByddTaskID(taskId).size();
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskIDF(pageinfo);
             List<PrivateData> privateData_list = new ArrayList<PrivateData>();
             JSONObject jsonObject = new JSONObject();
             for (int i = 0; i < orderDataRelation_list.size(); i++) {
@@ -172,7 +174,7 @@ public class PersonalTaskController extends AbstractController {
                 jsonObject.put("ddDataLastestValue", privateData.getDdDataLastestValue());
                 jsonMembers.add(jsonObject);
             }
-            json.put("total", orderDataRelation_list.size());
+            json.put("total", allnum);
             json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
             String jsonstring = formatJson(json.toString());
