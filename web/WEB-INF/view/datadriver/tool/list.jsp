@@ -97,7 +97,7 @@
     <div class="col-xs-3">
         <%--<div></div>--%>
         <div class="panel panel-info" style="height: 650px">
-            <div class="panel-heading">工具专业树</div>
+            <div class="panel-heading">工具专业树1</div>
             <div class="panel-body" style="height: 100%">
                 <ul id="demo2"></ul>
             </div>
