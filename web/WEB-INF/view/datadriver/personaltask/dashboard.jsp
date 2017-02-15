@@ -59,18 +59,18 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">订阅关系图</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="main" style="height:900px;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%--<div class="row">--%>
+        <%--<div class="col-md-5">--%>
+            <%--<div class="panel panel-default">--%>
+                <%--<div class="panel-heading">--%>
+                    <%--<h3 class="panel-title">订阅关系图</h3>--%>
+                <%--</div>--%>
+                <%--<div class="panel-body">--%>
+                    <%--<div id="main" style="height:360px;"></div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>

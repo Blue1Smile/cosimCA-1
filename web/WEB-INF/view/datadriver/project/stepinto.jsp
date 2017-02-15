@@ -21,6 +21,9 @@
 
     <title>进入任务页面</title>
     <%--<%@include file="/commons/include/get.jsp" %>--%>
+    <link rel="stylesheet" href="${ctx}/resources/skin/base.css"/>
+    <link rel="stylesheet" href="${ctx}/resources/skin/content.css"/>
+    <link rel="stylesheet" href="${ctx}/resources/skin/blue.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
