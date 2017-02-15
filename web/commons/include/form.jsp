@@ -19,8 +19,8 @@
 <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
 <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
 <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
-<%--<script type="text/javascript" src="${ctx}/js/lg/ligerui.min.js"></script>--%>
-<%--<script type="text/javascript" src="${ctx}/js/lg/plugins/ligerDialog.js" ></script>--%>
-<%--<script type="text/javascript" src="${ctx}/js/calendar/My97DatePicker/WdatePicker.js"></script>--%>
+<script type="text/javascript" src="${ctx}/js/lg/ligerui.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/lg/plugins/ligerDialog.js" ></script>
+<script type="text/javascript" src="${ctx}/js/calendar/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${ctx}/js/cloud/fileOperate.js"></script>
 <%--<script type="text/javascript" src="${ctx}/js/lg/plugins/ligerMessageBox.js"></script>--%>

@@ -82,17 +82,20 @@
         });
 
         function showResponse(responseText) {
-            var obj = new com.hotent.form.ResultMessage(responseText);
-            if (obj.isSuccess()) {
-
-                        window.location.href = "${ctx}/datadriver/project/list.ht";
-
-            } else {
-//                $.ligerMessageBox.error("提示信息", obj.getMessage());
-            }
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";
         }
 
     </script>
+    <style type="text/css">
+        html, body {
+            padding: 0px;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+    </style>
 </head>
 <body>
 
@@ -124,7 +127,7 @@
         </table>
     </form>
     <%--<input class="btn btn-primary btn-block" id="dataFormSave" value="创建新任务"/>--%>
-    <td><input id="dataFormSave" value="上传" class="btn btn-primary btn-block"></td>
+    <td><input id="dataFormSave" value="上传" type="submit" class="btn btn-primary btn-block"></td>
 </div>
 </body>
 </html>

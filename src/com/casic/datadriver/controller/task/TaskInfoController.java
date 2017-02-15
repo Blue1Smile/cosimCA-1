@@ -228,18 +228,18 @@ public class TaskInfoController extends AbstractController {
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
         String preUrl = RequestUtil.getPrePage(request);
         ResultMessage message = null;
         try {
-            Long[] TaskId = RequestUtil.getLongAryByStr(request, "id");
-            taskInfoService.delAll(TaskId);
-            message = new ResultMessage(ResultMessage.Success, "删除成功");
-
+            Long taskId = RequestUtil.getLong(request, "id");
+            taskInfoService.delById(taskId);
+            taskStartService.delByTaskId(taskId);
+            proTaskDependanceService.delByTaskId(taskId);
+//            message = new ResultMessage(ResultMessage.Success, "删除成功");
         } catch (Exception ex) {
-            message = new ResultMessage(ResultMessage.Fail, "删除失败" + ex.getMessage());
+//            message = new ResultMessage(ResultMessage.Fail, "删除失败" + ex.getMessage());
         }
-        addMessage(message, request);
+//        addMessage(message, request);
         response.sendRedirect(preUrl);
     }
 
@@ -265,9 +265,11 @@ public class TaskInfoController extends AbstractController {
         }
 
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
+        List<OrderDataRelation> orderDataList = orderDataRelationService.queryOrderDataRelationByddTaskID(id);
+        List<OrderDataRelation> publishDataList = orderDataRelationService.queryPublishDataRelationByddTaskID(id);
 
         List<ISysUser> sysUserList = sysUserService.getAll();
-//        Date date=new Date();
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         if (taskInfo.getDdTaskPlanEndTime() != null) {
             time = df.format(taskInfo.getDdTaskPlanEndTime());
@@ -279,6 +281,8 @@ public class TaskInfoController extends AbstractController {
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("endtime", time)
                 .addObject("privateDataList", privateDataList)
+                .addObject("orderDataList", orderDataList)
+                .addObject("publishDataList", publishDataList)
                 .addObject("returnUrl", returnUrl)
                 .addObject("sysUserList", sysUserList)
                 .addObject("executorName", executorName);
@@ -414,36 +418,6 @@ public class TaskInfoController extends AbstractController {
 
     }
 
-
-//    @RequestMapping("savealldata")
-//    @Action(description = "保存订阅和发布关系")
-//    public void savealldata(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//
-//        Long nowTaskId = RequestUtil.getLong(request, "id");
-//
-//        List<PrivateData> privateDataListbyTaskItem = new ArrayList<PrivateData>();
-//        privateDataListbyTaskItem = request.getParameter("privateDataListbyTaskItem");
-////        Long[] ddDataIds = RequestUtil.getLongAry(request, "ddDataId");
-////        Long[] ddDataTaskIds = RequestUtil.getLongAry(request, "ddDataTaskId");
-////        //  System.out.print(ddDataIds.length);
-////
-////        for (int i = 0; i < ddDataTaskIds.length; i++) {
-////            this.orderDataRelationService.delOrderByddDataTaskId(ddDataTaskIds[i]);
-////
-////        }
-//
-////        for (int i = 0; i < ddDataIds.length; i++) {
-////            OrderDataRelation orderDataRelation = new OrderDataRelation();
-////            orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
-////            Long DataId = Long.valueOf(ddDataIds[i]);
-////            orderDataRelation.setDdOrderType(1L);
-////            orderDataRelation.setDdDataId(DataId);
-////            orderDataRelation.setDdTaskId(nowTaskId);
-////            this.orderDataRelationService.addDDOrderDataRelation(orderDataRelation);
-////        }
-//
-//
-//    }
 
 
     /**
@@ -592,8 +566,6 @@ public class TaskInfoController extends AbstractController {
      * @return
      * @throws Exception
      */
-
-
     @RequestMapping("stepinto")
     @Action(description = "进入项目")
     public ModelAndView stepinto(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -606,15 +578,11 @@ public class TaskInfoController extends AbstractController {
         List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
 
         //循环获取发布数据ID，查找任务的所有私有数据
-
         for (int i = 0; i < publishDataRelationList.size(); i++) {
             OrderDataRelation orderDataRelation = publishDataRelationList.get(i);
             PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
             publishDataList.add(privateData);
         }
-
-//        privateDataListbyTask.removeAll(publishDataList);
-//        privateDataListbyTask = ListUtils.subtract(privateDataListbyTask, publishDataList);
 
         if (privateDataListbyTask.size() > 0 && publishDataList.size() > 0) {
             Integer Length1 = privateDataListbyTask.size();
@@ -764,9 +732,7 @@ public class TaskInfoController extends AbstractController {
                 }
             }
         }
-
         if (parent.equals("publishpanel")) {
-
             OrderDataRelation orderDataRelation = new OrderDataRelation();
             orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
             orderDataRelation.setDdOrderType(0L);

@@ -154,10 +154,10 @@
         </form>
         <div class="row">
             <div class="col-xs-6">
-                <input class="btn btn-primary btn-block" id="dataFormSave" value="创建新任务"/>
+                <button class="btn btn-primary btn-block" id="dataFormSave">创建新任务</button>
             </div>
             <div class="col-xs-6">
-                <input class="btn btn-default btn-block" id="" value="从模版创建任务"/>
+                <button class="btn btn-default btn-block" id="createfrommodel">从模版创建任务</button>
             </div>
         </div>
 
@@ -178,7 +178,6 @@
 
         var frm = $('#taskInfoForm').form();
         $("#dataFormSave").click(function () {
-
             frm.setData();
             frm.ajaxForm(options);
             if (frm.valid()) {

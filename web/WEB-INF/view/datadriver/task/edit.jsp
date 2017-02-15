@@ -42,13 +42,13 @@
             height: 100%;
         }
 
-        .panel-heading {
-            padding: 10px 15px;
-            border-bottom: 1px solid #ddd;
-            border-top-left-radius: 1px;
-            border-top-right-radius: 1px;
-            background-color: #f5f5f5;
-        }
+        /*.panel-heading {*/
+            /*padding: 10px 15px;*/
+            /*border-bottom: 1px solid #ddd;*/
+            /*border-top-left-radius: 1px;*/
+            /*border-top-right-radius: 1px;*/
+            /*background-color: #f5f5f5;*/
+        /*}*/
 
         #card1, #card2, #card3 {
             padding-right: 2px;
@@ -60,27 +60,9 @@
             margin-left: 0px !important;
         }
 
-        button.panel-button {
-            -webkit-appearance: none;
-            padding: 0;
-            cursor: pointer;
-            background: transparent;
-            border: 0;
-        }
 
         .detail-info {
             margin-bottom: 4px;
-        }
-
-        .panel-button {
-            float: right;
-            font-size: 14px;
-            font-weight: bold;
-            line-height: 1;
-            color: #000;
-            text-shadow: 0 1px 0 #fff;
-            filter: alpha(opacity=20);
-            opacity: .2;
         }
 
         .task-info-title {
@@ -128,24 +110,22 @@
     </style>
 </head>
 <body style="height: 100%; margin: 0px;">
-<div class="panel">
+<div class="panel panel-primary">
     <div class="panel-heading">
         ${TaskInfo.ddTaskName}
-        <div class="btn-group" style="float: right">
-            <button type="button" class="panel-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 更多 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-                <center>任务菜单</center>
+                <li><a href="#"><center>任务菜单</center></a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
+                <li><a href="${ctx}/datadriver/task/del.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
             </ul>
         </div>
     </div>
-    <div class="panel-body" style="height: 100%; overflow: scroll">
-        <div class="col-xs-12 detail-info">
+    <div class="panel-body" style="overflow: scroll">
             <div class="row" id="row">
                 <div class="col-xs-4" id="card1">
                     <div class="panel panel-default">
@@ -193,9 +173,8 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xs-12 detail-info">
+
             <div class="panel panel-default">
                 <div class="list-group">
                     <a class="list-group-item" href="#" id="comments" data-type="textarea" data-pk="1" href="#">
@@ -226,9 +205,9 @@
                     </a>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xs-12">
+
+
             <div class="panel panel-default">
                 <div class="panel-body"><h5 class="task-info-title">活动</h5>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -277,7 +256,18 @@
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
                                  aria-labelledby="headingTwo">
                                 <div class="panel-body">
-
+                                    <ul class="activities-list">
+                                        <c:forEach items="${orderDataList}" var="orderDataItem">
+                                            <li class="activity">
+                                                <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
+                                                <div class="activity-body-coyness muted pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
+                                                </div>
+                                                <div class="activity-body-coyness muted">
+                                                    <span>订阅了 ${orderDataItem.ddDataName} 来自 ${orderDataItem.ddTaskId}</span>
+                                                </div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -294,13 +284,13 @@
                                  aria-labelledby="headingThree">
                                 <div class="panel-body">
                                     <ul class="activities-list">
-                                        <c:forEach items="${privateDataList}" var="privateDataItem">
+                                        <c:forEach items="${publishDataList}" var="publishDataItem">
                                             <li class="activity">
                                                 <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
                                                 <div class="activity-body-coyness muted pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
                                                 </div>
                                                 <div class="activity-body-coyness muted">
-                                                    <span>${privateDataItem.ddDataCreatePerson} 创建了 ${privateDataItem.ddDataName}</span>
+                                                    <span>本任务 发布了 ${publishDataItem.ddDataName}</span>
                                                 </div>
                                             </li>
 
@@ -312,7 +302,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
         <%--<form id="taskInfoForm" name="taskInfoForm" method="post" action="save.ht"--%>
         <%--enctype="multipart/form-data">--%>
 

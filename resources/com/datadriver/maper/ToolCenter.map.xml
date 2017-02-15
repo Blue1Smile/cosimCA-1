@@ -58,6 +58,12 @@
     where dd_tool_name = #{toolname}
   </select>
 
+  <select id="querytoolBymajorF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM dd_tools
+    where dd_tool_major = #{Name} limit #{pageSize},#{pageNumber}
+  </select>
 
   <insert id="insertSelective" parameterType="com.casic.datadriver.model.tool.ToolCenterModel">
     insert into dd_tools

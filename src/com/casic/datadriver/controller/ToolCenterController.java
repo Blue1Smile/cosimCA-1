@@ -1,10 +1,11 @@
 package com.casic.datadriver.controller;
 
 import com.casic.datadriver.controller.datacenter.PersonalTaskController;
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.major.Major;
 import com.casic.datadriver.model.tool.ToolCenterModel;
-import com.casic.datadriver.service.major.MajorService;
 import com.casic.datadriver.service.ToolCenterService;
+import com.casic.datadriver.service.major.MajorService;
 import com.hotent.core.annotion.Action;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
@@ -64,6 +65,7 @@ public class ToolCenterController extends BaseController {
 //        String major= RequestUtil.getString(request, "major");
 //
 //    }
+
 
     @RequestMapping("save")
     @Action(description = "保存工具")
@@ -361,6 +363,8 @@ public class ToolCenterController extends BaseController {
        return null;
     }
 
+
+
     /**
      * 2016/12/19/修改
      * 返回任务发布订购数据列表
@@ -386,21 +390,30 @@ public class ToolCenterController extends BaseController {
 
 
     @RequestMapping("showtools")
-    @Action(description = "返回任务发布订购数据列表")
+    @Action(description = "工具列表")
     public void querysubmitpublish1(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         JSONObject json=new JSONObject();
         JSONArray jsonMembers = new JSONArray();
         String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"),"UTF-8");
+        Long pageSize =RequestUtil.getLong(request, "pageSize");
+        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
         int son= RequestUtil.getInt(request, "son");
         response.setContentType("application/json");
         ToolCenterModel temp;
+
+        PageInfo pageinfo = new PageInfo();
+        pageinfo.setName(major);
+        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageNumber((pageNumber-1)*pageSize+pageSize);
+        int Allnum = 0;
         try {
             List<ToolCenterModel> mylist =  new ArrayList<ToolCenterModel>();
             List<ToolCenterModel> toolList1 =  new ArrayList<ToolCenterModel>();
             JSONObject jsonObject = new JSONObject();
             if (son==1){
-                mylist = this.tservice.querytoolBymajor(major);
+                Allnum = this.tservice.querytoolBymajor(major).size();
+                mylist = this.tservice.querytoolBymajorF(pageinfo);
                 int toolLength = mylist.size();
 
                 for(int num=0;num<toolLength;num++)
@@ -423,7 +436,10 @@ public class ToolCenterController extends BaseController {
 
                 }
             }
-            if (son==2){toolList1 = this.tservice.querytoolByname(major);}
+            if (son==2){
+                Allnum = this.tservice.querytoolByname(major).size();
+                toolList1 = this.tservice.querytoolBymajorF(pageinfo);
+            }
             for (int i = 0; i < toolList1.size(); i++) {
                 ToolCenterModel mymodel = toolList1.get(i);
                 jsonObject.put("ToolID", mymodel.getDdToolId());
@@ -433,7 +449,7 @@ public class ToolCenterController extends BaseController {
                 jsonObject.put("Toolbz", mymodel.getDdToolBf());
                 jsonMembers.add(jsonObject);
             }
-            json.put("total", toolList1.size());
+            json.put("total", Allnum);
             json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
             String jsonstring = formatJson(json.toString());
