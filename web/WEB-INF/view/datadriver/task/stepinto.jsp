@@ -61,10 +61,7 @@
             <%--<a class="btn btn-success" href="" data-toggle="modal"--%>
                <%--data-remote="${ctx}/datadriver/privatedata/edit.ht?id=${TaskInfo.ddTaskId}"--%>
                <%--data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 新建数据</a>--%>
-            <a class="layui-btn layui-btn-normal" id="newData" href="${ctx}/datadriver/privatedata/edit.ht?id=${TaskInfo.ddTaskId}">新建数据</a>
-            <a class="layui-btn layui-btn-normal" id="saveData" href="savealldata.ht?id=${TaskInfo.ddTaskId}&&privateDataListbyTaskItem
-            =${privateDataListbyTaskItem}">保存</a>
-
+            <a class="btn btn-success" id="newData" href="${ctx}/datadriver/privatedata/edit.ht?id=${TaskInfo.ddTaskId}">新建数据</a>
         </div>
         </div>
     </ul>

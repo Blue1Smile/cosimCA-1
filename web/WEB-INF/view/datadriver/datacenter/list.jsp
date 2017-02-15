@@ -175,10 +175,10 @@
         <li class="layui-this">数据中心</li>
     </ul>
 
-    <div class="fr">
-        <a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">
-            &#x1002;</i> 数据快照</a>
-    </div>
+    <%--<div class="fr">--%>
+        <%--<a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">--%>
+            <%--&#x1002;</i> 数据快照</a>--%>
+    <%--</div>--%>
     <div class="layui-tab-content">
         <div id="layout">
             <div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">

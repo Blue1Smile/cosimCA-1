@@ -46,5 +46,5 @@
 </div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-<script src="${ctx}/newtable/bootstrap.js"></script>
+<%--<script src="${ctx}/newtable/bootstrap.js"></script>--%>
 </html>

@@ -56,11 +56,11 @@
                                    <%--value="${param['ddDataName']}" placeholder="数据名称"/>--%>
                     <%--</form>--%>
                 <%--</span>--%>
-                    <%
-                        request.setCharacterEncoding("UTF-8");
-                        String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");
-                        out.print("name:"+major);
-                    %>
+                    <%--<%--%>
+                        <%--request.setCharacterEncoding("UTF-8");--%>
+                        <%--String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");--%>
+                        <%--out.print("name:"+major);--%>
+                    <%--%>--%>
                 <span class="fr">
                     <a class="layui-btn layui-btn-normal "  id="Add"><i class="layui-icon">&#xe615;</i> 增加</a>
                     <a class="layui-btn layui-btn-normal" id="Search"><input name="file1" lay-type="file" class="layui-upload-file" type="file"> 查询</a>

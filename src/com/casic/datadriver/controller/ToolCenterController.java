@@ -1,7 +1,11 @@
 package com.casic.datadriver.controller;
 
+import com.casic.datadriver.controller.datacenter.PersonalTaskController;
+import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.major.Major;
 import com.casic.datadriver.model.tool.ToolCenterModel;
 import com.casic.datadriver.service.ToolCenterService;
+import com.casic.datadriver.service.major.MajorService;
 import com.hotent.core.annotion.Action;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
@@ -13,6 +17,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -39,6 +44,9 @@ public class ToolCenterController extends BaseController {
     @Resource
     private ToolCenterService tservice;
 
+    @Resource
+    private MajorService majormservice;
+
 //    private TaskInfoService taskInfoService;
 //    @Resource
 //    private PrivateDataService privateDataService;
@@ -57,6 +65,7 @@ public class ToolCenterController extends BaseController {
 //        String major= RequestUtil.getString(request, "major");
 //
 //    }
+
 
     @RequestMapping("save")
     @Action(description = "保存工具")
@@ -96,9 +105,15 @@ public class ToolCenterController extends BaseController {
                         System.out.println(myFileName);
                         //重命名上传后的文件名
                         String fileName = "demoUpload" + file1.getOriginalFilename();
-                        //定义上传路径
+                        //定义上传路径//
+                        ////
+                        //取得根目录路径
+//                        String rootPath=getClass().getResource("/").getFile().toString();
+
+                        ////
                         String realPath = getServletContext().getRealPath("/");
                         String path =realPath+ "/major/" + major + "/" + ddToolVersion +"_"+myFileName;
+//                        String path ="d:"+ "/major/" + major + "/" + ddToolVersion +"_"+myFileName;
                         m.setDdToolUrl("/major/" + major + "/" + ddToolVersion +"_"+myFileName);
                         File file = new File(path);
                         //创建目录
@@ -117,8 +132,12 @@ public class ToolCenterController extends BaseController {
 //                    m.setDdToolName(myFileName);
 
                     tservice.add(m);
-                }
 
+//                    response.sendRedirect("toollist1.ht?major="+major);//根据实际情况跳转w
+                }
+                else {
+
+                }
                 //记录上传该文件后的时间
             //    int finaltime = (int) System.currentTimeMillis();
            //     System.out.println(finaltime - pre);
@@ -308,27 +327,43 @@ public class ToolCenterController extends BaseController {
 
     }
 
+    @RequestMapping("showtree")
+    @Action(description = "专业树形结构显示")
+    @ResponseBody
+    public String showtree(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        List<Major> root = majormservice.findByPid(0);  //获取根节点（获取的值存到list中）
+        JSONArray jsonArray = JSONArray.fromObject(buildTree(root));
+        //       net.sf.json.JSONArray jsonArray = net.sf.json.JSONArray.fromObject(buildTree(root));
+        System.out.println(jsonArray.toString());
+
+        PersonalTaskController Tjson = new PersonalTaskController();
+        String t = "";
+        t=jsonArray.toString();
+        Tjson.formatJson(t);
+        return t;
+    }
+
+
+
+
+    public List<Major> buildTree(List<Major> root){
+        for(int i=0;i<root.size();i++){
+            List<Major> children = majormservice.findByPid(root.get(i).getDdMajorId()); //查询某节点的子节点（获取的是list）
+            buildTree(children);
+            root.get(i).setChildren(children);
+        }
+        return root;
+
+    }
+
     @RequestMapping("list-1")
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-//        String major= RequestUtil.getString(request, "major");
-//        List<ToolCenterModel> toolList = tservice.getAll();
-//        int toolLength = toolList.size();
-//        Long[] toolId = new Long[toolLength];
-//        String[] toolName = new String[toolLength];
-//        int allLength = 0;
-//        int[] TaskLength = new int[toolList.size()];
-//
-//        for (int i = 0; i < toolList.size(); i++) {
-//            ToolCenterModel tool = toolList.get(i);
-//            toolId[i] = tool.getDdToolId();
-//            toolName[i] = tool.getDdToolName();
-//
-//        }
-//        ModelAndView mv = this.getAutoView().addObject("ToolList", this.tservice.querytoolBymajor(major));
-//        return mv;
        return null;
     }
+
+
 
     /**
      * 2016/12/19/修改
@@ -347,37 +382,6 @@ public class ToolCenterController extends BaseController {
         List<ToolCenterModel> toolList = tservice.querytoolBymajor(major);
         int toolLength = toolList.size();
         List<ToolCenterModel> toolList1 = null;
-//        for(int num=0;num<toolLength;num++)
-//        {
-//            boolean T=false;
-//            for(int i=0;i<toolList1.size();i++)
-//            {
-//                if (toolList1.size()==0)
-//                {
-//                    toolList1.add(toolList.get(num));
-//                }
-//                else if(toolList1.get(i).getDdToolName()==toolList.get(num).getDdToolName())
-//                {
-//                    T= true;
-//                }
-//                if (T==false)
-//                {
-//                    toolList1.add(toolList.get(num));
-//                }
-//            }
-//        }
-
-//        Long[] toolId = new Long[toolLength];
-//        String[] toolName = new String[toolLength];
-//        int allLength = 0;
-//        int[] TaskLength = new int[toolList.size()];
-//
-//        for (int i = 0; i < toolList.size(); i++) {
-//            ToolCenterModel tool = toolList.get(i);
-//            toolId[i] = tool.getDdToolId();
-//            toolName[i] = tool.getDdToolName();
-//
-//        }
 
         ModelAndView mv = this.getAutoView().addObject("ToolList", toolList1);
         return mv;
@@ -386,21 +390,30 @@ public class ToolCenterController extends BaseController {
 
 
     @RequestMapping("showtools")
-    @Action(description = "返回任务发布订购数据列表")
+    @Action(description = "工具列表")
     public void querysubmitpublish1(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         JSONObject json=new JSONObject();
         JSONArray jsonMembers = new JSONArray();
         String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"),"UTF-8");
+        Long pageSize =RequestUtil.getLong(request, "pageSize");
+        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
         int son= RequestUtil.getInt(request, "son");
         response.setContentType("application/json");
         ToolCenterModel temp;
+
+        PageInfo pageinfo = new PageInfo();
+        pageinfo.setName(major);
+        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageNumber((pageNumber-1)*pageSize+pageSize);
+        int Allnum = 0;
         try {
             List<ToolCenterModel> mylist =  new ArrayList<ToolCenterModel>();
             List<ToolCenterModel> toolList1 =  new ArrayList<ToolCenterModel>();
             JSONObject jsonObject = new JSONObject();
             if (son==1){
-                mylist = this.tservice.querytoolBymajor(major);
+                Allnum = this.tservice.querytoolBymajor(major).size();
+                mylist = this.tservice.querytoolBymajorF(pageinfo);
                 int toolLength = mylist.size();
 
                 for(int num=0;num<toolLength;num++)
@@ -423,7 +436,11 @@ public class ToolCenterController extends BaseController {
 
                 }
             }
-            if (son==2){toolList1 = this.tservice.querytoolByname(major);}
+            if (son==2){
+                Allnum = this.tservice.querytoolByname(major).size();
+//                toolList1 = this.tservice.querytoolBymajorF(pageinfo);
+                toolList1= this.tservice.querytoolByname(major);
+            }
             for (int i = 0; i < toolList1.size(); i++) {
                 ToolCenterModel mymodel = toolList1.get(i);
                 jsonObject.put("ToolID", mymodel.getDdToolId());
@@ -433,7 +450,7 @@ public class ToolCenterController extends BaseController {
                 jsonObject.put("Toolbz", mymodel.getDdToolBf());
                 jsonMembers.add(jsonObject);
             }
-            json.put("total", toolList1.size());
+            json.put("total", Allnum);
             json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
             String jsonstring = formatJson(json.toString());

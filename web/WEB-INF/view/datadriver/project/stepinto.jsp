@@ -14,13 +14,16 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<html>
+<html style="height: 100%; margin: 0px">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
 
     <title>进入任务页面</title>
     <%--<%@include file="/commons/include/get.jsp" %>--%>
+    <link rel="stylesheet" href="${ctx}/resources/skin/base.css"/>
+    <link rel="stylesheet" href="${ctx}/resources/skin/content.css"/>
+    <link rel="stylesheet" href="${ctx}/resources/skin/blue.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -66,8 +69,9 @@
         }
 
         .paneldocker {
+            position: relative;
             height: 100%;
-            padding-bottom: 220px;
+            padding: 10px;
         }
 
         .panelheight {
@@ -83,12 +87,37 @@
             border-left-color: #ce4844;
             border-left-width: 5px;
         }
+        .board-view {
+            position: fixed;
+            top: 50px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            overflow: hidden;
+            transition: all 218ms ease;
+        }
+        .task-panel {
+            position: relative;
+            height: 100%;
+        }
+        .board-scrum-view {
+            position: relative;
+            height: 100%;
+            background-color: #FFF;
+            border-style: solid;
+            border-width: 0;
+            border-color: #E5E5E5;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
     </style>
 </head>
 
-<body class="cbp-spmenu-push">
+<body style="height: 100%; margin: 0px">
 <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"
-     style="padding-bottom: 250px">
+     style="padding-right: 0px">
 </div>
 <div class="container-fluid" style="height: 100%">
     <ul class="nav nav-tabs" role="tablist">
@@ -109,10 +138,10 @@
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
-            <button id="statis_btn" class="btn btn-warning" data-toggle="modal"
+            <a id="statis_btn" class="btn btn-warning" data-toggle="modal"
                     data-remote="statis.ht?id=${Project.ddProjectId}"
                     data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计
-            </button>
+            </a>
 
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
                data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"
@@ -125,11 +154,11 @@
     </ul>
 
     <br>
-    <div class="tab-content" style="height: 100%">
-        <div role="tabpanel" class="tab-pane active" id="task" style="height: 100%">
-            <div class="row paneldocker">
+    <div class="tab-content board-view">
+        <div role="tabpanel" class="tab-pane active board-scrum-view" id="task" style="height: 100%">
+            <div class="row paneldocker" style="height: 100%">
                 <div class="col-xs-3" style="height: 100%">
-                    <div class="panel panel-default" style="height: 100%;">
+                    <div class="panel panel-default task-panel">
                         <div class="panel-heading">
                             新创建
                         </div>
@@ -152,7 +181,7 @@
                     </div>
                 </div>
                 <div class="col-xs-3" style="height: 100%">
-                    <div class="panel panel-info" style="height: 100%">
+                    <div class="panel panel-info task-panel">
                         <div class="panel-heading">
                             已发布
                         </div>
@@ -176,7 +205,7 @@
                     </div>
                 </div>
                 <div class="col-xs-3" style="height: 100%">
-                    <div class="panel panel-success" style="height: 100%">
+                    <div class="panel panel-success task-panel">
                         <div class="panel-heading">
                             已完成
                         </div>
@@ -186,7 +215,7 @@
                     </div>
                 </div>
                 <div class="col-xs-3" style="height: 100%">
-                    <div class="panel panel-warning" style="height: 100%">
+                    <div class="panel panel-warning task-panel">
                         <div class="panel-heading">
                             已审核
                         </div>
@@ -258,9 +287,11 @@
         $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
             $('#cbp-spmenu-s2').html(data);
         });
-        classie.toggle(obj, 'active');
-        classie.toggle(body, 'cbp-spmenu-push-toleft');
-        classie.toggle(menuRight, 'cbp-spmenu-open');
+        classie.toggle( obj, 'active' );
+        classie.toggle( menuRight, 'cbp-spmenu-open' );
+//        classie.toggle(obj, 'active');
+//        classie.toggle(body, 'cbp-spmenu-push-toleft');
+//        classie.toggle(menuRight, 'cbp-spmenu-open');
     }
     switch_attr_index.onclick = function () {
         $("#create_task").hide();

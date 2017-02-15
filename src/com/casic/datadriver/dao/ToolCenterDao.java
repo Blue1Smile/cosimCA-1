@@ -1,5 +1,6 @@
 package com.casic.datadriver.dao;
 
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.tool.ToolCenterModel;
 import com.hotent.core.db.BaseDao;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,7 @@ import java.util.List;
  */
 @Repository
 public class ToolCenterDao  extends BaseDao<ToolCenterModel> {
+
     @Override
     public Class getEntityClass() {
         return ToolCenterModel.class;
@@ -22,6 +24,8 @@ public class ToolCenterDao  extends BaseDao<ToolCenterModel> {
     }
 
     public List<ToolCenterModel> querytoolByname(String toolname) {
-        return this.getBySqlKey("querytoolByname", toolname);
-    }
+           return this.getBySqlKey("querytoolByname", toolname);}
+
+    public List<ToolCenterModel> querytoolBymajorF(PageInfo model) {
+        return this.getBySqlKey("querytoolBymajorF", model);}
 }

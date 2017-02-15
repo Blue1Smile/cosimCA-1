@@ -65,13 +65,6 @@
                                value="" class="form-control"/></td>
                 </tr>
                 <tr>
-                    <th width="20%">灵敏度:</th>
-                    <td>
-                        <input type="text" name="ddIndexSensitiveness" id="ddIndexSensitiveness"
-                               value="" class="form-control"/>
-                    </td>
-                </tr>
-                <tr>
                     <th width="20%">最新值:</th>
                     <td><input type="text" id="ddIndexLastestValue" name="ddIndexLastestValue"
                                value="" class="form-control"/></td>
@@ -81,10 +74,24 @@
         </form>
         <div class="row">
             <div class="col-xs-6">
-                <input class="btn btn-primary btn-block" id="dataFormSave" value="创建新指标"/>
+                <a href="#" class="btn btn-success btn-block" id="dataFormSave"><span class="glyphicon glyphicon-ok"></span> 创建指标项</a>
             </div>
             <div class="col-xs-6">
-                <input class="btn btn-default btn-block" id="" value="从模版创建指标"/>
+                <a class="btn btn-default btn-block" href="#" data-toggle="modal" id="export_index"
+                   data-target="#exportindex"><span class="glyphicon glyphicon-import"></span> 从Excel批量导入</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exportindex" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">请选择需要导入的Excel文件</h4>
+            </div>
+            <div class="modal-body">
+
             </div>
         </div>
     </div>
