@@ -262,6 +262,7 @@
         classie.toggle(body, 'cbp-spmenu-push-toleft');
         classie.toggle(menuRight, 'cbp-spmenu-open');
     }
+    
     switch_attr_index.onclick = function () {
         $("#create_task").hide();
         $("#create_index").show();

@@ -275,7 +275,6 @@ public class TaskInfoController extends AbstractController {
             Date date=new Date();
             time=df.format(date);
         }
-
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("endtime", time)
                 .addObject("privateDataList", privateDataList)
@@ -592,8 +591,6 @@ public class TaskInfoController extends AbstractController {
      * @return
      * @throws Exception
      */
-
-
     @RequestMapping("stepinto")
     @Action(description = "进入项目")
     public ModelAndView stepinto(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -630,8 +627,6 @@ public class TaskInfoController extends AbstractController {
                 }
             }
         }
-
-
 
         List<PrivateData> OrderPrivatedataList = new ArrayList<PrivateData>();
         //获取项目id
@@ -680,54 +675,6 @@ public class TaskInfoController extends AbstractController {
                 .addObject("OrderPrivatedataList", OrderPrivatedataList);
     }
 
-    /**
-     * 2017/2/8/
-     *
-     * @param request  the request
-     * @param response the response
-     * @return the list
-     * @throws Exception the exception
-     */
-    @RequestMapping("onchangetaskinfo")
-    @Action(description = "更改任务详情")
-    public void onchangetaskinfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        try {
-            long taskId = RequestUtil.getLong(request, "taskId");
-            String json = request.getParameter("strJson");
-            JSONObject obj = JSONObject.fromObject(json);
-            Iterator<String> sIterator = obj.keys();
-            String key = sIterator.next();
-            TaskStart taskStart = taskStartService.getByTaskId(taskId);
-            TaskInfo taskInfo = taskInfoService.getById(taskId);
-            switch (Integer.parseInt(key)) {
-                case 0:
-                    long temp0 = obj.getLong("0");
-                    if (taskStart != null){
-                        taskStart.setDdTaskResponcePerson(temp0);
-                        taskStartService.update(taskStart);
-                    }
-
-                    taskInfo.setDdTaskResponsiblePerson(temp0);
-                    break;
-                case 1:
-                    long temp1 = obj.getLong("1");
-                    taskInfo.setDdTaskPriority(temp1);
-                    break;
-                case 2:
-                    String temp2 = obj.getString("2");
-                    SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD",
-                            Locale.ENGLISH);
-                    Date parsedDate = sdf.parse(temp2);
-                    taskInfo.setDdTaskPlanEndTime(parsedDate);
-                    break;
-                case 3:
-                    String temp3 = obj.getString("3");
-                    taskInfo.setDdTaskDescription(temp3);
-                    break;
-            }
-
-
-
 
 //    /**
 //     * 2017/2/8/
@@ -751,8 +698,11 @@ public class TaskInfoController extends AbstractController {
 //            switch (Integer.parseInt(key)) {
 //                case 0:
 //                    long temp0 = obj.getLong("0");
-//                    taskStart.setDdTaskResponcePerson(temp0);
-//                    taskStartService.update(taskStart);
+//                    if (taskStart != null){
+//                        taskStart.setDdTaskResponcePerson(temp0);
+//                        taskStartService.update(taskStart);
+//                    }
+//
 //                    taskInfo.setDdTaskResponsiblePerson(temp0);
 //                    break;
 //                case 1:
@@ -780,6 +730,61 @@ public class TaskInfoController extends AbstractController {
 //            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
 //        }
 //    }
+
+
+
+    /**
+     * 2017/2/8/
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("onchangetaskinfo")
+    @Action(description = "更改任务详情")
+    public void onchangetaskinfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            long taskId = RequestUtil.getLong(request, "taskId");
+            String json = request.getParameter("strJson");
+            JSONObject obj = JSONObject.fromObject(json);
+            Iterator<String> sIterator = obj.keys();
+            String key = sIterator.next();
+            TaskStart taskStart = taskStartService.getByTaskId(taskId);
+            TaskInfo taskInfo = taskInfoService.getById(taskId);
+            switch (Integer.parseInt(key)) {
+                case 0:
+                    long temp0 = obj.getLong("0");
+                    taskStart.setDdTaskResponcePerson(temp0);
+                    taskStartService.update(taskStart);
+                    taskInfo.setDdTaskResponsiblePerson(temp0);
+                    break;
+                case 1:
+                    long temp1 = obj.getLong("1");
+                    taskInfo.setDdTaskPriority(temp1);
+                    break;
+                case 2:
+                    String temp2 = obj.getString("2");
+                    SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD",
+                            Locale.ENGLISH);
+                    Date parsedDate = sdf.parse(temp2);
+                    taskInfo.setDdTaskPlanEndTime(parsedDate);
+                    break;
+                case 3:
+                    String temp3 = obj.getString("3");
+                    taskInfo.setDdTaskDescription(temp3);
+                    break;
+            }
+
+
+
+            taskInfoService.updateDDTask(taskInfo);
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
     /**
      * 任务从新建拖拽到发布
      *
@@ -788,10 +793,7 @@ public class TaskInfoController extends AbstractController {
      * @return
      * @throws Exception
      */
-
     @RequestMapping("savepublishdata")
-
-
     @Action(description = "任务拖拽到发布")
     private void savepublishdata(HttpServletRequest request, HttpServletResponse response) throws Exception
     {

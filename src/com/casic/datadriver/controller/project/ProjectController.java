@@ -64,9 +64,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ��Ŀ����Ŀ�����.
+ * 项目管理
  *
- * @author ���� ʱ�䣺2016/11/14 0014.
+ * @author dodo 2016/11/14 0014.
  */
 @Controller
 @RequestMapping("/datadriver/project/")
@@ -185,15 +185,11 @@ public class ProjectController extends BaseController {
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String preUrl = RequestUtil.getPrePage(request);
-        ResultMessage message = null;
         try {
-            Long[] lAryId = RequestUtil.getLongAryByStr(request, "id");
-            projectService.delAll(lAryId);
-            message = new ResultMessage(ResultMessage.Success, "删除成功!");
+            Long project = RequestUtil.getLong(request, "id");
+            projectService.delById(project);
         } catch (Exception ex) {
-            message = new ResultMessage(ResultMessage.Fail, "删除失败" + ex.getMessage());
         }
-        addMessage(message, request);
         response.sendRedirect(preUrl);
     }
 
@@ -234,8 +230,6 @@ public class ProjectController extends BaseController {
      * @return
      * @throws Exception
      */
-
-
     @RequestMapping("get")
     @Action(description = "查看明细")
     public ModelAndView get(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -244,6 +238,21 @@ public class ProjectController extends BaseController {
         return getAutoView().addObject("Project", Project);
     }
 
+    /**
+     * 项目设置
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("setup")
+    @Action(description = "项目设置")
+    public ModelAndView setup(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        long id = RequestUtil.getLong(request, "id");
+        Project Project = projectService.getById(id);
+        return getAutoView().addObject("Project", Project);
+    }
 
     /**
      * 启动项目 dd_project_start
@@ -307,8 +316,6 @@ public class ProjectController extends BaseController {
      * @return
      * @throws Exception
      */
-
-
     @RequestMapping("indexedit")
     @Action(description = "查看明细")
     public ModelAndView indexedit(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -325,8 +332,6 @@ public class ProjectController extends BaseController {
      * @return
      * @throws Exception
      */
-
-
     @RequestMapping("stepinto")
     @Action(description = "进入项目")
     public ModelAndView stepinto(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -406,7 +411,6 @@ public class ProjectController extends BaseController {
      * @return
      * @throws Exception
      */
-
     @RequestMapping("statis")
     @Action(description = "统计")
     public ModelAndView statis(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -418,17 +422,11 @@ public class ProjectController extends BaseController {
             Long processFlowId = projectProcessAssocia.getDdPrcessId();
             processFlow = processFlowService.getById(processFlowId);
             String tempXml = processFlow.getDdProcessXml();
-
-
-
             mv = this.getAutoView().addObject("projectId", projectId)
                     .addObject("processFlowXml", tempXml);
         } else {
             mv = this.getAutoView().addObject("projectId", projectId);
         }
-
-
-
         return mv;
     }
 }
