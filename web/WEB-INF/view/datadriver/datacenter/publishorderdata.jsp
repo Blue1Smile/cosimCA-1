@@ -80,12 +80,11 @@
                 <display:column title="${checkAll}" media="html" style="width:5%;">
                     <input type="checkbox" class="pk" name="id" value="${taskList.ddTaskId}">
                 </display:column>
-                <display:column property="ddDataId" title="数据编号" sortable="true" maxLength="80"></display:column>
-                <display:column property="ddDataName" title="数据名称" sortable="true" maxLength="80"></display:column>
-                <display:column property="ddDataType" title="数据类型" sortable="true" maxLength="80"></display:column>
-                <display:column property="ddDataDescription" title="数据描述" sortable="true"
+                <display:column property="ddDataName" title="数据名称" sortable="true" maxLength="60"></display:column>
+                <display:column property="ddDataLastestValue" title="最新值" sortable="true"
                                 maxLength="80"></display:column>
-                <display:column property="ddDataTaskId" title="数据所属任务id" sortable="true"
+                <display:column property="ddDataCreateTime" title="时间" sortable="true" maxLength="80"></display:column>
+                <display:column property="ddDataDescription" title="数据描述" sortable="true"
                                 maxLength="80"></display:column>
                 <display:column title="操作" media="html" style="width:100px">
                     <a href="dataversion.ht?id=${privateDataList_publish.ddDataId}"
@@ -109,12 +108,11 @@
                 <display:column title="${checkAll}" media="html" style="width:5%;">
                     <input type="checkbox" class="pk" name="id" value="${taskList.ddTaskId}">
                 </display:column>
-                <display:column property="ddDataId" title="数据编号" sortable="true" maxLength="80"></display:column>
-                <display:column property="ddDataName" title="数据名称" sortable="true" maxLength="80"></display:column>
-                <display:column property="ddDataType" title="数据类型" sortable="true" maxLength="80"></display:column>
-                <display:column property="ddDataDescription" title="数据描述" sortable="true"
+                <display:column property="ddDataName" title="数据名称" sortable="true" maxLength="60"></display:column>
+                <display:column property="ddDataLastestValue" title="最新值" sortable="true"
                                 maxLength="80"></display:column>
-                <display:column property="ddDataTaskId" title="数据所属任务id" sortable="true"
+                <display:column property="ddDataCreateTime" title="时间" sortable="true" maxLength="80"></display:column>
+                <display:column property="ddDataDescription" title="数据描述" sortable="true"
                                 maxLength="80"></display:column>
                 <display:column title="操作" media="html" style="width:100px">
                     <a href="dataversion.ht?id=${privateDataList_order.ddDataId}"

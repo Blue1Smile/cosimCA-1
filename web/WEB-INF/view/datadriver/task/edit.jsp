@@ -126,7 +126,6 @@
         </div>
     </div>
     <div class="panel-body" style="overflow: scroll">
-        <div class="col-xs-12 detail-info">
             <div class="row" id="row">
                 <div class="col-xs-4" id="card1">
                     <div class="panel panel-default">
@@ -174,9 +173,8 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xs-12 detail-info">
+
             <div class="panel panel-default">
                 <div class="list-group">
                     <a class="list-group-item" href="#" id="comments" data-type="textarea" data-pk="1" href="#">
@@ -207,9 +205,9 @@
                     </a>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xs-12">
+
+
             <div class="panel panel-default">
                 <div class="panel-body"><h5 class="task-info-title">活动</h5>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -304,7 +302,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
         <%--<form id="taskInfoForm" name="taskInfoForm" method="post" action="save.ht"--%>
         <%--enctype="multipart/form-data">--%>
 
