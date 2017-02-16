@@ -23,14 +23,14 @@
 		}
 
 		var url=__ctx + "/platform/bpm/bpmDefinition/export.ht?bpmDefIds="+bpmDefIds;
-		ImportExportXml.showModalDialog({url:url,height:400});
+		ImportExportXml.open({url:url,height:400});
 	}
 
 	
 	//导入流程定义
 	function importXml(){
 		var url=__ctx + "/platform/bpm/bpmDefinition/import.ht";
-		ImportExportXml.showModalDialog({url:url});
+		ImportExportXml.open({url:url});
 	}
 	
 	

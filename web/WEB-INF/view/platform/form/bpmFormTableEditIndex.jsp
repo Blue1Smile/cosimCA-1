@@ -10,7 +10,7 @@
 		var url = __ctx + "/platform/form/bpmFormTable/indexDialog.ht?isAdd=0&" + "tableId=" + tableId + "&tableName=" + encodeURIComponent(tableName) + "&indexName=" + encodeURIComponent(indexName);
 		var winArgs = "dialogWidth=800px;dialogHeight=600px;help=0;status=0;scroll=1;center=0;resizable=1;";
 		url = url.getNewUrl();
-		var rtn = window.showModalDialog(url, "", winArgs);
+		var rtn = window.open(url, "", winArgs);
 		window.location.reload(true);
 	}
 	function addIndex() {
@@ -19,7 +19,7 @@
 		var url = __ctx + "/platform/form/bpmFormTable/indexDialog.ht?isAdd=1&" + "tableId=" + tableId + "&tableName=" + encodeURIComponent(tableName);
 		var winArgs = "dialogWidth=800px;dialogHeight=600px;help=0;status=0;scroll=1;center=0;resizable=1;";
 		url = url.getNewUrl();
-		var rtn = window.showModalDialog(url, "", winArgs);
+		var rtn = window.open(url, "", winArgs);
 		window.location.reload(true);
 	}
 

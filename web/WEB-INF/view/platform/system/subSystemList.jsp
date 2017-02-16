@@ -14,7 +14,7 @@
 			+"px;help=" + conf.help +";status=" + conf.status +";scroll=" + conf.scroll +";center=" +conf.center;
 		
 		url=url.getNewUrl();
-		var rtn=window.showModalDialog(url,{systemId:systemId},winArgs);
+		var rtn=window.open(url,{systemId:systemId},winArgs);
 	}
 </script>
 </head>

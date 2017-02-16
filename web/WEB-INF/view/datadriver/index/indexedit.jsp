@@ -5,6 +5,7 @@
   Time: 下午5:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="ap" uri="/appleTag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <html>
@@ -36,27 +37,21 @@
                 <tr>
                     <th width="20%">指标类型:</th>
                     <td>
-                        <select name="ddIndexTypeId" class="form-control">
-                            <option value=""></option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                        <ap:selectDB name="ddIndexTypeId" id="ddIndexTypeId"
+                                     where="parentId=10000025100454" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                        </ap:selectDB>
                     </td>
                 </tr>
                 <tr>
                     <th width="20%">指标属性:</th>
                     <td>
-                        <select name="ddIndexProperty" class="form-control">
-                            <option value=""></option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                        <ap:selectDB name="ddIndexProperty" id="ddIndexProperty"
+                                     where="parentId=10000025100454" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                        </ap:selectDB>
                     </td>
                 </tr>
                 <tr>
@@ -74,7 +69,8 @@
         </form>
         <div class="row">
             <div class="col-xs-6">
-                <a href="#" class="btn btn-success btn-block" id="dataFormSave"><span class="glyphicon glyphicon-ok"></span> 创建指标项</a>
+                <a href="#" class="btn btn-success btn-block" id="dataFormSave"><span
+                        class="glyphicon glyphicon-ok"></span> 创建指标项</a>
             </div>
             <div class="col-xs-6">
                 <a class="btn btn-default btn-block" href="#" data-toggle="modal" id="export_index"
@@ -87,7 +83,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">请选择需要导入的Excel文件</h4>
             </div>
             <div class="modal-body">

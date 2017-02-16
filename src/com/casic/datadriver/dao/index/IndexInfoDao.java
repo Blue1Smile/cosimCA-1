@@ -1,5 +1,6 @@
 package com.casic.datadriver.dao.index;
 
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.index.IndexInfo;
 import com.hotent.core.db.BaseDao;
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,11 @@ public class IndexInfoDao extends BaseDao <IndexInfo> {
         return IndexInfo.class;
     }
 
-    public List<IndexInfo> getByProjectId(Long projectId){
+    public List<IndexInfo> getByProjectId(long projectId){
         return this.getBySqlKey("getIndexInfoList", projectId);
+    }
+
+    public List<IndexInfo> getByProjectIdF(PageInfo pageInfo){
+        return this.getBySqlKey("getByProjectIdF", pageInfo);
     }
 }
