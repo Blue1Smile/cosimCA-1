@@ -544,10 +544,16 @@ public class TaskInfoController extends AbstractController {
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
+            TaskInfo taskInfo=taskInfoService.getById(ddTaskId);
+
             //判断任务的当前状态，只有在正在提交中才允许驳回
-            if (taskStart_list.get(0).getDdTaskStatus() == 0) {
-                taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_RUNNING);
+//
+            if (taskStart_list.get(0).getDdTaskStatus() == 1&&taskInfo.getDdTaskChildType().equals("checkpanel")) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.publishpanel);
                 taskStartService.update(taskStart_list.get(0));
+
+                taskInfo.setDdTaskChildType("publishpanel");
+                taskInfoService.update(taskInfo);
             } else {
                 String resultMsg = null;
                 writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);

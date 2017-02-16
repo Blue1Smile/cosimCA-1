@@ -273,11 +273,14 @@ public class PersonalTaskController extends AbstractController {
             List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
 
+            TaskInfo taskInfo=taskInfoService.getById(ddTaskId);
             //判断任务的当前状态，只有在正在执行中才允许提交
-            if (taskStart_list.get(0).getDdTaskStatus() == 1) {
-                taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_SUBMIT);
-
+            if (taskStart_list.get(0).getDdTaskStatus() == 0&&taskInfo.getDdTaskChildType().equals("publishpanel")) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
                 taskStartService.update(taskStart_list.get(0));
+
+                taskInfo.setDdTaskChildType("checkpanel");
+                taskInfoService.update(taskInfo);
             } else {
                 String resultMsg = null;
                 writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
@@ -289,6 +292,7 @@ public class PersonalTaskController extends AbstractController {
     }
 
 
+
     @RequestMapping("recovertask")
     @Action(description = "收回任务")
     public void recovertask(HttpServletRequest request, HttpServletResponse response)
@@ -296,11 +300,15 @@ public class PersonalTaskController extends AbstractController {
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
+            TaskInfo taskInfo=taskInfoService.getById(ddTaskId);
 
             //判断任务的当前状态，只有在正在提交中才允许收回
-            if (taskStart_list.get(0).getDdTaskStatus() == 0) {
-                taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_RUNNING);
+            if (taskStart_list.get(0).getDdTaskStatus() == 0&&taskInfo.getDdTaskChildType().equals("publishpanel")) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.createpanel);
                 taskStartService.update(taskStart_list.get(0));
+
+                taskInfo.setDdTaskChildType("createpanel");
+                taskInfoService.update(taskInfo);
             } else {
                 String resultMsg = null;
                 writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
