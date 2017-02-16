@@ -53,9 +53,15 @@
                 </c:forEach>
             </ul>
         </li>
-        <li role="presentation" class="active"><a href="#date" data-toggle="tab" role="tab">数据</a></li>
-        <%--<li role="presentation"><a href="#index" data-toggle="tab" role="tab">指标</a></li>--%>
-        <%--<li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>--%>
+        <li role="presentation" class="active"><a href="#task" data-toggle="tab" role="tab">数据</a></li>
+        <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">任务概述</a></li>
+        <li role="presentation" id="switch_attr_calendar"><a href="#calendar" data-toggle="tab" role="tab">更新发布</a></li>
+        <li role="presentation" id="switch_attr_three"><a href="#index" data-toggle="tab" role="tab">查看订阅</a></li>
+        <li role="presentation" id="switch_attr_four"><a href="#calendar" data-toggle="tab" role="tab">任务工具</a></li>
+        <%--<li role="presentation" class="active"><a href="#date" data-toggle="tab" role="tab">数据</a></li>--%>
+        <%--<li role="presentation" ><a href="${ctx}/datadriver/personaltask/dashboard.ht?id=${TaskInfo.ddTaskId}#index" data-toggle="tab" role="tab">更新发布</a></li>--%>
+        <%--<li role="presentation" ><a href="${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}#calendar" data-toggle="tab" role="tab">查看订阅</a></li>--%>
+
         <div class="pull-right">
             <button id="static" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 统计</button>
             <%--<a class="btn btn-success" href="" data-toggle="modal"--%>
@@ -184,6 +190,10 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
         </div>
+        <div role="tabpanel" class="tab-pane" id="three">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="four">
+        </div>
     </div>
 </div>
 <%--任务创建--%>
@@ -211,5 +221,34 @@
 //            $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
     });
+    switch_attr_index.onclick = function () {
+        $("#create_task").hide();
+        $("#create_index").show();
+        $.get("${ctx}/datadriver/personaltask/dashboard.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#index').html(data);
+        });
+    }
+    switch_attr_calendar.onclick = function () {
+        $("#create_task").hide();
+        $("#create_calendar").show();
+        $.get("${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#calendar').html(data);
+        });
+    }
+    switch_attr_three.onclick = function () {
+        $("#create_task").hide();
+        $("#create_three").show();
+        $.get("${ctx}/datadriver/personaltask/showorder.ht?id=${taskInfo.ddTaskId}", function (data) {
+            $('#three').html(data);
+        });
+    }
+    switch_attr_four.onclick = function () {
+        $("#create_task").hide();
+        $("#create_four").show();
+        $.get("", function (data) {
+            $('#four').html(data);
+        });
+    }
+
 </script>
 </html>

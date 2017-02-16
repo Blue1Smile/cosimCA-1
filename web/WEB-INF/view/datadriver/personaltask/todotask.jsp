@@ -32,6 +32,7 @@
                 <li>更新发布</li>
                 <li>查看订阅</li>
                 <li>任务工具</li>
+                <li>任务进入</li>
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
@@ -49,6 +50,10 @@
                 <div class="layui-tab-item">
                     <iframe src="" style="width: 100%;height: 500px" frameborder="no" scrolling="auto"></iframe>
                 </div>
+                <div class="layui-tab-item">
+                    <iframe src="${ctx}/datadriver/task/stepinto.ht?id=${taskInfo.ddTaskId}" style="width: 100%;height: 500px" frameborder="no" scrolling="auto"></iframe>
+                </div>
+
             </div>
         </div>
     </div>
