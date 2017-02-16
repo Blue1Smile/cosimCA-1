@@ -68,9 +68,9 @@
                 <%--<display:column property="ddDataSensitiveness" title="灵敏阈" maxLength="80"></display:column>--%>
 
             <display:column title="操作" media="html" style="width:260px">
-            <a href="edit.ht?ddDataId=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">编辑</a>
+            <a href="edit.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">编辑</a>
             <a href="del.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">删除</a>
-            <a href="datasnapshot.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">数据快照</a>
+            <%--<a href="datasnapshot.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">数据快照</a>--%>
 
 
                 <%--<a onclick="startBizInstance(${bizDefItem.bizDefId})" class="link run">启动</a>--%>
