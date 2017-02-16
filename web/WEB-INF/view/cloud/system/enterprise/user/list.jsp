@@ -17,7 +17,7 @@
 		conf=$.extend({},{dialogWidth:dialogWidth ,dialogHeight:dialogHeight ,help:0,status:0,scroll:0,center:1},conf);
 		var winArgs="dialogWidth="+conf.dialogWidth+"px;dialogHeight="+conf.dialogHeight
 			+"px;help=" + conf.help +";status=" + conf.status +";scroll=" + conf.scroll +";center=" +conf.center;				
-		var rtn=window.showModalDialog(url,"",winArgs);		
+		var rtn=window.open(url,"",winArgs);
 	}
 	</script>
 </head>

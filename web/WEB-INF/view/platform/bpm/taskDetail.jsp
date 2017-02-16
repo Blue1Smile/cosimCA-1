@@ -28,7 +28,7 @@
         	    	var winArgs="dialogWidth=680px;dialogHeight=340px;help=0;status=0;scroll=1;center=1";
         			url=__ctx + "/platform/bpm/taskInfo/changePath.ht?taskId="+ item.taskId;
         			url=url.getNewUrl();
-        			window.showModalDialog(url,"",winArgs);
+        			window.open(url,"",winArgs);
         	    }else if(item.id=='completeTask'){//结束任务
         	    	$.ligerMessageBox.confirm('提示信息','确定结束该任务吗?',function(rtn){
         	    		if(!rtn) return;
@@ -49,7 +49,7 @@
         	    	var winArgs="dialogWidth=780px;dialogHeight=600px;help=0;status=0;scroll=1;center=1";
         	    	var url=__ctx + '/platform/bpm/taskOpinion/list.ht?taskId='+item.taskId;
         	    	url=url.getNewUrl();
-        			window.showModalDialog(url,"",winArgs);
+        			window.open(url,"",winArgs);
         	    }else if(item.id=='taskComment'){// 任务评论
         	    	TaskCommentWindow({taskId:item.taskId});
         	    }

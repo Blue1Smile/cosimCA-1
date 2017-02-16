@@ -420,6 +420,7 @@ public class TaskInfoController extends AbstractController {
 
 
 
+
     /**
      * @param request
      * @param response
@@ -711,8 +712,6 @@ public class TaskInfoController extends AbstractController {
      */
 
     @RequestMapping("savepublishdata")
-
-
     @Action(description = "任务拖拽到发布")
     private void savepublishdata(HttpServletRequest request, HttpServletResponse response) throws Exception {
         long dataId = RequestUtil.getLong(request, "id");

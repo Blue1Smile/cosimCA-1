@@ -142,7 +142,7 @@ OfficeControl=function(){
 		var url=__ctx +"/platform/system/sysOfficeTemplate/dialog.ht?type="+this.templatetype;
 		var winArgs="dialogWidth=600px;dialogHeight=400px;help=0;status=0;scroll=1;center=1";
 		url=url.getNewUrl();
-		var rtn=window.showModalDialog(url,"",winArgs);
+		var rtn=window.open(url,"",winArgs);
 		return rtn;
 	},
 	/**
@@ -357,7 +357,7 @@ OfficeControl=function(){
 		var url = __ctx + "/platform/system/seal/dialog.ht";
 		var winArgs = "dialogWidth=800px;dialogHeight=600px;help=0;status=0;scroll=1;center=0;resizable=1;";
 		url = url.getNewUrl();
-		var retVal = window.showModalDialog(url, "", winArgs);
+		var retVal = window.open(url, "", winArgs);
 		if(typeof(retVal)==undefined){
 			return false;
 		}

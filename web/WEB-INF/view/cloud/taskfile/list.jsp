@@ -32,7 +32,7 @@
 		var winArgs="dialogWidth=800px;dialogHeight=600px;help=1;status=1;scroll=1;center=1;resizable:1";				
 		var url='${ctx}/cloud/taskfile/upload.ht?taskId='+${param.taskId};
 		url=url.getNewUrl();
-		var win=window.showModalDialog(url,"",winArgs);
+		var win=window.open(url,"",winArgs);
 	    $("#searchForm").submit();
 	}	
 </script>

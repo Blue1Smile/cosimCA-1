@@ -49,7 +49,7 @@
 		var url=__ctx + '/platform/form/bpmFormDef/rightsDialog.ht?formKey=' + formKey;
 		var winArgs="dialogWidth=800px;dialogHeight=600px;help=0;status=no;center=yes;resizable=no;";
 		url=url.getNewUrl();
-		window.showModalDialog(url,"",winArgs);
+		window.open(url,"",winArgs);
 	}
 	
 	
@@ -62,14 +62,14 @@
 		}
 
 		var url=__ctx + "/platform/form/bpmFormDef/export.ht?formDefIds="+formDefIds;
-		ImportExportXml.showModalDialog({url:url});
+		ImportExportXml.open({url:url});
 	}
 
 	
 	//导入自定义表单
 	function importXml(){
 		var url=__ctx + "/platform/form/bpmFormDef/import.ht";
-		ImportExportXml.showModalDialog({url:url});
+		ImportExportXml.open({url:url});
 	}
 	
 </script>

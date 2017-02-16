@@ -24,7 +24,7 @@
 		var url=__ctx + "/platform/form/bpmFormTable/assignMainTable.ht?subTableId="+subTableId;
 		var winArgs="dialogWidth=400px;dialogHeight=200px;help=0;status=0;scroll=0;center=1;resizable=1";
 		url=url.getNewUrl();
-		var rtn=window.showModalDialog(url,"",winArgs);
+		var rtn=window.open(url,"",winArgs);
 	}
 	
 	function newTableTemp(e){		
@@ -71,13 +71,13 @@
 			tableId=tableId.substring(0,tableId.length-1);
 		}
 		var url = __ctx + "/platform/form/bpmFormTable/export.ht?tableIds="+tableId;
-		ImportExportXml.showModalDialog({url:url});
+		ImportExportXml.open({url:url});
 		
 	}
 	//导入自定义xml
 	function ImportXml(){
 		var url= __ctx + "/platform/form/bpmFormTable/import.ht";
-		ImportExportXml.showModalDialog({url:url});
+		ImportExportXml.open({url:url});
 	}
 	
 </script>

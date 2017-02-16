@@ -74,7 +74,7 @@
 	function selectIcon(){
 		var url="${ctx}/cloud/pub/toUpload.ht";
 	 	var winArgs = "dialogWidth=500px;dialogHeight=150px;help=0;status=0;scroll=1;center=0;resizable=1;";
-	 	var rtn=window.showModalDialog(url,"",winArgs);
+	 	var rtn=window.open(url,"",winArgs);
 	}
 
  

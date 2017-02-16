@@ -93,10 +93,10 @@
                        class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 私有</a>
                     <a href="stepinto.ht?id=${TaskItem.ddTaskId}"
                        class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
-                    <a href="publishconfig.ht?id=${TaskItem.ddTaskId}"
-                       class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe63c;</i> 发布</a>
-                    <a href="orderconfig.ht?id=${TaskItem.ddTaskId}"
-                       class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe627;</i> 订阅</a>
+                    <%--<a href="publishconfig.ht?id=${TaskItem.ddTaskId}"--%>
+                       <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe63c;</i> 发布</a>--%>
+                    <%--<a href="orderconfig.ht?id=${TaskItem.ddTaskId}"--%>
+                       <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe627;</i> 订阅</a>--%>
                     <a href="del.ht?id=${TaskItem.ddTaskId}"
                        class="layui-btn layui-btn-danger layui-btn-mini"><i class="layui-icon">&#xe640;</i> 删除</a>
                     <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>

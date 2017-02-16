@@ -8,7 +8,7 @@
 function previewTemplate(url){
 	var winArgs="dialogWidth=400px;dialogHeight=400px;help=0;status=0;scroll=1;center=1" ;
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,null,winArgs);
+	var rtn=window.open(url,null,winArgs);
 	
 }
 </script>
