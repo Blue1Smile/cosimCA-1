@@ -205,9 +205,6 @@
                     </a>
                 </div>
             </div>
-
-
-
             <div class="panel panel-default">
                 <div class="panel-body"><h5 class="task-info-title">活动</h5>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
