@@ -216,9 +216,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-tab-item">
-                    <iframe src="${ctx}/datadriver/task/stepinto.ht?id=${taskInfo.ddTaskId}" style="width: 100%;height: 500px" frameborder="no" scrolling="auto"></iframe>
-                </div>
 
             </div>
         </div>
