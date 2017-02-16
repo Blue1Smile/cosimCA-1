@@ -125,7 +125,7 @@
 			var url="setting.ht?dsName=" +dsName +"&objectName=" + objectname +"&istable=" + istable +"&style=" +style +"&id=" + id;
 			var winArgs="dialogWidth=800px;dialogHeight=540px;help=0;status=0;scroll=1;center=1;resizable=1;";
 			url=url.getNewUrl();
-			var rtn=window.showModalDialog(url,fields,winArgs);
+			var rtn=window.open(url,fields,winArgs);
 			if(rtn==undefined) return;
            	if(rtn.length>0){
            		 $("#settingobj").val(objectname);

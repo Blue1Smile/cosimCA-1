@@ -230,7 +230,7 @@
 			}};
 			hiddenMenu();
 			url=url.getNewUrl();
-			var rtn=window.showModalDialog(url,conf,winArgs);
+			var rtn=window.open(url,conf,winArgs);
 			
 		}
 		
@@ -274,7 +274,7 @@
 			}};
 			hiddenMenu();
 			url=url.getNewUrl();
-			var rtn=window.showModalDialog(url,conf,winArgs);
+			var rtn=window.open(url,conf,winArgs);
 			
 		}
 		//数字字典排序
@@ -288,7 +288,7 @@
 			}};
 			hiddenMenu();
 			url=url.getNewUrl();
-			var rtn=window.showModalDialog(url,conf,winArgs);
+			var rtn=window.open(url,conf,winArgs);
 			loadDictByTypeId();
 		}
 		//删除字典

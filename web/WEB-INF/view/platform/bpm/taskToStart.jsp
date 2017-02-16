@@ -430,7 +430,7 @@
 			var winArgs="dialogWidth=800px;dialogHeight=600px;help=1;status=1;scroll=1;center=1;resizable:1";				
 			var url='${ctx}/platform/bpm/taskOpinion/list.ht?taskId='+taskId+"&isOpenDialog=1";
 			url=url.getNewUrl();
-			window.showModalDialog(url,"",winArgs);
+			window.open(url,"",winArgs);
 		}
 		function showExecutes(){
 			
@@ -469,7 +469,7 @@
 			var url='${ctx}/cloud/taskfile/list.ht?taskId='+taskId;
 			url=url.getNewUrl();
 			//window.open(url,"");
-			window.showModalDialog(url,"",winArgs);
+			window.open(url,"",winArgs);
 		}	
 		//更改
 		function changeDestTask(sel){

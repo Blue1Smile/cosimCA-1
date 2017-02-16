@@ -294,7 +294,7 @@ function showOtherNodeDlg(conf){
 	var winArgs="dialogWidth=650px;dialogHeight=500px;help=0;status=0;scroll=1;center=1";
 	url=__ctx + "/platform/bpm/bpmDefinition/taskNodes.ht?actDefId=${bpmDefinition.actDefId}&nodeId="+conf.nodeId;
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,"",winArgs);
+	var rtn=window.open(url,"",winArgs);
 	if(conf.callback){
 		if(rtn!=undefined){
 			conf.callback.call(this,rtn.nodeId,rtn.nodeName);
@@ -333,7 +333,7 @@ function conditionDialog(tableId,edit)
 	
 	
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,'',winArgs);
+	var rtn=window.open(url,'',winArgs);
 	if(rtn){
 		document.getElementById("btnReflesh").click();
 	//	window.location.reload();

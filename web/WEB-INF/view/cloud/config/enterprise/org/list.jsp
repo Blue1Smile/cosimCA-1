@@ -296,7 +296,7 @@
 		var url=__ctx +'/cloud/config/enterprise/org/sortList.ht?orgId='+orgId+"&demId="+demId;
 		var winArgs="dialogWidth:600px;dialogHeight:300px";
 	 	url=url.getNewUrl();
-	 	var rtn=window.showModalDialog(url,"",winArgs);
+	 	var rtn=window.open(url,"",winArgs);
 	 	var demensionId = $("#demensionId").val();
 		loadTree(demensionId);
 	}

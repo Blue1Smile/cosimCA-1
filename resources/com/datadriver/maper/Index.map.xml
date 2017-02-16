@@ -22,6 +22,14 @@
         from dd_index
         where DD_INDEX_ID = #{ddIndexId,jdbcType=NUMERIC}
     </select>
+
+    <select id="getByProjectIdF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_index
+        where DD_INDEX_PROJECT_ID = #{id} limit #{pageSize},#{pageNumber}
+    </select>
+
     <select id="getIndexInfoList" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>

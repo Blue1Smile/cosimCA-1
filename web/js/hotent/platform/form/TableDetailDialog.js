@@ -24,6 +24,6 @@ function TableDetailDialog(conf)
 		+"px;help=" + conf.help +";status=" + conf.status +";scroll=" + conf.scroll +";center=" +conf.center +";resizable=" + conf.resize;
 	
 	url=url.getNewUrl();
-	window.showModalDialog(url,"",winArgs);
+	window.open(url,"",winArgs);
 	
 }

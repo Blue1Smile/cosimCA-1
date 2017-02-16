@@ -117,16 +117,17 @@ GlobalType=function(catKey,divId,conf){
 	
 	 	var winArgs="dialogWidth:500px;dialogHeight:250px";
 	 	url=url.getNewUrl();
-	 	var rtn=window.showModalDialog(url,"",winArgs);
+	 	var rtn=window.open(url,"",winArgs);
 	 	//重新加载树。
 	 	_self.loadGlobalTree();
 	};
 	this.sortNode=function(){
+
 		var typeId=_self.currentNode.typeId;
 		var url=__ctx +'/platform/system/globalType/sortList.ht?parentId='+typeId;
 		var winArgs="dialogWidth:600px;dialogHeight:300px";
 	 	url=url.getNewUrl();
-	 	var rtn=window.showModalDialog(url,"",winArgs);
+	 	var rtn=window.open(url,"",winArgs);
 	 	//重新加载树。
 	 	_self.loadGlobalTree();
 	}

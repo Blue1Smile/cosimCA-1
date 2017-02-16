@@ -119,7 +119,7 @@ function openLinkDialog(obj,width,height){
 	var winArgs="dialogWidth="+width+"px;dialogHeight="+height+"px;help=0;status=0;scroll=0;center=1";
 	var url=$(obj).attr("action");
 	url=url.getNewUrl();
-	window.showModalDialog(url,{},winArgs);
+	window.open(url,{},winArgs);
 }
 
 
