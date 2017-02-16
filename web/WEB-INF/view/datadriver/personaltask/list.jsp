@@ -58,8 +58,11 @@
                             class="layui-icon">&#xe639;</i> 收回</a>
                 </c:when>
                     <c:otherwise>
-                        <a href="todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
-                                class="layui-icon">&#xe639;</i> 办理</a>
+                        <%--<a href="todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i--%>
+                                <%--class="layui-icon">&#xe639;</i> 办理</a>--%>
+                        <a href=" ${ctx}/datadriver/task/stepinto.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                        class="layui-icon">&#xe639;</i> 办理</a>
+
                         <%--<a href="submittask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-disabled layui-btn-mini"><i--%>
                                 <%--class="layui-icon">&#xe639;</i> 任务提交</a>--%>
                         <a href="recovertask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i

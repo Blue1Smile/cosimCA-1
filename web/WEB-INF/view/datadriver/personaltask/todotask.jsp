@@ -112,6 +112,7 @@
     </style>
 </head>
 <body>
+
 <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"
      style="padding-right: 0px">
 </div>
@@ -215,6 +216,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="layui-tab-item">
+                    <iframe src="${ctx}/datadriver/task/stepinto.ht?id=${taskInfo.ddTaskId}" style="width: 100%;height: 500px" frameborder="no" scrolling="auto"></iframe>
+                </div>
+
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="index">
