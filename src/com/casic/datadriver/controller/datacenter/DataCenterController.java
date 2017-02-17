@@ -118,7 +118,7 @@ public class DataCenterController extends AbstractController {
             throws Exception {
         Long ddTaskId= RequestUtil.getLong(request, "id");
         //获得发布数据列表
-        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
+        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
         for (OrderDataRelation orderDataRelation:orderDataRelation_list){
             Long ddDataId=orderDataRelation.getDdDataId();
@@ -127,7 +127,7 @@ public class DataCenterController extends AbstractController {
         }
 
         //获得订购数据列表
-        List<OrderDataRelation> orderDataRelation_list2 = this.orderDataRelationService.queryOrderDataRelationByddTaskID(ddTaskId);
+        List<OrderDataRelation> orderDataRelation_list2 = this.orderDataRelationService.getOrderDataRelationList(ddTaskId);
         List<PrivateData> privateData2 = new ArrayList<PrivateData>();
         for (OrderDataRelation orderDataRelation : orderDataRelation_list2) {
             Long ddDataId=orderDataRelation.getDdDataId();

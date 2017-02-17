@@ -48,7 +48,13 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return this.privateDataDao.getByddDataId(id);
     }
 
+    /**
+     * 2017/02/16/
+     */
 
+    public PrivateData getDataById(long id) {
+        return this.privateDataDao.getDataById(id);
+    }
 
     /**
      * 2016/12/4/ÐÞ¸Ä
