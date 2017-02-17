@@ -89,7 +89,7 @@
     <delete id="delOrderByddDataId" parameterType="java.lang.Long">
         delete from
         dd_order_data_ralation
-        where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
+        where DD_ORDER_DATA_ID = #{ddOrderDataId,jdbcType=NUMERIC}
     </delete>
 
     <delete id="delPublishByddDataId" parameterType="java.lang.Long">

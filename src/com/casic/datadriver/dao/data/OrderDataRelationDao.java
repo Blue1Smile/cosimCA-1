@@ -73,7 +73,8 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
         return this.getUnique("getOrderDataRelationById", id);
     }
 
-    public void delOrderByddDataId(long dataId){this.getBySqlKey("delOrderByddDataId", dataId);}
+    public void delOrderByddDataId(long dataId){this.delBySqlKey("delOrderByddDataId", dataId);}
+
     public void delPublishByddDataId(long dataId){this.getBySqlKey("delPublishByddDataId", dataId);}
 
 }
