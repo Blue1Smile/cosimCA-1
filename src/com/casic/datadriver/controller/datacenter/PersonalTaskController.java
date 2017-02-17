@@ -362,9 +362,9 @@ public class PersonalTaskController extends AbstractController {
             List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
 
-            TaskInfo taskInfo=taskInfoService.getById(ddTaskId);
+            TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
             //判断任务的当前状态，只有在正在执行中才允许提交
-            if (taskStart_list.get(0).getDdTaskStatus() == 0&&taskInfo.getDdTaskChildType().equals("publishpanel")) {
+            if (taskStart_list.get(0).getDdTaskStatus() == 0 && taskInfo.getDdTaskChildType().equals("publishpanel")) {
                 taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
                 taskStartService.update(taskStart_list.get(0));
 
@@ -381,7 +381,6 @@ public class PersonalTaskController extends AbstractController {
     }
 
 
-
     @RequestMapping("recovertask")
     @Action(description = "收回任务")
     public void recovertask(HttpServletRequest request, HttpServletResponse response)
@@ -389,10 +388,10 @@ public class PersonalTaskController extends AbstractController {
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
-            TaskInfo taskInfo=taskInfoService.getById(ddTaskId);
+            TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
 
             //判断任务的当前状态，只有在正在提交中才允许收回
-            if (taskStart_list.get(0).getDdTaskStatus() == 0&&taskInfo.getDdTaskChildType().equals("publishpanel")) {
+            if (taskStart_list.get(0).getDdTaskStatus() == 0 && taskInfo.getDdTaskChildType().equals("publishpanel")) {
                 taskStart_list.get(0).setDdTaskStatus(TaskStart.createpanel);
                 taskStartService.update(taskStart_list.get(0));
 
@@ -463,14 +462,20 @@ public class PersonalTaskController extends AbstractController {
             long dataId = RequestUtil.getLong(request, "id");
             long taskId = RequestUtil.getLong(request, "taskId");
             String parent = RequestUtil.getString(request, "parent");
-            PrivateData privateData = new PrivateData();
-            OrderDataRelation orderDataRelation = new OrderDataRelation();
+
             //已订阅到可订阅
             if (parent.equals("canorderpanel")) {
-                orderDataRelationService.delOrderByddDataId(dataId);
+                List<OrderDataRelation> orderDataRelationList2 = orderDataRelationService.getOrderDataRelationList(taskId);
+                for (OrderDataRelation orderDataRelation1 : orderDataRelationList2) {
+                    if (orderDataRelation1.getDdDataId().equals(dataId)) {
+                        long dataId2 = orderDataRelation1.getDdOrderDataId();
+                        orderDataRelationService.delOrderByddDataId(dataId2);
+                    }
+                }
             }
             //可订阅到已订阅
             if (parent.equals("orderpanel")) {
+                OrderDataRelation orderDataRelation = new OrderDataRelation();
                 orderDataRelation = orderDataRelationService.getOrderDataRelationById(dataId);
 
                 orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
@@ -483,6 +488,7 @@ public class PersonalTaskController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
     /**
      * 私有和发布数据之间的拖拽
      *
