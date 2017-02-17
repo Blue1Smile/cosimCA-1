@@ -163,7 +163,7 @@
                             新创建
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="createpanel" class="scrum-stage-tasks">
+                            <ul id="createpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
                                         onclick="showTaskContent(this ,${taskListbyUserItem.ddTaskId})">
@@ -186,7 +186,7 @@
                             已发布
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="publishpanel" class="scrum-stage-tasks">
+                            <ul id="publishpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${publishtaskListbyUserItem.ddTaskId})">
@@ -210,7 +210,7 @@
                             待审核
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="checkpanel" class="scrum-stage-tasks">
+                            <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${checktaskListbyUserItem.ddTaskId})">
@@ -234,7 +234,7 @@
                             已完成
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="checkpanel" class="scrum-stage-tasks">
+                            <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${completeTaskInfoListItem.ddTaskId})">

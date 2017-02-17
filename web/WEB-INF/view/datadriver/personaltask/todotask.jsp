@@ -144,6 +144,8 @@
         </li>
         <li role="presentation" class="active" id="switch_attr_task"><a href="#data" data-toggle="tab" role="tab">数据</a>
         </li>
+        <li role="presentation" id="switch_attr_publish"><a href="#publish" data-toggle="tab" role="tab">发布</a>
+        </li>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
@@ -166,7 +168,7 @@
                         <div class="panel-heading">
                             私有数据
                         </div>
-                        <div class="panel-body panelheight">
+                        <div class="panel-body panelheight" style="overflow: auto">
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
@@ -191,7 +193,7 @@
                         <div class="panel-heading">
                             发布数据
                         </div>
-                        <div class="panel-body panelheight">
+                        <div class="panel-body panelheight" style="overflow: auto">
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
@@ -216,7 +218,7 @@
                         <div class="panel-heading">
                             可订阅
                         </div>
-                        <div class="panel-body panelheight">
+                        <div class="panel-body panelheight" style="overflow: auto">
                             <ul id="canorderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
@@ -267,6 +269,8 @@
         <div role="tabpanel" class="tab-pane" id="index">
 
         </div>
+        <div role="tabpanel" class="tab-pane" id="publish">
+        </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
         </div>
     </div>
@@ -314,7 +318,7 @@
         function saveOrder2() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
-            $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid);
+            $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId="+${TaskInfo.ddTaskId});
         }
         $("#create_task").show();
         $("#create_index").hide();
@@ -339,7 +343,7 @@
     switch_attr_index.onclick = function () {
         $("#create_task").hide();
         $("#create_index").show();
-        $.get("${ctx}/datadriver/index/indexlist.ht?id=${Project.ddProjectId}", function (data) {
+        $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
         });
     }
@@ -347,6 +351,10 @@
         $("#create_task").show();
         $("#create_index").hide();
     }
-
+    switch_attr_publish.onclick = function () {
+        $.get("${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#publish').html(data);
+        });
+    }
 </script>
 </html>
