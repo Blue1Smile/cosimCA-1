@@ -461,6 +461,7 @@ public class PersonalTaskController extends AbstractController {
     public void canordertoorder(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             long dataId = RequestUtil.getLong(request, "id");
+            long taskId = RequestUtil.getLong(request, "taskId");
             String parent = RequestUtil.getString(request, "parent");
             PrivateData privateData = new PrivateData();
             OrderDataRelation orderDataRelation = new OrderDataRelation();
@@ -474,6 +475,42 @@ public class PersonalTaskController extends AbstractController {
 
                 orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
                 orderDataRelation.setDdOrderType(1L);
+                orderDataRelation.setDdTaskId(taskId);
+                orderDataRelationService.add(orderDataRelation);
+            }
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+    /**
+     * 私有和发布数据之间的拖拽
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("createtopublish")
+    @Action(description = "私有和发布数据之间的拖拽")
+    public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            long dataId = RequestUtil.getLong(request, "id");
+            String parent = RequestUtil.getString(request, "parent");
+            PrivateData privateData = new PrivateData();
+            OrderDataRelation orderDataRelation = new OrderDataRelation();
+            //发布到私有
+            if (parent.equals("createpanel")) {
+                orderDataRelationService.delPublishByddDataId(dataId);
+            }
+            //私有到发布
+            if (parent.equals("publishpanel")) {
+                privateData = privateDataService.getDataById(dataId);
+                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
+                orderDataRelation.setDdDataId(dataId);
+                orderDataRelation.setDdTaskId(privateData.getDdDataTaskId());
+                orderDataRelation.setDdDataName(privateData.getDdDataName());
+                orderDataRelation.setDdOrderType(0L);
                 orderDataRelationService.add(orderDataRelation);
             }
         } catch (Exception e) {

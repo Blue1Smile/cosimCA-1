@@ -96,13 +96,12 @@
         });
     });
 
-
     function showResponse(responseText) {
         var obj = new com.hotent.form.ResultMessage(responseText);
         if (obj.isSuccess()) {
             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
             parent.layer.close(index); //再执行关闭
-            window.location.href = "${ctx}/datadriver/task/stepinto.ht?id=${taskInfo.ddTaskId}";
+            window.location.href = "${ctx}/datadriver/privatedata/addprivatedata.ht?id=${taskInfo.ddTaskId}";
         } else {
 //            $.ligerMessageBox.error("提示信息", obj.getMessage());
         }

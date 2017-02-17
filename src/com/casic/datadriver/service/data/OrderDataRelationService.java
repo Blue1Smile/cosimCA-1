@@ -106,4 +106,7 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     public void delOrderByddDataId(long dataId){
         this.orderDataRelationDao.delOrderByddDataId(dataId);
     }
+    public void delPublishByddDataId(long dataId){
+        this.orderDataRelationDao.delPublishByddDataId(dataId);
+    }
 }
