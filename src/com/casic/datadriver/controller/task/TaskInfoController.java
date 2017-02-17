@@ -265,8 +265,8 @@ public class TaskInfoController extends AbstractController {
         }
 
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
-        List<OrderDataRelation> orderDataList = orderDataRelationService.queryOrderDataRelationByddTaskID(id);
-        List<OrderDataRelation> publishDataList = orderDataRelationService.queryPublishDataRelationByddTaskID(id);
+        List<OrderDataRelation> orderDataList = orderDataRelationService.getOrderDataRelationList(id);
+        List<OrderDataRelation> publishDataList = orderDataRelationService.getPublishDataRelationList(id);
 
         List<ISysUser> sysUserList = sysUserService.getAll();
 
@@ -312,7 +312,7 @@ public class TaskInfoController extends AbstractController {
         Long id = RequestUtil.getLong(request, "id");
         String returnUrl = RequestUtil.getPrePage(request);
         List<PrivateData> privateDataList = new ArrayList<PrivateData>();
-        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(id);
+        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.getPublishDataRelationList(id);
 
         //循环获取发布数据ID，查找私有数据
         for (int i = 0; i < publishDataRelationList.size(); i++) {
@@ -345,7 +345,7 @@ public class TaskInfoController extends AbstractController {
         for (int i = 0; i < task_list.size(); i++) {
             Long ddtaskId = task_list.get(i).getDdTaskId();
 //            Long ddtaskId = taskInfo.getDdTaskId();
-            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddtaskId);
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddtaskId);
             for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
 
                 Long ddDataId = orderDataRelation.getDdDataId();
@@ -353,7 +353,7 @@ public class TaskInfoController extends AbstractController {
                 privateData.addAll(taskPrivateDatas);
             }
         }
-        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.queryOrderDataRelationByddTaskID(id);
+        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.getOrderDataRelationList(id);
         //循环获取订阅数据ID，查找私有数据
         for (int i = 0; i < orderDataRelationList.size(); i++) {
             OrderDataRelation orderDataRelation = orderDataRelationList.get(i);
@@ -518,7 +518,7 @@ public class TaskInfoController extends AbstractController {
             throws Exception {
         Long ddTaskId = RequestUtil.getLong(request, "id");
         //获得发布数据列表
-        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
         for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
             Long ddDataId = orderDataRelation.getDdDataId();
@@ -723,7 +723,7 @@ public class TaskInfoController extends AbstractController {
 
         if (parent.equals("privatepanel")) {
             List<OrderDataRelation> publishDataList = new ArrayList<OrderDataRelation>();
-            publishDataList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
+            publishDataList = orderDataRelationService.getPublishDataRelationList(taskId);
 
             //更新orderDataRelation
             for (int i = 0; i < publishDataList.size(); i++) {

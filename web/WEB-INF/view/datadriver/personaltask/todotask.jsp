@@ -109,7 +109,19 @@
             overflow-x: hidden;
         }
 
+        .task-card > .checkbox > input[type="checkbox"] {
+            position: absolute;
+            margin-top: 13px;
+            margin-left: -7px;
+        }
+
+        .pull-right {
+            float: right !important;
+            margin-top: -42px;
+            margin-right: 10px;
+        }
     </style>
+
 </head>
 <body>
 
@@ -160,12 +172,14 @@
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
                                         onclick="showTaskContent(this ,${privateDataListbyTaskItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
-                                            <input id="${privateDataListbyTaskItem.ddDataId}" type="checkbox">
-                                            <label for="${privateDataListbyTaskItem.ddDataId}">
+                                            <input id="checkbox1" type="checkbox">
+                                            <label for="checkbox1">
                                                     ${privateDataListbyTaskItem.ddDataName}
                                             </label>
                                         </div>
-                                        <input type="hidden" value="${privateDataListbyTaskItem.ddDataId}" name="release"/>
+                                        <label class="pull-right">${privateDataListbyTaskItem.ddDataTaskName}</label>
+                                        <input type="hidden" value="${privateDataListbyTaskItem.ddDataId}"
+                                               name="release"/>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -183,11 +197,12 @@
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${publishDataListItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
-                                            <input id="${publishDataListItem.ddDataId}" type="checkbox">
-                                            <label for="${publishDataListItem.ddDataId}">
+                                            <input id="checkbox2" type="checkbox">
+                                            <label for="checkbox2">
                                                     ${publishDataListItem.ddDataName}
                                             </label>
                                         </div>
+                                        <label class="pull-right">${publishDataListItem.ddDataTaskName}</label>
                                         <input type="hidden" value="${publishDataListItem.ddDataId}"
                                                name="release"/>
                                     </li>
@@ -202,7 +217,22 @@
                             可订阅
                         </div>
                         <div class="panel-body panelheight">
-                            <section></section>
+                            <ul id="canorderpanel" class="scrum-stage-tasks">
+                                <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
+                                    <li class="task task-card ui-sortable-handle " id="showRightPush"
+                                        onclick="showDataContent(this ,${canBeOrderPrivatedataListItem.ddDataId})">
+                                        <div class="checkbox">
+                                            <input id="checkbox3" type="checkbox">
+                                            <label for="checkbox3">
+                                                    ${canBeOrderPrivatedataListItem.ddDataName}
+                                            </label>
+                                        </div>
+                                        <label class="pull-right">${canBeOrderPrivatedataListItem.ddDataTaskName}</label>
+                                        <input type="hidden" value="${canBeOrderPrivatedataListItem.ddDataId}"
+                                               name="release"/>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -211,8 +241,23 @@
                         <div class="panel-heading">
                             已订阅
                         </div>
-                        <div class="panel-body panelheight">
-                            <section></section>
+                        <div class="panel-body panelheight" style="overflow: auto">
+                            <ul id="orderpanel" class="scrum-stage-tasks">
+                                <c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">
+                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
+                                        onclick="showDataContent(this, ${OrderPrivatedataListItem.ddDataId})">
+                                        <div class="checkbox">
+                                            <input id="checkbox4" type="checkbox">
+                                            <label for="checkbox4">
+                                                    ${OrderPrivatedataListItem.ddDataName}
+                                            </label>
+                                        </div>
+                                        <label class="pull-right">${OrderPrivatedataListItem.ddDataTaskName}</label>
+                                        <input type="hidden" value="${OrderPrivatedataListItem.ddDataId}"
+                                               name="release"/>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -237,12 +282,23 @@
             dragEnd: saveOrder,
             placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
         });
+        $("#canorderpanel,#orderpanel").dragsort({
+            itemSelector: "li",
+            dragSelector: "li",
+            dragBetween: true,
+            dragEnd: saveOrder2,
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+        });
         function saveOrder() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
             $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
-
+        function saveOrder2() {
+            var data = $(this).children('input').val();
+            var parentid = $(this).parent().attr("id");
+            $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid);
+        }
         $("#create_task").show();
         $("#create_index").hide();
     });
@@ -256,8 +312,8 @@
         $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
             $('#cbp-spmenu-s2').html(data);
         });
-        classie.toggle( obj, 'active' );
-        classie.toggle( menuRight, 'cbp-spmenu-open' );
+        classie.toggle(obj, 'active');
+        classie.toggle(menuRight, 'cbp-spmenu-open');
 //        classie.toggle(obj, 'active');
 //        classie.toggle(body, 'cbp-spmenu-push-toleft');
 //        classie.toggle(menuRight, 'cbp-spmenu-open');

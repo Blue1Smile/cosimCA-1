@@ -2458,8 +2458,8 @@ _:-ms-fullscreen.input-lg,
 .checkbox {
   position: relative;
   display: block;
-  margin-top: 2px;
-  margin-bottom: 6px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .radio label,
 .checkbox label {

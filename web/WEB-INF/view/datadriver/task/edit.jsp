@@ -125,7 +125,7 @@
             </ul>
         </div>
     </div>
-    <div class="panel-body" style="overflow: scroll">
+    <div class="panel-body" style="overflow: auto">
             <div class="row" id="row">
                 <div class="col-xs-4" id="card1">
                     <div class="panel panel-default">

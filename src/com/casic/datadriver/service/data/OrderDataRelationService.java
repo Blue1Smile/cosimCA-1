@@ -45,12 +45,11 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     /**
      * Query OrderDataRelation basic info list.
      *
-     * @param queryFilter
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryOrderDataRelationBasicInfoList(QueryFilter queryFilter) {
-        return this.orderDataRelationDao.queryOrderDataRelationBasicInfoList(queryFilter);
+    public List<OrderDataRelation> getCanBeOrderDataList(long project) {
+        return this.orderDataRelationDao.getCanBeOrderDataList(project);
     }
 
     /**
@@ -60,11 +59,13 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryOrderDataRelationByddTaskID(long ddtaskId) {
-        return this.orderDataRelationDao.queryOrderDataRelationByddTaskID(ddtaskId);
+    public List<OrderDataRelation> getOrderDataRelationList(long ddtaskId) {
+        return this.orderDataRelationDao.getOrderDataRelationList(ddtaskId);
     }
 
-
+    public OrderDataRelation getOrderDataRelationById(long id) {
+        return this.orderDataRelationDao.getOrderDataRelationById(id);
+    }
 
     /**
      * Query OrderDataRelation basic info list.
@@ -73,8 +74,8 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryPublishDataRelationByddTaskID(long ddtaskId) {
-        return this.orderDataRelationDao.queryPublishDataRelationByddTaskID(ddtaskId);
+    public List<OrderDataRelation> getPublishDataRelationList(long ddtaskId) {
+        return this.orderDataRelationDao.getPublishDataRelationList(ddtaskId);
     }
 
     public List<OrderDataRelation> queryPublishDataRelationByddTaskIDF(PageInfo model) {
@@ -100,5 +101,9 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      */
     public void delOrderByddDataTaskId(Long ddDataTaskId) {
         this.orderDataRelationDao.delOrderByddDataTaskId(ddDataTaskId);
+    }
+
+    public void delOrderByddDataId(long dataId){
+        this.orderDataRelationDao.delOrderByddDataId(dataId);
     }
 }
