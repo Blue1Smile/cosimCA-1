@@ -115,7 +115,7 @@
             margin-left: -7px;
         }
 
-        .pull-right {
+        .pull-right.taskname {
             float: right !important;
             margin-top: -42px;
             margin-right: 10px;
@@ -153,8 +153,8 @@
             </a>
 
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
-               data-remote="${ctx}/datadriver/task/addtask.ht?id=${TaskInfo.ddTaskId}"
-               data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建</a>
+               data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
+               data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建</a>
         </div>
     </ul>
     <br>
@@ -177,7 +177,7 @@
                                                     ${privateDataListbyTaskItem.ddDataName}
                                             </label>
                                         </div>
-                                        <label class="pull-right">${privateDataListbyTaskItem.ddDataTaskName}</label>
+                                        <label class="pull-right taskname">${privateDataListbyTaskItem.ddDataTaskName}</label>
                                         <input type="hidden" value="${privateDataListbyTaskItem.ddDataId}"
                                                name="release"/>
                                     </li>
@@ -202,7 +202,7 @@
                                                     ${publishDataListItem.ddDataName}
                                             </label>
                                         </div>
-                                        <label class="pull-right">${publishDataListItem.ddDataTaskName}</label>
+                                        <label class="pull-right taskname">${publishDataListItem.ddDataTaskName}</label>
                                         <input type="hidden" value="${publishDataListItem.ddDataId}"
                                                name="release"/>
                                     </li>
@@ -227,7 +227,7 @@
                                                     ${canBeOrderPrivatedataListItem.ddDataName}
                                             </label>
                                         </div>
-                                        <label class="pull-right">${canBeOrderPrivatedataListItem.ddDataTaskName}</label>
+                                        <label class="pull-right taskname">${canBeOrderPrivatedataListItem.ddDataTaskName}</label>
                                         <input type="hidden" value="${canBeOrderPrivatedataListItem.ddDataId}"
                                                name="release"/>
                                     </li>
@@ -252,7 +252,7 @@
                                                     ${OrderPrivatedataListItem.ddDataName}
                                             </label>
                                         </div>
-                                        <label class="pull-right">${OrderPrivatedataListItem.ddDataTaskName}</label>
+                                        <label class="pull-right taskname">${OrderPrivatedataListItem.ddDataTaskName}</label>
                                         <input type="hidden" value="${OrderPrivatedataListItem.ddDataId}"
                                                name="release"/>
                                     </li>
@@ -268,6 +268,23 @@
 
         </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
+        </div>
+    </div>
+</div>
+<%--任务数据--%>
+<div class="modal fade" id="adddata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+<%--统计--%>
+<div class="modal fade" id="statis" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
         </div>
     </div>
 </div>
