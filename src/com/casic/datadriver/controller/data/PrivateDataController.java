@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.casic.datadriver.model.data.DataSnapShotId;
 import com.casic.datadriver.model.data.DataVersion;
+import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
 import com.casic.datadriver.model.task.TaskStart;
 import com.casic.datadriver.service.data.DataSnapShotIdService;
@@ -55,6 +56,41 @@ public class PrivateDataController extends AbstractController {
 
     @Resource
     private DataVersionService dataVersionService;
+
+
+//    /**
+//     * ?????????.
+//     *
+//     * @param request
+//     *            the request
+//     * @param response
+//     *            the response
+//     * @throws Exception
+//     *             the exception
+//     */
+//    @RequestMapping("save")
+//         @Action(description = "保存privateData")
+//         public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        String resultMsg = null;
+//        PrivateData privateData = this.getFormObject(request, PrivateData.class);
+//        try {
+//            if (privateData.getDdDataId() == null || privateData.getDdDataId() == 0) {
+//                privateData.setDdDataId(UniqueIdUtil.genId());
+//                privateDataService.addDDPrivateData(privateData);
+//                resultMsg = getText("record.added", "私有数据");
+////                resultMsg = new String(resultMsg.getBytes(),"utf-8");
+//            } else {
+//                privateDataService.updatedata(privateData);
+//                resultMsg = getText("record.updated", "私有数据");
+////                resultMsg = new String(resultMsg.getBytes(),"utf-8");
+//            }
+//            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+//        } catch (Exception e) {
+//            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+//        }
+//    }
+
+
     /**
      * ?????????.
      *
@@ -66,8 +102,8 @@ public class PrivateDataController extends AbstractController {
      *             the exception
      */
     @RequestMapping("save")
-         @Action(description = "保存privateData")
-         public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @Action(description = "保存privateData")
+    public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String resultMsg = null;
         PrivateData privateData = this.getFormObject(request, PrivateData.class);
         try {
@@ -86,6 +122,7 @@ public class PrivateDataController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
 
     /**
      * Query privateData basic info list.
@@ -145,6 +182,39 @@ public class PrivateDataController extends AbstractController {
 //            return mv;
 //        }
 //    }
+
+
+    /**
+     * 添加私有数据
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the add
+     * @throws Exception the exception
+     */
+    @RequestMapping("addprivatedata")
+    @Action(description = "添加任务")
+    public ModelAndView addprivatedata(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        ResultMessage resultMessage = null;
+        ModelAndView mv = new ModelAndView();
+        try {
+            Long id = RequestUtil.getLong(request, "id");
+            TaskInfo taskInfo = taskInfoService.getById(id);
+
+            ISysUser sysUser = ContextUtil.getCurrentUser();
+            String sysName = sysUser.getFullname();
+            Date currentTime = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = formatter.format(currentTime);
+
+            mv = this.getAutoView().addObject("taskInfo", taskInfo).addObject("currentTime", currentTime).addObject("sysName",sysName);
+            resultMessage = new ResultMessage(ResultMessage.Success, "创建成功");
+        } catch (Exception ex) {
+            resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败" + ex.getMessage());
+        }
+        return mv;
+    }
 
     /**
      * 编辑任务

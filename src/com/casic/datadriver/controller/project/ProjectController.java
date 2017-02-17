@@ -341,6 +341,8 @@ public class ProjectController extends BaseController {
         List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
         List<TaskInfo> createTaskInfoList = new ArrayList<TaskInfo>();
         List<TaskInfo> publishTaskInfoList = new ArrayList<TaskInfo>();
+        List<TaskInfo> checkTaskInfoList= new ArrayList<TaskInfo>();
+        List<TaskInfo> completeTaskInfoList= new ArrayList<TaskInfo>();
         List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(projectId);
         for (int i = 0; i < proTaskDependanceList.size(); i++) {
             ProTaskDependance proTaskDependance = proTaskDependanceList.get(i);
@@ -356,13 +358,24 @@ public class ProjectController extends BaseController {
             if (taskInfo.getDdTaskChildType().equals("createpanel")) {
                 createTaskInfoList.add(taskInfo);
             }
+            if(taskInfo.getDdTaskChildType().equals("checkpanel")){
+                checkTaskInfoList.add(taskInfo);
+            }
+            if(taskInfo.getDdTaskChildType().equals("completepanel")){
+                completeTaskInfoList.add(taskInfo);
+            }
         }
+
+
+
         //根据用户ID获取当前用户拥有项目列表
         List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
         return getAutoView().addObject("Project", project)
                 .addObject("projectListbyUser", projectListbyUser)
                 .addObject("taskListbyUser", createTaskInfoList)
-                .addObject("publishtaskListbyUser", publishTaskInfoList);
+                .addObject("publishtaskListbyUser", publishTaskInfoList)
+                .addObject("checkTaskInfoList",checkTaskInfoList)
+                .addObject("completeTaskInfoList",completeTaskInfoList);
     }
 
 

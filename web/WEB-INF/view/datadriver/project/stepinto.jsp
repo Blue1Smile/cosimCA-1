@@ -207,20 +207,48 @@
                 <div class="col-xs-3" style="height: 100%">
                     <div class="panel panel-success task-panel">
                         <div class="panel-heading">
-                            已完成
+                            待审核
                         </div>
                         <div class="panel-body panelheight">
-                            <section></section>
+                            <ul id="checkpanel" class="scrum-stage-tasks">
+                                <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
+                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
+                                        onclick="showTaskContent(this, ${checktaskListbyUserItem.ddTaskId})">
+                                        <div class="checkbox checkbox-primary">
+                                            <input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">
+                                            <label for="${checkTaskInfoListItem.ddTaskId}">
+                                                    ${checkTaskInfoListItem.ddTaskName}
+                                            </label>
+                                        </div>
+                                        <input type="hidden" value="${checkTaskInfoListItem.ddTaskId}"
+                                               name="release"/>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3" style="height: 100%">
                     <div class="panel panel-warning task-panel">
                         <div class="panel-heading">
-                            已审核
+                            已完成
                         </div>
                         <div class="panel-body panelheight">
-                            <section></section>
+                            <ul id="checkpanel" class="scrum-stage-tasks">
+                                <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
+                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
+                                        onclick="showTaskContent(this, ${completeTaskInfoListItem.ddTaskId})">
+                                        <div class="checkbox checkbox-primary">
+                                            <input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">
+                                            <label for="${completeTaskInfoListItem.ddTaskId}">
+                                                    ${completeTaskInfoListItem.ddTaskName}
+                                            </label>
+                                        </div>
+                                        <input type="hidden" value="${completeTaskInfoListItem.ddTaskId}"
+                                               name="release"/>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
