@@ -390,31 +390,79 @@ public class ProjectController extends BaseController {
     @RequestMapping("createtopublish")
     @Action(description = "任务拖拽到发布")
     public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        PrintWriter out = response.getWriter();
+
         long taskId = RequestUtil.getLong(request, "id");
         String parent = RequestUtil.getString(request, "parent");
-
         TaskStart taskStart = new TaskStart();
-        TaskInfo taskInfo = new TaskInfo();
-        if (parent.equals("createpanel")) {
-            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
-            //更新taskinfo?????createpanel属性是否应该放到taskstart里面
-            taskInfo.setDdTaskChildType("createpanel");
-            taskInfoService.updateDDTask(taskInfo);
-            taskStartService.delByTaskId(taskInfo.getDdTaskId());
-        }
-        if (parent.equals("publishpanel")) {
+        TaskInfo taskInfo = taskInfoService.getById(taskId);
+
+        //发布任务
+        if(taskInfo.getDdTaskChildType().equals("createpanel")&&parent.equals("publishpanel")){
             taskStart.setDdTaskStartId(UniqueIdUtil.genId());
             taskStart.setDdTaskId(taskId);
-            taskStart.setDdTaskStatus((short) 1);
-            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
+            taskStart.setDdTaskStatus(TaskStart.publishpanel);
+
+            taskInfo = taskInfoService.getById(taskId);
             //更新taskinfo
             taskInfo.setDdTaskChildType("publishpanel");
-            taskInfoService.updateDDTask(taskInfo);
+            taskInfoService.update(taskInfo);
             //添加taskstart
             long userId = taskInfo.getDdTaskResponsiblePerson();
             taskStart.setDdTaskResponcePerson(userId);
             taskStartService.taskStart(taskStart);
         }
+        //收回任务
+        if (taskInfo.getDdTaskChildType().equals("publishpanel")&&parent.equals("createpanel")) {
+            //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+            taskInfo.setDdTaskChildType("createpanel");
+            taskInfoService.update(taskInfo);
+            taskStartService.delByTaskId(taskInfo.getDdTaskId());
+        }
+        else{
+
+            //提交任务
+            if(taskInfo.getDdTaskChildType().equals("publishpanel")&&parent.equals("checkpanel")){
+                //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+                taskInfo.setDdTaskChildType("checkpanel");
+                taskInfoService.update(taskInfo);
+
+                taskStart.setDdTaskStatus(TaskStart.checkpanel);
+                taskStartService.update(taskStart);
+            }
+            else{
+                //驳回任务
+                if(taskInfo.getDdTaskChildType().equals("checkpanel")&&parent.equals("publishpanel")){
+                    //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+                    taskInfo.setDdTaskChildType("publishpanel");
+                    taskInfoService.update(taskInfo);
+
+                    taskStart.setDdTaskStatus(TaskStart.publishpanel);
+                    taskStartService.update(taskStart);
+                }
+                else{
+                    //审核通过
+                    if(taskInfo.getDdTaskChildType().equals("checkpanel")&&parent.equals("completepanel")){
+                        //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+                        taskInfo.setDdTaskChildType("completepanel");
+                        taskInfoService.update(taskInfo);
+
+                        taskStart.setDdTaskStatus(TaskStart.completepanel);
+                        taskStartService.update(taskStart);
+                    }
+                    else{
+                        ResultMessage resultMessage = new ResultMessage(
+                                ResultMessage.Fail, "拖拽不允许");
+                        out.print(resultMessage);
+                    }
+                }
+
+            }
+
+        }
+
+
     }
     /**
      * 项目统计
@@ -442,4 +490,20 @@ public class ProjectController extends BaseController {
         }
         return mv;
     }
+
+    /**
+     * 项目统计
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("test")
+    @Action(description = "测试")
+    public void test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        long taskId = RequestUtil.getLong(request, "id");
+
+    }
+
 }

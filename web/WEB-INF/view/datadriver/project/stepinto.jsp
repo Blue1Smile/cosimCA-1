@@ -231,7 +231,7 @@
                             已完成
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="checkpanel" class="scrum-stage-tasks">
+                            <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${completeTaskInfoListItem.ddTaskId})">
@@ -285,14 +285,61 @@
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
+    var startId;
     $(document).ready(function () {
-        $("#createpanel,#publishpanel").dragsort({
+
+//        $("#createpanel,#publishpanel").dragsort({
+//            itemSelector: "li",
+//            dragSelector: "li",
+//            dragBetween: true,
+////            dragStart:getStartId,
+////            dragEnd: saveOrder,
+//            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+//        });
+//
+//
+////        $("#createpanel,#finishpanel").dragsort({
+////            itemSelector: "li",
+////            dragSelector: "li",
+////            dragBetween: true,
+//////            dragStart:getStartId,
+//////            dragEnd: saveOrder,
+////            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+////        });
+//
+//        $("#checkpanel,#publishpanel").dragsort({
+//            itemSelector: "li",
+//            dragSelector: "li",
+//            dragBetween: true,
+////            dragStart:getStartId,
+////            dragEnd: saveOrder,
+//            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+//        });
+////
+//        $("#checkpanel,#finishpanel").dragsort({
+//            itemSelector: "li",
+//            dragSelector: "li",
+//            dragBetween: true,
+////            dragStart:getStartId,
+////            dragEnd: saveOrder,
+//            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+//        });
+
+        $("#createpanel,#publishpanel,#checkpanel,#completepanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder,
             placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
         });
+
+
+//        function getStartId(){
+//            startId=$(this).parent().attr("id");
+//            alert(startId);
+//            $.get("test.ht?id=" + startId );
+//        }
+
         function saveOrder() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
@@ -309,6 +356,7 @@
             body = document.body;
 
     function showTaskContent(obj, taskId) {
+        startId=$(this).parent().attr("id");
         $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
             $('#cbp-spmenu-s2').html(data);
         });
