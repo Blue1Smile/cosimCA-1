@@ -55,7 +55,6 @@ public class DataVersionService extends BaseService<DataVersion> {
     }
 
 
-
     /**
      * 2016.12.22
      * Query dataVersion basic info list by DataId.

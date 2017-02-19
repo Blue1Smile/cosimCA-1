@@ -108,7 +108,7 @@
             border-style: solid;
             border-width: 0;
             border-color: #E5E5E5;
-            overflow-y: auto;
+            overflow-y: hidden;
             overflow-x: hidden;
         }
 
