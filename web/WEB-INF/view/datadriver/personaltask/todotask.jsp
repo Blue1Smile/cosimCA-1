@@ -151,12 +151,15 @@
         <div class="pull-right">
             <a id="statis_btn" class="btn btn-warning" data-toggle="modal"
                data-remote="statis.ht?id=${TaskInfo.ddTaskId}"
-               data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计
+               data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 进程统计
             </a>
 
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
                data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
-               data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建</a>
+               data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>
+
+            <a id="complete_btn" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务
+            </a>
         </div>
     </ul>
     <br>
@@ -172,7 +175,7 @@
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showTaskContent(this ,${privateDataListbyTaskItem.ddDataId})">
+                                        onclick="showDataContent(this ,${privateDataListbyTaskItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox1" type="checkbox">
                                             <label for="checkbox1">
@@ -197,7 +200,7 @@
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(this, ${publishDataListItem.ddDataId})">
+                                        onclick="showDataContent(this, ${publishDataListItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox2" type="checkbox">
                                             <label for="checkbox2">
@@ -329,8 +332,8 @@
             showRightPush = document.getElementById('showRightPush'),
             body = document.body;
 
-    function showTaskContent(obj, taskId) {
-        $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
+    function showDataContent(obj, taskId) {
+        $.get("${ctx}/datadriver/privatedata/edit.ht?id=" + taskId, function (data) {
             $('#cbp-spmenu-s2').html(data);
         });
         classie.toggle(obj, 'active');
