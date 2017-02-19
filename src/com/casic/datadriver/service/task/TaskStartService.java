@@ -87,7 +87,7 @@ public class TaskStartService  extends BaseService<TaskStart> {
      * @return
      * @throws Exception
      */
-    public void taskStart(TaskStart taskStart){
+    public void taskStart(TaskStart taskStart,Project project){
         taskStart.setDdTaskStatus(TaskStart.publishpanel);
         taskStart.setCreatetime(new Date());
         dao.add(taskStart);

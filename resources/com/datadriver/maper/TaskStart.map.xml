@@ -64,4 +64,9 @@ DD_TASK_START_ID,DD_PROJECT_START_ID,DD_TASK_ID,ACT_INST_ID,DD_TASK_STATUS,SORT_
     where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC}
   </delete>
 
+  <delete id="delById" parameterType="java.lang.Long">
+    delete from
+    dd_task_start
+    where DD_TASK_START_ID = #{ddTaskStartId,jdbcType=NUMERIC}
+  </delete>
 </mapper>

@@ -10,6 +10,7 @@ import java.io.InputStream;
 
 import com.casic.datadriver.model.flow.ProcessFlow;
 import com.casic.datadriver.model.flow.ProjectProcessAssocia;
+import com.casic.datadriver.model.project.ProjectStart;
 import com.casic.datadriver.model.task.TaskStart;
 import com.casic.datadriver.service.flow.ProcessFlowService;
 import com.casic.datadriver.service.flow.ProjectProcessAssociaService;
@@ -407,17 +408,23 @@ public class ProjectController extends BaseController {
             taskInfo = taskInfoService.getById(taskId);
             //更新taskinfo
             taskInfo.setDdTaskChildType("publishpanel");
+            taskInfo.setDdTaskState(taskInfo.publishpanel);
             taskInfoService.update(taskInfo);
             //添加taskstart
             long userId = taskInfo.getDdTaskResponsiblePerson();
             taskStart.setDdTaskResponcePerson(userId);
-            taskStartService.taskStart(taskStart);
+
+            Project project = projectService.getById(taskInfo.getDdTaskProjectId());
+//            ProjectStart
+            taskStartService.taskStart(taskStart,project);
         }
         //收回任务
         if (taskInfo.getDdTaskChildType().equals("publishpanel")&&parent.equals("createpanel")) {
             //更新taskinfo?????createpanel属性是否应该放到taskstart里面
             taskInfo.setDdTaskChildType("createpanel");
+            taskInfo.setDdTaskState(taskInfo.createpanel);
             taskInfoService.update(taskInfo);
+
             taskStartService.delByTaskId(taskInfo.getDdTaskId());
         }
         else{
@@ -427,6 +434,7 @@ public class ProjectController extends BaseController {
                 //更新taskinfo?????createpanel属性是否应该放到taskstart里面
                 taskInfo.setDdTaskChildType("checkpanel");
                 taskInfoService.update(taskInfo);
+                taskInfo.setDdTaskState(taskInfo.checkpanel);
 
                 taskStart.setDdTaskStatus(TaskStart.checkpanel);
                 taskStartService.update(taskStart);
@@ -437,6 +445,7 @@ public class ProjectController extends BaseController {
                     //更新taskinfo?????createpanel属性是否应该放到taskstart里面
                     taskInfo.setDdTaskChildType("publishpanel");
                     taskInfoService.update(taskInfo);
+                    taskInfo.setDdTaskState(taskInfo.publishpanel);
 
                     taskStart.setDdTaskStatus(TaskStart.publishpanel);
                     taskStartService.update(taskStart);
@@ -447,15 +456,12 @@ public class ProjectController extends BaseController {
                         //更新taskinfo?????createpanel属性是否应该放到taskstart里面
                         taskInfo.setDdTaskChildType("completepanel");
                         taskInfoService.update(taskInfo);
+                        taskInfo.setDdTaskState(taskInfo.completepanel);
 
                         taskStart.setDdTaskStatus(TaskStart.completepanel);
                         taskStartService.update(taskStart);
                     }
-                    else{
-                        ResultMessage resultMessage = new ResultMessage(
-                                ResultMessage.Fail, "拖拽不允许");
-                        out.print(resultMessage);
-                    }
+
                 }
 
             }

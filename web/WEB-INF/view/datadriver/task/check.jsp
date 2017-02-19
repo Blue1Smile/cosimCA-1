@@ -58,6 +58,7 @@
                     </form>
                 </span>
                 <span class="fr">
+                    <a class="layui-btn layui-btn-normal" id="checktask" href="checktask.ht?id=${TaskId}"><i class="layui-icon">&#xe615;</i> 审核通过</a>
                     <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
                     <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
                 </span>

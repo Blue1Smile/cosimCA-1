@@ -325,7 +325,7 @@
 //            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
 //        });
 
-        $("#createpanel,#publishpanel,#checkpanel,#completepanel").dragsort({
+        $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
             dragBetween: true,
@@ -333,6 +333,13 @@
             placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
         });
 
+        $("#checkpanel,#completepanel").dragsort({
+            itemSelector: "li",
+            dragSelector: "li",
+            dragBetween: true,
+            dragEnd: saveOrder,
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+        });
 
 //        function getStartId(){
 //            startId=$(this).parent().attr("id");
