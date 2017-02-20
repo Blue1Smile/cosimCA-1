@@ -22,18 +22,6 @@
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
     <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
 
-    <%--<script type="text/javascript">--%>
-    <%--$(function () {--%>
-    <%--var frm = $('#taskInfoForm').form();--%>
-    <%--$("#dataFormSave").click(function () {--%>
-    <%--frm.setData();--%>
-    <%--frm.ajaxForm(options);--%>
-    <%--if (frm.valid()) {--%>
-    <%--form.submit();--%>
-    <%--}--%>
-    <%--});--%>
-    <%--});--%>
-    <%--</script>--%>
     <script src="${ctx}/newtable/bootstrap-editable.js"></script>
     <script src="${ctx}/timeselect/moment.js"></script>
     <style>
@@ -41,14 +29,6 @@
             margin: 0px;
             height: 100%;
         }
-
-        /*.panel-heading {*/
-            /*padding: 10px 15px;*/
-            /*border-bottom: 1px solid #ddd;*/
-            /*border-top-left-radius: 1px;*/
-            /*border-top-right-radius: 1px;*/
-            /*background-color: #f5f5f5;*/
-        /*}*/
 
         #card1, #card2, #card3 {
             padding-right: 2px;
@@ -125,7 +105,7 @@
             </ul>
         </div>
     </div>
-    <div class="panel-body" style="overflow: scroll">
+    <div class="panel-body" style="overflow: auto">
             <div class="row" id="row">
                 <div class="col-xs-4" id="card1">
                     <div class="panel panel-default">
@@ -208,39 +188,39 @@
             <div class="panel panel-default">
                 <div class="panel-body"><h5 class="task-info-title">活动</h5>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <h5 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                       aria-expanded="true" aria-controls="collapseOne">
-                                        基本动态
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
-                                 aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <ul class="activities-list">
-                                        <li class="activity">
-                                            <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
-                                            <div class="activity-body-coyness muted pull-right"><span>2017年1月16日</span>
-                                            </div>
-                                            <div class="activity-body-coyness muted">
-                                                <span>设计师一 更新了 截止时间</span>
-                                            </div>
-                                        </li>
-                                        <li class="activity">
-                                            <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
-                                            <div class="activity-body-coyness muted pull-right"><span>2017年1月22日</span>
-                                            </div>
-                                            <div class="activity-body-coyness muted">
-                                                <span>设计师一 更新了 优先级</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <%--<div class="panel panel-default">--%>
+                            <%--<div class="panel-heading" role="tab" id="headingOne">--%>
+                                <%--<h5 class="panel-title">--%>
+                                    <%--<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"--%>
+                                       <%--aria-expanded="true" aria-controls="collapseOne">--%>
+                                        <%--基本动态--%>
+                                    <%--</a>--%>
+                                <%--</h5>--%>
+                            <%--</div>--%>
+                            <%--<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"--%>
+                                 <%--aria-labelledby="headingOne">--%>
+                                <%--<div class="panel-body">--%>
+                                    <%--<ul class="activities-list">--%>
+                                        <%--<li class="activity">--%>
+                                            <%--<span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>--%>
+                                            <%--<div class="activity-body-coyness muted pull-right"><span>2017年1月16日</span>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="activity-body-coyness muted">--%>
+                                                <%--<span>设计师一 更新了 截止时间</span>--%>
+                                            <%--</div>--%>
+                                        <%--</li>--%>
+                                        <%--<li class="activity">--%>
+                                            <%--<span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>--%>
+                                            <%--<div class="activity-body-coyness muted pull-right"><span>2017年1月22日</span>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="activity-body-coyness muted">--%>
+                                                <%--<span>设计师一 更新了 优先级</span>--%>
+                                            <%--</div>--%>
+                                        <%--</li>--%>
+                                    <%--</ul>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h5 class="panel-title">

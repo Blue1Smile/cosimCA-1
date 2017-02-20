@@ -21,7 +21,7 @@
     #{ddTaskId,jdbcType=NUMERIC}, #{ddOpreationLevel,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR})
   </insert>
 
-    <select id="queryOrderDataRelationByddTaskID" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getOrderDataRelationList" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
@@ -29,11 +29,32 @@
     </select>
 
 
-    <select id="queryPublishDataRelationByddTaskID" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="getPublishDataRelationList" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
         where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
+    </select>
+
+    <!--<select id="getCanBeOrderDataList" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List"/>-->
+        <!--from dd_order_data_ralation-->
+        <!--where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0-->
+    <!--</select>-->
+
+    <select id="getOrderDataRelationById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
+    </select>
+
+    <select id="queryPublishDataRelationByddTaskIDF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_TASK_ID = #{id} AND DD_ORDER_TYPE=0 limit #{pageSize},#{pageNumber}
     </select>
 
 
@@ -63,6 +84,18 @@
         delete from
         dd_order_data_ralation
         where DD_ORDER_DATA_ID = #{ddOrderDataId,jdbcType=NUMERIC}
+    </delete>
+
+    <delete id="delOrderByddDataId" parameterType="java.lang.Long">
+        delete from
+        dd_order_data_ralation
+        where DD_ORDER_DATA_ID = #{ddOrderDataId,jdbcType=NUMERIC}
+    </delete>
+
+    <delete id="delPublishByddDataId" parameterType="java.lang.Long">
+        delete from
+        dd_order_data_ralation
+        where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
     </delete>
 
     <insert id="insert" parameterType="com.casic.datadriver.model.data.OrderDataRelation">

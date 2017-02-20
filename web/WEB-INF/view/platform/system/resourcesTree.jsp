@@ -241,7 +241,7 @@
 			+"px;help=" + conf.help +";status=" + conf.status +";scroll=" + conf.scroll +";center=" +conf.center;
 		
 		url=url.getNewUrl();
-		var rtn=window.showModalDialog(url,obj,winArgs);
+		var rtn=window.open(url,obj,winArgs);
 	}
 	
 	//导出资源

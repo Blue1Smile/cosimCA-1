@@ -1,12 +1,12 @@
 package com.casic.datadriver.dao.data;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.hotent.core.db.BaseDao;
 import com.hotent.core.web.query.QueryFilter;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * The Class OrderDataRelationDao.
@@ -17,12 +17,11 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
     /**
      * Query OrderDataRelation basic info list.
      *
-     * @param queryFilter
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryOrderDataRelationBasicInfoList(QueryFilter queryFilter) {
-        return this.getBySqlKey("queryOrderDataRelationBasicInfoList", queryFilter);
+    public List<OrderDataRelation> getCanBeOrderDataList(long projectId) {
+        return this.getBySqlKey("getCanBeOrderDataList", projectId);
     }
     /**
      * Query OrderDataRelation basic info list.
@@ -30,8 +29,8 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryOrderDataRelationByddTaskID(Long ddtaskId) {
-        return this.getBySqlKey("queryOrderDataRelationByddTaskID", ddtaskId);
+    public List<OrderDataRelation> getOrderDataRelationList(Long ddtaskId) {
+        return this.getBySqlKey("getOrderDataRelationList", ddtaskId);
     }
 
 
@@ -44,10 +43,13 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryPublishDataRelationByddTaskID(Long ddtaskId) {
-        return this.getBySqlKey("queryPublishDataRelationByddTaskID", ddtaskId);
+    public List<OrderDataRelation> getPublishDataRelationList(Long ddtaskId) {
+        return this.getBySqlKey("getPublishDataRelationList", ddtaskId);
     }
 
+    public List<OrderDataRelation> queryPublishDataRelationByddTaskIDF(PageInfo model) {
+        return this.getBySqlKey("queryPublishDataRelationByddTaskIDF", model);
+    }
     /*
      * (non-Javadoc)
      *
@@ -67,11 +69,12 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
         this.getBySqlKey("delOrderByddDataTaskId", ddDataTaskId);
     }
 
-//    public int queryPublishDataRelationByddTaskID(int ddDataTaskId){
-//
-//       return  this.getBySqlKey("queryPublishDataRelationByddTaskID", ddDataTaskId);
-//
-//    }
+    public OrderDataRelation getOrderDataRelationById(long id){
+        return this.getUnique("getOrderDataRelationById", id);
+    }
 
+    public void delOrderByddDataId(long dataId){this.delBySqlKey("delOrderByddDataId", dataId);}
+
+    public void delPublishByddDataId(long dataId){this.getBySqlKey("delPublishByddDataId", dataId);}
 
 }

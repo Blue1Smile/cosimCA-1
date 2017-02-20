@@ -13,7 +13,7 @@
 		var url = __ctx + "/platform/bpm/bpmNodeRule/edit.ht?deployId=" + deployId + "&actDefId=" + actDefId + "&nodeId=" + nodeId + "&nodeName=" + encodeURIComponent(nodeName);
 		var winArgs = "dialogWidth=800px;dialogHeight=650px;help=0;status=0;scroll=1;center=0;resizable=1;";
 		url = url.getNewUrl();
-		var rtn = window.showModalDialog(url, "", winArgs);
+		var rtn = window.open(url, "", winArgs);
 		//window.location.reload(true);
 	}
 </script>

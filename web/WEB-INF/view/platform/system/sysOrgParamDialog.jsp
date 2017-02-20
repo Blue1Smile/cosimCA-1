@@ -585,7 +585,7 @@
 		var url=__ctx + '/platform/system/sysOrgParam/getByParamKey.ht';
 		url=url.getNewUrl();
 		var obj={flag:0,params:orgParam,url:url};
-		window.showModalDialog(url,obj,winArgs);
+		window.open(url,obj,winArgs);
 	}
 	</script>
 </head>

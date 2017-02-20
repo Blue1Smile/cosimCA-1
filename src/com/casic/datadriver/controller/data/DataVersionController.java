@@ -49,7 +49,7 @@ public class DataVersionController extends AbstractController {
 //     *             the exception
 //     */
 //    @RequestMapping("save")
-//    @Action(description = "添加或更新dataVersion")
+//    @Action(description = "锟斤拷踊锟斤拷锟斤拷dataVersion")
 //    public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //        String resultMsg = null;
 //        DataVersion dataVersion = this.getFormObject(request, DataVersion.class);
@@ -77,7 +77,7 @@ public class DataVersionController extends AbstractController {
      * @throws Exception the exception
      */
     @RequestMapping("list")
-    @Action(description = "根据条件查询项目基本信息列表")
+    @Action(description = "鏁版嵁鐗堟湰鍒楄〃")
     public ModelAndView queryDataVersionBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         QueryFilter queryFilter = new QueryFilter(request, "DataVersionItem");

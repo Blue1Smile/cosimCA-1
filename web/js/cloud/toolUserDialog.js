@@ -22,7 +22,7 @@ function ToolUserDialog(conf){
 				selectUserNames:conf. selectUserNames
 		}
 	}	
-	var rtn=window.showModalDialog(url,selectUsers,winArgs);
+	var rtn=window.open(url,selectUsers,winArgs);
 	
 	if(rtn && conf.callback){
 		var toolIds=rtn.toolIds;

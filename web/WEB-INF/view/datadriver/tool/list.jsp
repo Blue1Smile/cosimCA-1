@@ -6,6 +6,7 @@
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
 
 
     <style type="text/css">
@@ -88,26 +89,32 @@
     </script>
 </head>
 <body>
-<div class="layui-tab layui-tab-card">
-    <ul class="layui-tab-title">
-        <li class="layui-this">工具中心</li>
-    </ul>
-    <div class="layui-tab-content">
-        <div id="layout">
-            <div position="left" title="专业工具树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <ul id="demo2" ></ul>
+
+<%--<ul class="layui-tab-title">--%>
+    <%--<li class="layui-this">工具中心</li>--%>
+<%--</ul>--%>
+<div class="container-fluid">
+    <div class="col-xs-3">
+        <%--<div></div>--%>
+        <div class="panel panel-info" style="height: 650px">
+            <div class="panel-heading">工具专业树1</div>
+            <div class="panel-body" style="height: 100%">
+                <ul id="demo2"></ul>
             </div>
-            <%--src="${ctx}/datadriver/tool/edit.ht"--%>
-            <div position="center">
-                <iframe id="listFrame"  frameborder="no"
-                        width="100%"
-                        height="100%"></iframe>
-            </div>
+
         </div>
     </div>
+    <%--src="${ctx}/datadriver/tool/edit.ht"--%>
+    <div class="col-xs-9">
+        <div class="panel panel-info">
+            <div class="panel-heading">专业工具列表</div>
+            <iframe id="listFrame" frameborder="auto"
+                    width="100%"
+                    height="650px"></iframe>
+        </div>
 
+    </div>
 </div>
-
 </body>
 
 </html>

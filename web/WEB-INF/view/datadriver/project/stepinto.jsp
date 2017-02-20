@@ -21,6 +21,9 @@
 
     <title>进入任务页面</title>
     <%--<%@include file="/commons/include/get.jsp" %>--%>
+    <%--<link rel="stylesheet" href="${ctx}/resources/skin/base.css"/>--%>
+    <%--<link rel="stylesheet" href="${ctx}/resources/skin/content.css"/>--%>
+    <%--<link rel="stylesheet" href="${ctx}/resources/skin/blue.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -105,7 +108,7 @@
             border-style: solid;
             border-width: 0;
             border-color: #E5E5E5;
-            overflow-y: auto;
+            overflow-y: hidden;
             overflow-x: hidden;
         }
 
@@ -160,7 +163,7 @@
                             新创建
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="createpanel" class="scrum-stage-tasks">
+                            <ul id="createpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
                                         onclick="showTaskContent(this ,${taskListbyUserItem.ddTaskId})">
@@ -183,7 +186,7 @@
                             已发布
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="publishpanel" class="scrum-stage-tasks">
+                            <ul id="publishpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${publishtaskListbyUserItem.ddTaskId})">
@@ -207,7 +210,7 @@
                             待审核
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="checkpanel" class="scrum-stage-tasks">
+                            <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${checktaskListbyUserItem.ddTaskId})">
@@ -231,7 +234,7 @@
                             已完成
                         </div>
                         <div class="panel-body panelheight">
-                            <ul id="completepanel" class="scrum-stage-tasks">
+ <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${completeTaskInfoListItem.ddTaskId})">

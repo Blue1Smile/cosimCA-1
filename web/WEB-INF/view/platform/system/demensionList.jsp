@@ -10,7 +10,7 @@
 			var url="${ctx }/platform/system/sysOrgType/list.ht?demId="+demId;
 			var winArgs="dialogWidth=800px;dialogHeight=540px;help=0;status=0;scroll=1;center=1;resizable=1;";
 			url=url.getNewUrl();	
-			var rtn=window.showModalDialog(url,null,winArgs);
+			var rtn=window.open(url,null,winArgs);
 		}
 	</script>
 </head>

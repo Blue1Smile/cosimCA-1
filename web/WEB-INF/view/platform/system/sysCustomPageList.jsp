@@ -15,7 +15,7 @@
 			var url=__ctx+ "/platform/system/sysCustomPage/"+action;
 			var winArgs="dialogWidth=1024px;dialogHeight=700px;help=0;status=0;scroll=0;center=1";
 			url=url.getNewUrl();
-			var rtn=window.showModalDialog(url,"",winArgs);
+			var rtn=window.open(url,"",winArgs);
 			window.location.reload();
 		});
 	}
@@ -24,7 +24,7 @@
 		var url=__ctx+ "/platform/system/sysCustomPage/show.ht?id="+id;
 		var winArgs="dialogWidth=1024px;dialogHeight=700px;help=0;status=0;scroll=0;center=1";
 		url=url.getNewUrl();
-		var rtn=window.showModalDialog(url,"",winArgs);
+		var rtn=window.open(url,"",winArgs);
 	}
 </script>
 </head>

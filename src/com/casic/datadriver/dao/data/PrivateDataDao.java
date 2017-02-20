@@ -25,12 +25,13 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
         return this.getBySqlKey("queryPrivateDataBasicInfoList", queryFilter);
     }
 
-
+    public PrivateData getDataById(long id){
+        return this.getUnique("getDataById", id);
+    }
 
     /**
      * Query privateData basic info list.
      *
-     * @param queryFilter
      * @return the list
      */
     public List<PrivateData> queryPrivateDataByddTaskID(long id) {
@@ -40,7 +41,7 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
 
 
     /**
-     * 2016/12/4/ÐÞ¸Ä
+     * 2016/12/4/ï¿½Þ¸ï¿½
      */
     public List<PrivateData> getByddDataId(long id) {
         return this.getBySqlKey("getByddDataId", id);
@@ -57,7 +58,7 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     }
 
     /**
-     * Ó³ÉäMAP£¬É¾³ýÈÎÎñÁÐ±í£¬ÔÝÊ±Ã»ÓÃµ½
+     * Ó³ï¿½ï¿½MAPï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ê±Ã»ï¿½Ãµï¿½
      * 20161202
      */
     public void delByMainId(Long classId) {
@@ -69,13 +70,13 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     }
 
     /**
-     * mapperÖÐ»¹Ã»ÊµÏÖ
+     * mapperï¿½Ð»ï¿½Ã»Êµï¿½ï¿½
      */
     public List<PrivateData> getAllInstance(QueryFilter queryFilter) {
         return this.getBySqlKey("getAllPrivateDataList", queryFilter);
     }
     /**
-     * 2016/12/4/ÐÞ¸Ä
+     * 2016/12/4/ï¿½Þ¸ï¿½
      */
     public void updatedata(PrivateData privateData){
 
