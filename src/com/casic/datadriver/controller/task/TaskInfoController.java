@@ -111,6 +111,7 @@ public class TaskInfoController extends AbstractController {
             if (taskInfo.getDdTaskId() == null || taskInfo.getDdTaskId() == 0) {
                 taskInfo.setDdTaskId(UniqueIdUtil.genId());
                 taskInfo.setDdTaskChildType("createpanel");
+                taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfoService.addDDTask(taskInfo);
                 proTaskDependance.setDdTaskId(UniqueIdUtil.genId());
                 proTaskDependance.setDdTaskId(taskInfo.getDdTaskId());
@@ -179,11 +180,13 @@ public class TaskInfoController extends AbstractController {
             List<TaskInfo> taskInfo_list = taskInfoService.queryTaskInfoByProjectId(project_list.get(i).getDdProjectId());
             for (int j = 0; j < taskInfo_list.size(); j++) {
                 TaskInfo task = taskInfo_list.get(j);
-                if (task.getDdTaskState() == null) {
-                    task.setDdTaskState(task.STATUS_UNSTART);
+                if (task.getDdTaskState() == null||task.getDdTaskChildType()==null) {
+                    task.setDdTaskState(task.createpanel);
+                    task.setDdTaskChildType("createpanel");
                 }
-                if (task.getDdTaskState() == 0) {
-                    checkTaskInfoList.add(task);
+                if (task.getDdTaskChildType().equals("checkpanle")) {
+
+                        checkTaskInfoList.add(task);
                 }
             }
         }
@@ -312,8 +315,8 @@ public class TaskInfoController extends AbstractController {
         Long id = RequestUtil.getLong(request, "id");
         String returnUrl = RequestUtil.getPrePage(request);
         List<PrivateData> privateDataList = new ArrayList<PrivateData>();
-        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.getPublishDataRelationList(id);
-
+        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(id);
+//应该加一个任务状态判断？
         //循环获取发布数据ID，查找私有数据
         for (int i = 0; i < publishDataRelationList.size(); i++) {
             OrderDataRelation orderDataRelation = publishDataRelationList.get(i);
@@ -419,8 +422,6 @@ public class TaskInfoController extends AbstractController {
     }
 
 
-
-
     /**
      * @param request
      * @param response
@@ -493,7 +494,8 @@ public class TaskInfoController extends AbstractController {
             List<TaskInfo> taskInfo_list = taskInfoService.queryTaskInfoByProjectId(project_list.get(i).getDdProjectId());
             for (int j = 0; j < taskInfo_list.size(); j++) {
                 TaskStart taskStart = taskStartService.queryTaskStartByTaskId(taskInfo_list.get(j).getDdTaskId()).get(0);
-                if (taskStart.getDdTaskStatus() == 0) {
+
+                if (taskStart.getDdTaskStatus().equals(taskStart.checkpanel)) {
                     taskInfoList.add(taskInfoService.getById(taskStart.getDdTaskId()));
                 }
             }
@@ -520,14 +522,55 @@ public class TaskInfoController extends AbstractController {
         //获得发布数据列表
         List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
+
         for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
             Long ddDataId = orderDataRelation.getDdDataId();
             List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
             privateData.addAll(taskPrivateDatas);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
-                privateData);
+                privateData).addObject("TaskId",ddTaskId);
         return mv;
+    }
+
+
+    /**
+     * 2016/2/18/
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("checktask")
+    @Action(description = "任务审核通过")
+    public void checktask(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            Long ddTaskId = RequestUtil.getLong(request, "id");
+            List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
+            TaskInfo taskInfo=taskInfoService.getById(ddTaskId);
+
+            //判断任务的当前状态，只有在正在提交中才允许驳回
+//
+            if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfo.setDdTaskChildType("createpanel");
+            }
+            if (taskInfo.getDdTaskChildType().equals("checkpanel")) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.completepanel);
+                taskStartService.update(taskStart_list.get(0));
+
+                taskInfo.setDdTaskChildType("completepanel");
+                taskInfo.setDdTaskState(taskInfo.completepanel);
+                taskInfoService.update(taskInfo);
+            } else {
+                String resultMsg = null;
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
+            }
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
     }
 
     /**
@@ -548,11 +591,16 @@ public class TaskInfoController extends AbstractController {
 
             //判断任务的当前状态，只有在正在提交中才允许驳回
 //
-            if (taskStart_list.get(0).getDdTaskStatus() == 1&&taskInfo.getDdTaskChildType().equals("checkpanel")) {
+            if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfo.setDdTaskChildType("createpanel");
+            }
+            if (taskInfo.getDdTaskChildType().equals("checkpanel")) {
                 taskStart_list.get(0).setDdTaskStatus(TaskStart.publishpanel);
                 taskStartService.update(taskStart_list.get(0));
 
                 taskInfo.setDdTaskChildType("publishpanel");
+                taskInfo.setDdTaskState(taskInfo.publishpanel);
                 taskInfoService.update(taskInfo);
             } else {
                 String resultMsg = null;

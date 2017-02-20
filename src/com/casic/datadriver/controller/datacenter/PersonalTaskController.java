@@ -66,13 +66,20 @@ public class PersonalTaskController extends AbstractController {
     @Action(description = "个人任务列表")
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
+//        List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
+        List<TaskInfo>  UserTaskInfo_list = taskInfoService.queryTaskInfoByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> taskInfo_list = new ArrayList<TaskInfo>();
 
-        for (int i = 0; i < taskStartList.size(); i++) {
-            Long ddTaskId = taskStartList.get(i).getDdTaskId();
+        for (int i = 0; i < UserTaskInfo_list.size(); i++) {
+            Long ddTaskId = UserTaskInfo_list.get(i).getDdTaskId();
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
-            taskInfo_list.add(taskInfo);
+            if (taskInfo.getDdTaskChildType()==null) {
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfo.setDdTaskChildType("createpanel");
+            }
+            if(taskInfo.getDdTaskChildType().equals("publishpanel")||taskInfo.getDdTaskChildType().equals("checkpanel")){
+                taskInfo_list.add(taskInfo);
+            }
         }
         ModelAndView mv = this.getAutoView().addObject("taskList", taskInfo_list);
         return mv;
@@ -364,11 +371,16 @@ public class PersonalTaskController extends AbstractController {
 
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
             //判断任务的当前状态，只有在正在执行中才允许提交
-            if (taskStart_list.get(0).getDdTaskStatus() == 0 && taskInfo.getDdTaskChildType().equals("publishpanel")) {
+   if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfo.setDdTaskChildType("createpanel");
+            }
+            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel)&&taskInfo.getDdTaskChildType().equals("publishpanel")) {
                 taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
                 taskStartService.update(taskStart_list.get(0));
 
                 taskInfo.setDdTaskChildType("checkpanel");
+                 taskInfo.setDdTaskState(taskInfo.checkpanel);
                 taskInfoService.update(taskInfo);
             } else {
                 String resultMsg = null;
@@ -388,14 +400,18 @@ public class PersonalTaskController extends AbstractController {
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
-            TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
-
-            //判断任务的当前状态，只有在正在提交中才允许收回
-            if (taskStart_list.get(0).getDdTaskStatus() == 0 && taskInfo.getDdTaskChildType().equals("publishpanel")) {
-                taskStart_list.get(0).setDdTaskStatus(TaskStart.createpanel);
+  TaskInfo taskInfo=taskInfoService.getById(ddTaskId);
+            if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfo.setDdTaskChildType("createpanel");
+            }
+            //判断任务的当前状态，只有已提交的任务才允许收回
+            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).checkpanel)&&taskInfo.getDdTaskChildType().equals("checkpanel")) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.publishpanel);l);
                 taskStartService.update(taskStart_list.get(0));
 
-                taskInfo.setDdTaskChildType("createpanel");
+                taskInfo.setDdTaskChildType("publishpanel");
+                taskInfo.setDdTaskState(taskInfo.publishpanel);
                 taskInfoService.update(taskInfo);
             } else {
                 String resultMsg = null;
