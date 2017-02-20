@@ -26,93 +26,15 @@
     <%--<link rel="stylesheet" href="${ctx}/resources/skin/blue.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
-    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/styles/check/font-awesome.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/newtable/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
 
     <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
-    <style>
-        html, body {
-            margin: 0px 0px !important;
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        iframe {
-            margin: 0px 0px !important;
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        .scrum-stage .task.task-card {
-            margin: 0 8px 8px !important;
-        }
-
-        .task.task-card {
-            padding: 0 !important;
-            background-color: #fff !important;
-            border-radius: 3px !important;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
-            cursor: pointer !important;
-            margin-left: -42px !important;
-        }
-
-        .checkbox label {
-            margin: 12px !important;
-        }
-
-        li {
-            list-style-type: none !important;
-        }
-
-        .paneldocker {
-            position: relative;
-            height: 100%;
-            padding: 10px;
-        }
-
-        .panelheight {
-            position: relative;
-            height: 93%;
-        }
-
-        /*.cbp-spmenu-push{*/
-        /*overflow:scroll !important;*/
-        /*overflow-x:hidden !important;*/
-        /*}*/
-        .bs-callout-danger {
-            border-left-color: #ce4844;
-            border-left-width: 5px;
-        }
-        .board-view {
-            position: fixed;
-            top: 50px;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 0;
-            overflow: hidden;
-            transition: all 218ms ease;
-        }
-        .task-panel {
-            position: relative;
-            height: 100%;
-        }
-        .board-scrum-view {
-            position: relative;
-            height: 100%;
-            background-color: #FFF;
-            border-style: solid;
-            border-width: 0;
-            border-color: #E5E5E5;
-            overflow-y: hidden;
-            overflow-x: hidden;
-        }
-
-    </style>
 </head>
 
 <body style="height: 100%; margin: 0px">

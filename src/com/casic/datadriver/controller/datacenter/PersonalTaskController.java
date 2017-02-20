@@ -110,7 +110,7 @@ public class PersonalTaskController extends AbstractController {
             privateData.addAll(taskPrivateDatas);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
-                privateData);
+                privateData).addObject("taskId", ddTaskId);
         return mv;
     }
 
@@ -276,6 +276,56 @@ public class PersonalTaskController extends AbstractController {
         }
     }
 
+    @RequestMapping("showorderjson")
+    @Action(description = "向前端传送发布的json")
+    public void showorderjson(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+
+        PageInfo pageinfo = new PageInfo();
+
+        pageinfo.setPageSize((pageNumber - 1) * pageSize);
+        pageinfo.setPageNumber((pageNumber - 1) * pageSize + pageSize);
+
+        response.setContentType("application/json");
+
+        try {
+            Long taskId = RequestUtil.getLong(request, "id");
+            pageinfo.setId(taskId);
+            int allnum = this.orderDataRelationService.getOrderDataRelationList(taskId).size();
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskIDF(pageinfo);
+            List<PrivateData> privateData_list = new ArrayList<PrivateData>();
+            JSONObject jsonObject = new JSONObject();
+            for (int i = 0; i < orderDataRelation_list.size(); i++) {
+                OrderDataRelation orderDataRelation = orderDataRelation_list.get(i);
+                PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
+//            privateData_list.add(privateData);
+                jsonObject.put("ddDataId", privateData.getDdDataId());
+                jsonObject.put("ddDataTaskId", privateData.getDdDataTaskId());
+                jsonObject.put("ddDataType", privateData.getDdDataType());
+                jsonObject.put("ddDataTaskName", privateData.getDdDataTaskName());
+                jsonObject.put("ddDataName", privateData.getDdDataName());
+                jsonObject.put("ddDataLastestValue", privateData.getDdDataLastestValue());
+                jsonMembers.add(jsonObject);
+            }
+            json.put("total", allnum);
+            json.put("rows", jsonMembers);
+//        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
+            String jsonstring = formatJson(json.toString());
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.append(jsonstring);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
     //格式化json
     public static String formatJson(String jsonStr) {
         if (null == jsonStr || "".equals(jsonStr)) return "";
