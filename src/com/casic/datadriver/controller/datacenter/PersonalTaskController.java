@@ -407,7 +407,7 @@ public class PersonalTaskController extends AbstractController {
             }
             //判断任务的当前状态，只有已提交的任务才允许收回
             if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).checkpanel)&&taskInfo.getDdTaskChildType().equals("checkpanel")) {
-                taskStart_list.get(0).setDdTaskStatus(TaskStart.publishpanel);l);
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.publishpanel);
                 taskStartService.update(taskStart_list.get(0));
 
                 taskInfo.setDdTaskChildType("publishpanel");

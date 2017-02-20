@@ -315,7 +315,7 @@ public class TaskInfoController extends AbstractController {
         Long id = RequestUtil.getLong(request, "id");
         String returnUrl = RequestUtil.getPrePage(request);
         List<PrivateData> privateDataList = new ArrayList<PrivateData>();
-        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(id);
+        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.getPublishDataRelationList(id);
 //应该加一个任务状态判断？
         //循环获取发布数据ID，查找私有数据
         for (int i = 0; i < publishDataRelationList.size(); i++) {
