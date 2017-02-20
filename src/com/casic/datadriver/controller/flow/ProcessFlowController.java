@@ -3,17 +3,22 @@ package com.casic.datadriver.controller.flow;
 import com.casic.datadriver.controller.AbstractController;
 import com.casic.datadriver.model.flow.ProcessFlow;
 import com.casic.datadriver.model.flow.ProjectProcessAssocia;
+import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.ProTaskDependance;
 import com.casic.datadriver.model.task.TaskInfo;
+import com.casic.datadriver.service.project.ProjectService;
 import com.casic.datadriver.service.task.ProTaskDependanceService;
 import com.casic.datadriver.service.task.TaskInfoService;
 import com.casic.datadriver.service.flow.ProcessFlowService;
+
 import com.hotent.core.annotion.Action;
 import com.hotent.core.bpmn20.entity.Process;
+import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
+import com.hotent.platform.auth.ISysUser;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
@@ -51,6 +56,8 @@ public class ProcessFlowController extends AbstractController {
     @Resource
     private ProjectProcessAssociaService projectProcessAssociaService;
 
+    @Resource
+    private ProjectService projectService;
 
     /**
      * 进入流程iframe.
@@ -132,7 +139,11 @@ public class ProcessFlowController extends AbstractController {
             if (tasktype != null)
                 taskInfo.setDdTaskType(tasktype);
             taskInfo.setDdTaskProjectId(projectId);
+            Project project = projectService.getById(projectId);
+            taskInfo.setDdTaskProjectName(project.getDdProjectName());
             taskInfo.setDdTaskName(el.getAttributeValue("label"));//任务名称
+            taskInfo.setDdTaskResponsiblePerson(ContextUtil.getCurrentUser().getUserId());
+            taskInfo.setDdTaskPerson(ContextUtil.getCurrentUser().getFullname());
             //新增任务属性
             taskInfo.setDdTaskChildType("createpanel");
             if (taskid != null) {
