@@ -219,7 +219,6 @@
 <script type="text/javascript">
     var startId;
     $(document).ready(function () {
-        $('#myModal').modal(options)
 //        $("#createpanel,#publishpanel").dragsort({
 //            itemSelector: "li",
 //            dragSelector: "li",
