@@ -1,13 +1,10 @@
-<%--
-	time:2013-04-11 11:48:44
-	desc:edit the 业务定义，如邀标采购这样的大业务。
---%>
+
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@page import="com.hotent.core.util.ContextUtil" %>
 <html>
 <head>
-    <title>任务数据中心</title>
+    <title>数据发布列表</title>
     <%@include file="/commons/include/form.jsp" %>
     <%@include file="/newtable/tablecontext.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
@@ -58,7 +55,7 @@
                     sortable: true,
                     editable: false,
                     align: 'center',
-                    visible: true
+                    visible: false
                 }, {//第二列，名称
                     field: 'ddDataName',
                     title: '数据名称',
@@ -132,7 +129,7 @@
                     data: { strJson: JSON.stringify(row) },
                     success: function (data, status) {
                         if (status == "success") {
-                            alert("编辑成功");
+                            alert("修改成功！");
                         }
                     },
                     error: function () {

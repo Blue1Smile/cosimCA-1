@@ -36,10 +36,8 @@
         }
 
         #row {
-            margin-right: 0px !important;
-            margin-left: 0px !important;
+            margin: 5px !important;
         }
-
 
         .detail-info {
             margin-bottom: 4px;
@@ -49,6 +47,10 @@
             margin: 5px 16px 10px;
             line-height: 12px;
             color: grey;
+        }
+
+        .panel .card {
+            background: #FFFFFF;
         }
 
         .card .task-detail-executor {
@@ -94,67 +96,71 @@
     <div class="panel-heading">
         ${TaskInfo.ddTaskName}
         <div class="btn-group pull-right">
-            <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                 更多 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#"><center>任务菜单</center></a></li>
+                <li><a href="#">
+                    <center>任务菜单</center>
+                </a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
-                <li><a href="${ctx}/datadriver/task/del.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
+                <li><a href="${ctx}/datadriver/task/del.ht?id=${TaskInfo.ddTaskId}"><span
+                        class="glyphicon glyphicon-trash"></span> 删除</a></li>
             </ul>
         </div>
     </div>
     <div class="panel-body" style="overflow: auto">
-            <div class="row" id="row">
-                <div class="col-xs-4" id="card1">
-                    <div class="panel panel-default">
-                        <div class="panel-body card">
-                            <h5 class="task-info-title">
-                                执行者
-                            </h5>
-                            <a class="task-detail-executor" id="executorSelect" data-type="select" data-pk="1" href="#">
-                                ${executorName.fullname}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4" id="card2">
-                    <div class="panel panel-default">
-                        <div class="panel-body card">
-                            <h5 class="task-info-title">
-                                截止时间
-                            </h5>
-                            <a class="task-detail-executor" href="#" id="dob" data-type="combodate" data-pk="1"
-                               data-value="2017年12月10日">
-                                <%--<span class="glyphicon glyphicon-calendar"></span>--%>
-                                    ${endtime}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4" id="card3">
-                    <div class="panel panel-default">
-                        <div class="panel-body card">
-                            <h5 class="task-info-title">
-                                优先级
-                            </h5>
-                            <a class="task-detail-executor" id="taskPrioritySelect" data-type="select" data-pk="1"
-                               href="#">
-                                <c:choose>
-                                    <c:when test="${TaskInfo.ddTaskPriority==3}"><span
-                                            class="label label-danger">紧急</span></c:when>
-                                    <c:when test="${TaskInfo.ddTaskPriority==2}"><span
-                                            class="label label-warning">重要</span></c:when>
-                                    <c:otherwise><span class="label label-primary">一般</span></c:otherwise>
-                                </c:choose>
-                                点击设置
-                            </a>
-                        </div>
+        <div class="row" id="row">
+            <div class="col-xs-4" id="card1">
+                <div class="panel panel-default">
+                    <div class="panel-body card">
+                        <h5 class="task-info-title">
+                            执行者
+                        </h5>
+                        <a class="task-detail-executor" id="executorSelect" data-type="select" data-pk="1" href="#">
+                            ${executorName.fullname}
+                        </a>
                     </div>
                 </div>
             </div>
+            <div class="col-xs-4" id="card2">
+                <div class="panel panel-default">
+                    <div class="panel-body card">
+                        <h5 class="task-info-title">
+                            截止时间
+                        </h5>
+                        <a class="task-detail-executor" href="#" id="dob" data-type="combodate" data-pk="1"
+                           data-value="2017年12月10日">
+                            <%--<span class="glyphicon glyphicon-calendar"></span>--%>
+                            ${endtime}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4" id="card3">
+                <div class="panel panel-default">
+                    <div class="panel-body card">
+                        <h5 class="task-info-title">
+                            优先级
+                        </h5>
+                        <a class="task-detail-executor" id="taskPrioritySelect" data-type="select" data-pk="1"
+                           href="#">
+                            <c:choose>
+                                <c:when test="${TaskInfo.ddTaskPriority==3}"><span
+                                        class="label label-danger">紧急</span></c:when>
+                                <c:when test="${TaskInfo.ddTaskPriority==2}"><span
+                                        class="label label-warning">重要</span></c:when>
+                                <c:otherwise><span class="label label-primary">一般</span></c:otherwise>
+                            </c:choose>
+                            点击设置
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
+        <div class="row" id="row">
             <div class="panel panel-default">
                 <div class="list-group">
                     <a class="list-group-item" href="#" id="comments" data-type="textarea" data-pk="1" href="#">
@@ -170,56 +176,58 @@
                     <a class="list-group-item" href="#">添加子任务</a>
                     <a class="list-group-item" href="#">添加标签</a>
                     <a class="list-group-item" href="#">里程碑
-                            <div class="radio radio-info radio-inline">
-                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
-                                <label for="ddTaskMilestone1">
-                                    是
-                                </label>
-                            </div>
-                            <div class="radio radio-info radio-inline">
-                                <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
-                                <label for="ddTaskMilestone0">
-                                    否
-                                </label>
-                            </div>
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
+                            <label for="ddTaskMilestone1">
+                                是
+                            </label>
+                        </div>
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                            <label for="ddTaskMilestone0">
+                                否
+                            </label>
+                        </div>
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="row" id="row">
             <div class="panel panel-default">
                 <div class="panel-body"><h5 class="task-info-title">活动</h5>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <%--<div class="panel panel-default">--%>
-                            <%--<div class="panel-heading" role="tab" id="headingOne">--%>
-                                <%--<h5 class="panel-title">--%>
-                                    <%--<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"--%>
-                                       <%--aria-expanded="true" aria-controls="collapseOne">--%>
-                                        <%--基本动态--%>
-                                    <%--</a>--%>
-                                <%--</h5>--%>
-                            <%--</div>--%>
-                            <%--<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"--%>
-                                 <%--aria-labelledby="headingOne">--%>
-                                <%--<div class="panel-body">--%>
-                                    <%--<ul class="activities-list">--%>
-                                        <%--<li class="activity">--%>
-                                            <%--<span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>--%>
-                                            <%--<div class="activity-body-coyness muted pull-right"><span>2017年1月16日</span>--%>
-                                            <%--</div>--%>
-                                            <%--<div class="activity-body-coyness muted">--%>
-                                                <%--<span>设计师一 更新了 截止时间</span>--%>
-                                            <%--</div>--%>
-                                        <%--</li>--%>
-                                        <%--<li class="activity">--%>
-                                            <%--<span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>--%>
-                                            <%--<div class="activity-body-coyness muted pull-right"><span>2017年1月22日</span>--%>
-                                            <%--</div>--%>
-                                            <%--<div class="activity-body-coyness muted">--%>
-                                                <%--<span>设计师一 更新了 优先级</span>--%>
-                                            <%--</div>--%>
-                                        <%--</li>--%>
-                                    <%--</ul>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
+                        <%--<div class="panel-heading" role="tab" id="headingOne">--%>
+                        <%--<h5 class="panel-title">--%>
+                        <%--<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"--%>
+                        <%--aria-expanded="true" aria-controls="collapseOne">--%>
+                        <%--基本动态--%>
+                        <%--</a>--%>
+                        <%--</h5>--%>
+                        <%--</div>--%>
+                        <%--<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"--%>
+                        <%--aria-labelledby="headingOne">--%>
+                        <%--<div class="panel-body">--%>
+                        <%--<ul class="activities-list">--%>
+                        <%--<li class="activity">--%>
+                        <%--<span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>--%>
+                        <%--<div class="activity-body-coyness muted pull-right"><span>2017年1月16日</span>--%>
+                        <%--</div>--%>
+                        <%--<div class="activity-body-coyness muted">--%>
+                        <%--<span>设计师一 更新了 截止时间</span>--%>
+                        <%--</div>--%>
+                        <%--</li>--%>
+                        <%--<li class="activity">--%>
+                        <%--<span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>--%>
+                        <%--<div class="activity-body-coyness muted pull-right"><span>2017年1月22日</span>--%>
+                        <%--</div>--%>
+                        <%--<div class="activity-body-coyness muted">--%>
+                        <%--<span>设计师一 更新了 优先级</span>--%>
+                        <%--</div>--%>
+                        <%--</li>--%>
+                        <%--</ul>--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
                         <%--</div>--%>
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
@@ -237,7 +245,8 @@
                                         <c:forEach items="${orderDataList}" var="orderDataItem">
                                             <li class="activity">
                                                 <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
-                                                <div class="activity-body-coyness muted pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
+                                                <div class="activity-body-coyness muted pull-right">
+                                                    <span>${privateDataItem.ddDataCreateTime}</span>
                                                 </div>
                                                 <div class="activity-body-coyness muted">
                                                     <span>订阅了 ${orderDataItem.ddDataName} 来自 ${orderDataItem.ddTaskId}</span>
@@ -264,7 +273,8 @@
                                         <c:forEach items="${publishDataList}" var="publishDataItem">
                                             <li class="activity">
                                                 <span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>
-                                                <div class="activity-body-coyness muted pull-right"><span>${privateDataItem.ddDataCreateTime}</span>
+                                                <div class="activity-body-coyness muted pull-right">
+                                                    <span>${privateDataItem.ddDataCreateTime}</span>
                                                 </div>
                                                 <div class="activity-body-coyness muted">
                                                     <span>本任务 发布了 ${publishDataItem.ddDataName}</span>
@@ -279,7 +289,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
         <%--<form id="taskInfoForm" name="taskInfoForm" method="post" action="save.ht"--%>
         <%--enctype="multipart/form-data">--%>
 
@@ -385,7 +395,7 @@
 
         <%--</form>--%>
     </div>
-    <div class="panel-footer" style="margin-bottom: 0px">
+    <div class="panel-footer" style="position: relative; width: 100%; bottom: 1px;">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="输入@选择提醒人员">
             <span class="input-group-btn">

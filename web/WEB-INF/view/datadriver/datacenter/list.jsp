@@ -5,10 +5,9 @@
     <title>项目树</title>
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-    <LINK href="${ctx}/styles/jq22/page_style.css" type=text/css rel=stylesheet>
+    <%--<LINK href="${ctx}/styles/jq22/page_style.css" type=text/css rel=stylesheet>--%>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-    <script type="text/javascript" src="${ctx }/js/lg/plugins/ligerMenu.js"></script>
-    <script src="${ctx}/styles/jq22/jquery.contextmenu.r2.js"></script>
+    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
 
     <style type="text/css">
         html, body {
@@ -23,22 +22,6 @@
         $(function () {
             layout();
             loadTree();
-            $('#demo2').contextMenu('myMenu1', {
-                bindings: {
-                    'open': function (t) {
-                        alert('Trigger was ' + t.id + '\nAction was Open');
-                    },
-                    'email': function (t) {
-                        alert('Trigger was ' + t.id + '\nAction was Email');
-                    },
-                    'save': function (t) {
-                        alert('Trigger was ' + t.id + '\nAction was Save');
-                    },
-                    'delete': function (t) {
-                        alert('Trigger was ' + t.id + '\nAction was Delete')
-                    }
-                }
-            });
 //            menu();
 //            menu_root();
         });
@@ -96,7 +79,8 @@
                                 var arr = [];
                                 for (var i = 0; i < "${ProjectLength}"; i++) {
                                     arr.push({
-                                        name: projectName[i]
+                                        name: projectName[i],
+                                        Proid:projectId[i]
                                     });
                                 }
                                 return arr;
@@ -120,29 +104,23 @@
 
                     return node;
                 };
-                $('span.product_tree').contextMenu('myMenu1', {
-                    bindings: {
-                        'open': function (t) {
-                            alert('Trigger was ' + t.id + '\nAction was Open');
-                        },
-                        'email': function (t) {
-                            alert('Trigger was ' + t.id + '\nAction was Email');
-                        },
-                        'save': function (t) {
-                            alert('Trigger was ' + t.id + '\nAction was Save');
-                        },
-                        'delete': function (t) {
-                            alert('Trigger was ' + t.id + '\nAction was Delete')
-                        }
-                    }
-                });
                 layui.tree({
                     elem: '#demo2' //指定元素
                     , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
                     , click: function (item) { //点击节点回调
+                        layer.msg('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
                         var taskId = item.id;
-                        if (taskId == undefined) return;
-                        $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
+                        if (taskId == undefined) {
+                            $.get("${ctx}/datadriver/index/indexlist.ht?id="+item.Proid, function (data) {
+                                $('#listFrame').html(data);
+                            });
+                        }
+                        else {
+//                        $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
+                            $.get("${ctx}/datadriver/datacenter/publishorderdata.ht?id=" + taskId, function (data) {
+                                $('#listFrame').html(data);
+                            });
+                        }
                     }
                     , nodes: createTree()
 
@@ -150,50 +128,54 @@
             });
 
 
-
         }
 
     </script>
 </head>
 <body>
-<%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">--%>
-<%--<legend>生成一个较深的树</legend>--%>
-<%--</fieldset>--%>
-<ul id="product_tree" class="filetree"></ul>
-<DIV class=contextMenu id=myMenu1>
-    <UL>
-        <LI id=open><IMG src="${ctx}/styles/jq22/folder.png"> Open </LI>
-        <LI id=email><IMG src="${ctx}/styles/jq22/email.png"> Email </LI>
-        <LI id=save><IMG src="${ctx}/styles/jq22/disk.png"> Save </LI>
-        <LI id=delete><IMG src="${ctx}/styles/jq22/cross.png"> Delete</LI>
-    </UL>
-</DIV>
+<%--<ul id="product_tree" class="filetree"></ul>--%>
 
-<div class="layui-tab layui-tab-card">
-
-    <ul class="layui-tab-title">
-        <li class="layui-this">数据中心</li>
-    </ul>
-
-    <%--<div class="fr">--%>
-        <%--<a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">--%>
-            <%--&#x1002;</i> 数据快照</a>--%>
+<%--<div class="layui-tab layui-tab-card">--%>
+    <%--&lt;%&ndash;<ul class="layui-tab-title">&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<li class="layui-this">数据中心</li>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;</ul>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<div class="fr">&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">&ndash;%&gt;--%>
+    <%--&lt;%&ndash;&#x1002;</i> 数据快照</a>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+    <%--<div class="layui-tab-content">--%>
+        <%--<div id="layout">--%>
+            <%--<div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">--%>
+                <%--<ul id="demo2" style="overflow:auto;"></ul>--%>
+            <%--</div>--%>
+            <%--<div position="center" id="listFrame">--%>
+            <%--</div>--%>
+        <%--</div>--%>
     <%--</div>--%>
-    <div class="layui-tab-content">
-        <div id="layout">
-            <div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <ul id="demo2" style="overflow:auto;"></ul>
+
+<%--</div>--%>
+
+<div class="container-fluid">
+    <div class="col-xs-3">
+        <%--<div></div>--%>
+        <div class="panel panel-info" style="height: 650px">
+            <div class="panel-heading">项目树</div>
+            <div class="panel-body" style="height: 100%">
+                <div id="demo2"></div>
             </div>
-            <div position="center">
-                <iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishorderdata.ht" frameborder="no"
-                        width="100%"
-                        height="100%"></iframe>
+
+        </div>
+    </div>
+    <%--src="${ctx}/datadriver/tool/edit.ht"--%>
+    <div class="col-xs-9">
+        <div class="panel panel-info">
+            <div class="panel-heading">专业工具列表</div>
+            <div class="panel-body">
+                <div position="center" id="listFrame">
+                </div>
             </div>
         </div>
     </div>
-
-</div>
-
 </body>
 
 </html>

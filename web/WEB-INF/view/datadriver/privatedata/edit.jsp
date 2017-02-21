@@ -138,7 +138,7 @@
                             所属任务
                         </h5>
                         <a class="task-detail-executor" href="#" id="belongTask" data-type="select" data-pk="1">
-                            ${privateData.ddDataCreatePerson}</a>
+                            ${privateData.ddDataTaskName}</a>
                     </div>
                 </div>
             </div>

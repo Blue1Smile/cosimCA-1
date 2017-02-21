@@ -49,14 +49,12 @@ public class IndexInfoController extends BaseController {
     @Action(description = "保存指标")
     public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String resultMsg = null;
-
         IndexInfo index = getFormObject(request);
         System.out.println(index.getDdIndexName() + ":" + index.getDdIndexId());
         try {
             if (index.getDdIndexId() == null || index.getDdIndexId() == 0) {
                 index.setDdIndexId(UniqueIdUtil.genId());
                 indexService.addDDIndex(index);
-
                 resultMsg = getText("record.added", "指标信息");
             } else {
                 indexService.update(index);
@@ -257,5 +255,4 @@ public class IndexInfoController extends BaseController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
-
 }

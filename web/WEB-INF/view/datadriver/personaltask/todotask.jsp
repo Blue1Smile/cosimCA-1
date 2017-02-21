@@ -20,108 +20,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
-    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/styles/check/font-awesome.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/newtable/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
 
     <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
-    <style>
-        html, body {
-            margin: 0px 0px !important;
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        iframe {
-            margin: 0px 0px !important;
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        .scrum-stage .task.task-card {
-            margin: 0 8px 8px !important;
-        }
-
-        .task.task-card {
-            padding: 0 !important;
-            background-color: #fff !important;
-            border-radius: 3px !important;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
-            cursor: pointer !important;
-            margin-left: -42px !important;
-        }
-
-        .checkbox label {
-            margin: 12px !important;
-        }
-
-        li {
-            list-style-type: none !important;
-        }
-
-        .paneldocker {
-            position: relative;
-            height: 100%;
-            padding: 10px;
-        }
-
-        .panelheight {
-            position: relative;
-            height: 93%;
-        }
-
-        /*.cbp-spmenu-push{*/
-        /*overflow:scroll !important;*/
-        /*overflow-x:hidden !important;*/
-        /*}*/
-        .bs-callout-danger {
-            border-left-color: #ce4844;
-            border-left-width: 5px;
-        }
-
-        .board-view {
-            position: fixed;
-            top: 50px;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 0;
-            overflow: hidden;
-            transition: all 218ms ease;
-        }
-
-        .task-panel {
-            position: relative;
-            height: 100%;
-        }
-
-        .board-scrum-view {
-            position: relative;
-            height: 100%;
-            background-color: #FFF;
-            border-style: solid;
-            border-width: 0;
-            border-color: #E5E5E5;
-            overflow-y: hidden;
-            overflow-x: hidden;
-        }
-
-        .task-card > .checkbox > input[type="checkbox"] {
-            position: absolute;
-            margin-top: 13px;
-            margin-left: -7px;
-        }
-
-        .pull-right.taskname {
-            float: right !important;
-            margin-top: -42px;
-            margin-right: 10px;
-        }
-    </style>
-
 </head>
 <body>
 
@@ -129,7 +36,7 @@
      style="padding-right: 0px">
 </div>
 <div class="container-fluid">
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 ${TaskInfo.ddTaskName} <span class="caret"></span>
@@ -142,11 +49,13 @@
                 </c:forEach>
             </ul>
         </li>
-        <li role="presentation" class="active" id="switch_attr_task"><a href="#data" data-toggle="tab" role="tab">数据</a>
+        <li role="presentation" class="active" id="switch_attr_task"><a href="#data" data-toggle="tab" role="tab">数据看板</a>
         </li>
-        <li role="presentation" id="switch_attr_publish"><a href="#publish" data-toggle="tab" role="tab">发布</a>
+        <li role="presentation" id="switch_attr_publish"><a href="#publish" data-toggle="tab" role="tab">已发布</a>
         </li>
-        <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
+        <li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">已订阅</a>
+        </li>
+        <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">项目指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
             <a id="statis_btn" class="btn btn-warning" data-toggle="modal"
@@ -158,10 +67,12 @@
                data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
                data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>
 
+
             <a class="btn btn-success" href="#" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
             <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>
+
             </a>
         </div>
     </ul>
@@ -277,6 +188,9 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="publish">
         </div>
+        <div role="tabpanel" class="tab-pane" id="order">
+
+        </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
         </div>
     </div>
@@ -333,13 +247,15 @@
             var parentid = $(this).parent().attr("id");
             $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId="+${TaskInfo.ddTaskId});
         }
-        $("#create_task").show();
-        $("#create_index").hide();
     });
 
     var menuRight = document.getElementById('cbp-spmenu-s2'),
             showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
+            switch_attr_index = document.getElementById('switch_attr_index'),
+            switch_attr_task = document.getElementById('switch_attr_task'),
+            switch_attr_publish = document.getElementById('switch_attr_publish'),
+            switch_attr_order = document.getElementById('switch_attr_order'),
             body = document.body;
 
     function showDataContent(obj, taskId) {
@@ -354,19 +270,21 @@
     }
 
     switch_attr_index.onclick = function () {
-        $("#create_task").hide();
-        $("#create_index").show();
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
         });
     }
     switch_attr_task.onclick = function () {
-        $("#create_task").show();
-        $("#create_index").hide();
+
     }
     switch_attr_publish.onclick = function () {
         $.get("${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#publish').html(data);
+        });
+    }
+    switch_attr_order.onclick = function () {
+        $.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#order').html(data);
         });
     }
 </script>
