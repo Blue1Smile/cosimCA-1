@@ -3,7 +3,6 @@ package com.casic.datadriver.dao.data;
 import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.hotent.core.db.BaseDao;
-import com.hotent.core.web.query.QueryFilter;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -33,6 +32,10 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
         return this.getBySqlKey("getOrderDataRelationList", ddtaskId);
     }
 
+    public List<OrderDataRelation> getOrderDataRelationListF(PageInfo model) {
+        return this.getBySqlKey("getOrderDataRelationListF", model);
+    }
+
 
 
 
@@ -45,6 +48,9 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
      */
     public List<OrderDataRelation> getPublishDataRelationList(Long ddtaskId) {
         return this.getBySqlKey("getPublishDataRelationList", ddtaskId);
+    }
+    public List<OrderDataRelation> getPublishDataRelationListF(PageInfo model) {
+        return this.getBySqlKey("getPublishDataRelationListF", model);
     }
 
     public List<OrderDataRelation> queryPublishDataRelationByddTaskIDF(PageInfo model) {

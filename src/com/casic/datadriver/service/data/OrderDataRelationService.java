@@ -5,7 +5,6 @@ import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
-import com.hotent.core.web.query.QueryFilter;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -63,6 +62,10 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
         return this.orderDataRelationDao.getOrderDataRelationList(ddtaskId);
     }
 
+    public List<OrderDataRelation> getOrderDataRelationListF(PageInfo model) {
+        return this.orderDataRelationDao.getOrderDataRelationListF(model);
+    }
+
     public OrderDataRelation getOrderDataRelationById(long id) {
         return this.orderDataRelationDao.getOrderDataRelationById(id);
     }
@@ -76,6 +79,9 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      */
     public List<OrderDataRelation> getPublishDataRelationList(long ddtaskId) {
         return this.orderDataRelationDao.getPublishDataRelationList(ddtaskId);
+    }
+    public List<OrderDataRelation> getPublishDataRelationListF(PageInfo model) {
+        return this.orderDataRelationDao.getPublishDataRelationListF(model);
     }
 
     public List<OrderDataRelation> queryPublishDataRelationByddTaskIDF(PageInfo model) {

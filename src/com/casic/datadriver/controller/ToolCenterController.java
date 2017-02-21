@@ -405,7 +405,7 @@ public class ToolCenterController extends BaseController {
         PageInfo pageinfo = new PageInfo();
         pageinfo.setName(major);
         pageinfo.setPageSize((pageNumber-1)*pageSize);
-        pageinfo.setPageNumber((pageNumber-1)*pageSize+pageSize);
+        pageinfo.setPageNumber(pageSize);
         int Allnum = 0;
         try {
             List<ToolCenterModel> mylist =  new ArrayList<ToolCenterModel>();
