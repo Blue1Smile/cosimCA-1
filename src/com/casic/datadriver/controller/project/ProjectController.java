@@ -8,10 +8,14 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
+import com.casic.datadriver.model.data.OrderDataRelation;
+import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.flow.ProcessFlow;
 import com.casic.datadriver.model.flow.ProjectProcessAssocia;
 import com.casic.datadriver.model.project.ProjectStart;
 import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.data.OrderDataRelationService;
+import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.flow.ProcessFlowService;
 import com.casic.datadriver.service.flow.ProjectProcessAssociaService;
 import com.casic.datadriver.service.task.TaskStartService;
@@ -94,6 +98,10 @@ public class ProjectController extends BaseController {
     private ProjectProcessAssociaService projectProcessAssociaService;
     @Resource
     private ProcessFlowService processFlowService;
+    @Resource
+    private OrderDataRelationService orderDataRelationService;
+    @Resource
+    private PrivateDataService privateDataService;
     /**
      * 保存项目
      *
@@ -388,7 +396,7 @@ public class ProjectController extends BaseController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("createtopublish")
+    @RequestMapping("movetask")
     @Action(description = "任务拖拽到发布")
     public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -398,6 +406,10 @@ public class ProjectController extends BaseController {
         String parent = RequestUtil.getString(request, "parent");
         TaskStart taskStart = new TaskStart();
         TaskInfo taskInfo = taskInfoService.getById(taskId);
+
+//        List<OrderDataRelation> publishRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
+//        List<PrivateData> publshListWithoutValue = new ArrayList<PrivateData>();
+//        int valueLength=publishRelationList.size();
 
         //发布任务
         if(taskInfo.getDdTaskChildType().equals("createpanel")&&parent.equals("publishpanel")){
@@ -452,7 +464,8 @@ public class ProjectController extends BaseController {
                 }
                 else{
                     //审核通过
-                    if(taskInfo.getDdTaskChildType().equals("checkpanel")&&parent.equals("completepanel")){
+                    if(taskInfo.getDdTaskChildType().equals("checkpanel")&&parent.equals("completepanel"))
+                    {
                         //更新taskinfo?????createpanel属性是否应该放到taskstart里面
                         taskInfo.setDdTaskChildType("completepanel");
                         taskInfoService.update(taskInfo);
@@ -460,6 +473,8 @@ public class ProjectController extends BaseController {
 
                         taskStart.setDdTaskStatus(TaskStart.completepanel);
                         taskStartService.update(taskStart);
+
+
                     }
 
                 }
@@ -468,8 +483,8 @@ public class ProjectController extends BaseController {
 
         }
 
-
     }
+
     /**
      * 项目统计
      *

@@ -66,7 +66,13 @@
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
                data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
                data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>
-            <a id="complete_btn" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务
+
+
+            <a class="btn btn-success" href="#" data-toggle="modal" id="submit_btn"
+               data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
+               data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
+            <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>
+
             </a>
         </div>
     </ul>
@@ -197,7 +203,14 @@
         </div>
     </div>
 </div>
+<%--提交信息--%>
+<div class="modal fade" id="submittask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
 
+        </div>
+    </div>
+</div>
 <%--统计--%>
 <div class="modal fade" id="statis" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
