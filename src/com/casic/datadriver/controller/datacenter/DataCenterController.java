@@ -2,6 +2,7 @@ package com.casic.datadriver.controller.datacenter;
 
 
 import com.casic.datadriver.controller.AbstractController;
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.*;
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
@@ -132,10 +133,17 @@ return mv;
     public void getOrderdata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long ddTaskId= RequestUtil.getLong(request, "id");
+        Long pageSize =RequestUtil.getLong(request, "pageSize");
+        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
+        PageInfo pageinfo = new PageInfo();
+        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageNumber(pageSize);
+        pageinfo.setId(ddTaskId);
         //获得发布数据列表
-        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
+        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationListF(pageinfo);
+//        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
-
+        int allnum = this.orderDataRelationService.getPublishDataRelationList(ddTaskId).size();
         JSONObject jsonObject = new JSONObject();
         JSONObject json=new JSONObject();
         JSONArray jsonMembers = new JSONArray();
@@ -145,16 +153,17 @@ return mv;
             List<PrivateData>  taskPrivateDatas =  this.privateDataService.getByddDataId(ddDataId);
 
             for (int i = 0; i < taskPrivateDatas.size(); i++) {
-                PrivateData mymodel = taskPrivateDatas.get(i);
-                jsonObject.put("DdDataName", mymodel.getDdDataName());
-                jsonObject.put("DdDataLastestValue", mymodel.getDdDataLastestValue());
-                jsonObject.put("DdDataType", mymodel.getDdDataType());
-                jsonObject.put("DdDataCreateTime", mymodel.getDdDataCreateTime());
-                jsonObject.put("DdDataDescription", mymodel.getDdDataDescription());
+                PrivateData mymode = taskPrivateDatas.get(i);
+                jsonObject.put("DdDataName", mymode.getDdDataName());
+                jsonObject.put("DdDataLastestValue", mymode.getDdDataLastestValue());
+                jsonObject.put("DdDataType", mymode.getDdDataType());
+                jsonObject.put("DdDataCreateTime", mymode.getDdDataCreateTime());
+                jsonObject.put("DdDataDescription", mymode.getDdDataDescription());
+                jsonObject.put("DdDataId", mymode.getDdDataId());
                 jsonMembers.add(jsonObject);
             }
         }
-            json.put("total", orderDataRelation_list.size());
+            json.put("total", allnum);
             json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
             String jsonstring = formatJson(json.toString());
@@ -187,7 +196,15 @@ return mv;
             throws Exception {
         Long ddTaskId= RequestUtil.getLong(request, "id");
         //获得订购数据列表
-        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getOrderDataRelationList(ddTaskId);
+        Long pageSize =RequestUtil.getLong(request, "pageSize");
+        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
+        PageInfo pageinfo = new PageInfo();
+        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageNumber((pageNumber-1)*pageSize+pageSize);
+        pageinfo.setId(ddTaskId);
+
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getOrderDataRelationListF(pageinfo);
+//        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getOrderDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
 
         JSONObject jsonObject = new JSONObject();
@@ -205,6 +222,7 @@ return mv;
                 jsonObject.put("DdDataType", mymodel.getDdDataType());
                 jsonObject.put("DdDataCreateTime", mymodel.getDdDataCreateTime());
                 jsonObject.put("DdDataDescription", mymodel.getDdDataDescription());
+                jsonObject.put("DdDataId", mymodel.getDdDataId());
                 jsonMembers.add(jsonObject);
             }
         }
@@ -289,8 +307,31 @@ return mv;
     public ModelAndView showDataVersion(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long ddDataId= RequestUtil.getLong(request, "id");
-        //获得发布数据列表
+
         List<DataVersion>  dataVersion_list =  this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
+        JSONObject jsonObject = new JSONObject();
+        JSONObject json=new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+
+            for (int i = 0; i < dataVersion_list.size(); i++) {
+                DataVersion mymodel = dataVersion_list.get(i);
+                jsonObject.put("DdDataVersion", mymodel.getDdDataVersion());
+                jsonObject.put("ddDataRecordTime", mymodel.getDdDataRecordTime());
+                jsonObject.put("ddDataValue", mymodel.getDdDataValue());
+                jsonMembers.add(jsonObject);
+            }
+
+        json.put("total", dataVersion_list.size());
+        json.put("rows", jsonMembers);
+//        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
+        String jsonstring = formatJson(json.toString());
+        System.out.println(json.toString());
+//            system.out(json.toString());
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.append(jsonstring);
+        out.flush();
+        out.close();
 //        List<PrivateData> privateData = new ArrayList<PrivateData>();
         ModelAndView mv = this.getAutoView().addObject("dataVersionList", dataVersion_list);
         return mv;

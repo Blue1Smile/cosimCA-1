@@ -28,12 +28,25 @@
         where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
     </select>
 
+    <select id="getOrderDataRelationListF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_TASK_ID = #{id} AND DD_ORDER_TYPE=1 limit #{pageSize},#{pageNumber}
+    </select>
 
     <select id="getPublishDataRelationList" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
         where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
+    </select>
+
+    <select id="getPublishDataRelationListF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_TASK_ID = #{id} AND DD_ORDER_TYPE=0 limit #{pageSize},#{pageNumber}
     </select>
 
     <!--<select id="getCanBeOrderDataList" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
