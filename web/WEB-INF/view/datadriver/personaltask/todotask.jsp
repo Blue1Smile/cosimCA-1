@@ -234,10 +234,6 @@
             var parentid = $(this).parent().attr("id");
             $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId="+${TaskInfo.ddTaskId});
         }
-        $('#myTab a').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show');
-        });
     });
 
     var menuRight = document.getElementById('cbp-spmenu-s2'),
