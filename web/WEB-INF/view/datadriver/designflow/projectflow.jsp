@@ -37,7 +37,7 @@
 
         var id='${projectId}';
         var xml='${processFlowXml}';
-
+        var flag=${flag};
         // Enables guides
         mxGraphHandler.prototype.guidesEnabled = true;
 
@@ -52,9 +52,11 @@
         window.onbeforeunload = function () {
             return mxResources.get('changesLost');
         };
+
+
     </script>
 </head>
-<body onload="new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor.xml',id,xml);">
+<body onload="if(flag) new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor_graph.xml',id,xml); else new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor.xml',id,xml); ">
 
 <table id="splash" width="100%" height="100%"
        style="background:white;position:relative;top:0px;left:0px;z-index:4;">
