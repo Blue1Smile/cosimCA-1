@@ -36,7 +36,7 @@
      style="padding-right: 0px">
 </div>
 <div class="container-fluid">
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 ${TaskInfo.ddTaskName} <span class="caret"></span>
@@ -66,7 +66,6 @@
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
                data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
                data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>
-
             <a id="complete_btn" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务
             </a>
         </div>
@@ -235,13 +234,19 @@
             var parentid = $(this).parent().attr("id");
             $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId="+${TaskInfo.ddTaskId});
         }
-        $("#create_task").show();
-        $("#create_index").hide();
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
     });
 
     var menuRight = document.getElementById('cbp-spmenu-s2'),
             showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
+            switch_attr_index = document.getElementById('switch_attr_index'),
+            switch_attr_task = document.getElementById('switch_attr_task'),
+            switch_attr_publish = document.getElementById('switch_attr_publish'),
+            switch_attr_order = document.getElementById('switch_attr_order'),
             body = document.body;
 
     function showDataContent(obj, taskId) {
@@ -256,15 +261,12 @@
     }
 
     switch_attr_index.onclick = function () {
-        $("#create_task").hide();
-        $("#create_index").show();
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
         });
     }
     switch_attr_task.onclick = function () {
-        $("#create_task").show();
-        $("#create_index").hide();
+
     }
     switch_attr_publish.onclick = function () {
         $.get("${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}", function (data) {

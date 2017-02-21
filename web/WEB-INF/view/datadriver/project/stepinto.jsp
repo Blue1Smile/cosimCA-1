@@ -61,8 +61,8 @@
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
             <a id="statis_btn" class="btn btn-warning" data-toggle="modal"
-                    data-remote="statis.ht?id=${Project.ddProjectId}"
-                    data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计
+               data-remote="statis.ht?id=${Project.ddProjectId}"
+               data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计
             </a>
 
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
@@ -135,7 +135,7 @@
                             <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(this, ${checktaskListbyUserItem.ddTaskId})">
+                                        onclick="showTaskContent(this, ${checkTaskInfoListItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${checkTaskInfoListItem.ddTaskId}">
@@ -156,7 +156,7 @@
                             已完成
                         </div>
                         <div class="panel-body panelheight">
- <ul id="completepanel" class="scrum-stage-tasks">
+                            <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
                                         onclick="showTaskContent(this, ${completeTaskInfoListItem.ddTaskId})">
@@ -177,7 +177,6 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="index">
-
         </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
         </div>
@@ -207,12 +206,20 @@
         </div>
     </div>
 </div>
+<%--任务详细--%>
+<div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
     var startId;
     $(document).ready(function () {
-
+        $('#myModal').modal(options)
 //        $("#createpanel,#publishpanel").dragsort({
 //            itemSelector: "li",
 //            dragSelector: "li",
@@ -285,20 +292,24 @@
     var menuRight = document.getElementById('cbp-spmenu-s2'),
             showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
+            switch_attr_index = document.getElementById('switch_attr_index'),
+            switch_attr_task = document.getElementById('switch_attr_task'),
             body = document.body;
 
     function showTaskContent(obj, taskId) {
-        startId=$(this).parent().attr("id");
+        startId = $(this).parent().attr("id");
         $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
             $('#cbp-spmenu-s2').html(data);
+            $('#taskdetail').html(data);
+
         });
-        classie.toggle( obj, 'active' );
-        classie.toggle( menuRight, 'cbp-spmenu-open' );
+        classie.toggle(obj, 'active');
+        classie.toggle(menuRight, 'cbp-spmenu-open');
 //        classie.toggle(obj, 'active');
 //        classie.toggle(body, 'cbp-spmenu-push-toleft');
 //        classie.toggle(menuRight, 'cbp-spmenu-open');
     }
-    
+
     switch_attr_index.onclick = function () {
         $("#create_task").hide();
         $("#create_index").show();

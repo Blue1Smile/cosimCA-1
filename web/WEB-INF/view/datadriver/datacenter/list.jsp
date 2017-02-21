@@ -112,7 +112,7 @@
                         var taskId = item.id;
                         if (taskId == undefined) return;
 //                        $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
-                        $.get("${ctx}/datadriver/datacenter/publishorderdata.ht?id="+ taskId, function (data) {
+                        $.get("${ctx}/datadriver/datacenter/publishorderdata.ht?id=" + taskId, function (data) {
                             $('#listFrame').html(data);
                         });
                     }
@@ -122,15 +122,11 @@
             });
 
 
-
         }
 
     </script>
 </head>
 <body>
-<%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">--%>
-<%--<legend>生成一个较深的树</legend>--%>
-<%--</fieldset>--%>
 <ul id="product_tree" class="filetree"></ul>
 
 <div class="layui-tab layui-tab-card">
@@ -140,18 +136,18 @@
     </ul>
 
     <%--<div class="fr">--%>
-        <%--<a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">--%>
-            <%--&#x1002;</i> 数据快照</a>--%>
+    <%--<a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">--%>
+    <%--&#x1002;</i> 数据快照</a>--%>
     <%--</div>--%>
     <div class="layui-tab-content">
         <div id="layout">
             <div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                 <ul id="demo2" style="overflow:auto;"></ul>
             </div>
-            <div position="center" id = "listFrame">
+            <div position="center" id="listFrame">
                 <%--<iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishorderdata.ht" frameborder="no"--%>
-                        <%--width="100%"--%>
-                        <%--height="100%"></iframe>--%>
+                <%--width="100%"--%>
+                <%--height="100%"></iframe>--%>
                 <%--<div id = "listFrame"></div>--%>
             </div>
         </div>
