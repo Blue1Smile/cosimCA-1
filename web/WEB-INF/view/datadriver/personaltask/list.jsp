@@ -30,7 +30,7 @@
                             class="layui-icon">&#xe639;</i> 办理</a>
                 </c:when>
                     <c:otherwise>
-                        <a href="recovertask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                        <a href="recovertask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-warm layui-btn-mini"><i
                                 class="layui-icon">&#xe639;</i> 收回</a>
                     </c:otherwise></c:choose>
             </display:column>

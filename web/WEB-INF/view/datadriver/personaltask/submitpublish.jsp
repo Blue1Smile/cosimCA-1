@@ -55,7 +55,7 @@
                     sortable: true,
                     editable: false,
                     align: 'center',
-                    visible: true
+                    visible: false
                 }, {//第二列，名称
                     field: 'ddDataName',
                     title: '数据名称',

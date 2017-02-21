@@ -12,11 +12,11 @@
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body>
-<table id="tablelist">
+<table id="ordertablelist">
 </table>
 
 <script type="text/javascript">
-    var $table = $('#tablelist'),
+    var $table = $('#ordertablelist'),
             $remove = $('#remove'),
             selections = [];
     var curRow = {};
@@ -170,80 +170,80 @@
             });
             $remove.prop('disabled', true);
         });
-        $table.InitSubTable = function (index, row, $detail){
-            var ddDataId = row.ddDataId;
-            var cur_table = $detail.html('<table></table>').find('table');
-            $(cur_table).bootstrapTable({
-                url: 'showfiveversion.ht',
-                method: 'post',
-                data:{ddDataId: ddDataId},
-                queryParams: {ddDataId: ddDataId},
-                ajaxOptions: {ddDataId: ddDataId},
-                clickToSelect: true,
-                detailView: true,//父子表
-                detailFormatter:"detailFormatter",
-                uniqueId: "MENU_ID",
-                pageSize: 2,
-                pageList: "[5, 10, 20, 50, ALL]",
-                columns: [
-                    //    {
-                    //    checkbox: true
-                    //},
-                    {//第一列，数据ID
-                        field: 'ddDataVersionId',
-                        title: '数据版本ID',
-                        sortable: true,
-                        editable: false,
-                        align: 'center',
-                        visible: false
-                    }, {//第二列，名称
-                        field: 'ddDataId',
-                        title: '数据ID',
-                        sortable: true,
-                        editable: false,
-                        // footerFormatter: ddDataNameFormatter,
-                        align: 'center',
-                        visible: true
-                    }, {//所属任务ID
-                        field: 'ddDataRecordTime',
-                        title: '数据记录时间',
-                        sortable: true,
-                        editable: false,
-                        // footerFormatter: ddDataNameFormatter,
-                        align: 'center',
-                        visible: false
-                    }
-                    , {//第三列，数值
-                        field: 'ddDataRecordPersonId',
-                        title: '数据记录人ID',
-                        sortable: true,
-                        align: 'center',
-                        editable: {
-                            type: 'text',
-                            title: '值',
-                            validate: function (v) {
-                                if (isNaN(v)) return '值必须是数字';
-                            }
-                        }
-                        //,
-                        // footerFormatter: ddDataLastestValueFormatter
-                    }
-                    , {//数据类型
-                        field: 'ddDataValue',
-                        title: '数据值',
-                        sortable: true,
-                        editable: false,
-                        // footerFormatter: ddDataNameFormatter,
-                        align: 'center',
-                        visible: true
-                    }
-                ],
-                ////无线循环取子表，直到子表里面没有记录
-                //onExpandRow: function (index, row, $Subdetail) {
-                //    oInit.InitSubTable(index, row, $Subdetail);
-                //}
-            });
-        }
+//        $table.InitSubTable = function (index, row, $detail){
+//            var ddDataId = row.ddDataId;
+//            var cur_table = $detail.html('<table></table>').find('table');
+//            $(cur_table).bootstrapTable({
+//                url: 'showfiveversion.ht',
+//                method: 'post',
+//                data:{ddDataId: ddDataId},
+//                queryParams: {ddDataId: ddDataId},
+//                ajaxOptions: {ddDataId: ddDataId},
+//                clickToSelect: true,
+//                detailView: true,//父子表
+//                detailFormatter:"detailFormatter",
+//                uniqueId: "MENU_ID",
+//                pageSize: 2,
+//                pageList: "[5, 10, 20, 50, ALL]",
+//                columns: [
+//                    //    {
+//                    //    checkbox: true
+//                    //},
+//                    {//第一列，数据ID
+//                        field: 'ddDataVersionId',
+//                        title: '数据版本ID',
+//                        sortable: true,
+//                        editable: false,
+//                        align: 'center',
+//                        visible: false
+//                    }, {//第二列，名称
+//                        field: 'ddDataId',
+//                        title: '数据ID',
+//                        sortable: true,
+//                        editable: false,
+//                        // footerFormatter: ddDataNameFormatter,
+//                        align: 'center',
+//                        visible: true
+//                    }, {//所属任务ID
+//                        field: 'ddDataRecordTime',
+//                        title: '数据记录时间',
+//                        sortable: true,
+//                        editable: false,
+//                        // footerFormatter: ddDataNameFormatter,
+//                        align: 'center',
+//                        visible: false
+//                    }
+//                    , {//第三列，数值
+//                        field: 'ddDataRecordPersonId',
+//                        title: '数据记录人ID',
+//                        sortable: true,
+//                        align: 'center'
+////                        editable: {
+////                            type: 'text',
+////                            title: '值',
+////                            validate: function (v) {
+////                                if (isNaN(v)) return '值必须是数字';
+////                            }
+////                        }
+//                        //,
+//                        // footerFormatter: ddDataLastestValueFormatter
+//                    }
+//                    , {//数据类型
+//                        field: 'ddDataValue',
+//                        title: '数据值',
+//                        sortable: true,
+//                        editable: false,
+//                        // footerFormatter: ddDataNameFormatter,
+//                        align: 'center',
+//                        visible: true
+//                    }
+//                ],
+//                ////无线循环取子表，直到子表里面没有记录
+//                //onExpandRow: function (index, row, $Subdetail) {
+//                //    oInit.InitSubTable(index, row, $Subdetail);
+//                //}
+//            });
+//        }
     }
 
     function getIdSelections() {

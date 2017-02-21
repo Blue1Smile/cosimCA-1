@@ -99,6 +99,26 @@ public class DataCenterController extends AbstractController {
     }
 
     /**
+     * 2017/02/18/修改
+     * 返回任务发布订购数据列表
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("publishorderdata")
+    @Action(description = "返回到发布订阅页面")
+    public ModelAndView publishorderdata(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long taskId= RequestUtil.getLong(request, "id");
+//        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
+//        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
+        ModelAndView mv = this.getAutoView().addObject("taskId",
+                taskId);
+return mv;
+        }
+    /**
      * 2016/12/19/修改
      * 返回任务发布订购数据列表
      *

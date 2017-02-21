@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="ap" uri="/appleTag" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -47,8 +48,13 @@
                 </tr>
                 <tr>
                     <th width="20%">数据类型:</th>
-                    <td><input type="text" id="ddDataType" name="ddDataType"
-                               value="" class="form-control"/></td>
+                    <td>
+                        <ap:selectDB name="ddDataType" id="ddDataType"
+                                     where="parentId=10000025100454" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                        </ap:selectDB>
+                    </td>
                     <th width="20%">数据敏感度:</th>
                     <td><input type="text" id="ddDataSensitiveness" name="ddDataSensitiveness"
                                value=""
@@ -82,9 +88,9 @@
     $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
     $(function () {
         var options = {};
-        if (showResponse) {
-            options.success = showResponse;
-        }
+//        if (showResponse) {
+//            options.success = showResponse;
+//        }
 
         var frm = $('#privateDataForm').form();
         $("#dataFormSave").click(function () {
@@ -92,21 +98,10 @@
             frm.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
+                window.location.href = "${ctx}/datadriver/personaltask/todotask.ht?id=${taskInfo.ddTaskId}";
             }
         });
     });
-
-    function showResponse(responseText) {
-        var obj = new com.hotent.form.ResultMessage(responseText);
-        if (obj.isSuccess()) {
-            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-            parent.layer.close(index); //再执行关闭
-            window.location.href = "${ctx}/datadriver/privatedata/addprivatedata.ht?id=${taskInfo.ddTaskId}";
-        } else {
-//            $.ligerMessageBox.error("提示信息", obj.getMessage());
-        }
-    }
-
 </script>
 <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.zh-CN.js"></script>
 </html>
