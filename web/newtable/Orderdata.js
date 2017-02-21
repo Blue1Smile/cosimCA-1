@@ -53,39 +53,39 @@ function TableInit () {
         detailView: false,                   //是否显示父子表
         columns: [
             {//第一列，数据名称
-                field: 'DdDataId',
+                field: 'DdDataName',
                 title: '数据名称',
                 sortable: true,
                 editable: false,
                 align: 'center',
                 visible: true
             }, {//第二列，最新值
-                field: 'DdDataName',
+                field: 'DdDataLastestValue',
                 title: '最新值',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
-                visible: false
-            }, {//第三列，时间
-                field: 'DdDataLastestValue',
-                title: '时间',
-                sortable: true,
-                editable: false,
-                // footerFormatter: ddDataNameFormatter,
-                align: 'center',
-                visible: false
-            }, {//第四列，数据描述
-                field: 'DdDataTaskName',
-                title: '数据描述',
+                visible: true
+            }, {//第三列
+                field: 'DdDataType',
+                title: '数据类型',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            }, {//第五列，操作
+            }, {//第四列
                 field: 'DdDataCreateTime',
-                title: '操作',
+                title: '更新时间',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            }, {//第五列，
+                field: 'DdDataDescription',
+                title: '描述',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
@@ -131,25 +131,55 @@ function TableInit () {
             uniqueId: "MENU_ID",
             pageSize: 10,
             pageList: [10, 25],
-            columns: [{
-                checkbox: true
-            }, {
-                field: 'ToolName',
-                title: '工具名称',
+            columns: [ {//第一列，数据名称
+                field: 'DdDataName',
+                title: '数据名称',
+                sortable: true,
+                editable: false,
+                align: 'center',
+                visible: true
+            }, {//第二列，最新值
+                field: 'DdDataLastestValue',
+                title: '最新值',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            }, {
-                field: 'ToolVersion',
-                title: '工具版本',
+            }, {//第三列
+                field: 'DdDataType',
+                title: '数据类型',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            },  ],
+            }, {//第四列
+                field: 'DdDataCreateTime',
+                title: '更新时间',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            }, {//第五列，
+                field: 'DdDataDescription',
+                title: '描述',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            },{//第六列，
+                field: 'DdDataDescription',
+                title: '版本',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            },
+            ],
             //无线循环取子表，直到子表里面没有记录
             onExpandRow: function (index, row, $Subdetail) {
                 InitSubTable(index, row, $Subdetail);

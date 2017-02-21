@@ -53,39 +53,39 @@ function TableInit () {
         detailView: true,                   //是否显示父子表
         columns: [
             {//第一列，数据名称
-                field: 'DdDataId',
+                field: 'DdDataName',
                 title: '数据名称',
                 sortable: true,
                 editable: false,
                 align: 'center',
                 visible: true
             }, {//第二列，最新值
-                field: 'DdDataName',
+                field: 'DdDataLastestValue',
                 title: '最新值',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            }, {//第三列，时间
-                field: 'DdDataLastestValue',
-                title: '时间',
+            }, {//第三列
+                field: 'DdDataType',
+                title: '数据类型',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            }, {//第四列，数据描述
-                field: 'DdDataTaskName',
-                title: '数据描述',
-                sortable: true,
-                editable: false,
-                // footerFormatter: ddDataNameFormatter,
-                align: 'center',
-                visible: true
-            }, {//第五列，操作
+            }, {//第四列
                 field: 'DdDataCreateTime',
-                title: '操作',
+                title: '更新时间',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            }, {//第五列，
+                field: 'DdDataDescription',
+                title: '描述',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
