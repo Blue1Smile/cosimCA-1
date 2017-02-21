@@ -121,8 +121,8 @@
 </div>
 <div class="container-fluid" style="height: 100%">
     <ul class="nav nav-tabs" role="tablist">
-        <li  class="active" role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">订阅数据</a></li>
-        <li role="presentation" id="switch_attr_calendar"><a href="#calendar" data-toggle="tab" role="tab">发布数据</a></li>
+        <li  class="active" role="presentation" id="switch_attr_Release"><a href="#Release" data-toggle="tab" role="tab">订阅数据</a></li>
+        <li role="presentation" id="switch_attr_Order"><a href="#Order" data-toggle="tab" role="tab">发布数据</a></li>
         <%--<div class="pull-right">--%>
             <%--<a id="statis_btn" class="btn btn-warning" data-toggle="modal"--%>
                <%--data-remote="statis.ht?id=${Project.ddProjectId}"--%>
@@ -141,10 +141,10 @@
 
     <br>
     <div class="tab-content board-view">
-        <div role="tabpanel" class="tab-pane" id="index">
+        <div role="tabpanel" class="tab-pane" id="Release">
 
         </div>
-        <div role="tabpanel" class="tab-pane" id="calendar">
+        <div role="tabpanel" class="tab-pane" id="Order">
         </div>
     </div>
 </div>
@@ -152,17 +152,24 @@
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
 
-    switch_attr_index.onclick = function () {
+    <%--$(document).ready(function () {--%>
+        <%--$("#create_task").hide();--%>
+        <%--$("#create_Release").show();--%>
+        <%--$.get("${ctx}/datadriver/datacenter/Releasedata.ht?id=<%=request.getParameter("id")%>", function (data) {--%>
+            <%--$('#index').html(data);--%>
+        <%--});--%>
+    <%--});--%>
+    switch_attr_Release.onclick = function () {
         $("#create_task").hide();
-        $("#create_index").show();
+        $("#create_Release").show();
         $.get("${ctx}/datadriver/datacenter/Releasedata.ht?id=<%=request.getParameter("id")%>", function (data) {
             $('#index').html(data);
         });
     }
 
-   switch_attr_calendar.onclick = function () {
+   switch_attr_Order.onclick = function () {
     $("#create_task").hide();
-    $("#create_calendar").show();
+    $("#create_Order").show();
     $.get("${ctx}/datadriver/datacenter/Orderdata.ht?id=<%=request.getParameter("id")%>", function (data) {
         $('#calendar').html(data);
     });
