@@ -1,212 +1,173 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/16
-  Time: 20:43
+  User: d
+  Date: 2017/1/19
+  Time: 上午10:51
   To change this template use File | Settings | File Templates.
 --%>
-<%--
-	time:2013-04-11 11:48:44
-	desc:edit the 业务定义，如邀标采购这样的大业务。
---%>
-<%@page language="java" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@ taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<%@page import="com.hotent.core.util.ContextUtil" %>
-<html>
+<html style="height: 100%; margin: 0px">
 <head>
-    <title>发布/订购数据</title>
-    <%@include file="/commons/include/form.jsp" %>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css"  media="all">
-    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
 
+    <title>进入任务页面</title>
+    <%--<%@include file="/commons/include/get.jsp" %>--%>
+    <%--<link rel="stylesheet" href="${ctx}/resources/skin/base.css"/>--%>
+    <%--<link rel="stylesheet" href="${ctx}/resources/skin/content.css"/>--%>
+    <%--<link rel="stylesheet" href="${ctx}/resources/skin/blue.css"/>--%>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
+    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/styles/check/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
+
+    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
+    <script src="${ctx}/newtable/jquery.js"></script>
+    <script src="${ctx}/newtable/bootstrap.js"></script>
+    <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
     <style>
-        #iframe_tab {
-            margin-top: 0px;
+        html, body {
+            margin: 0px 0px !important;
+            width: 100% !important;
+            height: 100% !important;
         }
-         .fl {
-             float: left;
-         }
 
-        .fr {
-            float: right;
+        iframe {
+            margin: 0px 0px !important;
+            width: 100% !important;
+            height: 100% !important;
         }
-        .pages{
-            float: right;
+
+        .scrum-stage .task.task-card {
+            margin: 0 8px 8px !important;
         }
-        .page_line{
-            display:inline;
+
+        .task.task-card {
+            padding: 0 !important;
+            background-color: #fff !important;
+            border-radius: 3px !important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
+            cursor: pointer !important;
+            margin-left: -42px !important;
         }
+
+        .checkbox label {
+            margin: 12px !important;
+        }
+
+        li {
+            list-style-type: none !important;
+        }
+
+        .paneldocker {
+            position: relative;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .panelheight {
+            position: relative;
+            height: 93%;
+        }
+
+        /*.cbp-spmenu-push{*/
+        /*overflow:scroll !important;*/
+        /*overflow-x:hidden !important;*/
+        /*}*/
+        .bs-callout-danger {
+            border-left-color: #ce4844;
+            border-left-width: 5px;
+        }
+        .board-view {
+            position: fixed;
+            top: 50px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            overflow: hidden;
+            transition: all 218ms ease;
+        }
+        .task-panel {
+            position: relative;
+            height: 100%;
+        }
+        .board-scrum-view {
+            position: relative;
+            height: 100%;
+            background-color: #FFF;
+            border-style: solid;
+            border-width: 0;
+            border-color: #E5E5E5;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
     </style>
-
-
-
 </head>
-<body>
 
-<div class="layui-tab layui-tab-card" id="iframe_tab">
-    <ul class="layui-tab-title">
-        <li class="layui-this" id="init">发布数据</li>
-        <li>订购数据</li>
+<body style="height: 100%; margin: 0px">
+<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"
+     style="padding-right: 0px">
+</div>
+<div class="container-fluid" style="height: 100%">
+    <ul class="nav nav-tabs" role="tablist">
+        <li  class="active" role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">订阅数据</a></li>
+        <li role="presentation" id="switch_attr_calendar"><a href="#calendar" data-toggle="tab" role="tab">发布数据</a></li>
+        <%--<div class="pull-right">--%>
+            <%--<a id="statis_btn" class="btn btn-warning" data-toggle="modal"--%>
+               <%--data-remote="statis.ht?id=${Project.ddProjectId}"--%>
+               <%--data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计--%>
+            <%--</a>--%>
+
+            <%--<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"--%>
+               <%--data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"--%>
+               <%--data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建</a>--%>
+
+            <%--<a class="btn btn-info" href="#" data-toggle="modal" id="create_index"--%>
+               <%--data-remote="${ctx}/datadriver/index/indexedit.ht?id=${Project.ddProjectId}"--%>
+               <%--data-target="#addindex"><span class="glyphicon glyphicon-plus"></span> 创建</a>--%>
+        <%--</div>--%>
     </ul>
-    <div class="layui-tab-content" style="height: 100%;">
-        <!--任务发布数据-->
-        <blockquote class="layui-elem-quote">
-            <div style="height: 40px;">
-                <span class="fl">
-                    <form id="searchForm" method="post" action="list.ht">
-                            <input type="text" name="ddDataName" class="layui-input"
-                                   value="${param['ddDataName']}" placeholder="数据名称"/>
-                    </form>
-                </span>
-                <span class="fr">
-                    <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
-                </span>
-            </div>
-        </blockquote>
-        <div class="layui-tab-item">
-            <c:set var="checkAll">
-                <input type="checkbox" id="chkall"/>
-            </c:set>
-            <display:table name="privateDataList_publish" id="privateDataList_publish" requestURI="publishorderdata.ht"
-                           sort="external" cellpadding="1"
-                           cellspacing="1" export="false" class="layui-table" pagesize="10">
-                <display:column title="${checkAll}" media="html" style="width:5%;">
-                    <input type="checkbox" class="pk" name="id" value="${taskList.ddTaskId}">
-                </display:column>
-                <display:column property="ddDataName" title="数据名称" sortable="true" maxLength="60"></display:column>
-                <display:column property="ddDataLastestValue" title="最新值" sortable="true"
-                                maxLength="80"></display:column>
-                <display:column property="ddDataCreateTime" title="时间" sortable="true" maxLength="80"></display:column>
-                <display:column property="ddDataDescription" title="数据描述" sortable="true"
-                                maxLength="80"></display:column>
-                <display:column title="操作" media="html" style="width:100px">
-                    <a href="dataversion.ht?id=${privateDataList_publish.ddDataId}"
-                       class="layui-btn layui-btn-normal  layui-btn-small"><i
-                            class="layui-icon">&#xe615;</i> 数据版本</a>
-                    <%--<a class="layui-btn layui-btn-primary" href="javascript:;">prompt层</a>--%>
-                    <%--<div class="site-demo-button" id="LAY_demo" style="margin-bottom: 0;">--%>
-                        <%--<button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>--%>
-                    <%--</div>--%>
-                </display:column>
-            </display:table>
-        </div>
-        <!--任务订阅数据-->
-        <div class="layui-tab-item">
-            <c:set var="checkAll">
-                <input type="checkbox" id="chkall"/>
-            </c:set>
-            <display:table name="privateDataList_order" id="privateDataList_order" requestURI="publishorderdata.ht"
-                           sort="external" cellpadding="1"
-                           cellspacing="1" export="false" class="layui-table" pagesize="10">
-                <display:column title="${checkAll}" media="html" style="width:5%;">
-                    <input type="checkbox" class="pk" name="id" value="${taskList.ddTaskId}">
-                </display:column>
-                <display:column property="ddDataName" title="数据名称" sortable="true" maxLength="60"></display:column>
-                <display:column property="ddDataLastestValue" title="最新值" sortable="true"
-                                maxLength="80"></display:column>
-                <display:column property="ddDataCreateTime" title="时间" sortable="true" maxLength="80"></display:column>
-                <display:column property="ddDataDescription" title="数据描述" sortable="true"
-                                maxLength="80"></display:column>
-                <display:column title="操作" media="html" style="width:100px">
-                    <a href="dataversion.ht?id=${privateDataList_order.ddDataId}"
-                       class="layui-btn layui-btn-normal  layui-btn-small"><i
-                            class="layui-icon">&#xe615;</i> 数据版本</a>
-                    <a href="showdatashot.ht?id=${privateDataList_order.ddDataId}"
-                       class="layui-btn layui-btn-normal  layui-btn-small"><i
-                            class="layui-icon">&#xe615;</i> 数据快照查看</a>
-                    <%--<a class="layui-btn layui-btn-primary" href="javascript:;">prompt层</a>--%>
-                    <button data-method="offset" data-type="t" class="layui-btn layui-btn-normal">上弹出</button>
-                </display:column>
-            </display:table>
 
+    <br>
+    <div class="tab-content board-view">
+        <div role="tabpanel" class="tab-pane" id="index">
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="calendar">
         </div>
     </div>
 </div>
+</body>
+<script src="${ctx}/styles/slide/js/classie.js"></script>
+<script type="text/javascript">
 
-
-<%--<div class="layui-layer layui-layer-page layui-layer-prompt layer-anim" id="layui-layer7" type="page" times="7" showtime="0" contype="string" style="z-index: 19891021; top: 388.5px; left: 324px;">--%>
-    <%--<div class="layui-layer-title" style="cursor: move;">输入任何口令，并确认--%>
-    <%--</div>--%>
-    <%--<div id="" class="layui-layer-content">--%>
-        <%--<input type="password" class="layui-layer-input" value="">--%>
-<%--</div>--%>
-    <%--<span class="layui-layer-setwin">--%>
-        <%--<a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a>--%>
-    <%--</span>--%>
-    <%--<div class="layui-layer-btn layui-layer-btn-">--%>
-        <%--<a class="layui-layer-btn0">确定</a>--%>
-        <%--<a class="layui-layer-btn1">取消</a>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
-
-
-
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-<script>
-    layui.use('layer', function()
-    { //独立版的layer无需执行这一句
-        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-        //触发事件
-        var active =
-        {
-
-            offset: function(othis){
-                var type = othis.data('type')
-                        ,text = othis.text();
-
-                layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){
-                    layer.close(index);
-                    layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
-                        layer.close(index);
-                        layer.msg('演示完毕！您的口令：'+ pass +'您最后写下了：'+text);
-                    });
-                });
-            }
-        };
-        $('#LAY_demo .layui-btn').on('click', function()
-        {
-            var othis = $(this), method = othis.data('method');
-            active[method] ? active[method].call(this, othis) : '';
+    switch_attr_index.onclick = function () {
+        $("#create_task").hide();
+        $("#create_index").show();
+        $.get("${ctx}/datadriver/datacenter/Releasedata.ht?id=<%=request.getParameter("id")%>", function (data) {
+            $('#index').html(data);
         });
-    });
+    }
 
+   switch_attr_calendar.onclick = function () {
+    $("#create_task").hide();
+    $("#create_calendar").show();
+    $.get("${ctx}/datadriver/datacenter/Orderdata.ht?id=<%=request.getParameter("id")%>", function (data) {
+        $('#calendar').html(data);
+    });
+}
 
 
 </script>
-
-<%--<script type="text/javascript">--%>
-    <%--$('#init').trigger('click');--%>
-    <%--var nowDataId;--%>
-
-
-    <%--function Prompt(index) {--%>
-
-        <%--layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){--%>
-            <%--layer.close(index);--%>
-            <%--layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){--%>
-                <%--layer.close(index);--%>
-                <%--layer.msg('演示完毕！您的口令：'+ pass +您最后写下了:'+text);--%>
-            <%--});--%>
-        <%--});--%>
-
-    <%--}--%>
-
-
-
-
-
-
-
-<%--</script>--%>
-
-</body>
 </html>
-
