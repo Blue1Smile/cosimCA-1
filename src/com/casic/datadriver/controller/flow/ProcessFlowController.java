@@ -100,8 +100,55 @@ public class ProcessFlowController extends AbstractController {
             Long processFlowId = projectProcessAssocia.getDdPrcessId();
             processFlow = processFlowService.getById(processFlowId);
             String tempXml = processFlow.getDdProcessXml();
-            mv = this.getAutoView().addObject("projectId", projectId)
+
+            //更改xml 进行流程的监控
+            if(flag==1)
+            {
+                Reader in = new StringReader(tempXml);
+                Document doc = (new SAXBuilder()).build(in);
+
+                Element mxGraphmodel = doc.getRootElement();
+                Element root = mxGraphmodel.getChild("root");
+                //String projectID = root.getChild("Layer").getAttributeValue("projectID");
+                java.util.List task = root.getChildren("Task");
+
+                for (Iterator i = task.iterator(); i.hasNext(); ) {
+                    Element el = (Element) i.next();
+
+                    String taskid = el.getAttributeValue("oracleid");
+
+                    TaskInfo taskInfo = taskInfoService.getById(Long.parseLong(taskid));
+                    String ddTaskChildType = taskInfo.getDdTaskChildType();
+
+                    Element mxCell;
+                    mxCell = el.getChild("mxCell");
+                    String style = mxCell.getAttributeValue("style");
+
+                    if(ddTaskChildType.compareTo("publishpanel")==0) {
+                        style += ";strokeColor=red";
+                        mxCell.setAttribute("style",style);
+                    }
+                }
+
+               //输出改造后的xml
+                Format format = Format.getCompactFormat();
+                format.setEncoding("utf-8");
+                format.setIndent(" ");
+                XMLOutputter xmlOutputter = new XMLOutputter();
+                java.io.StringWriter a = new java.io.StringWriter();
+                xmlOutputter.output(doc, a);
+                String str = a.toString();
+
+                //要对String str做掐头去尾
+                String xml = str.substring(40,str.lastIndexOf('>')+1);
+                mv = this.getAutoView().addObject("projectId", projectId)
+                        .addObject("processFlowXml", xml).addObject("flag",flag);
+
+            }
+            else
+                mv = this.getAutoView().addObject("projectId", projectId)
                     .addObject("processFlowXml", tempXml).addObject("flag",flag);
+
         } else {
             mv = this.getAutoView().addObject("projectId", projectId).addObject("flag",flag);
         }
