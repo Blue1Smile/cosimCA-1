@@ -87,15 +87,16 @@ public class ProcessFlowController extends AbstractController {
         ProcessFlow processFlow = new ProcessFlow();
         ModelAndView mv = new ModelAndView();
         Long projectId = RequestUtil.getLong(request, "projectId");
+        int flag = RequestUtil.getInt(request,"flag");
         ProjectProcessAssocia projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectId);
         if (projectProcessAssocia != null) {
             Long processFlowId = projectProcessAssocia.getDdPrcessId();
             processFlow = processFlowService.getById(processFlowId);
             String tempXml = processFlow.getDdProcessXml();
             mv = this.getAutoView().addObject("projectId", projectId)
-                    .addObject("processFlowXml", tempXml);
+                    .addObject("processFlowXml", tempXml).addObject("flag",flag);
         } else {
-            mv = this.getAutoView().addObject("projectId", projectId);
+            mv = this.getAutoView().addObject("projectId", projectId).addObject("flag",flag);
         }
         return mv;
     }

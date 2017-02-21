@@ -21,7 +21,7 @@
 		mxBasePath = '../../src';
 	</script>
 	<script type="text/javascript" src="../../src/js/mxClient.js"></script>
-	<script type="text/javascript" src="js/mxApplication.js"></script>
+	<script type="text/javascript" src="js/mxApplication_backup.js"></script>
 	<script type="text/javascript">
 		mxConstants.DEFAULT_HOTSPOT = 1;
 		
