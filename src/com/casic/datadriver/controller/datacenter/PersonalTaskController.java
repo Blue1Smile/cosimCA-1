@@ -300,7 +300,7 @@ public class PersonalTaskController extends AbstractController {
             Long taskId = RequestUtil.getLong(request, "id");
             pageinfo.setId(taskId);
             int allnum = this.orderDataRelationService.getOrderDataRelationList(taskId).size();
-            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskIDF(pageinfo);
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryOrderDataRelationByddTaskIDF(pageinfo);
             List<PrivateData> privateData_list = new ArrayList<PrivateData>();
             JSONObject jsonObject = new JSONObject();
             for (int i = 0; i < orderDataRelation_list.size(); i++) {

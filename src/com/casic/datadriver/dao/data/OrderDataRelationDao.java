@@ -50,6 +50,10 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
     public List<OrderDataRelation> queryPublishDataRelationByddTaskIDF(PageInfo model) {
         return this.getBySqlKey("queryPublishDataRelationByddTaskIDF", model);
     }
+    public List<OrderDataRelation> queryOrderDataRelationByddTaskIDF(PageInfo model) {
+        return this.getBySqlKey("queryOrderDataRelationByddTaskIDF", model);
+    }
+
     /*
      * (non-Javadoc)
      *
