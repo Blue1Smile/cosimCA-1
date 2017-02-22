@@ -89,7 +89,7 @@
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showDataContent(${privateDataListbyTaskItem.ddDataId})" data-toggle='modal' data-target='#datadetail'>
+                                        onclick="showDataContent(${privateDataListbyTaskItem.ddDataId})" data-toggle='modal' data-target='#datadetailcontent'>
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox1" type="checkbox">
                                             <label for="checkbox1">
@@ -114,7 +114,7 @@
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showDataContent(${publishDataListItem.ddDataId})" data-toggle='modal' data-target='#datadetail'>
+                                        onclick="showDataContent(${publishDataListItem.ddDataId})" data-toggle='modal' data-target='#datadetailcontent'>
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox2" type="checkbox">
                                             <label for="checkbox2">
@@ -139,7 +139,7 @@
                             <ul id="canorderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showDataContent(${canBeOrderPrivatedataListItem.ddDataId})" data-toggle='modal' data-target='#datadetail'>
+                                        onclick="showDataContent(${canBeOrderPrivatedataListItem.ddDataId})" data-toggle='modal' data-target='#datadetailcontent'>
                                         <div class="checkbox">
                                             <input id="checkbox3" type="checkbox">
                                             <label for="checkbox3">
@@ -164,7 +164,7 @@
                             <ul id="orderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showDataContent(${OrderPrivatedataListItem.ddDataId})" data-toggle='modal' data-target='#datadetail'>
+                                        onclick="showDataContent(${OrderPrivatedataListItem.ddDataId})" data-toggle='modal' data-target='#datadetailcontent'>
                                         <div class="checkbox">
                                             <input id="checkbox4" type="checkbox">
                                             <label for="checkbox4">
@@ -310,11 +310,11 @@
             remote: "statis.ht?id=${TaskInfo.ddTaskId}"
         })
     }
-    create_task.onclick = function () {
-        $('#adddata').modal({
-            keyboard: true,
-            remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
-        })
-    }
+    <%--create_task.onclick = function () {--%>
+        <%--$('#adddata').modal({--%>
+            <%--keyboard: true,--%>
+            <%--remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"--%>
+        <%--})--%>
+    <%--}--%>
 </script>
 </html>

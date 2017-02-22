@@ -17,7 +17,7 @@
     <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
 
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
+    <link href="${ctx}/newtable/bootstrap-editable.css" rel="stylesheet">
     <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
 
     <script src="${ctx}/newtable/bootstrap-editable.js"></script>
