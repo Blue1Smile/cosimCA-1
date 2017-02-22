@@ -41,7 +41,7 @@
 
   <select id="getProjectIdbyId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     SELECT  DD_PROJECT_ID
-    FROM dd_private_data
+    FROM dd_project_task_dependance
     WHERE
     DD_DATA_TASK_ID=#{id}
   </select>
