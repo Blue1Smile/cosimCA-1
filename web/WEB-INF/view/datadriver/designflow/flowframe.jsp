@@ -17,9 +17,8 @@
     <ul class="layui-tab-title">
         <li class="layui-this">项目流程绘制</li>
     </ul>
-    <div class="layui-tab-contentignflow/projectflow.ht?id=${projectId}&processFlowXml=${processFlowXml}" style="width: 100%;height: 800px" frameborder="no"></iframe>
-    </div>">
-        <iframe src="${ctx}/datadriver/designflow/projectflow.ht?id=${projectId}&processFlowXml=${processFlowXml}" style="width: 100%;height: 800px" frameborder="no"></iframe>
+    <div class="layui-tab-content" >
+        <iframe src="${ctx}/datadriver/designflow/projectflow.ht?flag=0&id=${projectId}&processFlowXml=${processFlowXml}" style="width: 100%;height: 800px" frameborder="no"></iframe>
     </div>
 </div>
 </body>

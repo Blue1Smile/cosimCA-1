@@ -55,7 +55,7 @@ public class PersonalTaskController extends AbstractController {
 
 
     /**
-     * 2016/12/4/�޸�
+     * 2016/12/4/
      *
      * @param request  the request
      * @param response the response
@@ -67,17 +67,17 @@ public class PersonalTaskController extends AbstractController {
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 //        List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
-        List<TaskInfo>  UserTaskInfo_list = taskInfoService.queryTaskInfoByResponceId(ContextUtil.getCurrentUserId());
+        List<TaskInfo> UserTaskInfo_list = taskInfoService.queryTaskInfoByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> taskInfo_list = new ArrayList<TaskInfo>();
 
         for (int i = 0; i < UserTaskInfo_list.size(); i++) {
             Long ddTaskId = UserTaskInfo_list.get(i).getDdTaskId();
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
-            if (taskInfo.getDdTaskChildType()==null) {
+            if (taskInfo.getDdTaskChildType() == null) {
                 taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfo.setDdTaskChildType("createpanel");
             }
-            if(taskInfo.getDdTaskChildType().equals("publishpanel")||taskInfo.getDdTaskChildType().equals("checkpanel")){
+            if (taskInfo.getDdTaskChildType().equals("publishpanel") || taskInfo.getDdTaskChildType().equals("checkpanel")) {
                 taskInfo_list.add(taskInfo);
             }
         }
@@ -102,7 +102,6 @@ public class PersonalTaskController extends AbstractController {
         return mv;
     }
 
-
     @RequestMapping("showorder")
     @Action(description = "订阅数据查看")
     public ModelAndView queryshoworder(HttpServletRequest request, HttpServletResponse response)
@@ -117,7 +116,7 @@ public class PersonalTaskController extends AbstractController {
             privateData.addAll(taskPrivateDatas);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
-                privateData);
+                privateData).addObject("taskId", ddTaskId);
         return mv;
     }
 
@@ -168,7 +167,6 @@ public class PersonalTaskController extends AbstractController {
                 }
             }
         }
-
 
         List<PrivateData> OrderPrivatedataList = new ArrayList<PrivateData>();
         //获取项目id
@@ -224,9 +222,7 @@ public class PersonalTaskController extends AbstractController {
     public ModelAndView dashboard(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long taskId = RequestUtil.getLong(request, "id");
-
         TaskInfo taskInfo = taskInfoService.getById(taskId);
-
 
         ModelAndView mv = this.getAutoView().addObject("taskInfo", taskInfo);
         return mv;
@@ -254,6 +250,57 @@ public class PersonalTaskController extends AbstractController {
             pageinfo.setId(taskId);
             int allnum = this.orderDataRelationService.getPublishDataRelationList(taskId).size();
             List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskIDF(pageinfo);
+            List<PrivateData> privateData_list = new ArrayList<PrivateData>();
+            JSONObject jsonObject = new JSONObject();
+            for (int i = 0; i < orderDataRelation_list.size(); i++) {
+                OrderDataRelation orderDataRelation = orderDataRelation_list.get(i);
+                PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
+//            privateData_list.add(privateData);
+                jsonObject.put("ddDataId", privateData.getDdDataId());
+                jsonObject.put("ddDataTaskId", privateData.getDdDataTaskId());
+                jsonObject.put("ddDataType", privateData.getDdDataType());
+                jsonObject.put("ddDataTaskName", privateData.getDdDataTaskName());
+                jsonObject.put("ddDataName", privateData.getDdDataName());
+                jsonObject.put("ddDataLastestValue", privateData.getDdDataLastestValue());
+                jsonMembers.add(jsonObject);
+            }
+            json.put("total", allnum);
+            json.put("rows", jsonMembers);
+//        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
+            String jsonstring = formatJson(json.toString());
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.append(jsonstring);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
+    @RequestMapping("showorderjson")
+    @Action(description = "向前端传送发布的json")
+    public void showorderjson(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+
+        PageInfo pageinfo = new PageInfo();
+
+        pageinfo.setPageSize((pageNumber - 1) * pageSize);
+        pageinfo.setPageNumber((pageNumber - 1) * pageSize + pageSize);
+
+        response.setContentType("application/json");
+
+        try {
+            Long taskId = RequestUtil.getLong(request, "id");
+            pageinfo.setId(taskId);
+            int allnum = this.orderDataRelationService.getOrderDataRelationList(taskId).size();
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryOrderDataRelationByddTaskIDF(pageinfo);
             List<PrivateData> privateData_list = new ArrayList<PrivateData>();
             JSONObject jsonObject = new JSONObject();
             for (int i = 0; i < orderDataRelation_list.size(); i++) {
@@ -376,6 +423,7 @@ public class PersonalTaskController extends AbstractController {
 
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
 
+
             if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
                 taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfo.setDdTaskChildType("createpanel");
@@ -402,6 +450,7 @@ public class PersonalTaskController extends AbstractController {
                     taskInfoService.update(taskInfo);
                 }
 
+
             } else {
                 String resultMsg = null;
                 writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
@@ -423,13 +472,13 @@ public class PersonalTaskController extends AbstractController {
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
-  TaskInfo taskInfo=taskInfoService.getById(ddTaskId);
-            if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
+            TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
+            if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
                 taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfo.setDdTaskChildType("createpanel");
             }
             //判断任务的当前状态，只有已提交的任务才允许收回
-            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).checkpanel)&&taskInfo.getDdTaskChildType().equals("checkpanel")) {
+            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).checkpanel) && taskInfo.getDdTaskChildType().equals("checkpanel")) {
                 taskStart_list.get(0).setDdTaskStatus(TaskStart.publishpanel);
                 taskStartService.update(taskStart_list.get(0));
 
