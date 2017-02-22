@@ -38,9 +38,9 @@
 </head>
 
 <body style="height: 100%; margin: 0px">
-<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"
-     style="padding-right: 0px">
-</div>
+<%--<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"--%>
+     <%--style="padding-right: 0px">--%>
+<%--</div>--%>
 <div class="container-fluid" style="height: 100%">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="dropdown">
@@ -88,7 +88,7 @@
                             <ul id="createpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showTaskContent(this ,${taskListbyUserItem.ddTaskId})">
+                                        onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${taskListbyUserItem.ddTaskId}">
@@ -111,7 +111,7 @@
                             <ul id="publishpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(this, ${publishtaskListbyUserItem.ddTaskId})">
+                                        onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${publishtaskListbyUserItem.ddTaskId}">
@@ -135,7 +135,7 @@
                             <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(this, ${checkTaskInfoListItem.ddTaskId})">
+                                        onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${checkTaskInfoListItem.ddTaskId}">
@@ -159,7 +159,7 @@
                             <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(this, ${completeTaskInfoListItem.ddTaskId})">
+                                        onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${completeTaskInfoListItem.ddTaskId}">
@@ -208,8 +208,8 @@
 </div>
 <%--任务详细--%>
 <div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="overflow: auto" id="taskdetailcontent">
 
         </div>
     </div>
@@ -217,45 +217,7 @@
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
-    var startId;
     $(document).ready(function () {
-//        $("#createpanel,#publishpanel").dragsort({
-//            itemSelector: "li",
-//            dragSelector: "li",
-//            dragBetween: true,
-////            dragStart:getStartId,
-////            dragEnd: saveOrder,
-//            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
-//        });
-//
-//
-////        $("#createpanel,#finishpanel").dragsort({
-////            itemSelector: "li",
-////            dragSelector: "li",
-////            dragBetween: true,
-//////            dragStart:getStartId,
-//////            dragEnd: saveOrder,
-////            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
-////        });
-//
-//        $("#checkpanel,#publishpanel").dragsort({
-//            itemSelector: "li",
-//            dragSelector: "li",
-//            dragBetween: true,
-////            dragStart:getStartId,
-////            dragEnd: saveOrder,
-//            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
-//        });
-////
-//        $("#checkpanel,#finishpanel").dragsort({
-//            itemSelector: "li",
-//            dragSelector: "li",
-//            dragBetween: true,
-////            dragStart:getStartId,
-////            dragEnd: saveOrder,
-//            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
-//        });
-
         $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
@@ -272,12 +234,6 @@
             placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
         });
 
-//        function getStartId(){
-//            startId=$(this).parent().attr("id");
-//            alert(startId);
-//            $.get("test.ht?id=" + startId );
-//        }
-
         function saveOrder() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
@@ -286,27 +242,25 @@
 
         $("#create_task").show();
         $("#create_index").hide();
+
+
     });
 
-    var menuRight = document.getElementById('cbp-spmenu-s2'),
-            showLeftPush = document.getElementById('showLeftPush'),
+    var showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
             switch_attr_index = document.getElementById('switch_attr_index'),
-            switch_attr_task = document.getElementById('switch_attr_task'),
-            body = document.body;
+            switch_attr_task = document.getElementById('switch_attr_task');
 
-    function showTaskContent(obj, taskId) {
-        startId = $(this).parent().attr("id");
-        $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
-            $('#cbp-spmenu-s2').html(data);
-            $('#taskdetail').html(data);
-
-        });
-        classie.toggle(obj, 'active');
-        classie.toggle(menuRight, 'cbp-spmenu-open');
-//        classie.toggle(obj, 'active');
-//        classie.toggle(body, 'cbp-spmenu-push-toleft');
-//        classie.toggle(menuRight, 'cbp-spmenu-open');
+    function showTaskContent(taskId) {
+        <%--$('#taskdetail').modal({--%>
+            <%--keyboard: true,--%>
+            <%--remote: "${ctx}/datadriver/task/edit.ht?id=" + taskId--%>
+        <%--});--%>
+        $('#taskdetail').on('show.bs.modal', function (event) {
+            $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
+                $('#taskdetailcontent').html(data);
+            });
+        })
     }
 
     switch_attr_index.onclick = function () {

@@ -15,8 +15,6 @@
     <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
     <%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
     <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
-    <%--<script src="${ctx}/newtable/jquery.js"></script>--%>
-    <%--<script src="${ctx}/newtable/bootstrap.js"></script>--%>
 
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
