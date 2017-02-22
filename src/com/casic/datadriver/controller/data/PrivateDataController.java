@@ -1,21 +1,18 @@
 package com.casic.datadriver.controller.data;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.casic.datadriver.model.data.DataSnapShotId;
+import com.casic.datadriver.controller.AbstractController;
 import com.casic.datadriver.model.data.DataVersion;
-import com.casic.datadriver.model.project.Project;
+import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.task.TaskInfo;
-import com.casic.datadriver.model.task.TaskStart;
 import com.casic.datadriver.service.data.DataSnapShotIdService;
 import com.casic.datadriver.service.data.DataVersionService;
+import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.task.TaskInfoService;
+import com.hotent.core.annotion.Action;
 import com.hotent.core.util.ContextUtil;
+import com.hotent.core.util.UniqueIdUtil;
+import com.hotent.core.web.ResultMessage;
+import com.hotent.core.web.util.RequestUtil;
 import com.hotent.platform.auth.ISysUser;
 import net.sf.ezmorph.object.DateMorpher;
 import net.sf.json.JSONObject;
@@ -27,14 +24,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casic.datadriver.controller.AbstractController;
-import com.casic.datadriver.model.data.PrivateData;
-import com.casic.datadriver.service.data.PrivateDataService;
-import com.hotent.core.annotion.Action;
-import com.hotent.core.util.UniqueIdUtil;
-import com.hotent.core.web.ResultMessage;
-import com.hotent.core.web.query.QueryFilter;
-import com.hotent.core.web.util.RequestUtil;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * ?????????????.
@@ -236,7 +230,7 @@ public class PrivateDataController extends AbstractController {
 
             switch (Integer.parseInt(key)) {
                 case 0://更改数据类型
-                    long temp0 = obj.getLong("0");
+                    String temp0 = obj.getString("0");
                     privateData.setDdDataType(temp0);
                     break;
                 case 1://更改数据值
