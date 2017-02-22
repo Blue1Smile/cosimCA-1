@@ -2,6 +2,7 @@ package com.casic.datadriver.controller.datacenter;
 
 
 import com.casic.datadriver.controller.AbstractController;
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.*;
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
@@ -127,31 +128,42 @@ return mv;
      * @return the list
      * @throws Exception the exception
      */
-    @RequestMapping("publishorderdata1")
-    @Action(description = "返回任务发布订购数据列表")
-    public void querysubmitpublish(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("getReleasedata")
+    @Action(description = "获得发布数据列表")
+    public void getOrderdata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long ddTaskId= RequestUtil.getLong(request, "id");
+        Long pageSize =RequestUtil.getLong(request, "pageSize");
+        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
+        PageInfo pageinfo = new PageInfo();
+        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageNumber(pageSize);
+        pageinfo.setId(ddTaskId);
         //获得发布数据列表
-        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
+        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationListF(pageinfo);
+//        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
+        int allnum = this.orderDataRelationService.getPublishDataRelationList(ddTaskId).size();
+        JSONObject jsonObject = new JSONObject();
+        JSONObject json=new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
 
         for (OrderDataRelation orderDataRelation:orderDataRelation_list){
             Long ddDataId=orderDataRelation.getDdDataId();
             List<PrivateData>  taskPrivateDatas =  this.privateDataService.getByddDataId(ddDataId);
-            JSONObject jsonObject = new JSONObject();
-            JSONObject json=new JSONObject();
-            JSONArray jsonMembers = new JSONArray();
-            for (int i = 0; i < orderDataRelation_list.size(); i++) {
-                OrderDataRelation mymodel = orderDataRelation_list.get(i);
-                jsonObject.put("DdDataId", mymodel.getDdDataId());
-                jsonObject.put("DdDataName", mymodel.getDdDataName());
-//                jsonObject.put("DdDataLastestValue", mymodel.getDdDataLastestValue());
-//                jsonObject.put("DdDataTaskName", mymodel.getDdDataTaskName());
-//                jsonObject.put("DdDataCreateTime", mymodel.getDdDataCreateTime());
+
+            for (int i = 0; i < taskPrivateDatas.size(); i++) {
+                PrivateData mymode = taskPrivateDatas.get(i);
+                jsonObject.put("DdDataName", mymode.getDdDataName());
+                jsonObject.put("DdDataLastestValue", mymode.getDdDataLastestValue());
+                jsonObject.put("DdDataType", mymode.getDdDataType());
+                jsonObject.put("DdDataCreateTime", mymode.getDdDataCreateTime());
+                jsonObject.put("DdDataDescription", mymode.getDdDataDescription());
+                jsonObject.put("DdDataId", mymode.getDdDataId());
                 jsonMembers.add(jsonObject);
             }
-            json.put("total", orderDataRelation_list.size());
+        }
+            json.put("total", allnum);
             json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
             String jsonstring = formatJson(json.toString());
@@ -163,7 +175,7 @@ return mv;
             out.flush();
             out.close();
 //            privateData.addAll(taskPrivateDatas);
-        }
+
 
 //        //获得订购数据列表
 //        List<OrderDataRelation> orderDataRelation_list2 = this.orderDataRelationService.getOrderDataRelationList(ddTaskId);
@@ -178,29 +190,42 @@ return mv;
       //  return mv;
     }
 
-    @RequestMapping("publishorderdata2")
-    @Action(description = "返回任务发布订购数据列表")
-    public void querysubmitpublish2(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("getOrderdata")
+    @Action(description = "获得订购数据列表")
+    public void getReleasedata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long ddTaskId= RequestUtil.getLong(request, "id");
         //获得订购数据列表
-        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getOrderDataRelationList(ddTaskId);
+        Long pageSize =RequestUtil.getLong(request, "pageSize");
+        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
+        PageInfo pageinfo = new PageInfo();
+        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageNumber((pageNumber-1)*pageSize+pageSize);
+        pageinfo.setId(ddTaskId);
+
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getOrderDataRelationListF(pageinfo);
+//        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getOrderDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
+
+        JSONObject jsonObject = new JSONObject();
+        JSONObject json=new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+
         for (OrderDataRelation orderDataRelation:orderDataRelation_list){
             Long ddDataId=orderDataRelation.getDdDataId();
             List<PrivateData>  taskPrivateDatas =  this.privateDataService.getByddDataId(ddDataId);
-            JSONObject jsonObject = new JSONObject();
-            JSONObject json=new JSONObject();
-            JSONArray jsonMembers = new JSONArray();
+
             for (int i = 0; i < taskPrivateDatas.size(); i++) {
                 PrivateData mymodel = taskPrivateDatas.get(i);
-                jsonObject.put("DdDataId", mymodel.getDdDataId());
                 jsonObject.put("DdDataName", mymodel.getDdDataName());
                 jsonObject.put("DdDataLastestValue", mymodel.getDdDataLastestValue());
-                jsonObject.put("DdDataTaskName", mymodel.getDdDataTaskName());
+                jsonObject.put("DdDataType", mymodel.getDdDataType());
                 jsonObject.put("DdDataCreateTime", mymodel.getDdDataCreateTime());
+                jsonObject.put("DdDataDescription", mymodel.getDdDataDescription());
+                jsonObject.put("DdDataId", mymodel.getDdDataId());
                 jsonMembers.add(jsonObject);
             }
+        }
             json.put("total", orderDataRelation_list.size());
             json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
@@ -213,7 +238,7 @@ return mv;
             out.flush();
             out.close();
 //            privateData.addAll(taskPrivateDatas);
-        }
+
 
 
 //        ModelAndView mv = this.getAutoView().addObject("privateDataList_publish",
@@ -282,8 +307,31 @@ return mv;
     public ModelAndView showDataVersion(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long ddDataId= RequestUtil.getLong(request, "id");
-        //获得发布数据列表
+
         List<DataVersion>  dataVersion_list =  this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
+        JSONObject jsonObject = new JSONObject();
+        JSONObject json=new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+
+            for (int i = 0; i < dataVersion_list.size(); i++) {
+                DataVersion mymodel = dataVersion_list.get(i);
+                jsonObject.put("DdDataVersion", mymodel.getDdDataVersion());
+                jsonObject.put("ddDataRecordTime", mymodel.getDdDataRecordTime());
+                jsonObject.put("ddDataValue", mymodel.getDdDataValue());
+                jsonMembers.add(jsonObject);
+            }
+
+        json.put("total", dataVersion_list.size());
+        json.put("rows", jsonMembers);
+//        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
+        String jsonstring = formatJson(json.toString());
+        System.out.println(json.toString());
+//            system.out(json.toString());
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.append(jsonstring);
+        out.flush();
+        out.close();
 //        List<PrivateData> privateData = new ArrayList<PrivateData>();
         ModelAndView mv = this.getAutoView().addObject("dataVersionList", dataVersion_list);
         return mv;

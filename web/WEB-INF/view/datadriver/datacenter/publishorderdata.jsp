@@ -33,10 +33,10 @@
 <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"
      style="padding-right: 0px">
 </div>
-<div class="container-fluid" style="height: 100%">
+<div class="container-fluid" >
     <ul class="nav nav-tabs" role="tablist">
-        <li  class="active" role="presentation" id="switch_attr_Release"><a href="#Release" data-toggle="tab" role="tab">订阅数据</a></li>
-        <li role="presentation" id="switch_attr_Order"><a href="#Order" data-toggle="tab" role="tab">发布数据</a></li>
+        <li  class="active" role="presentation" id="switch_attr_Release"><a href="#Release" data-toggle="tab" role="tab">发布数据</a></li>
+        <li role="presentation" id="switch_attr_Order"><a href="#Order" data-toggle="tab" role="tab">订阅数据</a></li>
     </ul>
     <div class="tab-content board-view">
         <div role="tabpanel" class="tab-pane active" id="Release">

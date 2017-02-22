@@ -40,8 +40,8 @@ function TableInit () {
         queryParamsType:'',
         // queryParams:queryParams,
         pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
-        search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-        strictSearch: false,
+        // search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+        // strictSearch: false,
         showColumns: false,                  //是否显示所有的列
         showRefresh: false,                  //是否显示刷新按钮
         minimumCountColumns: 2,             //最少允许的列数
@@ -50,47 +50,56 @@ function TableInit () {
         uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
         showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
         cardView: false,                    //是否显示详细视图
-        detailView: false,                   //是否显示父子表
+        detailView: true,                   //是否显示父子表
         columns: [
             {//第一列，数据名称
-                field: 'DdDataId',
+                field: 'DdDataName',
                 title: '数据名称',
                 sortable: true,
                 editable: false,
                 align: 'center',
                 visible: true
             }, {//第二列，最新值
-                field: 'DdDataName',
+                field: 'DdDataLastestValue',
                 title: '最新值',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
-                visible: false
-            }, {//第三列，时间
-                field: 'DdDataLastestValue',
-                title: '时间',
-                sortable: true,
-                editable: false,
-                // footerFormatter: ddDataNameFormatter,
-                align: 'center',
-                visible: false
-            }, {//第四列，数据描述
-                field: 'DdDataTaskName',
-                title: '数据描述',
+                visible: true
+            }, {//第三列
+                field: 'DdDataType',
+                title: '数据类型',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            }, {//第五列，操作
+            }, {//第四列
                 field: 'DdDataCreateTime',
-                title: '操作',
+                title: '更新时间',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
+            }, {//第五列，
+                field: 'DdDataDescription',
+                title: '描述',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: true
+            },
+            {//第六列，
+                field: 'DdDataId',
+                title: '数据ID',
+                sortable: true,
+                editable: false,
+                // footerFormatter: ddDataNameFormatter,
+                align: 'center',
+                visible: false
             },
         ], onExpandRow: function (index, row, $detail) {
             InitSubTable(index, row, $detail);
@@ -119,7 +128,7 @@ function TableInit () {
         var parentid = row.ToolID;
         var cur_table = $detail.html('<table></table>').find('table');
         $(cur_table).bootstrapTable({
-            url: 'showtools.ht?major='+row.ToolName+'&son='+2,
+            url: 'dataversion.ht?id='+row.DdDataId,
             method: 'get',
             queryParams: { strParentID: parentid },
             ajaxOptions: { strParentID: parentid },
@@ -130,37 +139,43 @@ function TableInit () {
             detailView: false,//父子表
             uniqueId: "MENU_ID",
             pageSize: 10,
-            pageList: [10, 25],
-            columns: [{
-                checkbox: true
-            }, {
-                field: 'ToolName',
-                title: '工具名称',
+            pageList: [5,10,20,50],
+            columns: [ {//第一列，数据名称
+                field: 'DdDataVersion',
+                title: '版本',
+                sortable: true,
+                editable: false,
+                align: 'center',
+                visible: true
+            }, {//第二列，数据值
+                field: 'ddDataValue',
+                title: '数据值',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            }, {
-                field: 'ToolVersion',
-                title: '工具版本',
+            }, {//第三列
+                field: 'ddDataRecordTime',
+                title: '更新时间',
                 sortable: true,
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            },  ],
+            },
+            ],
             //无线循环取子表，直到子表里面没有记录
             onExpandRow: function (index, row, $Subdetail) {
                 InitSubTable(index, row, $Subdetail);
             },
-            onClickRow:function (row, tr)
-            {
-                // alert(row.ToolUrl);
-                window.location.href=row.ToolUrl;
-                // window.location.href='D:\1.txt';
-                // alert(row.ToolName);
-            }
+            // onClickRow:function (row, tr)
+            // {
+            //     // alert(row.ToolUrl);
+            //     window.location.href=row.ToolUrl;
+            //     // window.location.href='D:\1.txt';
+            //     // alert(row.ToolName);
+            // }
 
 
         });

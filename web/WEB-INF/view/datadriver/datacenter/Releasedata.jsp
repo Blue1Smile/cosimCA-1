@@ -24,7 +24,7 @@
 <%--out.print("name:"+major);--%>
 <%--%>--%>
 <body>
-<table id="tb_department" data-url="publishorderdata2.ht?id=<%=request.getParameter("id")%>">
+<table id="tb_department" data-url="getReleasedata.ht?id=<%=request.getParameter("id")%>">
 </table>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script src="${ctx}/newtable/Releasedata.js"></script>

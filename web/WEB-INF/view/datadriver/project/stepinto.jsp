@@ -237,7 +237,7 @@
         function saveOrder() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
-            $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
+            $.post("movetask.ht?id=" + data + "&parent=" + parentid);
         }
 
         $("#create_task").show();
