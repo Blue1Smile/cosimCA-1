@@ -17,6 +17,9 @@
             height: 100%;
             overflow: auto;
         }
+        .panel-body{
+            background-color: #FFFFFF !important;
+        }
     </style>
     <script type="text/javascript">
         $(function () {
@@ -169,7 +172,7 @@
     <%--src="${ctx}/datadriver/tool/edit.ht"--%>
     <div class="col-xs-9">
         <div class="panel panel-info">
-            <div class="panel-heading">专业工具列表</div>
+            <div class="panel-heading">数据中心列表</div>
             <div class="panel-body">
                 <div position="center" id="listFrame">
                 </div>
