@@ -1,10 +1,14 @@
-<%@page language="java" pageEncoding="UTF-8" %>
-<%@include file="/commons/include/html_doctype.html" %>
-<%@page import="com.hotent.core.util.ContextUtil" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <title>任务数据中心</title>
-    <%@include file="/commons/include/form.jsp" %>
+    <%--<%@include file="/commons/include/form.jsp" %>--%>
     <%@include file="/newtable/tablecontext.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
