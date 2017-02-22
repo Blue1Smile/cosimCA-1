@@ -88,7 +88,7 @@
                             <ul id="createpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
+                                        onclick="showTaskContent(${taskListbyUserItem.ddTaskId})" data-toggle='modal' data-target='#datadetail'>
                                         <div class="checkbox checkbox-primary">
                                             <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${taskListbyUserItem.ddTaskId}">
@@ -111,7 +111,7 @@
                             <ul id="publishpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
+                                        onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})" data-toggle='modal' data-target='#datadetail'>
                                         <div class="checkbox checkbox-primary">
                                             <input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${publishtaskListbyUserItem.ddTaskId}">
@@ -135,7 +135,7 @@
                             <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
+                                        onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})" data-toggle='modal' data-target='#datadetail'>
                                         <div class="checkbox checkbox-primary">
                                             <input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${checkTaskInfoListItem.ddTaskId}">
@@ -159,7 +159,7 @@
                             <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
+                                        onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})" data-toggle='modal' data-target='#datadetail'>
                                         <div class="checkbox checkbox-primary">
                                             <input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${completeTaskInfoListItem.ddTaskId}">
@@ -207,9 +207,9 @@
     </div>
 </div>
 <%--任务详细--%>
-<div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="overflow: auto" id="taskdetailcontent">
+        <div class="modal-content" style="overflow: auto" id="taskdetailcontent" style="overflow: auto">
 
         </div>
     </div>
@@ -252,17 +252,15 @@
             switch_attr_task = document.getElementById('switch_attr_task');
 
     function showTaskContent(taskId) {
-        <%--$('#taskdetail').modal({--%>
-            <%--keyboard: true,--%>
-            <%--remote: "${ctx}/datadriver/task/edit.ht?id=" + taskId--%>
-        <%--});--%>
-        $('#taskdetail').on('show.bs.modal', function (event) {
-            $.get("${ctx}/datadriver/task/edit.ht?id=" + taskId, function (data) {
-                $('#taskdetailcontent').html(data);
-            });
-        })
-    }
+        $('#taskdetail').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/task/edit.ht?id=" + taskId
+        });
 
+    }
+    $("#taskdetail").on("hidden.bs.modal", function() {
+        $(this).removeData("bs.modal");
+    });
     switch_attr_index.onclick = function () {
         $("#create_task").hide();
         $("#create_index").show();
