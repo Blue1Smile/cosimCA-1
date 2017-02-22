@@ -36,11 +36,7 @@
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
 </head>
-
 <body style="height: 100%; margin: 0px">
-<%--<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"--%>
-     <%--style="padding-right: 0px">--%>
-<%--</div>--%>
 <div class="container-fluid" style="height: 100%">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="dropdown">
@@ -87,8 +83,8 @@
                         <div class="panel-body panelheight">
                             <ul id="createpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
-                                    <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showTaskContent(${taskListbyUserItem.ddTaskId})" data-toggle='modal' data-target='#datadetail'>
+                                    <li class="task task-card ui-sortable-handle "
+                                        onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${taskListbyUserItem.ddTaskId}">
@@ -110,8 +106,8 @@
                         <div class="panel-body panelheight">
                             <ul id="publishpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
-                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})" data-toggle='modal' data-target='#datadetail'>
+                                    <li class="task task-card ui-sortable-handle"
+                                        onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${publishtaskListbyUserItem.ddTaskId}">
@@ -134,8 +130,8 @@
                         <div class="panel-body panelheight">
                             <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
-                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})" data-toggle='modal' data-target='#datadetail'>
+                                    <li class="task task-card ui-sortable-handle"
+                                        onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${checkTaskInfoListItem.ddTaskId}">
@@ -158,8 +154,8 @@
                         <div class="panel-body panelheight">
                             <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
-                                    <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})" data-toggle='modal' data-target='#datadetail'>
+                                    <li class="task task-card ui-sortable-handle"
+                                        onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${completeTaskInfoListItem.ddTaskId}">
@@ -210,7 +206,7 @@
 <%--任务详细--%>
 <div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="overflow: auto" id="taskdetailcontent" style="overflow: auto">
+        <div class="modal-content" style="overflow: auto" id="taskdetailcontent">
 
         </div>
     </div>
@@ -247,9 +243,7 @@
 
     });
 
-    var showLeftPush = document.getElementById('showLeftPush'),
-            showRightPush = document.getElementById('showRightPush'),
-            switch_attr_index = document.getElementById('switch_attr_index'),
+    var switch_attr_index = document.getElementById('switch_attr_index'),
             switch_attr_task = document.getElementById('switch_attr_task');
 
     function showTaskContent(taskId) {
@@ -257,7 +251,6 @@
             keyboard: true,
             remote: "${ctx}/datadriver/task/edit.ht?id=" + taskId
         });
-
     }
     $("#taskdetail").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
@@ -269,10 +262,10 @@
             $('#index').html(data);
         });
     }
-    switch_attr_task.onclick = function () {
-        $("#create_task").show();
-        $("#create_index").hide();
-    }
+//    switch_attr_task.onclick = function () {
+//        $("#create_task").show();
+//        $("#create_index").hide();
+//    }
 
 </script>
 </html>
