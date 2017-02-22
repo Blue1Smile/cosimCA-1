@@ -1,9 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@ taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+
 <html>
 <head>
     <title>项目基础信息列表</title>
-    <%@include file="/commons/include/get.jsp" %>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <%--<%@include file="/commons/include/get.jsp" %>--%>
+    <script src="${ctx}/newtable/jquery.js"></script>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <style>
@@ -177,7 +188,7 @@
     </div>
 </div>
 </body>
-<script src="${ctx}/js/jquery-3.1.1.min.js"></script>
+<%--<script src="${ctx}/js/jquery-3.1.1.min.js"></script>--%>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script src="${ctx}/newtable/bootstrap.js"></script>
 </html>

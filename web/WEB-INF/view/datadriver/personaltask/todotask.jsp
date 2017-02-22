@@ -32,16 +32,16 @@
 </head>
 <body>
 
-<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"
-     style="padding-right: 0px">
-</div>
+<%--<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"--%>
+     <%--style="padding-right: 0px">--%>
+<%--</div>--%>
 <div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 ${TaskInfo.ddTaskName} <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="overflow: auto">
                 <c:forEach var="taskInfoListItem" items="${taskInfoList}">
                     <li>
                         <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}">${taskInfoListItem.ddTaskName}</a>
@@ -49,7 +49,8 @@
                 </c:forEach>
             </ul>
         </li>
-        <li role="presentation" class="active" id="switch_attr_task"><a href="#data" data-toggle="tab" role="tab">数据看板</a>
+        <li role="presentation" class="active" id="switch_attr_task"><a href="#data" data-toggle="tab"
+                                                                        role="tab">数据看板</a>
         </li>
         <li role="presentation" id="switch_attr_publish"><a href="#publish" data-toggle="tab" role="tab">已发布</a>
         </li>
@@ -58,10 +59,9 @@
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">项目指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
-            <a id="statis_btn" class="btn btn-warning" data-toggle="modal"
-               data-remote="statis.ht?id=${TaskInfo.ddTaskId}"
-               data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 进程统计
+            <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 进程统计
             </a>
+
 
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
                data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
@@ -89,7 +89,7 @@
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showDataContent(this ,${privateDataListbyTaskItem.ddDataId})">
+                                        onclick="showDataContent(${privateDataListbyTaskItem.ddDataId})" data-toggle='modal' data-target='#datadetail'>
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox1" type="checkbox">
                                             <label for="checkbox1">
@@ -114,7 +114,7 @@
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showDataContent(this, ${publishDataListItem.ddDataId})">
+                                        onclick="showDataContent(${publishDataListItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox2" type="checkbox">
                                             <label for="checkbox2">
@@ -139,7 +139,7 @@
                             <ul id="canorderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showDataContent(this ,${canBeOrderPrivatedataListItem.ddDataId})">
+                                        onclick="showDataContent(${canBeOrderPrivatedataListItem.ddDataId})">
                                         <div class="checkbox">
                                             <input id="checkbox3" type="checkbox">
                                             <label for="checkbox3">
@@ -164,7 +164,7 @@
                             <ul id="orderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showDataContent(this, ${OrderPrivatedataListItem.ddDataId})">
+                                        onclick="showDataContent(${OrderPrivatedataListItem.ddDataId})">
                                         <div class="checkbox">
                                             <input id="checkbox4" type="checkbox">
                                             <label for="checkbox4">
@@ -195,7 +195,7 @@
         </div>
     </div>
 </div>
-<%--任务数据--%>
+<%--添加任务数据--%>
 <div class="modal fade" id="adddata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -212,9 +212,18 @@
     </div>
 </div>
 <%--统计--%>
-<div class="modal fade" id="statis" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="statis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+<%--数据详情--%>
+<div class="modal fade" id="datadetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="overflow: auto">
 
         </div>
     </div>
@@ -242,33 +251,41 @@
             var parentid = $(this).parent().attr("id");
             $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
+
         function saveOrder2() {
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
-            $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId="+${TaskInfo.ddTaskId});
+            $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId=" +${TaskInfo.ddTaskId});
         }
     });
 
-    var menuRight = document.getElementById('cbp-spmenu-s2'),
-            showLeftPush = document.getElementById('showLeftPush'),
+    var showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
             switch_attr_index = document.getElementById('switch_attr_index'),
             switch_attr_task = document.getElementById('switch_attr_task'),
             switch_attr_publish = document.getElementById('switch_attr_publish'),
             switch_attr_order = document.getElementById('switch_attr_order'),
-            body = document.body;
+            statis_btn = document.getElementById('statis_btn'),
+            create_task = document.getElementById('create_task');
+    function showDataContent(dataId) {
+        <%--$.get("${ctx}/datadriver/privatedata/edit.ht?id=" + taskId, function (data) {--%>
+        <%--$('#cbp-spmenu-s2').html(data);--%>
+        <%--});--%>
+        <%--classie.toggle(obj, 'active');--%>
+        <%--classie.toggle(menuRight, 'cbp-spmenu-open');--%>
 
-    function showDataContent(obj, taskId) {
-        $.get("${ctx}/datadriver/privatedata/edit.ht?id=" + taskId, function (data) {
-            $('#cbp-spmenu-s2').html(data);
-        });
-        classie.toggle(obj, 'active');
-        classie.toggle(menuRight, 'cbp-spmenu-open');
 //        classie.toggle(obj, 'active');
 //        classie.toggle(body, 'cbp-spmenu-push-toleft');
 //        classie.toggle(menuRight, 'cbp-spmenu-open');
-    }
+        $('#datadetail').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/privatedata/edit.ht?id=" + dataId
+        })
 
+    }
+    $("#datadetail").on("hidden.bs.modal", function() {
+        $(this).removeData("bs.modal");
+    });
     switch_attr_index.onclick = function () {
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
@@ -286,6 +303,18 @@
         $.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#order').html(data);
         });
+    }
+    statis_btn.onclick = function () {
+        $('#statis').modal({
+            keyboard: true,
+            remote: "statis.ht?id=${TaskInfo.ddTaskId}"
+        })
+    }
+    create_task.onclick = function () {
+        $('#adddata').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
+        })
     }
 </script>
 </html>
