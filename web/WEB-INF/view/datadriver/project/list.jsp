@@ -104,18 +104,51 @@
             <%--<display:column property="ddProjectActualCompleteData" title="实际结束日期" maxLength="80"></display:column>--%>
             <%--<display:column property="ddProjectCurrentStage" title="当前项目进度"></display:column>--%>
             <%--<display:column property="ddProjectScheduleState" title="项目研制阶段"></display:column>--%>
-
+            <display:column title="项目阶段" media="html" style="width:40%">
+                <c:choose><c:when test="${projectList.ddProjectPhaseId==-1}">
+                    <a href=""
+                       class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 未启动</a>
+                </c:when>
+                    <c:when test="${projectList.ddProjectPhaseId==0}">
+                        <a href=""
+                           class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 启动</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href=""
+                           class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 完成</a>
+                    </c:otherwise></c:choose>
+            </display:column>
             <display:column title="操作" media="html" style="width:40%">
-                <c:choose><c:when test="${projectList.ddProjectState==1}">
-                    <%--<a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-disabled layui-btn-mini"><i--%>
-                    <%--class="layui-icon" id="setup">--%>
-                    <%--&#xe614;</i> 项目设置</a>--%>
-                    <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"
-                       data-remote="setup.ht?id=${projectList.ddProjectId}"
-                       data-target="#myModal"><i
-                            class="layui-icon">
-                        &#xe614;</i> 项目设置
-                    </a>
+                <%--<c:choose><c:when test="${projectList.ddProjectState==1}">--%>
+                    <%--&lt;%&ndash;<a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-disabled layui-btn-mini"><i&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;class="layui-icon" id="setup">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;&#xe614;</i> 项目设置</a>&ndash;%&gt;--%>
+                    <c:choose>
+                        <c:when test="${projectList.ddProjectPhaseId==-1}">
+                        <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"
+                           data-remote="setup.ht?id=${projectList.ddProjectId}"
+                           data-target="#myModal"><i
+                                class="layui-icon">
+                            &#xe614;</i> 项目设置
+                        </a>
+                        </c:when>
+                        <c:when test="${projectList.ddProjectPhaseId==1}">
+                            <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"
+                               data-remote="setup.ht?id=${projectList.ddProjectId}"
+                               data-target="#myModal"><i
+                                    class="layui-icon">
+                                &#xe614;</i> 项目设置
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="layui-btn layui-btn-mini layui-btn-disabled" id="setup" href="#" data-toggle="modal"
+                               data-remote="setup.ht?id=${projectList.ddProjectId}"
+                               data-target="#myModal"><i
+                                    class="layui-icon">
+                                &#xe614;</i> 项目设置
+                            </a>
+                        </c:otherwise></c:choose>
+
                     <%--<a href="start.ht?id=${projectList.ddProjectId}"--%>
                        <%--class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#x1005;</i> 项目启动</a>--%>
                     <a href="stepinto.ht?id=${projectList.ddProjectId}"
@@ -134,38 +167,38 @@
                     <%--&#xe60a;</i> 指标</a>--%>
                     <%--<a href="del.ht?id=${projectList.ddProjectId}"--%>
                     <%--class="layui-btn layui-btn-disabled layui-btn-mini"><i class="layui-icon">&#xe640;</i> 删除</a>--%>
-                </c:when>
-                    <c:otherwise>
+                <%--</c:when>--%>
+                    <%--<c:otherwise>--%>
                         <%--<a href="edit.ht?id=${projectList.ddProjectId}" class="layui-btn layui-btn-mini"><i--%>
                         <%--class="layui-icon" id="setup">--%>
                         <%--&#xe614;</i> 项目设置</a>--%>
-                        <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"
-                           data-remote="setup.ht?id=${projectList.ddProjectId}"
-                           data-target="#myModal"><i
-                                class="layui-icon">
-                            &#xe614;</i> 项目设置
-                        </a>
+                        <%--<a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"--%>
+                           <%--data-remote="setup.ht?id=${projectList.ddProjectId}"--%>
+                           <%--data-target="#myModal"><i--%>
+                                <%--class="layui-icon">--%>
+                            <%--&#xe614;</i> 项目设置--%>
+                        <%--</a>--%>
                         <%--<a href="start.ht?id=${projectList.ddProjectId}"--%>
                            <%--class="layui-btn layui-btn-primary layui-btn-mini"><i class="layui-icon">&#x1005;</i>--%>
                             <%--项目启动</a>--%>
-                        <a href="stepinto.ht?id=${projectList.ddProjectId}"
-                           class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
+                        <%--<a href="stepinto.ht?id=${projectList.ddProjectId}"--%>
+                           <%--class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>--%>
                         <%--<a href="get.ht?id=${ProjectItem.ddProjectId}"--%>
                         <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                         <%--<a class="layui-btn layui-btn-mini layui-btn-normal"--%>
                         <%--href="${ctx}/datadriver/task/list.ht?id=${projectList.ddProjectId}"><i class="layui-icon">--%>
                         <%--&#xe62a;</i> 任务</a>--%>
-                        <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
-                           href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i
-                                class="layui-icon">
-                            &#xe641;</i> 流程</a>
+                        <%--<a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"--%>
+                           <%--href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i--%>
+                                <%--class="layui-icon">--%>
+                            <%--&#xe641;</i> 流程</a>--%>
                         <%--<a class="layui-btn layui-btn-mini layui-btn-normal"--%>
                         <%--href="${ctx}/datadriver/index/indexedit.ht?id=${projectList.ddProjectId}"><i--%>
                         <%--class="layui-icon">--%>
                         <%--&#xe60a;</i> 指标</a>--%>
                         <%--<a href="del.ht?id=${projectList.ddProjectId}"--%>
                         <%--class="layui-btn layui-btn-mini layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</a>--%>
-                    </c:otherwise></c:choose>
+                    <%--</c:otherwise></c:choose>--%>
             </display:column>
         </display:table>
         <%--<hotent:paging tableId="ProjectItem"/>--%>
