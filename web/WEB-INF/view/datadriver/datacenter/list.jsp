@@ -25,8 +25,6 @@
         $(function () {
             layout();
             loadTree();
-//            menu();
-//            menu_root();
         });
         //布局
         function layout() {
@@ -119,7 +117,6 @@
                             });
                         }
                         else {
-//                        $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
                             $.get("${ctx}/datadriver/datacenter/publishorderdata.ht?id=" + taskId, function (data) {
                                 $('#listFrame').html(data);
                             });
@@ -129,52 +126,27 @@
 
                 });
             });
-
-
         }
-
     </script>
 </head>
 <body>
-<%--<ul id="product_tree" class="filetree"></ul>--%>
-
-<%--<div class="layui-tab layui-tab-card">--%>
-    <%--&lt;%&ndash;<ul class="layui-tab-title">&ndash;%&gt;--%>
-        <%--&lt;%&ndash;<li class="layui-this">数据中心</li>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;</ul>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<div class="fr">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;&#x1002;</i> 数据快照</a>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-    <%--<div class="layui-tab-content">--%>
-        <%--<div id="layout">--%>
-            <%--<div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">--%>
-                <%--<ul id="demo2" style="overflow:auto;"></ul>--%>
-            <%--</div>--%>
-            <%--<div position="center" id="listFrame">--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-
-<%--</div>--%>
-
-<div class="container-fluid">
-    <div class="col-xs-3">
+<div class="container-fluid" style="height: 100%">
+    <div class="col-xs-3" style="height: 100%">
         <%--<div></div>--%>
-        <div class="panel panel-info" style="height: 650px">
+        <div class="panel panel-info"  style="height: 100%">
             <div class="panel-heading">项目树</div>
-            <div class="panel-body" style="height: 100%">
+            <div class="panel-body"  style="height: 93%">
                 <div id="demo2"></div>
             </div>
 
         </div>
     </div>
     <%--src="${ctx}/datadriver/tool/edit.ht"--%>
-    <div class="col-xs-9">
-        <div class="panel panel-info">
+    <div class="col-xs-9" style="height: 100%">
+        <div class="panel panel-info" style="height: 100%">
             <div class="panel-heading">数据中心列表</div>
-            <div class="panel-body">
-                <div position="center" id="listFrame">
+            <div class="panel-body" style="height: 93%">
+                <div id="listFrame" style="height: 100%">
                 </div>
             </div>
         </div>
