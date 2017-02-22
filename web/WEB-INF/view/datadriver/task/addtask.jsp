@@ -15,7 +15,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <html>
 <head>
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
+    <%@include file="/commons/include/form.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
@@ -170,7 +170,7 @@
         var taskPerson = $("#personSelect").find("option:selected").text();
         $("#ddTaskPerson").val(taskPerson);
     });
-    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+//    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
     $(function () {
         var options = {};
         if (showResponse) {
