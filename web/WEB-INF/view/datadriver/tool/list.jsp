@@ -17,6 +17,9 @@
             height: 100%;
             overflow: auto;
         }
+        .panel-body{
+            background-color: #FFFFFF !important;
+        }
     </style>
 
     <script type="text/javascript" >
