@@ -179,6 +179,7 @@
         <div role="tabpanel" class="tab-pane" id="index">
         </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
+            <%--<iframe src="${ctx}/platform/calendar/calendar.ht" style="height: 600px"></iframe>--%>
         </div>
     </div>
 </div>

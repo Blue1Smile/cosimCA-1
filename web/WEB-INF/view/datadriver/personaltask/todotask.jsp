@@ -68,7 +68,7 @@
                data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>
 
 
-            <a class="btn btn-success" href="#" data-toggle="modal" id="submit_btn"
+            <a class="btn btn-primary" href="#" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
             <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>

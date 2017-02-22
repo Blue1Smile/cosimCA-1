@@ -108,10 +108,10 @@
     <div class="col-xs-9">
         <div class="panel panel-info" style="height: 650px">
             <div class="panel-heading">专业工具列表</div>
-            <div class="panel-body">
-                <iframe id="listFrame" frameborder="auto"
+            <div class="panel-body" style="height: 650px">
+                <iframe id="listFrame" frameborder="no"
                         width="100%"
-                        height="650px"></iframe>
+                        height="100%"></iframe>
             </div>
         </div>
     </div>
