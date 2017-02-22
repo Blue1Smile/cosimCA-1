@@ -84,7 +84,7 @@
                             <ul id="createpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle "
-                                        onclick="showTaskContent(${taskListbyUserItem.ddTaskId})" data-toggle='modal' data-target='#taskdetail'>
+                                        onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${taskListbyUserItem.ddTaskId}">
@@ -107,7 +107,7 @@
                             <ul id="publishpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle"
-                                        onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})" data-toggle='modal' data-target='#taskdetail'>
+                                        onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">
                                             <label for="${publishtaskListbyUserItem.ddTaskId}">
@@ -131,7 +131,7 @@
                             <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
-                                        onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})" data-toggle='modal' data-target='#taskdetail'>
+                                        onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${checkTaskInfoListItem.ddTaskId}">
@@ -155,7 +155,7 @@
                             <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
-                                        onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})" data-toggle='modal' data-target='#taskdetail'>
+                                        onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">
                                             <label for="${completeTaskInfoListItem.ddTaskId}">
@@ -262,10 +262,10 @@
             $('#index').html(data);
         });
     }
-    switch_attr_task.onclick = function () {
-        $("#create_task").show();
-        $("#create_index").hide();
-    }
+//    switch_attr_task.onclick = function () {
+//        $("#create_task").show();
+//        $("#create_index").hide();
+//    }
 
 </script>
 </html>
