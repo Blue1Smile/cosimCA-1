@@ -3,7 +3,7 @@
 <ul class="layui-nav">
     <c:forEach items="${resourcesList}" var="resourcesItem">
         <c:if test="${resourcesItem.parentId==0}">
-            <li class="layui-nav-item">
+            <li class="layui-nav-item " id="1" >
                 <c:choose>
                     <c:when test="${empty resourcesItem.defaultUrl}">
                         <a href="${ctx}/cloud/console/outline.ht?resId=${resourcesItem.resId}">${resourcesItem.resName}</a>

@@ -300,7 +300,7 @@ public class PersonalTaskController extends AbstractController {
             Long taskId = RequestUtil.getLong(request, "id");
             pageinfo.setId(taskId);
             int allnum = this.orderDataRelationService.getOrderDataRelationList(taskId).size();
-            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskIDF(pageinfo);
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryOrderDataRelationByddTaskIDF(pageinfo);
             List<PrivateData> privateData_list = new ArrayList<PrivateData>();
             JSONObject jsonObject = new JSONObject();
             for (int i = 0; i < orderDataRelation_list.size(); i++) {
@@ -409,26 +409,48 @@ public class PersonalTaskController extends AbstractController {
 
     @RequestMapping("submittask")
     @Action(description = "提交任务")
-    public void submittask(HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView submittask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        Long ddTaskId = RequestUtil.getLong(request, "id");
+
+        List<OrderDataRelation> publishRelationList = orderDataRelationService.getPublishDataRelationList(ddTaskId);
+        List<PrivateData> publshListWithoutValue = new ArrayList<PrivateData>();
+        int valueLength=publishRelationList.size();
+
         try {
-            Long ddTaskId = RequestUtil.getLong(request, "id");
             List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
 
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
-            //判断任务的当前状态，只有在正在执行中才允许提交
-            if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
+
+
+            if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
                 taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfo.setDdTaskChildType("createpanel");
             }
-            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) && taskInfo.getDdTaskChildType().equals("publishpanel")) {
-                taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
-                taskStartService.update(taskStart_list.get(0));
+            //判断任务的当前状态，只有在正在执行中才允许提交
 
-                taskInfo.setDdTaskChildType("checkpanel");
-                taskInfo.setDdTaskState(taskInfo.checkpanel);
-                taskInfoService.update(taskInfo);
+            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel)&&taskInfo.getDdTaskChildType().equals("publishpanel")) {
+
+                for (int i=0;i<publishRelationList.size();i++){
+                    PrivateData publishData= privateDataService.getById(publishRelationList.get(i).getDdDataId());
+                    if(publishData.getDdDataLastestValue()==null){
+                        publshListWithoutValue.add(publishData);
+                    }
+                    else {
+                        valueLength--;
+                    }
+                }
+                if(valueLength==0){
+                    taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
+                    taskStartService.update(taskStart_list.get(0));
+
+                    taskInfo.setDdTaskChildType("checkpanel");
+                    taskInfo.setDdTaskState(taskInfo.checkpanel);
+                    taskInfoService.update(taskInfo);
+                }
+
+
             } else {
                 String resultMsg = null;
                 writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
@@ -436,7 +458,10 @@ public class PersonalTaskController extends AbstractController {
         } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+
         }
+        return getAutoView().addObject("publshListWithoutValue", publshListWithoutValue)
+                .addObject("valueLength", valueLength).addObject("ddTaskId",ddTaskId);
     }
 
 

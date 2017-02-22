@@ -87,7 +87,9 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     public List<OrderDataRelation> queryPublishDataRelationByddTaskIDF(PageInfo model) {
         return this.orderDataRelationDao.queryPublishDataRelationByddTaskIDF(model);
     }
-
+    public List<OrderDataRelation> queryOrderDataRelationByddTaskIDF(PageInfo model){
+        return this.orderDataRelationDao.queryOrderDataRelationByddTaskIDF(model);
+    }
     /**
      * Adds the DD OrderDataRelation.
      * @param ddDataTaskId
