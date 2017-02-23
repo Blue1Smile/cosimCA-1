@@ -415,7 +415,7 @@ public class PersonalTaskController extends AbstractController {
 
         List<OrderDataRelation> publishRelationList = orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> publshListWithoutValue = new ArrayList<PrivateData>();
-        int valueLength=publishRelationList.size();
+        int valueLength = publishRelationList.size();
 
         try {
             List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
@@ -424,32 +424,29 @@ public class PersonalTaskController extends AbstractController {
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
 
 
-            if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
+            if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
                 taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfo.setDdTaskChildType("createpanel");
             }
             //判断任务的当前状态，只有在正在执行中才允许提交
 
-            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel)&&taskInfo.getDdTaskChildType().equals("publishpanel")) {
+            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) && taskInfo.getDdTaskChildType().equals("publishpanel")) {
 
-                for (int i=0;i<publishRelationList.size();i++){
-                    PrivateData publishData= privateDataService.getById(publishRelationList.get(i).getDdDataId());
-                    if(publishData.getDdDataLastestValue()==null){
+                for (int i = 0; i < publishRelationList.size(); i++) {
+                    PrivateData publishData = privateDataService.getById(publishRelationList.get(i).getDdDataId());
+                    if (publishData.getDdDataLastestValue() == null) {
                         publshListWithoutValue.add(publishData);
-                    }
-                    else {
+                    } else {
                         valueLength--;
                     }
                 }
-                if(valueLength==0){
+                if (valueLength == 0) {
                     taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
                     taskStartService.update(taskStart_list.get(0));
-
                     taskInfo.setDdTaskChildType("checkpanel");
                     taskInfo.setDdTaskState(taskInfo.checkpanel);
                     taskInfoService.update(taskInfo);
                 }
-
 
             } else {
                 String resultMsg = null;
@@ -458,10 +455,9 @@ public class PersonalTaskController extends AbstractController {
         } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
-
         }
         return getAutoView().addObject("publshListWithoutValue", publshListWithoutValue)
-                .addObject("valueLength", valueLength).addObject("ddTaskId",ddTaskId);
+                .addObject("valueLength", valueLength).addObject("ddTaskId", ddTaskId);
     }
 
 

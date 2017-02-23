@@ -205,9 +205,9 @@
         </div>
     </div>
 </div>
-<%--提交信息--%>
+<%--任务完成--%>
 <div class="modal fade" id="submittask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
 
         </div>
