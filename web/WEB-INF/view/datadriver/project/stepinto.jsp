@@ -30,9 +30,8 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
-
-    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/jquery.js"></script>
+    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
 </head>
@@ -53,21 +52,23 @@
         </li>
         <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab">任务</a>
         </li>
-        <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">指标</a></li>
+        <li role="presentation" id="switch_attr_index"><a href="#indextab" data-toggle="tab" role="tab">指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
         <div class="pull-right">
-            <a id="statis_btn" class="btn btn-warning" data-toggle="modal"
-               data-remote="statis.ht?id=${Project.ddProjectId}"
-               data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计
-            </a>
+            <%--<a id="statis_btn" class="btn btn-warning" data-toggle="modal"--%>
+               <%--data-remote="statis.ht?id=${Project.ddProjectId}"--%>
+               <%--data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计--%>
+            <%--</a>--%>
+            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 统计</a>
+            <%--<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"--%>
+               <%--data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"--%>
+               <%--data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>--%>
+            <a class="btn btn-success" href="#" id="create_task" onclick="createTask(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>
 
-            <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
-               data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"
-               data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建</a>
-
-            <a class="btn btn-info" href="#" data-toggle="modal" id="create_index"
-               data-remote="${ctx}/datadriver/index/indexedit.ht?id=${Project.ddProjectId}"
-               data-target="#addindex"><span class="glyphicon glyphicon-plus"></span> 创建</a>
+            <%--<a class="btn btn-info" href="#" data-toggle="modal" id="create_index"--%>
+               <%--data-remote="${ctx}/datadriver/index/indexedit.ht?id=${Project.ddProjectId}"--%>
+               <%--data-target="#addindex1"><span class="glyphicon glyphicon-plus"></span> 创建指标</a>--%>
+            <a class="btn btn-info" href="#" id="create_index" onclick="createIndex(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建指标</a>
         </div>
     </ul>
 
@@ -172,7 +173,7 @@
                 </div>
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="index">
+        <div role="tabpanel" class="tab-pane" id="indextab">
         </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
             <%--<iframe src="${ctx}/platform/calendar/calendar.ht" style="height: 600px"></iframe>--%>
@@ -188,7 +189,7 @@
     </div>
 </div>
 <%--index--%>
-<div class="modal fade" id="addindex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="addindex1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
@@ -196,7 +197,7 @@
     </div>
 </div>
 <%--统计--%>
-<div class="modal fade" id="statis" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="statis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
@@ -236,22 +237,36 @@
             var parentid = $(this).parent().attr("id");
             $.post("movetask.ht?id=" + data + "&parent=" + parentid);
         }
-
         $("#create_task").show();
         $("#create_index").hide();
-
-
     });
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
             switch_attr_task = document.getElementById('switch_attr_task');
-
+//显示任务详情
     function showTaskContent(taskId) {
         $('#taskdetail').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/task/edit.ht?id=" + taskId
-        });
-    }
+        });}
+    //创建任务
+    function createTask(projectId) {
+        $('#addtask').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/task/addtask.ht?id=" + projectId
+        });}
+    //创建指标
+    function createIndex(projectId) {
+        $('#addindex1').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/index/indexedit.ht?id=" + projectId
+        });}
+    //监控信息
+    function showStatis(projectId){
+        $('#statis').modal({
+            keyboard: true,
+            remote: "statis.ht?id=" + projectId
+        });}
     $("#taskdetail").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
     });
@@ -259,13 +274,12 @@
         $("#create_task").hide();
         $("#create_index").show();
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${Project.ddProjectId}", function (data) {
-            $('#index').html(data);
+            $('#indextab').html(data);
         });
     }
-//    switch_attr_task.onclick = function () {
-//        $("#create_task").show();
-//        $("#create_index").hide();
-//    }
-
+    switch_attr_task.onclick = function () {
+        $("#create_index").hide();
+        $("#create_task").show();
+    }
 </script>
 </html>

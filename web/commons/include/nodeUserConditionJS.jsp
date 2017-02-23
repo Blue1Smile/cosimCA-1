@@ -388,7 +388,7 @@ $(function(){
 
 	$("div.group > a.link.update").unbind('click');
 
-	$("select[name='variableIds']").live("change",function(){
+	$("select[name='variableIds']").on("change",function(){
 		var _this=this;
 		var assignType=$(_this).parent().parent().find(':input[name="assignType"]').val();
 		//兼容老版本
