@@ -15,6 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
     <%--<%@include file="/commons/include/get.jsp" %>--%>
     <script src="${ctx}/newtable/jquery.js"></script>
+
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <style>
@@ -34,25 +35,25 @@
     </ul>
     <div class="layui-tab-content">
         <blockquote class="layui-elem-quote">
-            <div style="height: 40px;">
+            <div style="height: 36px;">
                 <form id="searchForm" method="post" action="list.ht">
                     <div class="fl">
                         <input type="text" name="Q_name_SL " class="layui-input"
                                value="${param['Q_name_SL']}" placeholder="项目名称"/>
                     </div>
                     <div class="fr">
-                        <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                        <a class="layui-btn" href="#" id="create" data-toggle="modal" data-remote="create.ht"
+                        <a class="layui-btn layui-btn-small layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
+                        <a class="layui-btn layui-btn-small" href="#" id="create" data-toggle="modal" data-remote="create.ht"
                            data-target="#myCreate"><i class="layui-icon">&#xe61f;</i> 创建</a>
-                        <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">
-                            &#x1002;</i> 刷新</a>
+                        <a class="layui-btn layui-btn-small layui-btn-primary" onclick="location.reload()"><i class="layui-icon">
+                            &#xe63d;</i> 刷新</a>
                     </div>
                 </form>
             </div>
         </blockquote>
         <display:table name="projectList" id="projectList" requestURI="list.ht" sort="external" cellpadding="0"
-                       cellspacing="0" export="false" class="table table-hover table-bordered" pagesize="10">
-            <display:column property="ddProjectName" title="项目名称" sortable="true" sortName="DD_PROJECT_NAME"
+                       cellspacing="0" export="false" class="layui-table" pagesize="10">
+            <display:column property="ddProjectName" title="项目名称" sortable="false" sortName="DD_PROJECT_NAME"
                             maxLength="80"></display:column>
             <display:column title="项目阶段" media="html" style="width:20%">
                 <c:choose><c:when test="${projectList.ddProjectPhaseId==-1}">
@@ -92,7 +93,7 @@
                         </a>
                     </c:otherwise></c:choose>
                 <a href="stepinto.ht?id=${projectList.ddProjectId}"
-                   class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
+                   class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 进入</a>
                 <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
                    href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i
                         class="layui-icon">

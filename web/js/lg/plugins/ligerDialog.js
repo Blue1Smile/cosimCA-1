@@ -14,17 +14,17 @@
     var l = $.ligerui;
 
     //全局事件
-    $(".l-dialog-btn").live('mouseover', function ()
+    $(".l-dialog-btn").on('mouseover', function ()
     {
         $(this).addClass("l-dialog-btn-over");
-    }).live('mouseout', function ()
+    }).on('mouseout', function ()
     {
         $(this).removeClass("l-dialog-btn-over");
     });
-    $(".l-dialog-tc .l-dialog-close").live('mouseover', function ()
+    $(".l-dialog-tc .l-dialog-close").on('mouseover', function ()
     {
         $(this).addClass("l-dialog-close-over");
-    }).live('mouseout', function ()
+    }).on('mouseout', function ()
     {
         $(this).removeClass("l-dialog-close-over");
     });

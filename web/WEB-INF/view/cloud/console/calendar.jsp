@@ -8,29 +8,26 @@
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        .head_title {
+            /*position: fixed;*/
+            /*top: 0;*/
+            /*left: 0;*/
+            /*right: 0;*/
+            font-size: 46px;
+            font-weight: 600;
+            float: left;
+            line-height: 48px;
+            margin: 0 8px 10px 30px;
+            color: #1976D2;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
     <br>
-    <%--<div class="row">--%>
-    <%--<div class="bg-info" style="height: 30px">--%>
-    <%--<div class="col-xs-10 col-xs-offset-1">--%>
-    <%--<p class="pull-left">--%>
-    <%--<a href="${ctx}/cloud/console/home.ht" class="link01">个人主页</a>--%>
-    <%--</p>--%>
-    <%--<p class="pull-right">--%>
-    <%--<c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}">欢迎您，<a id="username" href="#"><sec:authentication--%>
-    <%--property="principal.fullname"/></a>，<a href="${ctx}/loginCloud.ht" class="link01">注销</a></c:if>--%>
-    <%--</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--<br>--%>
     <div class="row">
-        <svg width="500" height="60">
-            <text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="Impact"> Cosim</text>
-            <text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台</text>
-        </svg>
+        <h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>

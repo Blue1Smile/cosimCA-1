@@ -12,21 +12,31 @@
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-    <%--<style type="text/css">--%>
-        <%--body{--%>
-            <%--overflow:scroll;--%>
-            <%--overflow-y:hidden;--%>
-        <%--}--%>
-    <%--</style>--%>
+    <style type="text/css">
+        .head_title {
+            /*position: fixed;*/
+            /*top: 0;*/
+            /*left: 0;*/
+            /*right: 0;*/
+            font-size: 46px;
+            font-weight: 600;
+            float: left;
+            line-height: 48px;
+            margin: 0 8px 10px 30px;
+            color: #1976D2;
+
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
     <br>
     <div class="row">
-        <svg width="500" height="60">
-            <text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="Impact"> Cosim</text>
-            <text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台</text>
-        </svg>
+        <h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>
+        <%--<svg width="500" height="60">--%>
+            <%--<text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="Impact"> Cosim</text>--%>
+            <%--<text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台</text>--%>
+        <%--</svg>--%>
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>

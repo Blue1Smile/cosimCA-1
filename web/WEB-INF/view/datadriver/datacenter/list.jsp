@@ -23,22 +23,22 @@
     </style>
     <script type="text/javascript">
         $(function () {
-            layout();
+//            layout();
             loadTree();
         });
-        //布局
-        function layout() {
-            $("#layout").ligerLayout({
-                leftWidth: 210,
-                height: "98%",
-                onHeightChanged: heightChanged,
-                allowLeftResize: false
-            });
-            //取得layout的高度
-            var height = $(".l-layout-center").height();
-            $("#tree").height(height - 60);
-        }
-        ;
+//        //布局
+//        function layout() {
+//            $("#layout").ligerLayout({
+//                leftWidth: 210,
+//                height: "98%",
+//                onHeightChanged: heightChanged,
+//                allowLeftResize: false
+//            });
+//            //取得layout的高度
+//            var height = $(".l-layout-center").height();
+//            $("#tree").height(height - 60);
+//        }
+//        ;
         //布局大小改变的时候通知tab，面板改变大小
         function heightChanged(options) {
             $("#tree").height(options.middleHeight - 60);
@@ -132,7 +132,7 @@
 <div class="container-fluid" style="height: 100%">
     <div class="col-xs-3" style="height: 100%">
         <%--<div></div>--%>
-        <div class="panel panel-info"  style="height: 100%">
+        <div class="panel panel-primary"  style="height: 100%">
             <div class="panel-heading">项目树</div>
             <div class="panel-body"  style="height: 93%">
                 <div id="demo2"></div>
@@ -142,7 +142,7 @@
     </div>
     <%--src="${ctx}/datadriver/tool/edit.ht"--%>
     <div class="col-xs-9" style="height: 100%">
-        <div class="panel panel-info" style="height: 100%">
+        <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">数据中心列表</div>
             <div class="panel-body" style="height: 93%">
                 <div id="listFrame" style="height: 100%">

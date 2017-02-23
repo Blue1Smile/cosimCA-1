@@ -22,23 +22,23 @@
     </style>
     <script type="text/javascript">
         $(function () {
-            layout();
+//            layout();
             loadTree();
 //            createTree();
         });
-        //布局
-        function layout() {
-            $("#layout").ligerLayout({
-                leftWidth: 210,
-                height: "98%",
-                onHeightChanged: heightChanged,
-                allowLeftResize: false
-            });
-            //取得layout的高度
-            var height = $(".l-layout-center").height();
-            $("#tree").height(height - 60);
-        }
-        ;
+//        //布局
+//        function layout() {
+//            $("#layout").ligerLayout({
+//                leftWidth: 210,
+//                height: "98%",
+//                onHeightChanged: heightChanged,
+//                allowLeftResize: false
+//            });
+//            //取得layout的高度
+//            var height = $(".l-layout-center").height();
+//            $("#tree").height(height - 60);
+//        }
+//        ;
 
         //布局大小改变的时候通知tab，面板改变大小
         function heightChanged(options) {
@@ -92,7 +92,7 @@
 <body>
 <div class="container-fluid" style="height: 100%">
     <div class="col-xs-3" style="height: 100%">
-        <div class="panel panel-info" style="height: 100%">
+        <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">工具专业树</div>
             <div class="panel-body" style="height: 93%">
                 <ul id="demo2"></ul>
@@ -101,7 +101,7 @@
         </div>
     </div>
     <div class="col-xs-9">
-        <div class="panel panel-info" style="height: 100%">
+        <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">专业工具列表</div>
             <div class="panel-body" style="height: 93%">
                 <div id="toolsListFrame" style="height: 100%"></div>

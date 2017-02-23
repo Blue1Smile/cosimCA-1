@@ -241,7 +241,7 @@ public class PersonalTaskController extends AbstractController {
         PageInfo pageinfo = new PageInfo();
 
         pageinfo.setPageSize((pageNumber - 1) * pageSize);
-        pageinfo.setPageNumber((pageNumber - 1) * pageSize + pageSize);
+        pageinfo.setPageNumber(pageSize);
 
         response.setContentType("application/json");
 
@@ -292,7 +292,7 @@ public class PersonalTaskController extends AbstractController {
         PageInfo pageinfo = new PageInfo();
 
         pageinfo.setPageSize((pageNumber - 1) * pageSize);
-        pageinfo.setPageNumber((pageNumber - 1) * pageSize + pageSize);
+        pageinfo.setPageNumber(pageSize);
 
         response.setContentType("application/json");
 
