@@ -24,9 +24,8 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
-
-    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/jquery.js"></script>
+    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
 </head>
@@ -69,7 +68,7 @@
             <a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
 
-            <a class="btn btn-primary" href="#" data-toggle="modal" id="submit_btn"
+            <a class="btn btn-info" href="#" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
             <button class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> 刷新</button>
