@@ -463,10 +463,12 @@ public class PersonalTaskController extends AbstractController {
 
     @RequestMapping("recovertask")
     @Action(description = "收回任务")
-    public void recovertask(HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView recovertask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        String preUrl = RequestUtil.getPrePage(request);
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
+
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
             if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
@@ -489,6 +491,7 @@ public class PersonalTaskController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
+        return getAutoView().addObject("preUrl", preUrl);
     }
 
 

@@ -59,7 +59,7 @@
                <%--data-remote="statis.ht?id=${Project.ddProjectId}"--%>
                <%--data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计--%>
             <%--</a>--%>
-            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 统计</a>
+            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 流程统计</a>
             <%--<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"--%>
                <%--data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"--%>
                <%--data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>--%>
@@ -81,8 +81,8 @@
                         <div class="panel-heading">
                             新创建
                         </div>
-                        <div class="panel-body panelheight">
-                            <ul id="createpanel" class="scrum-stage-tasks" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow: auto">
+                            <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle "
                                         onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
@@ -92,7 +92,6 @@
                                                     ${taskListbyUserItem.ddTaskName}
                                             </label>
                                         </div>
-                                        <input type="hidden" value="${taskListbyUserItem.ddTaskId}" name="release"/>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -104,8 +103,8 @@
                         <div class="panel-heading">
                             已发布
                         </div>
-                        <div class="panel-body panelheight">
-                            <ul id="publishpanel" class="scrum-stage-tasks" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow: auto">
+                            <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle"
                                         onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
@@ -115,8 +114,6 @@
                                                     ${publishtaskListbyUserItem.ddTaskName}
                                             </label>
                                         </div>
-                                        <input type="hidden" value="${publishtaskListbyUserItem.ddTaskId}"
-                                               name="release"/>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -128,8 +125,8 @@
                         <div class="panel-heading">
                             待审核
                         </div>
-                        <div class="panel-body panelheight">
-                            <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow: auto">
+                            <ul id="checkpanel" class="scrum-stage-tasks">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
                                         onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
@@ -139,8 +136,6 @@
                                                     ${checkTaskInfoListItem.ddTaskName}
                                             </label>
                                         </div>
-                                        <input type="hidden" value="${checkTaskInfoListItem.ddTaskId}"
-                                               name="release"/>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -152,7 +147,7 @@
                         <div class="panel-heading">
                             已完成
                         </div>
-                        <div class="panel-body panelheight">
+                        <div class="panel-body panelheight"  style="overflow: auto">
                             <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
@@ -163,8 +158,6 @@
                                                     ${completeTaskInfoListItem.ddTaskName}
                                             </label>
                                         </div>
-                                        <input type="hidden" value="${completeTaskInfoListItem.ddTaskId}"
-                                               name="release"/>
                                     </li>
                                 </c:forEach>
                             </ul>

@@ -136,6 +136,7 @@
             frm.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
+//                window.location.reload(true);
             }
         });
     });
@@ -147,7 +148,6 @@
             parent.layer.close(index); //再执行关闭
             window.location.href = "${ctx}/datadriver/project/stepinto.ht?id=${projectItem.ddProjectId}";
         } else {
-//            $.ligerMessageBox.error("提示信息", obj.getMessage());
         }
     }
 

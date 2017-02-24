@@ -111,38 +111,29 @@ public class IndexController extends BaseController {
 	@RequestMapping("index")
 	public ModelAndView index(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
-		
 		// 新闻
 		List<News> newsList = newsService.getLastNews();
-
 		// 采购商机
 		QueryFilter queryFilter1 = new QueryFilter(request,
 				"businessChanceItem");
 		queryFilter1.getPageBean().setPagesize(CHANGCE_PAGE_SIZE);
 		queryFilter1.getFilters().put("type", "1");
 		List<BusinessDevchase> purchaselist=businessDevchaseService.getAllByType("getAllByType",queryFilter1);
-		
-		
 		//营销商机
 		QueryFilter queryFilter2=	new QueryFilter(request,"businessChanceItem");
 		queryFilter2.getPageBean().setPagesize(CHANGCE_PAGE_SIZE);
 		queryFilter2.getFilters().put("type", "2");
 		List<BusinessDevchase> marketinglist=businessDevchaseService.getAllByType("getAllByType",queryFilter2);
-		
 		//生产商机
 		QueryFilter queryFilter3=	new QueryFilter(request,"businessChanceItem");
 		queryFilter3.getPageBean().setPagesize(CHANGCE_PAGE_SIZE);
 		queryFilter3.getFilters().put("type", "3");
 		List<BusinessDevchase> producelist=businessDevchaseService.getAllByType("getAllByType",queryFilter3);
-		
 		//服务商机
 		QueryFilter queryFilter4=	new QueryFilter(request,"businessChanceItem");
 		queryFilter4.getPageBean().setPagesize(CHANGCE_PAGE_SIZE);
 		queryFilter4.getFilters().put("type", "4");
 		List<BusinessDevchase> servelist=businessDevchaseService.getAllByType("getAllByType",queryFilter4);
-		
-		
 		//研发商机
 		QueryFilter queryFilter5=	new QueryFilter(request,"businessChanceItem");
 		queryFilter5.getPageBean().setPagesize(CHANGCE_PAGE_SIZE);
@@ -151,13 +142,10 @@ public class IndexController extends BaseController {
 		for(BusinessDevchase dev : developmentlist){
 			System.out.println("==============" + dev.getImage());
 		}
-		
 		//最新加入
 		List<Info> infoList=infoService.getLastInfo();
-		
 		//云标签获得所有一级行业
 		//List<Dictionary> industrys = dictionaryService.getByItemKey("industry");
-		
 		//获取生产能力数量
 		Map<String,Object> ms=new HashMap<String,Object>();
 		    ms.put("current_levl", "生产能力");
@@ -589,36 +577,6 @@ public class IndexController extends BaseController {
 		String email = RequestUtil.getSecureString(request, "email");
 		Long IDnumber = Long.parseLong(RequestUtil.getSecureString(request, "IDnumber"));
 		Long cellphone = Long.parseLong(RequestUtil.getSecureString(request, "cellphone"));
-		
-		//用身份证号判断是否已经进行注册
-		//if(registerService)
-	
-		
-		//初始化密码
-		//String password = PasswordUtil.getPassWord(PasswordUtil.STRING_WORD, 6);
-		//Map map = sysUserService.registerSysOrg(sysOrgInfo, password);
-		/**
-		String enterpriseDefaultPassword = systemproperties
-				.getProperty("enterpriseDefaultPassword");
-		**/
-		//String str[] ={"采购","营销","生产","研发","服务","物流","金融"};
-		//初始化商友分组
-//		for(int i=0;i<str.length;i++){
-//			BusinessAreaGroup businessAreaGroup=new BusinessAreaGroup();
-//			businessAreaGroup.setId(UniqueIdUtil.genId());
-//			SysOrgInfo onf = (SysOrgInfo)map.get("sysOrgInfo");
-//			businessAreaGroup.setEntid(onf.getSysOrgInfoId());
-//			businessAreaGroup.setGroupname(str[i]);
-//			businessAreaGroupService.add(businessAreaGroup);
-//		}
-//		
-//		//发送邮件
-//		Properties  prop=(Properties)AppUtil.getBean("configproperties");
-//		String serverUrl = prop.getProperty("serverUrl");
-//		cloudMailService.sendSuccessfulRegMessage(sysOrgInfo, (SysOrg)map.get("sysOrg"), password, request.getContextPath(), serverUrl);
-//		
-//		mav.addObject("dePassword", password)
-//			.addObject("sysOrg", map.get("sysOrg"));
 		return mav;
 	}
 	
