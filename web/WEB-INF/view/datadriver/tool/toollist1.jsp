@@ -9,7 +9,17 @@
 <head>
     <title>任务数据中心</title>
     <%--<%@include file="/commons/include/form.jsp" %>--%>
-    <%@include file="/newtable/tablecontext.jsp" %>
+
+    <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
+    <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
+    <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
+    <script src="${ctx}/newtable/jquery.js"></script>
+    <script src="${ctx}/newtable/bootstrap.js"></script>
+    <script src="${ctx}/newtable/bootstrap-table.js"></script>
+    <script src="${ctx}/newtable/bootstrap-table-zh-CN.js"></script>
+    <script src="${ctx}/newtable/tableExport.js"></script>
+    <script src="${ctx}/newtable/bootstrap-editable.js"></script>
+    <script src="${ctx}/newtable/bootstrap-table-editable.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
@@ -40,5 +50,6 @@
             content: 'edit.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>'
         });
     });
+
 </script>
 </html>

@@ -59,7 +59,17 @@
 <head>
     <title>项目基础信息添加</title>
 
-    <%@include file="/newtable/tablecontext.jsp" %>
+    <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
+    <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
+    <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
+    <script src="${ctx}/newtable/jquery.js"></script>
+    <script src="${ctx}/newtable/bootstrap.js"></script>
+    <script src="${ctx}/newtable/bootstrap-table.js"></script>
+    <script src="${ctx}/newtable/bootstrap-table-zh-CN.js"></script>
+    <script src="${ctx}/newtable/tableExport.js"></script>
+    <script src="${ctx}/newtable/bootstrap-editable.js"></script>
+    <script src="${ctx}/newtable/bootstrap-table-editable.js"></script>
+
     <%@include file="/commons/include/form.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
@@ -77,13 +87,17 @@
                 frm.ajaxForm(options);
                 if (frm.valid()) {
                     form.submit();
+                    parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";
                 }
             });
         });
 
         function showResponse(responseText) {
             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-            parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";
+            <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
+            parent.location.href= "list.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";
+            <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
+
         }
 
     </script>
