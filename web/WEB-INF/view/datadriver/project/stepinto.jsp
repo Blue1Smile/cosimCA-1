@@ -257,7 +257,6 @@
             keyboard: true,
             remote: "${ctx}/datadriver/task/edit.ht?id=" + taskId
         });
-
     }
     $("#taskdetail").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");

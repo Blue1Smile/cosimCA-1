@@ -17,6 +17,9 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
+    <a id="" class="btn btn-primary" href="${ctx}/datadriver/datacenter/datasnapshot.ht?projectId=${projectId}"><span class="glyphicon glyphicon-ok"></span>数据快照</a>
+    <a id="" class="btn btn-primary" href="${ctx}/datadriver/datacenter/snapshotlist.ht"><span class="glyphicon glyphicon-ok"></span>快照列表</a>
+
     <title>项目指标信息列表</title>
     <%--<link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">--%>
     <%--<link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">--%>
