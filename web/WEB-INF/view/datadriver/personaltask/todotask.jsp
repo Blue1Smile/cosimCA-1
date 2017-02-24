@@ -75,7 +75,7 @@
             <button class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> 刷新</button>
             <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>
 
-            </a>
+            <%--</a>--%>
         </div>
     </ul>
     <br>
@@ -225,11 +225,19 @@
 <%--数据详情--%>
 <div class="modal fade" id="datadetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="overflow: auto">
+        <div class="modal-content" style="overflow: auto" id="datadetailcontent" style="overflow: auto">
 
         </div>
     </div>
 </div>
+<%--&lt;%&ndash;任务详细&ndash;%&gt;--%>
+<%--<div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--%>
+    <%--<div class="modal-dialog" role="document">--%>
+        <%--<div class="modal-content" style="overflow: auto" id="taskdetailcontent" style="overflow: auto">--%>
+
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
@@ -286,6 +294,7 @@
     $("#datadetail").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
+
     switch_attr_index.onclick = function () {
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
@@ -313,11 +322,5 @@
             remote: "statis.ht?id=${TaskInfo.ddTaskId}"
         })
     }
-    <%--create_task.onclick = function () {--%>
-    <%--$('#adddata').modal({--%>
-    <%--keyboard: true,--%>
-    <%--remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"--%>
-    <%--})--%>
-    <%--}--%>
 </script>
 </html>
