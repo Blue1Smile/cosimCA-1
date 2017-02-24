@@ -87,25 +87,14 @@
                 <display:column title="操作" media="html" style="width:400px">
                     <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-mini"><i class="layui-icon">
                         &#xe642;</i> 编辑</a>
-                    <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
-                    <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
                     <a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"
                        class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 私有</a>
                     <a href="stepinto.ht?id=${TaskItem.ddTaskId}"
                        class="layui-btn layui-btn-mini"><i class="layui-icon">&#x1005;</i> 进入</a>
-                    <%--<a href="publishconfig.ht?id=${TaskItem.ddTaskId}"--%>
-                       <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe63c;</i> 发布</a>--%>
-                    <%--<a href="orderconfig.ht?id=${TaskItem.ddTaskId}"--%>
-                       <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe627;</i> 订阅</a>--%>
                     <a href="del.ht?id=${TaskItem.ddTaskId}"
                        class="layui-btn layui-btn-danger layui-btn-mini"><i class="layui-icon">&#xe640;</i> 删除</a>
-                    <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
-                    <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
-                    <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>
                 </display:column>
-
             </display:table>
-            <%--<hotent:paging tableId="TaskItem"/>--%>
         </div>
         <!--审核任务-->
         <div class="layui-tab-item">

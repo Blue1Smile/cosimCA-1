@@ -33,7 +33,7 @@
 <body>
 
 <%--<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"--%>
-     <%--style="padding-right: 0px">--%>
+<%--style="padding-right: 0px">--%>
 <%--</div>--%>
 <div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
@@ -63,14 +63,16 @@
             </a>
 
 
-            <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
-               data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
-               data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>
-
+            <%--<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"--%>
+            <%--data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"--%>
+            <%--data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>--%>
+            <a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
+                    class="glyphicon glyphicon-plus"></span> 创建私有</a>
 
             <a class="btn btn-primary" href="#" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
+            <button class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> 刷新</button>
             <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>
 
             <%--</a>--%>
@@ -89,7 +91,7 @@
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showDataContent(${privateDataListbyTaskItem.ddDataId})" data-toggle='modal' data-target='#taskdetail'>
+                                        onclick="showDataContent(${privateDataListbyTaskItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox1" type="checkbox">
                                             <label for="checkbox1">
@@ -114,7 +116,7 @@
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showDataContent(${publishDataListItem.ddDataId})" data-toggle='modal' data-target='#taskdetail'>
+                                        onclick="showDataContent(${publishDataListItem.ddDataId})">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox2" type="checkbox">
                                             <label for="checkbox2">
@@ -139,7 +141,7 @@
                             <ul id="canorderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                        onclick="showDataContent(${canBeOrderPrivatedataListItem.ddDataId})" data-toggle='modal' data-target='#taskdetail'>
+                                        onclick="showDataContent(${canBeOrderPrivatedataListItem.ddDataId})">
                                         <div class="checkbox">
                                             <input id="checkbox3" type="checkbox">
                                             <label for="checkbox3">
@@ -164,7 +166,7 @@
                             <ul id="orderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                        onclick="showDataContent(${OrderPrivatedataListItem.ddDataId})" data-toggle='modal' data-target='#taskdetail'>
+                                        onclick="showDataContent(${OrderPrivatedataListItem.ddDataId})">
                                         <div class="checkbox">
                                             <input id="checkbox4" type="checkbox">
                                             <label for="checkbox4">
@@ -195,7 +197,7 @@
         </div>
     </div>
 </div>
-<%--添加任务数据--%>
+<%--添加数据--%>
 <div class="modal fade" id="adddata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -203,9 +205,9 @@
         </div>
     </div>
 </div>
-<%--提交信息--%>
+<%--任务完成--%>
 <div class="modal fade" id="submittask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
 
         </div>
@@ -237,7 +239,6 @@
     <%--</div>--%>
 <%--</div>--%>
 </body>
-</body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -266,6 +267,8 @@
             var parentid = $(this).parent().attr("id");
             $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId=" +${TaskInfo.ddTaskId});
         }
+
+        $("#create_data").show();
     });
 
     var showLeftPush = document.getElementById('showLeftPush'),
@@ -277,21 +280,18 @@
             statis_btn = document.getElementById('statis_btn'),
             create_task = document.getElementById('create_task');
     function showDataContent(dataId) {
-        <%--$.get("${ctx}/datadriver/privatedata/edit.ht?id=" + taskId, function (data) {--%>
-        <%--$('#cbp-spmenu-s2').html(data);--%>
-        <%--});--%>
-        <%--classie.toggle(obj, 'active');--%>
-        <%--classie.toggle(menuRight, 'cbp-spmenu-open');--%>
-
-//        classie.toggle(obj, 'active');
-//        classie.toggle(body, 'cbp-spmenu-push-toleft');
-//        classie.toggle(menuRight, 'cbp-spmenu-open');
         $('#datadetail').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/privatedata/edit.ht?id=" + dataId
         })
     }
-    $("#datadetail").on("hidden.bs.modal", function() {
+    function createPrivateData(taskId) {
+        $('#adddata').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=" + taskId
+        })
+    }
+    $("#datadetail").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
 
@@ -299,19 +299,22 @@
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
         });
+        $("#create_data").hide();
     }
     switch_attr_task.onclick = function () {
-
+        $("#create_data").show();
     }
     switch_attr_publish.onclick = function () {
         $.get("${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#publish').html(data);
         });
+        $("#create_data").hide();
     }
     switch_attr_order.onclick = function () {
         $.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#order').html(data);
         });
+        $("#create_data").hide();
     }
     statis_btn.onclick = function () {
         $('#statis').modal({
@@ -319,11 +322,5 @@
             remote: "statis.ht?id=${TaskInfo.ddTaskId}"
         })
     }
-    <%--create_task.onclick = function () {--%>
-        <%--$('#adddata').modal({--%>
-            <%--keyboard: true,--%>
-            <%--remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"--%>
-        <%--})--%>
-    <%--}--%>
 </script>
 </html>

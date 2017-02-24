@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.PrivateData">
     <id column="DD_DATA_ID" jdbcType="NUMERIC" property="ddDataId" />
     <result column="DD_DATA_NAME" jdbcType="VARCHAR" property="ddDataName" />
-    <result column="DD_DATA_TYPE" jdbcType="NUMERIC" property="ddDataType" />
+    <result column="DD_DATA_TYPE" jdbcType="VARCHAR" property="ddDataType" />
     <result column="DD_DATA_DESCRIPTION" jdbcType="VARCHAR" property="ddDataDescription" />
     <result column="DD_DATA_TASK_ID" jdbcType="NUMERIC" property="ddDataTaskId" />
     <result column="DD_DATA_PUBLISH_TYPE" jdbcType="NUMERIC" property="ddDataPublishType" />
@@ -95,7 +95,7 @@
     DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE,
     DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME,
     DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME)
-    values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=NUMERIC},
+    values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=VARCHAR},
     #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
     #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
     #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=DATE},
@@ -105,7 +105,7 @@
   <update id="update" parameterType="com.casic.datadriver.model.data.PrivateData">
     update dd_private_data
     set DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
-    DD_DATA_TYPE = #{ddDataType,jdbcType=NUMERIC},
+    DD_DATA_TYPE = #{ddDataType,jdbcType=VARCHAR},
     DD_DATA_DESCRIPTION = #{ddDataDescription,jdbcType=VARCHAR},
     DD_DATA_TASK_ID = #{ddDataTaskId,jdbcType=NUMERIC},
     DD_DATA_PUBLISH_TYPE = #{ddDataPublishType,jdbcType=NUMERIC},
@@ -122,7 +122,7 @@
   <update id="updatedata" parameterType="com.casic.datadriver.model.data.PrivateData">
     update dd_private_data
     set DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
-    DD_DATA_TYPE = #{ddDataType,jdbcType=NUMERIC},
+    DD_DATA_TYPE = #{ddDataType,jdbcType=VARCHAR},
     DD_DATA_DESCRIPTION = #{ddDataDescription,jdbcType=VARCHAR},
     DD_DATA_TASK_ID = #{ddDataTaskId,jdbcType=NUMERIC},
     DD_DATA_PUBLISH_TYPE = #{ddDataPublishType,jdbcType=NUMERIC},
@@ -157,7 +157,7 @@
       DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, 
       DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
       DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS)
-    values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=NUMERIC},
+    values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=VARCHAR},
       #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
       #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
       #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=DATE},
@@ -259,7 +259,7 @@
         DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
       </if>
       <if test="ddDataType != null">
-        DD_DATA_TYPE = #{ddDataType,jdbcType=NUMERIC},
+        DD_DATA_TYPE = #{ddDataType,jdbcType=VARCHAR},
       </if>
       <if test="ddDataDescription != null">
         DD_DATA_DESCRIPTION = #{ddDataDescription,jdbcType=VARCHAR},
@@ -299,7 +299,7 @@
   <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.data.PrivateData">
     update dd_private_data
     set DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
-      DD_DATA_TYPE = #{ddDataType,jdbcType=NUMERIC},
+      DD_DATA_TYPE = #{ddDataType,jdbcType=VARCHAR},
       DD_DATA_DESCRIPTION = #{ddDataDescription,jdbcType=VARCHAR},
       DD_DATA_TASK_ID = #{ddDataTaskId,jdbcType=NUMERIC},
       DD_DATA_PUBLISH_TYPE = #{ddDataPublishType,jdbcType=NUMERIC},

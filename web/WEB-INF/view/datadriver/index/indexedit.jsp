@@ -11,7 +11,13 @@
 <html>
 <head>
     <title>指标编辑</title>
-    <%@include file="/commons/include/form.jsp" %>
+    <%--<%@include file="/commons/include/form.jsp" %>--%>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
@@ -112,9 +118,10 @@
     function showResponse(responseText) {
         var obj = new com.hotent.form.ResultMessage(responseText);
         if (obj.isSuccess()) {
-            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-            parent.layer.close(index); //再执行关闭
-            window.location.href = "${ctx}/datadriver/index/indexlist.ht?id=${projectId}";
+//            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+//            parent.layer.close(index); //再执行关闭
+            $('#addindex1').modal('hide');
+            <%--window.location.href = "${ctx}/datadriver/index/indexlist.ht?id=${projectId}";--%>
         } else {
 
         }

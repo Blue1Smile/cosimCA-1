@@ -174,20 +174,6 @@ return mv;
             out.append(jsonstring);
             out.flush();
             out.close();
-//            privateData.addAll(taskPrivateDatas);
-
-
-//        //获得订购数据列表
-//        List<OrderDataRelation> orderDataRelation_list2 = this.orderDataRelationService.getOrderDataRelationList(ddTaskId);
-//        List<PrivateData> privateData2 = new ArrayList<PrivateData>();
-//        for (OrderDataRelation orderDataRelation : orderDataRelation_list2) {
-//            Long ddDataId=orderDataRelation.getDdDataId();
-//            List<PrivateData> taskPrivateDatas2 = this.privateDataService.getByddDataId(ddDataId);
-//            privateData2.addAll(taskPrivateDatas2);
-//        }
-//        ModelAndView mv = this.getAutoView().addObject("privateDataList_publish",
-//                privateData).addObject("privateDataList_order", privateData2);
-      //  return mv;
     }
 
     @RequestMapping("getOrderdata")

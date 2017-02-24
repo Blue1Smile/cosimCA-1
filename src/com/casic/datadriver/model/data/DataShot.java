@@ -15,7 +15,7 @@ public class DataShot {
 
     private String ddDataName;
 
-    private Long ddDataType;
+    private String ddDataType;
 
     private String ddDataDescription;
 
@@ -72,11 +72,11 @@ public class DataShot {
         this.ddDataName = ddDataName;
     }
 
-    public Long getDdDataType() {
+    public String getDdDataType() {
         return ddDataType;
     }
 
-    public void setDdDataType(Long ddDataType) {
+    public void setDdDataType(String ddDataType) {
         this.ddDataType = ddDataType;
     }
 

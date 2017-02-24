@@ -49,8 +49,10 @@
         // Enables snapping waypoints to terminals
         mxEdgeHandler.prototype.snapToTerminals = true;
 
+
         window.onbeforeunload = function () {
-            return mxResources.get('changesLost');
+            return "  ";
+
         };
 
 

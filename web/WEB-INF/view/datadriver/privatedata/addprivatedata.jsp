@@ -16,6 +16,12 @@
 <html>
 <head>
     <%--<%@include file="/commons/include/form.jsp" %>--%>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
@@ -85,7 +91,7 @@
 </div>
 </body>
 <script type="text/javascript">
-    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+    //    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
     $(function () {
         var options = {};
 //        if (showResponse) {
@@ -94,10 +100,12 @@
 
         var frm = $('#privateDataForm').form();
         $("#dataFormSave").click(function () {
+            alert('1111');
             frm.setData();
             frm.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
+
                 window.location.href = "${ctx}/datadriver/personaltask/todotask.ht?id=${taskInfo.ddTaskId}";
             }
         });
