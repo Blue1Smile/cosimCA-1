@@ -42,7 +42,7 @@
             </a>
             <ul class="dropdown-menu" style="overflow: auto">
                 <c:forEach var="taskInfoListItem" items="${taskInfoList}">
-                    <li>
+                    <li title="${taskInfoListItem.ddTaskProjectName}">
                         <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}">${taskInfoListItem.ddTaskName}</a>
                     </li>
                 </c:forEach>
@@ -86,7 +86,7 @@
                         <div class="panel-heading">
                             私有数据
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
@@ -111,7 +111,7 @@
                         <div class="panel-heading">
                             发布数据
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
@@ -136,7 +136,7 @@
                         <div class="panel-heading">
                             可订阅
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="canorderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
@@ -161,7 +161,7 @@
                         <div class="panel-heading">
                             已订阅
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="orderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
@@ -246,14 +246,14 @@
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
         });
         $("#canorderpanel,#orderpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder2,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
         });
         function saveOrder() {
             var data = $(this).children('input').val();
@@ -266,7 +266,6 @@
             var parentid = $(this).parent().attr("id");
             $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId=" +${TaskInfo.ddTaskId});
         }
-
         $("#create_data").show();
     });
 

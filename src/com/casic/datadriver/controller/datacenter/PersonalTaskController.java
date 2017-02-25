@@ -595,10 +595,16 @@ public class PersonalTaskController extends AbstractController {
             //发布到私有
             if (parent.equals("createpanel")) {
                 orderDataRelationService.delPublishByddDataId(dataId);
+                privateData = privateDataService.getDataById(dataId);
+                privateData.setDdDataPublishType(0l);
+                privateDataService.updatedata(privateData);
             }
             //私有到发布
             if (parent.equals("publishpanel")) {
                 privateData = privateDataService.getDataById(dataId);
+                privateData.setDdDataPublishType(1l);
+                privateDataService.updatedata(privateData);
+
                 orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
                 orderDataRelation.setDdDataId(dataId);
                 orderDataRelation.setDdTaskId(privateData.getDdDataTaskId());

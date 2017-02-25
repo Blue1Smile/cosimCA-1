@@ -61,7 +61,7 @@
 
 </div>
 <div class="modal-footer">
-    <a class="btn btn-success btn-block" href="todotask.ht?id=${ddTaskId}" id="confirm">确认</a>
+    <a class="btn btn-success btn-block" href="list.ht" id="confirm">确认</a>
     <%--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>--%>
 </div>
 </body>
