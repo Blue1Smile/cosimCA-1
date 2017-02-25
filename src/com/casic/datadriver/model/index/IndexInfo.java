@@ -7,7 +7,7 @@ public class IndexInfo {
 
     private String ddIndexName;
 
-    private Long ddIndexTypeId;
+    private String ddIndexTypeId;
 
     private Long ddIndexProperty;
 
@@ -43,11 +43,11 @@ public class IndexInfo {
         this.ddIndexName = ddIndexName;
     }
 
-    public Long getDdIndexTypeId() {
+    public String getDdIndexTypeId() {
         return ddIndexTypeId;
     }
 
-    public void setDdIndexTypeId(Long ddIndexTypeId) {
+    public void setDdIndexTypeId(String ddIndexTypeId) {
         this.ddIndexTypeId = ddIndexTypeId;
     }
 

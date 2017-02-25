@@ -81,7 +81,7 @@
                         <div class="panel-heading">
                             新创建
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle "
@@ -92,6 +92,7 @@
                                                     ${taskListbyUserItem.ddTaskName}
                                             </label>
                                         </div>
+                                        <input value="${taskListbyUserItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -103,7 +104,7 @@
                         <div class="panel-heading">
                             已发布
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle"
@@ -114,6 +115,7 @@
                                                     ${publishtaskListbyUserItem.ddTaskName}
                                             </label>
                                         </div>
+                                        <input value="${publishtaskListbyUserItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -125,7 +127,7 @@
                         <div class="panel-heading">
                             待审核
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="checkpanel" class="scrum-stage-tasks">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
@@ -136,6 +138,7 @@
                                                     ${checkTaskInfoListItem.ddTaskName}
                                             </label>
                                         </div>
+                                        <input value="${checkTaskInfoListItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -147,7 +150,7 @@
                         <div class="panel-heading">
                             已完成
                         </div>
-                        <div class="panel-body panelheight"  style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
                             <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
@@ -158,6 +161,7 @@
                                                     ${completeTaskInfoListItem.ddTaskName}
                                             </label>
                                         </div>
+                                        <input value="${completeTaskInfoListItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -214,7 +218,7 @@
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
         });
 
         $("#checkpanel,#completepanel").dragsort({
@@ -222,7 +226,7 @@
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
         });
 
         function saveOrder() {
@@ -260,7 +264,12 @@
             keyboard: true,
             remote: "statis.ht?id=" + projectId
         });}
+    //关闭任务详情模态框
     $("#taskdetail").on("hidden.bs.modal", function() {
+        $(this).removeData("bs.modal");
+    });
+    //关闭任务详情模态框
+    $("#addindex1").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
     });
     switch_attr_index.onclick = function () {

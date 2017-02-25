@@ -14,10 +14,10 @@
             /*top: 0;*/
             /*left: 0;*/
             /*right: 0;*/
-            font-size: 46px;
+            font-size: 40px;
             font-weight: 600;
             float: left;
-            line-height: 48px;
+            line-height: 36px;
             margin: 0 8px 10px 15px;
             color: #1976D2;
         }
