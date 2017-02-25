@@ -58,25 +58,25 @@
         </li>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">项目指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
-        <div class="pull-right">
-            <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 进程统计
-            </a>
+        <%--<div class="pull-right">--%>
+            <%--<a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 进程统计--%>
+            <%--</a>--%>
 
 
-            <%--<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"--%>
-            <%--data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"--%>
-            <%--data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>--%>
-            <a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
-                    class="glyphicon glyphicon-plus"></span> 创建私有</a>
+            <%--&lt;%&ndash;<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"&ndash;%&gt;--%>
+            <%--&lt;%&ndash;data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"&ndash;%&gt;--%>
+            <%--&lt;%&ndash;data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>&ndash;%&gt;--%>
+            <%--<a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span--%>
+                    <%--class="glyphicon glyphicon-plus"></span> 创建私有</a>--%>
 
-            <a class="btn btn-primary" href="#" data-toggle="modal" id="submit_btn"
-               data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
-               data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
-            <button class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> 刷新</button>
-            <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>
+            <%--<a class="btn btn-primary" href="#" data-toggle="modal" id="submit_btn"--%>
+               <%--data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"--%>
+               <%--data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>--%>
+            <%--<button class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> 刷新</button>--%>
+            <%--&lt;%&ndash;<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务&ndash;%&gt;--%>
 
-            </a>
-        </div>
+            <%--</a>--%>
+        <%--</div>--%>
     </ul>
     <br>
     <div class="tab-content board-view">

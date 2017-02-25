@@ -31,8 +31,13 @@
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
     </button>
 </div>
+<%--<%--%>
+    <%--request.setCharacterEncoding("UTF-8");--%>
+<%--String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");--%>
+<%--out.print("name:"+major);--%>
+<%--%>--%>
 <table id="tb_departments"
-       data-url="showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>&son=1&">
+       data-url="showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>&son=1">
 </table>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script src="${ctx}/newtable/showtool.js"></script>

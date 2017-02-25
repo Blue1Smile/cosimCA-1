@@ -24,6 +24,7 @@
         $(function () {
 //            layout();
             loadTree();
+            <%--alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);--%>
             $.get("toollist1.ht?major="+1 , function (data) {
                 $('#toolsListFrame').html(data);
             });
@@ -99,6 +100,7 @@ request.setCharacterEncoding("UTF-8");
 //        return;
     }
     else {
+
 String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");
 out.print("name:"+major);}
 %>

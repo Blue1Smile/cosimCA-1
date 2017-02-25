@@ -116,11 +116,13 @@ function TableInit () {
     // <display:column property="ddToolUser" title="上传者" sortable="true" maxLength="80"></display:column>
     // <display:column property="ddToolData" title="上传日期" sortable="true" maxLength="80"></display:column>
     //初始化子表格(无线循环)
+
      function InitSubTable(index, row, $detail) {
         var parentid = row.ToolID;
         var cur_table = $detail.html('<table></table>').find('table');
+         // alert(row.ToolName);
         $(cur_table).bootstrapTable({
-            url: 'showtools.ht?major='+row.ToolName+'&son='+2,
+             url: 'showtools.ht?major='+row.ToolName+'&son='+2,
             method: 'get',
             queryParams: { strParentID: parentid },
             ajaxOptions: { strParentID: parentid },
@@ -157,9 +159,17 @@ function TableInit () {
             },
             onClickRow:function (row, tr)
             {
-                // alert(row.ToolUrl);
-                window.location.href=row.ToolUrl;
+                 // alert(row.ToolUrl);
+                // url: 'gettool.ht?major='+row.ToolName+'&son='+2,
+                // request.setCharacterEncoding("UTF-8");
+                window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                    // '         window.location.href=row.ToolUrl;
                 // window.location.href='D:\1.txt';
+
+                // var elemIF = document.createElement("iframe");
+                // elemIF.src = row.ToolUrl;
+                // elemIF.style.display = "none";
+                // document.body.appendChild(elemIF);
                 // alert(row.ToolName);
             }
 

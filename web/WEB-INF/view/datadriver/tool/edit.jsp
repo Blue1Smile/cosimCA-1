@@ -87,7 +87,7 @@
                 frm.ajaxForm(options);
                 if (frm.valid()) {
                     form.submit();
-                    parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";
+                    <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
                 }
             });
         });
@@ -95,6 +95,7 @@
         function showResponse(responseText) {
             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
             <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
+            alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);
             parent.location.href= "list.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";
             <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
 
