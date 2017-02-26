@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>项目流程</title>
-    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <%--<link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>--%>
     <style type="text/css" media="screen">
         div.base {
             position: absolute;
@@ -74,5 +74,5 @@
 </div>
 
 </body>
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
 </html>

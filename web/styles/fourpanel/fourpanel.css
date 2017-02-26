@@ -7,7 +7,8 @@ html, body {
 iframe {
     margin: 0px 0px !important;
     width: 100% !important;
-    height: 100% !important;
+    height: 600px !important;
+    border: none;
 }
 
 .scrum-stage .task.task-card {
@@ -15,13 +16,16 @@ iframe {
 }
 
 .task.task-card {
-    padding: 0 !important;
+    height: 40px;
     background-color: #fff;
     border-radius: 3px !important;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
     cursor: pointer !important;
     margin-left: -42px !important;
     z-index: 999999 !important;
+    margin-top: 5px;
+    margin-right: 0px;
+    padding: 10px 0 10px 5px !important;
 }
 
 .checkbox label {
@@ -90,6 +94,14 @@ li {
     margin-top: -42px;
     margin-right: 10px;
 }
-.dropdown-color{
+
+.dropdown-color {
+    height: 40px !important;
     background-color: #bebbbf !important;
+}
+
+.overflow-card {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
