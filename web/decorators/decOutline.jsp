@@ -3,7 +3,6 @@
 <%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%--<html lang="zh"  style="height: 100%; margin: 0px">--%>
 <html lang="zh">
 <head>
@@ -18,13 +17,12 @@
             /*top: 0;*/
             /*left: 0;*/
             /*right: 0;*/
-            font-size: 46px;
+            font-size: 40px;
             font-weight: 600;
             float: left;
-            line-height: 48px;
+            line-height: 36px;
             margin: 0 8px 10px 30px;
             color: #1976D2;
-
         }
     </style>
 </head>
@@ -33,10 +31,6 @@
     <br>
     <div class="row">
         <h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>
-        <%--<svg width="500" height="60">--%>
-            <%--<text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="Impact"> Cosim</text>--%>
-            <%--<text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台</text>--%>
-        <%--</svg>--%>
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>

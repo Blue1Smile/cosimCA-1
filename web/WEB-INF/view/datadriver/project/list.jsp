@@ -26,6 +26,13 @@
         .fr {
             float: right;
         }
+        .pages {
+            float: right;
+        }
+
+        .page_line {
+            display: inline;
+        }
     </style>
 </head>
 <body>
@@ -35,10 +42,10 @@
     </ul>
     <div class="layui-tab-content">
         <blockquote class="layui-elem-quote">
-            <div style="height: 36px;">
+            <div style="height: 34px;">
                 <form id="searchForm" method="post" action="list.ht">
                     <div class="fl">
-                        <input type="text" name="Q_name_SL " class="layui-input"
+                        <input type="text" name="Q_name_SL " class="form-control"
                                value="${param['Q_name_SL']}" placeholder="项目名称"/>
                     </div>
                     <div class="fr">

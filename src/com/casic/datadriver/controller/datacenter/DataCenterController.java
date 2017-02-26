@@ -6,10 +6,7 @@ import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.*;
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
-import com.casic.datadriver.service.data.DataSnapshotService;
-import com.casic.datadriver.service.data.DataVersionService;
-import com.casic.datadriver.service.data.OrderDataRelationService;
-import com.casic.datadriver.service.data.PrivateDataService;
+import com.casic.datadriver.service.data.*;
 import com.casic.datadriver.service.project.ProjectService;
 import com.casic.datadriver.service.task.TaskInfoService;
 import com.casic.datadriver.service.task.TaskStartService;
@@ -55,6 +52,8 @@ public class DataCenterController extends AbstractController {
     private DataVersionService dataVersionService;
     @Resource
     private DataSnapshotService dataSnapshotService;
+    @Resource
+    private DataSnapInfoIdService dataSnapInfoIdService;
 
     /**
      * 2016/12/19/修改
@@ -113,6 +112,7 @@ public class DataCenterController extends AbstractController {
     public ModelAndView publishorderdata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long taskId= RequestUtil.getLong(request, "id");
+
 //        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
 //        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
         ModelAndView mv = this.getAutoView().addObject("taskId",
@@ -174,20 +174,6 @@ return mv;
             out.append(jsonstring);
             out.flush();
             out.close();
-//            privateData.addAll(taskPrivateDatas);
-
-
-//        //获得订购数据列表
-//        List<OrderDataRelation> orderDataRelation_list2 = this.orderDataRelationService.getOrderDataRelationList(ddTaskId);
-//        List<PrivateData> privateData2 = new ArrayList<PrivateData>();
-//        for (OrderDataRelation orderDataRelation : orderDataRelation_list2) {
-//            Long ddDataId=orderDataRelation.getDdDataId();
-//            List<PrivateData> taskPrivateDatas2 = this.privateDataService.getByddDataId(ddDataId);
-//            privateData2.addAll(taskPrivateDatas2);
-//        }
-//        ModelAndView mv = this.getAutoView().addObject("privateDataList_publish",
-//                privateData).addObject("privateDataList_order", privateData2);
-      //  return mv;
     }
 
     @RequestMapping("getOrderdata")
@@ -200,7 +186,7 @@ return mv;
         Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
         PageInfo pageinfo = new PageInfo();
         pageinfo.setPageSize((pageNumber-1)*pageSize);
-        pageinfo.setPageNumber((pageNumber-1)*pageSize+pageSize);
+        pageinfo.setPageNumber((pageNumber - 1) * pageSize + pageSize);
         pageinfo.setId(ddTaskId);
 
         List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getOrderDataRelationListF(pageinfo);
@@ -340,7 +326,7 @@ return mv;
 
 
     /**
-     * 私有数据数据快照
+     * 项目快照
      *
      * @param request
      *            the request
@@ -355,47 +341,34 @@ return mv;
     public void datasnapshot(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        Long ddDataVersionId = RequestUtil.getLong(request, "ddDataVersionId");
+        Long projectId = RequestUtil.getLong(request, "projectId");
 //        String ddDataTag = RequestUtil.getString(request, "ddDataTag");
-        DataVersion dataVersion = dataVersionService.getById(ddDataVersionId);
+        DataSnapInfoId dataSnapInfoId=new DataSnapInfoId();
 
-        DataSnapshot dataSnapshot = new DataSnapshot();
+        dataSnapInfoId.setDdDataSnapShotId(UniqueIdUtil.genId());
+        dataSnapInfoId.setDdSnapShotPersonId(ContextUtil.getCurrentUser().getUserId());
 
-        int size = dataSnapshotService.getByddDataId(dataVersion.getDdDataId()).size();
-        if (size==0){
-            dataSnapshot.setDdDataSnapshotId(UniqueIdUtil.genId());
-            dataSnapshot.setDdDataId(dataVersion.getDdDataId());
-            dataSnapshot.setDdDataValue(dataVersion.getDdDataValue());
-            dataSnapshot.setDdDataRecordTime(dataVersion.getDdDataRecordTime());
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(currentTime);
+        dataSnapInfoId.setDdSnapShotTime(dateString);
 
-            ISysUser sysUser = ContextUtil.getCurrentUser();
-            dataSnapshot.setDdSnapshotPersonId(sysUser.getUserId());
+        dataSnapInfoId.setDdProjectId(projectId);
 
-            Date currentTime = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateString = formatter.format(currentTime);
-            dataSnapshot.setDdSnapshotTime(dateString);
+        dataSnapInfoIdService.add(dataSnapInfoId);
+        List<TaskInfo> taskInfoList= taskInfoService.queryTaskInfoByProjectId(projectId);
+        for(int i=0;i<taskInfoList.size();i++){
+            List<PrivateData> privateDataList = privateDataService.queryPrivateDataByddTaskID(taskInfoList.get(i).getDdTaskId());
+            for(int j=0;j<privateDataList.size();j++){
+                DataSnapshot dataSnapshot=new DataSnapshot();
 
-//        dataSnapshot.setDdDataTag(ddDataTag);
-            this.dataSnapshotService.add(dataSnapshot);
-        }
-        else
-        {
-            dataSnapshot.setDdDataSnapshotId(UniqueIdUtil.genId());
-            dataSnapshot.setDdDataId(dataVersion.getDdDataId());
-            dataSnapshot.setDdDataValue(dataVersion.getDdDataValue());
-            dataSnapshot.setDdDataRecordTime(dataVersion.getDdDataRecordTime());
+                dataSnapshot.setDdDataSnapshotId(UniqueIdUtil.genId());
+                dataSnapshot.setDdDataId(privateDataList.get(j).getDdDataId());
+                dataSnapshot.setDdDataValue(privateDataList.get(j).getDdDataLastestValue());
+                dataSnapshot.setDdSnapshotTime(dateString);
 
-            ISysUser sysUser = ContextUtil.getCurrentUser();
-            dataSnapshot.setDdSnapshotPersonId(sysUser.getUserId());
-
-            Date currentTime = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateString = formatter.format(currentTime);
-            dataSnapshot.setDdSnapshotTime(dateString);
-
-            //        dataSnapshot.setDdDataTag(ddDataTag);
-            this.dataSnapshotService.update(dataSnapshot);
+                dataSnapshotService.add(dataSnapshot);
+            }
         }
 
 
@@ -416,15 +389,24 @@ return mv;
     @Action(description = "根据条件查询项目基本信息列表")
     public ModelAndView datasnapshotlist(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-//        QueryFilter queryFilter = new QueryFilter(request, "ProjectItem");
-        List<DataSnapshot> dataSnapshots = this.dataSnapshotService.getAll();
-        int i =0;
-        ModelAndView mv = this.getAutoView().addObject("datasnapshotlist",
-                dataSnapshots);
+        Long ddTaskId = RequestUtil.getLong(request, "ddTaskId");
+        String ddSnapShotTime = RequestUtil.getString(request, "ddSnapShotTime");
+        List<PrivateData> privateDataList = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
+        List<DataSnapshot> dataSnapshotList = new ArrayList<DataSnapshot>();
+        for(int i=0;i<privateDataList.size();i++){
+            List<DataSnapshot> privateDataSnapshotList = dataSnapshotService.getByddDataId(privateDataList.get(i).getDdDataId());
+            for(int j=0;j<privateDataSnapshotList.size();j++){
+                String time =privateDataSnapshotList.get(j).getDdSnapshotTime();
+                if(time.equals(ddSnapShotTime)){
+                    dataSnapshotList.add(privateDataSnapshotList.get(j));
+                }
+            }
+
+        }
+        ModelAndView mv = this.getAutoView().addObject("dataSnapshotList",
+                dataSnapshotList);
         return mv;
     }
-
-
 
 
 
@@ -471,6 +453,48 @@ return mv;
         ModelAndView mv = this.getAutoView().addObject("dataShot", dataShot);
         return mv;
 
+    }
+
+    /**
+     * 数据快照列表.
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("snapshotlist")
+    @Action(description = "返回所有快照列表")
+    public ModelAndView snapshotlist(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+//        QueryFilter queryFilter = new QueryFilter(request, "ProjectItem");
+        List<DataSnapInfoId>  dataSnapInfoIdList = this.dataSnapInfoIdService.getAll();
+
+        ModelAndView mv = this.getAutoView().addObject("snapshotList",
+                dataSnapInfoIdList);
+        return mv;
+    }
+
+    /**
+     * 数据快照列表.
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("snapshottasklist")
+    @Action(description = "返回查看项目的任务列表")
+    public ModelAndView snapshottasklist(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long ddDataSnapShotId = RequestUtil.getLong(request, "ddDataSnapShotId");
+
+        DataSnapInfoId dataSnapInfoId = dataSnapInfoIdService.getById(ddDataSnapShotId);
+
+        List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(dataSnapInfoId.getDdProjectId());
+        ModelAndView mv = this.getAutoView().addObject("snapshotTaskList",
+                taskInfoList).addObject("ddSnapShotTime",dataSnapInfoId.getDdSnapShotTime());
+        return mv;
     }
 
 

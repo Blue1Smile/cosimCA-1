@@ -49,11 +49,11 @@
         // Enables snapping waypoints to terminals
         mxEdgeHandler.prototype.snapToTerminals = true;
 
+
         window.onbeforeunload = function () {
-            return mxResources.get('changesLost');
+            return "  ";
+
         };
-
-
     </script>
 </head>
 <body onload="if(flag) new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor_graph.xml',id,xml); else new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor.xml',id,xml); ">

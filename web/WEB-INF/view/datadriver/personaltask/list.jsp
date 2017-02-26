@@ -25,6 +25,13 @@
         .fr {
             float: right;
         }
+        .pages {
+            float: right;
+        }
+
+        .page_line {
+            display: inline;
+        }
     </style>
 </head>
 <body>
@@ -35,10 +42,10 @@
     </ul>
     <div class="layui-tab-content">
         <blockquote class="layui-elem-quote">
-            <div style="height: 36px;">
+            <div style="height: 34px;">
                 <form id="searchForm" method="post" action="list.ht">
                     <div class="fl">
-                        <input type="text" name="Q_name_SL " class="layui-input layui-"
+                        <input type="text" name="Q_name_SL " class="form-control"
                                value="${param['Q_name_SL']}" placeholder="任务名称"/>
                     </div>
                     <div class="fr">
@@ -58,10 +65,18 @@
             <%--<input type="checkbox" class="pk" name="id" value="${taskList.ddTaskId}">--%>
             <%--</display:column>--%>
             <display:column property="ddTaskProjectName" title="任务所属项目名称" maxLength="80" sortable="false"
-                            style="width:40%"></display:column>
+                            style="width:35%"></display:column>
             <display:column property="ddTaskName" title="任务名称" sortable="false" maxLength="80"
-                            style="width:40%"></display:column>
-            <display:column title="任务阶段" media="html" style="width:13%">
+                            style="width:35%"></display:column>
+            <display:column title="优先级" media="html" style="width:11%">
+                <c:choose>
+                    <c:when test="${taskList.ddTaskPriority==3}"><i style="font-size: 14px; color: #FF5722;">紧急</i></c:when>
+                    <c:when test="${taskList.ddTaskPriority==2}"><i style="font-size: 14px; color: #F7B824;">重要</i></c:when>
+                    <c:otherwise><i style="font-size: 14px; color: #01AAED;">一般</i></c:otherwise>
+                </c:choose>
+            </display:column>
+
+            <display:column title="任务阶段" media="html" style="width:12%">
                 <c:choose><c:when test="${taskList.ddTaskState==1}">
                     <i style="font-size: 14px; color: #F7B824;">待审核</i>
                 </c:when>

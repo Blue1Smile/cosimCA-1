@@ -98,7 +98,9 @@
             <%--<a class="btn btn-success" href="" data-toggle="modal"--%>
                <%--data-remote="${ctx}/datadriver/privatedata/edit.ht?id=${TaskInfo.ddTaskId}"--%>
                <%--data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 新建数据</a>--%>
-            <a class="btn btn-success" id="newData" href="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}">新建数据</a>
+            <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
+               data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
+               data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 新建数据</a>
         </div>
         </div>
     </ul>
@@ -226,6 +228,14 @@
         <div role="tabpanel" class="tab-pane" id="three">
         </div>
         <div role="tabpanel" class="tab-pane" id="four">
+        </div>
+    </div>
+</div>
+<%--添加任务数据--%>
+<div class="modal fade" id="adddata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
         </div>
     </div>
 </div>
