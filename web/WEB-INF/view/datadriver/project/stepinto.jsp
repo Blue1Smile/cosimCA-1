@@ -273,9 +273,9 @@
         $(this).removeData("bs.modal");
     });
     //关闭任务详情模态框
-    $("#addindex1").on("hidden.bs.modal", function() {
-        $(this).removeData("bs.modal");
-    });
+//    $("#addindex1").on("hidden.bs.modal", function() {
+//        $(this).removeData("bs.modal");
+//    });
     //关闭统计模态框
     $("#statis").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");

@@ -98,9 +98,9 @@
             remote: "${ctx}/datadriver/project/statis.ht?id=" + projectId
         });}
     //关闭统计模态框
-    $("#statis").on("hidden.bs.modal", function() {
-        $(this).removeData("bs.modal");
-    });
+//    $("#statis").on("hidden.bs.modal", function() {
+//        $(this).removeData("bs.modal");
+//    });
 
     function showMyTask(projectId){
         $('#mytask').modal({
@@ -111,5 +111,5 @@
         $(this).removeData("bs.modal");
     });
 </script>
-<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
+<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>
