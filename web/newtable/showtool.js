@@ -20,13 +20,14 @@ function TableInit () {
     //初始化Table
 
         $('#tb_departments').bootstrapTable({
-            // url: 'showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>',         //请求后台的URL（*）
+
             // url: 'showtools.ht',
           //   method: 'get',
           //   detailView: true,//父子表
           //   //sidePagination: "server",
           //   pageSize: 10,
           //   pageList: [10, 25],
+          //   url: 'showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -39,15 +40,15 @@ function TableInit () {
             pageSize: 5,                       //每页的记录行数（*）
             queryParamsType:'',
             // queryParams:queryParams,
-            pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-            strictSearch: true,
+            pageList: [5,10,20,50],        //可供选择的每页的行数（*）
+            // search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            // strictSearch: true,
             showColumns: false,                  //是否显示所有的列
             showRefresh: false,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: false,                //是否启用点击选中行
             height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+            uniqueId: "ToolID",                     //每一行的唯一标识，一般为主键列
             showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: true,                   //是否显示父子表
@@ -115,11 +116,13 @@ function TableInit () {
     // <display:column property="ddToolUser" title="上传者" sortable="true" maxLength="80"></display:column>
     // <display:column property="ddToolData" title="上传日期" sortable="true" maxLength="80"></display:column>
     //初始化子表格(无线循环)
+
      function InitSubTable(index, row, $detail) {
         var parentid = row.ToolID;
         var cur_table = $detail.html('<table></table>').find('table');
+         // alert(row.ToolName);
         $(cur_table).bootstrapTable({
-            url: 'showtools.ht?major='+row.ToolName+'&son='+2,
+             url: 'showtools.ht?major='+row.ToolName+'&son='+2,
             method: 'get',
             queryParams: { strParentID: parentid },
             ajaxOptions: { strParentID: parentid },
@@ -156,9 +159,17 @@ function TableInit () {
             },
             onClickRow:function (row, tr)
             {
-                // alert(row.ToolUrl);
-                window.location.href=row.ToolUrl;
+                 // alert(row.ToolUrl);
+                // url: 'gettool.ht?major='+row.ToolName+'&son='+2,
+                // request.setCharacterEncoding("UTF-8");
+                window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                    // '         window.location.href=row.ToolUrl;
                 // window.location.href='D:\1.txt';
+
+                // var elemIF = document.createElement("iframe");
+                // elemIF.src = row.ToolUrl;
+                // elemIF.style.display = "none";
+                // document.body.appendChild(elemIF);
                 // alert(row.ToolName);
             }
 

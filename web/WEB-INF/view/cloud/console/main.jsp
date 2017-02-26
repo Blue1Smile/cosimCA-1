@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>协同服务</title>
-    <script type="text/javascript">    
+    <script type="text/javascript">
     	function getQueryString(name){
     	    var url = top.location.href;
     	    url = url.substring(url.indexOf("?")+1);
@@ -15,15 +15,15 @@
     	    for(var i=0;i<paras.length;i++){
     	        var str = paras[i];
     	        var l = str.indexOf("=");
-    	        params[str.substring(0,l)] = str.substring(l+1); 
+    	        params[str.substring(0,l)] = str.substring(l+1);
     	    }
     	    var value = params[name];
     	    if(typeof(value) == "undefined")
     	        return "";
-    	    
+
     	    return value;
     	}
-    	
+
     	var target = getQueryString('target');
     	if(target){
     		location.href='${ctx}' + target;

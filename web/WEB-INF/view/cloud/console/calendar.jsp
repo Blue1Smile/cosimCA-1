@@ -30,9 +30,34 @@
         <h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>
     </div>
     <%@include file="/commons/cloud/top_console.jsp" %>
-    <div class="col-xs-12">
-        <%--<iframe src="main.ht" frameborder="0" scrolling="auto" id="mainframe"--%>
-        <%--style="width:100%;min-height:800px;"></iframe>--%>
+
+    <div class="container-fluid" style="height: 100%">
+        <div class="col-xs-3" style="height: 100%">
+            <div class="panel panel-primary" style="height: 100%">
+                <div class="panel-heading">未办任务</div>
+                <div class="panel-body" style="height: 93%">
+                    <%--<ul id="demo2"></ul>--%>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <div class="panel panel-primary" style="height: 100%">
+                <div class="panel-heading">专业工具列表</div>
+                <div class="panel-body" style="height: 93%">
+                    <%--<div id="toolsListFrame" style="height: 100%"></div>--%>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="panel panel-primary" style="height: 100%">
+                <div class="panel-heading">项目更新</div>
+                <div class="panel-body" style="height: 93%">
+                    <%--<div id="toolsListFrame" style="height: 100%"></div>--%>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 </body>
