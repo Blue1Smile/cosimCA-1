@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.project.Project;
 import com.hotent.core.util.BeanUtils;
@@ -148,4 +149,6 @@ public class TaskInfoService extends BaseService<TaskInfo> {
             taskInfoDao.delById(id);
         }
     }
+    public List<TaskInfo> getByProIdAndUserIdF(PageInfo pageInfo){return this.taskInfoDao.getByProIdAndUserIdF(pageInfo);}
+
 }

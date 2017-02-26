@@ -57,9 +57,9 @@
                                         <h4>${projectItem.ddProjectName}</h4>
                                         <p style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><em>${projectItem.ddProjectDescription}</em></p>
                                         <div class="btn-group btn-group-xs col-xs-offset-6" role="group">
-                                            <a href="#" type="button" class="btn btn-info">任务</a>
-                                            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${projectItem.ddProjectId})">进度</a>
-                                            <a href="#" type="button" class="btn btn-primary">讨论</a>
+                                            <a href="#" type="button" class="btn btn-info" onclick="showMyTask(${projectItem.ddProjectId})" title="待办任务列表">任务</a>
+                                            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${projectItem.ddProjectId})" title="项目进度情况">进度</a>
+                                            <a href="#" type="button" class="btn btn-primary" title="进入项目讨论组">讨论</a>
                                         </div>
                                     </div>
                                 </div>
@@ -79,6 +79,14 @@
         </div>
     </div>
 </div>
+<%--我的任务--%>
+<div class="modal fade" id="mytask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 </body>
 <script src="${ctx}/newtable/jquery.js"></script>
 <script src="${ctx}/newtable/bootstrap.js"></script>
@@ -91,6 +99,15 @@
         });}
     //关闭统计模态框
     $("#statis").on("hidden.bs.modal", function() {
+        $(this).removeData("bs.modal");
+    });
+
+    function showMyTask(projectId){
+        $('#mytask').modal({
+            keyboard: true,
+            remote: "mytasklist.ht?id=" + projectId
+        });}
+    $("#mytask").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
     });
 </script>

@@ -322,6 +322,12 @@
 
     </select>
 
+    <select id="getByProIdAndUserIdF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_task
+        where DD_TASK_PROJECT_ID = #{id} AND DD_TASK_RESPONSIBLE_PERSON = #{bf1} AND DD_TASK_STATE = 0 limit #{pageSize},#{pageNumber}
+    </select>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.task.TaskInfo">
         update dd_task

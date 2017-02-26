@@ -1,15 +1,21 @@
 package com.casic.cloud.controller.console;
 
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.project.Project;
 import com.casic.datadriver.model.task.TaskInfo;
 import com.casic.datadriver.service.project.ProjectService;
 import com.casic.datadriver.service.task.TaskInfoService;
+import com.hotent.core.annotion.Action;
+import com.hotent.core.web.ResultMessage;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.activiti.engine.impl.persistence.entity.TaskEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -133,7 +139,138 @@ public class ConsoleController extends BaseController {
         }
         return type;
     }
+    /**
+     * 我的任务列表
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("mytasklist")
+    public ModelAndView mytasklist(HttpServletRequest request,
+                             HttpServletResponse response) throws Exception {
+        long projectId = RequestUtil.getLong(request, "id");
+//        Long userId = ContextUtil.getCurrentUser().getUserId();
+//        List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByResponceId(userId);
+//        for (int i = 0; i < taskInfoList.size() - 1; i++) {
+//            for (int j = taskInfoList.size() - 1; j > i; j--) {
+//                if (taskInfoList.get(j).getDdTaskProjectId().equals(projectId)) {
+//                    continue;
+//                }else {
+//                    taskInfoList.remove(j);
+//                }
+//            }
+//        }
+        return this.getAutoView().addObject("projectId", projectId);
+    }
 
+    /**
+     * 查询index列表
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("mytasklistjson")
+    @Action(description = "我的项目任务列表")
+    public void mytasklistjson(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+
+        PageInfo pageinfo = new PageInfo();
+
+        pageinfo.setPageSize((pageNumber - 1) * pageSize);
+        pageinfo.setPageNumber(pageSize);
+        Long userId = ContextUtil.getCurrentUser().getUserId();
+        response.setContentType("application/json");
+
+        try {
+            Long projectId = RequestUtil.getLong(request, "id");
+            pageinfo.setId(projectId);
+            pageinfo.setBf1(userId);
+//            int allnum = taskInfoService.queryTaskInfoByProjectId(projectId).size();
+            List<TaskInfo> taskInfoList = taskInfoService.getByProIdAndUserIdF(pageinfo);
+            int allnum = taskInfoList.size();
+            JSONObject jsonObject = new JSONObject();
+            for (int i = 0; i < taskInfoList.size(); i++) {
+                TaskInfo taskInfo = taskInfoList.get(i);
+
+                jsonObject.put("ddTaskChildType", taskInfo.getDdTaskChildType());
+                jsonObject.put("ddTaskDescription", taskInfo.getDdTaskDescription());
+                jsonObject.put("ddTaskId", taskInfo.getDdTaskId());
+                jsonObject.put("ddTaskName", taskInfo.getDdTaskName());
+                jsonObject.put("ddTaskPerson", taskInfo.getDdTaskPerson());
+                jsonObject.put("ddTaskPlanEndTime", taskInfo.getDdTaskPlanEndTime());
+                jsonObject.put("ddTaskPriority", taskInfo.getDdTaskPriority());
+                jsonObject.put("ddTaskProjectId", taskInfo.getDdTaskProjectId());
+                jsonObject.put("ddTaskProjectName", taskInfo.getDdTaskProjectName());
+                jsonObject.put("ddTaskResponsiblePerson", taskInfo.getDdTaskResponsiblePerson());
+                jsonObject.put("ddTaskState", taskInfo.getDdTaskState());
+                jsonMembers.add(jsonObject);
+            }
+            json.put("total", allnum);
+            json.put("rows", jsonMembers);
+            String jsonstring = formatJson(json.toString());
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.append(jsonstring);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+    //格式化json
+    public static String formatJson(String jsonStr) {
+        if (null == jsonStr || "".equals(jsonStr)) return "";
+        StringBuilder sb = new StringBuilder();
+        char last = '\0';
+        char current = '\0';
+        int indent = 0;
+        for (int i = 0; i < jsonStr.length(); i++) {
+            last = current;
+            current = jsonStr.charAt(i);
+            switch (current) {
+                case '{':
+                case '[':
+                    sb.append(current);
+                    sb.append('\n');
+                    indent++;
+                    addIndentBlank(sb, indent);
+                    break;
+                case '}':
+                case ']':
+                    sb.append('\n');
+                    indent--;
+                    addIndentBlank(sb, indent);
+                    sb.append(current);
+                    break;
+                case ',':
+                    sb.append(current);
+                    if (last != '\\') {
+                        sb.append('\n');
+                        addIndentBlank(sb, indent);
+                    }
+                    break;
+                default:
+                    sb.append(current);
+            }
+        }
+        return sb.toString();
+    }
+
+    //添加空格
+    private static void addIndentBlank(StringBuilder sb, int indent) {
+        for (int i = 0; i < indent; i++) {
+            sb.append('\t');
+        }
+    }
     /**
      * 个人主页
      *
