@@ -250,8 +250,10 @@
 <%--</div>--%>
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
+<script src="${ctx}/styles/loading/PerfectLoad.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $.MyCommon.PageLoading({ sleep: 500 });
         $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
