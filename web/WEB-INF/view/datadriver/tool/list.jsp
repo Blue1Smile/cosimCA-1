@@ -24,6 +24,10 @@
         $(function () {
 //            layout();
             loadTree();
+            <%--alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);--%>
+            $.get("toollist1.ht?major="+1 , function (data) {
+                $('#toolsListFrame').html(data);
+            });
 //            createTree();
         });
 //        //布局
@@ -88,7 +92,18 @@
         }
 
     </script>
-</head>
+</head
+<%
+request.setCharacterEncoding("UTF-8");
+    if (request.getParameter("major")==null)
+    {
+//        return;
+    }
+    else {
+
+String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");
+out.print("name:"+major);}
+%>
 <body>
 <div class="container-fluid" style="height: 100%">
     <div class="col-xs-3" style="height: 100%">

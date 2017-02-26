@@ -1,19 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" %>
 <%@ include file="/commons/cloud/global.jsp" %>
-<%--<style>--%>
-    <%--.bs-docs-sidenav {--%>
-        <%--max-width: 228px;--%>
-        <%--margin: 30px 0 0;--%>
-        <%--padding: 0;--%>
-        <%--background-color: #fff;--%>
-        <%---webkit-border-radius: 6px;--%>
-        <%---moz-border-radius: 6px;--%>
-        <%--border-radius: 6px;--%>
-        <%---webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);--%>
-        <%---moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);--%>
-        <%--box-shadow: 0 1px 4px rgba(0,0,0,.065);--%>
-    <%--}--%>
-<%--</style>--%>
+
     <c:forEach items="${leftResourcesList}" var="leftResourcesItem">
         <ul class="list-group">
             <li class="list-group-item">
@@ -40,3 +27,24 @@
             </li>
         </ul>
     </c:forEach>
+<%--<ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="test">--%>
+    <%--<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->--%>
+    <%--<li class="layui-nav-item layui-nav-itemed">--%>
+        <%--<a href="javascript:;">默认展开</a>--%>
+        <%--<dl class="layui-nav-child">--%>
+            <%--<dd><a href="javascript:;">选项1</a></dd>--%>
+            <%--<dd><a href="javascript:;">选项2</a></dd>--%>
+            <%--<dd><a href="">跳转</a></dd>--%>
+        <%--</dl>--%>
+    <%--</li>--%>
+    <%--<li class="layui-nav-item">--%>
+        <%--<a href="javascript:;">解决方案</a>--%>
+        <%--<dl class="layui-nav-child">--%>
+            <%--<dd><a href="">移动模块</a></dd>--%>
+            <%--<dd><a href="">后台模版</a></dd>--%>
+            <%--<dd><a href="">电商平台</a></dd>--%>
+        <%--</dl>--%>
+    <%--</li>--%>
+    <%--<li class="layui-nav-item"><a href="">产品</a></li>--%>
+    <%--<li class="layui-nav-item"><a href="">大数据</a></li>--%>
+<%--</ul>--%>

@@ -59,7 +59,7 @@
                <%--data-remote="statis.ht?id=${Project.ddProjectId}"--%>
                <%--data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计--%>
             <%--</a>--%>
-            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 统计</a>
+            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 流程统计</a>
             <%--<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"--%>
                <%--data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"--%>
                <%--data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>--%>
@@ -81,18 +81,19 @@
                         <div class="panel-heading">
                             新创建
                         </div>
-                        <div class="panel-body panelheight">
-                            <ul id="createpanel" class="scrum-stage-tasks" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
+                            <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle "
                                         onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
-                                            <label for="${taskListbyUserItem.ddTaskId}">
-                                                    ${taskListbyUserItem.ddTaskName}
-                                            </label>
-                                        </div>
-                                        <input type="hidden" value="${taskListbyUserItem.ddTaskId}" name="release"/>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${taskListbyUserItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${taskListbyUserItem.ddTaskId}">--%>
+                                                    <%--${taskListbyUserItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                                ${taskListbyUserItem.ddTaskName}
+                                        <input value="${taskListbyUserItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -104,19 +105,19 @@
                         <div class="panel-heading">
                             已发布
                         </div>
-                        <div class="panel-body panelheight">
-                            <ul id="publishpanel" class="scrum-stage-tasks" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
+                            <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle"
                                         onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">
-                                            <label for="${publishtaskListbyUserItem.ddTaskId}">
-                                                    ${publishtaskListbyUserItem.ddTaskName}
-                                            </label>
-                                        </div>
-                                        <input type="hidden" value="${publishtaskListbyUserItem.ddTaskId}"
-                                               name="release"/>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${publishtaskListbyUserItem.ddTaskId}">--%>
+                                                    <%--${publishtaskListbyUserItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                                ${publishtaskListbyUserItem.ddTaskName}
+                                        <input value="${publishtaskListbyUserItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -128,19 +129,19 @@
                         <div class="panel-heading">
                             待审核
                         </div>
-                        <div class="panel-body panelheight">
-                            <ul id="checkpanel" class="scrum-stage-tasks" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
+                            <ul id="checkpanel" class="scrum-stage-tasks">
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
                                         onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">
-                                            <label for="${checkTaskInfoListItem.ddTaskId}">
-                                                    ${checkTaskInfoListItem.ddTaskName}
-                                            </label>
-                                        </div>
-                                        <input type="hidden" value="${checkTaskInfoListItem.ddTaskId}"
-                                               name="release"/>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${checkTaskInfoListItem.ddTaskId}">--%>
+                                                    <%--${checkTaskInfoListItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                                ${checkTaskInfoListItem.ddTaskName}
+                                        <input value="${checkTaskInfoListItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -152,19 +153,19 @@
                         <div class="panel-heading">
                             已完成
                         </div>
-                        <div class="panel-body panelheight">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
                             <ul id="completepanel" class="scrum-stage-tasks">
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
                                         onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">
-                                            <label for="${completeTaskInfoListItem.ddTaskId}">
-                                                    ${completeTaskInfoListItem.ddTaskName}
-                                            </label>
-                                        </div>
-                                        <input type="hidden" value="${completeTaskInfoListItem.ddTaskId}"
-                                               name="release"/>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${completeTaskInfoListItem.ddTaskId}">--%>
+                                                    <%--${completeTaskInfoListItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                                ${completeTaskInfoListItem.ddTaskName}
+                                        <input value="${completeTaskInfoListItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -221,7 +222,7 @@
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
         });
 
         $("#checkpanel,#completepanel").dragsort({
@@ -229,7 +230,7 @@
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
         });
 
         function saveOrder() {
@@ -267,7 +268,16 @@
             keyboard: true,
             remote: "statis.ht?id=" + projectId
         });}
+    //关闭任务详情模态框
     $("#taskdetail").on("hidden.bs.modal", function() {
+        $(this).removeData("bs.modal");
+    });
+    //关闭任务详情模态框
+//    $("#addindex1").on("hidden.bs.modal", function() {
+//        $(this).removeData("bs.modal");
+//    });
+    //关闭统计模态框
+    $("#statis").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
     });
     switch_attr_index.onclick = function () {

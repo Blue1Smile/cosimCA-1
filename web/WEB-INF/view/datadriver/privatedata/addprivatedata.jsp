@@ -91,22 +91,16 @@
 </div>
 </body>
 <script type="text/javascript">
-    //    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
     $(function () {
         var options = {};
-//        if (showResponse) {
-//            options.success = showResponse;
-//        }
-
         var frm = $('#privateDataForm').form();
         $("#dataFormSave").click(function () {
-            alert('1111');
             frm.setData();
             frm.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
-
-                window.location.href = "${ctx}/datadriver/personaltask/todotask.ht?id=${taskInfo.ddTaskId}";
+                window.location.reload(true);
+                <%--window.location.href = "${ctx}/datadriver/personaltask/todotask.ht?id=${taskInfo.ddTaskId}";--%>
             }
         });
     });

@@ -255,4 +255,22 @@ public class IndexInfoController extends BaseController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
+    /**
+     * 指标删除
+     *
+     * @return
+     */
+    @RequestMapping("delindex")
+    @Action(description = "指标删除")
+    public void delindex(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        try {
+            Long indexId = RequestUtil.getLong(request, "id");
+            indexService.delById(indexId);
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
 }

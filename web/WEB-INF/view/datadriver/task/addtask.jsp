@@ -63,8 +63,13 @@
                 </tr>
                 <tr>
                     <th width="20%">优先级:</th>
-                    <td><input type="text" id="ddTaskPriority" name="ddTaskPriority"
-                               value="" class="form-control"/></td>
+                    <td>
+                        <select id="ddTaskPriority" name="ddTaskPriority" class="form-control">
+                            <option value="3">紧急</option>
+                            <option value="2">重要</option>
+                            <option value="1">一般</option>
+                        </select>
+                    </td>
                     <th width="20%">是否里程碑任务:</th>
                     <td>
 
@@ -125,6 +130,8 @@
     });
     //    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
     $(function () {
+        $('#testSelect option:selected').text();//选中的文本
+        $('#testSelect option:selected').val();//选中的值
         var options = {};
         if (showResponse) {
             options.success = showResponse;
@@ -136,6 +143,7 @@
             frm.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
+//                window.location.reload(true);
             }
         });
     });
@@ -147,7 +155,6 @@
             parent.layer.close(index); //再执行关闭
             window.location.href = "${ctx}/datadriver/project/stepinto.ht?id=${projectItem.ddProjectId}";
         } else {
-//            $.ligerMessageBox.error("提示信息", obj.getMessage());
         }
     }
 

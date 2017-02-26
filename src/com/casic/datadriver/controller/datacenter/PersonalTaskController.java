@@ -463,10 +463,12 @@ public class PersonalTaskController extends AbstractController {
 
     @RequestMapping("recovertask")
     @Action(description = "收回任务")
-    public void recovertask(HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView recovertask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        String preUrl = RequestUtil.getPrePage(request);
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
+
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
             if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
@@ -489,6 +491,7 @@ public class PersonalTaskController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
+        return getAutoView().addObject("preUrl", preUrl);
     }
 
 
@@ -592,10 +595,16 @@ public class PersonalTaskController extends AbstractController {
             //发布到私有
             if (parent.equals("createpanel")) {
                 orderDataRelationService.delPublishByddDataId(dataId);
+                privateData = privateDataService.getDataById(dataId);
+                privateData.setDdDataPublishType(0l);
+                privateDataService.updatedata(privateData);
             }
             //私有到发布
             if (parent.equals("publishpanel")) {
                 privateData = privateDataService.getDataById(dataId);
+                privateData.setDdDataPublishType(1l);
+                privateDataService.updatedata(privateData);
+
                 orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
                 orderDataRelation.setDdDataId(dataId);
                 orderDataRelation.setDdTaskId(privateData.getDdDataTaskId());
