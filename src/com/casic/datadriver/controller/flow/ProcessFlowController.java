@@ -234,7 +234,7 @@ public class ProcessFlowController extends AbstractController {
      * @throws Exception the exception
      */
     private void saveProcessXml(Document doc, long projectId) throws IOException {
-        ProjectProcessAssocia projectProcessAssocia = new ProjectProcessAssocia();
+        ProjectProcessAssocia projectProcessAssocia ;
         Format format = Format.getCompactFormat();
         format.setEncoding("utf-8");
         format.setIndent(" ");
@@ -247,17 +247,26 @@ public class ProcessFlowController extends AbstractController {
         String xml = str.substring(40,str.lastIndexOf('>')+1);
 
         //需要保存xml 变量str就是xml
-
+        projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectId);
         //process数据库表存储
-        ProcessFlow processflow = new ProcessFlow();
-        processflow.setDdProcessId(UniqueIdUtil.genId());
-        processflow.setDdProcessXml(xml);
-        processFlowService.addProcessFlow(processflow);
+        ProcessFlow processflow;
+        if(projectProcessAssocia==null){
+             processflow = new ProcessFlow();
+            processflow.setDdProcessId(UniqueIdUtil.genId());
+            processflow.setDdProcessXml(xml);
+            processFlowService.addProcessFlow(processflow);
+            projectProcessAssocia = new ProjectProcessAssocia();
+            //项目和流程映射关系
+            projectProcessAssocia.setDdPrcessId(processflow.getDdProcessId());
+            projectProcessAssocia.setDdProjectId(projectId);
+            saveProjectProcessAssocia(projectProcessAssocia);
+        }
+      else {
+            processflow = processFlowService.getById(projectProcessAssocia.getDdPrcessId());
+            processflow.setDdProcessXml(xml);
 
-        //项目和流程映射关系
-        projectProcessAssocia.setDdPrcessId(processflow.getDdProcessId());
-        projectProcessAssocia.setDdProjectId(projectId);
-        saveProjectProcessAssocia(projectProcessAssocia);
+            processFlowService.update(processflow);
+        }
     }
 
     /**

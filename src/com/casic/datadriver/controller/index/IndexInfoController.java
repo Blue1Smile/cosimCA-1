@@ -124,7 +124,7 @@ public class IndexInfoController extends BaseController {
         PageInfo pageinfo = new PageInfo();
 
         pageinfo.setPageSize((pageNumber - 1) * pageSize);
-        pageinfo.setPageNumber((pageNumber - 1) * pageSize + pageSize);
+        pageinfo.setPageNumber(pageSize);
 
         response.setContentType("application/json");
 
