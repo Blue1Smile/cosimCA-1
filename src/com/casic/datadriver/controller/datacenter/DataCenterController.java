@@ -66,7 +66,26 @@ public class DataCenterController extends AbstractController {
     @RequestMapping("list")
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<Project> ProjectList = projectService.getAll();
+        List<Project> AllProjectList = projectService.getAll();
+
+        List<Project> ProjectList = new ArrayList<Project>();
+        for(int i=0;i<AllProjectList.size();i++){
+            if(AllProjectList.get(i).getDdProjectCreatorId().equals(ContextUtil.getCurrentUser().getUserId())){
+                ProjectList.add(AllProjectList.get(i));
+            }
+            else{
+                List<TaskInfo> taskInfoList=taskInfoService.queryTaskInfoByProjectId(AllProjectList.get(i).getDdProjectId());
+                for( int j =0;j<taskInfoList.size();j++){
+                    if(taskInfoList.get(j).getDdTaskResponsiblePerson()==null){
+
+                    }
+                    else
+                        if(taskInfoList.get(j).getDdTaskResponsiblePerson().equals(ContextUtil.getCurrentUser().getUserId())){
+                        ProjectList.add(AllProjectList.get(i));
+                    }
+                }
+            }
+        }
         int ProjectLength = ProjectList.size();
         Long[] ProjectId = new Long[ProjectLength];
         String[] ProjectName = new String[ProjectLength];
@@ -194,7 +213,7 @@ return mv;
     @Action(description = "获得订购数据列表")
     public void getReleasedata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Long ddTaskId= RequestUtil.getLong(request, "id");
+        Long ddTaskId = RequestUtil.getLong(request, "id");
         //获得订购数据列表
         Long pageSize =RequestUtil.getLong(request, "pageSize");
         Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
