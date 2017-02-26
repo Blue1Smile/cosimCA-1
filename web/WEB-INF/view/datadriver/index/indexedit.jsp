@@ -118,10 +118,8 @@
     function showResponse(responseText) {
         var obj = new com.hotent.form.ResultMessage(responseText);
         if (obj.isSuccess()) {
-//            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-//            parent.layer.close(index); //再执行关闭
             $('#addindex1').modal('hide');
-            <%--window.location.href = "${ctx}/datadriver/index/indexlist.ht?id=${projectId}";--%>
+            $('#indextable').bootstrapTable('refresh');
         } else {
 
         }
