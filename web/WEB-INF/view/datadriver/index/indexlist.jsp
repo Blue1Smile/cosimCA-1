@@ -5,7 +5,7 @@
   Time: 下午 3:41
   To change this template use File | Settings | File Templates.
 --%>
-
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -15,9 +15,10 @@
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<html>
+<html lang="zh-CN">
 <head>
     <title>项目指标信息列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%@include file="/newtable/tablecontext.jsp" %>
 </head>
 <body>

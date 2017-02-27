@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>用户列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <style>

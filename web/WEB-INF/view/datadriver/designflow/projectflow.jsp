@@ -5,11 +5,13 @@
   Time: 下午5:24
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/commons/include/get.jsp" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>项目流程</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%--<link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>--%>
     <style type="text/css" media="screen">
         div.base {

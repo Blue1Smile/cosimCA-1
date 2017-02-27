@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%--
   Created by IntelliJ IDEA.
   User: d
@@ -7,9 +8,10 @@
 --%>
 <%@ taglib prefix="ap" uri="/appleTag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>项目设置</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
