@@ -5,6 +5,7 @@
   Time: 下午9:57
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -17,7 +18,7 @@
 <html lang="zh-CN">
 <head>
     <title>办理任务</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/newtable/bootstrap.css"/>
@@ -56,11 +57,10 @@
         <li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">已订阅</a>
         </li>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">项目指标</a></li>
-        <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
+        <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>
         <div class="pull-right">
             <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 进程统计
             </a>
-
 
             <%--&lt;%&ndash;<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"&ndash;%&gt;--%>
             <%--&lt;%&ndash;data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"&ndash;%&gt;--%>

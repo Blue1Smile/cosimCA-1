@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
@@ -5,14 +6,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<html>
+<html lang="zh-CN">
 <head>
     <title>任务数据中心</title>
     <%--<%@include file="/commons/include/form.jsp" %>--%>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
+
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/newtable/bootstrap-table.js"></script>

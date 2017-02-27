@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,7 +12,7 @@
 <head>
     <title>个人任务</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <script src="${ctx}/newtable/jquery.js"></script>
     <%--<%@include file="/commons/include/get.jsp" %>--%>
 
