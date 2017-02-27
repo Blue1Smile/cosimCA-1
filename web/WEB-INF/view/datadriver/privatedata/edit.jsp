@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@ taglib prefix="ap" uri="/appleTag" %>
@@ -7,10 +8,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-
-<html style="height: 100%;">
+<html lang="zh-CN" style="height: 100%;">
 <head>
     <title>私有数据</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -165,7 +166,7 @@
                             </c:otherwise>
                         </c:choose>
                     </a>
-                    <a class="list-group-item" href="#"><h5 class="task-info-title">添加标签</h5></a>
+                    <a class="list-group-item" href="#" title="暂不可用"><h5 class="task-info-title">添加标签</h5></a>
                 </div>
             </div>
         </div>
@@ -217,9 +218,9 @@
     </div>
     <div class="panel-footer" style="position: relative; width: 100%; bottom: 1px;">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="输入@选择提醒人员">
+            <input type="text" class="form-control" placeholder="输入@选择提醒人员" disabled="disabled">
             <span class="input-group-btn">
-                <button class="btn btn-success" type="button">发送</button>
+                <button class="btn btn-success" type="button" disabled="disabled">发送</button>
             </span>
         </div><!-- /input-group -->
     </div>

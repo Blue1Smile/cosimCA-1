@@ -5,6 +5,7 @@
   Time: 上午10:51
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -14,10 +15,10 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<html style="height: 100%; margin: 0px">
+<html lang="zh-CN" style="height: 100%; margin: 0px">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 
     <title>进入任务页面</title>
     <%--<%@include file="/commons/include/get.jsp" %>--%>
@@ -53,7 +54,7 @@
         <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab">任务</a>
         </li>
         <li role="presentation" id="switch_attr_index"><a href="#indextab" data-toggle="tab" role="tab">指标</a></li>
-        <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
+        <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>
         <div class="pull-right">
             <%--<a id="statis_btn" class="btn btn-warning" data-toggle="modal"--%>
                <%--data-remote="statis.ht?id=${Project.ddProjectId}"--%>

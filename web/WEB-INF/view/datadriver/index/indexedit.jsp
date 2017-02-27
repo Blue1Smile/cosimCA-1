@@ -5,12 +5,14 @@
   Time: 下午5:17
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ taglib prefix="ap" uri="/appleTag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>指标编辑</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%--<%@include file="/commons/include/form.jsp" %>--%>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
@@ -80,7 +82,7 @@
             </div>
             <div class="col-xs-6">
                 <a class="btn btn-default btn-block" href="#" data-toggle="modal" id="export_index"
-                   data-target="#exportindex"><span class="glyphicon glyphicon-import"></span> 从Excel批量导入</a>
+                   data-target="#exportindex" disabled="disabled" title="暂不可用"><span class="glyphicon glyphicon-import"></span> 从Excel批量导入</a>
             </div>
         </div>
     </div>

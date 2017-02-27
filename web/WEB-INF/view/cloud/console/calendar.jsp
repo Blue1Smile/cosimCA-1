@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="/commons/cloud/global.jsp" %>
 <%--<%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>--%>
@@ -59,7 +60,7 @@
                                         <div class="btn-group btn-group-xs col-xs-offset-6" role="group">
                                             <a href="#" type="button" class="btn btn-info" onclick="showMyTask(${projectItem.ddProjectId})" title="待办任务列表">任务</a>
                                             <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${projectItem.ddProjectId})" title="项目进度情况">进度</a>
-                                            <a href="#" type="button" class="btn btn-primary" title="进入项目讨论组">讨论</a>
+                                            <a href="#" type="button" class="btn btn-primary" title="进入项目讨论组" disabled="disabled" title="暂不可用">讨论</a>
                                         </div>
                                     </div>
                                 </div>

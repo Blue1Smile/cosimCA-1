@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -6,10 +7,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-
-<html style="height: 100%;">
+<html lang="zh-CN" style="height: 100%;">
 <head>
     <title>任务基础信息</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <%--<%@include file="/commons/include/form.jsp" %>--%>
     <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
@@ -183,8 +184,8 @@
                             </c:otherwise>
                         </c:choose>
                     </a>
-                    <a class="list-group-item" href="#">添加子任务</a>
-                    <a class="list-group-item" href="#">添加标签</a>
+                    <a class="list-group-item" href="#" title="暂不可用">添加子任务</a>
+                    <a class="list-group-item" href="#" title="暂不可用">添加标签</a>
                     <a class="list-group-item" href="#">里程碑
                         <div class="radio radio-info radio-inline">
                             <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
@@ -303,9 +304,9 @@
     </div>
     <div class="panel-footer" style="position: relative; width: 100%; bottom: 1px;">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="输入@选择提醒人员">
+            <input type="text" class="form-control" placeholder="输入@选择提醒人员" disabled="disabled" title="暂不可用">
             <span class="input-group-btn">
-                <button class="btn btn-success" type="button">发送</button>
+                <button class="btn btn-success" type="button" disabled="disabled">发送</button>
             </span>
         </div><!-- /input-group -->
     </div>
