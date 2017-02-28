@@ -20,14 +20,6 @@ function TableInit () {
     //初始化Table
 
         $('#tb_departments').bootstrapTable({
-
-            // url: 'showtools.ht',
-          //   method: 'get',
-          //   detailView: true,//父子表
-          //   //sidePagination: "server",
-          //   pageSize: 10,
-          //   pageList: [10, 25],
-          //   url: 'showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -38,11 +30,11 @@ function TableInit () {
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber:1,                       //初始化加载第一页，默认第一页
             pageSize: 5,                       //每页的记录行数（*）
-            queryParamsType:'',
-            // queryParams:queryParams,
+            searchOnEnterKey:true,
+            queryParamsType : '',
             pageList: [5,10,20,50],        //可供选择的每页的行数（*）
-            // search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-            // strictSearch: true,
+            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            strictSearch: false,
             showColumns: false,                  //是否显示所有的列
             showRefresh: false,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
@@ -56,14 +48,14 @@ function TableInit () {
                 {//第一列，工具名称
                     field: 'ToolID',
                     title: '工具ID',
-                    sortable: true,
+                    sortable: false,
                     editable: false,
                     align: 'center',
-                    visible: true
+                    visible: false
                 }, {//第二列，工具地址
                     field: 'ToolUrl',
                     title: '工具地址',
-                    sortable: true,
+                    sortable: false,
                     editable: false,
                     // footerFormatter: ddDataNameFormatter,
                     align: 'center',
@@ -71,7 +63,7 @@ function TableInit () {
                 }, {//第三列，工具版本
                     field: 'ToolVersion',
                     title: '工具版本',
-                    sortable: true,
+                    sortable: false,
                     editable: false,
                     // footerFormatter: ddDataNameFormatter,
                     align: 'center',
@@ -87,7 +79,7 @@ function TableInit () {
                 }, {//第五列，名称
                     field: 'Toolbz',
                     title: '备注',
-                    sortable: true,
+                    sortable: false,
                     editable: false,
                     // footerFormatter: ddDataNameFormatter,
                     align: 'center',
@@ -97,10 +89,11 @@ function TableInit () {
                 InitSubTable(index, row, $detail);
             },
             // queryParams: function(params) {
-            //     var name = $('#ddToolName').val();
             //     return {
-            //         pageNumber: params.offset+1,
-            //         pageSize: params.limit,
+            //         pageNumber: params.pageNumber,
+            //         pageSize: params.pageSize,
+            //         departmentname: $("#txt_search_departmentname").val(),
+            //         statu: $("#txt_search_statu").val(),
             //         // name:name
             //     };
             // },
@@ -143,7 +136,7 @@ function TableInit () {
                 editable: false,
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
-                visible: true
+                visible: false
             }, {
                 field: 'ToolVersion',
                 title: '工具版本',
@@ -152,7 +145,16 @@ function TableInit () {
                 // footerFormatter: ddDataNameFormatter,
                 align: 'center',
                 visible: true
-            },  ],
+            },
+                {//第五列，名称
+                    field: 'Toolbz',
+                    title: '备注',
+                    sortable: false,
+                    editable: false,
+                    // footerFormatter: ddDataNameFormatter,
+                    align: 'center',
+                    visible: true
+                },],
             //无线循环取子表，直到子表里面没有记录
             onExpandRow: function (index, row, $Subdetail) {
                 InitSubTable(index, row, $Subdetail);
@@ -176,18 +178,6 @@ function TableInit () {
 
         });
     };
-
-    // 得到查询的参数
-    function queryParams(params) {
-        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-            limit: params.limit,   //页面大小
-            offset: params.offset,  //页码
-            departmentname: $("#txt_search_departmentname").val(),
-            statu: $("#txt_search_statu").val(),
-            search:params.search
-        };
-    };
-
 };
 //注册加载子表的事件。注意下这里的三个参数！
 

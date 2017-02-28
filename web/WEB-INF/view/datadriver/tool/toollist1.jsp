@@ -20,6 +20,7 @@
     <script src="${ctx}/newtable/tableExport.js"></script>
     <script src="${ctx}/newtable/bootstrap-editable.js"></script>
     <script src="${ctx}/newtable/bootstrap-table-editable.js"></script>
+
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
@@ -27,9 +28,10 @@
 </head>
 <body>
 <div id="toolbar" class="btn-group">
-    <button id="btn_add" type="button" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-    </button>
+    <%--<button id="btn_add" type="button" class="btn btn-success">--%>
+        <%--<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增--%>
+    <%--</button>--%>
+    <a class="btn btn-info" href="#" id="create_index" onclick="createIndex()"><span class="glyphicon glyphicon-plus"></span> 新增工具</a>
 </div>
 <%--<%--%>
     <%--request.setCharacterEncoding("UTF-8");--%>
@@ -41,6 +43,14 @@
 </table>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script src="${ctx}/newtable/showtool.js"></script>
+
+<div class="modal fade" id="addindex1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 </body>
 <script charset=UTF-8>
     $('#btn_add').on('click', function () {
@@ -56,5 +66,10 @@
         });
     });
 
+    function createIndex() {
+        $('#addindex1').modal({
+            keyboard: true,
+            remote:'edit.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>'
+        });}
 </script>
 </html>

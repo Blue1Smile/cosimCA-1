@@ -48,7 +48,7 @@
     SELECT
     <include refid="Base_Column_List"/>
     FROM dd_tools
-    where dd_tool_major = #{major}
+    where dd_tool_major = #{major} AND dd_tool_bf2 = 1
   </select>
 
   <select id="querytoolByname" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -62,8 +62,10 @@
     SELECT
     <include refid="Base_Column_List"/>
     FROM dd_tools
-    where dd_tool_major = #{Name} limit #{pageSize},#{pageNumber}
+    where dd_tool_major = #{Name} AND dd_tool_bf2 = 1 limit #{pageSize},#{pageNumber}
   </select>
+
+  <!--//dd_tool_bf2值为1代表工具新上传-->
 
   <insert id="insertSelective" parameterType="com.casic.datadriver.model.tool.ToolCenterModel">
     insert into dd_tools
