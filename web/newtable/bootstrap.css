@@ -5099,7 +5099,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-body {
   padding: 5px;
-  background-color: whitesmoke;
+  background-color: #f2f2f2;
   border-radius: 3px;
 }
 .panel-heading {

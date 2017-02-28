@@ -34,6 +34,7 @@
      style="padding-right: 0px">
 </div>
 <div class="container-fluid" >
+
     <ul class="nav nav-tabs" role="tablist">
         <li  class="active" role="presentation" id="switch_attr_Release"><a href="#Release" data-toggle="tab" role="tab">发布数据</a></li>
         <li role="presentation" id="switch_attr_Order"><a href="#Order" data-toggle="tab" role="tab">订阅数据</a></li>

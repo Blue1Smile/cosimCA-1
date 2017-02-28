@@ -1,9 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!--主导航菜单 开始-->
 <ul class="layui-nav">
+    <li class="layui-nav-item"><a href="${ctx}/cloud/console/home.ht">主页</a></li>
     <c:forEach items="${resourcesList}" var="resourcesItem">
         <c:if test="${resourcesItem.parentId==0}">
-            <li class="layui-nav-item " id="1" >
+            <li class="layui-nav-item">
                 <c:choose>
                     <c:when test="${empty resourcesItem.defaultUrl}">
                         <a href="${ctx}/cloud/console/outline.ht?resId=${resourcesItem.resId}">${resourcesItem.resName}</a>

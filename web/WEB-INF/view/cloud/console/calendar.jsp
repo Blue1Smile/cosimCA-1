@@ -2,7 +2,7 @@
 <%@ include file="/commons/cloud/global.jsp" %>
 <%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh">
 <head>
     <title><decorator:title default="工作台"/>协同设计</title>
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
@@ -14,11 +14,11 @@
             /*top: 0;*/
             /*left: 0;*/
             /*right: 0;*/
-            font-size: 46px;
+            font-size: 40px;
             font-weight: 600;
             float: left;
-            line-height: 48px;
-            margin: 0 8px 10px 30px;
+            line-height: 36px;
+            margin: 0 8px 10px 15px;
             color: #1976D2;
         }
     </style>
@@ -29,8 +29,8 @@
     <div class="row">
         <h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>
     </div>
-
     <%@include file="/commons/cloud/top_console.jsp" %>
+
     <div class="container-fluid" style="height: 100%">
         <div class="col-xs-3" style="height: 100%">
             <div class="panel panel-primary" style="height: 100%">
@@ -57,9 +57,9 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 </body>
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-<%--<script src="${ctx}/newtable/bootstrap.js"></script>--%>
+<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
 </html>

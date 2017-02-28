@@ -24,9 +24,8 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
-
-    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/jquery.js"></script>
+    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
 </head>
@@ -43,7 +42,7 @@
             </a>
             <ul class="dropdown-menu" style="overflow: auto">
                 <c:forEach var="taskInfoListItem" items="${taskInfoList}">
-                    <li>
+                    <li title="${taskInfoListItem.ddTaskProjectName}">
                         <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}">${taskInfoListItem.ddTaskName}</a>
                     </li>
                 </c:forEach>
@@ -69,15 +68,17 @@
             <%--<a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span--%>
                     <%--class="glyphicon glyphicon-plus"></span> 创建私有</a>--%>
 
-            <%--<a class="btn btn-primary" href="#" data-toggle="modal" id="submit_btn"--%>
-               <%--data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"--%>
-               <%--data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>--%>
-            <%--<button class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> 刷新</button>--%>
-            <%--&lt;%&ndash;<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务&ndash;%&gt;--%>
+            <a class="btn btn-info" href="#" data-toggle="modal" id="submit_btn"
+               data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
+               data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
+            <button class="btn btn-default" onclick="location.reload()"><span class="glyphicon glyphicon-refresh"></span> 刷新</button>
+            <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>
 
             <%--</a>--%>
-        <%--</div>--%>
+        
+
     </ul>
+  </div>
     <br>
     <div class="tab-content board-view">
         <div role="tabpanel" class="tab-pane active board-scrum-view" id="data" style="height: 100%">
@@ -87,7 +88,7 @@
                         <div class="panel-heading">
                             私有数据
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="createpanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
@@ -112,7 +113,7 @@
                         <div class="panel-heading">
                             发布数据
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
@@ -137,7 +138,7 @@
                         <div class="panel-heading">
                             可订阅
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="canorderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle " id="showRightPush"
@@ -162,7 +163,7 @@
                         <div class="panel-heading">
                             已订阅
                         </div>
-                        <div class="panel-body panelheight" style="overflow: auto">
+                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="orderpanel" class="scrum-stage-tasks">
                                 <c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
@@ -205,9 +206,9 @@
         </div>
     </div>
 </div>
-<%--提交信息--%>
+<%--任务完成--%>
 <div class="modal fade" id="submittask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
 
         </div>
@@ -225,11 +226,19 @@
 <%--数据详情--%>
 <div class="modal fade" id="datadetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="overflow: auto">
+        <div class="modal-content" style="overflow: auto" id="datadetailcontent" style="overflow: auto">
 
         </div>
     </div>
 </div>
+<%--&lt;%&ndash;任务详细&ndash;%&gt;--%>
+<%--<div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--%>
+    <%--<div class="modal-dialog" role="document">--%>
+        <%--<div class="modal-content" style="overflow: auto" id="taskdetailcontent" style="overflow: auto">--%>
+
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
@@ -239,14 +248,14 @@
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
         });
         $("#canorderpanel,#orderpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
             dragBetween: true,
             dragEnd: saveOrder2,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle"></li>'
+            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
         });
         function saveOrder() {
             var data = $(this).children('input').val();
@@ -259,7 +268,6 @@
             var parentid = $(this).parent().attr("id");
             $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId=" +${TaskInfo.ddTaskId});
         }
-
         $("#create_data").show();
     });
 
@@ -286,6 +294,7 @@
     $("#datadetail").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
+
     switch_attr_index.onclick = function () {
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
@@ -313,11 +322,5 @@
             remote: "statis.ht?id=${TaskInfo.ddTaskId}"
         })
     }
-    <%--create_task.onclick = function () {--%>
-    <%--$('#adddata').modal({--%>
-    <%--keyboard: true,--%>
-    <%--remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"--%>
-    <%--})--%>
-    <%--}--%>
 </script>
 </html>

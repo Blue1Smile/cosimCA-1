@@ -42,21 +42,21 @@
 			{
 				var node = mxUtils.load(config).getDocumentElement();
 				var editor = new mxEditor(node);
-				
+
 				// Updates the window title after opening new files
 				var title = document.title;
 				var funct = function(sender)
 				{
 					document.title = title + ' - ' + sender.getTitle();
 				};
-				
+
 				editor.addListener(mxEvent.OPEN, funct);
-				
+
 				// Prints the current root in the window title if the
 				// current root of the graph changes (drilling).
 				editor.addListener(mxEvent.ROOT, funct);
 				funct(editor);
-				
+
 				// Displays version in statusbar
 				editor.setStatus('mxGraph '+mxClient.VERSION);
 				//var s=${projectId};
@@ -68,6 +68,10 @@
 				//window.console.log(mxUtils.getPrettyXml(enc.encode(editor.graph.getModel())));
 				// Shows the application
 				hideSplash();
+
+				//mxUtils.show(editor.graph, document, 10, 10);
+
+
 			}
 		}
 		catch (e)
@@ -75,8 +79,8 @@
 			hideSplash();
 
 			// Shows an error message if the editor cannot start
-			mxUtils.alert('Cannot start application: '+e.message);
-			throw e; // for debugging
+			//mxUtils.alert('Cannot start application: '+e.message);
+			//throw e; // for debugging
 		}
 								
 		return editor;

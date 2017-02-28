@@ -67,18 +67,21 @@ public class PrivateDataController extends AbstractController {
     @RequestMapping("save")
     @Action(description = "保存privateData")
     public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+        String resultMsg = null;
         PrivateData privateData = getFormObject(request);
         try {
             if (privateData.getDdDataId() == null || privateData.getDdDataId() == 0) {
                 privateData.setDdDataId(UniqueIdUtil.genId());
+                privateData.setDdDataPublishType(0l);
                 privateDataService.addDDPrivateData(privateData);
-
+                resultMsg = getText("record.added", "数据信息");
             } else {
                 privateDataService.updatedata(privateData);
-
+                resultMsg = getText("record.updated", "数据信息");
             }
+            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
         } catch (Exception e) {
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
 
@@ -135,7 +138,7 @@ public class PrivateDataController extends AbstractController {
      * @throws Exception the exception
      */
     @RequestMapping("addprivatedata")
-    @Action(description = "添加任务")
+    @Action(description = "添加私有")
     public ModelAndView addprivatedata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ResultMessage resultMessage = null;

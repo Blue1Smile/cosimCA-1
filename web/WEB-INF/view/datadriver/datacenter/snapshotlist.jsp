@@ -1,9 +1,9 @@
 <%--
   Created by IntelliJ IDEA.
   User: d
-  Date: 2017/2/24
+ Date: 2017/2/24
   Time: 上午10:51
-
+  To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
@@ -16,7 +16,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <html>
 <head>
-  <title>数据快照列表</title>
+  <title>快照列表</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
   <script src="${ctx}/newtable/jquery.js"></script>
@@ -34,14 +34,19 @@
     <c:set var="checkAll">
       <input type="checkbox" id="chkall"/>
     </c:set>
-    <display:table name="dataSnapshotList" id="dataSnapshotList" requestURI="datasnapshotlist.ht" sort="external" cellpadding="1"
+    <display:table name="snapshotList" id="snapshotList" requestURI="snapshotlist.ht" sort="external" cellpadding="1"
                    cellspacing="1" export="false" class="layui-table" pagesize="10">
       <display:column title="${checkAll}" media="html" style="width:3%;">
-        <input type="checkbox" class="pk" name="id" value="${dataSnapshotList.ddDataSnapshotId}">
+        <input type="checkbox" class="pk" name="id" value="${snapshotList.ddDataSnapShotId}">
       </display:column>
-      <display:column property="ddDataId" title="数据id" maxLength="80"></display:column>
-      <display:column property="ddDataValue" title="数据快照值" sortable="false" maxLength="80"></display:column>
+      <display:column property="ddProjectId" title="项目" maxLength="80"></display:column>
+      <display:column property="ddSnapShotPersonId" title="快照人id" sortable="false" maxLength="80"></display:column>
+      <display:column property="ddSnapShotReasonId" title="快照原因" sortable="false" maxLength="80"></display:column>
+      <display:column title="操作" media="html" style="width:15%">
+          <a href="snapshottasklist.ht?ddDataSnapShotId=${snapshotList.ddDataSnapShotId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
+                  class="layui-icon">&#xe639;</i> 查看</a>
 
+      </display:column>
     </display:table>
   </div>
 </div>

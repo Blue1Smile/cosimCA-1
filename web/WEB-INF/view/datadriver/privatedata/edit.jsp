@@ -101,8 +101,17 @@
                 </a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
-                <li><a href="${ctx}/datadriver/privatedata/del.ht?id=${privateData.ddDataId}"><span
-                        class="glyphicon glyphicon-trash"></span> 删除</a></li>
+                <li>
+                    <c:choose>
+                        <c:when test="${privateData.ddDataPublishType==0}">
+                            <a href="${ctx}/datadriver/privatedata/del.ht?id=${privateData.ddDataId}"><span
+                                    class="glyphicon glyphicon-trash"></span> 删除</a>
+                        </c:when>
+                        <c:otherwise>
+                        </c:otherwise>
+                    </c:choose>
+
+                </li>
             </ul>
         </div>
     </div>
@@ -235,45 +244,45 @@
     }
     $(function () {
         //类型选择
-        $('#typeSelect').editable({
-            showbuttons: false,
-            value: ${privateData.ddDataType},
-            placement: 'bottom',
-            source: [<ap:selectDB name="ddDataType" id="ddDataType"
-                                     where="parentId=10000025100454" optionValue="itemValue"
-                                     optionText="itemName" table="SYS_DIC"
-                                     selectedValue="${privateData.ddDataType}" styleClass="form-control">
-                </ap:selectDB>],
-            url: function (params) {
-                taskItem = 0;
-                onChangePrivateData(params, taskItem);
-            }
-        });
+        <%--$('#typeSelect').editable({--%>
+            <%--showbuttons: false,--%>
+            <%--value: ${privateData.ddDataType},--%>
+            <%--placement: 'bottom',--%>
+            <%--source: [<ap:selectDB name="ddDataType" id="ddDataType"--%>
+                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                                     <%--optionText="itemName" table="SYS_DIC"--%>
+                                     <%--selectedValue="${privateData.ddDataType}" styleClass="form-control">--%>
+                <%--</ap:selectDB>],--%>
+            <%--url: function (params) {--%>
+                <%--taskItem = 0;--%>
+                <%--onChangePrivateData(params, taskItem);--%>
+            <%--}--%>
+        <%--});--%>
         //最新值
         $('#lastestValue').editable({
             showbuttons: true,
             placement: 'bottom',
-            value: ${privateData.ddDataLastestValue},
+            value: '${privateData.ddDataLastestValue}',
             url: function (params) {
                 taskItem = 1;
                 onChangePrivateData(params, taskItem);
             }
         });
         //所属任务
-        $('#belongTask').editable({
-            showbuttons: true,
-            placement: 'bottom',
-            value: ${privateData.ddDataTaskName},
-            source: [
-                <c:forEach var="taskInfoItem" items="${taskInfoList}">
-                {value: ${taskInfoItem.ddTaskId}, text: '${taskInfoItem.ddTaskName}'},
-                </c:forEach>
-            ],
-            url: function (params) {
-                taskItem = 2;
-                onChangePrivateData(params, taskItem);
-            }
-        });
+        <%--$('#belongTask').editable({--%>
+            <%--showbuttons: true,--%>
+            <%--placement: 'bottom',--%>
+            <%--value: ${privateData.ddDataTaskName},--%>
+            <%--source: [--%>
+                <%--<c:forEach var="taskInfoItem" items="${taskInfoList}">--%>
+                <%--{value: ${taskInfoItem.ddTaskId}, text: '${taskInfoItem.ddTaskName}'},--%>
+                <%--</c:forEach>--%>
+            <%--],--%>
+            <%--url: function (params) {--%>
+                <%--taskItem = 2;--%>
+                <%--onChangePrivateData(params, taskItem);--%>
+            <%--}--%>
+        <%--});--%>
         //描述
         $('#description').editable({
             showbuttons: true,

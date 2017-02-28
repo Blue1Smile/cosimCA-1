@@ -5,15 +5,16 @@ import java.util.Date;
 
 
 public class DataSnapInfoId {
+
     private Long ddDataSnapShotId;
 
-    private Integer ddSnapShotPersonId;
+    private Long ddSnapShotPersonId;
 
-    private Date ddSnapShotTime;
+    private String ddSnapShotTime;
 
     private String ddSnapShotReasonId;
 
-    private Integer ddProjectId;
+    private Long ddProjectId;
 
     public Long getDdDataSnapShotId() {
         return ddDataSnapShotId;
@@ -23,19 +24,19 @@ public class DataSnapInfoId {
         this.ddDataSnapShotId = ddDataSnapShotId;
     }
 
-    public Integer getDdSnapShotPersonId() {
+    public Long getDdSnapShotPersonId() {
         return ddSnapShotPersonId;
     }
 
-    public void setDdSnapShotPersonId(Integer ddSnapShotPersonId) {
+    public void setDdSnapShotPersonId(Long ddSnapShotPersonId) {
         this.ddSnapShotPersonId = ddSnapShotPersonId;
     }
 
-    public Date getDdSnapShotTime() {
+    public String getDdSnapShotTime() {
         return ddSnapShotTime;
     }
 
-    public void setDdSnapShotTime(Date ddSnapShotTime) {
+    public void setDdSnapShotTime(String ddSnapShotTime) {
         this.ddSnapShotTime = ddSnapShotTime;
     }
 
@@ -47,12 +48,16 @@ public class DataSnapInfoId {
         this.ddSnapShotReasonId = ddSnapShotReasonId;
     }
 
-    public Integer getDdProjectId() {
+    public Long getDdProjectId() {
         return ddProjectId;
     }
 
-    public void setDdProjectId(Integer ddProjectId) {
+    public void setDdProjectId(Long ddProjectId) {
         this.ddProjectId = ddProjectId;
     }
+
+
+
+
 
 }

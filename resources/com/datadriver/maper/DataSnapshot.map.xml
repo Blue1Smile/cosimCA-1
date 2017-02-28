@@ -58,6 +58,9 @@
       #{ddSnapshotTime,jdbcType=DATE}, #{ddDataTag,jdbcType=VARCHAR})
   </insert>
 
+
+
+
   <insert id="add" parameterType="com.casic.datadriver.model.data.DataSnapshot">
     insert into dd_data_snapshot (DD_DATA_SNAPSHOT_ID, DD_DATA_ID, DD_DATA_VALUE,
     DD_DATA_RECORD_TIME, DD_SNAPSHOT_PERSON_ID,

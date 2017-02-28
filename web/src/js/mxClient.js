@@ -2501,6 +2501,70 @@ var posterWidth=availablePageWidth*numRowPages;
 scale=posterWidth/graphWidth;
 return scale*0.99999;
 },
+    show2:function(graph,doc,x0,y0)
+    {
+        x0=(x0!=null)?x0:0;
+        y0=(y0!=null)?y0:0;
+        if(doc==null)
+        {
+            var wnd=window.open();
+            doc=wnd.document;
+        }
+        else
+        {
+            doc.open();
+        }
+        var bounds=graph.getGraphBounds();
+        var dx=-bounds.x+x0;
+        var dy=-bounds.y+y0;
+
+
+
+        if(mxClient.IS_IE)
+        {
+
+            html+='<body>';
+            html+=graph.container.innerHTML;
+            html+='</body>';
+            html+='<html>';
+            doc.writeln(html);
+            doc.close();
+            var node=doc.body.getElementsByTagName('DIV')[0];
+            if(node!=null)
+            {
+                node.style.position='absolute';
+                node.style.left=dx+'px';
+                node.style.top=dy+'px';
+            }
+        }
+        else
+        {
+
+            if(doc.body==null)
+            {
+                doc.documentElement.appendChild(doc.createElement('body'));
+            }
+            doc.body.style.overflow='auto';
+            var node=graph.container.firstChild;
+            while(node!=null)
+            {
+                var clone=node.cloneNode(true);
+                doc.body.appendChild(clone);
+                node=node.nextSibling;
+            }
+            var node=doc.getElementsByTagName('g')[0];
+            if(node!=null)
+            {
+                node.setAttribute('transform','translate('+dx+','+dy+')');
+                var root=node.ownerSVGElement;
+                root.setAttribute('width',bounds.width+Math.max(bounds.x,0)+3);
+                root.setAttribute('height',bounds.height+Math.max(bounds.y,0)+3);
+            }
+        }
+        mxUtils.removeCursors(doc.body);
+        return doc;
+    },
+
 show:function(graph,doc,x0,y0)
 {
 x0=(x0!=null)?x0:0;
@@ -35388,10 +35452,10 @@ for(var i=0;i<attrs.length;i++)
 {
 
 var val=attrs[i].nodeValue;
-if(attrs[i].nodeName!='label')
-texts[i]=form.addTextarea(attrs[i].nodeName,val,2);
-else
-	texts[i]=form.addTextarea('任务名称',val,2);
+if(attrs[i].nodeName=='label')
+    texts[i]=form.addTextarea('任务名称',val,2);
+else if(attrs[i].nodeName!='oracleid')
+	texts[i]=form.addTextarea(attrs[i].nodeName,val,2);
 }
 
 

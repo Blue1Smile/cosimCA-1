@@ -415,7 +415,7 @@ public class PersonalTaskController extends AbstractController {
 
         List<OrderDataRelation> publishRelationList = orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> publshListWithoutValue = new ArrayList<PrivateData>();
-        int valueLength=publishRelationList.size();
+        int valueLength = publishRelationList.size();
 
         try {
             List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
@@ -424,32 +424,29 @@ public class PersonalTaskController extends AbstractController {
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
 
 
-            if (taskInfo.getDdTaskState() == null||taskInfo.getDdTaskChildType()==null) {
+            if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
                 taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfo.setDdTaskChildType("createpanel");
             }
             //判断任务的当前状态，只有在正在执行中才允许提交
 
-            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel)&&taskInfo.getDdTaskChildType().equals("publishpanel")) {
+            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) && taskInfo.getDdTaskChildType().equals("publishpanel")) {
 
-                for (int i=0;i<publishRelationList.size();i++){
-                    PrivateData publishData= privateDataService.getById(publishRelationList.get(i).getDdDataId());
-                    if(publishData.getDdDataLastestValue()==null){
+                for (int i = 0; i < publishRelationList.size(); i++) {
+                    PrivateData publishData = privateDataService.getById(publishRelationList.get(i).getDdDataId());
+                    if (publishData.getDdDataLastestValue() == null) {
                         publshListWithoutValue.add(publishData);
-                    }
-                    else {
+                    } else {
                         valueLength--;
                     }
                 }
-                if(valueLength==0){
+                if (valueLength == 0) {
                     taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
                     taskStartService.update(taskStart_list.get(0));
-
                     taskInfo.setDdTaskChildType("checkpanel");
                     taskInfo.setDdTaskState(taskInfo.checkpanel);
                     taskInfoService.update(taskInfo);
                 }
-
 
             } else {
                 String resultMsg = null;
@@ -458,19 +455,20 @@ public class PersonalTaskController extends AbstractController {
         } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
-
         }
         return getAutoView().addObject("publshListWithoutValue", publshListWithoutValue)
-                .addObject("valueLength", valueLength).addObject("ddTaskId",ddTaskId);
+                .addObject("valueLength", valueLength).addObject("ddTaskId", ddTaskId);
     }
 
 
     @RequestMapping("recovertask")
     @Action(description = "收回任务")
-    public void recovertask(HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView recovertask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        String preUrl = RequestUtil.getPrePage(request);
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
+
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
             if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
@@ -493,6 +491,7 @@ public class PersonalTaskController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
+        return getAutoView().addObject("preUrl", preUrl);
     }
 
 
@@ -596,10 +595,16 @@ public class PersonalTaskController extends AbstractController {
             //发布到私有
             if (parent.equals("createpanel")) {
                 orderDataRelationService.delPublishByddDataId(dataId);
+                privateData = privateDataService.getDataById(dataId);
+                privateData.setDdDataPublishType(0l);
+                privateDataService.updatedata(privateData);
             }
             //私有到发布
             if (parent.equals("publishpanel")) {
                 privateData = privateDataService.getDataById(dataId);
+                privateData.setDdDataPublishType(1l);
+                privateDataService.updatedata(privateData);
+
                 orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
                 orderDataRelation.setDdDataId(dataId);
                 orderDataRelation.setDdTaskId(privateData.getDdDataTaskId());
