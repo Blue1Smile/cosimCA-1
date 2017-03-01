@@ -72,6 +72,7 @@ public class ToolCenterController extends BaseController {
         String ddToolName= RequestUtil.getString(request, "ddToolName");
         long ddToolVersion= RequestUtil.getLong(request, "ddToolVersion");
         String ddToolBf= RequestUtil.getString(request, "ddToolBf");
+        String ddToolBf2= RequestUtil.getString(request, "ddToolBf2");
 
         ToolCenterModel m = new ToolCenterModel();
 //        ToolCenterModel ToolData = this.getFormObject(request, ToolCenterModel.class);
@@ -79,6 +80,7 @@ public class ToolCenterController extends BaseController {
         m.setDdToolName(ddToolName);
         m.setDdToolVersion((int) ddToolVersion);
         m.setDdToolBf(ddToolBf);
+        m.setDdToolBf2(ddToolBf2);
         m.setDdToolMajor(major);
 
         //创建一个通用的多部分解析器
@@ -430,6 +432,9 @@ public class ToolCenterController extends BaseController {
         request.setCharacterEncoding("UTF-8");
         JSONObject json=new JSONObject();
         JSONArray jsonMembers = new JSONArray();
+
+        String search= new String(RequestUtil.getString(request, "searchText").getBytes("ISO-8859-1"),"UTF-8");
+
         String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"));
 //        String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"),"UTF-8");
         Long pageSize =RequestUtil.getLong(request, "pageSize");
@@ -440,6 +445,7 @@ public class ToolCenterController extends BaseController {
 
         PageInfo pageinfo = new PageInfo();
         pageinfo.setName(major);
+        pageinfo.setBf2(search);
         pageinfo.setPageSize((pageNumber-1)*pageSize);
         pageinfo.setPageNumber(pageSize);
         int Allnum = 0;
@@ -448,8 +454,9 @@ public class ToolCenterController extends BaseController {
             List<ToolCenterModel> toolList1 =  new ArrayList<ToolCenterModel>();
             JSONObject jsonObject = new JSONObject();
             if (son==1){
-                Allnum = this.tservice.querytoolBymajor(major).size();
-                mylist = this.tservice.querytoolBymajorF(pageinfo);
+               Allnum = this.tservice.querytoolBymajor(major).size();
+                //mylist = this.tservice.querytoolBymajor(major);
+               mylist = this.tservice.querytoolBymajorF(pageinfo);
                 int toolLength = mylist.size();
 
                 for(int num=0;num<toolLength;num++)
@@ -471,6 +478,10 @@ public class ToolCenterController extends BaseController {
                         }
 
                 }
+//                int total = mylist.size();
+////                mylist = mylist.Skip(pageSize).Take(pageNumber).ToList();
+//                return Json(new { total = total, rows = rows }, JsonRequestBehavior.AllowGet);
+
             }
             if (son==2){
                 Allnum = this.tservice.querytoolByname(major).size();
