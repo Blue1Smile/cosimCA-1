@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%--
   Created by IntelliJ IDEA.
   User: d
@@ -14,11 +15,11 @@
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<html>
+<html lang="zh-CN">
 <head>
   <title>快照任务列表</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
   <script src="${ctx}/newtable/jquery.js"></script>
   <%--<%@include file="/commons/include/get.jsp" %>--%>
   <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>

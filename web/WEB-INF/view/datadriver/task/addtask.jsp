@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%--
   Created by IntelliJ IDEA.
   User: dodo
@@ -13,9 +14,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<html>
+<html lang="zh-CN">
 <head>
     <%--<%@include file="/commons/include/form.jsp" %>--%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
@@ -116,7 +118,7 @@
                 <button class="btn btn-primary btn-block" id="dataFormSave">创建新任务</button>
             </div>
             <div class="col-xs-6">
-                <button class="btn btn-default btn-block" id="createfrommodel">从模版创建任务</button>
+                <button class="btn btn-default btn-block" id="createfrommodel" disabled="disabled" title="暂不可用">从模版创建任务</button>
             </div>
         </div>
 

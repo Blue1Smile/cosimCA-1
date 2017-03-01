@@ -1,12 +1,13 @@
-
+<!DOCTYPE html>
 <%--
 	time:2013-09-05 10:22:51
 --%>
 <%@page language="java" pageEncoding="UTF-8"%>
 <%@include file="/commons/include/html_doctype.html"%>
-<html>
+<html lang="zh-CN">
 <head>
   <title>项目信息明细</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
   <%@include file="/commons/include/getById.jsp"%>
   <script type="text/javascript">
     //放置脚本

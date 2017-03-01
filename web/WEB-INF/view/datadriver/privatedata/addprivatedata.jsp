@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%--
   Created by IntelliJ IDEA.
   User: dodo
@@ -13,8 +14,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<html>
+<html lang="zh-CN">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%--<%@include file="/commons/include/form.jsp" %>--%>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>

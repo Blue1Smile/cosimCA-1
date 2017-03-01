@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%--
 	time:2011-11-28 10:17:09
 	desc:edit the 用户表
@@ -6,10 +7,10 @@
 <%@page isELIgnored="false" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@include file="/commons/cloud/global.jsp" %>
-
-<html>
+<html lang="zh-CN">
 <head>
     <title>任务数据定义</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%@include file="/commons/include/form.jsp" %>
     <script type="text/javascript" src="${ctx}/servlet/ValidJs?form=sysUser"></script>
     <%--<script type="text/javascript" src="${ctx}/js/hotent/displaytag.js"></script>--%>

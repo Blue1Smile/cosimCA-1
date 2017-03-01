@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html" pageEncoding="UTF-8"
 		 import="java.net.URLDecoder" import="java.util.Iterator" import="org.jdom.output.XMLOutputter" import="org.jdom.output.Format" import="org.jdom.Element" import ="org.jdom.Document" import="org.jdom.input.SAXBuilder"	%>
 <%@ page import="java.io.ByteArrayOutputStream" %>
 <%@ page import="java.io.*" %>
-
-<HTML>
+<html lang="zh-CN">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 	<BODY>
 		<%
 			request.setCharacterEncoding("utf-8");

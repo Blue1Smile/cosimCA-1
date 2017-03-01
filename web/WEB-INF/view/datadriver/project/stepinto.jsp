@@ -5,6 +5,7 @@
   Time: 上午10:51
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -14,10 +15,10 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<html style="height: 100%; margin: 0px">
+<html lang="zh-CN" style="height: 100%; margin: 0px">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 
     <title>进入任务页面</title>
     <%--<%@include file="/commons/include/get.jsp" %>--%>
@@ -53,7 +54,7 @@
         <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab">任务</a>
         </li>
         <li role="presentation" id="switch_attr_index"><a href="#indextab" data-toggle="tab" role="tab">指标</a></li>
-        <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab">日程</a></li>
+        <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>
         <div class="pull-right">
             <%--<a id="statis_btn" class="btn btn-warning" data-toggle="modal"--%>
                <%--data-remote="statis.ht?id=${Project.ddProjectId}"--%>
@@ -86,12 +87,13 @@
                                 <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                                     <li class="task task-card ui-sortable-handle "
                                         onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="${taskListbyUserItem.ddTaskId}" type="checkbox">
-                                            <label for="${taskListbyUserItem.ddTaskId}">
-                                                    ${taskListbyUserItem.ddTaskName}
-                                            </label>
-                                        </div>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${taskListbyUserItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${taskListbyUserItem.ddTaskId}">--%>
+                                                    <%--${taskListbyUserItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                                ${taskListbyUserItem.ddTaskName}
                                         <input value="${taskListbyUserItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
@@ -109,12 +111,13 @@
                                 <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                                     <li class="task task-card ui-sortable-handle"
                                         onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">
-                                            <label for="${publishtaskListbyUserItem.ddTaskId}">
-                                                    ${publishtaskListbyUserItem.ddTaskName}
-                                            </label>
-                                        </div>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${publishtaskListbyUserItem.ddTaskId}">--%>
+                                                    <%--${publishtaskListbyUserItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                                ${publishtaskListbyUserItem.ddTaskName}
                                         <input value="${publishtaskListbyUserItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
@@ -132,12 +135,13 @@
                                 <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
                                         onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">
-                                            <label for="${checkTaskInfoListItem.ddTaskId}">
-                                                    ${checkTaskInfoListItem.ddTaskName}
-                                            </label>
-                                        </div>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${checkTaskInfoListItem.ddTaskId}">--%>
+                                                    <%--${checkTaskInfoListItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                                ${checkTaskInfoListItem.ddTaskName}
                                         <input value="${checkTaskInfoListItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
@@ -155,12 +159,13 @@
                                 <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                                     <li class="task task-card ui-sortable-handle"
                                         onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">
-                                            <label for="${completeTaskInfoListItem.ddTaskId}">
-                                                    ${completeTaskInfoListItem.ddTaskName}
-                                            </label>
-                                        </div>
+                                        <%--<div class="checkbox checkbox-primary">--%>
+                                            <%--<input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">--%>
+                                            <%--<label for="${completeTaskInfoListItem.ddTaskId}">--%>
+                                                    <%--${completeTaskInfoListItem.ddTaskName}--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+                                                ${completeTaskInfoListItem.ddTaskName}
                                         <input value="${completeTaskInfoListItem.ddTaskId}" type="hidden">
                                     </li>
                                 </c:forEach>
@@ -269,7 +274,11 @@
         $(this).removeData("bs.modal");
     });
     //关闭任务详情模态框
-    $("#addindex1").on("hidden.bs.modal", function() {
+//    $("#addindex1").on("hidden.bs.modal", function() {
+//        $(this).removeData("bs.modal");
+//    });
+    //关闭统计模态框
+    $("#statis").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
     });
     switch_attr_index.onclick = function () {

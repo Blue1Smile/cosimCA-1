@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%--
 	time:2017-01-22 11:48:44
 	desc:edit the 业务定义，如邀标采购这样的大业务。
@@ -5,9 +6,10 @@
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@page import="com.hotent.core.util.ContextUtil" %>
-<html>
+<html lang="zh-CN">
 <head>
   <title>数据快照查看</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
   <%@include file="/commons/include/form.jsp" %>
   <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
   <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>

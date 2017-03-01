@@ -32,7 +32,7 @@
         </dl>
     </li>
     <li class="layui-nav-item" style="float: right">
-        <a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 消息 <span class="badge">42</span></a>
+        <a href="#" title="暂不可用"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 消息 <span class="badge">42</span></a>
     </li>
 </ul>
 <!-- 主导航菜单 结束 -->
