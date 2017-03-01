@@ -88,27 +88,7 @@ function TableInit () {
             ], onExpandRow: function (index, row, $detail) {
                 InitSubTable(index, row, $detail);
             },
-            // queryParams: function(params) {
-            //     return {
-            //         pageNumber: params.pageNumber,
-            //         pageSize: params.pageSize,
-            //         departmentname: $("#txt_search_departmentname").val(),
-            //         statu: $("#txt_search_statu").val(),
-            //         // name:name
-            //     };
-            // },
-
         });
-
-
-    // <display:column property="ddToolName" title="工具名称" sortable="true" maxLength="80"></display:column>
-    // <display:column property="ddToolUrl" title="工具地址" sortable="true" maxLength="80"></display:column>
-    // <display:column property="ddToolMajor" title="工具专业" sortable="true" maxLength="80"></display:column>
-    // <display:column property="ddToolStutus" title="工具状态" sortable="true" maxLength="80"></display:column>
-    // <display:column property="ddToolVersion" title="工具版本" sortable="true" maxLength="80"></display:column>
-    // <display:column property="ddToolUser" title="上传者" sortable="true" maxLength="80"></display:column>
-    // <display:column property="ddToolData" title="上传日期" sortable="true" maxLength="80"></display:column>
-    //初始化子表格(无线循环)
 
      function InitSubTable(index, row, $detail) {
         var parentid = row.ToolID;
@@ -162,17 +142,7 @@ function TableInit () {
             onClickRow:function (row, tr)
             {
                  // alert(row.ToolUrl);
-                // url: 'gettool.ht?major='+row.ToolName+'&son='+2,
-                // request.setCharacterEncoding("UTF-8");
                 window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
-                    // '         window.location.href=row.ToolUrl;
-                // window.location.href='D:\1.txt';
-
-                // var elemIF = document.createElement("iframe");
-                // elemIF.src = row.ToolUrl;
-                // elemIF.style.display = "none";
-                // document.body.appendChild(elemIF);
-                // alert(row.ToolName);
             }
 
 

@@ -1,43 +1,76 @@
 package com.casic.datadriver.model.model;
 
-public class Model {
-    private Integer ddModelId;
+import com.hotent.core.model.BaseModel;
 
-    private String ddModelName;
+import java.util.List;
 
-    private String ddModelUrl;
+public class Model extends BaseModel {
+    private Long ddModeltypeId;
 
-    private String ddModelDescription;
+    private String name;
 
-    public Integer getDdModelId() {
-        return ddModelId;
+    private Integer ddModelVersion;
+
+    private Long ddModelPid;
+
+    private String ddModelBz1;
+
+    private Long ddModelBz2;
+
+    private List<Model> children;
+
+    public List<Model> getChildren() {
+        return children;
+    }
+    public void setChildren( List<Model> children) {
+        this.children = children;
     }
 
-    public void setDdModelId(Integer ddModelId) {
-        this.ddModelId = ddModelId;
+    public Long getDdModeltypeId() {
+        return ddModeltypeId;
     }
 
-    public String getDdModelName() {
-        return ddModelName;
+    public void setDdModeltypeId(Long ddModeltypeId) {
+        this.ddModeltypeId = ddModeltypeId;
     }
 
-    public void setDdModelName(String ddModelName) {
-        this.ddModelName = ddModelName;
+    public String getname() {
+        return name;
     }
 
-    public String getDdModelUrl() {
-        return ddModelUrl;
+    public void setname(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public void setDdModelUrl(String ddModelUrl) {
-        this.ddModelUrl = ddModelUrl;
+    public Integer getDdModelVersion() {
+        return ddModelVersion;
     }
 
-    public String getDdModelDescription() {
-        return ddModelDescription;
+    public void setDdModelVersion(Integer ddModelVersion) {
+        this.ddModelVersion = ddModelVersion;
     }
 
-    public void setDdModelDescription(String ddModelDescription) {
-        this.ddModelDescription = ddModelDescription;
+    public Long getDdModelPid() {
+        return ddModelPid;
+    }
+
+    public void setDdModelPid(Long ddModelPid) {
+        this.ddModelPid = ddModelPid;
+    }
+
+    public String getDdModelBz1() {
+        return ddModelBz1;
+    }
+
+    public void setDdModelBz1(String ddModelBz1) {
+        this.ddModelBz1 = ddModelBz1 == null ? null : ddModelBz1.trim();
+    }
+
+    public Long getDdModelBz2() {
+        return ddModelBz2;
+    }
+
+    public void setDdModelBz2(Long ddModelBz2) {
+        this.ddModelBz2 = ddModelBz2;
     }
 }
