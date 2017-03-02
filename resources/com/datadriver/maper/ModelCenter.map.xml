@@ -50,6 +50,20 @@
         where dd_model_type = #{id} AND dd_model_bf2 = 1 limit #{pageSize},#{pageNumber}
     </select>
 
+  <select id="querytoolBytaskid" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM dd_modelcenter
+    where dd_task_id = #{id}
+  </select>
+
+  <select id="querytoolBytaskidF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM dd_modelcenter
+    where dd_task_id = #{id} limit #{pageSize},#{pageNumber}
+  </select>
+
     <select id="querytoolBymodelname" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>

@@ -342,8 +342,8 @@
         $("#upload_file").hide();
     }
     switch_attr_file.onclick = function () {
-        $.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
-            $('#order').html(data);
+        $.get("${ctx}/datadriver/personaltask/OrderModel.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#file').html(data);
         });
         $("#create_data").hide();
         $("#upload_file").show();

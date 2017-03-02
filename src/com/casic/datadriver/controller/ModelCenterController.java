@@ -73,6 +73,7 @@ public class ModelCenterController {
     @Action(description = "保存工具")
     public void  save(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Long Modeltype= RequestUtil.getLong(request, "Modeltype");
+        Long taskid= RequestUtil.getLong(request, "id");
         String ddModelName= RequestUtil.getString(request, "ddModelName");
         Long ddModelVersion= RequestUtil.getLong(request, "ddModelVersion");
         String ddModelBf= RequestUtil.getString(request, "ddModelBf");
@@ -81,7 +82,7 @@ public class ModelCenterController {
 
         ModelCenterModel m = new ModelCenterModel();
 //        ToolCenterModel ToolData = this.getFormObject(request, ToolCenterModel.class);
-
+        m.setDdTaskId(taskid);
         m.setDdModelName(ddModelName);
         m.setDdModelExplain(DdModelExplain);
         m.setDdModelType(Modeltype);
@@ -187,7 +188,7 @@ public class ModelCenterController {
                 mylist = this.modelcenterservice.querytoolBymodeltypeF(pageinfo);
 
             }
-            else {
+            else if(son==2){
                 Long Modeltype= RequestUtil.getLong(request, "Modeltype");
 //                String Modeltype= new String(RequestUtil.getString(request, "Modeltype").getBytes("ISO-8859-1"),"UTF-8");
 //                String ModelName= RequestUtil.getString(request, "ModelName");
@@ -195,6 +196,15 @@ public class ModelCenterController {
                 pageinfo.setId(Modeltype);
                 pageinfo.setName(ModelName);
                 mylist = this.modelcenterservice.querytoolBymodelname(pageinfo);
+            }
+            else if(son==3)
+            {
+                Long id= RequestUtil.getLong(request, "id");
+                pageinfo.setId(id);
+                Allnum = this.modelcenterservice.querytoolBytaskid(pageinfo).size();
+                //mylist = this.tservice.querytoolBymajor(major);
+                mylist = this.modelcenterservice.querytoolBytaskidF(pageinfo);
+//                Allnum = mylist.size();
             }
             for (int i = 0; i < mylist.size(); i++) {
                 ModelCenterModel mymodel = mylist.get(i);
