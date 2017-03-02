@@ -143,6 +143,13 @@ function TableInit () {
                     // footerFormatter: ddDataNameFormatter,
                     align: 'center',
                     visible: true
+                },
+                {   field: 'operate',
+                    title: '操作',
+                    align: 'center',
+                    events: operateEvents,
+                    formatter: operateFormatter(),
+                    visible: true
                 },],
             //无线循环取子表，直到子表里面没有记录
             onExpandRow: function (index, row, $Subdetail) {
@@ -150,9 +157,9 @@ function TableInit () {
             },
             onClickRow:function (row, tr)
             {
-                 alert(row.ModelUrl);
-                alert(row.ModelName);
-                window.location.href="getmodel.ht?modelurl="+row.ModelUrl+"&modelname="+row.ModelName;
+                //  alert(row.ModelUrl);
+                // alert(row.ModelName);
+                // window.location.href="getmodel.ht?modelurl="+row.ModelUrl+"&modelname="+row.ModelName;
             }
 
 
@@ -160,7 +167,36 @@ function TableInit () {
     };
 };
 //注册加载子表的事件。注意下这里的三个参数！
+//原始操作按钮
+function operateFormatter(value, row, index) {
+    return [
+        '<a id="removetr" class="remove" href="javascript:void(0)" title="删除">',
+        '<i class="glyphicon glyphicon-remove"></i>',
+        '</a>',
+        '<a id="download0" class="download" href="javascript:void(0)" title="下载">',
+        '<i class="glyphicon glyphicon-download-alt"></i>',
+        '</a>'
+    ].join('');
+}
+window.operateEvents = {
+    'click .remove': function (e, value, row, index) {
+        // $table.bootstrapTable('remove', {
+        //     field: 'ddIndexId',
+        //     values: [row.ddIndexId],
+        // });
+        // alert(row.ModelID);
+        $.get('remove.ht?id=' + row.ModelID);
+        $("#tb_departments").bootstrapTable("refresh");
+        // window.location.href="remove.ht?id=" + 1;
+    }
+    ,
 
+    'click .download': function (e, value, row, index) {
+
+        window.location.href="getmodel.ht?modelurl="+row.ModelUrl+"&modelname="+row.ModelName;
+    }
+
+};
 
 var ButtonInit = function ButtonInit () {
     var oInit = new Object();

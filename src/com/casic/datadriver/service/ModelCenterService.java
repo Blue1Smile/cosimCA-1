@@ -39,4 +39,8 @@ public class ModelCenterService extends BaseService<ModelCenterModel> {
     public List<ModelCenterModel> querytoolBymodelnameF(PageInfo model) {
         return this.modelcenterdao.querytoolBymodelnameF(model);
     }
+    public void delmodel(long id) {
+        this.modelcenterdao.del(id);
+    }
+
 }

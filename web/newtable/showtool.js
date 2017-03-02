@@ -1,7 +1,7 @@
 /**
  * Created by 忠 on 2017/1/16.
  */
-
+// <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 $(function () {
 
     //1.初始化Table
@@ -134,7 +134,16 @@ function TableInit () {
                     // footerFormatter: ddDataNameFormatter,
                     align: 'center',
                     visible: true
-                },],
+                },
+                {   field: 'operate',
+                    title: '操作',
+                    align: 'center',
+                    events: operateEvents,
+                    formatter: operateFormatter(),
+                    visible: true
+                },
+            ],
+            //
             //无线循环取子表，直到子表里面没有记录
             onExpandRow: function (index, row, $Subdetail) {
                 InitSubTable(index, row, $Subdetail);
@@ -142,7 +151,7 @@ function TableInit () {
             onClickRow:function (row, tr)
             {
                  // alert(row.ToolUrl);
-                window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
             }
 
 
@@ -150,6 +159,36 @@ function TableInit () {
     };
 };
 //注册加载子表的事件。注意下这里的三个参数！
+//原始操作按钮
+function operateFormatter(value, row, index) {
+    return [
+        '<a id="removetr" class="remove" href="javascript:void(0)" title="删除">',
+        '<i class="glyphicon glyphicon-remove"></i>',
+        '</a>',
+        '<a id="download0" class="download" href="javascript:void(0)" title="下载">',
+        '<i class="glyphicon glyphicon-download-alt"></i>',
+        '</a>'
+    ].join('');
+}
+window.operateEvents = {
+    'click .remove': function (e, value, row, index) {
+        // $table.bootstrapTable('remove', {
+        //     field: 'ddIndexId',
+        //     values: [row.ddIndexId],
+        // });
+        // alert(row.ToolID);
+         $.get('remove.ht?id=' + row.ToolID);
+        $("#tb_departments").bootstrapTable("refresh");
+        // window.location.href="remove.ht?id=" + 1;
+    }
+    ,
+
+    'click .download': function (e, value, row, index) {
+        window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+    }
+
+};
+
 
 
 var ButtonInit = function ButtonInit () {

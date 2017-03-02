@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
@@ -8,6 +9,7 @@
 <html>
 <head>
     <title>模型</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%--<%@include file="/commons/include/form.jsp" %>--%>
 
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
