@@ -1,73 +1,43 @@
 package com.casic.datadriver.controller.task;
 
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.casic.datadriver.model.project.ProjectStart;
-import com.casic.datadriver.model.task.TaskStart;
-import com.casic.datadriver.service.project.ProjectStartService;
-import com.casic.datadriver.service.task.TaskStartService;
-import com.hotent.platform.auth.ISysUser;
-import com.hotent.platform.model.system.SysUser;
+import com.casic.datadriver.controller.AbstractController;
+import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.project.Project;
-import com.casic.datadriver.model.task.TaskInfo;
-import com.casic.datadriver.model.data.OrderDataRelation;
+import com.casic.datadriver.model.project.ProjectStart;
 import com.casic.datadriver.model.task.ProTaskDependance;
+import com.casic.datadriver.model.task.TaskInfo;
+import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.data.OrderDataRelationService;
+import com.casic.datadriver.service.data.PrivateDataService;
+import com.casic.datadriver.service.project.ProjectService;
+import com.casic.datadriver.service.project.ProjectStartService;
 import com.casic.datadriver.service.task.ProTaskDependanceService;
 import com.casic.datadriver.service.task.TaskInfoService;
-import com.casic.datadriver.service.data.PrivateDataService;
-import com.casic.datadriver.service.data.OrderDataRelationService;
-import com.casic.datadriver.service.project.ProjectService;
-import com.casic.datadriver.model.data.PrivateData;
-import com.hotent.core.bpm.model.ProcessTask;
-import com.hotent.core.encrypt.EncryptUtil;
-import com.hotent.core.util.BeanUtils;
+import com.casic.datadriver.service.task.TaskStartService;
+import com.hotent.core.annotion.Action;
 import com.hotent.core.util.ContextUtil;
+import com.hotent.core.util.UniqueIdUtil;
+import com.hotent.core.web.ResultMessage;
+import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
-
 import com.hotent.platform.auth.ISysUser;
-import com.hotent.platform.model.system.SysUser;
 import com.hotent.platform.service.system.SysUserService;
 import net.sf.ezmorph.object.DateMorpher;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
-import org.apache.bcel.generic.NEW;
-import org.apache.commons.collections.ListUtils;
-import org.freehep.graphicsio.swf.LineStyleArray;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casic.datadriver.controller.data.PrivateDataController;
-import com.casic.datadriver.controller.AbstractController;
-import com.hotent.core.annotion.Action;
-import com.hotent.core.util.UniqueIdUtil;
-import com.hotent.core.web.ResultMessage;
-import com.hotent.core.web.query.QueryFilter;
-
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.*;
-
-import java.net.URLDecoder;
-import java.util.Iterator;
-
-import org.jdom.output.XMLOutputter;
-import org.jdom.output.Format;
-
-import org.jdom.Element;
-import org.jdom.Document;
-import org.jdom.input.SAXBuilder;
-
-import java.io.*;
 
 @Controller
 @RequestMapping("/datadriver/task/")
@@ -745,24 +715,5 @@ public class TaskInfoController extends AbstractController {
         }
     }
 
-    /**
-     * 任务文件上传
-     *
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("uploadfile")
-    @Action(description = "退回任务")
-    public ModelAndView uploadfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Long ddTaskId = 0l;
-        try {
-            ddTaskId = RequestUtil.getLong(request, "id");
-        } catch (Exception e) {
-            String resultMsg = null;
-            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
-        }
-        return this.getAutoView().addObject("ddTaskId", ddTaskId);
-    }
+
 }

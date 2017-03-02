@@ -12,7 +12,7 @@ public class ModelCenterModel extends BaseModel {
 
     private String ddModelExplain;
 
-    private Integer ddTaskId;
+    private Long ddTaskId;
 
     private String ddModelUrl;
 
@@ -56,11 +56,11 @@ public class ModelCenterModel extends BaseModel {
         this.ddModelExplain = ddModelExplain == null ? null : ddModelExplain.trim();
     }
 
-    public Integer getDdTaskId() {
+    public Long getDdTaskId() {
         return ddTaskId;
     }
 
-    public void setDdTaskId(Integer ddTaskId) {
+    public void setDdTaskId(Long ddTaskId) {
         this.ddTaskId = ddTaskId;
     }
 

@@ -11,7 +11,7 @@
 	 * Constructs a new application (note that this returns an mxEditor
 	 * instance).
 	 */
-	function mxApplication(config,id,xml)
+	function mxApplication(config,flag,id,xml)
 	{
 		var hideSplash = function()
 		{
@@ -68,8 +68,7 @@
 				//window.console.log(mxUtils.getPrettyXml(enc.encode(editor.graph.getModel())));
 				// Shows the application
 				hideSplash();
-
-				//mxUtils.show(editor.graph, document, 10, 10);
+				if(flag==1) mxUtils.show(editor.graph, document, 10, 10);
 
 
 			}
@@ -79,8 +78,8 @@
 			hideSplash();
 
 			// Shows an error message if the editor cannot start
-			//mxUtils.alert('Cannot start application: '+e.message);
-			//throw e; // for debugging
+			mxUtils.alert('Cannot start application: '+e.message);
+			throw e; // for debugging
 		}
 								
 		return editor;
