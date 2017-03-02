@@ -144,22 +144,16 @@ function TableInit () {
                     align: 'center',
                     visible: true
                 },
-                {   field: 'operate',
-                    title: '操作',
-                    align: 'center',
-                    events: operateEvents,
-                    formatter: operateFormatter(),
-                    visible: true
-                },],
+            ],
             //无线循环取子表，直到子表里面没有记录
             onExpandRow: function (index, row, $Subdetail) {
                 InitSubTable(index, row, $Subdetail);
             },
             onClickRow:function (row, tr)
             {
-                //  alert(row.ModelUrl);
-                // alert(row.ModelName);
-                // window.location.href="getmodel.ht?modelurl="+row.ModelUrl+"&modelname="+row.ModelName;
+                 alert(row.ModelUrl);
+                alert(row.ModelName);
+                window.location.href="getmodel.ht?modelurl="+row.ModelUrl+"&modelname="+row.ModelName;
             }
 
 
@@ -184,16 +178,16 @@ window.operateEvents = {
         //     field: 'ddIndexId',
         //     values: [row.ddIndexId],
         // });
-        // alert(row.ModelID);
-        $.get('remove.ht?id=' + row.ModelID);
+        alert(row.ToolID);
+        $.get('remove.ht?id=' + row.ToolID);
         $("#tb_departments").bootstrapTable("refresh");
         // window.location.href="remove.ht?id=" + 1;
     }
     ,
 
     'click .download': function (e, value, row, index) {
-
-        window.location.href="getmodel.ht?modelurl="+row.ModelUrl+"&modelname="+row.ModelName;
+        if (row.DdDataType){}
+        window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
     }
 
 };
