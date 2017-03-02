@@ -94,7 +94,7 @@
                             class="layui-icon">&#xe642;</i> 办理</a>
                 </c:when>
                     <c:otherwise>
-                        <a href="recovertask.ht?id=${taskList.ddTaskId}"
+                        <a href="${ctx}/datadriver/personaltask/recovertask.ht?id=${taskList.ddTaskId}"
                            class="layui-btn layui-btn-warm layui-btn-mini"><i
                                 class="layui-icon">&#xe603;</i> 收回</a>
                     </c:otherwise></c:choose>

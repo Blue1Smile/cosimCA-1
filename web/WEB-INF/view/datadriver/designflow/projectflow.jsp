@@ -68,7 +68,7 @@
         </td>
     </tr>
 </table>
-<div id="graph" class="base">
+<div id="graph" style="height: 800px" class="base">
     <!-- Graph Here -->
 </div>
 <div id="status" class="base" align="right">

@@ -77,12 +77,12 @@
                 }
                 , {//第三列，数值
                     field: 'ddDataLastestValue',
-                    title: '值',
+                    title: '最新值',
                     sortable: true,
                     align: 'center',
 //                    editable: {
 //                        type: 'text',
-//                        title: '值',
+//                        title: '',
 //                        validate: function (v) {
 //                            if (isNaN(v)) return '值必须是数字';
 //                        }
