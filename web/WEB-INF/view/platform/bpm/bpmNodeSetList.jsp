@@ -56,7 +56,7 @@
 		var url=aurl;
 		var winArgs="dialogWidth=800px;dialogHeight=600px;help=0;status=no;center=yes;resizable=no;";
 		url=url.getNewUrl();
-		window.showModalDialog(url,"",winArgs);
+		window.open(url,"",winArgs);
 	}
 	
 	//清除表单

@@ -111,6 +111,7 @@ public class TaskInfoController extends AbstractController {
             if (taskInfo.getDdTaskId() == null || taskInfo.getDdTaskId() == 0) {
                 taskInfo.setDdTaskId(UniqueIdUtil.genId());
                 taskInfo.setDdTaskChildType("createpanel");
+                taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfoService.addDDTask(taskInfo);
                 proTaskDependance.setDdTaskId(UniqueIdUtil.genId());
                 proTaskDependance.setDdTaskId(taskInfo.getDdTaskId());
@@ -179,10 +180,12 @@ public class TaskInfoController extends AbstractController {
             List<TaskInfo> taskInfo_list = taskInfoService.queryTaskInfoByProjectId(project_list.get(i).getDdProjectId());
             for (int j = 0; j < taskInfo_list.size(); j++) {
                 TaskInfo task = taskInfo_list.get(j);
-                if (task.getDdTaskState() == null) {
-                    task.setDdTaskState(task.STATUS_UNSTART);
+                if (task.getDdTaskState() == null || task.getDdTaskChildType() == null) {
+                    task.setDdTaskState(task.createpanel);
+                    task.setDdTaskChildType("createpanel");
                 }
-                if (task.getDdTaskState() == 0) {
+                if (task.getDdTaskChildType().equals("checkpanle")) {
+
                     checkTaskInfoList.add(task);
                 }
             }
@@ -265,8 +268,8 @@ public class TaskInfoController extends AbstractController {
         }
 
         List<PrivateData> privateDataList = taskInfoService.getPrivateDataList(id);
-        List<OrderDataRelation> orderDataList = orderDataRelationService.queryOrderDataRelationByddTaskID(id);
-        List<OrderDataRelation> publishDataList = orderDataRelationService.queryPublishDataRelationByddTaskID(id);
+        List<OrderDataRelation> orderDataList = orderDataRelationService.getOrderDataRelationList(id);
+        List<OrderDataRelation> publishDataList = orderDataRelationService.getPublishDataRelationList(id);
 
         List<ISysUser> sysUserList = sysUserService.getAll();
 
@@ -312,8 +315,8 @@ public class TaskInfoController extends AbstractController {
         Long id = RequestUtil.getLong(request, "id");
         String returnUrl = RequestUtil.getPrePage(request);
         List<PrivateData> privateDataList = new ArrayList<PrivateData>();
-        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(id);
-
+        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.getPublishDataRelationList(id);
+//应该加一个任务状态判断？
         //循环获取发布数据ID，查找私有数据
         for (int i = 0; i < publishDataRelationList.size(); i++) {
             OrderDataRelation orderDataRelation = publishDataRelationList.get(i);
@@ -345,7 +348,7 @@ public class TaskInfoController extends AbstractController {
         for (int i = 0; i < task_list.size(); i++) {
             Long ddtaskId = task_list.get(i).getDdTaskId();
 //            Long ddtaskId = taskInfo.getDdTaskId();
-            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddtaskId);
+            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddtaskId);
             for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
 
                 Long ddDataId = orderDataRelation.getDdDataId();
@@ -353,7 +356,7 @@ public class TaskInfoController extends AbstractController {
                 privateData.addAll(taskPrivateDatas);
             }
         }
-        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.queryOrderDataRelationByddTaskID(id);
+        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.getOrderDataRelationList(id);
         //循环获取订阅数据ID，查找私有数据
         for (int i = 0; i < orderDataRelationList.size(); i++) {
             OrderDataRelation orderDataRelation = orderDataRelationList.get(i);
@@ -417,7 +420,6 @@ public class TaskInfoController extends AbstractController {
         }
 
     }
-
 
 
     /**
@@ -492,7 +494,8 @@ public class TaskInfoController extends AbstractController {
             List<TaskInfo> taskInfo_list = taskInfoService.queryTaskInfoByProjectId(project_list.get(i).getDdProjectId());
             for (int j = 0; j < taskInfo_list.size(); j++) {
                 TaskStart taskStart = taskStartService.queryTaskStartByTaskId(taskInfo_list.get(j).getDdTaskId()).get(0);
-                if (taskStart.getDdTaskStatus() == 0) {
+
+                if (taskStart.getDdTaskStatus().equals(taskStart.checkpanel)) {
                     taskInfoList.add(taskInfoService.getById(taskStart.getDdTaskId()));
                 }
             }
@@ -517,16 +520,57 @@ public class TaskInfoController extends AbstractController {
             throws Exception {
         Long ddTaskId = RequestUtil.getLong(request, "id");
         //获得发布数据列表
-        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddTaskId);
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
+
         for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
             Long ddDataId = orderDataRelation.getDdDataId();
             List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
             privateData.addAll(taskPrivateDatas);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList",
-                privateData);
+                privateData).addObject("TaskId", ddTaskId);
         return mv;
+    }
+
+
+    /**
+     * 2016/2/18/
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("checktask")
+    @Action(description = "任务审核通过")
+    public void checktask(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            Long ddTaskId = RequestUtil.getLong(request, "id");
+            List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
+            TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
+
+            //判断任务的当前状态，只有在正在提交中才允许驳回
+//
+            if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfo.setDdTaskChildType("createpanel");
+            }
+            if (taskInfo.getDdTaskChildType().equals("checkpanel")) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.completepanel);
+                taskStartService.update(taskStart_list.get(0));
+
+                taskInfo.setDdTaskChildType("completepanel");
+                taskInfo.setDdTaskState(taskInfo.completepanel);
+                taskInfoService.update(taskInfo);
+            } else {
+                String resultMsg = null;
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
+            }
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
     }
 
     /**
@@ -543,10 +587,21 @@ public class TaskInfoController extends AbstractController {
         try {
             Long ddTaskId = RequestUtil.getLong(request, "id");
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
+            TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
+
             //判断任务的当前状态，只有在正在提交中才允许驳回
-            if (taskStart_list.get(0).getDdTaskStatus() == 0) {
-                taskStart_list.get(0).setDdTaskStatus(TaskStart.STATUS_RUNNING);
+//
+            if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfo.setDdTaskChildType("createpanel");
+            }
+            if (taskInfo.getDdTaskChildType().equals("checkpanel")) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.publishpanel);
                 taskStartService.update(taskStart_list.get(0));
+
+                taskInfo.setDdTaskChildType("publishpanel");
+                taskInfo.setDdTaskState(taskInfo.publishpanel);
+                taskInfoService.update(taskInfo);
             } else {
                 String resultMsg = null;
                 writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
@@ -555,96 +610,6 @@ public class TaskInfoController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
-    }
-
-
-    /**
-     * 进入任务控制台
-     *
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("stepinto")
-    @Action(description = "进入项目")
-    public ModelAndView stepinto(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        long taskId = RequestUtil.getLong(request, "id");
-        TaskInfo taskInfo = taskInfoService.getById(taskId);
-        List<PrivateData> privateDataListbyTask = new ArrayList<PrivateData>();
-        //任务已发布私有数据
-        List<PrivateData> publishDataList = new ArrayList<PrivateData>();
-        privateDataListbyTask = this.privateDataService.queryPrivateDataByddTaskID(taskId);
-        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
-
-        //循环获取发布数据ID，查找任务的所有私有数据
-        for (int i = 0; i < publishDataRelationList.size(); i++) {
-            OrderDataRelation orderDataRelation = publishDataRelationList.get(i);
-            PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
-            publishDataList.add(privateData);
-        }
-
-        if (privateDataListbyTask.size() > 0 && publishDataList.size() > 0) {
-            Integer Length1 = privateDataListbyTask.size();
-            for (int i = 0; i < publishDataList.size(); i++) {
-                for (int j = 0; j < Length1; j++) {
-                    Long ddDataId1 = publishDataList.get(i).getDdDataId();
-                    Long ddDataId2 = privateDataListbyTask.get(j).getDdDataId();
-                    if (ddDataId1.equals(ddDataId2)) {
-                        privateDataListbyTask.remove(j);
-                        Length1 = privateDataListbyTask.size();
-                        j--;
-                    }
-                }
-            }
-        }
-
-
-        List<PrivateData> OrderPrivatedataList = new ArrayList<PrivateData>();
-        //获取项目id
-        Long ProjectId = taskInfo.getDdTaskProjectId();
-        //根据项目id获取任务list
-        List<TaskInfo> task_list = this.taskInfoService.queryTaskInfoByProjectId(ProjectId);
-        List<PrivateData> canBeOrderPrivatedataList = new ArrayList<PrivateData>();
-        //获取所有发布数据的私有数据列表
-        for (int i = 0; i < task_list.size(); i++) {
-            Long ddtaskId = task_list.get(i).getDdTaskId();
-            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddtaskId);
-            for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
-
-                Long ddDataId = orderDataRelation.getDdDataId();
-                List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
-                canBeOrderPrivatedataList.addAll(taskPrivateDatas);
-            }
-        }
-        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.queryOrderDataRelationByddTaskID(taskId);
-        //循环获取订阅数据ID，查找私有数据
-        for (int i = 0; i < orderDataRelationList.size(); i++) {
-            OrderDataRelation orderDataRelation = orderDataRelationList.get(i);
-            PrivateData privateDataforOrderData = privateDataService.getById(orderDataRelation.getDdDataId());
-            OrderPrivatedataList.add(privateDataforOrderData);
-        }
-
-        if (OrderPrivatedataList.size() > 0 && canBeOrderPrivatedataList.size() > 0) {
-            Integer Length2 = canBeOrderPrivatedataList.size();
-            for (int i = 0; i < OrderPrivatedataList.size(); i++) {
-                for (int j = 0; j < Length2; j++) {
-                    Long ddDataId1 = OrderPrivatedataList.get(i).getDdDataId();
-                    Long ddDataId2 = canBeOrderPrivatedataList.get(j).getDdDataId();
-                    if (ddDataId1.equals(ddDataId2)) {
-                        canBeOrderPrivatedataList.remove(j);
-                        Length2 = canBeOrderPrivatedataList.size();
-                        j--;
-                    }
-                }
-            }
-        }
-
-        return getAutoView().addObject("TaskInfo", taskInfo)
-                .addObject("privateDataListbyTask", privateDataListbyTask)
-                .addObject("publishDataList", publishDataList)
-                .addObject("canBeOrderPrivatedataList", canBeOrderPrivatedataList)
-                .addObject("OrderPrivatedataList", OrderPrivatedataList);
     }
 
     /**
@@ -711,8 +676,6 @@ public class TaskInfoController extends AbstractController {
      */
 
     @RequestMapping("savepublishdata")
-
-
     @Action(description = "任务拖拽到发布")
     private void savepublishdata(HttpServletRequest request, HttpServletResponse response) throws Exception {
         long dataId = RequestUtil.getLong(request, "id");
@@ -722,7 +685,7 @@ public class TaskInfoController extends AbstractController {
 
         if (parent.equals("privatepanel")) {
             List<OrderDataRelation> publishDataList = new ArrayList<OrderDataRelation>();
-            publishDataList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
+            publishDataList = orderDataRelationService.getPublishDataRelationList(taskId);
 
             //更新orderDataRelation
             for (int i = 0; i < publishDataList.size(); i++) {
@@ -742,5 +705,64 @@ public class TaskInfoController extends AbstractController {
             orderDataRelation.setDdDataName(privateData.getDdDataName());
             this.orderDataRelationService.addDDOrderDataRelation(orderDataRelation);
         }
+    }
+
+    /**
+     * 退回任务
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("pushback")
+    @Action(description = "退回任务")
+    public void pushback(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            Long ddTaskId = RequestUtil.getLong(request, "id");
+
+            List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
+            TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
+            if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfo.setDdTaskChildType("createpanel");
+            }
+            //判断任务的当前状态，只有已提交的任务才允许收回
+            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).checkpanel) && taskInfo.getDdTaskChildType().equals("checkpanel")) {
+                taskStart_list.get(0).setDdTaskStatus(TaskStart.publishpanel);
+                taskStartService.update(taskStart_list.get(0));
+
+                taskInfo.setDdTaskChildType("publishpanel");
+                taskInfo.setDdTaskState(taskInfo.publishpanel);
+                taskInfoService.update(taskInfo);
+            } else {
+                String resultMsg = null;
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
+            }
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
+    /**
+     * 任务文件上传
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("uploadfile")
+    @Action(description = "退回任务")
+    public ModelAndView uploadfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Long ddTaskId = 0l;
+        try {
+            ddTaskId = RequestUtil.getLong(request, "id");
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+        return this.getAutoView().addObject("ddTaskId", ddTaskId);
     }
 }

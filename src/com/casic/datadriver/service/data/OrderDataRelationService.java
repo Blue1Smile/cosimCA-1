@@ -5,7 +5,6 @@ import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
-import com.hotent.core.web.query.QueryFilter;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -45,12 +44,11 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     /**
      * Query OrderDataRelation basic info list.
      *
-     * @param queryFilter
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryOrderDataRelationBasicInfoList(QueryFilter queryFilter) {
-        return this.orderDataRelationDao.queryOrderDataRelationBasicInfoList(queryFilter);
+    public List<OrderDataRelation> getCanBeOrderDataList(long project) {
+        return this.orderDataRelationDao.getCanBeOrderDataList(project);
     }
 
     /**
@@ -60,11 +58,17 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryOrderDataRelationByddTaskID(long ddtaskId) {
-        return this.orderDataRelationDao.queryOrderDataRelationByddTaskID(ddtaskId);
+    public List<OrderDataRelation> getOrderDataRelationList(long ddtaskId) {
+        return this.orderDataRelationDao.getOrderDataRelationList(ddtaskId);
     }
 
+    public List<OrderDataRelation> getOrderDataRelationListF(PageInfo model) {
+        return this.orderDataRelationDao.getOrderDataRelationListF(model);
+    }
 
+    public OrderDataRelation getOrderDataRelationById(long id) {
+        return this.orderDataRelationDao.getOrderDataRelationById(id);
+    }
 
     /**
      * Query OrderDataRelation basic info list.
@@ -73,14 +77,19 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> queryPublishDataRelationByddTaskID(long ddtaskId) {
-        return this.orderDataRelationDao.queryPublishDataRelationByddTaskID(ddtaskId);
+    public List<OrderDataRelation> getPublishDataRelationList(long ddtaskId) {
+        return this.orderDataRelationDao.getPublishDataRelationList(ddtaskId);
+    }
+    public List<OrderDataRelation> getPublishDataRelationListF(PageInfo model) {
+        return this.orderDataRelationDao.getPublishDataRelationListF(model);
     }
 
     public List<OrderDataRelation> queryPublishDataRelationByddTaskIDF(PageInfo model) {
         return this.orderDataRelationDao.queryPublishDataRelationByddTaskIDF(model);
     }
-
+    public List<OrderDataRelation> queryOrderDataRelationByddTaskIDF(PageInfo model){
+        return this.orderDataRelationDao.queryOrderDataRelationByddTaskIDF(model);
+    }
     /**
      * Adds the DD OrderDataRelation.
      * @param ddDataTaskId
@@ -100,5 +109,12 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      */
     public void delOrderByddDataTaskId(Long ddDataTaskId) {
         this.orderDataRelationDao.delOrderByddDataTaskId(ddDataTaskId);
+    }
+
+    public void delOrderByddDataId(long dataId){
+        this.orderDataRelationDao.delOrderByddDataId(dataId);
+    }
+    public void delPublishByddDataId(long dataId){
+        this.orderDataRelationDao.delPublishByddDataId(dataId);
     }
 }

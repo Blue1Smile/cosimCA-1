@@ -74,7 +74,7 @@ public class TaskStartService  extends BaseService<TaskStart> {
             taskStart.setCreatetime(new Date());
             taskStart.setSortOrder(taskStart.getSortOrder());
             ctx.setTaskStartId(Long.valueOf(taskStart.getDdTaskStartId()));
-            taskStart.setDdTaskStatus(TaskStart.STATUS_RUNNING);
+            taskStart.setDdTaskStatus(TaskStart.publishpanel);
             taskStartList.add(taskStart);
             dao.add(taskStart);
         }
@@ -87,8 +87,8 @@ public class TaskStartService  extends BaseService<TaskStart> {
      * @return
      * @throws Exception
      */
-    public void taskStart(TaskStart taskStart){
-        taskStart.setDdTaskStatus(TaskStart.STATUS_RUNNING);
+    public void taskStart(TaskStart taskStart,Project project){
+        taskStart.setDdTaskStatus(TaskStart.publishpanel);
         taskStart.setCreatetime(new Date());
         dao.add(taskStart);
     }

@@ -5,11 +5,10 @@ import com.hotent.core.model.BaseModel;
 public class TaskStart  extends BaseModel
 {
 
-    public static final Short STATUS_RUNNING		=1;
-    public static final Short STATUS_STOP			=2;
-    public static final Short STATUS_EXCEPTION		=-1;
-    public static final Short STATUS_COMPLETE		=-2;
-    public static final Short STATUS_SUBMIT	        =0;
+    public static final Short checkpanel		=1;
+    public static final Short completepanel	    =2;
+    public static final Short createpanel		=-1;
+    public static final Short publishpanel	    =0;
 
 
 

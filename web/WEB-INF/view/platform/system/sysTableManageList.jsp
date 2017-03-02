@@ -15,7 +15,7 @@
 		var url=__ctx+ "/platform/system/sysTableManage/preview.ht?__displayId__="+id;
 		var winArgs="dialogWidth=800px;dialogHeight=600px;help=0;status=0;scroll=0;center=1";
 		url=url.getNewUrl();
-		window.showModalDialog(url,{},winArgs);
+		window.open(url,{},winArgs);
 	}
 	
 	function addToResource(id,name){

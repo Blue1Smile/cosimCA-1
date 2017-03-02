@@ -130,7 +130,7 @@ hr {
 }
 
 a {
-    color: #428bca
+    color: #1976d2
 }
 
 a:hover {
@@ -291,8 +291,8 @@ a cite {
 }
 
 .layui-elem-quote {
-    margin-bottom: 10px;
-    padding: 15px;
+    margin-bottom: 5px;
+    padding: 7px;
     line-height: 22px;
     border-left: 5px solid #009688;
     border-radius: 0 2px 2px 0;
@@ -1322,8 +1322,8 @@ a cite {
 .layui-nav {
     position: relative;
     top: 0px;
-    padding: 0 220px;
-    background-color: #007BB6;
+    padding: 0 50px 0 220px;
+    background-color: #1976D2;
     color: #c2c2c2;
     border-radius: 2px;
     font-size: 0;
@@ -1337,7 +1337,7 @@ a cite {
 .layui-nav .layui-nav-item {
     position: relative;
     *display: inline;
-    line-height: 60px
+    line-height: 50px
 }
 
 .layui-nav .layui-nav-item a {

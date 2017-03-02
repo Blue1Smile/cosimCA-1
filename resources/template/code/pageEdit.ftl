@@ -52,7 +52,7 @@
 			var winArgs="dialogWidth=800px;dialogHeight=600px;help=1;status=1;scroll=1;center=1;resizable:1";				
 			var url='<#noparse>${ctx}</#noparse>/platform/bpm/taskOpinion/list.ht?actInstId=<#noparse>${</#noparse>taskInfo.processInstanceId}';
 			url=url.getNewUrl();
-			window.showModalDialog(url,"",winArgs);
+			window.open(url,"",winArgs);
 		}
 		
 		

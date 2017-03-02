@@ -70,7 +70,5 @@ public abstract class AbstractController extends BaseController {
 		}
 		addMessage(message, request);
 		response.sendRedirect(preUrl);
-
-
 	}
 }

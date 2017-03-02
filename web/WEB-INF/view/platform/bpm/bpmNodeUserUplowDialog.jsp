@@ -286,7 +286,7 @@ function preview(){
 		+"px;help=" + conf.help +";status=" + conf.status +";scroll=" + conf.scroll +";center=" +conf.center;
 	var url=__ctx + '/platform/bpm/bpmNodeUserUplow/getByUserId.ht?json='+json;
 	url=url.getNewUrl();
-	window.showModalDialog(url,"",winArgs);
+	window.open(url,"",winArgs);
 };
 </script>
 </head>

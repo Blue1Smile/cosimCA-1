@@ -1,50 +1,116 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="/commons/cloud/global.jsp" %>
-<%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
-<%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%--<%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>--%>
+<%--<%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>--%>
+<html lang="zh">
 <head>
-    <title><decorator:title default="工作台"/>协同设计</title>
+    <title>协同设计</title>
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        .head_title {
+            /*position: fixed;*/
+            /*top: 0;*/
+            /*left: 0;*/
+            /*right: 0;*/
+            font-size: 40px;
+            font-weight: 600;
+            float: left;
+            line-height: 36px;
+            margin: 0 8px 10px 15px;
+            color: #1976D2;
+        }
+        iframe {
+            margin: 0px 0px !important;
+            width: 100% !important;
+            height: 600px !important;
+            border: none;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
     <br>
-    <%--<div class="row">--%>
-    <%--<div class="bg-info" style="height: 30px">--%>
-    <%--<div class="col-xs-10 col-xs-offset-1">--%>
-    <%--<p class="pull-left">--%>
-    <%--<a href="${ctx}/cloud/console/home.ht" class="link01">个人主页</a>--%>
-    <%--</p>--%>
-    <%--<p class="pull-right">--%>
-    <%--<c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}">欢迎您，<a id="username" href="#"><sec:authentication--%>
-    <%--property="principal.fullname"/></a>，<a href="${ctx}/loginCloud.ht" class="link01">注销</a></c:if>--%>
-    <%--</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--<br>--%>
     <div class="row">
-        <svg width="500" height="60">
-            <text x="20" y="45" fill="orange" font-weight="500" font-size="50" font-family="Impact"> Cosim</text>
-            <text x="155" y="40" fill="#369" font-weight="900" font-size="45" font-family="SimHei">协同设计平台</text>
-        </svg>
+        <h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>
     </div>
-
     <%@include file="/commons/cloud/top_console.jsp" %>
-    <div class="col-xs-2">
-        <decorator:body/>
-    </div>
-    <div class="col-xs-10">
-        <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe"
-                style="width:100%;min-height:800px;"></iframe>
-    </div>
 
-    <%--<%@include file="/commons/cloud/foot.jsp" %>--%>
+    <div class="container-fluid" style="height: 100%">
+
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="panel panel-default" style="height: 100%">
+                <div class="panel-heading">个人看板
+                    <p class="pull-right">
+                        <a href="#" onclick="window.location.reload()" title="刷新看板">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        </a>
+                    </p>
+                </div>
+                <div class="panel-body" style="height: 95%">
+                    <div class="row">
+                        <c:forEach var="projectItem" items="${projectList}">
+                            <div class="col-xs-4">
+                                <div class="thumbnail">
+                                    <div class="caption">
+                                        <h4>${projectItem.ddProjectName}</h4>
+                                        <p style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><em>${projectItem.ddProjectDescription}</em></p>
+                                        <div class="btn-group btn-group-xs col-xs-offset-6" role="group">
+                                            <a href="#" type="button" class="btn btn-info" onclick="showMyTask(${projectItem.ddProjectId})" title="待办任务列表">任务</a>
+                                            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${projectItem.ddProjectId})" title="项目进度情况">进度</a>
+                                            <a href="#" type="button" class="btn btn-primary" title="进入项目讨论组" disabled="disabled" title="暂不可用">讨论</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%--统计--%>
+<div class="modal fade" id="statis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+<%--我的任务--%>
+<div class="modal fade" id="mytask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
 </div>
 </body>
+<script src="${ctx}/newtable/jquery.js"></script>
+<script src="${ctx}/newtable/bootstrap.js"></script>
+<script>
+    //监控信息
+    function showStatis(projectId){
+        $('#statis').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/project/statis.ht?id=" + projectId
+        });}
+    //关闭统计模态框
+//    $("#statis").on("hidden.bs.modal", function() {
+//        $(this).removeData("bs.modal");
+//    });
+
+    function showMyTask(projectId){
+        $('#mytask').modal({
+            keyboard: true,
+            remote: "mytasklist.ht?id=" + projectId
+        });}
+    $("#mytask").on("hidden.bs.modal", function() {
+        $(this).removeData("bs.modal");
+    });
+</script>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-<%--<script src="${ctx}/newtable/bootstrap.js"></script>--%>
 </html>

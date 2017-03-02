@@ -446,7 +446,7 @@ a.ruledetail,a.delrule {
 	function nodeUserListPreviewDialog(){
 		var winArgs = "dialogWidth=800px;dialogHeight=500px;status=no;help=no;scroll=no";
 		var url=__ctx + "/platform/bpm/bpmNodeUser/getNodeUserPreview.ht?cleanSession=1";
-		var rtn=window.showModalDialog(url,"",winArgs);
+		var rtn=window.open(url,"",winArgs);
 	};
 	
 	/**
@@ -455,7 +455,7 @@ a.ruledetail,a.delrule {
 	function nodeUserMockParamsDialog(mockParams){
 		var winArgs = "dialogWidth=600px;dialogHeight=300px;status=no;help=no;scroll=no";
 		var url=__ctx + "/platform/bpm/bpmNodeUser/previewMockParams.ht";
-		var rtn=window.showModalDialog(url,mockParams,winArgs);
+		var rtn=window.open(url,mockParams,winArgs);
 		return rtn;
 	};
 	

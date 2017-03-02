@@ -36,4 +36,8 @@ public class ToolCenterService extends BaseService<ToolCenterModel> {
     public List<ToolCenterModel> querytoolBymajorF(PageInfo model) {
         return this.toolcenterdao.querytoolBymajorF(model);
     }
+
+    public void deltool(long id) {
+        this.toolcenterdao.del(id);
+    }
 }

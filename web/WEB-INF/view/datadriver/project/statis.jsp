@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%--
   Created by IntelliJ IDEA.
   User: d
@@ -5,11 +6,11 @@
   Time: 上午10:33
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>统计</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 </head>
 <body>
 <div class="modal-header">

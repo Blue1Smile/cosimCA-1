@@ -26,9 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -74,6 +72,7 @@ public class ToolCenterController extends BaseController {
         String ddToolName= RequestUtil.getString(request, "ddToolName");
         long ddToolVersion= RequestUtil.getLong(request, "ddToolVersion");
         String ddToolBf= RequestUtil.getString(request, "ddToolBf");
+        String ddToolBf2= RequestUtil.getString(request, "ddToolBf2");
 
         ToolCenterModel m = new ToolCenterModel();
 //        ToolCenterModel ToolData = this.getFormObject(request, ToolCenterModel.class);
@@ -81,6 +80,7 @@ public class ToolCenterController extends BaseController {
         m.setDdToolName(ddToolName);
         m.setDdToolVersion((int) ddToolVersion);
         m.setDdToolBf(ddToolBf);
+        m.setDdToolBf2(ddToolBf2);
         m.setDdToolMajor(major);
 
         //创建一个通用的多部分解析器
@@ -357,10 +357,13 @@ public class ToolCenterController extends BaseController {
 
     }
 
-    @RequestMapping("list-1")
-    public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("remove")
+    @Action(description = "删除工具 ")
+    public void remove(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-       return null;
+
+        Long id= RequestUtil.getLong(request, "id");
+        this.tservice.deltool(id);
     }
 
 
@@ -387,15 +390,56 @@ public class ToolCenterController extends BaseController {
         return mv;
     }
 
+    @RequestMapping("gettool")
+    @Action(description = "工具列表")
+    public void gettool(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        //获取网站部署路径(通过ServletContext对象)，用于确定下载文件位置，从而实现下载
+//        String path = servletContext.getRealPath("/");
+//        String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"));
+        String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"),"UTF-8");
+        String name= new String(RequestUtil.getString(request, "name").getBytes("ISO-8859-1"),"UTF-8");
+         String path = getServletContext().getRealPath("/");
+        try{
+        // path是指欲下载的文件的路径。
+        File file = new File(path+major);
+        // 取得文件名。
+        String filename = file.getName();
+        // 取得文件的后缀名。
+        String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
 
+        // 以流的形式下载文件。
+        InputStream fis = new BufferedInputStream(new FileInputStream(path+major));
+        byte[] buffer = new byte[fis.available()];
+        fis.read(buffer);
+        fis.close();
+        // 清空response
+        response.reset();
+        // 设置response的Header
+        response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes()));
+        response.addHeader("Content-Length", "" + file.length());
+        OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
+        response.setContentType("application/octet-stream");
+        toClient.write(buffer);
+        toClient.flush();
+        toClient.close();
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+    }
 
     @RequestMapping("showtools")
     @Action(description = "工具列表")
     public void querysubmitpublish1(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        request.setCharacterEncoding("UTF-8");
         JSONObject json=new JSONObject();
         JSONArray jsonMembers = new JSONArray();
-        String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"),"UTF-8");
+
+        String search= new String(RequestUtil.getString(request, "searchText").getBytes("ISO-8859-1"),"UTF-8");
+
+        String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"));
+//        String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"),"UTF-8");
         Long pageSize =RequestUtil.getLong(request, "pageSize");
         Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
         int son= RequestUtil.getInt(request, "son");
@@ -404,16 +448,18 @@ public class ToolCenterController extends BaseController {
 
         PageInfo pageinfo = new PageInfo();
         pageinfo.setName(major);
+        pageinfo.setBf2(search);
         pageinfo.setPageSize((pageNumber-1)*pageSize);
-        pageinfo.setPageNumber((pageNumber-1)*pageSize+pageSize);
+        pageinfo.setPageNumber(pageSize);
         int Allnum = 0;
         try {
             List<ToolCenterModel> mylist =  new ArrayList<ToolCenterModel>();
             List<ToolCenterModel> toolList1 =  new ArrayList<ToolCenterModel>();
             JSONObject jsonObject = new JSONObject();
             if (son==1){
-                Allnum = this.tservice.querytoolBymajor(major).size();
-                mylist = this.tservice.querytoolBymajorF(pageinfo);
+               Allnum = this.tservice.querytoolBymajor(major).size();
+                //mylist = this.tservice.querytoolBymajor(major);
+               mylist = this.tservice.querytoolBymajorF(pageinfo);
                 int toolLength = mylist.size();
 
                 for(int num=0;num<toolLength;num++)
@@ -435,6 +481,10 @@ public class ToolCenterController extends BaseController {
                         }
 
                 }
+//                int total = mylist.size();
+////                mylist = mylist.Skip(pageSize).Take(pageNumber).ToList();
+//                return Json(new { total = total, rows = rows }, JsonRequestBehavior.AllowGet);
+
             }
             if (son==2){
                 Allnum = this.tservice.querytoolByname(major).size();

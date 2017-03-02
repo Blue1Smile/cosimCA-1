@@ -1,14 +1,15 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>项目树</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-    <LINK href="${ctx}/styles/jq22/page_style.css" type=text/css rel=stylesheet>
+    <%--<LINK href="${ctx}/styles/jq22/page_style.css" type=text/css rel=stylesheet>--%>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-    <script type="text/javascript" src="${ctx }/js/lg/plugins/ligerMenu.js"></script>
-    <script src="${ctx}/styles/jq22/jquery.contextmenu.r2.js"></script>
+    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
 
     <style type="text/css">
         html, body {
@@ -18,43 +19,28 @@
             height: 100%;
             overflow: auto;
         }
+        .panel-body{
+            background-color: #FFFFFF !important;
+        }
     </style>
     <script type="text/javascript">
         $(function () {
-            layout();
+//            layout();
             loadTree();
-            $('#demo2').contextMenu('myMenu1', {
-                bindings: {
-                    'open': function (t) {
-                        alert('Trigger was ' + t.id + '\nAction was Open');
-                    },
-                    'email': function (t) {
-                        alert('Trigger was ' + t.id + '\nAction was Email');
-                    },
-                    'save': function (t) {
-                        alert('Trigger was ' + t.id + '\nAction was Save');
-                    },
-                    'delete': function (t) {
-                        alert('Trigger was ' + t.id + '\nAction was Delete')
-                    }
-                }
-            });
-//            menu();
-//            menu_root();
         });
-        //布局
-        function layout() {
-            $("#layout").ligerLayout({
-                leftWidth: 210,
-                height: "98%",
-                onHeightChanged: heightChanged,
-                allowLeftResize: false
-            });
-            //取得layout的高度
-            var height = $(".l-layout-center").height();
-            $("#tree").height(height - 60);
-        }
-        ;
+//        //布局
+//        function layout() {
+//            $("#layout").ligerLayout({
+//                leftWidth: 210,
+//                height: "98%",
+//                onHeightChanged: heightChanged,
+//                allowLeftResize: false
+//            });
+//            //取得layout的高度
+//            var height = $(".l-layout-center").height();
+//            $("#tree").height(height - 60);
+//        }
+//        ;
         //布局大小改变的时候通知tab，面板改变大小
         function heightChanged(options) {
             $("#tree").height(options.middleHeight - 60);
@@ -96,7 +82,8 @@
                                 var arr = [];
                                 for (var i = 0; i < "${ProjectLength}"; i++) {
                                     arr.push({
-                                        name: projectName[i]
+                                        name: projectName[i],
+                                        Proid:projectId[i]
                                     });
                                 }
                                 return arr;
@@ -120,80 +107,81 @@
 
                     return node;
                 };
-                $('span.product_tree').contextMenu('myMenu1', {
-                    bindings: {
-                        'open': function (t) {
-                            alert('Trigger was ' + t.id + '\nAction was Open');
-                        },
-                        'email': function (t) {
-                            alert('Trigger was ' + t.id + '\nAction was Email');
-                        },
-                        'save': function (t) {
-                            alert('Trigger was ' + t.id + '\nAction was Save');
-                        },
-                        'delete': function (t) {
-                            alert('Trigger was ' + t.id + '\nAction was Delete')
-                        }
-                    }
-                });
                 layui.tree({
                     elem: '#demo2' //指定元素
                     , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
                     , click: function (item) { //点击节点回调
+//                        layer.msg('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
                         var taskId = item.id;
-                        if (taskId == undefined) return;
-                        $("#listFrame").attr("src", "publishorderdata.ht?id=" + taskId);
+                        if (taskId == undefined) {
+                            $.get("${ctx}/datadriver/index/indexlist.ht?id="+item.Proid, function (data) {
+                                $('#listFrame').html(data);
+                            });
+                        }
+                        else {
+                            $.get("${ctx}/datadriver/datacenter/publishorderdata.ht?id=" + taskId, function (data) {
+                                $('#listFrame').html(data);
+                            });
+                        }
                     }
                     , nodes: createTree()
-
                 });
             });
-
-
-
         }
 
+        <%--var     switch_attr_tree = document.getElementById('switch_attr_tree'),--%>
+                <%--switch_attr_snapshot = document.getElementById('switch_attr_snapshot');--%>
+
+        <%--switch_attr_tree.onclick = function () {--%>
+            <%--$.get("list.ht", function (data) {--%>
+                <%--$('#tree').html(data);--%>
+            <%--});--%>
+        <%--}--%>
+        <%--switch_attr_snapshot.onclick = function () {--%>
+            <%--$.get("${ctx}/datadriver/datacenter/snapshotlist.ht", function (data) {--%>
+                <%--$('#snapshot').html(data);--%>
+            <%--});--%>
+        <%--}--%>
     </script>
 </head>
 <body>
-<%--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">--%>
-<%--<legend>生成一个较深的树</legend>--%>
-<%--</fieldset>--%>
-<ul id="product_tree" class="filetree"></ul>
-<DIV class=contextMenu id=myMenu1>
-    <UL>
-        <LI id=open><IMG src="${ctx}/styles/jq22/folder.png"> Open </LI>
-        <LI id=email><IMG src="${ctx}/styles/jq22/email.png"> Email </LI>
-        <LI id=save><IMG src="${ctx}/styles/jq22/disk.png"> Save </LI>
-        <LI id=delete><IMG src="${ctx}/styles/jq22/cross.png"> Delete</LI>
-    </UL>
-</DIV>
+<div class="container-fluid" style="height: 100%">
+  <%--<ul class="nav nav-tabs" role="tablist">--%>
+        <%--<li role="presentation" class="active" id="switch_attr_tree"><a href="#tree" data-toggle="tab" role="tab">项目树</a></li>--%>
+        <%--<li role="presentation" id="switch_attr_snapshot"><a href="#snapshot" data-toggle="tab" role="tab">数据快照</a></li>--%>
+    <%--</ul>--%>
+    <div class="col-xs-3" style="height: 100%">
 
-<div class="layui-tab layui-tab-card">
-
-    <ul class="layui-tab-title">
-        <li class="layui-this">数据中心</li>
-    </ul>
-
-    <%--<div class="fr">--%>
-        <%--<a href="datasnapshotlist.ht" class="layui-btn layui-btn-primary" ><i class="layui-icon">--%>
-            <%--&#x1002;</i> 数据快照</a>--%>
-    <%--</div>--%>
-    <div class="layui-tab-content">
-        <div id="layout">
-            <div position="left" title="项目树" class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <ul id="demo2" style="overflow:auto;"></ul>
-            </div>
-            <div position="center">
-                <iframe id="listFrame" src="${ctx}/datadriver/datacenter/publishorderdata.ht" frameborder="no"
-                        width="100%"
-                        height="100%"></iframe>
+        <%--<div></div>--%>
+        <div class="panel panel-primary"  style="height: 100%">
+            <div class="panel-heading">项目树</div>
+            <div class="panel-body"  style="height: 93%">
+                <div id="demo2"></div>
             </div>
         </div>
     </div>
 
+    <%--src="${ctx}/datadriver/tool/edit.ht"--%>
+    <div class="col-xs-9" style="height: 100%">
+        <div class="panel panel-primary" style="height: 100%">
+            <div class="panel-heading">数据中心列表</div>
+            <div class="panel-body" style="height: 93%">
+                <div id="listFrame" style="height: 100%">
+
+                </div>
+            </div>
+
+        </div>
+        <%--<div class="modal fade" id="snapshot" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
+            <%--<div class="modal-dialog modal-lg" role="document">--%>
+                <%--<div class="modal-content">--%>
+
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    </div>
 </div>
+    <%--index--%>
 
 </body>
-
 </html>

@@ -8,9 +8,14 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
+import com.casic.datadriver.model.data.OrderDataRelation;
+import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.flow.ProcessFlow;
 import com.casic.datadriver.model.flow.ProjectProcessAssocia;
+import com.casic.datadriver.model.project.ProjectStart;
 import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.data.OrderDataRelationService;
+import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.flow.ProcessFlowService;
 import com.casic.datadriver.service.flow.ProjectProcessAssociaService;
 import com.casic.datadriver.service.task.TaskStartService;
@@ -93,6 +98,10 @@ public class ProjectController extends BaseController {
     private ProjectProcessAssociaService projectProcessAssociaService;
     @Resource
     private ProcessFlowService processFlowService;
+    @Resource
+    private OrderDataRelationService orderDataRelationService;
+    @Resource
+    private PrivateDataService privateDataService;
     /**
      * 保存项目
      *
@@ -166,9 +175,34 @@ public class ProjectController extends BaseController {
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long userId = ContextUtil.getCurrentUserId();
-//        QueryFilter queryFilter = new QueryFilter(request, "ProjectItem");
         List<Project> projectList = this.projectService.queryProjectBasicInfoList(userId);
 
+        for (int i=0; i<projectList.size();i++){
+            Project nowProject = projectList.get(i);
+            List<ProTaskDependance> proTaskDependanceList=proTaskDependanceService.getProTaskDependanceList(nowProject.getDdProjectId());
+            int listLengthStart=0;
+            int listLengthComplete =0;
+            for(int j=0; j<proTaskDependanceList.size();j++){
+                TaskInfo nowTask= taskInfoService.getById(proTaskDependanceList.get(j).getDdTaskId());
+                if(nowTask.getDdTaskChildType().equals("publishpanel")||nowTask.getDdTaskChildType().equals("checkpanel")){
+                    listLengthStart++;
+                }
+                if(nowTask.getDdTaskChildType().equals("completepanel")){
+                    listLengthComplete++;
+                }
+            }
+            if(listLengthComplete==proTaskDependanceList.size()&&listLengthComplete!=0){
+                projectList.get(i).setDdProjectPhaseId(projectList.get(i).complete);
+            }
+            else{
+                if(listLengthStart>0){
+                    projectList.get(i).setDdProjectPhaseId(projectList.get(i).start);
+                }
+                else{
+                    projectList.get(i).setDdProjectPhaseId(projectList.get(i).unstart);
+                }
+            }
+        }
         ModelAndView mv = this.getAutoView().addObject("projectList",
                 projectList);
         return mv;
@@ -254,59 +288,59 @@ public class ProjectController extends BaseController {
         return getAutoView().addObject("Project", Project);
     }
 
-    /**
-     * 启动项目 dd_project_start
-     *
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("start")
-    @Action(description = "启动项目")
-    public void start(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        PrintWriter out = response.getWriter();
-
-        try {
-//			if(!Token.isTokenStringValid(request.getParameter(Token.TOKEN_STRING_NAME), request.getSession())) {
-//				ResultMessage resultMessage = new ResultMessage(
-//						ResultMessage.Fail, "非法访问!");
-//				out.print(resultMessage);
-//			}
-            Long id = RequestUtil.getLong(request, "id");
-
-            ProcessCmd processCmd = BpmUtil.getProcessCmd(request);
-            processCmd.setCurrentUserId(ContextUtil.getCurrentUserId().toString());
-
-            ProjectStartCmd projectStartCmd = new ProjectStartCmd();
-            projectStartCmd.setStartUser(ContextUtil.getCurrentUser());
-            projectStartCmd.setCurrentUser(ContextUtil.getCurrentUser());
-
-            projectStartCmd.setProcessCmd(processCmd);
-            projectStartService.startProject(id, projectStartCmd);
-            //更新项目状态
-            Project project = projectService.getById(id);
-            project.setDdProjectState(Project.STATUS_RUNNING);
-            projectService.update(project);
-            ResultMessage resultMessage = new ResultMessage(
-                    ResultMessage.Success, "启动流程成功!");
-            out.print(resultMessage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            String str = MessageUtil.getMessage();
-            if (StringUtil.isNotEmpty(str)) {
-                ResultMessage resultMessage = new ResultMessage(
-                        ResultMessage.Fail, "创建业务实例失败:\r\n" + str);
-                out.print(resultMessage);
-            } else {
-                String message = ExceptionUtil.getExceptionMessage(ex);
-                ResultMessage resultMessage = new ResultMessage(
-                        ResultMessage.Fail, message);
-                out.print(resultMessage);
-            }
-        }
-    }
+//    /**
+//     * 启动项目 dd_project_start
+//     *
+//     * @param request
+//     * @param response
+//     * @return
+//     * @throws Exception
+//     */
+//    @RequestMapping("start")
+//    @Action(description = "启动项目")
+//    public void start(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//        PrintWriter out = response.getWriter();
+//
+//        try {
+////			if(!Token.isTokenStringValid(request.getParameter(Token.TOKEN_STRING_NAME), request.getSession())) {
+////				ResultMessage resultMessage = new ResultMessage(
+////						ResultMessage.Fail, "非法访问!");
+////				out.print(resultMessage);
+////			}
+//            Long id = RequestUtil.getLong(request, "id");
+//
+//            ProcessCmd processCmd = BpmUtil.getProcessCmd(request);
+//            processCmd.setCurrentUserId(ContextUtil.getCurrentUserId().toString());
+//
+//            ProjectStartCmd projectStartCmd = new ProjectStartCmd();
+//            projectStartCmd.setStartUser(ContextUtil.getCurrentUser());
+//            projectStartCmd.setCurrentUser(ContextUtil.getCurrentUser());
+//
+//            projectStartCmd.setProcessCmd(processCmd);
+//            projectStartService.startProject(id, projectStartCmd);
+//            //更新项目状态
+//            Project project = projectService.getById(id);
+//            project.setDdProjectState(Project.STATUS_RUNNING);
+//            projectService.update(project);
+//            ResultMessage resultMessage = new ResultMessage(
+//                    ResultMessage.Success, "启动流程成功!");
+//            out.print(resultMessage);
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//            String str = MessageUtil.getMessage();
+//            if (StringUtil.isNotEmpty(str)) {
+//                ResultMessage resultMessage = new ResultMessage(
+//                        ResultMessage.Fail, "创建业务实例失败:\r\n" + str);
+//                out.print(resultMessage);
+//            } else {
+//                String message = ExceptionUtil.getExceptionMessage(ex);
+//                ResultMessage resultMessage = new ResultMessage(
+//                        ResultMessage.Fail, message);
+//                out.print(resultMessage);
+//            }
+//        }
+//    }
 
     /**
      * 项目指标
@@ -341,6 +375,8 @@ public class ProjectController extends BaseController {
         List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
         List<TaskInfo> createTaskInfoList = new ArrayList<TaskInfo>();
         List<TaskInfo> publishTaskInfoList = new ArrayList<TaskInfo>();
+        List<TaskInfo> checkTaskInfoList= new ArrayList<TaskInfo>();
+        List<TaskInfo> completeTaskInfoList= new ArrayList<TaskInfo>();
         List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(projectId);
         for (int i = 0; i < proTaskDependanceList.size(); i++) {
             ProTaskDependance proTaskDependance = proTaskDependanceList.get(i);
@@ -356,13 +392,24 @@ public class ProjectController extends BaseController {
             if (taskInfo.getDdTaskChildType().equals("createpanel")) {
                 createTaskInfoList.add(taskInfo);
             }
+            if(taskInfo.getDdTaskChildType().equals("checkpanel")){
+                checkTaskInfoList.add(taskInfo);
+            }
+            if(taskInfo.getDdTaskChildType().equals("completepanel")){
+                completeTaskInfoList.add(taskInfo);
+            }
         }
+
+
+
         //根据用户ID获取当前用户拥有项目列表
         List<Project> projectListbyUser = projectService.queryProjectBasicInfoList(userId);
         return getAutoView().addObject("Project", project)
                 .addObject("projectListbyUser", projectListbyUser)
                 .addObject("taskListbyUser", createTaskInfoList)
-                .addObject("publishtaskListbyUser", publishTaskInfoList);
+                .addObject("publishtaskListbyUser", publishTaskInfoList)
+                .addObject("checkTaskInfoList",checkTaskInfoList)
+                .addObject("completeTaskInfoList",completeTaskInfoList);
     }
 
 
@@ -374,35 +421,95 @@ public class ProjectController extends BaseController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("createtopublish")
+    @RequestMapping("movetask")
     @Action(description = "任务拖拽到发布")
     public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        PrintWriter out = response.getWriter();
+
         long taskId = RequestUtil.getLong(request, "id");
         String parent = RequestUtil.getString(request, "parent");
-
         TaskStart taskStart = new TaskStart();
-        TaskInfo taskInfo = new TaskInfo();
-        if (parent.equals("createpanel")) {
-            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
-            //更新taskinfo?????createpanel属性是否应该放到taskstart里面
-            taskInfo.setDdTaskChildType("createpanel");
-            taskInfoService.updateDDTask(taskInfo);
-            taskStartService.delByTaskId(taskInfo.getDdTaskId());
-        }
-        if (parent.equals("publishpanel")) {
+        TaskInfo taskInfo = taskInfoService.getById(taskId);
+
+//        List<OrderDataRelation> publishRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
+//        List<PrivateData> publshListWithoutValue = new ArrayList<PrivateData>();
+//        int valueLength=publishRelationList.size();
+
+        //发布任务
+        if(taskInfo.getDdTaskChildType().equals("createpanel")&&parent.equals("publishpanel")){
             taskStart.setDdTaskStartId(UniqueIdUtil.genId());
             taskStart.setDdTaskId(taskId);
-            taskStart.setDdTaskStatus((short) 1);
-            taskInfo = taskInfoService.getUserIdbyTaskId(taskId);
+            taskStart.setDdTaskStatus(TaskStart.publishpanel);
+
+            taskInfo = taskInfoService.getById(taskId);
             //更新taskinfo
             taskInfo.setDdTaskChildType("publishpanel");
-            taskInfoService.updateDDTask(taskInfo);
+            taskInfo.setDdTaskState(taskInfo.publishpanel);
+            taskInfoService.update(taskInfo);
             //添加taskstart
             long userId = taskInfo.getDdTaskResponsiblePerson();
             taskStart.setDdTaskResponcePerson(userId);
-            taskStartService.taskStart(taskStart);
+
+            Project project = projectService.getById(taskInfo.getDdTaskProjectId());
+//            ProjectStart
+            taskStartService.taskStart(taskStart,project);
         }
+        //收回任务
+        if (taskInfo.getDdTaskChildType().equals("publishpanel")&&parent.equals("createpanel")) {
+            //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+            taskInfo.setDdTaskChildType("createpanel");
+            taskInfo.setDdTaskState(taskInfo.createpanel);
+            taskInfoService.update(taskInfo);
+
+            taskStartService.delByTaskId(taskInfo.getDdTaskId());
+        }
+        else{
+
+            //提交任务
+            if(taskInfo.getDdTaskChildType().equals("publishpanel")&&parent.equals("checkpanel")){
+                //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+                taskInfo.setDdTaskChildType("checkpanel");
+                taskInfoService.update(taskInfo);
+                taskInfo.setDdTaskState(taskInfo.checkpanel);
+
+                taskStart.setDdTaskStatus(TaskStart.checkpanel);
+                taskStartService.update(taskStart);
+            }
+            else{
+                //驳回任务
+                if(taskInfo.getDdTaskChildType().equals("checkpanel")&&parent.equals("publishpanel")){
+                    //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+                    taskInfo.setDdTaskChildType("publishpanel");
+                    taskInfoService.update(taskInfo);
+                    taskInfo.setDdTaskState(taskInfo.publishpanel);
+
+                    taskStart.setDdTaskStatus(TaskStart.publishpanel);
+                    taskStartService.update(taskStart);
+                }
+                else{
+                    //审核通过
+                    if(taskInfo.getDdTaskChildType().equals("checkpanel")&&parent.equals("completepanel"))
+                    {
+                        //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+                        taskInfo.setDdTaskChildType("completepanel");
+                        taskInfoService.update(taskInfo);
+                        taskInfo.setDdTaskState(taskInfo.completepanel);
+
+                        taskStart.setDdTaskStatus(TaskStart.completepanel);
+                        taskStartService.update(taskStart);
+
+
+                    }
+
+                }
+
+            }
+
+        }
+
     }
+
     /**
      * 项目统计
      *
@@ -429,4 +536,20 @@ public class ProjectController extends BaseController {
         }
         return mv;
     }
+
+    /**
+     * 项目统计
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("test")
+    @Action(description = "测试")
+    public void test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        long taskId = RequestUtil.getLong(request, "id");
+
+    }
+
 }

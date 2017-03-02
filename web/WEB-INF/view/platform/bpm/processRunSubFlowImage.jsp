@@ -136,7 +136,7 @@ ul.legendContainer li .legend{
 		var url="${ctx}/platform/bpm/processRun/subFlowImage.ht?processInstanceId="+conf.processInstanceId+"&nodeId=" + conf.nodeId+"&processDefinitionId="+conf.processDefinitionId;
 		var winArgs="dialogWidth=800px;dialogHeight=600px;help=0;status=0;scroll=1;center=1;";
 		url=url.getNewUrl();
-		window.showModalDialog(url,"",winArgs);
+		window.open(url,"",winArgs);
 	}
 	
 	

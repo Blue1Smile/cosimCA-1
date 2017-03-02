@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ taglib prefix="ap" uri="/appleTag" %>
 <%--
   Created by IntelliJ IDEA.
@@ -7,9 +8,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>创建项目</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%@include file="/commons/include/form.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
@@ -93,7 +95,7 @@
         <div class="form-group">
             <div class="col-xs-12">
                 <button type="button" class="btn btn-primary btn-block" id="dataFormSave">完成并创建</button>
-                <a href="#" type="button" class="btn btn-default btn-block">从模版创建</a>
+                <a href="#" type="button" class="btn btn-default btn-block" disabled="disabled" title="暂不可用">从模版创建</a>
             </div>
         </div>
     </div>

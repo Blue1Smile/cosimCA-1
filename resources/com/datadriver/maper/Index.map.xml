@@ -5,7 +5,7 @@
         <id column="DD_INDEX_ID" jdbcType="NUMERIC" property="ddIndexId"/>
         <result column="DD_INDEX_PROJECT_ID" jdbcType="NUMERIC" property="ddIndexProjectId"/>
         <result column="DD_INDEX_NAME" jdbcType="VARCHAR" property="ddIndexName"/>
-        <result column="DD_INDEX_TYPE_ID" jdbcType="NUMERIC" property="ddIndexTypeId"/>
+        <result column="DD_INDEX_TYPE_ID" jdbcType="VARCHAR" property="ddIndexTypeId"/>
         <result column="DD_INDEX_PROPERTY" jdbcType="NUMERIC" property="ddIndexProperty"/>
         <result column="DD_INDEX_OPTIMUM" jdbcType="VARCHAR" property="ddIndexOptimum"/>
         <result column="DD_INDEX_RESPONSIBLE_PERSON_ID" jdbcType="NUMERIC" property="ddIndexResponsiblePersonId"/>
@@ -22,6 +22,14 @@
         from dd_index
         where DD_INDEX_ID = #{ddIndexId,jdbcType=NUMERIC}
     </select>
+
+    <select id="getByProjectIdF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_index
+        where DD_INDEX_PROJECT_ID = #{id} limit #{pageSize},#{pageNumber}
+    </select>
+
     <select id="getIndexInfoList" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
@@ -29,7 +37,7 @@
         WHERE
         DD_INDEX_PROJECT_ID=#{ddIndexProjectId}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="delById" parameterType="java.lang.Integer">
     delete from dd_index
     where DD_INDEX_ID = #{ddIndexId,jdbcType=NUMERIC}
   </delete>
@@ -39,7 +47,7 @@
       DD_INDEX_RESPONSIBLE_PERSON_ID, DD_INDEX_SENSITIVENESS, 
       DD_INDEX_LASTEST_VALUE)
     values (#{ddIndexId,jdbcType=NUMERIC}, #{ddIndexProjectId,jdbcType=NUMERIC}, #{ddIndexName,jdbcType=VARCHAR},
-      #{ddIndexTypeId,jdbcType=NUMERIC}, #{ddIndexProperty,jdbcType=NUMERIC}, #{ddIndexOptimum,jdbcType=VARCHAR},
+      #{ddIndexTypeId,jdbcType=VARCHAR}, #{ddIndexProperty,jdbcType=NUMERIC}, #{ddIndexOptimum,jdbcType=VARCHAR},
       #{ddIndexResponsiblePersonId,jdbcType=NUMERIC}, #{ddIndexSensitiveness,jdbcType=NUMERIC},
       #{ddIndexLastestValue,jdbcType=VARCHAR})
   </insert>
@@ -85,7 +93,7 @@
                 #{ddIndexName,jdbcType=VARCHAR},
             </if>
             <if test="ddIndexTypeId != null">
-                #{ddIndexTypeId,jdbcType=NUMERIC},
+                #{ddIndexTypeId,jdbcType=VARCHAR},
             </if>
             <if test="ddIndexProperty != null">
                 #{ddIndexProperty,jdbcType=NUMERIC},
@@ -114,7 +122,7 @@
                 DD_INDEX_NAME = #{ddIndexName,jdbcType=VARCHAR},
             </if>
             <if test="ddIndexTypeId != null">
-                DD_INDEX_TYPE_ID = #{ddIndexTypeId,jdbcType=NUMERIC},
+                DD_INDEX_TYPE_ID = #{ddIndexTypeId,jdbcType=VARCHAR},
             </if>
             <if test="ddIndexProperty != null">
                 DD_INDEX_PROPERTY = #{ddIndexProperty,jdbcType=NUMERIC},
@@ -138,7 +146,7 @@
     update dd_index
     set DD_INDEX_PROJECT_ID = #{ddIndexProjectId,jdbcType=NUMERIC},
       DD_INDEX_NAME = #{ddIndexName,jdbcType=VARCHAR},
-      DD_INDEX_TYPE_ID = #{ddIndexTypeId,jdbcType=NUMERIC},
+      DD_INDEX_TYPE_ID = #{ddIndexTypeId,jdbcType=VARCHAR},
       DD_INDEX_PROPERTY = #{ddIndexProperty,jdbcType=NUMERIC},
       DD_INDEX_OPTIMUM = #{ddIndexOptimum,jdbcType=VARCHAR},
       DD_INDEX_RESPONSIBLE_PERSON_ID = #{ddIndexResponsiblePersonId,jdbcType=NUMERIC},

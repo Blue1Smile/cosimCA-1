@@ -12,7 +12,7 @@
 			var url=__ctx+ "/platform/system/sysCustomDisplay/"+href;
 			var winArgs="dialogWidth=1024px;dialogHeight=600px;help=0;status=0;scroll=0;center=1";
 			url=url.getNewUrl();
-			rtn = window.showModalDialog(url,"",winArgs);
+			rtn = window.open(url,"",winArgs);
 		});
 		
 		$("a.add,a.edit,a.update").click(function(){
@@ -20,7 +20,7 @@
 			var url=__ctx+ "/platform/system/sysCustomDisplay/"+href;
 			var winArgs="dialogWidth=1024px;dialogHeight=600px;help=0;status=0;scroll=0;center=1";
 			url=url.getNewUrl();
-			rtn = window.showModalDialog(url,"",winArgs);
+			rtn = window.open(url,"",winArgs);
 			if(rtn){
 				window.location.reload();
 			}
@@ -31,7 +31,7 @@
 		var winArgs="dialogWidth=800px;dialogHeight=600px;help=0;status=0;scroll=0;center=1";
 		var url=$(obj).attr("action");
 		url=url.getNewUrl();
-		window.showModalDialog(url,{},winArgs);
+		window.open(url,{},winArgs);
 	}
 </script>
 </head>

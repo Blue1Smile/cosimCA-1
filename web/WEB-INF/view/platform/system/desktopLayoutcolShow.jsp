@@ -17,7 +17,7 @@
 		$(function(){
 			var desktop=new DesktopManage();
 			desktop.init();
-			$(".ui-sortable").live("click", function() {
+			$(".ui-sortable").on("click", function() {
 				desktop.changeClass(this);
 			});
 			$("#addColumn").click(function(){

@@ -5,28 +5,114 @@
   Time: 下午8:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@ taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="/commons/include/html_doctype.html" %>
 <html lang="zh-CN">
 <head>
     <title>任务概览</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="${ctx}/newtable/jquery.js"></script>
-    <script type="text/javascript" src="${ctx}/js/iframeresize/iframeResizer.contentWindow.min.js"></script>
+    <link href="${ctx}/styles/check/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/styles/check/build.css" rel="stylesheet" type="text/css"/>
+
+    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
+    <script src="${ctx}/newtable/jquery.js"></script>
+    <script src="${ctx}/newtable/bootstrap.js"></script>
+    <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
     <style>
-        .fl {
-            float: left;
+        html, body {
+            margin: 0px 0px !important;
+            width: 100% !important;
+            height: 100% !important;
         }
 
-        .fr {
-            float: right;
+        iframe {
+            margin: 0px 0px !important;
+            width: 100% !important;
+            height: 100% !important;
         }
+
+        .scrum-stage .task.task-card {
+            margin: 0 8px 8px !important;
+        }
+
+        .task.task-card {
+            padding: 0 !important;
+            background-color: #fff !important;
+            border-radius: 3px !important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
+            cursor: pointer !important;
+            margin-left: -42px !important;
+        }
+
+        .checkbox label {
+            margin: 12px !important;
+        }
+
+        li {
+            list-style-type: none !important;
+        }
+
+        .paneldocker {
+            position: relative;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .panelheight {
+            position: relative;
+            height: 93%;
+        }
+
+        /*.cbp-spmenu-push{*/
+        /*overflow:scroll !important;*/
+        /*overflow-x:hidden !important;*/
+        /*}*/
+        .bs-callout-danger {
+            border-left-color: #ce4844;
+            border-left-width: 5px;
+        }
+        .board-view {
+            position: fixed;
+            top: 50px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            overflow: hidden;
+            transition: all 218ms ease;
+        }
+        .task-panel {
+            position: relative;
+            height: 100%;
+        }
+        .board-scrum-view {
+            position: relative;
+            height: 100%;
+            background-color: #FFF;
+            border-style: solid;
+            border-width: 0;
+            border-color: #E5E5E5;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
     </style>
-
 </head>
 <body>
+
 <div class="container-fluid">
+
     <div class="row">
         <p class="pull-right">
             <a class="layui-btn layui-btn-normal" id="commit" href="submittask.ht?id=${taskInfo.ddTaskId}"><i

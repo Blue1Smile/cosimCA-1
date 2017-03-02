@@ -174,7 +174,7 @@
 		}
 	 	var winArgs="dialogWidth:500px;dialogHeight:300px";
 	 	url=url.getNewUrl();
-	 	var rtn=window.showModalDialog(url,"",winArgs);
+	 	var rtn=window.open(url,"",winArgs);
 	 	var myiframe = document.getElementById("fileFrame");
 	 	myiframe.src=myiframe.src.getNewUrl();
 	}

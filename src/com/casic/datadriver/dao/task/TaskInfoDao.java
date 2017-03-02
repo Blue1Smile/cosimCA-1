@@ -2,6 +2,7 @@ package com.casic.datadriver.dao.task;
 
 import java.util.List;
 
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.task.TaskInfo;
 import org.springframework.stereotype.Repository;
 
@@ -56,7 +57,7 @@ public class TaskInfoDao extends BaseDao<TaskInfo> {
     }
 
     /**
-     * ӳ��MAP��������ĿID��ȡ�����б�classId����ĿID
+     *
      * 20161202
      */
     public List<TaskInfo> getByMainId(Long classId) {
@@ -64,7 +65,7 @@ public class TaskInfoDao extends BaseDao<TaskInfo> {
     }
 
     /**
-     * ӳ��MAP����ȡ���������б���ʱû�õ�
+     *
      * 20161202
      */
     public List<TaskInfo> getAllInstance(QueryFilter queryFilter) {
@@ -72,11 +73,16 @@ public class TaskInfoDao extends BaseDao<TaskInfo> {
     }
 
     /**
-     * ӳ��MAP��ɾ�������б���ʱû�õ�
      * 20161202
      */
     public void delByMainId(Long classId) {
         this.delBySqlKey("delByMainId", classId);
     }
-
+    /**
+     * 任务分页
+     * 20161202
+     */
+    public List<TaskInfo> getByProIdAndUserIdF(PageInfo pageInfo){
+        return this.getBySqlKey("getByProIdAndUserIdF", pageInfo);
+    }
 }

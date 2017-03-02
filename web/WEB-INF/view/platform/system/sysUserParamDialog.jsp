@@ -319,7 +319,7 @@
 		var url = __ctx + '/platform/system/sysUserParam/getByParamKey.ht';
 		url=url.getNewUrl();
 		var obj={flag:0,params:userParam,url:url};
-		window.showModalDialog(url,obj, winArgs);
+		window.open(url,obj, winArgs);
 	};
 </script>
 </head>

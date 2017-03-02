@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>私有数据列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <style>
@@ -68,9 +70,9 @@
                 <%--<display:column property="ddDataSensitiveness" title="灵敏阈" maxLength="80"></display:column>--%>
 
             <display:column title="操作" media="html" style="width:260px">
-            <a href="edit.ht?ddDataId=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">编辑</a>
+            <a href="edit.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">编辑</a>
             <a href="del.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">删除</a>
-            <a href="datasnapshot.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">数据快照</a>
+            <%--<a href="datasnapshot.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">数据快照</a>--%>
 
 
                 <%--<a onclick="startBizInstance(${bizDefItem.bizDefId})" class="link run">启动</a>--%>

@@ -27,7 +27,7 @@ var exam={
 		$( "#ui_sortable_exam li" ).draggable({
 			/* containment:'#pageContentId',*/
 			connectToSortable:'.ui-questions-content-list',
-			cursorAt: { top: 18, left: 20 },
+			cursorAt: { top: 10, left: 10 },
 			helper: function(event) {
 				data={
 					type:$(this).children('a').attr('data-checkType'),//1为单选，2为多选

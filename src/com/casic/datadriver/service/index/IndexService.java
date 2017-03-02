@@ -2,6 +2,7 @@ package com.casic.datadriver.service.index;
 
 
 import com.casic.datadriver.dao.index.IndexInfoDao;
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.index.IndexInfo;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
@@ -38,5 +39,6 @@ public class IndexService extends BaseService<IndexInfo> {
         return this.indexDao;
     }
 
+    public List<IndexInfo> getByProjectIdF(PageInfo pageInfo){return this.indexDao.getByProjectIdF(pageInfo);}
 
 }

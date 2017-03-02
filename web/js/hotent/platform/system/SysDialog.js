@@ -20,7 +20,7 @@ function OrgDialog(conf)
 	
 	var url=__ctx + '/platform/system/sysOrg/dialog.ht';
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,"",winArgs);
+	var rtn=window.open(url,"",winArgs);
 	
 	if(conf.callback)
 	{
@@ -59,7 +59,7 @@ function UserDialog(conf){
 				selectUserNames:conf. selectUserNames
 		}
 	}	
-	var rtn=window.showModalDialog(url,selectUsers,winArgs);
+	var rtn=window.open(url,selectUsers,winArgs);
 	
 	if(rtn && conf.callback){
 		var userIds=rtn.userIds;
@@ -99,7 +99,7 @@ function CompanyUserDialog(conf){
 				selectUserNames:conf. selectUserNames
 		}
 	}	
-	var rtn=window.showModalDialog(url,selectUsers,winArgs);
+	var rtn=window.open(url,selectUsers,winArgs);
 	
 	if(rtn && conf.callback){
 		var userIds=rtn.userIds;
@@ -143,7 +143,7 @@ function FlowUserDialog(conf){
 		selectUsers=conf.selectUsers;
 	}
 	
-	var rtn=window.showModalDialog(url,selectUsers,winArgs);
+	var rtn=window.open(url,selectUsers,winArgs);
 	if(rtn && conf.callback){
 		conf.callback.call(this,rtn.objType,rtn.objIds,rtn.objNames);
 	}
@@ -165,7 +165,7 @@ function RoleDialog(conf)
 	
 	var url=__ctx + '/platform/system/sysRole/dialog.ht';
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,"",winArgs);
+	var rtn=window.open(url,"",winArgs);
 	
 	if(conf.callback)
 	{
@@ -198,7 +198,7 @@ function PosDialog(conf)
 		+"px;help=" + conf.help +";status=" + conf.status +";scroll=" + conf.scroll +";center=" +conf.center;
 	var url=__ctx + '/platform/system/position/dialog.ht';
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,"",winArgs);
+	var rtn=window.open(url,"",winArgs);
 	if(conf.callback){
 		if(rtn!=undefined){
 			 conf.callback.call(this,rtn.posId,rtn.posName);
@@ -218,7 +218,7 @@ function UserParamDialog(conf){
 	var args={cmpIds:conf.cmpIds,cmpNames:conf.cmpNames};
 	var url=__ctx + '/platform/system/sysUserParam/dialog.ht?nodeUserId='+conf.nodeUserId;
 	
-	var rtn=window.showModalDialog(url,args,winArgs);
+	var rtn=window.open(url,args,winArgs);
 	if(conf.callback){
 		if(rtn!=undefined){
 			 conf.callback.call(this,rtn.paramValue1,rtn.paramValue2);
@@ -239,7 +239,7 @@ function OrgParamDialog(conf){
 	var args={cmpIds:conf.cmpIds,cmpNames:conf.cmpNames};
 	var url=__ctx + '/platform/system/sysOrgParam/dialog.ht?nodeUserId='+conf.nodeUserId;
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,args,winArgs);
+	var rtn=window.open(url,args,winArgs);
 	if(conf.callback){
 		if(rtn!=undefined){
 			 conf.callback.call(this,rtn.paramValue1,rtn.paramValue2);
@@ -260,7 +260,7 @@ function UplowDialog(conf){
 		+"px;help=" + conf.help +";status=" + conf.status +";scroll=" + conf.scroll +";center=" +conf.center;
 	var url=__ctx + '/platform/bpm/bpmNodeUserUplow/dialog.ht';
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,"",winArgs);
+	var rtn=window.open(url,"",winArgs);
 	if(conf.callback){
 		if(rtn!=undefined){
 			 conf.callback.call(this,rtn.json,rtn.show);
@@ -281,7 +281,7 @@ function typeSetDialog(conf){
 	var args={cmpIds:conf.cmpIds,cmpNames:conf.cmpNames};
 	var url=__ctx + '/platform/bpm/bpmDefinition/typeSetDialog.ht';
 	url=url.getNewUrl();
-	var rtn=window.showModalDialog(url,args,winArgs);
+	var rtn=window.open(url,args,winArgs);
 	if(conf.callback){
 		if(rtn!=undefined){
 			 conf.callback.call(this,rtn.json,rtn.show);

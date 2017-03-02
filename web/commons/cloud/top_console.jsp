@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!--主导航菜单 开始-->
 <ul class="layui-nav">
+    <li class="layui-nav-item"><a href="${ctx}/cloud/console/home.ht">主页</a></li>
     <c:forEach items="${resourcesList}" var="resourcesItem">
         <c:if test="${resourcesItem.parentId==0}">
             <li class="layui-nav-item">
@@ -31,7 +32,8 @@
         </dl>
     </li>
     <li class="layui-nav-item" style="float: right">
-        <a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 消息 <span class="badge">42</span></a>
+        <a href="#" title="暂不可用"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 消息 <span class="badge">42</span></a>
     </li>
 </ul>
+
 <!-- 主导航菜单 结束 -->
