@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
 <%@page import="com.hotent.core.util.ContextUtil" %>
 <html>
 <head>
     <title>模型增加</title>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">

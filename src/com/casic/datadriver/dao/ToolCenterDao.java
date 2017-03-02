@@ -28,4 +28,7 @@ public class ToolCenterDao  extends BaseDao<ToolCenterModel> {
 
     public List<ToolCenterModel> querytoolBymajorF(PageInfo model) {
         return this.getBySqlKey("querytoolBymajorF", model);}
+
+    public void del(Long id) {
+        this.getBySqlKey("deltool", id);}
 }

@@ -224,6 +224,16 @@ public class ModelCenterController {
 //        return json;
     }
 
+
+    @RequestMapping("remove")
+    @Action(description = "删除模型")
+    public void remove(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        Long id= RequestUtil.getLong(request, "id");
+        this.modelcenterservice.delmodel(id);
+    }
+
     @RequestMapping("getmodel")
     @Action(description = "下载模型")
     public void gettool(HttpServletRequest request, HttpServletResponse response)

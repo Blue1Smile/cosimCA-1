@@ -170,13 +170,13 @@ function TableInit () {
             onExpandRow: function (index, row, $Subdetail) {
                 InitSubTable(index, row, $Subdetail);
             },
-            // onClickRow:function (row, tr)
-            // {
-            //     // alert(row.ToolUrl);
-            //     window.location.href=row.ToolUrl;
-            //     // window.location.href='D:\1.txt';
-            //     // alert(row.ToolName);
-            // }
+            onClickRow:function (row, tr)
+            {
+                // alert(row.ToolUrl);
+                window.location.href=row.ToolUrl;
+                // window.location.href='D:\1.txt';
+                // alert(row.ToolName);
+            }
 
 
         });

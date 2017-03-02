@@ -57,7 +57,10 @@
         where dd_model_type = #{id} AND dd_model_name = #{Name}
     </select>
 
-
+    <delete id="delmodel" parameterType="java.lang.Long">
+        delete from dd_modelcenter
+        where dd_mdoel_id = #{id,jdbcType=NUMERIC}
+    </delete>
 
   <insert id="insertSelective" parameterType="com.casic.datadriver.model.modelcenter.ModelCenterModel">
     insert into dd_modelcenter

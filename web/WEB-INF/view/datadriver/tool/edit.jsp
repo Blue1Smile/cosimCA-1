@@ -41,9 +41,11 @@
                 if (frm.valid()) {
                     form.submit();
                     <%--alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);--%>
+//                    alert(111);
 
                     $("#addindex1").modal('hide');
                     $("#tb_departments").bootstrapTable("refresh");
+
 
                     <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
                 }

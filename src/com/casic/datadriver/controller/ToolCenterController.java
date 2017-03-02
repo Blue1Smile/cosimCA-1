@@ -357,10 +357,13 @@ public class ToolCenterController extends BaseController {
 
     }
 
-    @RequestMapping("list-1")
-    public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("remove")
+    @Action(description = "删除工具 ")
+    public void remove(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-       return null;
+
+        Long id= RequestUtil.getLong(request, "id");
+        this.tservice.deltool(id);
     }
 
 
