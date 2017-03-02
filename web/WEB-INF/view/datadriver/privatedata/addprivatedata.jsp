@@ -82,11 +82,12 @@
                                               rows="5"/></textarea>
                     </td>
                 </tr>
-                <tr>
+                <tr id="initValue">
                     <th width="20%">初始值:</th>
                     <td colspan="5"><input type="text" id="ddDataLastestValue" name="ddDataLastestValue"
-                               value="" class="form-control"/></td>
-                <tr>
+                                           value="" class="form-control"/></td>
+                    <select><c:forEach items="" var=""><option value=""></option></c:forEach></select>
+                </tr>
                 <input type="hidden" id="ddDataTaskId" name="ddDataTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
@@ -99,6 +100,9 @@
 </body>
 <script type="text/javascript">
     $(function () {
+        $('#initFile').hide();
+        $('#initModel').hide();
+        $('#initValue').hide();
         var options = {};
         var frm = $('#privateDataForm').form();
         $("#dataFormSave").click(function () {
@@ -111,12 +115,30 @@
         });
         $("#ddDataType").change(function () {
             if ($(this).val() == '文件') {
-                $('table').append('<tr id="choosefile"><th width="20%">请选择文件:</th><td><input type="file" name="file" value="上传"></td></tr>');
+                $('table').append('<tr id="choosefile">'+
+                        '<th width="20%">请选择文件:</th>'+
+                        '<td><select>' +
+                        '</select>'+
+                        '</td>' +
+                        '</tr>');
                 $('#choosemodel').remove();
+                $('#initValue').remove();
             } else if ($(this).val() == '模型') {
-                $('table').append('<tr id="choosemodel"><th width="20%">请选择模型:</th><td><input type="file" name="file" value="上传"></td></tr>');
+                $('table').append('<tr id="choosemodel">' +
+                        '<th width="20%">请选择模型:</th>' +
+                        '<td><input type="file" name="file" value="上传">' +
+                        '</td>' +
+                        '</tr>');
                 $('#choosefile').remove();
+                $('#initValue').remove();
             } else {
+                $('table').append('<tr id="initValue">' +
+                        '<th width = "20%" > 初始值:</th>' +
+                        '<td colspan = "5" >' +
+                        '<input type = "text" id="ddDataLastestValue" name="ddDataLastestValue" value="" class="form-control"/>' +
+                        '</td>' +
+                        '</tr>');
+
                 $('#choosefile').remove();
                 $('#choosemodel').remove();
             }

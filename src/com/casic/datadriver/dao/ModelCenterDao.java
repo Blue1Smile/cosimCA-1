@@ -35,4 +35,7 @@ public class ModelCenterDao   extends BaseDao<ModelCenterModel> {
 
     public void del(Long id) {
         this.getBySqlKey("delmodel", id);}
+
+    public List<ModelCenterModel> getByTaskId(Long taskId) {
+        return this.getBySqlKey("getByTaskId", taskId);}
 }

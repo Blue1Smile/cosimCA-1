@@ -43,4 +43,7 @@ public class ModelCenterService extends BaseService<ModelCenterModel> {
         this.modelcenterdao.del(id);
     }
 
+    public List<ModelCenterModel> getByTaskId(Long taskId) {
+        return this.modelcenterdao.getByTaskId(taskId);
+    }
 }

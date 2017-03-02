@@ -57,6 +57,13 @@
         where dd_model_type = #{id} AND dd_model_name = #{Name}
     </select>
 
+  <select id="getByTaskId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM dd_modelcenter
+    where dd_model_type = #{modeltype} AND dd_model_bf2 = 1
+  </select>
+
     <delete id="delmodel" parameterType="java.lang.Long">
         delete from dd_modelcenter
         where dd_mdoel_id = #{id,jdbcType=NUMERIC}
