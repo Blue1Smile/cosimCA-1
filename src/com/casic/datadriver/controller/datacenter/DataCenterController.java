@@ -359,7 +359,7 @@ return mv;
     @Action(description = "私有数据数据快照")
     public void datasnapshot(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
+        String preUrl = RequestUtil.getPrePage(request);
         Long projectId = RequestUtil.getLong(request, "projectId");
 //        String ddDataTag = RequestUtil.getString(request, "ddDataTag");
         DataSnapInfoId dataSnapInfoId=new DataSnapInfoId();
@@ -389,8 +389,7 @@ return mv;
                 dataSnapshotService.add(dataSnapshot);
             }
         }
-
-
+        response.sendRedirect(preUrl);
     }
 
 

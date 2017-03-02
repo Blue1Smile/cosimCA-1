@@ -129,27 +129,27 @@
             });
         }
 
-        var     switch_attr_tree = document.getElementById('switch_attr_tree'),
-                switch_attr_snapshot = document.getElementById('switch_attr_snapshot');
+        <%--var     switch_attr_tree = document.getElementById('switch_attr_tree'),--%>
+                <%--switch_attr_snapshot = document.getElementById('switch_attr_snapshot');--%>
 
-        switch_attr_tree.onclick = function () {
-            $.get("list.ht", function (data) {
-                $('#tree').html(data);
-            });
-        }
-        switch_attr_snapshot.onclick = function () {
-            $.get("${ctx}/datadriver/datacenter/snapshotlist.ht", function (data) {
-                $('#snapshot').html(data);
-            });
-        }
+        <%--switch_attr_tree.onclick = function () {--%>
+            <%--$.get("list.ht", function (data) {--%>
+                <%--$('#tree').html(data);--%>
+            <%--});--%>
+        <%--}--%>
+        <%--switch_attr_snapshot.onclick = function () {--%>
+            <%--$.get("${ctx}/datadriver/datacenter/snapshotlist.ht", function (data) {--%>
+                <%--$('#snapshot').html(data);--%>
+            <%--});--%>
+        <%--}--%>
     </script>
 </head>
 <body>
 <div class="container-fluid" style="height: 100%">
-  <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active" id="switch_attr_tree"><a href="#tree" data-toggle="tab" role="tab">项目树</a></li>
-        <li role="presentation" id="switch_attr_snapshot"><a href="#snapshot" data-toggle="tab" role="tab">数据快照</a></li>
-    </ul>
+  <%--<ul class="nav nav-tabs" role="tablist">--%>
+        <%--<li role="presentation" class="active" id="switch_attr_tree"><a href="#tree" data-toggle="tab" role="tab">项目树</a></li>--%>
+        <%--<li role="presentation" id="switch_attr_snapshot"><a href="#snapshot" data-toggle="tab" role="tab">数据快照</a></li>--%>
+    <%--</ul>--%>
     <div class="col-xs-3" style="height: 100%">
 
         <%--<div></div>--%>
@@ -172,13 +172,13 @@
             </div>
 
         </div>
-        <div class="modal fade" id="snapshot" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+        <%--<div class="modal fade" id="snapshot" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
+            <%--<div class="modal-dialog modal-lg" role="document">--%>
+                <%--<div class="modal-content">--%>
 
-                </div>
-            </div>
-        </div>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
     </div>
 </div>
     <%--index--%>

@@ -16,7 +16,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <%--<%@include file="/commons/include/form.jsp" %>--%>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
@@ -54,7 +54,7 @@
                     <td><input type="text" id="ddDataTaskName" name="ddDataTaskName"
                                value="${taskInfo.ddTaskName}" class="form-control" readonly/></td>
                 </tr>
-                <tr>
+                <tr id="changemodelfile">
                     <th width="20%">数据类型:</th>
                     <td>
                         <ap:selectDB name="ddDataType" id="ddDataType"
@@ -102,7 +102,18 @@
             if (frm.valid()) {
                 form.submit();
                 window.location.reload(true);
-                <%--window.location.href = "${ctx}/datadriver/personaltask/todotask.ht?id=${taskInfo.ddTaskId}";--%>
+            }
+        });
+        $("#ddDataType").change(function () {
+            if ($(this).val() == '文件') {
+                $('table').append('<tr id="choosefile"><th width="20%">请选择文件:</th><td><input type="file" name="file" value="上传"></td></tr>');
+                $('#choosemodel').remove();
+            } else if ($(this).val() == '模型') {
+                $('table').append('<tr id="choosemodel"><th width="20%">请选择模型:</th><td><input type="file" name="file" value="上传"></td></tr>');
+                $('#choosefile').remove();
+            } else {
+                $('#choosefile').remove();
+                $('#choosemodel').remove();
             }
         });
     });

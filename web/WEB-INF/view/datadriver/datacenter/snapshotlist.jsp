@@ -26,12 +26,6 @@
 
 </head>
 <body>
-
-<div class="layui-tab layui-tab-card">
-  <ul class="layui-tab-title">
-    <li class="layui-this"></li>
-  </ul>
-  <div class="layui-tab-content">
     <c:set var="checkAll">
       <input type="checkbox" id="chkall"/>
     </c:set>
@@ -49,8 +43,6 @@
 
       </display:column>
     </display:table>
-  </div>
-</div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>

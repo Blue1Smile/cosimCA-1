@@ -57,6 +57,8 @@
         <li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">已订阅</a>
         </li>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">项目指标</a></li>
+        <li role="presentation" id="switch_attr_file"><a href="#file" data-toggle="tab" role="tab">文件与模型</a></li>
+
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>
         <div class="pull-right">
             <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 进程统计
@@ -67,6 +69,8 @@
             <%--&lt;%&ndash;data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>&ndash;%&gt;--%>
             <a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
+            <a class="btn btn-primary" href="#" id="upload_file" onclick=""><span
+                    class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
             <a class="btn btn-info" href="#" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
@@ -205,6 +209,8 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="calendar">
     </div>
+    <div role="tabpanel" class="tab-pane" id="file">
+    </div>
 </div>
 </div>
 <%--添加数据--%>
@@ -240,14 +246,16 @@
         </div>
     </div>
 </div>
-<%--&lt;%&ndash;任务详细&ndash;%&gt;--%>
-<%--<div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--%>
-<%--<div class="modal-dialog" role="document">--%>
-<%--<div class="modal-content" style="overflow: auto" id="taskdetailcontent" style="overflow: auto">--%>
 
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
+<%--文件上传--%>
+<div class="modal fade" id="fileupload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="overflow: auto" id="fileuploadcontent" style="overflow: auto">
+
+        </div>
+    </div>
+</div>
+
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script src="${ctx}/styles/loading/PerfectLoad.js"></script>
@@ -281,6 +289,7 @@
         }
 
         $("#create_data").show();
+        $("#upload_file").hide();
     });
 
     var showLeftPush = document.getElementById('showLeftPush'),
@@ -312,21 +321,32 @@
             $('#index').html(data);
         });
         $("#create_data").hide();
+        $("#upload_file").hide();
     }
     switch_attr_task.onclick = function () {
         $("#create_data").show();
+        $("#upload_file").hide();
     }
     switch_attr_publish.onclick = function () {
         $.get("${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#publish').html(data);
         });
         $("#create_data").hide();
+        $("#upload_file").hide();
     }
     switch_attr_order.onclick = function () {
         $.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#order').html(data);
         });
         $("#create_data").hide();
+        $("#upload_file").hide();
+    }
+    switch_attr_file.onclick = function () {
+        $.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#order').html(data);
+        });
+        $("#create_data").hide();
+        $("#upload_file").show();
     }
     statis_btn.onclick = function () {
         $('#statis').modal({

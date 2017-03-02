@@ -18,12 +18,15 @@
 <html lang="zh-CN">
 <head>
     <title>项目指标信息列表</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <%@include file="/newtable/tablecontext.jsp" %>
 </head>
 <body>
-<%--<a id="" class="btn btn-primary" href="${ctx}/datadriver/datacenter/datasnapshot.ht?projectId=${projectId}"><span--%>
-<%--class="glyphicon glyphicon-ok"></span>数据快照</a>--%>
+<p class="pull-right">
+    <a id="" class="btn btn-success" href="${ctx}/datadriver/datacenter/datasnapshot.ht?projectId=${projectId}"><span
+            class="glyphicon glyphicon-camera"></span> 数据快照</a>
+</p>
+
 <%--<a id="" class="btn btn-primary" href="${ctx}/datadriver/datacenter/snapshotlist.ht"><span--%>
 <%--class="glyphicon glyphicon-ok"></span>快照列表</a>--%>
 <table id="indextable"></table>
@@ -176,7 +179,7 @@
                 field: 'ddIndexId',
                 values: [row.ddIndexId],
             });
-            $.get('${ctx}/datadriver/index/delindex.ht?id='+row.ddIndexId);
+            $.get('${ctx}/datadriver/index/delindex.ht?id=' + row.ddIndexId);
         }
 
     };
