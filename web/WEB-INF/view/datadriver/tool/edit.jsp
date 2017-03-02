@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-<%@page import="com.hotent.core.util.ContextUtil" %>
 <html lang="zh-CN">
 <head>
     <title>项目基础信息添加</title>

@@ -18,7 +18,7 @@
 <html lang="zh-CN">
 <head>
     <title>办理任务</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/newtable/bootstrap.css"/>
@@ -261,7 +261,7 @@
 <script src="${ctx}/styles/loading/PerfectLoad.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $.MyCommon.PageLoading({ sleep: 500 });
+        $.MyCommon.PageLoading({sleep: 500});
         $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
@@ -292,14 +292,14 @@
         $("#upload_file").hide();
     });
 
-    var showLeftPush = document.getElementById('showLeftPush'),
-            showRightPush = document.getElementById('showRightPush'),
-            switch_attr_index = document.getElementById('switch_attr_index'),
+    var switch_attr_index = document.getElementById('switch_attr_index'),
             switch_attr_task = document.getElementById('switch_attr_task'),
             switch_attr_publish = document.getElementById('switch_attr_publish'),
             switch_attr_order = document.getElementById('switch_attr_order'),
             statis_btn = document.getElementById('statis_btn'),
-            create_task = document.getElementById('create_task');
+            create_task = document.getElementById('create_task'),
+            upload_file = document.getElementById('upload_file');
+
     function showDataContent(dataId) {
         $('#datadetail').modal({
             keyboard: true,
@@ -352,6 +352,12 @@
         $('#statis').modal({
             keyboard: true,
             remote: "statis.ht?id=${TaskInfo.ddTaskId}"
+        })
+    }
+    upload_file.onclick = function () {
+        $('#fileupload').modal({
+            keyboard: true,
+            remote: "uploadfile.ht?id=${TaskInfo.ddTaskId}"
         })
     }
 </script>
