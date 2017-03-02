@@ -82,6 +82,11 @@
                                               rows="5"/></textarea>
                     </td>
                 </tr>
+                <tr>
+                    <th width="20%">初始值:</th>
+                    <td colspan="5"><input type="text" id="ddDataLastestValue" name="ddDataLastestValue"
+                               value="" class="form-control"/></td>
+                <tr>
                 <input type="hidden" id="ddDataTaskId" name="ddDataTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
