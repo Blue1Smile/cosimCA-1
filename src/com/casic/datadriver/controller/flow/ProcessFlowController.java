@@ -121,6 +121,14 @@ public class ProcessFlowController extends AbstractController {
                         style += ";strokeColor=red";
                         mxCell.setAttribute("style",style);
                     }
+                    else if(ddTaskChildType.compareTo("checkpanel")==0) {
+                        style += ";strokeColor=green";
+                        mxCell.setAttribute("style",style);
+                    }
+                    else if(ddTaskChildType.compareTo("completepanel")==0) {
+                        style += ";strokeColor=blue";
+                        mxCell.setAttribute("style",style);
+                    }
                 }
 
                //输出改造后的xml
@@ -199,7 +207,13 @@ public class ProcessFlowController extends AbstractController {
                     proTaskDependanceService.addDDProTaskDependance(proTaskDependance);
                     //resultMsg = getText("record.added", "添加完成");
                 } else {
-                    taskInfoService.updateDDTask(taskInfo);
+                    TaskInfo byId;
+                    byId = taskInfoService.getById(taskInfo.getDdTaskId());
+                    byId.setDdTaskName(el.getAttributeValue("label"));
+                    byId.setDdTaskDescription(taskdesp);
+                    byId.setDdTaskType(tasktype);
+
+                    taskInfoService.updateDDTask(byId);
                     //resultMsg = getText("record.updated", "更新完成");
                 }
             } catch (Exception e) {
@@ -255,6 +269,7 @@ public class ProcessFlowController extends AbstractController {
             processflow.setDdProcessXml(xml);
 
             processFlowService.update(processflow);
+
         }
     }
 
