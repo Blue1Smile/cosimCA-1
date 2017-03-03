@@ -233,7 +233,6 @@ public class ProcessFlowController extends AbstractController {
                     //resultMsg = getText("record.added", "添加完成");
                 } else {
                     TaskInfo byId;
-
                     byId = taskInfoService.getById(taskInfo.getDdTaskId());
                     byId.setDdTaskName(el.getAttributeValue("label"));
                     byId.setDdTaskDescription(taskdesp);
@@ -241,25 +240,19 @@ public class ProcessFlowController extends AbstractController {
 
                     taskInfoService.updateDDTask(byId);
                     //resultMsg = getText("record.updated", "更新完成");
-
                     for(Iterator it =taskInfoList.iterator();it.hasNext();)
                     {
                         TaskInfo ti = (TaskInfo) it.next();
                         if(ti.getDdTaskId()==taskInfo.getDdTaskId())
                             it.remove();
                     }
-
                 }
             } catch (Exception e) {
                 writeResultMessage(response.getWriter(), e.getMessage(), ResultMessage.Fail);
             }
-
             el.setAttribute("oracleid", taskInfo.getDdTaskId().toString());
             System.out.println(taskInfo.getDdTaskId().toString());
         }
-
-
-
         //保存流程XML
         if (projectId != 0)
             saveProcessXml(doc, projectId);

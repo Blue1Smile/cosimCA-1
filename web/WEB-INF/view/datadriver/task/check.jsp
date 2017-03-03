@@ -15,44 +15,47 @@
 <%@page import="com.hotent.core.util.ContextUtil" %>
 <html lang="zh-CN">
 <head>
-  <title>发布/订购数据</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-  <%@include file="/commons/include/form.jsp" %>
-  <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-  <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-  <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-  <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <title>发布/订购数据</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <%@include file="/commons/include/form.jsp" %>
+    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
 
-  <style>
-    #iframe_tab {
-      margin-top: 0px;
-    }
-    .fl {
-      float: left;
-    }
+    <style>
+        #iframe_tab {
+            margin-top: 0px;
+        }
 
-    .fr {
-      float: right;
-    }
-    .pages{
-      float: right;
-    }
-    .page_line{
-      display:inline;
-    }
-  </style>
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .pages {
+            float: right;
+        }
+
+        .page_line {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
 
 <div class="layui-tab layui-tab-card" id="iframe_tab">
-  <ul class="layui-tab-title">
-    <li class="layui-this" id="init">发布数据</li>
+    <ul class="layui-tab-title">
+        <li class="layui-this" id="init">发布数据</li>
 
-  </ul>
-  <div class="layui-tab-content" style="height: 100%;">
-    <!--任务发布数据-->
-    <blockquote class="layui-elem-quote">
-      <div style="height: 40px;">
+    </ul>
+    <div class="layui-tab-content" style="height: 100%;">
+        <!--任务发布数据-->
+        <blockquote class="layui-elem-quote">
+            <div style="height: 40px;">
                 <span class="fl">
                     <form id="searchForm" method="post" action="list.ht">
                       <input type="text" name="ddDataName" class="layui-input"
@@ -60,42 +63,44 @@
                     </form>
                 </span>
                 <span class="fr">
-                    <a class="layui-btn layui-btn-normal" id="checktask" href="checktask.ht?id=${TaskId}"><i class="layui-icon">&#xe615;</i> 审核通过</a>
+                    <a class="layui-btn layui-btn-normal" id="checktask" href="checktask.ht?id=${TaskId}"><i
+                            class="layui-icon">&#xe615;</i> 审核通过</a>
                     <a class="layui-btn layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i class="layui-icon">&#x1002;</i> 刷新</a>
+                    <a class="layui-btn layui-btn-primary" onclick="location.reload()"><i
+                            class="layui-icon">&#x1002;</i> 刷新</a>
                 </span>
-      </div>
-    </blockquote>
-    <div class="layui-tab-item">
-      <c:set var="checkAll">
-        <input type="checkbox" id="chkall"/>
-      </c:set>
-      <display:table name="privateDataList" id="privateDataList" requestURI="check.ht"
-                     sort="external" cellpadding="1"
-                     cellspacing="1" export="false" class="layui-table" pagesize="10">
-        <display:column title="${checkAll}" media="html" style="width:5%;">
-          <input type="checkbox" class="pk" name="id" value="${privateDataList.ddTaskId}">
-        </display:column>
-        <display:column property="ddDataId" title="数据编号" sortable="true" maxLength="80"></display:column>
-        <display:column property="ddDataName" title="数据名称" sortable="true" maxLength="80"></display:column>
-        <display:column property="ddDataType" title="数据类型" sortable="true" maxLength="80"></display:column>
-        <display:column property="ddDataDescription" title="数据描述" sortable="true"
-                        maxLength="80"></display:column>
-        <display:column property="ddDataTaskId" title="数据所属任务id" sortable="true"
-                        maxLength="80"></display:column>
-        <display:column title="操作" media="html" style="width:100px">
-          <a href="${ctx}/datadriver/datacenter/dataversion.ht?id=${privateDataList.ddDataId}"
-             class="layui-btn layui-btn-normal  layui-btn-small"><i
-                  class="layui-icon">&#xe615;</i> 数据版本</a>
-        </display:column>
-      </display:table>
-    </div>
+            </div>
+        </blockquote>
+        <div class="layui-tab-item">
+            <c:set var="checkAll">
+                <input type="checkbox" id="chkall"/>
+            </c:set>
+            <display:table name="privateDataList" id="privateDataList" requestURI="check.ht"
+                           sort="external" cellpadding="1"
+                           cellspacing="1" export="false" class="layui-table" pagesize="10">
+                <display:column title="${checkAll}" media="html" style="width:5%;">
+                    <input type="checkbox" class="pk" name="id" value="${privateDataList.ddTaskId}">
+                </display:column>
+                <display:column property="ddDataId" title="数据编号" sortable="true" maxLength="80"></display:column>
+                <display:column property="ddDataName" title="数据名称" sortable="true" maxLength="80"></display:column>
+                <display:column property="ddDataType" title="数据类型" sortable="true" maxLength="80"></display:column>
+                <display:column property="ddDataDescription" title="数据描述" sortable="true"
+                                maxLength="80"></display:column>
+                <display:column property="ddDataTaskId" title="数据所属任务id" sortable="true"
+                                maxLength="80"></display:column>
+                <display:column title="操作" media="html" style="width:100px">
+                    <a href="${ctx}/datadriver/datacenter/dataversion.ht?id=${privateDataList.ddDataId}"
+                       class="layui-btn layui-btn-normal  layui-btn-small"><i
+                            class="layui-icon">&#xe615;</i> 数据版本</a>
+                </display:column>
+            </display:table>
+        </div>
 
-  </div>
+    </div>
 </div>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script>
-  $('#init').trigger('click');
+    $('#init').trigger('click');
 </script>
 </body>
 </html>

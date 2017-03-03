@@ -18,8 +18,6 @@
 <head>
     <title>文件和模型上传</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%--<link rel="stylesheet" type="text/css" href="${ctx}/uploadfile/webuploader.css">--%>
-    <%--<script type="text/javascript" src="${ctx}/uploadfile/webuploader.js"></script>--%>
 </head>
 <script type="text/javascript">
     $(function () {
@@ -30,12 +28,8 @@
             frm.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
-                <%--alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);--%>
-
                 $("#fileupload").modal('hide');
                 $("#tb_departments").bootstrapTable("refresh");
-
-                <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
             }
         });
     });

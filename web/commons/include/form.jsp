@@ -11,8 +11,8 @@
 <%--<f:link href="web.css" ></f:link>--%>
 <%--<f:link href="process.css" ></f:link>--%>
 <script type="text/javascript" src="${ctx}/js/dynamic.jsp"></script>
-<script src="${ctx}/newtable/jquery.js"></script>
 <%--<script src="${ctx}/newtable/jquery.js"></script>--%>
+<script src="${ctx}/newtable/jquery.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>

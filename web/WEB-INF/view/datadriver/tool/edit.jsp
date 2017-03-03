@@ -8,15 +8,7 @@
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
-    <%--&lt;%&ndash;<script src="${ctx}/newtable/jquery.js"></script>&ndash;%&gt;--%>
-    <%--<script src="${ctx}/newtable/bootstrap.js"></script>--%>
-    <%--<script src="${ctx}/newtable/bootstrap-table.js"></script>--%>
-    <%--<script src="${ctx}/newtable/bootstrap-table-zh-CN.js"></script>--%>
-    <%--<script src="${ctx}/newtable/tableExport.js"></script>--%>
-    <%--<script src="${ctx}/newtable/bootstrap-editable.js"></script>--%>
-    <%--<script src="${ctx}/newtable/bootstrap-table-editable.js"></script>--%>
 
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
@@ -40,25 +32,15 @@
                 frm.ajaxForm(options);
                 if (frm.valid()) {
                     form.submit();
-                    <%--alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);--%>
-//                    alert(111);
 
                     $("#addindex1").modal('hide');
                     $("#tb_departments").bootstrapTable("refresh");
-
-
-                    <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
                 }
             });
         });
 
         function showResponse(responseText) {
             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-            <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
-            <%--alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);--%>
-            <%--parent.location.href= "list.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
-            <%--parent.location.href= "toollist1.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>";--%>
-
         }
 
     </script>
@@ -117,7 +99,6 @@
             </tr>
         </table>
     </form>
-    <%--<input class="btn btn-primary btn-block" id="dataFormSave" value="创建新任务"/>--%>
     <td><input id="dataFormSave" value="上传" type="submit" class="btn btn-primary btn-block"></td>
 </div>
 </body>

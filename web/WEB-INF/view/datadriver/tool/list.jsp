@@ -24,27 +24,11 @@
     </style>
     <script type="text/javascript">
         $(function () {
-//            layout();
             loadTree();
-            <%--alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);--%>
             $.get("toollist1.ht?major="+1 , function (data) {
                 $('#toolsListFrame').html(data);
             });
-//            createTree();
         });
-//        //布局
-//        function layout() {
-//            $("#layout").ligerLayout({
-//                leftWidth: 210,
-//                height: "98%",
-//                onHeightChanged: heightChanged,
-//                allowLeftResize: false
-//            });
-//            //取得layout的高度
-//            var height = $(".l-layout-center").height();
-//            $("#tree").height(height - 60);
-//        }
-//        ;
 
         //布局大小改变的时候通知tab，面板改变大小
         function heightChanged(options) {
@@ -82,11 +66,9 @@
                     , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
                     , click: function (item) { //点击节点回调
                         if (item.name == undefined) return;
-//                    $("#listFrame").attr("src", "toollist1.ht?major=" +  item.ddMajorId);
                         $.get("toollist1.ht?major=" + item.ddMajorId, function (data) {
                             $('#toolsListFrame').html(data);
                         });
-//                    console.log(item);
                     }
                     , nodes: strToJson(test)
                 });
@@ -99,7 +81,6 @@
 request.setCharacterEncoding("UTF-8");
     if (request.getParameter("major")==null)
     {
-//        return;
     }
     else {
 
@@ -111,7 +92,7 @@ out.print("name:"+major);}
     <div class="col-xs-3" style="height: 100%">
         <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">工具专业树</div>
-            <div class="panel-body" style="height: 93%">
+            <div class="panel-body" style="height: 93%; overflow-x: hidden;overflow-y: auto">
                 <ul id="demo2"></ul>
             </div>
 

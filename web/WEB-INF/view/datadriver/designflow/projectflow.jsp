@@ -12,7 +12,6 @@
 <head>
     <title>项目流程</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%--<link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>--%>
     <style type="text/css" media="screen">
         div.base {
             position: absolute;
@@ -36,7 +35,6 @@
     <script type="text/javascript" src="${ctx}/designflow/editors/js/mxApplication.js"></script>
     <script type="text/javascript">
         mxConstants.DEFAULT_HOTSPOT = 1;
-
         var id='${projectId}';
         var xml='${processFlowXml}';
         var flag=${flag};
@@ -47,14 +45,11 @@
         mxGuide.prototype.isEnabledForEvent = function (evt) {
             return !mxEvent.isAltDown(evt);
         };
-
         // Enables snapping waypoints to terminals
         mxEdgeHandler.prototype.snapToTerminals = true;
 
-
         window.onbeforeunload = function () {
-            return "  ";
-
+            return " ";
         };
     </script>
 </head>
@@ -74,7 +69,5 @@
 <div id="status" class="base" align="right">
     <!-- Status Here -->
 </div>
-
 </body>
-<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
 </html>
