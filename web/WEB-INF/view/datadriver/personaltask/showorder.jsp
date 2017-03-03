@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <%@page language="java" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
     <title>数据发布列表</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%@include file="/newtable/tablecontext.jsp" %>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
 </head>
 <body>
 <table id="ordertablelist">
@@ -42,9 +32,9 @@
             sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
-            pageNumber:1,                       //初始化加载第一页，默认第一页
+            pageNumber: 1,                       //初始化加载第一页，默认第一页
             pageSize: 5,                       //每页的记录行数（*）
-            queryParamsType:'',
+            queryParamsType: '',
             // queryParams:queryParams,
             pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
@@ -55,7 +45,7 @@
             clickToSelect: false,                //是否启用点击选中行
             height: 380,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
-            showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
+            showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: true,                   //是否显示父子表
             columns: [
@@ -120,44 +110,8 @@
             onClickRow: function (row, $element) {
                 curRow = row;
             },
-            //注册加载子表的事件。注意下这里的三个参数！
-//            onExpandRow: function (index, row, $detail) {
-//                $table.InitSubTable(index, row, $detail);
-//            },
-            //查询参数,每次调用是会带上这个参数，可自定义
-//            queryParams: function(params) {
-//                var name = $('#ddDataName').val();
-//                return {
-//                    pageNumber: params.offset+1,
-//                    pageSize: params.limit,
-//                    name:name
-//                };
-//            },
-//            onEditableSave: function (field, row, oldValue, $el) {
-//                $.ajax({
-//                    type: "post",
-//                    url: "refreshlastvalue.ht",
-//                    data: { strJson: JSON.stringify(row) },
-//                    success: function (data, status) {
-//                        if (status == "success") {
-//                            alert("编辑成功");
-//                        }
-//                    },
-//                    error: function () {
-//                        alert("Error");
-//                    },
-//                    complete: function () {
-//
-//                    }
-//
-//                });
-//            }
         });
 
-        // sometimes footer render error.
-//        setTimeout(function () {
-//            $table.bootstrapTable('resetView');
-//        }, 200);
         $table.on('check.bs.table uncheck.bs.table ' +
                 'check-all.bs.table uncheck-all.bs.table', function () {
             $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
@@ -169,9 +123,6 @@
         $table.on('expand-row.bs.table', function (e, index, row, $detail) {
             $table.InitSubTable(index, row, $detail);
         });
-        $table.on('all.bs.table', function (e, name, args) {
-            console.log(name, args);
-        });
         $remove.click(function () {
             var ids = getIdSelections();
             $table.bootstrapTable('remove', {
@@ -180,80 +131,6 @@
             });
             $remove.prop('disabled', true);
         });
-//        $table.InitSubTable = function (index, row, $detail){
-//            var ddDataId = row.ddDataId;
-//            var cur_table = $detail.html('<table></table>').find('table');
-//            $(cur_table).bootstrapTable({
-//                url: 'showfiveversion.ht',
-//                method: 'post',
-//                data:{ddDataId: ddDataId},
-//                queryParams: {ddDataId: ddDataId},
-//                ajaxOptions: {ddDataId: ddDataId},
-//                clickToSelect: true,
-//                detailView: true,//父子表
-//                detailFormatter:"detailFormatter",
-//                uniqueId: "MENU_ID",
-//                pageSize: 2,
-//                pageList: "[5, 10, 20, 50, ALL]",
-//                columns: [
-//                    //    {
-//                    //    checkbox: true
-//                    //},
-//                    {//第一列，数据ID
-//                        field: 'ddDataVersionId',
-//                        title: '数据版本ID',
-//                        sortable: true,
-//                        editable: false,
-//                        align: 'center',
-//                        visible: false
-//                    }, {//第二列，名称
-//                        field: 'ddDataId',
-//                        title: '数据ID',
-//                        sortable: true,
-//                        editable: false,
-//                        // footerFormatter: ddDataNameFormatter,
-//                        align: 'center',
-//                        visible: true
-//                    }, {//所属任务ID
-//                        field: 'ddDataRecordTime',
-//                        title: '数据记录时间',
-//                        sortable: true,
-//                        editable: false,
-//                        // footerFormatter: ddDataNameFormatter,
-//                        align: 'center',
-//                        visible: false
-//                    }
-//                    , {//第三列，数值
-//                        field: 'ddDataRecordPersonId',
-//                        title: '数据记录人ID',
-//                        sortable: true,
-//                        align: 'center'
-////                        editable: {
-////                            type: 'text',
-////                            title: '值',
-////                            validate: function (v) {
-////                                if (isNaN(v)) return '值必须是数字';
-////                            }
-////                        }
-//                        //,
-//                        // footerFormatter: ddDataLastestValueFormatter
-//                    }
-//                    , {//数据类型
-//                        field: 'ddDataValue',
-//                        title: '数据值',
-//                        sortable: true,
-//                        editable: false,
-//                        // footerFormatter: ddDataNameFormatter,
-//                        align: 'center',
-//                        visible: true
-//                    }
-//                ],
-//                ////无线循环取子表，直到子表里面没有记录
-//                //onExpandRow: function (index, row, $Subdetail) {
-//                //    oInit.InitSubTable(index, row, $Subdetail);
-//                //}
-//            });
-//        }
     }
 
     function getIdSelections() {
@@ -319,11 +196,11 @@
     }
 
     function ddDataNameFormatter(value, row, index) {
-        return "<a id=\"table_a\" href=\"#\" name=\"ddDataName\" data-type=\"text\" data-pk=\""+row.id+"\" data-title=\"用户名\">" + value + "</a>";
+        return "<a id=\"table_a\" href=\"#\" name=\"ddDataName\" data-type=\"text\" data-pk=\"" + row.id + "\" data-title=\"用户名\">" + value + "</a>";
     }
 
     function ddDataLastestValueFormatter(data) {
-        return "<a href=\"#\" name=\"ddDataLastestValue\" data-type=\"text\" data-pk=\""+row.id+"\" data-title=\"值\">" + value + "</a>";
+        return "<a href=\"#\" name=\"ddDataLastestValue\" data-type=\"text\" data-pk=\"" + row.id + "\" data-title=\"值\">" + value + "</a>";
     }
 
     function getHeight() {

@@ -12,8 +12,7 @@
 <head>
     <title>项目基础信息列表</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%--<%@include file="/commons/include/get.jsp" %>--%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <script src="${ctx}/newtable/jquery.js"></script>
 
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
@@ -26,6 +25,7 @@
         .fr {
             float: right;
         }
+
         .pages {
             float: right;
         }
@@ -49,10 +49,13 @@
                                value="${param['Q_name_SL']}" placeholder="项目名称"/>
                     </div>
                     <div class="fr">
-                        <a class="layui-btn layui-btn-small layui-btn-normal" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                        <a class="layui-btn layui-btn-small" href="#" id="create" data-toggle="modal" data-remote="create.ht"
+                        <a class="layui-btn layui-btn-small layui-btn-normal" id="Search"><i class="layui-icon">
+                            &#xe615;</i> 查询</a>
+                        <a class="layui-btn layui-btn-small" href="#" id="create" data-toggle="modal"
+                           data-remote="create.ht"
                            data-target="#myCreate"><i class="layui-icon">&#xe61f;</i> 创建</a>
-                        <a class="layui-btn layui-btn-small layui-btn-primary" onclick="location.reload()"><i class="layui-icon">
+                        <a class="layui-btn layui-btn-small layui-btn-primary" onclick="location.reload()"><i
+                                class="layui-icon">
                             &#xe63d;</i> 刷新</a>
                     </div>
                 </form>

@@ -9,7 +9,7 @@
 <html lang="zh-CN">
 <head>
     <title>项目基础信息添加</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <%@include file="/commons/include/form.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
@@ -98,11 +98,6 @@
                                    class="layui-input"/></td>
                     </tr>
                     <tr>
-                        <%--<th width="20%">项目创建日期:</th>--%>
-                        <%--<td><input type="text" id="ddProjectCreateDatatime"--%>
-                        <%--name="ddProjectCreateDatatime"--%>
-                        <%--value="${Project.ddProjectCreateDatatime}"--%>
-                        <%--class="layui-input"/></td>--%>
                         <th width="20%">项目是否固化:</th>
                         <td><input type="text" id="ddProjectFixedPattern" name="ddProjectFixedPattern"
                                    value="${Project.ddProjectFixedPattern}"
@@ -122,14 +117,6 @@
                                    value="${Project.ddProjectCreatorId}"
                                    class="layui-input"/></td>
                     </tr>
-
-
-                    <%--<th width="20%">项目负责人id:</th>--%>
-                    <%--<td><input type="text" id="ddProjectResponsiblePersonId"--%>
-                    <%--name="ddProjectResponsiblePersonId"--%>
-                    <%--value="${Project.ddProjectResponsiblePersonId}"--%>
-                    <%--class="layui-input"/></td>--%>
-
                     <tr>
                         <th width="20%">项目类型:</th>
                         <td><input type="text" id="ddProjectType" name="ddProjectType"
@@ -151,10 +138,6 @@
                                    class="layui-input"/></td>
                     </tr>
                     <tr>
-                        <%--<th width="20%">状态:</th>--%>
-                        <%--<td><input type="text" id="ddProjectState" name="ddProjectState"--%>
-                        <%--value="${Project.ddProjectState}"--%>
-                        <%--class="layui-input"/></td>--%>
                         <th width="20%">计划开始日期:</th>
                         <td><input type="text" id="ddProjectPlanStartDate" name="ddProjectPlanStartDate"
                                    value="${Project.ddProjectPlanStartDate}"
@@ -164,32 +147,13 @@
                         <td><input type="text" id="ddProjectCompleteDate" name="ddProjectCompleteDate"
                                    value="${Project.ddProjectCompleteDate}"
                                    class="layui-input"/></td>
-                        <%--<th width="20%">实际开始日期:</th>--%>
-                        <%--<td><input type="text" id="ddProjectActualStartDate"--%>
-                        <%--name="ddProjectActualStartDate"--%>
-                        <%--value="${Project.ddProjectActualStartDate}"--%>
-                        <%--class="layui-input"/></td>--%>
                     </tr>
                     <tr>
                         <th width="20%">项目密级:</th>
                         <td><input type="text" id="ddProjectSecretLevel" name="ddProjectSecretLevel"
                                    value="${Project.ddProjectSecretLevel}"
                                    class="layui-input"/></td>
-                        <%--<th width="20%">修改人id:</th>--%>
-                        <%--<td><input type="text" id="ddProjectChangePersonId"--%>
-                        <%--name="ddProjectChangePersonId"--%>
-                        <%--value="${Project.ddProjectChangePersonId}"--%>
-                        <%--class="layui-input"/></td>--%>
                     </tr>
-                    <%--<th width="20%">实际结束日期:</th>--%>
-                    <%--<td><input type="text" id="ddProjectActualCompleteData"--%>
-                    <%--name="ddProjectActualCompleteData"--%>
-                    <%--value="${Project.ddProjectActualCompleteData}"--%>
-                    <%--class="layui-input"/></td>--%>
-                    <%--<th width="20%">当前项目进度:</th>--%>
-                    <%--<td><input type="text" id="ddProjectCurrentStage" name="ddProjectCurrentStage"--%>
-                    <%--value="${Project.ddProjectCurrentStage}"--%>
-                    <%--class="layui-input"/></td>--%>
                     <input type="hidden" name="ddProjectId" value="${Project.ddProjectId}">
                     <input type="hidden" name="ddProjectResponsiblePersonId"
                            value="${Project.ddProjectResponsiblePersonId}">
@@ -206,9 +170,6 @@
                            value="${Project.ddProjectCurrentStage}">
                 </table>
             </div>
-            <%--<div class="layui-tab-item">--%>
-            <%--<iframe src="${ctx}/datadriver/index/indexedit.ht" style="width: 100%;height: 600px" scrolling="auto" frameborder="no"></iframe>--%>
-            <%--</div>--%>
         </div>
     </div>
 </form>

@@ -12,10 +12,6 @@
     <title>任务基础信息</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
 
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap-editable.css" rel="stylesheet">
@@ -207,39 +203,6 @@
             <div class="panel panel-default">
                 <div class="panel-body"><h5 class="task-info-title">活动</h5>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <%--<div class="panel panel-default">--%>
-                        <%--<div class="panel-heading" role="tab" id="headingOne">--%>
-                        <%--<h5 class="panel-title">--%>
-                        <%--<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"--%>
-                        <%--aria-expanded="true" aria-controls="collapseOne">--%>
-                        <%--基本动态--%>
-                        <%--</a>--%>
-                        <%--</h5>--%>
-                        <%--</div>--%>
-                        <%--<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"--%>
-                        <%--aria-labelledby="headingOne">--%>
-                        <%--<div class="panel-body">--%>
-                        <%--<ul class="activities-list">--%>
-                        <%--<li class="activity">--%>
-                        <%--<span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>--%>
-                        <%--<div class="activity-body-coyness muted pull-right"><span>2017年1月16日</span>--%>
-                        <%--</div>--%>
-                        <%--<div class="activity-body-coyness muted">--%>
-                        <%--<span>设计师一 更新了 截止时间</span>--%>
-                        <%--</div>--%>
-                        <%--</li>--%>
-                        <%--<li class="activity">--%>
-                        <%--<span class="glyphicon glyphicon-pencil pull-left activity-type-icon muted"></span>--%>
-                        <%--<div class="activity-body-coyness muted pull-right"><span>2017年1月22日</span>--%>
-                        <%--</div>--%>
-                        <%--<div class="activity-body-coyness muted">--%>
-                        <%--<span>设计师一 更新了 优先级</span>--%>
-                        <%--</div>--%>
-                        <%--</li>--%>
-                        <%--</ul>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h5 class="panel-title">

@@ -170,15 +170,6 @@
                 </div>
             </div>
         </div>
-        <%--<div class="panel panel-default">--%>
-        <%--<div class="panel-body card">--%>
-        <%--<h5 class="task-info-title">--%>
-        <%--数据创建时间--%>
-        <%--</h5>--%>
-        <%--<a class="data-creat-time" href="#" id="creatTime" data-type="combodate" data-pk="1">--%>
-        <%--${privateData.ddDataCreateTime}</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
         <div class="row" id="row">
             <div class="panel panel-default">
                 <div class="panel-body card"><h5 class="task-info-title">记录</h5>

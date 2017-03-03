@@ -6,31 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="/commons/include/html_doctype.html" %>
+
+<%@page language="java" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
-<%@taglib prefix="display" uri="http://displaytag.sf.net" %>
-<%@taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<html>
+<html lang="zh-CN">
 <head>
     <title>模型</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%@include file="/newtable/tablecontext.jsp" %>
-    <%--&lt;%&ndash;<%@include file="/commons/include/form.jsp" %>&ndash;%&gt;--%>
-
-    <script type="text/javascript" src="${ctx}/js/dynamic.jsp"></script>
-    /<%--&lt;%&ndash;<script src="${ctx}/newtable/jquery.js"></script>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<script src="${ctx}/newtable/jquery.js"></script>&ndash;%&gt;--%>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
 
     <%--<link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">--%>
     <%--<link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">--%>
@@ -46,39 +33,19 @@
 
 </head>
 <body>
-<table id="tb_departments"
-       <%--data-url="${ctx}/datadriver/modelcenter/showmodel.ht?id=<%=request.getParameter("id")%>&son=3">--%>
-       data-url="${ctx}/datadriver/modelcenter/showmodel.ht?id=1&son=3">
+<table id="tb_departments" data-url="${ctx}/datadriver/modelcenter/showmodel.ht?id=<%=request.getParameter("id")%>&son=3">
 </table>
-
-<%--<script src="${ctx}/newtable/ordermodel.js"></script>--%>
-
-<%--<div class="modal fade" id="addindex1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
-<%--<div class="modal-dialog" role="document">--%>
-<%--<div class="modal-content">--%>
-
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
 </body>
 <script type="text/javascript">
     $(function () {
-
 //1.初始化Table
         new TableInit();
-// oTable.Init();
-
-// //2.初始化Button的点击事件
-//        new ButtonInit();
-// oButtonInit.Init();
 
     });
 
 
     function TableInit() {
-// var oTableInit = new Object();
 //初始化Table
-
         $('#tb_departments').bootstrapTable({
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -186,8 +153,6 @@
             $("#tb_departments").bootstrapTable("refresh");
         },
         'click .download': function (e, value, row, index) {
-//            var pa1th = ppp;
-//            alert(pa1th);
             window.location.href = "${ctx}/datadriver/modelcenter/getmodel.ht?modelurl=" + row.ModelUrl + "&modelname=" + row.ModelName;
         }
     };

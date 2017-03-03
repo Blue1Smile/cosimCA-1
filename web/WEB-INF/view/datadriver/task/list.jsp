@@ -61,31 +61,10 @@
                 <display:column title="${checkAll}" media="html" style="width:3%;">
                     <input type="checkbox" class="pk" name="id" value="${TaskItem.ddTaskId}">
                 </display:column>
-                <%--<display:column property="ddTaskId" title="任务ID" sortable="true" sortName="DD_TASK_ID"--%>
-                <%--maxLength="80"></display:column>--%>
                 <display:column property="ddTaskName" title="任务名称" sortable="true" maxLength="60"></display:column>
-                <%--<display:column property="ddTaskDescription" title="任务描述" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskCreatorId" title="任务创建者id"></display:column>--%>
                 <display:column property="ddTaskPerson" title="任务负责人" sortable="true"></display:column>
-                <%--<display:column property="ddTaskFixedPattern" title="任务是否固化" maxLength="80"></display:column>--%>
                 <display:column property="ddTaskType" title="任务类型" maxLength="80"></display:column>
-                <%--<display:column property="ddTaskChildType" title="任务子类型" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskPriority" title="优先级" ></display:column>--%>
-                <%--<display:column property="ddTaskMilestone" title="里程碑任务" sortable="true" ></display:column>--%>
-                <%--<display:column property="ddTaskEstimateTime" title="任务计划工时" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskPlanStartTime" title="任务计划开始时间" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskPlanEndTime" title="任务计划结束时间" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskCompleteRate" title="任务完成率" ></display:column>--%>
-                <%--<display:column property="ddTaskCompleteState" title="任务完成状态" sortable="true" ></display:column>--%>
-                <%--<display:column property="ddTaskResourceId" title="任务资源id" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskActualTime" title="实际工时"  maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskPlanTime" title="计划工时" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskActualStartTime" title="实际开始日期" ></display:column>--%>
-                <%--<display:column property="ddTaskActualEndTime" title="实际结束日期" ></display:column>--%>
-                <%--<display:column property="ddTaskPlanDuration" title="计划工期" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>--%>
                 <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
-
                 <display:column title="操作" media="html" style="width:400px">
                     <a href="edit.ht?id=${TaskItem.ddTaskId}" class="layui-btn layui-btn-mini"><i class="layui-icon">
                         &#xe642;</i> 编辑</a>
@@ -112,53 +91,17 @@
                 <display:column title="${checkAll}" media="html" style="width:3%;">
                     <input type="checkbox" class="pk" name="id" value="${TaskCheckItem.ddTaskId}">
                 </display:column>
-                <%--<display:column property="ddTaskId" title="任务ID" sortable="true" sortName="DD_TASK_ID"--%>
-                <%--maxLength="80"></display:column>--%>
                 <display:column property="ddTaskName" title="任务名称" sortable="true" maxLength="60"></display:column>
-                <%--<display:column property="ddTaskDescription" title="任务描述" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskCreatorId" title="任务创建者id"></display:column>--%>
                 <display:column property="ddTaskPerson" title="任务负责人" sortable="true"></display:column>
-                <%--<display:column property="ddTaskFixedPattern" title="任务是否固化" maxLength="80"></display:column>--%>
                 <display:column property="ddTaskType" title="任务类型" maxLength="80"></display:column>
-                <%--<display:column property="ddTaskChildType" title="任务子类型" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskPriority" title="优先级" ></display:column>--%>
-                <%--<display:column property="ddTaskMilestone" title="里程碑任务" sortable="true" ></display:column>--%>
-                <%--<display:column property="ddTaskEstimateTime" title="任务计划工时" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskPlanStartTime" title="任务计划开始时间" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskPlanEndTime" title="任务计划结束时间" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskCompleteRate" title="任务完成率" ></display:column>--%>
-                <%--<display:column property="ddTaskCompleteState" title="任务完成状态" sortable="true" ></display:column>--%>
-                <%--<display:column property="ddTaskResourceId" title="任务资源id" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskActualTime" title="实际工时"  maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskPlanTime" title="计划工时" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskActualStartTime" title="实际开始日期" ></display:column>--%>
-                <%--<display:column property="ddTaskActualEndTime" title="实际结束日期" ></display:column>--%>
-                <%--<display:column property="ddTaskPlanDuration" title="计划工期" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddTaskProjectId" title="任务所属项目" maxLength="80"></display:column>--%>
                 <display:column property="ddTaskProjectName" title="所属项目" maxLength="80"></display:column>
-
                 <display:column title="审核" media="html" style="width:320px">
                     <a href="${ctx}/datadriver/datacenter/publishorderdata.ht?id=${TaskCheckItem.ddTaskId}"
                        class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 审核</a>
                     <a href="rejecttask.ht"
                        class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 驳回</a>
-                    <%--<a href="get.ht?id=${TaskItem.ddTaskId}"--%>
-                    <%--class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
-                    <%--<a href="${ctx}/datadriver/privatedata/list.ht?id=${TaskItem.ddTaskId}"--%>
-                    <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe612;</i> 私有</a>--%>
-                    <%--<a href="publishconfig.ht?id=${TaskItem.ddTaskId}"--%>
-                    <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe63c;</i> 发布</a>--%>
-                    <%--<a href="orderconfig.ht?id=${TaskItem.ddTaskId}"--%>
-                    <%--class="layui-btn layui-btn-normal layui-btn-mini"><i class="layui-icon">&#xe627;</i> 订阅</a>--%>
-                    <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
-                    <%--class="layui-btn layui-btn-danger layui-btn-mini"><i class="layui-icon">&#xe640;</i> 删除</a>--%>
-                    <%--<a href="" class="layui-btn layui-btn-small layui-btn-warm">引用</a>--%>
-                    <%--<a href="del.ht?id=${TaskItem.ddTaskId}"--%>
-                    <%--class="layui-btn layui-btn-small layui-btn-danger">删除</a>--%>
                 </display:column>
-
             </display:table>
-            <%--<hotent:paging tableId="TaskItem"/>--%>
         </div>
     </div>
 </div>

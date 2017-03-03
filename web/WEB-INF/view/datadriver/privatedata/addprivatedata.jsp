@@ -17,7 +17,6 @@
 <html lang="zh-CN">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
@@ -28,7 +27,6 @@
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
-    <%--<link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
     <link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
 
     <title>添加私有数据</title>

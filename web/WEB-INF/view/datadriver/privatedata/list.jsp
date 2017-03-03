@@ -4,18 +4,18 @@
 <html lang="zh-CN">
 <head>
     <title>私有数据列表</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <%@include file="/commons/include/get.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <style>
-        .pages{
+        .pages {
             float: right;
         }
-        .page_line{
-            display:inline;
+
+        .page_line {
+            display: inline;
         }
     </style>
-
 </head>
 <body>
 <div class="layui-tab layui-tab-card">
@@ -39,8 +39,6 @@
                                value="${param['Q_taskid_SL']}"/>
                     </div>
                 </div>
-
-
                 <a class="layui-btn layui-btn-normal" id="Search">查询</a>
                 <a class="layui-btn layui-btn-normal" href="edit.ht?id=${taskInfo.ddTaskId}">添加</a>
                 <a class="layui-btn layui-btn-normal" href="${ctx}/datadriver/task/list.ht">返回</a>
@@ -54,34 +52,15 @@
             <display:column title="${checkAll}" media="html" style="width:3%;">
             <input type="checkbox" class="pk" name="id" value="${PrivateDataItem.ddDataId}">
             </display:column>
-                <%--<display:column property="ddDataId" title="数据编号" sortable="true" sortName="DD_DATA_ID"--%>
-                <%--maxLength="80"></display:column>--%>
                 <display:column property="ddDataName" title="数据名称" sortable="true" sortName="DD_DATA_NAME"
                                 maxLength="80"></display:column>
                 <display:column property="ddDataType" title="数据类型" maxLength="80"></display:column>
-                <%--<display:column property="ddDataDescription" title="数据描述"></display:column>--%>
-                <%--<display:column property="ddDataTaskId" title="数据所属任务" sortable="true"></display:column>--%>
-                <%--<display:column property="ddDataPublishType" title="数据可见性" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddDataLastestValue" title="数据最新值" maxLength="80"></display:column>--%>
                 <display:column property="ddDataSubmiteState" title="数据订阅状态" maxLength="80"></display:column>
-                <%--<display:column property="ddDataCreatePerson" title="创建人"></display:column>--%>
-                <%--<display:column property="ddDataCreateTime" title="创建时间" sortable="true"></display:column>--%>
-                <%--<display:column property="ddDataIsDelivery" title="是否交付" maxLength="80"></display:column>--%>
-                <%--<display:column property="ddDataSensitiveness" title="灵敏阈" maxLength="80"></display:column>--%>
-
             <display:column title="操作" media="html" style="width:260px">
             <a href="edit.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">编辑</a>
             <a href="del.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">删除</a>
-            <%--<a href="datasnapshot.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">数据快照</a>--%>
-
-
-                <%--<a onclick="startBizInstance(${bizDefItem.bizDefId})" class="link run">启动</a>--%>
-                <%--<a href="get.ht?id=${PrivateDataItem.ddDataId}" class="layui-btn layui-btn-normal layui-btn-small">明细</a>--%>
-                <%--<a href="" class="link detail">引用</a>--%>
-
             </display:column>
             </display:table>
-            <%--<hotent:paging tableId="PrivateDataItem"/>--%>
     </div>
 </div>
 </body>
