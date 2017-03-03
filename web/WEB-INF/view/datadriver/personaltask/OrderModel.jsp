@@ -6,33 +6,25 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
-<%@page language="java" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="/commons/include/html_doctype.html" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
     <title>模型</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%@include file="/commons/include/form.jsp" %>
-
-
-    <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
-    <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
-    <%--<script src="${ctx}/newtable/jquery.js"></script>--%>
-    <script src="${ctx}/newtable/bootstrap.js"></script>
-    <script src="${ctx}/newtable/bootstrap-table.js"></script>
-    <script src="${ctx}/newtable/bootstrap-table-zh-CN.js"></script>
-    <script src="${ctx}/newtable/tableExport.js"></script>
-    <script src="${ctx}/newtable/bootstrap-editable.js"></script>
-    <script src="${ctx}/newtable/bootstrap-table-editable.js"></script>
+    <%@include file="/newtable/tablecontext.jsp" %>
+    <%--&lt;%&ndash;<%@include file="/commons/include/form.jsp" %>&ndash;%&gt;--%>
 
     <script type="text/javascript" src="${ctx}/js/dynamic.jsp"></script>
-    <%--<script src="${ctx}/newtable/jquery.js"></script>--%>
-    <%--<script src="${ctx}/newtable/jquery.js"></script>--%>
+    /<%--&lt;%&ndash;<script src="${ctx}/newtable/jquery.js"></script>&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<script src="${ctx}/newtable/jquery.js"></script>&ndash;%&gt;--%>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
@@ -40,10 +32,23 @@
     <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
     <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
 
+    <%--<link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">--%>
+    <%--<link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">--%>
+    <%--&lt;%&ndash;<script src="${ctx}/newtable/jquery.js"></script>&ndash;%&gt;--%>
+    <%--<script src="${ctx}/newtable/bootstrap.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap-table.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap-table-zh-CN.js"></script>--%>
+    <%--<script src="${ctx}/newtable/tableExport.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap-editable.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap-table-editable.js"></script>--%>
+
+
+
 </head>
 <body>
 <table id="tb_departments"
-       data-url="${ctx}/datadriver/modelcenter/showmodel.ht?id=<%=request.getParameter("id")%>&son=3">
+       <%--data-url="${ctx}/datadriver/modelcenter/showmodel.ht?id=<%=request.getParameter("id")%>&son=3">--%>
+       data-url="${ctx}/datadriver/modelcenter/showmodel.ht?id=1&son=3">
 </table>
 
 <%--<script src="${ctx}/newtable/ordermodel.js"></script>--%>
@@ -64,7 +69,7 @@
 // oTable.Init();
 
 // //2.初始化Button的点击事件
-        new ButtonInit();
+//        new ButtonInit();
 // oButtonInit.Init();
 
     });
@@ -174,6 +179,7 @@
             '</a>'
         ].join('');
     }
+    var operateEvents;
     window.operateEvents = {
         'click .remove': function (e, value, row, index) {
             $.get('${ctx}/datadriver/modelcenter/remove.ht?id=' + row.ModelID);
@@ -186,14 +192,14 @@
         }
     };
 
-    var ButtonInit = function ButtonInit() {
-        var oInit = new Object();
-        var postdata = {};
-
-        oInit.Init = function () {
-//初始化页面上面的按钮事件
-        };
-        return oInit;
-    };
+//    var ButtonInit = function ButtonInit() {
+//        var oInit = new Object();
+//        var postdata = {};
+//
+//        oInit.Init = function () {
+////初始化页面上面的按钮事件
+//        };
+//        return oInit;
+//    };
 </script>
 </html>
