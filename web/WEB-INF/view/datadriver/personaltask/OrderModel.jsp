@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
+
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
@@ -18,16 +19,28 @@
     <title>模型</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
 
+    <%--<link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">--%>
+    <%--<link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">--%>
+    <%--&lt;%&ndash;<script src="${ctx}/newtable/jquery.js"></script>&ndash;%&gt;--%>
+    <%--<script src="${ctx}/newtable/bootstrap.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap-table.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap-table-zh-CN.js"></script>--%>
+    <%--<script src="${ctx}/newtable/tableExport.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap-editable.js"></script>--%>
+    <%--<script src="${ctx}/newtable/bootstrap-table-editable.js"></script>--%>
+
+
+
 </head>
 <body>
-<table id="tb_departments"
-       data-url="${ctx}/datadriver/modelcenter/showmodel.ht?id=<%=request.getParameter("id")%>&son=3">
+<table id="tb_departments" data-url="${ctx}/datadriver/modelcenter/showmodel.ht?id=<%=request.getParameter("id")%>&son=3">
 </table>
 </body>
 <script type="text/javascript">
     $(function () {
 //1.初始化Table
         new TableInit();
+
     });
 
 
@@ -144,14 +157,14 @@
         }
     };
 
-    var ButtonInit = function ButtonInit() {
-        var oInit = new Object();
-        var postdata = {};
-
-        oInit.Init = function () {
-//初始化页面上面的按钮事件
-        };
-        return oInit;
-    };
+//    var ButtonInit = function ButtonInit() {
+//        var oInit = new Object();
+//        var postdata = {};
+//
+//        oInit.Init = function () {
+////初始化页面上面的按钮事件
+//        };
+//        return oInit;
+//    };
 </script>
 </html>
