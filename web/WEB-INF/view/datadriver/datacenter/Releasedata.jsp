@@ -12,19 +12,8 @@
 <html lang="zh-CN">
 <head>
     <%--<title>任务数据中心</title>--%>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%@include file="/commons/include/form.jsp" %>
-    <%@include file="/newtable/tablecontext.jsp" %>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
 </head>
-<%--<%--%>
-<%--request.setCharacterEncoding("UTF-8");--%>
-<%--String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");--%>
-<%--out.print("name:"+major);--%>
-<%--%>--%>
 <body>
 <table id="tb_department" data-url="getReleasedata.ht?id=<%=request.getParameter("id")%>">
 </table>

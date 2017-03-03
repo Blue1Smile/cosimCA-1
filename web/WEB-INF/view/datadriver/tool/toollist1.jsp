@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
@@ -10,7 +10,7 @@
 <head>
     <title>任务数据中心</title>
     <%--<%@include file="/commons/include/form.jsp" %>--%>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
@@ -30,16 +30,9 @@
 </head>
 <body>
 <div id="toolbar" class="btn-group">
-    <%--<button id="btn_add" type="button" class="btn btn-success">--%>
-        <%--<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增--%>
-    <%--</button>--%>
-    <a class="btn btn-info" href="#" id="create_index" onclick="createIndex()"><span class="glyphicon glyphicon-plus"></span> 新增工具</a>
+    <a class="btn btn-info" href="#" id="create_index" onclick="createIndex()"><span
+            class="glyphicon glyphicon-plus"></span> 新增工具</a>
 </div>
-<%--<%--%>
-    <%--request.setCharacterEncoding("UTF-8");--%>
-<%--String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");--%>
-<%--out.print("name:"+major);--%>
-<%--%>--%>
 <table id="tb_departments"
        data-url="showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>&son=1">
 </table>
@@ -71,7 +64,8 @@
     function createIndex() {
         $('#addindex1').modal({
             keyboard: true,
-            remote:'edit.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>'
-        });}
+            remote: 'edit.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>'
+        });
+    }
 </script>
 </html>

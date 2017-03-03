@@ -95,10 +95,8 @@
         <th width="20%">当前项目进度: </th>
         <td>${Project.ddProjectCurrentStage}</td>
       </tr>
-
     </table>
   </div>
-
 </div>
 </body>
 </html>

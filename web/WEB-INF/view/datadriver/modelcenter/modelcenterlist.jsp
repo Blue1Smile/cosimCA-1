@@ -9,8 +9,7 @@
 <html>
 <head>
     <title>模型</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
 
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
@@ -30,20 +29,12 @@
 </head>
 <body>
 <div id="toolbar" class="btn-group">
-    <%--<button id="btn_add" type="button" class="btn btn-success">--%>
-        <%--<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增--%>
-    <%--</button>--%>
-    <a class="btn btn-info" href="#" id="create_index" onclick="createIndex()"><span class="glyphicon glyphicon-plus"></span> 新增工具</a>
+    <a class="btn btn-info" href="#" id="create_index" onclick="createIndex()"><span
+            class="glyphicon glyphicon-plus"></span> 新增工具</a>
 </div>
-<%--<%--%>
-    <%--request.setCharacterEncoding("UTF-8");--%>
-<%--String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");--%>
-<%--out.print("name:"+major);--%>
-<%--%>--%>
 <table id="tb_departments"
        data-url="showmodel.ht?Modeltype=<%=request.getParameter("Modeltype")%>&son=1">
 </table>
-<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
 <script src="${ctx}/newtable/showmodel.js"></script>
 
 <div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -58,7 +49,8 @@
     function createIndex() {
         $('#addModel').modal({
             keyboard: true,
-            remote:'edit.ht?Modeltype=<%=request.getParameter("Modeltype")%>'
-        });}
+            remote: 'edit.ht?Modeltype=<%=request.getParameter("Modeltype")%>'
+        });
+    }
 </script>
 </html>

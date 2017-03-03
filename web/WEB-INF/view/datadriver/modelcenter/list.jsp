@@ -24,21 +24,13 @@
     </style>
     <script type="text/javascript">
         $(function () {
-//            layout();
             loadTree();
-            <%--alert(<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UtF-8")%>);--%>
-//            $.get("toollist1.ht?major="+1 , function (data) {
-//                $('#toolsListFrame').html(data);
-//            });
-//            createTree();
         });
-
         //布局大小改变的时候通知tab，面板改变大小
         function heightChanged(options) {
             $("#tree").height(options.middleHeight - 60);
         }
         ;
-
         var test = '';
         $.ajax({
             type: "Post",
@@ -47,21 +39,17 @@
             async: false,
             success: function (data) {
                 test = data;
-//                alert("success");
             },
             error: function (msg) {
                 alert(msg);
             }
         });
-
         function strToJson(str) {
             var json = eval('(' + str + ')');
             return json;
         }
-
         function loadTree() {
             layui.use(['tree', 'layer'], function () {
-
                 var layer = layui.layer
                         , $ = layui.jquery;
                 layui.tree({
@@ -69,36 +57,22 @@
                     , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
                     , click: function (item) { //点击节点回调
                         if (item.name == undefined) return;
-//                    $("#listFrame").attr("src", "toollist1.ht?major=" +  item.ddMajorId);
                         $.get("modelcenterlist.ht?Modeltype=" + item.ddModeltypeId, function (data) {
                             $('#toolsListFrame').html(data);
                         });
-//                    console.log(item);
                     }
                     , nodes: strToJson(test)
                 });
             });
         }
-
     </script>
 </head
-<%--<%--%>
-<%--request.setCharacterEncoding("UTF-8");--%>
-    <%--if (request.getParameter("major")==null)--%>
-    <%--{--%>
-<%--//        return;--%>
-    <%--}--%>
-    <%--else {--%>
-
-<%--String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");--%>
-<%--out.print("name:"+major);}--%>
-<%--%>--%>
 <body>
 <div class="container-fluid" style="height: 100%">
     <div class="col-xs-3" style="height: 100%">
         <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">虚拟样机模型树</div>
-            <div class="panel-body" style="height: 93%">
+            <div class="panel-body" style="height: 93%; overflow-x: hidden;overflow-y: auto">
                 <ul id="demo2"></ul>
             </div>
 

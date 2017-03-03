@@ -25,16 +25,22 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
+
     <script src="${ctx}/newtable/jquery.js"></script>
-    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
-    <script src="${ctx}/newtable/bootstrap.js"></script>
-    <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
+    <%@include file="/newtable/tablecontext.jsp" %>
+    <script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body>
-
-<%--<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"--%>
-<%--style="padding-right: 0px">--%>
-<%--</div>--%>
 <div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li role="presentation" class="dropdown">
@@ -63,10 +69,6 @@
         <div class="pull-right">
             <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 进程统计
             </a>
-
-            <%--&lt;%&ndash;<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"&ndash;%&gt;--%>
-            <%--&lt;%&ndash;data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"&ndash;%&gt;--%>
-            <%--&lt;%&ndash;data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>&ndash;%&gt;--%>
             <a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
             <a class="btn btn-primary" href="#" id="upload_file" onclick=""><span
@@ -77,10 +79,6 @@
             <button class="btn btn-default" onclick="location.reload()"><span
                     class="glyphicon glyphicon-refresh"></span> 刷新
             </button>
-            <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>
-
-            <%--</a>--%>
-
         </div>
     </ul>
 </div>

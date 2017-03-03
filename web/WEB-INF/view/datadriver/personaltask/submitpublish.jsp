@@ -12,16 +12,6 @@
 <head>
     <title>数据发布列表</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
-    <%@include file="/newtable/tablecontext.jsp" %>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body>
     <table id="tablelist">
@@ -135,9 +125,7 @@
                         alert("Error");
                     },
                     complete: function () {
-
                     }
-
                 });
             }
         });
@@ -156,9 +144,6 @@
         });
         $table.on('expand-row.bs.table', function (e, index, row, $detail) {
             $table.InitSubTable(index, row, $detail);
-        });
-        $table.on('all.bs.table', function (e, name, args) {
-            console.log(name, args);
         });
         $remove.click(function () {
             var ids = getIdSelections();
@@ -236,10 +221,6 @@
                         visible: true
                     }
                 ],
-                ////无线循环取子表，直到子表里面没有记录
-                //onExpandRow: function (index, row, $Subdetail) {
-                //    oInit.InitSubTable(index, row, $Subdetail);
-                //}
             });
         }
     }

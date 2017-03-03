@@ -16,21 +16,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-    <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
-    <%--<link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
-    <link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
-
     <title>添加任务</title>
 </head>
 <body>
@@ -130,7 +116,6 @@
         var taskPerson = $("#personSelect").find("option:selected").text();
         $("#ddTaskPerson").val(taskPerson);
     });
-    //    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
     $(function () {
         $('#testSelect option:selected').text();//选中的文本
         $('#testSelect option:selected').val();//选中的值
@@ -145,7 +130,6 @@
             frm.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
-//                window.location.reload(true);
             }
         });
     });
@@ -159,7 +143,6 @@
         } else {
         }
     }
-
 </script>
 <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.zh-CN.js"></script>
 </html>

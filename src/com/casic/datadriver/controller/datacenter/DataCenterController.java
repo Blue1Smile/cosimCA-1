@@ -68,10 +68,11 @@ public class DataCenterController extends AbstractController {
             throws Exception {
         List<Project> AllProjectList = projectService.getAll();
 
+        List<Project> tempProjectList = new ArrayList<Project>();
         List<Project> ProjectList = new ArrayList<Project>();
         for(int i=0;i<AllProjectList.size();i++){
             if(AllProjectList.get(i).getDdProjectCreatorId().equals(ContextUtil.getCurrentUser().getUserId())){
-                ProjectList.add(AllProjectList.get(i));
+                tempProjectList.add(AllProjectList.get(i));
             }
             else{
                 List<TaskInfo> taskInfoList=taskInfoService.queryTaskInfoByProjectId(AllProjectList.get(i).getDdProjectId());
@@ -81,11 +82,13 @@ public class DataCenterController extends AbstractController {
                     }
                     else
                         if(taskInfoList.get(j).getDdTaskResponsiblePerson().equals(ContextUtil.getCurrentUser().getUserId())){
-                        ProjectList.add(AllProjectList.get(i));
+                        tempProjectList.add(AllProjectList.get(i));
                     }
                 }
             }
         }
+        ProjectList = removeDuplicate(tempProjectList);
+
         int ProjectLength = ProjectList.size();
         Long[] ProjectId = new Long[ProjectLength];
         String[] ProjectName = new String[ProjectLength];
@@ -111,12 +114,24 @@ public class DataCenterController extends AbstractController {
             allTaskId[i] = TaskInfo.getDdTaskId();
             allTaskName[i] = TaskInfo.getDdTaskName();
         }
-        ModelAndView mv = this.getAutoView().addObject("ProjectId",
-                ProjectId).addObject("ProjectName", ProjectName).addObject("ProjectLength", ProjectLength).addObject("allTaskInfoName", allTaskName)
-                .addObject("allTaskInfoId", allTaskId).addObject("TaskLength", TaskLength);
+        ModelAndView mv = this.getAutoView().addObject("ProjectId", ProjectId)
+                .addObject("ProjectName", ProjectName).addObject("ProjectLength", ProjectLength)
+                .addObject("allTaskInfoName", allTaskName)
+                .addObject("allTaskInfoId", allTaskId)
+                .addObject("TaskLength", TaskLength);
         return mv;
     }
-
+    //过滤重复元素
+    public static List<Project> removeDuplicate(List<Project> mList) {
+        for (int i = 0; i < mList.size() - 1; i++) {
+            for (int j = mList.size() - 1; j > i; j--) {
+                if (mList.get(j).getDdProjectId().equals(mList.get(i).getDdProjectId())) {
+                    mList.remove(j);
+                }
+            }
+        }
+        return mList;
+    }
     /**
      * 2017/02/18/修改
      * 返回任务发布订购数据列表
