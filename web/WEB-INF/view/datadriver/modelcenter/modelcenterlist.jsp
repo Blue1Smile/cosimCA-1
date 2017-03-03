@@ -43,10 +43,10 @@
 <table id="tb_departments"
        data-url="showmodel.ht?Modeltype=<%=request.getParameter("Modeltype")%>&son=1">
 </table>
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
 <script src="${ctx}/newtable/showmodel.js"></script>
 
-<div class="modal fade" id="addindex1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
@@ -56,7 +56,7 @@
 </body>
 <script charset=UTF-8>
     function createIndex() {
-        $('#addindex1').modal({
+        $('#addModel').modal({
             keyboard: true,
             remote:'edit.ht?Modeltype=<%=request.getParameter("Modeltype")%>'
         });}

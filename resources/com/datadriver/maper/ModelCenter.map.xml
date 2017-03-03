@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.casic.datadriver.model.modelcenter.ModelCenterModel">
   <resultMap id="BaseResultMap" type="com.casic.datadriver.model.modelcenter.ModelCenterModel">
-    <id column="dd_mdoel_id" jdbcType="BIGINT" property="ddMdoelId" />
+    <id column="dd_model_id" jdbcType="BIGINT" property="ddModelId" />
     <result column="dd_model_name" jdbcType="VARCHAR" property="ddModelName" />
     <result column="dd_model_explain" jdbcType="VARCHAR" property="ddModelExplain" />
     <result column="dd_task_id" jdbcType="BIGINT" property="ddTaskId" />
@@ -13,25 +13,25 @@
     <result column="dd_model_bf2" jdbcType="BIGINT" property="ddModelBf2" />
   </resultMap>
   <sql id="Base_Column_List">
-    dd_mdoel_id, dd_model_name, dd_model_explain, dd_task_id,dd_model_version, dd_model_url, dd_model_type,
+    dd_model_id, dd_model_name, dd_model_explain, dd_task_id,dd_model_version, dd_model_url, dd_model_type,
     dd_model_bf1, dd_model_bf2
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from dd_modelcenter
-    where dd_mdoel_id = #{ddMdoelId,jdbcType=BIGINT}
+    where dd_model_id = #{ddModelId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from dd_modelcenter
-    where dd_mdoel_id = #{ddMdoelId,jdbcType=BIGINT}
+    where dd_model_id = #{ddModelId,jdbcType=BIGINT}
   </delete>
 
   <insert id="add" parameterType="com.casic.datadriver.model.modelcenter.ModelCenterModel">
-    insert into dd_modelcenter (dd_mdoel_id, dd_model_name, dd_model_explain, 
+    insert into dd_modelcenter (dd_model_id, dd_model_name, dd_model_explain,
       dd_task_id, dd_model_version,dd_model_url, dd_model_type,
       dd_model_bf1, dd_model_bf2)
-    values (#{ddMdoelId,jdbcType=BIGINT}, #{ddModelName,jdbcType=VARCHAR}, #{ddModelExplain,jdbcType=VARCHAR},
+    values (#{ddModelId,jdbcType=BIGINT}, #{ddModelName,jdbcType=VARCHAR}, #{ddModelExplain,jdbcType=VARCHAR},
       #{ddTaskId,jdbcType=BIGINT},#{ddModelVersion,jdbcType=INTEGER}, #{ddModelUrl,jdbcType=VARCHAR}, #{ddModelType,jdbcType=BIGINT},
       #{ddModelBf1,jdbcType=VARCHAR}, #{ddModelBf2,jdbcType=BIGINT})
   </insert>
@@ -75,19 +75,19 @@
     SELECT
     <include refid="Base_Column_List"/>
     FROM dd_modelcenter
-    where dd_model_type = #{modeltype} AND dd_model_bf2 = 1
+    where dd_task_id = #{taskId}
   </select>
 
     <delete id="delmodel" parameterType="java.lang.Long">
         delete from dd_modelcenter
-        where dd_mdoel_id = #{id,jdbcType=NUMERIC}
+        where dd_model_id = #{id,jdbcType=NUMERIC}
     </delete>
 
   <insert id="insertSelective" parameterType="com.casic.datadriver.model.modelcenter.ModelCenterModel">
     insert into dd_modelcenter
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="ddMdoelId != null">
-        dd_mdoel_id,
+      <if test="ddModelId != null">
+        dd_model_id,
       </if>
       <if test="ddModelName != null">
         dd_model_name,
@@ -115,8 +115,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="ddMdoelId != null">
-        #{ddMdoelId,jdbcType=BIGINT},
+      <if test="ddModelId != null">
+        #{ddModelId,jdbcType=BIGINT},
       </if>
       <if test="ddModelName != null">
         #{ddModelName,jdbcType=VARCHAR},
@@ -172,7 +172,7 @@
         dd_model_bf2 = #{ddModelBf2,jdbcType=BIGINT},
       </if>
     </set>
-    where dd_mdoel_id = #{ddMdoelId,jdbcType=BIGINT}
+    where dd_model_id = #{ddModelId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.modelcenter.ModelCenterModel">
     update dd_modelcenter
@@ -184,6 +184,6 @@
       dd_model_type = #{ddModelType,jdbcType=BIGINT},
       dd_model_bf1 = #{ddModelBf1,jdbcType=VARCHAR},
       dd_model_bf2 = #{ddModelBf2,jdbcType=BIGINT}
-    where dd_mdoel_id = #{ddMdoelId,jdbcType=BIGINT}
+    where dd_model_id = #{ddModelId,jdbcType=BIGINT}
   </update>
 </mapper>

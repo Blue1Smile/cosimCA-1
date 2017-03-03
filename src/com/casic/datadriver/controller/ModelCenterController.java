@@ -134,7 +134,7 @@ public class ModelCenterController {
                         file1.transferTo(localFile);
 
                     }
-                    m.setDdMdoelId(UniqueIdUtil.genId());
+                    m.setDdModelId(UniqueIdUtil.genId());
 //                    m.setDdToolName(myFileName);
 
                     modelcenterservice.add(m);
@@ -208,7 +208,7 @@ public class ModelCenterController {
             }
             for (int i = 0; i < mylist.size(); i++) {
                 ModelCenterModel mymodel = mylist.get(i);
-                jsonObject.put("ModelID", mymodel.getDdMdoelId());
+                jsonObject.put("ModelID", mymodel.getDdModelId());
                 jsonObject.put("ModelName", mymodel.getDdModelName());
                 jsonObject.put("ModelUrl", mymodel.getDdModelUrl());
                 jsonObject.put("ModelVersion", mymodel.getDdModelVersion());

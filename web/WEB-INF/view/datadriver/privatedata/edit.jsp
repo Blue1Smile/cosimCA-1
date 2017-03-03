@@ -259,16 +259,37 @@
                 <%--onChangePrivateData(params, taskItem);--%>
             <%--}--%>
         <%--});--%>
-        //最新值
-        $('#lastestValue').editable({
-            showbuttons: true,
-            placement: 'bottom',
-            value: '${privateData.ddDataLastestValue}',
-            url: function (params) {
-                taskItem = 1;
-                onChangePrivateData(params, taskItem);
-            }
-        });
+        if('${privateData.ddDataType}'=='文件'||'${privateData.ddDataType}'=='模型'){
+            $("#lastestValue").attr("data-type","select");
+            //最新值
+            $('#lastestValue').editable({
+                showbuttons: false,
+                value: ${privateData.ddDataLastestValue},
+                placement: 'bottom',
+                source: [
+                    <c:forEach var="modelCenterModelItem" items="${modelCenterModelList}">
+                    {value: ${modelCenterModelItem.ddModelName}, text: '${modelCenterModelItem.ddModelName}'},
+                    </c:forEach>
+                ],
+                url: function (params) {
+                    taskItem = 1;
+                    onChangePrivateData(params, taskItem);
+                }
+            });
+        }else {
+            $("#lastestValue").attr("data-type","text");
+            //最新值
+            $('#lastestValue').editable({
+                showbuttons: true,
+                placement: 'bottom',
+                value: '${privateData.ddDataLastestValue}',
+                url: function (params) {
+                    taskItem = 1;
+                    onChangePrivateData(params, taskItem);
+                }
+            });
+        }
+
         //所属任务
         <%--$('#belongTask').editable({--%>
             <%--showbuttons: true,--%>

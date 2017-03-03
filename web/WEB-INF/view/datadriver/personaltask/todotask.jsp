@@ -196,7 +196,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="index">
@@ -261,7 +260,7 @@
 <script src="${ctx}/styles/loading/PerfectLoad.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $.MyCommon.PageLoading({sleep: 500});
+//        $.MyCommon.PageLoading({sleep: 500});
         $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
@@ -315,7 +314,15 @@
     $("#datadetail").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
-
+    $("#fileupload").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
+    $("#statis").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
+    $("#adddata").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
     switch_attr_index.onclick = function () {
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);

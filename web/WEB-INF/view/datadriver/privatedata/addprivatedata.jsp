@@ -82,12 +82,41 @@
                                               rows="5"/></textarea>
                     </td>
                 </tr>
+                <tr id="selectModeltr">
+                    <th width="20%">请选择文件:</th>
+                    <td colspan="5">
+                        <select id="selectModel" name="ddDataLastestValue" class="form-control">
+                            <c:forEach items="${modelCenterModelList}" var="modelCenterModelItem">
+                                <option value="${modelCenterModelItem.ddModelName}">${modelCenterModelItem.ddModelName}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                </tr>
                 <tr id="initValue">
                     <th width="20%">初始值:</th>
-                    <td colspan="5"><input type="text" id="ddDataLastestValue" name="ddDataLastestValue"
-                                           value="" class="form-control"/></td>
-                    <select><c:forEach items="" var=""><option value=""></option></c:forEach></select>
+                    <td colspan="5">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="ddDataLastestValue" name="ddDataLastestValue"
+                                   value="">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">请选择数据单位 <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#">毫米(mm)</a></li>
+                                    <li><a href="#">米(m)</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">度(°)</a></li>
+                                    <li><a href="#">分(′)</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">摄氏度(℃)</a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                        </div><!-- /input-group -->
+                    </td>
                 </tr>
+
+
                 <input type="hidden" id="ddDataTaskId" name="ddDataTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
@@ -100,9 +129,8 @@
 </body>
 <script type="text/javascript">
     $(function () {
-        $('#initFile').hide();
-        $('#initModel').hide();
-        $('#initValue').hide();
+        $('#selectModeltr').hide();
+        $('#selectModel').attr("disabled", "disabled");
         var options = {};
         var frm = $('#privateDataForm').form();
         $("#dataFormSave").click(function () {
@@ -115,32 +143,24 @@
         });
         $("#ddDataType").change(function () {
             if ($(this).val() == '文件') {
-                $('table').append('<tr id="choosefile">'+
-                        '<th width="20%">请选择文件:</th>'+
-                        '<td><select>' +
-                        '</select>'+
-                        '</td>' +
-                        '</tr>');
-                $('#choosemodel').remove();
+                $('#selectModeltr').show();
+                $('#selectModel').removeAttr("disabled");
                 $('#initValue').remove();
             } else if ($(this).val() == '模型') {
-                $('table').append('<tr id="choosemodel">' +
-                        '<th width="20%">请选择模型:</th>' +
-                        '<td><input type="file" name="file" value="上传">' +
-                        '</td>' +
-                        '</tr>');
-                $('#choosefile').remove();
+                $('#selectModeltr').show();
+                $('#selectModel').removeAttr("disabled");
                 $('#initValue').remove();
             } else {
-                $('table').append('<tr id="initValue">' +
-                        '<th width = "20%" > 初始值:</th>' +
-                        '<td colspan = "5" >' +
-                        '<input type = "text" id="ddDataLastestValue" name="ddDataLastestValue" value="" class="form-control"/>' +
-                        '</td>' +
-                        '</tr>');
-
-                $('#choosefile').remove();
-                $('#choosemodel').remove();
+                $('#selectModeltr').hide();
+                $('#selectModel').attr("disabled", "disabled");
+                if ( $("#initValue").length <= 0 ) {
+                    $('table').append('<tr id="initValue">' +
+                            '<th width = "20%" > 初始值:</th>' +
+                            '<td colspan = "5" >' +
+                            '<input type = "text" id="ddDataLastestValue" name="ddDataLastestValue" value="" class="form-control"/>' +
+                            '</td>' +
+                            '</tr>');
+                }
             }
         });
     });
