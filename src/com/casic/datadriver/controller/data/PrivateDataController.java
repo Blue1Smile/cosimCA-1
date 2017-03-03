@@ -154,10 +154,11 @@ public class PrivateDataController extends AbstractController {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String dateString = formatter.format(currentTime);
 
-            List<ModelCenterModel> modelCenterModels = modelCenterService.getByTaskId(id);
+            List<ModelCenterModel> modelCenterModelList = modelCenterService.getByTaskId(id);
                     mv = this.getAutoView().addObject("taskInfo", taskInfo)
                     .addObject("currentTime", dateString)
-                    .addObject("sysName", sysName);
+                    .addObject("sysName", sysName)
+                    .addObject("modelCenterModelList", modelCenterModelList);
 
         } catch (Exception ex) {
             resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败" + ex.getMessage());
@@ -183,10 +184,12 @@ public class PrivateDataController extends AbstractController {
         List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByResponceId(taskInfo.getDdTaskResponsiblePerson());
 
         List<DataVersion> dataVersionList = dataVersionService.queryDataVersionListByddDataId(id);
+        List<ModelCenterModel> modelCenterModelList = modelCenterService.getByTaskId(taskId);
 //        int lenth = dataVersionList.size();
         return getAutoView().addObject("privateData", privateData)
                 .addObject("taskInfoList", taskInfoList)
-                .addObject("dataVersionList", dataVersionList);
+                .addObject("dataVersionList", dataVersionList)
+                .addObject("modelCenterModelList", modelCenterModelList);
     }
 
     /**

@@ -193,7 +193,7 @@ public class ProcessFlowController extends AbstractController {
         String projectID = root.getChild("Layer").getAttributeValue("projectId");
         long projectId = Long.parseLong(projectID);
 
-        Project project = projectSerivice.getById(projectId);
+        Project project = projectService.getById(projectId);
         List<TaskInfo> taskInfoList = project.getTaskInfoList();
 
         for (Iterator i = task.iterator(); i.hasNext(); ) {
@@ -209,8 +209,8 @@ public class ProcessFlowController extends AbstractController {
             if (tasktype != null)
                 taskInfo.setDdTaskType(tasktype);
             taskInfo.setDdTaskProjectId(projectId);
-            Project project = projectService.getById(projectId);
-            taskInfo.setDdTaskProjectName(project.getDdProjectName());
+            Project project2 = projectService.getById(projectId);
+            taskInfo.setDdTaskProjectName(project2.getDdProjectName());
             taskInfo.setDdTaskName(el.getAttributeValue("label"));//任务名称
             taskInfo.setDdTaskResponsiblePerson(ContextUtil.getCurrentUser().getUserId());
             taskInfo.setDdTaskPerson(ContextUtil.getCurrentUser().getFullname());

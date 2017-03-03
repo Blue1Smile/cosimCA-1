@@ -6,7 +6,7 @@ import com.hotent.core.model.BaseModel;
  * Created by 忠 on 2017/2/28.
  */
 public class ModelCenterModel extends BaseModel {
-    private Long ddMdoelId;
+    private Long DdModelId;
 
     private String ddModelName;
 
@@ -32,12 +32,12 @@ public class ModelCenterModel extends BaseModel {
         this.ddModelVersion = ddModelVersion;
     }
 
-    public Long getDdMdoelId() {
-        return ddMdoelId;
+    public Long getDdModelId() {
+        return DdModelId;
     }
 
-    public void setDdMdoelId(Long ddMdoelId) {
-        this.ddMdoelId = ddMdoelId;
+    public void setDdModelId(Long DdModelId) {
+        this.DdModelId = DdModelId;
     }
 
     public String getDdModelName() {
