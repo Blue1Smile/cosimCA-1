@@ -15,6 +15,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
+
 <html lang="zh-CN" style="height: 100%; margin: 0px">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -77,8 +78,8 @@
                     <div class="panel panel-default task-panel">
                         <div class="panel-heading">
                             新创建
-                            <button type="button" class="btn btn-xs btn-default pull-right">
-                                <span class="glyphicon glyphicon-send"></span> 一键发布
+                            <button type="button" class="btn btn-xs btn-default pull-right" id="OnePunchSend">
+                                <span class="glyphicon glyphicon-send"></span> 全部发布
                             </button>
                         </div>
                         <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
@@ -104,6 +105,9 @@
                     <div class="panel panel-info task-panel">
                         <div class="panel-heading">
                             已发布
+                            <button type="button" class="btn btn-xs btn-info pull-right" id="OnePunchBack">
+                                <span class="glyphicon glyphicon-arrow-left"></span> 全部收回
+                            </button>
                         </div>
                         <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="publishpanel" class="scrum-stage-tasks">
@@ -240,6 +244,70 @@
         $("#create_task").show();
         $("#create_index").hide();
     });
+
+    //生成全部新建panel中li的list并转换成json发送
+    $('#OnePunchSend').click(function(index) {
+        var feedbackMap = new Object();
+        var valueList =  new Array();
+        $("#createpanel>li").each(function() {
+            //将input=hidden的值压入list
+            var a = $(this).find("input").val();
+            if(a!=null && a!="" && a!= undefined){
+                feedbackMap = a;
+                valueList.push(feedbackMap);
+            }else{
+                alert('生成list异常');
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "onepunchsend.ht?id=${Project.ddProjectId}&&parent=publishpanel",
+            data: {strJson: JSON.stringify(valueList)},
+            success: function (data, status) {
+                        if (status == "success") {
+                            window.location.reload();
+                        }
+            },
+            error: function () {
+//                        alert("Error");
+            },
+            complete: function () {
+            }
+        });
+    });
+    //生成全部发布panel中li的list并转换成json发送
+    $('#OnePunchBack').click(function(index) {
+        var feedbackMap = new Object();
+        var valueList =  new Array();
+        $("#publishpanel>li").each(function() {
+            //将input=hidden的值压入list
+            var a = $(this).find("input").val();
+            if(a!=null && a!="" && a!= undefined){
+                feedbackMap = a;
+                valueList.push(feedbackMap);
+            }else{
+                alert('生成list异常');
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "onepunchback.ht?id=${Project.ddProjectId}&&parent=createpanel",
+            data: {strJsonBack: JSON.stringify(valueList)},
+            success: function (data, status) {
+                if (status == "success") {
+                    window.location.reload();
+                }
+            },
+            error: function () {
+//                        alert("Error");
+            },
+            complete: function () {
+            }
+        });
+    });
+
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
             switch_attr_task = document.getElementById('switch_attr_task');

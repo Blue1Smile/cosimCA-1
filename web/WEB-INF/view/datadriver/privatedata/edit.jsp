@@ -88,11 +88,11 @@
     </style>
 </head>
 <body style="height: 100%; margin: 0px;">
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">
         ${privateData.ddDataName}
         <div class="btn-group pull-right">
-            <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"
+            <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 更多 <span class="caret"></span>
             </button>
