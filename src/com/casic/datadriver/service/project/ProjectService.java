@@ -91,8 +91,8 @@ public class ProjectService extends BaseService<Project> {
      */
     public void updateAll(Project project) throws Exception{
         update(project);
-        delByPk(project.getDdProjectId());
-        addSubList(project);
+//        delByPk(project.getDdProjectId());
+//        addSubList(project);
     }
     /**20161202 根据项目来添加任务
      */

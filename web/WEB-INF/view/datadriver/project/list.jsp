@@ -76,7 +76,7 @@
                         <i style="font-size: 14px; color: #F7B824;">已完成</i>
                     </c:otherwise></c:choose>
             </display:column>
-            <display:column title="操作" media="html" style="width:30%">
+            <display:column title="操作" media="html" style="width:25%">
                 <c:choose>
                     <c:when test="${projectList.ddProjectPhaseId==-1}">
                         <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"

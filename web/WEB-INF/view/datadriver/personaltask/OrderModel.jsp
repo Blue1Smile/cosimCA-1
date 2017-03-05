@@ -138,11 +138,11 @@
     //原始操作按钮
     function operateFormatter(value, row, index) {
         return [
-            '<a id="removetr" class="remove" href="javascript:void(0)" title="删除">',
-            '<i class="glyphicon glyphicon-remove"></i>',
-            '</a>',
             '<a id="download0" class="download" href="javascript:void(0)" title="下载">',
             '<i class="glyphicon glyphicon-download-alt"></i>',
+            '</a>  ',
+            '  <a id="removetr" class="remove" href="javascript:void(0)" title="删除">',
+            '<i class="glyphicon glyphicon-remove"></i>',
             '</a>'
         ].join('');
     }
