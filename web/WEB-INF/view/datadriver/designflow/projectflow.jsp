@@ -12,7 +12,6 @@
 <head>
     <title>项目流程</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%--<link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>--%>
     <style type="text/css" media="screen">
         div.base {
             position: absolute;
@@ -36,7 +35,6 @@
     <script type="text/javascript" src="${ctx}/designflow/editors/js/mxApplication.js"></script>
     <script type="text/javascript">
         mxConstants.DEFAULT_HOTSPOT = 1;
-
         var id='${projectId}';
         var xml='${processFlowXml}';
         var flag=${flag};
@@ -47,18 +45,15 @@
         mxGuide.prototype.isEnabledForEvent = function (evt) {
             return !mxEvent.isAltDown(evt);
         };
-
         // Enables snapping waypoints to terminals
         mxEdgeHandler.prototype.snapToTerminals = true;
 
-
         window.onbeforeunload = function () {
-            return "  ";
-
+            return " ";
         };
     </script>
 </head>
-<body onload="if(flag) new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor_graph.xml',id,xml); else new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor.xml',id,xml); ">
+<body onload="if(flag==1) new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor_graph.xml',1,id,xml); else new mxApplication('${ctx}/datadriver/designflow/editors/config/workfloweditor.xml',0,id,xml); ">
 
 <table id="splash" width="100%" height="100%"
        style="background:white;position:relative;top:0px;left:0px;z-index:4;">
@@ -68,13 +63,11 @@
         </td>
     </tr>
 </table>
-<div id="graph" class="base">
+<div id="graph" style="height: 800px" class="base">
     <!-- Graph Here -->
 </div>
 <div id="status" class="base" align="right">
     <!-- Status Here -->
 </div>
-
 </body>
-<%--<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>--%>
 </html>

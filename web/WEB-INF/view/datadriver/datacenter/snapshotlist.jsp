@@ -21,17 +21,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
   <script src="${ctx}/newtable/jquery.js"></script>
-  <%--<%@include file="/commons/include/get.jsp" %>--%>
   <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-
 </head>
 <body>
-
-<div class="layui-tab layui-tab-card">
-  <ul class="layui-tab-title">
-    <li class="layui-this"></li>
-  </ul>
-  <div class="layui-tab-content">
     <c:set var="checkAll">
       <input type="checkbox" id="chkall"/>
     </c:set>
@@ -46,11 +38,8 @@
       <display:column title="操作" media="html" style="width:15%">
           <a href="snapshottasklist.ht?ddDataSnapShotId=${snapshotList.ddDataSnapShotId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
                   class="layui-icon">&#xe639;</i> 查看</a>
-
       </display:column>
     </display:table>
-  </div>
-</div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>

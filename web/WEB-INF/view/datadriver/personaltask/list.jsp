@@ -12,9 +12,8 @@
 <head>
     <title>个人任务</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <script src="${ctx}/newtable/jquery.js"></script>
-    <%--<%@include file="/commons/include/get.jsp" %>--%>
 
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -26,6 +25,7 @@
         .fr {
             float: right;
         }
+
         .pages {
             float: right;
         }
@@ -50,8 +50,10 @@
                                value="${param['Q_name_SL']}" placeholder="任务名称"/>
                     </div>
                     <div class="fr">
-                        <a class="layui-btn layui-btn-normal layui-btn-small" id="Search"><i class="layui-icon">&#xe615;</i> 查询</a>
-                        <a class="layui-btn layui-btn-primary layui-btn-small" onclick="location.reload()"><i class="layui-icon">
+                        <a class="layui-btn layui-btn-normal layui-btn-small" id="Search"><i class="layui-icon">
+                            &#xe615;</i> 查询</a>
+                        <a class="layui-btn layui-btn-primary layui-btn-small" onclick="location.reload()"><i
+                                class="layui-icon">
                             &#xe63d;</i> 刷新</a>
                     </div>
                 </form>
@@ -71,8 +73,10 @@
                             style="width:35%"></display:column>
             <display:column title="优先级" media="html" style="width:11%">
                 <c:choose>
-                    <c:when test="${taskList.ddTaskPriority==3}"><i style="font-size: 14px; color: #FF5722;">紧急</i></c:when>
-                    <c:when test="${taskList.ddTaskPriority==2}"><i style="font-size: 14px; color: #F7B824;">重要</i></c:when>
+                    <c:when test="${taskList.ddTaskPriority==3}"><i
+                            style="font-size: 14px; color: #FF5722;">紧急</i></c:when>
+                    <c:when test="${taskList.ddTaskPriority==2}"><i
+                            style="font-size: 14px; color: #F7B824;">重要</i></c:when>
                     <c:otherwise><i style="font-size: 14px; color: #01AAED;">一般</i></c:otherwise>
                 </c:choose>
             </display:column>
@@ -94,7 +98,7 @@
                             class="layui-icon">&#xe642;</i> 办理</a>
                 </c:when>
                     <c:otherwise>
-                        <a href="recovertask.ht?id=${taskList.ddTaskId}"
+                        <a href="${ctx}/datadriver/personaltask/recovertask.ht?id=${taskList.ddTaskId}"
                            class="layui-btn layui-btn-warm layui-btn-mini"><i
                                 class="layui-icon">&#xe603;</i> 收回</a>
                     </c:otherwise></c:choose>

@@ -13,16 +13,6 @@
 <head>
     <title>指标编辑</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body>
 <div class="modal-header">

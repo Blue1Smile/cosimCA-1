@@ -32,4 +32,18 @@ public class ModelCenterDao   extends BaseDao<ModelCenterModel> {
 
     public List<ModelCenterModel> querytoolBymodelnameF(PageInfo modelname) {
         return this.getBySqlKey("querytoolBymodelnameF", modelname);}
+
+    public void del(Long id) {
+        this.getBySqlKey("delmodel", id);}
+
+
+    public List<ModelCenterModel> getByTaskId(Long taskId) {
+        return this.getBySqlKey("getByTaskId", taskId);}
+
+    public List<ModelCenterModel> querytoolBytaskid(PageInfo modelname) {
+        return this.getBySqlKey("querytoolBytaskid", modelname);}
+
+    public List<ModelCenterModel> querytoolBytaskidF(PageInfo modelname) {
+        return this.getBySqlKey("querytoolBytaskidF", modelname);}
+
 }

@@ -91,15 +91,8 @@
         <li role="presentation" id="switch_attr_calendar"><a href="#calendar" data-toggle="tab" role="tab">更新发布</a></li>
         <li role="presentation" id="switch_attr_three"><a href="#index" data-toggle="tab" role="tab">查看订阅</a></li>
         <li role="presentation" id="switch_attr_four"><a href="#calendar" data-toggle="tab" role="tab">任务工具</a></li>
-        <%--<li role="presentation" class="active"><a href="#date" data-toggle="tab" role="tab">数据</a></li>--%>
-        <%--<li role="presentation" ><a href="${ctx}/datadriver/personaltask/dashboard.ht?id=${TaskInfo.ddTaskId}#index" data-toggle="tab" role="tab">更新发布</a></li>--%>
-        <%--<li role="presentation" ><a href="${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}#calendar" data-toggle="tab" role="tab">查看订阅</a></li>--%>
-
         <div class="pull-right">
             <button id="static" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 统计</button>
-            <%--<a class="btn btn-success" href="" data-toggle="modal"--%>
-               <%--data-remote="${ctx}/datadriver/privatedata/edit.ht?id=${TaskInfo.ddTaskId}"--%>
-               <%--data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 新建数据</a>--%>
             <a class="btn btn-success" href="#" data-toggle="modal" id="create_task"
                data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"
                data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 新建数据</a>
@@ -116,22 +109,7 @@
                         <div class="panel-heading">
                             未发布
                         </div>
-                        <%--<div class="panel-body">--%>
-                            <%--<ul id="createpanel" class="scrum-stage-tasks">--%>
-                                <%--<c:forEach var="taskListbyUserItem" items="${taskListbyUser}">--%>
-                                    <%--<li class="task task-card ui-sortable-handle" id="showRightPush"--%>
-                                        <%--onclick="showTaskContent(this ,${taskListbyUserItem.ddTaskId})">--%>
-                                        <%--<div class="checkbox checkbox-primary">--%>
-                                            <%--<input id="${taskListbyUserItem.ddTaskId}" type="checkbox">--%>
-                                            <%--<label for="${taskListbyUserItem.ddTaskId}">--%>
-                                                    <%--${taskListbyUserItem.ddTaskName}--%>
-                                            <%--</label>--%>
-                                        <%--</div>--%>
-                                        <%--<input type="hidden" value="${taskListbyUserItem.ddTaskId}" name="release"/>--%>
-                                    <%--</li>--%>
-                                <%--</c:forEach>--%>
-                            <%--</ul>--%>
-                        <%--</div>--%>
+
                         <div class="panel-body">
                             <ul id="privatepanel" class="scrum-stage-tasks">
                                 <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
@@ -156,8 +134,6 @@
                             已发布
                         </div>
                         <div class="panel-body">
-                            <%--<form id="publishDataForm" method="post" action="savepublish.ht">--%>
-                                <%--<input type="submit" class="layui-btn layui-btn-small" value="提交">--%>
                             <ul id="publishpanel" class="scrum-stage-tasks">
                                 <c:forEach var="publishDataListbyUserItem" items="${publishDataList}">
                                     <li class="task task-card ui-sortable-handle" id="showRightPush"
@@ -263,7 +239,6 @@
             var data = $(this).children('input').val();
             var parentid = $(this).parent().attr("id");
             $.get("savepublishdata.ht?id=" + data + "&parent=" + parentid + "&taskId=${TaskInfo.ddTaskId}");
-//            $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
         }
     });
 
@@ -272,7 +247,6 @@
             showLeftPush = document.getElementById('showLeftPush'),
             showRightPush = document.getElementById('showRightPush'),
             body = document.body;
-
     function showDataContent(obj, dataId) {
         $.get("${ctx}/datadriver/privatedata/edit.ht?id=" + dataId, function (data) {
             $('#cbp-spmenu-s2').html(data);

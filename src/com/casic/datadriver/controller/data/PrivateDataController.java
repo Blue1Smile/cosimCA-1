@@ -3,11 +3,14 @@ package com.casic.datadriver.controller.data;
 import com.casic.datadriver.controller.AbstractController;
 import com.casic.datadriver.model.data.DataVersion;
 import com.casic.datadriver.model.data.PrivateData;
+import com.casic.datadriver.model.modelcenter.ModelCenterModel;
 import com.casic.datadriver.model.task.TaskInfo;
+import com.casic.datadriver.model.model.Model;
 import com.casic.datadriver.service.data.DataSnapShotIdService;
 import com.casic.datadriver.service.data.DataVersionService;
 import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.task.TaskInfoService;
+import com.casic.datadriver.service.ModelCenterService;
 import com.hotent.core.annotion.Action;
 import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
@@ -39,7 +42,9 @@ import java.util.*;
 @RequestMapping("/datadriver/privatedata/")
 public class PrivateDataController extends AbstractController {
 
-    /** The privateData service. */
+    /**
+     * The privateData service.
+     */
     @Resource
     private PrivateDataService privateDataService;
 
@@ -53,16 +58,15 @@ public class PrivateDataController extends AbstractController {
     @Resource
     private DataVersionService dataVersionService;
 
+    @Resource
+    private ModelCenterService modelCenterService;
 
     /**
      * ?????????.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
-     * @throws Exception
-     *             the exception
+     * @param request  the request
+     * @param response the response
+     * @throws Exception the exception
      */
     @RequestMapping("save")
     @Action(description = "保存privateData")
@@ -97,16 +101,14 @@ public class PrivateDataController extends AbstractController {
 
         return privateData;
     }
+
     /**
      * Query privateData basic info list.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
+     * @param request  the request
+     * @param response the response
      * @return the list
-     * @throws Exception
-     *             the exception
+     * @throws Exception the exception
      */
 
     @RequestMapping("list")
@@ -114,7 +116,7 @@ public class PrivateDataController extends AbstractController {
     public ModelAndView queryPrivateDataBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long id = RequestUtil.getLong(request, "id");
-        List<PrivateData> privateDataInfoList=  new ArrayList<PrivateData>();
+        List<PrivateData> privateDataInfoList = new ArrayList<PrivateData>();
         TaskInfo taskInfo = taskInfoService.getById(id);
         if (id == null || id == 0) {
             privateDataInfoList = privateDataService.getAll();
@@ -126,7 +128,6 @@ public class PrivateDataController extends AbstractController {
         return mv;
 
     }
-
 
 
     /**
@@ -153,7 +154,11 @@ public class PrivateDataController extends AbstractController {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String dateString = formatter.format(currentTime);
 
-            mv = this.getAutoView().addObject("taskInfo", taskInfo).addObject("currentTime", dateString).addObject("sysName",sysName);
+            List<ModelCenterModel> modelCenterModelList = modelCenterService.getByTaskId(id);
+                    mv = this.getAutoView().addObject("taskInfo", taskInfo)
+                    .addObject("currentTime", dateString)
+                    .addObject("sysName", sysName)
+                    .addObject("modelCenterModelList", modelCenterModelList);
 
         } catch (Exception ex) {
             resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败" + ex.getMessage());
@@ -179,21 +184,20 @@ public class PrivateDataController extends AbstractController {
         List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByResponceId(taskInfo.getDdTaskResponsiblePerson());
 
         List<DataVersion> dataVersionList = dataVersionService.queryDataVersionListByddDataId(id);
+        List<ModelCenterModel> modelCenterModelList = modelCenterService.getByTaskId(taskId);
 //        int lenth = dataVersionList.size();
         return getAutoView().addObject("privateData", privateData)
                 .addObject("taskInfoList", taskInfoList)
-                .addObject("dataVersionList", dataVersionList);
+                .addObject("dataVersionList", dataVersionList)
+                .addObject("modelCenterModelList", modelCenterModelList);
     }
 
     /**
      * Del.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
-     * @throws Exception
-     *             the exception
+     * @param request  the request
+     * @param response the response
+     * @throws Exception the exception
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -204,8 +208,7 @@ public class PrivateDataController extends AbstractController {
     /**
      * ???????????.
      *
-     * @param bin
-     *            the bin
+     * @param bin the bin
      */
     @InitBinder
     public void initBinder(ServletRequestDataBinder bin) {
@@ -248,9 +251,9 @@ public class PrivateDataController extends AbstractController {
                     dataVersion1.setDdDataValue(privateData.getDdDataLastestValue());
 
                     List<DataVersion> dataVersionList1 = dataVersionService.queryDataVersionListByddDataId(privateData.getDdDataId());
-                    if (dataVersionList1!=null){
-                        dataVersion1.setDdDataVersion((long) (dataVersionList1.size()+1));
-                    }else {
+                    if (dataVersionList1 != null) {
+                        dataVersion1.setDdDataVersion((long) (dataVersionList1.size() + 1));
+                    } else {
                         dataVersion1.setDdDataVersion(0l);
                     }
                     dataVersionService.addDDDataVersion(dataVersion1);

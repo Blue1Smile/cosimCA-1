@@ -16,10 +16,14 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
             class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel">项目统计</h4>
+
+        <h4 class="modal-title" id="myModalLabel">项目统计</h4>
 </div>
 <div class="modal-body">
-    <iframe src="${ctx}/datadriver/designflow/projectflow.ht?flag=1&projectId=${projectId}&processFlowXml=${processFlowXml}" style="width: 100%;height: 500px" frameborder="no"></iframe>
+    <strong style="color: #bf3014">发布</strong>
+    <strong style="color: #00B83F">审核</strong>
+    <strong style="color: #1976D2">完成</strong>
+    <iframe src="${ctx}/datadriver/designflow/projectflow.ht?flag=1&projectId=${projectId}&processFlowXml=${processFlowXml}" style="width: 100%;height: 500px;" scrolling="no" frameborder="no"></iframe>
 </div>
 </body>
 </html>

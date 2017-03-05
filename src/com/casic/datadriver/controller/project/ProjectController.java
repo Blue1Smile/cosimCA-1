@@ -49,6 +49,7 @@ import com.hotent.platform.service.bpm.thread.MessageUtil;
 import com.hotent.platform.service.system.ResourcesService;
 import com.hotent.platform.service.system.SubSystemService;
 import net.sf.ezmorph.object.DateMorpher;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -102,6 +103,7 @@ public class ProjectController extends BaseController {
     private OrderDataRelationService orderDataRelationService;
     @Resource
     private PrivateDataService privateDataService;
+
     /**
      * 保存项目
      *
@@ -129,10 +131,10 @@ public class ProjectController extends BaseController {
                 project.setDdProjectCreateDatatime(dateString);
 
                 projectService.addDDProject(project);
-                resultMsg = getText("record.added", "项目信息");
+                resultMsg = getText("added", "项目信息");
             } else {
                 projectService.updateAll(project);
-                resultMsg = getText("record.updated", "项目信息");
+                resultMsg = getText("updated", "项目信息");
             }
             writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
         } catch (Exception e) {
@@ -177,28 +179,26 @@ public class ProjectController extends BaseController {
         Long userId = ContextUtil.getCurrentUserId();
         List<Project> projectList = this.projectService.queryProjectBasicInfoList(userId);
 
-        for (int i=0; i<projectList.size();i++){
+        for (int i = 0; i < projectList.size(); i++) {
             Project nowProject = projectList.get(i);
-            List<ProTaskDependance> proTaskDependanceList=proTaskDependanceService.getProTaskDependanceList(nowProject.getDdProjectId());
-            int listLengthStart=0;
-            int listLengthComplete =0;
-            for(int j=0; j<proTaskDependanceList.size();j++){
-                TaskInfo nowTask= taskInfoService.getById(proTaskDependanceList.get(j).getDdTaskId());
-                if(nowTask.getDdTaskChildType().equals("publishpanel")||nowTask.getDdTaskChildType().equals("checkpanel")){
+            List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(nowProject.getDdProjectId());
+            int listLengthStart = 0;
+            int listLengthComplete = 0;
+            for (int j = 0; j < proTaskDependanceList.size(); j++) {
+                TaskInfo nowTask = taskInfoService.getById(proTaskDependanceList.get(j).getDdTaskId());
+                if (nowTask.getDdTaskChildType().equals("publishpanel") || nowTask.getDdTaskChildType().equals("checkpanel")) {
                     listLengthStart++;
                 }
-                if(nowTask.getDdTaskChildType().equals("completepanel")){
+                if (nowTask.getDdTaskChildType().equals("completepanel")) {
                     listLengthComplete++;
                 }
             }
-            if(listLengthComplete==proTaskDependanceList.size()&&listLengthComplete!=0){
+            if (listLengthComplete == proTaskDependanceList.size() && listLengthComplete != 0) {
                 projectList.get(i).setDdProjectPhaseId(projectList.get(i).complete);
-            }
-            else{
-                if(listLengthStart>0){
+            } else {
+                if (listLengthStart > 0) {
                     projectList.get(i).setDdProjectPhaseId(projectList.get(i).start);
-                }
-                else{
+                } else {
                     projectList.get(i).setDdProjectPhaseId(projectList.get(i).unstart);
                 }
             }
@@ -285,7 +285,9 @@ public class ProjectController extends BaseController {
     public ModelAndView setup(HttpServletRequest request, HttpServletResponse response) throws Exception {
         long id = RequestUtil.getLong(request, "id");
         Project Project = projectService.getById(id);
-        return getAutoView().addObject("Project", Project);
+        String creatorName = ContextUtil.getCurrentUser().getFullname();
+        Long creatorId = ContextUtil.getCurrentUser().getUserId();
+        return getAutoView().addObject("Project", Project).addObject("creatorName", creatorName).addObject("creatorId", creatorId);
     }
 
 //    /**
@@ -375,8 +377,8 @@ public class ProjectController extends BaseController {
         List<TaskInfo> taskInfoList = new ArrayList<TaskInfo>();
         List<TaskInfo> createTaskInfoList = new ArrayList<TaskInfo>();
         List<TaskInfo> publishTaskInfoList = new ArrayList<TaskInfo>();
-        List<TaskInfo> checkTaskInfoList= new ArrayList<TaskInfo>();
-        List<TaskInfo> completeTaskInfoList= new ArrayList<TaskInfo>();
+        List<TaskInfo> checkTaskInfoList = new ArrayList<TaskInfo>();
+        List<TaskInfo> completeTaskInfoList = new ArrayList<TaskInfo>();
         List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(projectId);
         for (int i = 0; i < proTaskDependanceList.size(); i++) {
             ProTaskDependance proTaskDependance = proTaskDependanceList.get(i);
@@ -392,14 +394,13 @@ public class ProjectController extends BaseController {
             if (taskInfo.getDdTaskChildType().equals("createpanel")) {
                 createTaskInfoList.add(taskInfo);
             }
-            if(taskInfo.getDdTaskChildType().equals("checkpanel")){
+            if (taskInfo.getDdTaskChildType().equals("checkpanel")) {
                 checkTaskInfoList.add(taskInfo);
             }
-            if(taskInfo.getDdTaskChildType().equals("completepanel")){
+            if (taskInfo.getDdTaskChildType().equals("completepanel")) {
                 completeTaskInfoList.add(taskInfo);
             }
         }
-
 
 
         //根据用户ID获取当前用户拥有项目列表
@@ -408,8 +409,8 @@ public class ProjectController extends BaseController {
                 .addObject("projectListbyUser", projectListbyUser)
                 .addObject("taskListbyUser", createTaskInfoList)
                 .addObject("publishtaskListbyUser", publishTaskInfoList)
-                .addObject("checkTaskInfoList",checkTaskInfoList)
-                .addObject("completeTaskInfoList",completeTaskInfoList);
+                .addObject("checkTaskInfoList", checkTaskInfoList)
+                .addObject("completeTaskInfoList", completeTaskInfoList);
     }
 
 
@@ -437,7 +438,7 @@ public class ProjectController extends BaseController {
 //        int valueLength=publishRelationList.size();
 
         //发布任务
-        if(taskInfo.getDdTaskChildType().equals("createpanel")&&parent.equals("publishpanel")){
+        if (taskInfo.getDdTaskChildType().equals("createpanel") && parent.equals("publishpanel")) {
             taskStart.setDdTaskStartId(UniqueIdUtil.genId());
             taskStart.setDdTaskId(taskId);
             taskStart.setDdTaskStatus(TaskStart.publishpanel);
@@ -453,21 +454,20 @@ public class ProjectController extends BaseController {
 
             Project project = projectService.getById(taskInfo.getDdTaskProjectId());
 //            ProjectStart
-            taskStartService.taskStart(taskStart,project);
+            taskStartService.taskStart(taskStart, project);
         }
         //收回任务
-        if (taskInfo.getDdTaskChildType().equals("publishpanel")&&parent.equals("createpanel")) {
+        if (taskInfo.getDdTaskChildType().equals("publishpanel") && parent.equals("createpanel")) {
             //更新taskinfo?????createpanel属性是否应该放到taskstart里面
             taskInfo.setDdTaskChildType("createpanel");
             taskInfo.setDdTaskState(taskInfo.createpanel);
             taskInfoService.update(taskInfo);
 
             taskStartService.delByTaskId(taskInfo.getDdTaskId());
-        }
-        else{
+        } else {
 
             //提交任务
-            if(taskInfo.getDdTaskChildType().equals("publishpanel")&&parent.equals("checkpanel")){
+            if (taskInfo.getDdTaskChildType().equals("publishpanel") && parent.equals("checkpanel")) {
                 //更新taskinfo?????createpanel属性是否应该放到taskstart里面
                 taskInfo.setDdTaskChildType("checkpanel");
                 taskInfoService.update(taskInfo);
@@ -475,10 +475,9 @@ public class ProjectController extends BaseController {
 
                 taskStart.setDdTaskStatus(TaskStart.checkpanel);
                 taskStartService.update(taskStart);
-            }
-            else{
+            } else {
                 //驳回任务
-                if(taskInfo.getDdTaskChildType().equals("checkpanel")&&parent.equals("publishpanel")){
+                if (taskInfo.getDdTaskChildType().equals("checkpanel") && parent.equals("publishpanel")) {
                     //更新taskinfo?????createpanel属性是否应该放到taskstart里面
                     taskInfo.setDdTaskChildType("publishpanel");
                     taskInfoService.update(taskInfo);
@@ -486,11 +485,9 @@ public class ProjectController extends BaseController {
 
                     taskStart.setDdTaskStatus(TaskStart.publishpanel);
                     taskStartService.update(taskStart);
-                }
-                else{
+                } else {
                     //审核通过
-                    if(taskInfo.getDdTaskChildType().equals("checkpanel")&&parent.equals("completepanel"))
-                    {
+                    if (taskInfo.getDdTaskChildType().equals("checkpanel") && parent.equals("completepanel")) {
                         //更新taskinfo?????createpanel属性是否应该放到taskstart里面
                         taskInfo.setDdTaskChildType("completepanel");
                         taskInfoService.update(taskInfo);
@@ -508,6 +505,93 @@ public class ProjectController extends BaseController {
 
         }
 
+    }
+
+    /**
+     * 一键发布
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("onepunchsend")
+    @Action(description = "一键发布")
+    public void onepunchsend(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            String json = request.getParameter("strJson");
+            String projectId = RequestUtil.getString(request, "projectId");
+            String parent = RequestUtil.getString(request, "parent");
+            JSONArray jsonArray = JSONArray.fromObject(json);
+
+            TaskStart taskStart = new TaskStart();
+
+            for (int i=0; i<jsonArray.size(); i++){
+                Object ddTaskId = jsonArray.get(i);
+                Long taskId = Long.parseLong((String) ddTaskId);
+
+                TaskInfo taskInfo = taskInfoService.getById(taskId);
+
+                taskStart.setDdTaskStartId(UniqueIdUtil.genId());
+                taskStart.setDdTaskId(taskId);
+                taskStart.setDdTaskStatus(TaskStart.publishpanel);
+
+                //更新taskinfo
+                taskInfo.setDdTaskChildType("publishpanel");
+                taskInfo.setDdTaskState(taskInfo.publishpanel);
+                taskInfoService.update(taskInfo);
+                //添加taskstart
+                long userId = taskInfo.getDdTaskResponsiblePerson();
+                taskStart.setDdTaskResponcePerson(userId);
+
+                Project project = projectService.getById(taskInfo.getDdTaskProjectId());
+                taskStartService.taskStart(taskStart, project);
+            }
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+        }catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
+
+    /**
+     * 一键收回
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("onepunchback")
+    @Action(description = "一键收回")
+    public void onepunchback(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            String strJsonBack = request.getParameter("strJsonBack");
+            String projectId = RequestUtil.getString(request, "projectId");
+            String parent = RequestUtil.getString(request, "parent");
+            JSONArray jsonArrayBack = JSONArray.fromObject(strJsonBack);
+
+            TaskStart taskStart = new TaskStart();
+
+            for (int i=0; i<jsonArrayBack.size(); i++){
+                Object ddTaskId = jsonArrayBack.get(i);
+                Long taskId = Long.parseLong((String) ddTaskId);
+
+                TaskInfo taskInfo = taskInfoService.getById(taskId);
+                //更新taskinfo?????createpanel属性是否应该放到taskstart里面
+                taskInfo.setDdTaskChildType("createpanel");
+                taskInfo.setDdTaskState(taskInfo.createpanel);
+                taskInfoService.update(taskInfo);
+
+                taskStartService.delByTaskId(taskInfo.getDdTaskId());
+            }
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+        }catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
     }
 
     /**

@@ -125,10 +125,6 @@
         setTimeout(function () {
             $table.bootstrapTable('resetView');
         }, 200);
-
-        $table.on('all.bs.table', function (e, name, args) {
-            console.log(name, args);
-        });
     }
     //原始操作按钮
     function operateFormatter(value, row, index) {

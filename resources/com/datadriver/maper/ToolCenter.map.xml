@@ -65,6 +65,13 @@
     where dd_tool_major = #{Name} AND dd_tool_bf2 = 1 limit #{pageSize},#{pageNumber}
   </select>
 
+
+  <delete id="deltool" parameterType="java.lang.Long">
+    delete from dd_tools
+    where dd_tool_id = #{id,jdbcType=NUMERIC}
+  </delete>
+
+
   <!--//dd_tool_bf2值为1代表工具新上传-->
 
   <insert id="insertSelective" parameterType="com.casic.datadriver.model.tool.ToolCenterModel">

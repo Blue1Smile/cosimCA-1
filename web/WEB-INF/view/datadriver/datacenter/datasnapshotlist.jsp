@@ -23,15 +23,8 @@
   <script src="${ctx}/newtable/jquery.js"></script>
   <%--<%@include file="/commons/include/get.jsp" %>--%>
   <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-
 </head>
 <body>
-
-<div class="layui-tab layui-tab-card">
-  <ul class="layui-tab-title">
-    <li class="layui-this"></li>
-  </ul>
-  <div class="layui-tab-content">
     <c:set var="checkAll">
       <input type="checkbox" id="chkall"/>
     </c:set>
@@ -42,10 +35,7 @@
       </display:column>
       <display:column property="ddDataId" title="数据id" maxLength="80"></display:column>
       <display:column property="ddDataValue" title="数据快照值" sortable="false" maxLength="80"></display:column>
-
     </display:table>
-  </div>
-</div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>

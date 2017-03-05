@@ -15,26 +15,34 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
+
 <html lang="zh-CN" style="height: 100%; margin: 0px">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 
     <title>进入任务页面</title>
-    <%--<%@include file="/commons/include/get.jsp" %>--%>
-    <%--<link rel="stylesheet" href="${ctx}/resources/skin/base.css"/>--%>
-    <%--<link rel="stylesheet" href="${ctx}/resources/skin/content.css"/>--%>
-    <%--<link rel="stylesheet" href="${ctx}/resources/skin/blue.css"/>--%>
+
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/newtable/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
+
     <script src="${ctx}/newtable/jquery.js"></script>
-    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
-    <script src="${ctx}/newtable/bootstrap.js"></script>
-    <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
+    <%@include file="/newtable/tablecontext.jsp" %>
+    <script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body style="height: 100%; margin: 0px">
 <div class="container-fluid" style="height: 100%">
@@ -56,19 +64,8 @@
         <li role="presentation" id="switch_attr_index"><a href="#indextab" data-toggle="tab" role="tab">指标</a></li>
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>
         <div class="pull-right">
-            <%--<a id="statis_btn" class="btn btn-warning" data-toggle="modal"--%>
-               <%--data-remote="statis.ht?id=${Project.ddProjectId}"--%>
-               <%--data-target="#statis"><span class="glyphicon glyphicon-stats"></span> 统计--%>
-            <%--</a>--%>
             <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 流程统计</a>
-            <%--<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"--%>
-               <%--data-remote="${ctx}/datadriver/task/addtask.ht?id=${Project.ddProjectId}"--%>
-               <%--data-target="#addtask"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>--%>
             <a class="btn btn-success" href="#" id="create_task" onclick="createTask(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>
-
-            <%--<a class="btn btn-info" href="#" data-toggle="modal" id="create_index"--%>
-               <%--data-remote="${ctx}/datadriver/index/indexedit.ht?id=${Project.ddProjectId}"--%>
-               <%--data-target="#addindex1"><span class="glyphicon glyphicon-plus"></span> 创建指标</a>--%>
             <a class="btn btn-info" href="#" id="create_index" onclick="createIndex(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建指标</a>
         </div>
     </ul>
@@ -81,6 +78,9 @@
                     <div class="panel panel-default task-panel">
                         <div class="panel-heading">
                             新创建
+                            <button type="button" class="btn btn-xs btn-default pull-right" id="OnePunchSend">
+                                <span class="glyphicon glyphicon-send"></span> 全部发布
+                            </button>
                         </div>
                         <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
                             <ul id="createpanel" class="scrum-stage-tasks">
@@ -105,6 +105,9 @@
                     <div class="panel panel-info task-panel">
                         <div class="panel-heading">
                             已发布
+                            <button type="button" class="btn btn-xs btn-info pull-right" id="OnePunchBack">
+                                <span class="glyphicon glyphicon-arrow-left"></span> 全部收回
+                            </button>
                         </div>
                         <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
                             <ul id="publishpanel" class="scrum-stage-tasks">
@@ -178,7 +181,6 @@
         <div role="tabpanel" class="tab-pane" id="indextab">
         </div>
         <div role="tabpanel" class="tab-pane" id="calendar">
-            <%--<iframe src="${ctx}/platform/calendar/calendar.ht" style="height: 600px"></iframe>--%>
         </div>
     </div>
 </div>
@@ -200,7 +202,7 @@
 </div>
 <%--统计--%>
 <div class="modal fade" id="statis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
 
         </div>
@@ -242,6 +244,70 @@
         $("#create_task").show();
         $("#create_index").hide();
     });
+
+    //生成全部新建panel中li的list并转换成json发送
+    $('#OnePunchSend').click(function(index) {
+        var feedbackMap = new Object();
+        var valueList =  new Array();
+        $("#createpanel>li").each(function() {
+            //将input=hidden的值压入list
+            var a = $(this).find("input").val();
+            if(a!=null && a!="" && a!= undefined){
+                feedbackMap = a;
+                valueList.push(feedbackMap);
+            }else{
+                alert('生成list异常');
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "onepunchsend.ht?id=${Project.ddProjectId}&&parent=publishpanel",
+            data: {strJson: JSON.stringify(valueList)},
+            success: function (data, status) {
+                        if (status == "success") {
+                            window.location.reload();
+                        }
+            },
+            error: function () {
+//                        alert("Error");
+            },
+            complete: function () {
+            }
+        });
+    });
+    //生成全部发布panel中li的list并转换成json发送
+    $('#OnePunchBack').click(function(index) {
+        var feedbackMap = new Object();
+        var valueList =  new Array();
+        $("#publishpanel>li").each(function() {
+            //将input=hidden的值压入list
+            var a = $(this).find("input").val();
+            if(a!=null && a!="" && a!= undefined){
+                feedbackMap = a;
+                valueList.push(feedbackMap);
+            }else{
+                alert('生成list异常');
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "onepunchback.ht?id=${Project.ddProjectId}&&parent=createpanel",
+            data: {strJsonBack: JSON.stringify(valueList)},
+            success: function (data, status) {
+                if (status == "success") {
+                    window.location.reload();
+                }
+            },
+            error: function () {
+//                        alert("Error");
+            },
+            complete: function () {
+            }
+        });
+    });
+
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
             switch_attr_task = document.getElementById('switch_attr_task');

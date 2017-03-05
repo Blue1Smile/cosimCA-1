@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <%@page language="java" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%@include file="/commons/include/html_doctype.html" %>
 <%@page import="com.hotent.core.util.ContextUtil" %>
 <html lang="zh-CN">
 <head>
     <title>数据发布列表</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%@include file="/commons/include/form.jsp" %>
-    <%@include file="/newtable/tablecontext.jsp" %>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body>
     <table id="tablelist">
@@ -76,16 +77,16 @@
                 }
                 , {//第三列，数值
                     field: 'ddDataLastestValue',
-                    title: '值',
+                    title: '最新值',
                     sortable: true,
                     align: 'center',
-                    editable: {
-                        type: 'text',
-                        title: '值',
-                        validate: function (v) {
-                            if (isNaN(v)) return '值必须是数字';
-                        }
-                    }
+//                    editable: {
+//                        type: 'text',
+//                        title: '输入最新值',
+//                        validate: function (v) {
+//                            if (isNaN(v)) return '值必须是数字';
+//                        }
+//                    }
                     //,
                     // footerFormatter: ddDataLastestValueFormatter
                 }
@@ -110,19 +111,6 @@
             onClickRow: function (row, $element) {
                 curRow = row;
             },
-            //注册加载子表的事件。注意下这里的三个参数！
-//            onExpandRow: function (index, row, $detail) {
-//                $table.InitSubTable(index, row, $detail);
-//            },
-            //查询参数,每次调用是会带上这个参数，可自定义
-//            queryParams: function(params) {
-//                var name = $('#ddDataName').val();
-//                return {
-//                    pageNumber: params.offset+1,
-//                    pageSize: params.limit,
-//                    name:name
-//                };
-//            },
             onEditableSave: function (field, row, oldValue, $el) {
                 $.ajax({
                     type: "post",
@@ -137,9 +125,7 @@
                         alert("Error");
                     },
                     complete: function () {
-
                     }
-
                 });
             }
         });
@@ -158,9 +144,6 @@
         });
         $table.on('expand-row.bs.table', function (e, index, row, $detail) {
             $table.InitSubTable(index, row, $detail);
-        });
-        $table.on('all.bs.table', function (e, name, args) {
-            console.log(name, args);
         });
         $remove.click(function () {
             var ids = getIdSelections();
@@ -238,10 +221,6 @@
                         visible: true
                     }
                 ],
-                ////无线循环取子表，直到子表里面没有记录
-                //onExpandRow: function (index, row, $Subdetail) {
-                //    oInit.InitSubTable(index, row, $Subdetail);
-                //}
             });
         }
     }
