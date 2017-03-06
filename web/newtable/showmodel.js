@@ -113,7 +113,7 @@ function TableInit() {
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             clickToSelect: true,
             detailView: false,//父子表
-            uniqueId: "MENU_ID",
+            uniqueId: "ModelID",
             pageSize: 10,
             pageList: [10, 25],
             columns: [{
@@ -144,15 +144,22 @@ function TableInit() {
                     align: 'center',
                     visible: true
                 },
+                {   field: 'operate',
+                    title: '操作',
+                    align: 'center',
+                    events: operateEvents,
+                    formatter: operateFormatter(),
+                    visible: true
+                },
             ],
             //无线循环取子表，直到子表里面没有记录
             onExpandRow: function (index, row, $Subdetail) {
                 InitSubTable(index, row, $Subdetail);
             },
             onClickRow: function (row, tr) {
-                alert(row.ModelUrl);
-                alert(row.ModelName);
-                window.location.href = "getmodel.ht?modelurl=" + row.ModelUrl + "&modelname=" + row.ModelName;
+                // alert(row.ModelUrl);
+                // alert(row.ModelName);
+                // window.location.href = "getmodel.ht?modelurl=" + row.ModelUrl + "&modelname=" + row.ModelName;
             }
 
 
@@ -177,15 +184,15 @@ window.operateEvents = {
         //     field: 'ddIndexId',
         //     values: [row.ddIndexId],
         // });
-        alert(row.ToolID);
-        $.get('remove.ht?id=' + row.ToolID);
+        // alert(row.ModelID);
+        $.get('remove.ht?id=' + row.ModelID);
         $("#tb_departments").bootstrapTable("refresh");
         // window.location.href="remove.ht?id=" + 1;
     },
     'click .download': function (e, value, row, index) {
-        if (row.DdDataType) {
-        }
-        window.location.href = "gettool.ht?major=" + row.ToolUrl + "&name=" + row.ToolName;
+        // if (row.DdDataType) {
+        // }
+        window.location.href = "getmodel.ht?modelurl=" + row.ModelUrl + "&modelname=" + row.ModelName;
     }
 };
 

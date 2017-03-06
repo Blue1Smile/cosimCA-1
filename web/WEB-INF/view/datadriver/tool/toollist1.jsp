@@ -9,12 +9,11 @@
 <html lang="zh-CN">
 <head>
     <title>任务数据中心</title>
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
-
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/newtable/bootstrap-table.js"></script>
@@ -27,6 +26,8 @@
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+
+
 </head>
 <body>
 <div id="toolbar" class="btn-group">
@@ -37,7 +38,7 @@
        data-url="showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>&son=1">
 </table>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-<script src="${ctx}/newtable/showtool.js"></script>
+    <script src="${ctx}/newtable/showtool.js"></script>
 
 <div class="modal fade" id="addindex1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -46,20 +47,8 @@
         </div>
     </div>
 </div>
-</body>
-<script charset=UTF-8>
-    $('#btn_add').on('click', function () {
-        var index = layer.open({
-            type: 2,
-            title: "工具上传", //不显示标题栏
-            shadeClose: true,
-            shade: 0.2,
-            area: ['80%', '80%'],
-            id: 'layer_taskinfo', //设定一个id，防止重复弹出
-            moveType: 1,//拖拽模式，0或者1
-            content: 'edit.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>'
-        });
-    });
+    </body>
+    <script charset=UTF-8>
 
     function createIndex() {
         $('#addindex1').modal({
