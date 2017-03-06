@@ -78,8 +78,8 @@
 			hideSplash();
 
 			// Shows an error message if the editor cannot start
-			mxUtils.alert('Cannot start application: '+e.message);
-			throw e; // for debugging
+			//mxUtils.alert('Cannot start application: '+e.message);
+			//throw e; // for debugging
 		}
 								
 		return editor;
