@@ -13,7 +13,7 @@ public class ToolCenterModel extends BaseModel {
 
     private String ddToolStutus;
 
-    private Integer ddToolVersion;
+    private String ddToolVersion;
 
     private String ddToolUser;
 
@@ -63,11 +63,11 @@ public class ToolCenterModel extends BaseModel {
         this.ddToolStutus = ddToolStutus == null ? null : ddToolStutus.trim();
     }
 
-    public Integer getDdToolVersion() {
+    public String getDdToolVersion() {
         return ddToolVersion;
     }
 
-    public void setDdToolVersion(Integer ddToolVersion) {
+    public void setDdToolVersion(String ddToolVersion) {
         this.ddToolVersion = ddToolVersion;
     }
 

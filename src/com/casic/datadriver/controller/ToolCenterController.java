@@ -70,7 +70,7 @@ public class ToolCenterController extends BaseController {
         public void  save(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String major= RequestUtil.getString(request, "major");
         String ddToolName= RequestUtil.getString(request, "ddToolName");
-        long ddToolVersion= RequestUtil.getLong(request, "ddToolVersion");
+        String ddToolVersion= RequestUtil.getString(request, "ddToolVersion");
         String ddToolBf= RequestUtil.getString(request, "ddToolBf");
         String ddToolBf2= RequestUtil.getString(request, "ddToolBf2");
 
@@ -78,7 +78,7 @@ public class ToolCenterController extends BaseController {
 //        ToolCenterModel ToolData = this.getFormObject(request, ToolCenterModel.class);
 
         m.setDdToolName(ddToolName);
-        m.setDdToolVersion((int) ddToolVersion);
+        m.setDdToolVersion(ddToolVersion);
         m.setDdToolBf(ddToolBf);
         m.setDdToolBf2(ddToolBf2);
         m.setDdToolMajor(major);
