@@ -7,7 +7,7 @@
     <result column="dd_tool_url" jdbcType="VARCHAR" property="ddToolUrl" />
     <result column="dd_tool_major" jdbcType="VARCHAR" property="ddToolMajor" />
     <result column="dd_tool_stutus" jdbcType="VARCHAR" property="ddToolStutus" />
-    <result column="dd_tool_version" jdbcType="INTEGER" property="ddToolVersion" />
+    <result column="dd_tool_version" jdbcType="VARCHAR" property="ddToolVersion" />
     <result column="dd_tool_user" jdbcType="VARCHAR" property="ddToolUser" />
     <result column="dd_tool_data" jdbcType="VARCHAR" property="ddToolData" />
     <result column="dd_tool_bf" jdbcType="VARCHAR" property="ddToolBf" />
@@ -19,7 +19,7 @@
       dd_tool_user, dd_tool_data, dd_tool_bf, 
       dd_tool_bf2)
     values (#{ddToolId,jdbcType=BIGINT}, #{ddToolName,jdbcType=VARCHAR}, #{ddToolUrl,jdbcType=VARCHAR}, 
-      #{ddToolMajor,jdbcType=VARCHAR}, #{ddToolStutus,jdbcType=VARCHAR}, #{ddToolVersion,jdbcType=INTEGER}, 
+      #{ddToolMajor,jdbcType=VARCHAR}, #{ddToolStutus,jdbcType=VARCHAR}, #{ddToolVersion,jdbcType=VARCHAR},
       #{ddToolUser,jdbcType=VARCHAR}, #{ddToolData,jdbcType=VARCHAR}, #{ddToolBf,jdbcType=VARCHAR}, 
       #{ddToolBf2,jdbcType=VARCHAR})
   </insert>
@@ -125,7 +125,7 @@
         #{ddToolStutus,jdbcType=VARCHAR},
       </if>
       <if test="ddToolVersion != null">
-        #{ddToolVersion,jdbcType=INTEGER},
+        #{ddToolVersion,jdbcType=VARCHAR},
       </if>
       <if test="ddToolUser != null">
         #{ddToolUser,jdbcType=VARCHAR},
