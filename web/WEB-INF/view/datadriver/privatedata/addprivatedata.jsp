@@ -95,7 +95,7 @@
                     <td colspan="5">
                         <div class="input-group">
                             <input type="text" class="form-control" id="ddDataLastestValue" name="ddDataLastestValue"
-                                   value="">
+                                   value="" required>
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">请选择数据单位 <span class="caret"></span>
