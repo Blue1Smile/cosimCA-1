@@ -158,7 +158,6 @@
 <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
 <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 <script type="text/javascript">
-    //@ sourceURL=setup.ht
     $(function () {
         var options = {};
         if (showResponse) {
