@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.casic.datadriver.model.data.DataStructMember">
   <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.DataStructMember">
-    <result column="DD_MEMBER_ID" jdbcType="BIGINT" property="ddMemberId" />
+    <id column="DD_MEMBER_ID" jdbcType="BIGINT" property="ddMemberId" />
     <result column="DD_MEMBER_TYPE" jdbcType="BIGINT" property="ddMemberType" />
     <result column="DD_ITEM_KEY" jdbcType="VARCHAR" property="ddItemKey" />
     <result column="DD_ITEM_NAME" jdbcType="VARCHAR" property="ddItemName" />
