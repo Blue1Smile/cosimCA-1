@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.casic.datadriver.mapper.DataStructMapper">
+<mapper namespace="com.casic.datadriver.model.data.DataStruct">
   <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.DataStruct">
-    <id column="DD_STRUCT_ID" jdbcType="INTEGER" property="ddStructId" />
-    <result column="DD_DATA_ID" jdbcType="INTEGER" property="ddDataId" />
+    <result column="DD_STRUCT_ID" jdbcType="BIGINT" property="ddStructId" />
     <result column="DD_STRUCT_NAME" jdbcType="VARCHAR" property="ddStructName" />
-    <result column="DD_STRUCT_MEMBER_TYPE" jdbcType="INTEGER" property="ddStructMemberType" />
-    <result column="DD_STRUCT_MEMBER_ID" jdbcType="INTEGER" property="ddStructMemberId" />
+    <result column="DD_NODE_PATH" jdbcType="VARCHAR" property="ddNodePath" />
+    <result column="DD_DEPTH_ID" jdbcType="BIGINT" property="ddDepthId" />
+    <result column="DD_DEPTH" jdbcType="INTEGER" property="ddDepth" />
+    <result column="DD_PARENT_ID" jdbcType="BIGINT" property="ddParentId" />
+    <result column="DD_CATKEY" jdbcType="VARCHAR" property="ddCatkey" />
+    <result column="DD_NODE_KEY" jdbcType="VARCHAR" property="ddNodeKey" />
+    <result column="DD_TASK_ID" jdbcType="BIGINT" property="ddTaskId" />
+    <result column="DD_SN" jdbcType="BIGINT" property="ddSn" />
+    <result column="DD_IS_LEAF" jdbcType="SMALLINT" property="ddIsLeaf" />
+    <result column="DD_NODE_CODE" jdbcType="VARCHAR" property="ddNodeCode" />
+    <result column="DD_NODE_CODE_TYPE" jdbcType="SMALLINT" property="ddNodeCodeType" />
   </resultMap>
-  <sql id="Base_Column_List">
-    DD_STRUCT_ID, DD_DATA_ID, DD_STRUCT_NAME, DD_STRUCT_MEMBER_TYPE, DD_STRUCT_MEMBER_ID
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from dd_data_struct
-    where DD_STRUCT_ID = #{ddStructId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from dd_data_struct
-    where DD_STRUCT_ID = #{ddStructId,jdbcType=INTEGER}
-  </delete>
   <insert id="insert" parameterType="com.casic.datadriver.model.data.DataStruct">
-    insert into dd_data_struct (DD_STRUCT_ID, DD_DATA_ID, DD_STRUCT_NAME, 
-      DD_STRUCT_MEMBER_TYPE, DD_STRUCT_MEMBER_ID)
-    values (#{ddStructId,jdbcType=INTEGER}, #{ddDataId,jdbcType=INTEGER}, #{ddStructName,jdbcType=VARCHAR}, 
-      #{ddStructMemberType,jdbcType=INTEGER}, #{ddStructMemberId,jdbcType=INTEGER})
+    insert into dd_data_struct (DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH, 
+      DD_DEPTH_ID, DD_DEPTH, DD_PARENT_ID, 
+      DD_CATKEY, DD_NODE_KEY, DD_TASK_ID, 
+      DD_SN, DD_IS_LEAF, DD_NODE_CODE, 
+      DD_NODE_CODE_TYPE)
+    values (#{ddStructId,jdbcType=BIGINT}, #{ddStructName,jdbcType=VARCHAR}, #{ddNodePath,jdbcType=VARCHAR}, 
+      #{ddDepthId,jdbcType=BIGINT}, #{ddDepth,jdbcType=INTEGER}, #{ddParentId,jdbcType=BIGINT}, 
+      #{ddCatkey,jdbcType=VARCHAR}, #{ddNodeKey,jdbcType=VARCHAR}, #{ddTaskId,jdbcType=BIGINT}, 
+      #{ddSn,jdbcType=BIGINT}, #{ddIsLeaf,jdbcType=SMALLINT}, #{ddNodeCode,jdbcType=VARCHAR}, 
+      #{ddNodeCodeType,jdbcType=SMALLINT})
   </insert>
   <insert id="insertSelective" parameterType="com.casic.datadriver.model.data.DataStruct">
     insert into dd_data_struct
@@ -33,61 +34,83 @@
       <if test="ddStructId != null">
         DD_STRUCT_ID,
       </if>
-      <if test="ddDataId != null">
-        DD_DATA_ID,
-      </if>
       <if test="ddStructName != null">
         DD_STRUCT_NAME,
       </if>
-      <if test="ddStructMemberType != null">
-        DD_STRUCT_MEMBER_TYPE,
+      <if test="ddNodePath != null">
+        DD_NODE_PATH,
       </if>
-      <if test="ddStructMemberId != null">
-        DD_STRUCT_MEMBER_ID,
+      <if test="ddDepthId != null">
+        DD_DEPTH_ID,
+      </if>
+      <if test="ddDepth != null">
+        DD_DEPTH,
+      </if>
+      <if test="ddParentId != null">
+        DD_PARENT_ID,
+      </if>
+      <if test="ddCatkey != null">
+        DD_CATKEY,
+      </if>
+      <if test="ddNodeKey != null">
+        DD_NODE_KEY,
+      </if>
+      <if test="ddTaskId != null">
+        DD_TASK_ID,
+      </if>
+      <if test="ddSn != null">
+        DD_SN,
+      </if>
+      <if test="ddIsLeaf != null">
+        DD_IS_LEAF,
+      </if>
+      <if test="ddNodeCode != null">
+        DD_NODE_CODE,
+      </if>
+      <if test="ddNodeCodeType != null">
+        DD_NODE_CODE_TYPE,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="ddStructId != null">
-        #{ddStructId,jdbcType=INTEGER},
-      </if>
-      <if test="ddDataId != null">
-        #{ddDataId,jdbcType=INTEGER},
+        #{ddStructId,jdbcType=BIGINT},
       </if>
       <if test="ddStructName != null">
         #{ddStructName,jdbcType=VARCHAR},
       </if>
-      <if test="ddStructMemberType != null">
-        #{ddStructMemberType,jdbcType=INTEGER},
+      <if test="ddNodePath != null">
+        #{ddNodePath,jdbcType=VARCHAR},
       </if>
-      <if test="ddStructMemberId != null">
-        #{ddStructMemberId,jdbcType=INTEGER},
+      <if test="ddDepthId != null">
+        #{ddDepthId,jdbcType=BIGINT},
+      </if>
+      <if test="ddDepth != null">
+        #{ddDepth,jdbcType=INTEGER},
+      </if>
+      <if test="ddParentId != null">
+        #{ddParentId,jdbcType=BIGINT},
+      </if>
+      <if test="ddCatkey != null">
+        #{ddCatkey,jdbcType=VARCHAR},
+      </if>
+      <if test="ddNodeKey != null">
+        #{ddNodeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="ddTaskId != null">
+        #{ddTaskId,jdbcType=BIGINT},
+      </if>
+      <if test="ddSn != null">
+        #{ddSn,jdbcType=BIGINT},
+      </if>
+      <if test="ddIsLeaf != null">
+        #{ddIsLeaf,jdbcType=SMALLINT},
+      </if>
+      <if test="ddNodeCode != null">
+        #{ddNodeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ddNodeCodeType != null">
+        #{ddNodeCodeType,jdbcType=SMALLINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.data.DataStruct">
-    update dd_data_struct
-    <set>
-      <if test="ddDataId != null">
-        DD_DATA_ID = #{ddDataId,jdbcType=INTEGER},
-      </if>
-      <if test="ddStructName != null">
-        DD_STRUCT_NAME = #{ddStructName,jdbcType=VARCHAR},
-      </if>
-      <if test="ddStructMemberType != null">
-        DD_STRUCT_MEMBER_TYPE = #{ddStructMemberType,jdbcType=INTEGER},
-      </if>
-      <if test="ddStructMemberId != null">
-        DD_STRUCT_MEMBER_ID = #{ddStructMemberId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where DD_STRUCT_ID = #{ddStructId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.data.DataStruct">
-    update dd_data_struct
-    set DD_DATA_ID = #{ddDataId,jdbcType=INTEGER},
-      DD_STRUCT_NAME = #{ddStructName,jdbcType=VARCHAR},
-      DD_STRUCT_MEMBER_TYPE = #{ddStructMemberType,jdbcType=INTEGER},
-      DD_STRUCT_MEMBER_ID = #{ddStructMemberId,jdbcType=INTEGER}
-    where DD_STRUCT_ID = #{ddStructId,jdbcType=INTEGER}
-  </update>
 </mapper>
