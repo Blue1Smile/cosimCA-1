@@ -36,35 +36,35 @@ public class DataStructController extends AbstractController {
     @Resource
     private DataStructService dataStructService;
 
-    /**
-     * ?????????.
-     *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
-     * @throws Exception
-     *             the exception
-     */
-    @RequestMapping("save")
-    @Action(description = "添加或更新dataStruct")
-    public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String resultMsg = null;
-        DataStruct dataStruct = this.getFormObject(request, DataStruct.class);
-        try {
-            if (dataStruct.getDdStructId() != null || dataStruct.getDdStructId() != 0) {
-                dataStruct.setDdStructId((int) UniqueIdUtil.genId());
-                dataStructService.addDDDataStruct(dataStruct);
-                resultMsg = getText("record.added", "cloud_account_info");
-            } else {
-                dataStructService.update(dataStruct);
-                resultMsg = getText("record.updated", "cloud_account_info");
-            }
-            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
-        } catch (Exception e) {
-            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
-        }
-    }
+//    /**
+//     * ?????????.
+//     *
+//     * @param request
+//     *            the request
+//     * @param response
+//     *            the response
+//     * @throws Exception
+//     *             the exception
+//     */
+//    @RequestMapping("save")
+//    @Action(description = "添加或更新dataStruct")
+//    public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        String resultMsg = null;
+//        DataStruct dataStruct = this.getFormObject(request, DataStruct.class);
+//        try {
+//            if (dataStruct.getDdStructId() != null || dataStruct.getDdStructId() != 0) {
+//                dataStruct.setDdStructId((int) UniqueIdUtil.genId());
+//                dataStructService.addDDDataStruct(dataStruct);
+//                resultMsg = getText("record.added", "cloud_account_info");
+//            } else {
+//                dataStructService.update(dataStruct);
+//                resultMsg = getText("record.updated", "cloud_account_info");
+//            }
+//            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+//        } catch (Exception e) {
+//            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+//        }
+//    }
 
     /**
      * Query dataStruct basic info list.
