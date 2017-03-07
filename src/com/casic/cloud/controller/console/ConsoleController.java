@@ -139,6 +139,7 @@ public class ConsoleController extends BaseController {
         }
         return type;
     }
+
     /**
      * 我的任务列表
      *
@@ -149,7 +150,7 @@ public class ConsoleController extends BaseController {
      */
     @RequestMapping("mytasklist")
     public ModelAndView mytasklist(HttpServletRequest request,
-                             HttpServletResponse response) throws Exception {
+                                   HttpServletResponse response) throws Exception {
         long projectId = RequestUtil.getLong(request, "id");
 //        Long userId = ContextUtil.getCurrentUser().getUserId();
 //        List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByResponceId(userId);
@@ -226,6 +227,7 @@ public class ConsoleController extends BaseController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
     //格式化json
     public static String formatJson(String jsonStr) {
         if (null == jsonStr || "".equals(jsonStr)) return "";
@@ -271,6 +273,7 @@ public class ConsoleController extends BaseController {
             sb.append('\t');
         }
     }
+
     /**
      * 个人主页
      *
@@ -298,17 +301,16 @@ public class ConsoleController extends BaseController {
         String roleName = ContextUtil.getCurrentUser().getShortAccount();
         Long userId = ContextUtil.getCurrentUser().getUserId();
         List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByResponceId(userId);
-
+        long tempProjectId = 0l;
         List<Project> projectList = new ArrayList<>();
         for (TaskInfo taskInfo : taskInfoList) {
             if (taskInfo.getDdTaskChildType().equals("createpanel")) {
                 continue;
             } else {
-                long projectId = taskInfo.getDdTaskProjectId();
-                projectList.add(projectService.getById(projectId));
+                tempProjectId = taskInfo.getDdTaskProjectId();
+                if (isHas(tempProjectId))
+                projectList.add(projectService.getById(tempProjectId));
             }
-
-//					List<Project> projectList = projectService.getById(projectId);
         }
         List<Project> projectList1 = removeDuplicate(projectList);
 //		List<BusinessAreaGroup> businessAreaGroupList = businessAreaGroupService
@@ -340,6 +342,14 @@ public class ConsoleController extends BaseController {
 //
 //		return list;
 //	}
+    //查询是否有
+    private Boolean isHas(Long projectId){
+        List<Project> proLists = projectService.getAll();
+        for (Project project: proLists){
+            if (project.getDdProjectId().equals(projectId)) return true;
+        }
+        return false;
+    }
     //过滤重复元素
     public static List<Project> removeDuplicate(List<Project> mList) {
         for (int i = 0; i < mList.size() - 1; i++) {

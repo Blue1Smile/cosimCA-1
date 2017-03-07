@@ -18,14 +18,14 @@
 <html lang="zh-CN">
 <head>
     <title>项目指标信息列表</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%@include file="/newtable/tablecontext.jsp" %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
 </head>
 <body>
-<%--<a id="" class="btn btn-primary" href="${ctx}/datadriver/datacenter/datasnapshot.ht?projectId=${projectId}"><span--%>
-<%--class="glyphicon glyphicon-ok"></span>数据快照</a>--%>
-<%--<a id="" class="btn btn-primary" href="${ctx}/datadriver/datacenter/snapshotlist.ht"><span--%>
-<%--class="glyphicon glyphicon-ok"></span>快照列表</a>--%>
+<p class="pull-right">
+    <a id="" class="btn btn-success" href="${ctx}/datadriver/datacenter/datasnapshot.ht?projectId=${projectId}"><span
+            class="glyphicon glyphicon-camera"></span> 数据快照</a>
+</p>
+
 <table id="indextable"></table>
 <script type="text/javascript">
     var $table = $('#indextable'),
@@ -154,10 +154,6 @@
         setTimeout(function () {
             $table.bootstrapTable('resetView');
         }, 200);
-
-        $table.on('all.bs.table', function (e, name, args) {
-            console.log(name, args);
-        });
     }
     //原始操作按钮
     function operateFormatter(value, row, index) {
@@ -176,23 +172,12 @@
                 field: 'ddIndexId',
                 values: [row.ddIndexId],
             });
-            $.get('${ctx}/datadriver/index/delindex.ht?id='+row.ddIndexId);
+            $.get('${ctx}/datadriver/index/delindex.ht?id=' + row.ddIndexId);
         }
 
     };
     $(function () {
         initTable();
-//        $remove.click(function () {
-//            var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
-//                return row.ddIndexId;
-//            });
-//            $table.bootstrapTable('remove', {
-//                field: 'ddIndexId',
-//                values: ids
-//            });
-//
-//            $remove.prop('disabled', true);
-//        });
     });
 </script>
 </body>

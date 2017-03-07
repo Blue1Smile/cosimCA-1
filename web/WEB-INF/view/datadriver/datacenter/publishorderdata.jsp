@@ -22,12 +22,6 @@
 
     <title>进入任务页面</title>
 
-    <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
-    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
-
-    <script src="${ctx}/newtable/jquery.js"></script>
-    <script src="${ctx}/newtable/bootstrap.js"></script>
 </head>
 
 <body style="height: 100%; margin: 0px">

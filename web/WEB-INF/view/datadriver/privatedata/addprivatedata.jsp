@@ -16,20 +16,18 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%--<%@include file="/commons/include/form.jsp" %>--%>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
-    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-    <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
-    <%--<link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
-    <link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <%--<script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/util/util.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/util/form.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>--%>
+    <%--<link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>--%>
 
     <title>添加私有数据</title>
 </head>
@@ -54,7 +52,7 @@
                     <td><input type="text" id="ddDataTaskName" name="ddDataTaskName"
                                value="${taskInfo.ddTaskName}" class="form-control" readonly/></td>
                 </tr>
-                <tr>
+                <tr id="changemodelfile">
                     <th width="20%">数据类型:</th>
                     <td>
                         <ap:selectDB name="ddDataType" id="ddDataType"
@@ -82,6 +80,41 @@
                                               rows="5"/></textarea>
                     </td>
                 </tr>
+                <tr id="selectModeltr">
+                    <th width="20%">请选择文件:</th>
+                    <td colspan="5">
+                        <select id="selectModel" name="ddDataLastestValue" class="form-control">
+                            <c:forEach items="${modelCenterModelList}" var="modelCenterModelItem">
+                                <option value="${modelCenterModelItem.ddModelName}">${modelCenterModelItem.ddModelName}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="initValue">
+                    <th width="20%">初始值:</th>
+                    <td colspan="5">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="ddDataLastestValue" name="ddDataLastestValue"
+                                   value="">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">请选择数据单位 <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#">毫米(mm)</a></li>
+                                    <li><a href="#">米(m)</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">度(°)</a></li>
+                                    <li><a href="#">分(′)</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">摄氏度(℃)</a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                        </div><!-- /input-group -->
+                    </td>
+                </tr>
+
+
                 <input type="hidden" id="ddDataTaskId" name="ddDataTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
@@ -94,6 +127,8 @@
 </body>
 <script type="text/javascript">
     $(function () {
+        $('#selectModeltr').hide();
+        $('#selectModel').attr("disabled", "disabled");
         var options = {};
         var frm = $('#privateDataForm').form();
         $("#dataFormSave").click(function () {
@@ -102,7 +137,28 @@
             if (frm.valid()) {
                 form.submit();
                 window.location.reload(true);
-                <%--window.location.href = "${ctx}/datadriver/personaltask/todotask.ht?id=${taskInfo.ddTaskId}";--%>
+            }
+        });
+        $("#ddDataType").change(function () {
+            if ($(this).val() == '文件') {
+                $('#selectModeltr').show();
+                $('#selectModel').removeAttr("disabled");
+                $('#initValue').remove();
+            } else if ($(this).val() == '模型') {
+                $('#selectModeltr').show();
+                $('#selectModel').removeAttr("disabled");
+                $('#initValue').remove();
+            } else {
+                $('#selectModeltr').hide();
+                $('#selectModel').attr("disabled", "disabled");
+                if ( $("#initValue").length <= 0 ) {
+                    $('table').append('<tr id="initValue">' +
+                            '<th width = "20%" > 初始值:</th>' +
+                            '<td colspan = "5" >' +
+                            '<input type = "text" id="ddDataLastestValue" name="ddDataLastestValue" value="" class="form-control"/>' +
+                            '</td>' +
+                            '</tr>');
+                }
             }
         });
     });

@@ -168,11 +168,6 @@ function initTable() {
         //    });
         //}
        InitSubTable(index, row, $detail);
-
-
-    });
-    $table.on('all.bs.table', function (e, name, args) {
-        console.log(name, args);
     });
     $remove.click(function () {
         var ids = getIdSelections();

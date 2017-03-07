@@ -6,13 +6,13 @@ import com.hotent.core.model.BaseModel;
  * Created by 忠 on 2017/2/28.
  */
 public class ModelCenterModel extends BaseModel {
-    private Long ddMdoelId;
+    private Long DdModelId;
 
     private String ddModelName;
 
     private String ddModelExplain;
 
-    private Integer ddTaskId;
+    private Long ddTaskId;
 
     private String ddModelUrl;
 
@@ -32,12 +32,12 @@ public class ModelCenterModel extends BaseModel {
         this.ddModelVersion = ddModelVersion;
     }
 
-    public Long getDdMdoelId() {
-        return ddMdoelId;
+    public Long getDdModelId() {
+        return DdModelId;
     }
 
-    public void setDdMdoelId(Long ddMdoelId) {
-        this.ddMdoelId = ddMdoelId;
+    public void setDdModelId(Long DdModelId) {
+        this.DdModelId = DdModelId;
     }
 
     public String getDdModelName() {
@@ -56,11 +56,11 @@ public class ModelCenterModel extends BaseModel {
         this.ddModelExplain = ddModelExplain == null ? null : ddModelExplain.trim();
     }
 
-    public Integer getDdTaskId() {
+    public Long getDdTaskId() {
         return ddTaskId;
     }
 
-    public void setDdTaskId(Integer ddTaskId) {
+    public void setDdTaskId(Long ddTaskId) {
         this.ddTaskId = ddTaskId;
     }
 

@@ -48,28 +48,9 @@
 <body>
 <div class="panel">
     <div class="panel-top">
-        <%--<div class="tbar-title">--%>
-        <%--<c:choose>--%>
-        <%--<c:when test="">--%>
-        <%--<span class="tbar-label">编辑任务信息</span>--%>
-        <%--</c:when>--%>
-        <%--<c:otherwise>--%>
-        <%--<span class="tbar-label">添加任务信息</span>--%>
-        <%--</c:otherwise>--%>
-        <%--</c:choose>--%>
-        <%--</div>--%>
         <div class="panel-toolbar">
             <div class="toolBar">
                 <div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
-                <%--<div class="l-bar-separator"></div>--%>
-                <%--<div class="group"><a class="link save" href="${ctx}/datadriver/privatedata/list.ht">私有数据管理</a></div>--%>
-                <%--<div class="l-bar-separator"></div>--%>
-                <%--<div class="group"><a class="link save" href="publishconfig.ht?id=${TaskInfo.ddTaskId}">确定任务发布数据</a>--%>
-                <%--</div>--%>
-                <%--<div class="l-bar-separator"></div>--%>
-                <%--<div class="group"><a class="link save" href="orderconfig.ht?id=${TaskInfo.ddTaskId}">确定任务订购数据</a></div>--%>
-                <%--<div class="l-bar-separator"></div>--%>
-                <%--<div class="group"><a class="link back " href="list.ht">返回</a></div>--%>
             </div>
         </div>
     </div>
@@ -237,16 +218,6 @@
                                         name="ddDataType">${privateDataList.ddDataType}</td>
                                     <td style="text-align: center"
                                         name="ddDataSensitiveness">${privateDataList.ddDataSensitiveness}</td>
-                                        <%--<td style="text-align: center"--%>
-                                        <%--name="url2">${task.url2}</td>--%>
-                                        <%--<td style="text-align: center"--%>
-                                        <%--name="url2Name">${cloudResourceInstanceListItem.url2Name}</td>--%>
-                                        <%--<td style="text-align: center"--%>
-                                        <%--name="blank1">${cloudResourceInstanceListItem.blank1}</td>--%>
-                                        <%--<td style="text-align: center"--%>
-                                        <%--name="blank2">${cloudResourceInstanceListItem.blank2}</td>--%>
-                                        <%--<td style="text-align: center"--%>
-                                        <%--name="mode">${cloudResourceInstanceListItem.mode}</td>--%>
                                     <td style="text-align: center">
                                         <a href="#" class="link del">删除</a>
                                         <a href="#" class="link edit">编辑</a>

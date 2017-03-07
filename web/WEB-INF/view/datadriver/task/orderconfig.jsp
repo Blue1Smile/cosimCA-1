@@ -46,10 +46,6 @@
             height: 100%  }
         body {
             overflow: auto;  }
-
-        /*.layui-elem-field {*/
-            /*margin-top: 0px;*/
-        /*}*/
     </style>
 </head>
 <body>

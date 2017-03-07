@@ -1,6 +1,7 @@
 package com.casic.datadriver.controller.flow;
 
 import com.casic.datadriver.controller.AbstractController;
+import com.casic.datadriver.model.data.ProjectStart;
 import com.casic.datadriver.model.flow.ProcessFlow;
 import com.casic.datadriver.model.flow.ProjectProcessAssocia;
 import com.casic.datadriver.model.project.Project;
@@ -13,7 +14,11 @@ import com.casic.datadriver.service.flow.ProcessFlowService;
 
 import com.hotent.core.annotion.Action;
 import com.hotent.core.bpmn20.entity.Process;
+
+import com.hotent.core.bpmn20.entity.Task;
+
 import com.hotent.core.util.ContextUtil;
+
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.query.QueryFilter;
@@ -36,6 +41,7 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.net.URLDecoder;
 import java.util.Iterator;
+import java.util.List;
 
 import com.casic.datadriver.service.flow.ProjectProcessAssociaService;
 import org.springframework.web.servlet.view.RedirectView;
@@ -55,6 +61,7 @@ public class ProcessFlowController extends AbstractController {
     private ProTaskDependanceService proTaskDependanceService;
     @Resource
     private ProjectProcessAssociaService projectProcessAssociaService;
+
 
     @Resource
     private ProjectService projectService;
@@ -112,6 +119,9 @@ public class ProcessFlowController extends AbstractController {
                 //String projectID = root.getChild("Layer").getAttributeValue("projectID");
                 java.util.List task = root.getChildren("Task");
 
+
+
+
                 for (Iterator i = task.iterator(); i.hasNext(); ) {
                     Element el = (Element) i.next();
 
@@ -125,7 +135,15 @@ public class ProcessFlowController extends AbstractController {
                     String style = mxCell.getAttributeValue("style");
 
                     if(ddTaskChildType.compareTo("publishpanel")==0) {
-                        style += ";strokeColor=red";
+                        style += ";strokeColor=red;fontColor=red";
+                        mxCell.setAttribute("style",style);
+                    }
+                    else if(ddTaskChildType.compareTo("checkpanel")==0) {
+                        style += ";strokeColor=green;fontColor=green";
+                        mxCell.setAttribute("style",style);
+                    }
+                    else if(ddTaskChildType.compareTo("completepanel")==0) {
+                        style += ";strokeColor=blue;fontColor=blue";
                         mxCell.setAttribute("style",style);
                     }
                 }
@@ -174,6 +192,10 @@ public class ProcessFlowController extends AbstractController {
         java.util.List task = root.getChildren("Task");
         String projectID = root.getChild("Layer").getAttributeValue("projectId");
         long projectId = Long.parseLong(projectID);
+
+        Project project = projectService.getById(projectId);
+        List<TaskInfo> taskInfoList = project.getTaskInfoList();
+
         for (Iterator i = task.iterator(); i.hasNext(); ) {
             TaskInfo taskInfo = new TaskInfo();
 
@@ -187,8 +209,8 @@ public class ProcessFlowController extends AbstractController {
             if (tasktype != null)
                 taskInfo.setDdTaskType(tasktype);
             taskInfo.setDdTaskProjectId(projectId);
-            Project project = projectService.getById(projectId);
-            taskInfo.setDdTaskProjectName(project.getDdProjectName());
+            Project project2 = projectService.getById(projectId);
+            taskInfo.setDdTaskProjectName(project2.getDdProjectName());
             taskInfo.setDdTaskName(el.getAttributeValue("label"));//任务名称
             taskInfo.setDdTaskResponsiblePerson(ContextUtil.getCurrentUser().getUserId());
             taskInfo.setDdTaskPerson(ContextUtil.getCurrentUser().getFullname());
@@ -210,17 +232,27 @@ public class ProcessFlowController extends AbstractController {
                     proTaskDependanceService.addDDProTaskDependance(proTaskDependance);
                     //resultMsg = getText("record.added", "添加完成");
                 } else {
-                    taskInfoService.updateDDTask(taskInfo);
+                    TaskInfo byId;
+                    byId = taskInfoService.getById(taskInfo.getDdTaskId());
+                    byId.setDdTaskName(el.getAttributeValue("label"));
+                    byId.setDdTaskDescription(taskdesp);
+                    byId.setDdTaskType(tasktype);
+
+                    taskInfoService.updateDDTask(byId);
                     //resultMsg = getText("record.updated", "更新完成");
+                    for(Iterator it =taskInfoList.iterator();it.hasNext();)
+                    {
+                        TaskInfo ti = (TaskInfo) it.next();
+                        if(ti.getDdTaskId()==taskInfo.getDdTaskId())
+                            it.remove();
+                    }
                 }
             } catch (Exception e) {
                 writeResultMessage(response.getWriter(), e.getMessage(), ResultMessage.Fail);
             }
-
             el.setAttribute("oracleid", taskInfo.getDdTaskId().toString());
             System.out.println(taskInfo.getDdTaskId().toString());
         }
-
         //保存流程XML
         if (projectId != 0)
             saveProcessXml(doc, projectId);
@@ -266,6 +298,7 @@ public class ProcessFlowController extends AbstractController {
             processflow.setDdProcessXml(xml);
 
             processFlowService.update(processflow);
+
         }
     }
 

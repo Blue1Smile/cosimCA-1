@@ -1,73 +1,43 @@
 package com.casic.datadriver.controller.task;
 
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.casic.datadriver.model.project.ProjectStart;
-import com.casic.datadriver.model.task.TaskStart;
-import com.casic.datadriver.service.project.ProjectStartService;
-import com.casic.datadriver.service.task.TaskStartService;
-import com.hotent.platform.auth.ISysUser;
-import com.hotent.platform.model.system.SysUser;
+import com.casic.datadriver.controller.AbstractController;
+import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.project.Project;
-import com.casic.datadriver.model.task.TaskInfo;
-import com.casic.datadriver.model.data.OrderDataRelation;
+import com.casic.datadriver.model.project.ProjectStart;
 import com.casic.datadriver.model.task.ProTaskDependance;
+import com.casic.datadriver.model.task.TaskInfo;
+import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.data.OrderDataRelationService;
+import com.casic.datadriver.service.data.PrivateDataService;
+import com.casic.datadriver.service.project.ProjectService;
+import com.casic.datadriver.service.project.ProjectStartService;
 import com.casic.datadriver.service.task.ProTaskDependanceService;
 import com.casic.datadriver.service.task.TaskInfoService;
-import com.casic.datadriver.service.data.PrivateDataService;
-import com.casic.datadriver.service.data.OrderDataRelationService;
-import com.casic.datadriver.service.project.ProjectService;
-import com.casic.datadriver.model.data.PrivateData;
-import com.hotent.core.bpm.model.ProcessTask;
-import com.hotent.core.encrypt.EncryptUtil;
-import com.hotent.core.util.BeanUtils;
+import com.casic.datadriver.service.task.TaskStartService;
+import com.hotent.core.annotion.Action;
 import com.hotent.core.util.ContextUtil;
+import com.hotent.core.util.UniqueIdUtil;
+import com.hotent.core.web.ResultMessage;
+import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
-
 import com.hotent.platform.auth.ISysUser;
-import com.hotent.platform.model.system.SysUser;
 import com.hotent.platform.service.system.SysUserService;
 import net.sf.ezmorph.object.DateMorpher;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
-import org.apache.bcel.generic.NEW;
-import org.apache.commons.collections.ListUtils;
-import org.freehep.graphicsio.swf.LineStyleArray;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casic.datadriver.controller.data.PrivateDataController;
-import com.casic.datadriver.controller.AbstractController;
-import com.hotent.core.annotion.Action;
-import com.hotent.core.util.UniqueIdUtil;
-import com.hotent.core.web.ResultMessage;
-import com.hotent.core.web.query.QueryFilter;
-
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.*;
-
-import java.net.URLDecoder;
-import java.util.Iterator;
-
-import org.jdom.output.XMLOutputter;
-import org.jdom.output.Format;
-
-import org.jdom.Element;
-import org.jdom.Document;
-import org.jdom.input.SAXBuilder;
-
-import java.io.*;
 
 @Controller
 @RequestMapping("/datadriver/task/")
@@ -612,98 +582,6 @@ public class TaskInfoController extends AbstractController {
         }
     }
 
-
-//    /**
-//     * 进入任务控制台
-//     *
-//     * @param request
-//     * @param response
-//     * @return
-//     * @throws Exception
-//     */
-//    @RequestMapping("stepinto")
-//    @Action(description = "进入任务")
-//    public ModelAndView stepinto(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        long taskId = RequestUtil.getLong(request, "id");
-//        TaskInfo taskInfo = taskInfoService.getById(taskId);
-//        List<PrivateData> privateDataListbyTask = new ArrayList<PrivateData>();
-//        //任务已发布私有数据
-//        List<PrivateData> publishDataList = new ArrayList<PrivateData>();
-//        privateDataListbyTask = this.privateDataService.queryPrivateDataByddTaskID(taskId);
-//        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.queryPublishDataRelationByddTaskID(taskId);
-//
-//        List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByResponceId(taskInfo.getDdTaskResponsiblePerson());
-//        //循环获取发布数据ID，查找任务的所有私有数据
-//        for (int i = 0; i < publishDataRelationList.size(); i++) {
-//            OrderDataRelation orderDataRelation = publishDataRelationList.get(i);
-//            PrivateData privateData = privateDataService.getById(orderDataRelation.getDdDataId());
-//            publishDataList.add(privateData);
-//        }
-//
-//        if (privateDataListbyTask.size() > 0 && publishDataList.size() > 0) {
-//            Integer Length1 = privateDataListbyTask.size();
-//            for (int i = 0; i < publishDataList.size(); i++) {
-//                for (int j = 0; j < Length1; j++) {
-//                    Long ddDataId1 = publishDataList.get(i).getDdDataId();
-//                    Long ddDataId2 = privateDataListbyTask.get(j).getDdDataId();
-//                    if (ddDataId1.equals(ddDataId2)) {
-//                        privateDataListbyTask.remove(j);
-//                        Length1 = privateDataListbyTask.size();
-//                        j--;
-//                    }
-//                }
-//            }
-//        }
-//
-//
-//        List<PrivateData> OrderPrivatedataList = new ArrayList<PrivateData>();
-//        //获取项目id
-//        Long ProjectId = taskInfo.getDdTaskProjectId();
-//        //根据项目id获取任务list
-//        List<TaskInfo> task_list = this.taskInfoService.queryTaskInfoByProjectId(ProjectId);
-//        List<PrivateData> canBeOrderPrivatedataList = new ArrayList<PrivateData>();
-//        //获取所有发布数据的私有数据列表
-//        for (int i = 0; i < task_list.size(); i++) {
-//            Long ddtaskId = task_list.get(i).getDdTaskId();
-//            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.queryPublishDataRelationByddTaskID(ddtaskId);
-//            for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
-//
-//                Long ddDataId = orderDataRelation.getDdDataId();
-//                List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
-//                canBeOrderPrivatedataList.addAll(taskPrivateDatas);
-//            }
-//        }
-//        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.queryOrderDataRelationByddTaskID(taskId);
-//        //循环获取订阅数据ID，查找私有数据
-//        for (int i = 0; i < orderDataRelationList.size(); i++) {
-//            OrderDataRelation orderDataRelation = orderDataRelationList.get(i);
-//            PrivateData privateDataforOrderData = privateDataService.getById(orderDataRelation.getDdDataId());
-//            OrderPrivatedataList.add(privateDataforOrderData);
-//        }
-//
-//        if (OrderPrivatedataList.size() > 0 && canBeOrderPrivatedataList.size() > 0) {
-//            Integer Length2 = canBeOrderPrivatedataList.size();
-//            for (int i = 0; i < OrderPrivatedataList.size(); i++) {
-//                for (int j = 0; j < Length2; j++) {
-//                    Long ddDataId1 = OrderPrivatedataList.get(i).getDdDataId();
-//                    Long ddDataId2 = canBeOrderPrivatedataList.get(j).getDdDataId();
-//                    if (ddDataId1.equals(ddDataId2)) {
-//                        canBeOrderPrivatedataList.remove(j);
-//                        Length2 = canBeOrderPrivatedataList.size();
-//                        j--;
-//                    }
-//                }
-//            }
-//        }
-//
-//        return getAutoView().addObject("TaskInfo", taskInfo)
-//                .addObject("privateDataListbyTask", privateDataListbyTask)
-//                .addObject("publishDataList", publishDataList)
-//                .addObject("canBeOrderPrivatedataList", canBeOrderPrivatedataList)
-//                .addObject("taskInfoList", taskInfoList)
-//                .addObject("OrderPrivatedataList", OrderPrivatedataList);
-//    }
-
     /**
      * 2017/2/8/
      *
@@ -807,7 +685,6 @@ public class TaskInfoController extends AbstractController {
      * @return
      * @throws Exception
      */
-
     @RequestMapping("pushback")
     @Action(description = "退回任务")
     public void pushback(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -836,6 +713,7 @@ public class TaskInfoController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
-
     }
+
+
 }

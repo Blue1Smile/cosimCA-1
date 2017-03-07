@@ -18,23 +18,29 @@
 <html lang="zh-CN">
 <head>
     <title>办理任务</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/newtable/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
+
     <script src="${ctx}/newtable/jquery.js"></script>
-    <script src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
-    <script src="${ctx}/newtable/bootstrap.js"></script>
-    <script src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
+    <%@include file="/newtable/tablecontext.jsp" %>
+    <script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/util.js"></script>
+    <script type="text/javascript" src="${ctx}/js/util/form.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body>
-
-<%--<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"--%>
-<%--style="padding-right: 0px">--%>
-<%--</div>--%>
 <div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li role="presentation" class="dropdown">
@@ -57,26 +63,22 @@
         <li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">已订阅</a>
         </li>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">项目指标</a></li>
+        <li role="presentation" id="switch_attr_file"><a href="#file" data-toggle="tab" role="tab">文件与模型</a></li>
+
         <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>
         <div class="pull-right">
             <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 进程统计
             </a>
-
-            <%--&lt;%&ndash;<a class="btn btn-success" href="#" data-toggle="modal" id="create_task"&ndash;%&gt;--%>
-            <%--&lt;%&ndash;data-remote="${ctx}/datadriver/privatedata/addprivatedata.ht?id=${TaskInfo.ddTaskId}"&ndash;%&gt;--%>
-            <%--&lt;%&ndash;data-target="#adddata"><span class="glyphicon glyphicon-plus"></span> 创建私有</a>&ndash;%&gt;--%>
             <a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
+            <a class="btn btn-primary" href="#" id="upload_file" onclick=""><span
+                    class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
             <a class="btn btn-info" href="#" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
             <button class="btn btn-default" onclick="location.reload()"><span
                     class="glyphicon glyphicon-refresh"></span> 刷新
             </button>
-            <%--<a id="" class="btn btn-primary" href="submittask.ht?id=${TaskInfo.ddTaskId}"><span class="glyphicon glyphicon-ok"></span> 完成任务--%>
-
-            <%--</a>--%>
-
         </div>
     </ul>
 </div>
@@ -192,7 +194,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="index">
@@ -204,6 +205,8 @@
 
     </div>
     <div role="tabpanel" class="tab-pane" id="calendar">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="file">
     </div>
 </div>
 </div>
@@ -240,20 +243,22 @@
         </div>
     </div>
 </div>
-<%--&lt;%&ndash;任务详细&ndash;%&gt;--%>
-<%--<div class="modal fade" id="taskdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--%>
-<%--<div class="modal-dialog" role="document">--%>
-<%--<div class="modal-content" style="overflow: auto" id="taskdetailcontent" style="overflow: auto">--%>
 
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
+<%--文件上传--%>
+<div class="modal fade" id="fileupload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="overflow: auto" id="fileuploadcontent" style="overflow: auto">
+
+        </div>
+    </div>
+</div>
+
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
-<script src="${ctx}/styles/loading/PerfectLoad.js"></script>
+<%--<script src="${ctx}/styles/loading/PerfectLoad.js"></script>--%>
 <script type="text/javascript">
     $(document).ready(function () {
-        $.MyCommon.PageLoading({ sleep: 500 });
+//        $.MyCommon.PageLoading({sleep: 500});
         $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",
@@ -281,16 +286,17 @@
         }
 
         $("#create_data").show();
+        $("#upload_file").hide();
     });
 
-    var showLeftPush = document.getElementById('showLeftPush'),
-            showRightPush = document.getElementById('showRightPush'),
-            switch_attr_index = document.getElementById('switch_attr_index'),
+    var switch_attr_index = document.getElementById('switch_attr_index'),
             switch_attr_task = document.getElementById('switch_attr_task'),
             switch_attr_publish = document.getElementById('switch_attr_publish'),
             switch_attr_order = document.getElementById('switch_attr_order'),
             statis_btn = document.getElementById('statis_btn'),
-            create_task = document.getElementById('create_task');
+            create_task = document.getElementById('create_task'),
+            upload_file = document.getElementById('upload_file');
+
     function showDataContent(dataId) {
         $('#datadetail').modal({
             keyboard: true,
@@ -306,32 +312,57 @@
     $("#datadetail").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
-
+    $("#fileupload").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
+    $("#statis").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
+    $("#adddata").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
     switch_attr_index.onclick = function () {
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
         });
         $("#create_data").hide();
+        $("#upload_file").hide();
     }
     switch_attr_task.onclick = function () {
         $("#create_data").show();
+        $("#upload_file").hide();
     }
     switch_attr_publish.onclick = function () {
         $.get("${ctx}/datadriver/personaltask/submitpublish.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#publish').html(data);
         });
         $("#create_data").hide();
+        $("#upload_file").hide();
     }
     switch_attr_order.onclick = function () {
         $.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#order').html(data);
         });
         $("#create_data").hide();
+        $("#upload_file").hide();
+    }
+    switch_attr_file.onclick = function () {
+        $.get("${ctx}/datadriver/personaltask/OrderModel.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#file').html(data);
+        });
+        $("#create_data").hide();
+        $("#upload_file").show();
     }
     statis_btn.onclick = function () {
         $('#statis').modal({
             keyboard: true,
             remote: "statis.ht?id=${TaskInfo.ddTaskId}"
+        })
+    }
+    upload_file.onclick = function () {
+        $('#fileupload').modal({
+            keyboard: true,
+            remote: "uploadfile.ht?id=${TaskInfo.ddTaskId}"
         })
     }
 </script>

@@ -36,7 +36,7 @@ import java.util.Map;
 
 
 /**
- * @author ???? ???2016/11/14 0014.
+ * @author 2016/11/14
  */
 @Controller
 @RequestMapping("/datadriver/personaltask/")
@@ -463,7 +463,7 @@ public class PersonalTaskController extends AbstractController {
 
     @RequestMapping("recovertask")
     @Action(description = "收回任务")
-    public ModelAndView recovertask(HttpServletRequest request, HttpServletResponse response)
+    public void recovertask(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         String preUrl = RequestUtil.getPrePage(request);
         try {
@@ -491,7 +491,7 @@ public class PersonalTaskController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
-        return getAutoView().addObject("preUrl", preUrl);
+        response.sendRedirect(preUrl);
     }
 
 

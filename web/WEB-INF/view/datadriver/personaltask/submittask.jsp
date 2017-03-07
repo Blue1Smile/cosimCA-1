@@ -21,7 +21,6 @@
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
-    <%--<link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
     <link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
 
     <title>提交信息</title>
@@ -64,7 +63,6 @@
 </div>
 <div class="modal-footer">
     <a class="btn btn-success btn-block" href="list.ht" id="confirm">确认</a>
-    <%--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>--%>
 </div>
 </body>
 </html>

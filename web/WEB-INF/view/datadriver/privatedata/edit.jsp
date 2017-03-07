@@ -88,11 +88,11 @@
     </style>
 </head>
 <body style="height: 100%; margin: 0px;">
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">
         ${privateData.ddDataName}
         <div class="btn-group pull-right">
-            <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown"
+            <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                 更多 <span class="caret"></span>
             </button>
@@ -170,15 +170,6 @@
                 </div>
             </div>
         </div>
-        <%--<div class="panel panel-default">--%>
-        <%--<div class="panel-body card">--%>
-        <%--<h5 class="task-info-title">--%>
-        <%--数据创建时间--%>
-        <%--</h5>--%>
-        <%--<a class="data-creat-time" href="#" id="creatTime" data-type="combodate" data-pk="1">--%>
-        <%--${privateData.ddDataCreateTime}</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
         <div class="row" id="row">
             <div class="panel panel-default">
                 <div class="panel-body card"><h5 class="task-info-title">记录</h5>
@@ -259,16 +250,37 @@
                 <%--onChangePrivateData(params, taskItem);--%>
             <%--}--%>
         <%--});--%>
-        //最新值
-        $('#lastestValue').editable({
-            showbuttons: true,
-            placement: 'bottom',
-            value: '${privateData.ddDataLastestValue}',
-            url: function (params) {
-                taskItem = 1;
-                onChangePrivateData(params, taskItem);
-            }
-        });
+        if('${privateData.ddDataType}'=='文件'||'${privateData.ddDataType}'=='模型'){
+            $("#lastestValue").attr("data-type","select");
+            //最新值
+            $('#lastestValue').editable({
+                showbuttons: false,
+                value: ${privateData.ddDataLastestValue},
+                placement: 'bottom',
+                source: [
+                    <c:forEach var="modelCenterModelItem" items="${modelCenterModelList}">
+                    {value: ${modelCenterModelItem.ddModelName}, text: '${modelCenterModelItem.ddModelName}'},
+                    </c:forEach>
+                ],
+                url: function (params) {
+                    taskItem = 1;
+                    onChangePrivateData(params, taskItem);
+                }
+            });
+        }else {
+            $("#lastestValue").attr("data-type","text");
+            //最新值
+            $('#lastestValue').editable({
+                showbuttons: true,
+                placement: 'bottom',
+                value: '${privateData.ddDataLastestValue}',
+                url: function (params) {
+                    taskItem = 1;
+                    onChangePrivateData(params, taskItem);
+                }
+            });
+        }
+
         //所属任务
         <%--$('#belongTask').editable({--%>
             <%--showbuttons: true,--%>
