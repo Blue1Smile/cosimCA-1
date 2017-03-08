@@ -14,7 +14,6 @@ import com.hotent.core.annotion.Action;
 import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.util.RequestUtil;
-import com.hotent.platform.auth.ISysUser;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -329,6 +328,7 @@ return mv;
         Long ddDataId= RequestUtil.getLong(request, "id");
 
         List<DataVersion>  dataVersion_list =  this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
+        String DataType = privateDataService.getByddDataId(ddDataId).get(0).getDdDataType();
         JSONObject jsonObject = new JSONObject();
         JSONObject json=new JSONObject();
         JSONArray jsonMembers = new JSONArray();
@@ -338,6 +338,7 @@ return mv;
                 jsonObject.put("DdDataVersion", mymodel.getDdDataVersion());
                 jsonObject.put("ddDataRecordTime", mymodel.getDdDataRecordTime());
                 jsonObject.put("ddDataValue", mymodel.getDdDataValue());
+                jsonObject.put("DataType", DataType);
                 jsonMembers.add(jsonObject);
             }
 

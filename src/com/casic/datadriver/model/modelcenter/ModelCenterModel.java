@@ -18,17 +18,17 @@ public class ModelCenterModel extends BaseModel {
 
     private Long ddModelType;
 
-    private Long ddModelVersion;
+    private String ddModelVersion;
 
     private String ddModelBf1;
 
     private Long ddModelBf2;
 
-    public Long getDdModelVersion() {
+    public String getDdModelVersion() {
         return ddModelVersion;
     }
 
-    public void setDdModelVersion(Long ddModelVersion) {
+    public void setDdModelVersion(String ddModelVersion) {
         this.ddModelVersion = ddModelVersion;
     }
 

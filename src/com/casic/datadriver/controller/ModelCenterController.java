@@ -75,7 +75,7 @@ public class ModelCenterController {
         Long Modeltype= RequestUtil.getLong(request, "Modeltype");
         Long taskid= RequestUtil.getLong(request, "id");
         String ddModelName= RequestUtil.getString(request, "ddModelName");
-        Long ddModelVersion= RequestUtil.getLong(request, "ddModelVersion");
+        String ddModelVersion= RequestUtil.getString(request, "ddModelVersion");
         String ddModelBf= RequestUtil.getString(request, "ddModelBf");
         Long ddModelBf2= RequestUtil.getLong(request, "ddModelBf2");
         String DdModelExplain= RequestUtil.getString(request, "DdModelExplain");

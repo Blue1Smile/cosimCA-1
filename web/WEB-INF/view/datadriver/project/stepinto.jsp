@@ -15,7 +15,6 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/commons/include/html_doctype.html" %>
-
 <html lang="zh-CN" style="height: 100%; margin: 0px">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -33,7 +32,7 @@
     <script src="${ctx}/newtable/jquery.js"></script>
     <%@include file="/newtable/tablecontext.jsp" %>
     <script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
+    <%--<script type="text/javascript" src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>--%>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
@@ -73,110 +72,6 @@
     <br>
     <div class="tab-content board-view">
         <div role="tabpanel" class="tab-pane active board-scrum-view" id="task" style="height: 100%">
-            <div class="row paneldocker" style="height: 100%">
-                <div class="col-xs-3" style="height: 100%">
-                    <div class="panel panel-default task-panel">
-                        <div class="panel-heading">
-                            新创建
-                            <button type="button" class="btn btn-xs btn-default pull-right" id="OnePunchSend">
-                                <span class="glyphicon glyphicon-send"></span> 全部发布
-                            </button>
-                        </div>
-                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
-                            <ul id="createpanel" class="scrum-stage-tasks">
-                                <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
-                                    <li class="task task-card ui-sortable-handle "
-                                        onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
-                                        <%--<div class="checkbox checkbox-primary">--%>
-                                            <%--<input id="${taskListbyUserItem.ddTaskId}" type="checkbox">--%>
-                                            <%--<label for="${taskListbyUserItem.ddTaskId}">--%>
-                                                    <%--${taskListbyUserItem.ddTaskName}--%>
-                                            <%--</label>--%>
-                                        <%--</div>--%>
-                                                ${taskListbyUserItem.ddTaskName}
-                                        <input value="${taskListbyUserItem.ddTaskId}" type="hidden">
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3" style="height: 100%">
-                    <div class="panel panel-info task-panel">
-                        <div class="panel-heading">
-                            已发布
-                            <button type="button" class="btn btn-xs btn-info pull-right" id="OnePunchBack">
-                                <span class="glyphicon glyphicon-arrow-left"></span> 全部收回
-                            </button>
-                        </div>
-                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
-                            <ul id="publishpanel" class="scrum-stage-tasks">
-                                <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
-                                    <li class="task task-card ui-sortable-handle"
-                                        onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
-                                        <%--<div class="checkbox checkbox-primary">--%>
-                                            <%--<input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">--%>
-                                            <%--<label for="${publishtaskListbyUserItem.ddTaskId}">--%>
-                                                    <%--${publishtaskListbyUserItem.ddTaskName}--%>
-                                            <%--</label>--%>
-                                        <%--</div>--%>
-                                                ${publishtaskListbyUserItem.ddTaskName}
-                                        <input value="${publishtaskListbyUserItem.ddTaskId}" type="hidden">
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3" style="height: 100%">
-                    <div class="panel panel-success task-panel">
-                        <div class="panel-heading">
-                            待审核
-                        </div>
-                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
-                            <ul id="checkpanel" class="scrum-stage-tasks">
-                                <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
-                                    <li class="task task-card ui-sortable-handle"
-                                        onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
-                                        <%--<div class="checkbox checkbox-primary">--%>
-                                            <%--<input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">--%>
-                                            <%--<label for="${checkTaskInfoListItem.ddTaskId}">--%>
-                                                    <%--${checkTaskInfoListItem.ddTaskName}--%>
-                                            <%--</label>--%>
-                                        <%--</div>--%>
-                                                ${checkTaskInfoListItem.ddTaskName}
-                                        <input value="${checkTaskInfoListItem.ddTaskId}" type="hidden">
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-3" style="height: 100%">
-                    <div class="panel panel-warning task-panel">
-                        <div class="panel-heading">
-                            已完成
-                        </div>
-                        <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
-                            <ul id="completepanel" class="scrum-stage-tasks">
-                                <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
-                                    <li class="task task-card ui-sortable-handle"
-                                        onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
-                                        <%--<div class="checkbox checkbox-primary">--%>
-                                            <%--<input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">--%>
-                                            <%--<label for="${completeTaskInfoListItem.ddTaskId}">--%>
-                                                    <%--${completeTaskInfoListItem.ddTaskName}--%>
-                                            <%--</label>--%>
-                                        <%--</div>--%>
-                                                ${completeTaskInfoListItem.ddTaskName}
-                                        <input value="${completeTaskInfoListItem.ddTaskId}" type="hidden">
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="indextab">
         </div>
@@ -220,94 +115,13 @@
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#createpanel,#publishpanel").dragsort({
-            itemSelector: "li",
-            dragSelector: "li",
-            dragBetween: true,
-            dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
+        $.get("showtask.ht?id=${Project.ddProjectId}", function (data) {
+            $('#task').html(data);
         });
 
-        $("#checkpanel,#completepanel").dragsort({
-            itemSelector: "li",
-            dragSelector: "li",
-            dragBetween: true,
-            dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
-        });
-
-        function saveOrder() {
-            var data = $(this).children('input').val();
-            var parentid = $(this).parent().attr("id");
-            $.post("movetask.ht?id=" + data + "&parent=" + parentid);
-        }
         $("#create_task").show();
         $("#create_index").hide();
     });
-
-    //生成全部新建panel中li的list并转换成json发送
-    $('#OnePunchSend').click(function(index) {
-        var feedbackMap = new Object();
-        var valueList =  new Array();
-        $("#createpanel>li").each(function() {
-            //将input=hidden的值压入list
-            var a = $(this).find("input").val();
-            if(a!=null && a!="" && a!= undefined){
-                feedbackMap = a;
-                valueList.push(feedbackMap);
-            }else{
-                alert('生成list异常');
-            }
-        });
-
-        $.ajax({
-            type: "post",
-            url: "onepunchsend.ht?id=${Project.ddProjectId}&&parent=publishpanel",
-            data: {strJson: JSON.stringify(valueList)},
-            success: function (data, status) {
-                        if (status == "success") {
-                            window.location.reload();
-                        }
-            },
-            error: function () {
-//                        alert("Error");
-            },
-            complete: function () {
-            }
-        });
-    });
-    //生成全部发布panel中li的list并转换成json发送
-    $('#OnePunchBack').click(function(index) {
-        var feedbackMap = new Object();
-        var valueList =  new Array();
-        $("#publishpanel>li").each(function() {
-            //将input=hidden的值压入list
-            var a = $(this).find("input").val();
-            if(a!=null && a!="" && a!= undefined){
-                feedbackMap = a;
-                valueList.push(feedbackMap);
-            }else{
-                alert('生成list异常');
-            }
-        });
-
-        $.ajax({
-            type: "post",
-            url: "onepunchback.ht?id=${Project.ddProjectId}&&parent=createpanel",
-            data: {strJsonBack: JSON.stringify(valueList)},
-            success: function (data, status) {
-                if (status == "success") {
-                    window.location.reload();
-                }
-            },
-            error: function () {
-//                        alert("Error");
-            },
-            complete: function () {
-            }
-        });
-    });
-
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
             switch_attr_task = document.getElementById('switch_attr_task');
@@ -357,6 +171,9 @@
     switch_attr_task.onclick = function () {
         $("#create_index").hide();
         $("#create_task").show();
+        $.get("showtask.ht?id=${Project.ddProjectId}", function (data) {
+            $('#task').html(data);
+        });
     }
 </script>
 </html>

@@ -6,7 +6,7 @@
     <result column="dd_model_name" jdbcType="VARCHAR" property="ddModelName" />
     <result column="dd_model_explain" jdbcType="VARCHAR" property="ddModelExplain" />
     <result column="dd_task_id" jdbcType="BIGINT" property="ddTaskId" />
-    <result column="dd_model_version" jdbcType="INTEGER" property="ddModelVersion" />
+    <result column="dd_model_version" jdbcType="VARCHAR" property="ddModelVersion" />
     <result column="dd_model_url" jdbcType="VARCHAR" property="ddModelUrl" />
     <result column="dd_model_type" jdbcType="BIGINT" property="ddModelType" />
     <result column="dd_model_bf1" jdbcType="VARCHAR" property="ddModelBf1" />
@@ -32,7 +32,7 @@
       dd_task_id, dd_model_version,dd_model_url, dd_model_type,
       dd_model_bf1, dd_model_bf2)
     values (#{ddModelId,jdbcType=BIGINT}, #{ddModelName,jdbcType=VARCHAR}, #{ddModelExplain,jdbcType=VARCHAR},
-      #{ddTaskId,jdbcType=BIGINT},#{ddModelVersion,jdbcType=INTEGER}, #{ddModelUrl,jdbcType=VARCHAR}, #{ddModelType,jdbcType=BIGINT},
+      #{ddTaskId,jdbcType=BIGINT},#{ddModelVersion,jdbcType=VARCHAR}, #{ddModelUrl,jdbcType=VARCHAR}, #{ddModelType,jdbcType=BIGINT},
       #{ddModelBf1,jdbcType=VARCHAR}, #{ddModelBf2,jdbcType=BIGINT})
   </insert>
 
@@ -128,7 +128,7 @@
         #{ddTaskId,jdbcType=BIGINT},
       </if>
       <if test="ddModelVersion != null">
-        #{ddModelVersion,jdbcType=INTEGER},
+        #{ddModelVersion,jdbcType=VARCHAR},
       </if>
       <if test="ddModelUrl != null">
         #{ddModelUrl,jdbcType=VARCHAR},
@@ -157,7 +157,7 @@
         dd_task_id = #{ddTaskId,jdbcType=BIGINT},
       </if>
       <if test="ddModelVersion != null">
-        dd_model_version = #{ddModelVersion,jdbcType=INTEGER},
+        dd_model_version = #{ddModelVersion,jdbcType=VARCHAR},
       </if>
       <if test="ddModelUrl != null">
         dd_model_url = #{ddModelUrl,jdbcType=VARCHAR},
@@ -179,7 +179,7 @@
     set dd_model_name = #{ddModelName,jdbcType=VARCHAR},
       dd_model_explain = #{ddModelExplain,jdbcType=VARCHAR},
       dd_task_id = #{ddTaskId,jdbcType=BIGINT},
-      dd_model_version = #{ddModelVersion,jdbcType=INTEGER},
+      dd_model_version = #{ddModelVersion,jdbcType=VARCHAR},
       dd_model_url = #{ddModelUrl,jdbcType=VARCHAR},
       dd_model_type = #{ddModelType,jdbcType=BIGINT},
       dd_model_bf1 = #{ddModelBf1,jdbcType=VARCHAR},

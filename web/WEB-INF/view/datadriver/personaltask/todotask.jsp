@@ -29,7 +29,7 @@
     <script src="${ctx}/newtable/jquery.js"></script>
     <%@include file="/newtable/tablecontext.jsp" %>
     <script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
+
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>
@@ -41,172 +41,66 @@
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
 <body>
-<div class="container-fluid">
-    <ul class="nav nav-tabs" role="tablist" id="myTab">
-        <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                ${TaskInfo.ddTaskName} <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" style="overflow: auto">
-                <c:forEach var="taskInfoListItem" items="${taskInfoList}">
-                    <li title="${taskInfoListItem.ddTaskProjectName}">
-                        <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}">${taskInfoListItem.ddTaskName}</a>
-                    </li>
-                </c:forEach>
-            </ul>
-        </li>
-        <li role="presentation" class="active" id="switch_attr_task"><a href="#data" data-toggle="tab"
-                                                                        role="tab">数据看板</a>
-        </li>
-        <li role="presentation" id="switch_attr_publish"><a href="#publish" data-toggle="tab" role="tab">已发布</a>
-        </li>
-        <li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">已订阅</a>
-        </li>
-        <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">项目指标</a></li>
-        <li role="presentation" id="switch_attr_file"><a href="#file" data-toggle="tab" role="tab">文件与模型</a></li>
 
-        <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>
-        <div class="pull-right">
-            <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span> 进程统计
-            </a>
-            <a class="btn btn-success" href="#" id="create_data" onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
-                    class="glyphicon glyphicon-plus"></span> 创建私有</a>
-            <a class="btn btn-primary" href="#" id="upload_file" onclick=""><span
-                    class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
-            <a class="btn btn-info" href="#" data-toggle="modal" id="submit_btn"
-               data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
-               data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 完成任务</a>
-            <button class="btn btn-default" onclick="location.reload()"><span
-                    class="glyphicon glyphicon-refresh"></span> 刷新
-            </button>
-        </div>
-    </ul>
+<div class="container-fluid">
+
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    ${TaskInfo.ddTaskName} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="overflow: auto">
+                    <c:forEach var="taskInfoListItem" items="${taskInfoList}">
+                        <li title="${taskInfoListItem.ddTaskProjectName}">
+                            <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}">${taskInfoListItem.ddTaskName}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </li>
+            <li role="presentation" class="active" id="switch_attr_data"><a href="#data" data-toggle="tab"
+                                                                            role="tab">数据看板</a>
+            </li>
+            <li role="presentation" id="switch_attr_publish"><a href="#publish" data-toggle="tab"
+                                                                role="tab">发布数据</a>
+            </li>
+            <li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">订阅数据</a>
+            </li>
+            <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">任务约束</a>
+            </li>
+            <li role="presentation" id="switch_attr_file"><a href="#file" data-toggle="tab" role="tab">模型文件</a></li>
+            <li role="presentation" id="switch_attr_source"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
+            <div class="pull-right">
+                <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span>
+                    进程统计
+                </a>
+                <a class="btn btn-success" href="#" id="create_data"
+                   onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
+                        class="glyphicon glyphicon-plus"></span> 创建私有</a>
+                <a class="btn btn-primary" href="#" id="upload_file" onclick=""><span
+                        class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
+                <a class="btn btn-info" href="#" data-toggle="modal" id="submit_btn"
+                   data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
+                   data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 提交审核</a>
+                <button class="btn btn-default" onclick="location.reload()"><span
+                        class="glyphicon glyphicon-refresh"></span> 刷新
+                </button>
+            </div>
+        </ul>
+
 </div>
 <br>
 <div class="tab-content board-view">
     <div role="tabpanel" class="tab-pane active board-scrum-view" id="data" style="height: 100%">
-        <div class="row paneldocker" style="height: 100%">
-            <div class="col-xs-3" style="height: 100%">
-                <div class="panel panel-default task-panel">
-                    <div class="panel-heading">
-                        私有数据
-                    </div>
-                    <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
-                        <ul id="createpanel" class="scrum-stage-tasks">
-                            <c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">
-                                <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                    onclick="showDataContent(${privateDataListbyTaskItem.ddDataId})">
-                                        <%--<div class="checkbox checkbox-primary">--%>
-                                        <%--<input id="checkbox1" type="checkbox">--%>
-                                        <%--<label for="checkbox1">--%>
-                                        <%--${privateDataListbyTaskItem.ddDataName}--%>
-                                        <%--</label>--%>
-                                        <%--</div>--%>
-                                        <%--<label class="pull-right taskname">${privateDataListbyTaskItem.ddDataTaskName}</label>--%>
-                                    <strong class="col-xs-6 overflow-card">${privateDataListbyTaskItem.ddDataName}</strong>
-                                    <em class="col-xs-6 overflow-card">${privateDataListbyTaskItem.ddDataTaskName}</em>
-                                    <input type="hidden" value="${privateDataListbyTaskItem.ddDataId}"
-                                           name="release"/>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3" style="height: 100%">
-                <div class="panel panel-info task-panel">
-                    <div class="panel-heading">
-                        发布数据
-                    </div>
-                    <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
-                        <ul id="publishpanel" class="scrum-stage-tasks">
-                            <c:forEach var="publishDataListItem" items="${publishDataList}">
-                                <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                    onclick="showDataContent(${publishDataListItem.ddDataId})">
-                                        <%--<div class="checkbox checkbox-primary">--%>
-                                        <%--<input id="checkbox2" type="checkbox">--%>
-                                        <%--<label for="checkbox2">--%>
-                                        <%--${publishDataListItem.ddDataName}--%>
-                                        <%--</label>--%>
-                                        <%--</div>--%>
-                                        <%--<label class="pull-right taskname">${publishDataListItem.ddDataTaskName}</label>--%>
-                                    <strong class="col-xs-6 overflow-card">${publishDataListItem.ddDataName}</strong>
-                                    <em class="col-xs-6 overflow-card">${publishDataListItem.ddDataTaskName}</em>
-                                    <input type="hidden" value="${publishDataListItem.ddDataId}"
-                                           name="release"/>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3" style="height: 100%">
-                <div class="panel panel-success task-panel">
-                    <div class="panel-heading">
-                        可订阅
-                    </div>
-                    <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
-                        <ul id="canorderpanel" class="scrum-stage-tasks">
-                            <c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">
-                                <li class="task task-card ui-sortable-handle " id="showRightPush"
-                                    onclick="showDataContent(${canBeOrderPrivatedataListItem.ddDataId})">
-                                        <%--<div class="checkbox">--%>
-                                        <%--<input id="checkbox3" type="checkbox">--%>
-                                        <%--<label for="checkbox3">--%>
-                                        <%--${canBeOrderPrivatedataListItem.ddDataName}--%>
-                                        <%--</label>--%>
-                                        <%--</div>--%>
-                                        <%--<label class="pull-right taskname">${canBeOrderPrivatedataListItem.ddDataTaskName}</label>--%>
-                                    <strong class="col-xs-6 overflow-card">${canBeOrderPrivatedataListItem.ddDataName}</strong>
-                                    <em class="col-xs-6 overflow-card">${canBeOrderPrivatedataListItem.ddDataTaskName}</em>
-                                    <input type="hidden" value="${canBeOrderPrivatedataListItem.ddDataId}"
-                                           name="release"/>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3" style="height: 100%">
-                <div class="panel panel-warning task-panel">
-                    <div class="panel-heading">
-                        已订阅
-                    </div>
-                    <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
-                        <ul id="orderpanel" class="scrum-stage-tasks">
-                            <c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">
-                                <li class="task task-card ui-sortable-handle" id="showRightPush"
-                                    onclick="showDataContent(${OrderPrivatedataListItem.ddDataId})">
-                                        <%--<div class="checkbox">--%>
-                                        <%--<input id="checkbox4" type="checkbox">--%>
-                                        <%--<label for="checkbox4">--%>
-                                        <%--${OrderPrivatedataListItem.ddDataName}--%>
-                                        <%--</label>--%>
-                                        <%--</div>--%>
-                                        <%--<label class="pull-right taskname">${OrderPrivatedataListItem.ddDataTaskName}</label>--%>
-                                    <strong class="col-xs-6 overflow-card">${OrderPrivatedataListItem.ddDataName}</strong>
-                                    <em class="col-xs-6 overflow-card">${OrderPrivatedataListItem.ddDataTaskName}</em>
-                                    <input type="hidden" value="${OrderPrivatedataListItem.ddDataId}"
-                                           name="release"/>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="index">
-
     </div>
     <div role="tabpanel" class="tab-pane" id="publish">
     </div>
     <div role="tabpanel" class="tab-pane" id="order">
-
-    </div>
-    <div role="tabpanel" class="tab-pane" id="calendar">
     </div>
     <div role="tabpanel" class="tab-pane" id="file">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="source">
     </div>
 </div>
 </div>
@@ -259,56 +153,62 @@
 <script type="text/javascript">
     $(document).ready(function () {
 //        $.MyCommon.PageLoading({sleep: 500});
-        $("#createpanel,#publishpanel").dragsort({
-            itemSelector: "li",
-            dragSelector: "li",
-            dragBetween: true,
-            dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
-        });
-        $("#canorderpanel,#orderpanel").dragsort({
-            itemSelector: "li",
-            dragSelector: "li",
-            dragBetween: true,
-            dragEnd: saveOrder2,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
-        });
-        function saveOrder() {
-            var data = $(this).children('input').val();
-            var parentid = $(this).parent().attr("id");
-            $.get("createtopublish.ht?id=" + data + "&parent=" + parentid);
-        }
+        <%--$("#createpanel,#publishpanel").dragsort({--%>
+            <%--itemSelector: "li",--%>
+            <%--dragSelector: "li",--%>
+            <%--dragBetween: true,--%>
+            <%--dragEnd: saveOrder,--%>
+            <%--placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'--%>
+        <%--});--%>
+        <%--$("#canorderpanel,#orderpanel").dragsort({--%>
+            <%--itemSelector: "li",--%>
+            <%--dragSelector: "li",--%>
+            <%--dragBetween: true,--%>
+            <%--dragEnd: saveOrder2,--%>
+            <%--placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'--%>
+        <%--});--%>
+        <%--function saveOrder() {--%>
+            <%--var data = $(this).children('input').val();--%>
+            <%--var parentid = $(this).parent().attr("id");--%>
+            <%--$.get("createtopublish.ht?id=" + data + "&parent=" + parentid);--%>
+        <%--}--%>
 
-        function saveOrder2() {
-            var data = $(this).children('input').val();
-            var parentid = $(this).parent().attr("id");
-            $.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId=" +${TaskInfo.ddTaskId});
-        }
+        <%--function saveOrder2() {--%>
+            <%--var data = $(this).children('input').val();--%>
+            <%--var parentid = $(this).parent().attr("id");--%>
+            <%--$.get("canordertoorder.ht?id=" + data + "&parent=" + parentid + "&taskId=" +${TaskInfo.ddTaskId});--%>
+        <%--}--%>
 
+        $.get("showdata.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#data').html(data);
+        });
         $("#create_data").show();
         $("#upload_file").hide();
     });
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
-            switch_attr_task = document.getElementById('switch_attr_task'),
+            switch_attr_data = document.getElementById('switch_attr_data'),
             switch_attr_publish = document.getElementById('switch_attr_publish'),
             switch_attr_order = document.getElementById('switch_attr_order'),
             statis_btn = document.getElementById('statis_btn'),
             create_task = document.getElementById('create_task'),
             upload_file = document.getElementById('upload_file');
 
+    //显示数据详情
     function showDataContent(dataId) {
         $('#datadetail').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/privatedata/edit.ht?id=" + dataId
         })
     }
+    //创建私有数据
     function createPrivateData(taskId) {
         $('#adddata').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=" + taskId
         })
     }
+    //对话框关闭清除缓存
     $("#datadetail").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
@@ -321,6 +221,8 @@
     $("#adddata").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
+
+    //tab切换操作
     switch_attr_index.onclick = function () {
         $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
@@ -328,7 +230,10 @@
         $("#create_data").hide();
         $("#upload_file").hide();
     }
-    switch_attr_task.onclick = function () {
+    switch_attr_data.onclick = function () {
+        $.get("showdata.ht?id=${TaskInfo.ddTaskId}", function (data) {
+            $('#data').html(data);
+        });
         $("#create_data").show();
         $("#upload_file").hide();
     }
@@ -353,6 +258,14 @@
         $("#create_data").hide();
         $("#upload_file").show();
     }
+    switch_attr_source.onclick = function () {
+        <%--$.get("showdata.ht?id=${TaskInfo.ddTaskId}", function (data) {--%>
+            <%--$('#source').html(data);--%>
+        <%--});--%>
+        $("#create_data").hide();
+        $("#upload_file").hide();
+    }
+    //按钮点击操作
     statis_btn.onclick = function () {
         $('#statis').modal({
             keyboard: true,
