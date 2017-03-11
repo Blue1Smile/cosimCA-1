@@ -421,7 +421,7 @@
         ].join('');
         if (row.ddDataPublishType == '0')
         return [
-            '已订阅'
+            '未发布'
         ].join('');
     }
     //设置table高度
