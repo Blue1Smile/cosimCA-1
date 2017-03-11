@@ -562,6 +562,7 @@ public class PersonalTaskController extends AbstractController {
 
         response.setContentType("application/json");
 
+
         try {
             Long taskId = RequestUtil.getLong(request, "id");
             pageinfo.setId(taskId);
