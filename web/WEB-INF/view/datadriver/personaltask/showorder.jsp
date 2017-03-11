@@ -295,12 +295,12 @@
     }
     //私有数据列表按钮
     function operateFormatterCanOrder(value, row, index) {
-        if (row.ddDataPublishType == 0)
+        if (row.ddOrderType == 0)
             return [
                 '<a id="canordertr" class="publish" href="javascript:void(0)" title="点击订阅该数据项">订阅',
                 '</a>'
             ].join('');
-        if (row.ddDataPublishType == 1)
+        if (row.ddOrderType == 1)
             return [
                 '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
             ].join('');
@@ -308,7 +308,7 @@
 
     //发布数据列表按钮
     function operateFormatterOrder(value, row, index) {
-        if (row.ddDataPublishType == '1')
+        if (row.ddOrderType == '1')
             return [
                 '<a id="ordertr" class="" href="javascript:void(0)" title="点击撤销发布该数据">撤销',
                 '</a>'
