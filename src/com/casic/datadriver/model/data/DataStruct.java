@@ -1,30 +1,38 @@
 package com.casic.datadriver.model.data;
 
 public class DataStruct {
-    private Integer ddStructId;
-
-    private Integer ddDataId;
+    private Long ddStructId;
 
     private String ddStructName;
 
-    private Integer ddStructMemberType;
+    private String ddNodePath;
 
-    private Integer ddStructMemberId;
+    private Long ddDepthId;
 
-    public Integer getDdStructId() {
+    private Integer ddDepth;
+
+    private Long ddParentId;
+
+    private String ddCatkey;
+
+    private String ddNodeKey;
+
+    private Long ddTaskId;
+
+    private Long ddSn;
+
+    private Short ddIsLeaf;
+
+    private String ddNodeCode;
+
+    private Short ddNodeCodeType;
+
+    public Long getDdStructId() {
         return ddStructId;
     }
 
-    public void setDdStructId(Integer ddStructId) {
+    public void setDdStructId(Long ddStructId) {
         this.ddStructId = ddStructId;
-    }
-
-    public Integer getDdDataId() {
-        return ddDataId;
-    }
-
-    public void setDdDataId(Integer ddDataId) {
-        this.ddDataId = ddDataId;
     }
 
     public String getDdStructName() {
@@ -35,19 +43,91 @@ public class DataStruct {
         this.ddStructName = ddStructName;
     }
 
-    public Integer getDdStructMemberType() {
-        return ddStructMemberType;
+    public String getDdNodePath() {
+        return ddNodePath;
     }
 
-    public void setDdStructMemberType(Integer ddStructMemberType) {
-        this.ddStructMemberType = ddStructMemberType;
+    public void setDdNodePath(String ddNodePath) {
+        this.ddNodePath = ddNodePath;
     }
 
-    public Integer getDdStructMemberId() {
-        return ddStructMemberId;
+    public Long getDdDepthId() {
+        return ddDepthId;
     }
 
-    public void setDdStructMemberId(Integer ddStructMemberId) {
-        this.ddStructMemberId = ddStructMemberId;
+    public void setDdDepthId(Long ddDepthId) {
+        this.ddDepthId = ddDepthId;
+    }
+
+    public Integer getDdDepth() {
+        return ddDepth;
+    }
+
+    public void setDdDepth(Integer ddDepth) {
+        this.ddDepth = ddDepth;
+    }
+
+    public Long getDdParentId() {
+        return ddParentId;
+    }
+
+    public void setDdParentId(Long ddParentId) {
+        this.ddParentId = ddParentId;
+    }
+
+    public String getDdCatkey() {
+        return ddCatkey;
+    }
+
+    public void setDdCatkey(String ddCatkey) {
+        this.ddCatkey = ddCatkey;
+    }
+
+    public String getDdNodeKey() {
+        return ddNodeKey;
+    }
+
+    public void setDdNodeKey(String ddNodeKey) {
+        this.ddNodeKey = ddNodeKey;
+    }
+
+    public Long getDdTaskId() {
+        return ddTaskId;
+    }
+
+    public void setDdTaskId(Long ddTaskId) {
+        this.ddTaskId = ddTaskId;
+    }
+
+    public Long getDdSn() {
+        return ddSn;
+    }
+
+    public void setDdSn(Long ddSn) {
+        this.ddSn = ddSn;
+    }
+
+    public Short getDdIsLeaf() {
+        return ddIsLeaf;
+    }
+
+    public void setDdIsLeaf(Short ddIsLeaf) {
+        this.ddIsLeaf = ddIsLeaf;
+    }
+
+    public String getDdNodeCode() {
+        return ddNodeCode;
+    }
+
+    public void setDdNodeCode(String ddNodeCode) {
+        this.ddNodeCode = ddNodeCode;
+    }
+
+    public Short getDdNodeCodeType() {
+        return ddNodeCodeType;
+    }
+
+    public void setDdNodeCodeType(Short ddNodeCodeType) {
+        this.ddNodeCodeType = ddNodeCodeType;
     }
 }

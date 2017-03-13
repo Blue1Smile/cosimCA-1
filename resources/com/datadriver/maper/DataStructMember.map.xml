@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.casic.datadriver.model.data.DataStructMember">
+  <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.DataStructMember">
+    <id column="DD_MEMBER_ID" jdbcType="BIGINT" property="ddMemberId" />
+    <result column="DD_MEMBER_TYPE" jdbcType="BIGINT" property="ddMemberType" />
+    <result column="DD_ITEM_KEY" jdbcType="VARCHAR" property="ddItemKey" />
+    <result column="DD_ITEM_NAME" jdbcType="VARCHAR" property="ddItemName" />
+    <result column="DD_ITEM_VALUE" jdbcType="VARCHAR" property="ddItemValue" />
+    <result column="DD_DECSP" jdbcType="VARCHAR" property="ddDecsp" />
+    <result column="DD_SN" jdbcType="BIGINT" property="ddSn" />
+    <result column="DD_NODE_PATH" jdbcType="VARCHAR" property="ddNodePath" />
+    <result column="DD_PARENT_ID" jdbcType="BIGINT" property="ddParentId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.casic.datadriver.model.data.DataStructMember">
+    insert into dd_struct_member (DD_MEMBER_ID, DD_MEMBER_TYPE, DD_ITEM_KEY, 
+      DD_ITEM_NAME, DD_ITEM_VALUE, DD_DECSP, 
+      DD_SN, DD_NODE_PATH, DD_PARENT_ID
+      )
+    values (#{ddMemberId,jdbcType=BIGINT}, #{ddMemberType,jdbcType=BIGINT}, #{ddItemKey,jdbcType=VARCHAR}, 
+      #{ddItemName,jdbcType=VARCHAR}, #{ddItemValue,jdbcType=VARCHAR}, #{ddDecsp,jdbcType=VARCHAR}, 
+      #{ddSn,jdbcType=BIGINT}, #{ddNodePath,jdbcType=VARCHAR}, #{ddParentId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.casic.datadriver.model.data.DataStructMember">
+    insert into dd_struct_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ddMemberId != null">
+        DD_MEMBER_ID,
+      </if>
+      <if test="ddMemberType != null">
+        DD_MEMBER_TYPE,
+      </if>
+      <if test="ddItemKey != null">
+        DD_ITEM_KEY,
+      </if>
+      <if test="ddItemName != null">
+        DD_ITEM_NAME,
+      </if>
+      <if test="ddItemValue != null">
+        DD_ITEM_VALUE,
+      </if>
+      <if test="ddDecsp != null">
+        DD_DECSP,
+      </if>
+      <if test="ddSn != null">
+        DD_SN,
+      </if>
+      <if test="ddNodePath != null">
+        DD_NODE_PATH,
+      </if>
+      <if test="ddParentId != null">
+        DD_PARENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ddMemberId != null">
+        #{ddMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="ddMemberType != null">
+        #{ddMemberType,jdbcType=BIGINT},
+      </if>
+      <if test="ddItemKey != null">
+        #{ddItemKey,jdbcType=VARCHAR},
+      </if>
+      <if test="ddItemName != null">
+        #{ddItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddItemValue != null">
+        #{ddItemValue,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDecsp != null">
+        #{ddDecsp,jdbcType=VARCHAR},
+      </if>
+      <if test="ddSn != null">
+        #{ddSn,jdbcType=BIGINT},
+      </if>
+      <if test="ddNodePath != null">
+        #{ddNodePath,jdbcType=VARCHAR},
+      </if>
+      <if test="ddParentId != null">
+        #{ddParentId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>
