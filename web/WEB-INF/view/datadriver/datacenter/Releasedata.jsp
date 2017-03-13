@@ -34,7 +34,10 @@
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,                   //是否显示分页（*）
             sortable: true,                     //是否启用排序
-            sortOrder: "asc",                   //排序方式
+            sortName : 'DdDataName',//初始化的时候排序的字段
+            showExport: true,                     //是否显示导出
+            exportDataType: "basic",              //basic', 'all', 'selected'.
+            sortOrder: "desc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
             pageSize: 5,                       //每页的记录行数（*）
@@ -104,7 +107,7 @@
             },
         });
 //初始化子表格(无线循环)
-        function InitSubTable(index, row, $detail) {
+            function InitSubTable(index, row, $detail) {
             var parentid = row.DdDataId;
             var cur_table = $detail.html('<table></table>').find('table');
             $(cur_table).bootstrapTable({
@@ -190,6 +193,7 @@
         <%--},--%>
         'click .download': function (e, value, row, index) {
             alert(row.DataType);
+            alert(row.ModelUrl);
             if (row.DataType == "模型" || row.DataType == "文件") {
                 window.location.href = "${ctx}/datadriver/modelcenter/getmodel.ht?modelurl=" + row.ModelUrl + "&modelname=" + row.ModelName;
             }

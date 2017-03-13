@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * @author ???? ???2016/11/14 0014.
  */
@@ -71,6 +70,10 @@ public class DataCenterController extends AbstractController {
         List<Project> ProjectList = new ArrayList<Project>();
         for(int i=0;i<AllProjectList.size();i++){
             if(AllProjectList.get(i).getDdProjectCreatorId().equals(ContextUtil.getCurrentUser().getUserId())){
+
+
+
+
                 tempProjectList.add(AllProjectList.get(i));
             }
             else{
@@ -165,6 +168,7 @@ return mv;
     @Action(description = "获得发布数据列表")
     public void getOrderdata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        String A = RequestUtil.getString(request, "sortName");
         Long ddTaskId= RequestUtil.getLong(request, "id");
         Long pageSize =RequestUtil.getLong(request, "pageSize");
         Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
@@ -172,6 +176,8 @@ return mv;
         pageinfo.setPageSize((pageNumber-1)*pageSize);
         pageinfo.setPageNumber(pageSize);
         pageinfo.setId(ddTaskId);
+
+//        var db = new QHC_IIMSContext();
         //获得发布数据列表
         List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationListF(pageinfo);
 //        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
@@ -329,6 +335,7 @@ return mv;
 
         List<DataVersion>  dataVersion_list =  this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
         String DataType = privateDataService.getByddDataId(ddDataId).get(0).getDdDataType();
+        Long DataTaskId = privateDataService.getDataById(ddDataId).getDdDataTaskId();
         JSONObject jsonObject = new JSONObject();
         JSONObject json=new JSONObject();
         JSONArray jsonMembers = new JSONArray();
