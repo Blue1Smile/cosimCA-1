@@ -17,17 +17,27 @@
 </head>
 <body>
 
-<div class="btn-group  col-xs-4 ">
-    <button type="button" class="btn btn-default dropdown-toggle"
-            data-toggle="dropdown" style="margin:10px" >
-        数据类型分类选择 <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu" >
-        <li><a href="#" id="buttonmodel">模型</a></li>
-        <li><a href="#" id="buttonfile">文件</a></li>
-        <li><a href="#" id="buttondata">结构型数据</a></li>
-        <li><a href="#" id="buttonother">全部</a></li>
-    </ul>
+<%--<div class="btn-group  col-xs-4 ">--%>
+    <%--<button type="button" class="btn btn-default dropdown-toggle"--%>
+            <%--data-toggle="dropdown" style="margin:10px" >--%>
+        <%--数据类型分类选择 <span class="caret"></span>--%>
+    <%--</button>--%>
+    <%--<ul class="dropdown-menu" role="menu" >--%>
+        <%--<li><a href="#" id="buttonmodel">模型</a></li>--%>
+        <%--<li><a href="#" id="buttonfile">文件</a></li>--%>
+        <%--<li><a href="#" id="buttondata">结构型数据</a></li>--%>
+        <%--<li><a href="#" id="buttonother">全部</a></li>--%>
+    <%--</ul>--%>
+<%--</div>--%>
+<div class="form-group col-xs-4">
+    <%--<label for="name">选择列表</label>--%>
+    <select class="form-control" id="testSelect" style="margin:10px">
+        <option value="4">全部类型</option>
+        <option value="1">模型</option>
+        <option value="2">文件</option>
+        <option value="3">结构型数据</option>
+        <%--<option>5</option>--%>
+    </select>
 </div>
 <table id="tb_department" class=" col-xs-2 ">
 </table>
@@ -44,7 +54,7 @@
         var $table = $('#tb_department');
 //        InitSubTable();
         $('#tb_department').bootstrapTable({
-            url:"getReleasedatanew.ht?id=<%=request.getParameter("id")%>",
+            url:"getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum="+$('#testSelect option:selected') .val(),
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -60,7 +70,7 @@
             pageSize: 5,                       //每页的记录行数（*）
             pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
             queryParamsType: '',
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+//            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             showColumns: false,                  //是否显示所有的列
             showRefresh: false,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
@@ -195,19 +205,11 @@
         };
     }
     ;
+//    alert($('#testSelect option:selected') .val());
+    $('#testSelect').click(function () {
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum='+$('#testSelect option:selected') .val()});
+    });
 
-    $('#buttonmodel').click(function () {
-        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum=1'});
-    });
-    $('#buttonfile').click(function () {
-        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum=2'});
-    });
-    $('#buttondata').click(function () {
-        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum=3'});
-    });
-    $('#buttonother').click(function () {
-        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum=4'});
-    });
 
     $('#button').click(function () {
         $('#tb_department').bootstrapTable('refresh',{url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>'});
