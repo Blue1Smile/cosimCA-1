@@ -56,10 +56,10 @@
             </ul>
         </li>
         <li role="presentation" class="active" id="switch_attr_publish"><a href="#data" data-toggle="tab"
-                                                                        role="tab">私有&发布</a>
+                                                                           role="tab">私有&发布</a>
         </li>
         <li role="presentation" id="switch_attr_order"><a href="#publish" data-toggle="tab"
-                                                            role="tab">集合&订阅</a>
+                                                          role="tab">集合&订阅</a>
         </li>
         <%--<li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">订阅数据</a>--%>
         <%--</li>--%>
@@ -67,6 +67,7 @@
         </li>
         <%--<li role="presentation" id="switch_attr_file"><a href="#file" data-toggle="tab" role="tab">模型文件</a></li>--%>
         <li role="presentation" id="switch_attr_source"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
+        <li role="presentation" id="switch_attr_talk"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a></li>
         <div class="pull-right">
             <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span>
                 进程统计
@@ -84,7 +85,6 @@
             </button>
         </div>
     </ul>
-
 </div>
 <br>
 <div class="tab-content board-view">
@@ -98,6 +98,8 @@
     <%--</div>--%>
     <%--<div role="tabpanel" class="tab-pane" id="file">--%>
     <%--</div>--%>
+    <div role="tabpanel" class="tab-pane" id="talk">
+    </div>
     <div role="tabpanel" class="tab-pane" id="source">
     </div>
 </div>
@@ -216,18 +218,18 @@
         $("#upload_file").hide();
     }
     <%--switch_attr_order.onclick = function () {--%>
-        <%--$.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {--%>
-            <%--$('#order').html(data);--%>
-        <%--});--%>
-        <%--$("#create_data").hide();--%>
-        <%--$("#upload_file").hide();--%>
+    <%--$.get("${ctx}/datadriver/personaltask/showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {--%>
+    <%--$('#order').html(data);--%>
+    <%--});--%>
+    <%--$("#create_data").hide();--%>
+    <%--$("#upload_file").hide();--%>
     <%--}--%>
     <%--switch_attr_file.onclick = function () {--%>
-        <%--$.get("${ctx}/datadriver/personaltask/OrderModel.ht?id=${TaskInfo.ddTaskId}", function (data) {--%>
-            <%--$('#file').html(data);--%>
-        <%--});--%>
-        <%--$("#create_data").hide();--%>
-        <%--$("#upload_file").show();--%>
+    <%--$.get("${ctx}/datadriver/personaltask/OrderModel.ht?id=${TaskInfo.ddTaskId}", function (data) {--%>
+    <%--$('#file').html(data);--%>
+    <%--});--%>
+    <%--$("#create_data").hide();--%>
+    <%--$("#upload_file").show();--%>
     <%--}--%>
     switch_attr_source.onclick = function () {
         <%--$.get("showdata.ht?id=${TaskInfo.ddTaskId}", function (data) {--%>
