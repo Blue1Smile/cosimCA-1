@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<div class="btn-group col-xs-offset-6 col-xs-4 ">
+<div class="btn-group  col-xs-4 ">
     <button type="button" class="btn btn-default dropdown-toggle"
             data-toggle="dropdown" style="margin:10px" >
         数据类型分类选择 <span class="caret"></span>
@@ -26,7 +26,7 @@
         <li><a href="#" id="buttonmodel">模型</a></li>
         <li><a href="#" id="buttonfile">文件</a></li>
         <li><a href="#" id="buttondata">结构型数据</a></li>
-        <li><a href="#" id="buttonother">其他</a></li>
+        <li><a href="#" id="buttonother">全部</a></li>
     </ul>
 </div>
 <table id="tb_department" class=" col-xs-2 ">
@@ -197,16 +197,16 @@
     ;
 
     $('#buttonmodel').click(function () {
-        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataType=模型'});
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum=1'});
     });
     $('#buttonfile').click(function () {
-        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataType=文件'});
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum=2'});
     });
     $('#buttondata').click(function () {
-        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataType=结构型数据'});
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum=3'});
     });
     $('#buttonother').click(function () {
-        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataType='});
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataTypenum=4'});
     });
 
     $('#button').click(function () {

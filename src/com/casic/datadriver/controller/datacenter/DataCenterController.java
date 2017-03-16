@@ -53,7 +53,8 @@ public class DataCenterController extends AbstractController {
 
     /**
      * 2016/12/19/修改
-     *取得项目树
+     * 取得项目树
+     *
      * @param request  the request
      * @param response the response
      * @return the list
@@ -66,22 +67,17 @@ public class DataCenterController extends AbstractController {
 
         List<Project> tempProjectList = new ArrayList<Project>();
         List<Project> ProjectList = new ArrayList<Project>();
-        for(int i=0;i<AllProjectList.size();i++){
-            if(AllProjectList.get(i).getDdProjectCreatorId().equals(ContextUtil.getCurrentUser().getUserId())){
-
-
+        for (int i = 0; i < AllProjectList.size(); i++) {
+            if (AllProjectList.get(i).getDdProjectCreatorId().equals(ContextUtil.getCurrentUser().getUserId())) {
 
 
                 tempProjectList.add(AllProjectList.get(i));
-            }
-            else{
-                List<TaskInfo> taskInfoList=taskInfoService.queryTaskInfoByProjectId(AllProjectList.get(i).getDdProjectId());
-                for( int j =0;j<taskInfoList.size();j++){
-                    if(taskInfoList.get(j).getDdTaskResponsiblePerson()==null){
+            } else {
+                List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(AllProjectList.get(i).getDdProjectId());
+                for (int j = 0; j < taskInfoList.size(); j++) {
+                    if (taskInfoList.get(j).getDdTaskResponsiblePerson() == null) {
 
-                    }
-                    else
-                        if(taskInfoList.get(j).getDdTaskResponsiblePerson().equals(ContextUtil.getCurrentUser().getUserId())){
+                    } else if (taskInfoList.get(j).getDdTaskResponsiblePerson().equals(ContextUtil.getCurrentUser().getUserId())) {
                         tempProjectList.add(AllProjectList.get(i));
                     }
                 }
@@ -121,6 +117,7 @@ public class DataCenterController extends AbstractController {
                 .addObject("TaskLength", TaskLength);
         return mv;
     }
+
     //过滤重复元素
     public static List<Project> removeDuplicate(List<Project> mList) {
         for (int i = 0; i < mList.size() - 1; i++) {
@@ -132,6 +129,7 @@ public class DataCenterController extends AbstractController {
         }
         return mList;
     }
+
     /**
      * 2017/02/18/修改
      * 返回任务发布订购数据列表
@@ -145,22 +143,23 @@ public class DataCenterController extends AbstractController {
     @Action(description = "返回到发布订阅页面")
     public ModelAndView publishorderdata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Long taskId= RequestUtil.getLong(request, "id");
+        Long taskId = RequestUtil.getLong(request, "id");
 
 //        List<OrderDataRelation> publishDataRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
 //        List<OrderDataRelation> orderDataRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
         ModelAndView mv = this.getAutoView().addObject("taskId",
                 taskId);
-return mv;
-        }
+        return mv;
+    }
+
     /**
-排序
+     * 排序
      */
 
     class desc implements Comparator<OrderDataRelation> {
         @Override
         public int compare(OrderDataRelation u1, OrderDataRelation u2) {
-                return -(u1.getDdDataName().compareTo(u2.getDdDataName()));
+            return -(u1.getDdDataName().compareTo(u2.getDdDataName()));
         }
     }
 
@@ -179,66 +178,89 @@ return mv;
         String B = RequestUtil.getString(request, "DataType");
 //        String  DataType= RequestUtil.getString(request, "DataType");
         String A = RequestUtil.getString(request, "sortOrder");
-        Long ddTaskId= RequestUtil.getLong(request, "id");
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long a = pageSize*(pageNumber-1);
-        Long b = pageSize*(pageNumber);
+        Long ddTaskId = RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long a = pageSize * (pageNumber - 1);
+        Long b = pageSize * (pageNumber);
 
+        int DataTypenum = RequestUtil.getInt(request, "DataTypenum");
+        String search = new String(RequestUtil.getString(request, "searchText").getBytes("ISO-8859-1"), "UTF-8");
+        String DataType = "";
+        switch (DataTypenum) {
+            case 1:
+                DataType = "模型";
+                break;
+            case 2:
+                DataType = "文件";
+                break;
+            case 3:
+                DataType = "结构型数据";
+                break;
+            case 4:
+                DataType = "";
+                break;
+        }
 
-        String search= new String(RequestUtil.getString(request, "searchText").getBytes("ISO-8859-1"),"UTF-8");
-        String DataType= new String(RequestUtil.getString(request, "DataType").getBytes("ISO-8859-1"));
 
         PageInfo pageinfo = new PageInfo();
-
+        pageinfo.setId(ddTaskId);
         pageinfo.setBf2(DataType);
 
         JSONObject jsonObject = new JSONObject();
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
 
 
-        List<OrderDataRelation>  orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
-       int allnum = 0;
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
 
-        if (A.compareTo("desc")==0) {
-            //desc 降序
-            Comparator<OrderDataRelation> cmp = new desc();
-            Collections.sort(orderDataRelation_list, cmp);
-        }
-        else if(A.compareTo("asc")==0){ //asc 升序
-            Comparator<OrderDataRelation> cmp = new asc();
-            Collections.sort(orderDataRelation_list, cmp);
-            }
-
-         if(b>orderDataRelation_list.size())
-        {
-            b = Long.valueOf(orderDataRelation_list.size());
-        }
         List<PrivateData> taskPrivateDatas = null;
-        for (int h = Math.toIntExact(a);h<b;h++){
-            Long ddDataId=orderDataRelation_list.get(h).getDdDataId();
-            pageinfo.setId(ddDataId);
-            if (DataType == null || DataType.length() <= 0) {
-                taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
-                allnum=  this.orderDataRelationService.getPublishDataRelationList(ddTaskId).size();
-            }
-            else {
-                taskPrivateDatas = this.privateDataService.getBymodel(pageinfo);
-                allnum = taskPrivateDatas.size();
-            }
+        int allnum = 0;
 
-            for (int i = 0; i < taskPrivateDatas.size(); i++) {
-                PrivateData mymode = taskPrivateDatas.get(i);
-                jsonObject.put("DdDataName", mymode.getDdDataName());
-                jsonObject.put("DdDataLastestValue", mymode.getDdDataLastestValue());
-                jsonObject.put("DdDataType", mymode.getDdDataType());
-                jsonObject.put("DdDataCreateTime", mymode.getDdDataCreateTime());
-                jsonObject.put("DdDataDescription", mymode.getDdDataDescription());
-                jsonObject.put("DdDataId", mymode.getDdDataId());
-                jsonMembers.add(jsonObject);
-            }
+//        if (A.compareTo("desc")==0) {
+//            //desc 降序
+//            Comparator<OrderDataRelation> cmp = new desc();
+//            Collections.sort(orderDataRelation_list, cmp);
+//        }
+//        else if(A.compareTo("asc")==0){ //asc 升序
+//            Comparator<OrderDataRelation> cmp = new asc();
+//            Collections.sort(orderDataRelation_list, cmp);
+//            }
+
+
+        if (DataType == null || DataType.length() <= 0) {
+            taskPrivateDatas = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
+            allnum = taskPrivateDatas.size();
+        } else {
+            taskPrivateDatas = this.privateDataService.getBymodel(pageinfo);
+            allnum = taskPrivateDatas.size();
         }
+        if (b > taskPrivateDatas.size()) {
+            b = Long.valueOf(taskPrivateDatas.size());
+        }
+//        for (int h = Math.toIntExact(a);h<b;h++){
+//            Long ddDataId=orderDataRelation_list.get(h).getDdDataId();
+//            pageinfo.setId(ddDataId);
+//            if (DataType == null || DataType.length() <= 0) {
+//                taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
+//                allnum=  this.orderDataRelationService.getPublishDataRelationList(ddTaskId).size();
+//            }
+//            else {
+//                taskPrivateDatas = this.privateDataService.getBymodel(pageinfo);
+//                allnum = taskPrivateDatas.size();
+//            }
+
+        for (int i = Math.toIntExact(a); i < b; i++) {
+            PrivateData mymode = taskPrivateDatas.get(i);
+            jsonObject.put("DdDataName", mymode.getDdDataName());
+            jsonObject.put("DdDataLastestValue", mymode.getDdDataLastestValue());
+            jsonObject.put("DdDataType", mymode.getDdDataType());
+            jsonObject.put("DdDataCreateTime", mymode.getDdDataCreateTime());
+            jsonObject.put("DdDataDescription", mymode.getDdDataDescription());
+            jsonObject.put("DdDataId", mymode.getDdDataId());
+            jsonMembers.add(jsonObject);
+        }
+//        }
 
         json.put("total", allnum);
         json.put("rows", jsonMembers);
@@ -258,27 +280,27 @@ return mv;
     public void getOrderdata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         String A = RequestUtil.getString(request, "sortName");
-        Long ddTaskId= RequestUtil.getLong(request, "id");
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long ddTaskId = RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
         PageInfo pageinfo = new PageInfo();
-        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageSize((pageNumber - 1) * pageSize);
         pageinfo.setPageNumber(pageSize);
         pageinfo.setId(ddTaskId);
 
 //        var db = new QHC_IIMSContext();
         //获得发布数据列表
-        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationListF(pageinfo);
+        List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationListF(pageinfo);
 //        List<OrderDataRelation>  orderDataRelation_list =  this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
         List<PrivateData> privateData = new ArrayList<PrivateData>();
         int allnum = this.orderDataRelationService.getPublishDataRelationList(ddTaskId).size();
         JSONObject jsonObject = new JSONObject();
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
 
-        for (OrderDataRelation orderDataRelation:orderDataRelation_list){
-            Long ddDataId=orderDataRelation.getDdDataId();
-            List<PrivateData>  taskPrivateDatas =  this.privateDataService.getByddDataId(ddDataId);
+        for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
+            Long ddDataId = orderDataRelation.getDdDataId();
+            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
 
             for (int i = 0; i < taskPrivateDatas.size(); i++) {
                 PrivateData mymode = taskPrivateDatas.get(i);
@@ -310,10 +332,10 @@ return mv;
             throws Exception {
         Long ddTaskId = RequestUtil.getLong(request, "id");
         //获得订购数据列表
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
         PageInfo pageinfo = new PageInfo();
-        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageSize((pageNumber - 1) * pageSize);
         pageinfo.setPageNumber((pageNumber - 1) * pageSize + pageSize);
         pageinfo.setId(ddTaskId);
 
@@ -322,12 +344,12 @@ return mv;
         List<PrivateData> privateData = new ArrayList<PrivateData>();
 
         JSONObject jsonObject = new JSONObject();
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
 
-        for (OrderDataRelation orderDataRelation:orderDataRelation_list){
-            Long ddDataId=orderDataRelation.getDdDataId();
-            List<PrivateData>  taskPrivateDatas =  this.privateDataService.getByddDataId(ddDataId);
+        for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
+            Long ddDataId = orderDataRelation.getDdDataId();
+            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
 
             for (int i = 0; i < taskPrivateDatas.size(); i++) {
                 PrivateData mymodel = taskPrivateDatas.get(i);
@@ -340,19 +362,18 @@ return mv;
                 jsonMembers.add(jsonObject);
             }
         }
-            json.put("total", orderDataRelation_list.size());
-            json.put("rows", jsonMembers);
+        json.put("total", orderDataRelation_list.size());
+        json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
-            String jsonstring = formatJson(json.toString());
-            System.out.println(json.toString());
+        String jsonstring = formatJson(json.toString());
+        System.out.println(json.toString());
 //            system.out(json.toString());
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.append(jsonstring);
-            out.flush();
-            out.close();
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.append(jsonstring);
+        out.flush();
+        out.close();
 //            privateData.addAll(taskPrivateDatas);
-
 
 
 //        ModelAndView mv = this.getAutoView().addObject("privateDataList_publish",
@@ -420,23 +441,23 @@ return mv;
     @Action(description = "返回任务发布订购数据列表")
     public ModelAndView showDataVersion(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Long ddDataId= RequestUtil.getLong(request, "id");
+        Long ddDataId = RequestUtil.getLong(request, "id");
 
-        List<DataVersion>  dataVersion_list =  this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
+        List<DataVersion> dataVersion_list = this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
         String DataType = privateDataService.getByddDataId(ddDataId).get(0).getDdDataType();
         Long DataTaskId = privateDataService.getDataById(ddDataId).getDdDataTaskId();
         JSONObject jsonObject = new JSONObject();
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
 
-            for (int i = 0; i < dataVersion_list.size(); i++) {
-                DataVersion mymodel = dataVersion_list.get(i);
-                jsonObject.put("DdDataVersion", mymodel.getDdDataVersion());
-                jsonObject.put("ddDataRecordTime", mymodel.getDdDataRecordTime());
-                jsonObject.put("ddDataValue", mymodel.getDdDataValue());
-                jsonObject.put("DataType", DataType);
-                jsonMembers.add(jsonObject);
-            }
+        for (int i = 0; i < dataVersion_list.size(); i++) {
+            DataVersion mymodel = dataVersion_list.get(i);
+            jsonObject.put("DdDataVersion", mymodel.getDdDataVersion());
+            jsonObject.put("ddDataRecordTime", mymodel.getDdDataRecordTime());
+            jsonObject.put("ddDataValue", mymodel.getDdDataValue());
+            jsonObject.put("DataType", DataType);
+            jsonMembers.add(jsonObject);
+        }
 
         json.put("total", dataVersion_list.size());
         json.put("rows", jsonMembers);
@@ -455,17 +476,13 @@ return mv;
     }
 
 
-
     /**
      * 项目快照
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
+     * @param request  the request
+     * @param response the response
      * @return the list
-     * @throws Exception
-     *             the exception
+     * @throws Exception the exception
      */
     @RequestMapping("datasnapshot")
     @Action(description = "私有数据数据快照")
@@ -474,7 +491,7 @@ return mv;
         String preUrl = RequestUtil.getPrePage(request);
         Long projectId = RequestUtil.getLong(request, "projectId");
 //        String ddDataTag = RequestUtil.getString(request, "ddDataTag");
-        DataSnapInfoId dataSnapInfoId=new DataSnapInfoId();
+        DataSnapInfoId dataSnapInfoId = new DataSnapInfoId();
 
         dataSnapInfoId.setDdDataSnapShotId(UniqueIdUtil.genId());
         dataSnapInfoId.setDdSnapShotPersonId(ContextUtil.getCurrentUser().getUserId());
@@ -487,11 +504,11 @@ return mv;
         dataSnapInfoId.setDdProjectId(projectId);
 
         dataSnapInfoIdService.add(dataSnapInfoId);
-        List<TaskInfo> taskInfoList= taskInfoService.queryTaskInfoByProjectId(projectId);
-        for(int i=0;i<taskInfoList.size();i++){
+        List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(projectId);
+        for (int i = 0; i < taskInfoList.size(); i++) {
             List<PrivateData> privateDataList = privateDataService.queryPrivateDataByddTaskID(taskInfoList.get(i).getDdTaskId());
-            for(int j=0;j<privateDataList.size();j++){
-                DataSnapshot dataSnapshot=new DataSnapshot();
+            for (int j = 0; j < privateDataList.size(); j++) {
+                DataSnapshot dataSnapshot = new DataSnapshot();
 
                 dataSnapshot.setDdDataSnapshotId(UniqueIdUtil.genId());
                 dataSnapshot.setDdDataId(privateDataList.get(j).getDdDataId());
@@ -505,16 +522,14 @@ return mv;
     }
 
 
-
-
-/**
- * 数据快照列表.
- *
- * @param request  the request
- * @param response the response
- * @return the list
- * @throws Exception the exception
- */
+    /**
+     * 数据快照列表.
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
     @RequestMapping("datasnapshotlist")
     @Action(description = "根据条件查询项目基本信息列表")
     public ModelAndView datasnapshotlist(HttpServletRequest request, HttpServletResponse response)
@@ -523,11 +538,11 @@ return mv;
         String ddSnapShotTime = RequestUtil.getString(request, "ddSnapShotTime");
         List<PrivateData> privateDataList = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
         List<DataSnapshot> dataSnapshotList = new ArrayList<DataSnapshot>();
-        for(int i=0;i<privateDataList.size();i++){
+        for (int i = 0; i < privateDataList.size(); i++) {
             List<DataSnapshot> privateDataSnapshotList = dataSnapshotService.getByddDataId(privateDataList.get(i).getDdDataId());
-            for(int j=0;j<privateDataSnapshotList.size();j++){
-                String time =privateDataSnapshotList.get(j).getDdSnapshotTime();
-                if(time.equals(ddSnapShotTime)){
+            for (int j = 0; j < privateDataSnapshotList.size(); j++) {
+                String time = privateDataSnapshotList.get(j).getDdSnapshotTime();
+                if (time.equals(ddSnapShotTime)) {
                     dataSnapshotList.add(privateDataSnapshotList.get(j));
                 }
             }
@@ -539,16 +554,12 @@ return mv;
     }
 
 
-
     /**
      * ?????????.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
-     * @throws Exception
-     *             the exception
+     * @param request  the request
+     * @param response the response
+     * @throws Exception the exception
      */
     @RequestMapping("showdatashot")
     @Action(description = "查看数据快照")
@@ -558,7 +569,7 @@ return mv;
 
         Long ddDataSnapshotId = RequestUtil.getLong(request, "ddDataSnapshotId");
         DataSnapshot dataSnapshot = dataSnapshotService.getById(ddDataSnapshotId);
-        Long ddDataId= dataSnapshot.getDdDataId();
+        Long ddDataId = dataSnapshot.getDdDataId();
         PrivateData privateData = privateDataService.getById(ddDataId);
 
         DataShot dataShot = new DataShot();
@@ -598,7 +609,7 @@ return mv;
     public ModelAndView snapshotlist(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 //        QueryFilter queryFilter = new QueryFilter(request, "ProjectItem");
-        List<DataSnapInfoId>  dataSnapInfoIdList = this.dataSnapInfoIdService.getAll();
+        List<DataSnapInfoId> dataSnapInfoIdList = this.dataSnapInfoIdService.getAll();
 
         ModelAndView mv = this.getAutoView().addObject("snapshotList",
                 dataSnapInfoIdList);
@@ -623,7 +634,7 @@ return mv;
 
         List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(dataSnapInfoId.getDdProjectId());
         ModelAndView mv = this.getAutoView().addObject("snapshotTaskList",
-                taskInfoList).addObject("ddSnapShotTime",dataSnapInfoId.getDdSnapShotTime());
+                taskInfoList).addObject("ddSnapShotTime", dataSnapInfoId.getDdSnapShotTime());
         return mv;
     }
 
