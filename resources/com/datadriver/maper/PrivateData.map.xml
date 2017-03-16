@@ -55,7 +55,7 @@
     select
     <include refid="Base_Column_List" />
     from dd_private_data
-    where DD_DATA_ID = #{id} AND DD_DATA_TYPE = #{bf2}
+    where DD_DATA_TASK_ID = #{id} AND DD_DATA_TYPE = #{bf2}
   </select>
 
   <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
