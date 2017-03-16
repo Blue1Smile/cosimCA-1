@@ -35,65 +35,68 @@ function TableInit() {
         pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
         search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
         strictSearch: false,
+        // data-search="true",
         showColumns: false,                  //是否显示所有的列
         showRefresh: false,                  //是否显示刷新按钮
         minimumCountColumns: 2,             //最少允许的列数
-        clickToSelect: false,                //是否启用点击选中行
-        height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        clickToSelect: true,                //是否启用点击选中行
+        // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
         uniqueId: "ModelID",                     //每一行的唯一标识，一般为主键列
         showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
         cardView: false,                    //是否显示详细视图
         detailView: true,                   //是否显示父子表
-        columns: [
-            {//第一列，模型ID
-                field: 'ModelID',
-                title: '模型ID',
-                sortable: false,
-                editable: false,
-                align: 'center',
-                visible: false
-            }, {//第二列，模型地址
-                field: 'ModelUrl',
-                title: '模型地址',
-                sortable: false,
-                editable: false,
-                // footerFormatter: ddDataNameFormatter,
-                align: 'center',
-                visible: false
-            }, {//第三列，模型版本
-                field: 'ModelVersion',
-                title: '模型版本',
-                sortable: false,
-                editable: false,
-                // footerFormatter: ddDataNameFormatter,
-                align: 'center',
-                visible: false
-            }, {//第四列，名称
-                field: 'ModelName',
-                title: '模型名称',
-                sortable: true,
-                editable: false,
-                // footerFormatter: ddDataNameFormatter,
-                align: 'center',
-                visible: true
-            }, {//第五列，名称
-                field: 'Modelbz',
-                title: '备注',
-                sortable: false,
-                editable: false,
-                // footerFormatter: ddDataNameFormatter,
-                align: 'center',
-                visible: true
-            }, {//第六列，模型类型
-                field: 'ModelType',
-                title: '模型类型',
-                sortable: true,
-                editable: false,
-                // footerFormatter: ddDataNameFormatter,
-                align: 'center',
-                visible: false
-            },
-        ], onExpandRow: function (index, row, $detail) {
+        // columns: [
+        //     {//第一列，模型ID
+        //         field: 'ModelID',
+        //         title: '模型ID',
+        //         sortable: false,
+        //         editable: false,
+        //         align: 'center',
+        //         visible: false
+        //     }, {//第二列，模型地址
+        //         field: 'ModelUrl',
+        //         title: '模型地址',
+        //         sortable: false,
+        //         editable: false,
+        //         // footerFormatter: ddDataNameFormatter,
+        //         align: 'center',
+        //         visible: false
+        //     }, {//第三列，模型版本
+        //         field: 'ModelVersion',
+        //         title: '模型版本',
+        //         sortable: false,
+        //         editable: false,
+        //         // footerFormatter: ddDataNameFormatter,
+        //         align: 'center',
+        //         visible: false
+        //     }, {//第四列，名称
+        //         field: 'ModelName',
+        //         filterBy:"ModelName",
+        //         title: '模型名称',
+        //         sortable: true,
+        //         editable: false,
+        //         // footerFormatter: ddDataNameFormatter,
+        //         align: 'center',
+        //         visible: true
+        //     }, {//第五列，名称
+        //         field: 'Modelbz',
+        //         title: '备注',
+        //         sortable: false,
+        //         editable: false,
+        //         // footerFormatter: ddDataNameFormatter,
+        //         align: 'center',
+        //         visible: true
+        //     }, {//第六列，模型类型
+        //         field: 'ModelType',
+        //         title: '模型类型',
+        //         sortable: true,
+        //         editable: false,
+        //         // footerFormatter: ddDataNameFormatter,
+        //         align: 'center',
+        //         visible: false
+        //     },
+        // ],
+        onExpandRow: function (index, row, $detail) {
             InitSubTable(index, row, $detail);
         },
     });

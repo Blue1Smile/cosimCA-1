@@ -1,16 +1,15 @@
 package com.casic.datadriver.service.data;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-import org.springframework.stereotype.Service;
-
+import com.casic.datadriver.dao.data.PrivateDataDao;
+import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.data.PrivateData;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
 import com.hotent.core.web.query.QueryFilter;
+import org.springframework.stereotype.Service;
 
-import com.casic.datadriver.dao.data.PrivateDataDao;
-import com.casic.datadriver.model.data.PrivateData;
+import javax.annotation.Resource;
+import java.util.List;
 /**
  * The Class PrivateDataService.
  */
@@ -41,11 +40,15 @@ public class PrivateDataService extends BaseService<PrivateData> {
     }
 
     /**
-     * 2016/12/4/ÐÞ¸Ä
+     * 2016/12/4/ï¿½Þ¸ï¿½
      */
 
     public List<PrivateData> getByddDataId(long id) {
         return this.privateDataDao.getByddDataId(id);
+    }
+
+    public List<PrivateData> getBymodel(PageInfo model) {
+        return this.privateDataDao.getBymodel(model);
     }
 
     /**
@@ -57,7 +60,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
     }
 
     /**
-     * 2016/12/4/ÐÞ¸Ä
+     * 2016/12/4/ï¿½Þ¸ï¿½
      */
     public void updatedata(PrivateData privateData){
 

@@ -13,9 +13,23 @@
 <head>
     <%--<title>任务数据中心</title>--%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+     <script src="${ctx}/newtable/bootstrap-table-filter-control.js"></script>
 </head>
 <body>
-<table id="tb_department" data-url="getReleasedata.ht?id=<%=request.getParameter("id")%>">
+
+<div class="btn-group col-xs-offset-6 col-xs-4 ">
+    <button type="button" class="btn btn-default dropdown-toggle"
+            data-toggle="dropdown" style="margin:10px" >
+        数据类型分类选择 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" >
+        <li><a href="#" id="buttonmodel">模型</a></li>
+        <li><a href="#" id="buttonfile">文件</a></li>
+        <li><a href="#" id="buttondata">结构型数据</a></li>
+        <li><a href="#" id="buttonother">其他</a></li>
+    </ul>
+</div>
+<table id="tb_department" class=" col-xs-2 ">
 </table>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <%--<script src="${ctx}/newtable/Releasedata.js"></script>--%>
@@ -23,18 +37,21 @@
 <script type="text/javascript">
     $(function () {
 //1.初始化Table
-        new TableInit();
+       new TableInit();
     });
     function TableInit() {
 //初始化Table
+        var $table = $('#tb_department');
+//        InitSubTable();
         $('#tb_department').bootstrapTable({
+            url:"getReleasedatanew.ht?id=<%=request.getParameter("id")%>",
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,                   //是否显示分页（*）
-            sortable: true,                     //是否启用排序
-            sortName : 'DdDataName',//初始化的时候排序的字段
+//            sortable: true,                     //是否启用排序
+//            sortName : 'DdDataName',//初始化的时候排序的字段
             showExport: true,                     //是否显示导出
             exportDataType: "basic",              //basic', 'all', 'selected'.
             sortOrder: "desc",                   //排序方式
@@ -43,11 +60,12 @@
             pageSize: 5,                       //每页的记录行数（*）
             pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
             queryParamsType: '',
+            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             showColumns: false,                  //是否显示所有的列
             showRefresh: false,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: false,                //是否启用点击选中行
-            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+//            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             uniqueId: "DdDataId",                     //每一行的唯一标识，一般为主键列
             showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
@@ -56,14 +74,16 @@
                 {//第一列，数据名称
                     field: 'DdDataName',
                     title: '数据名称',
-                    sortable: true,
+//                    events: operateEvents,
+//                   formatter: operateFormatter(),
+                    sortable: false,
                     editable: false,
                     align: 'center',
                     visible: true
                 }, {//第二列，最新值
                     field: 'DdDataLastestValue',
                     title: '最新值',
-                    sortable: true,
+//                    sortable: true,
                     editable: false,
 // footerFormatter: ddDataNameFormatter,
                     align: 'center',
@@ -71,7 +91,7 @@
                 }, {//第三列
                     field: 'DdDataType',
                     title: '数据类型',
-                    sortable: true,
+//                    sortable: true,
                     editable: false,
 // footerFormatter: ddDataNameFormatter,
                     align: 'center',
@@ -79,7 +99,7 @@
                 }, {//第四列
                     field: 'DdDataCreateTime',
                     title: '更新时间',
-                    sortable: true,
+//                    sortable: true,
                     editable: false,
 // footerFormatter: ddDataNameFormatter,
                     align: 'center',
@@ -87,7 +107,7 @@
                 }, {//第五列，
                     field: 'DdDataDescription',
                     title: '描述',
-                    sortable: true,
+//                    sortable: true,
                     editable: false,
 // footerFormatter: ddDataNameFormatter,
                     align: 'center',
@@ -96,13 +116,14 @@
                 {//第六列，
                     field: 'DdDataId',
                     title: '数据ID',
-                    sortable: true,
+//                    sortable: true,
                     editable: false,
 // footerFormatter: ddDataNameFormatter,
                     align: 'center',
                     visible: false
                 },
-            ], onExpandRow: function (index, row, $detail) {
+            ],
+            onExpandRow: function (index, row, $detail) {
                 InitSubTable(index, row, $detail);
             },
         });
@@ -174,6 +195,24 @@
         };
     }
     ;
+
+    $('#buttonmodel').click(function () {
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataType=模型'});
+    });
+    $('#buttonfile').click(function () {
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataType=文件'});
+    });
+    $('#buttondata').click(function () {
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataType=结构型数据'});
+    });
+    $('#buttonother').click(function () {
+        $('#tb_department').bootstrapTable('refresh', {url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>&DataType='});
+    });
+
+    $('#button').click(function () {
+        $('#tb_department').bootstrapTable('refresh',{url: 'getReleasedatanew.ht?id=<%=request.getParameter("id")%>'});
+    });
+
     //注册加载子表的事件。注意下这里的三个参数！
     //原始操作按钮
     function operateFormatter(value, row, index) {
