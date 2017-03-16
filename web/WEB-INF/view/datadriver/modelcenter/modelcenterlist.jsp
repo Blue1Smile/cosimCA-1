@@ -21,6 +21,7 @@
     <script src="${ctx}/newtable/tableExport.js"></script>
     <script src="${ctx}/newtable/bootstrap-editable.js"></script>
     <script src="${ctx}/newtable/bootstrap-table-editable.js"></script>
+    <script src="${ctx}/newtable/bootstrap-table-filter-control.js"></script>
 
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
@@ -32,8 +33,14 @@
     <a class="btn btn-info" href="#" id="create_index" onclick="createIndex()"><span
             class="glyphicon glyphicon-plus"></span> 新增工具</a>
 </div>
-<table id="tb_departments"
+<table id="tb_departments" data-filter-control="true"
        data-url="showmodel.ht?Modeltype=<%=request.getParameter("Modeltype")%>&son=1">
+    <thead>
+    <tr>
+        <th data-field="ModelName" data-filter-control="select">模型名称</th>
+        <th data-field="Modelbz" data-filter-control="input">说明</th>
+    </tr>
+    </thead>
 </table>
 <script src="${ctx}/newtable/showmodel.js"></script>
 

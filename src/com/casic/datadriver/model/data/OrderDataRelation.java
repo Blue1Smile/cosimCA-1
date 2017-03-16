@@ -62,4 +62,5 @@ public class OrderDataRelation extends BaseModel {
     public void setDdDataName(String ddDataName) {
         this.ddDataName = ddDataName;
     }
+
 }

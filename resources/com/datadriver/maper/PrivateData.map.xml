@@ -50,6 +50,13 @@
     from dd_private_data
     where DD_DATA_ID = #{ddDataId}
   </select>
+<!--备份2代表数据类型-->
+  <select id="getBymodel" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_private_data
+    where DD_DATA_ID = #{id} AND DD_DATA_TYPE = #{bf2}
+  </select>
 
   <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List"/>

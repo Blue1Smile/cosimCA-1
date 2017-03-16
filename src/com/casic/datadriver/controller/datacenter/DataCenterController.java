@@ -25,9 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author ???? ???2016/11/14 0014.
@@ -156,14 +154,105 @@ public class DataCenterController extends AbstractController {
 return mv;
         }
     /**
-     * 2016/12/19/修改
-     * 返回任务发布订购数据列表
-     *
-     * @param request  the request
-     * @param response the response
-     * @return the list
-     * @throws Exception the exception
+排序
      */
+
+    class desc implements Comparator<OrderDataRelation> {
+        @Override
+        public int compare(OrderDataRelation u1, OrderDataRelation u2) {
+                return -(u1.getDdDataName().compareTo(u2.getDdDataName()));
+        }
+    }
+
+    class asc implements Comparator<OrderDataRelation> {
+        @Override
+        public int compare(OrderDataRelation u1, OrderDataRelation u2) {
+            return u1.getDdDataName().compareTo(u2.getDdDataName());
+        }
+    }
+
+
+    @RequestMapping("getReleasedatanew")
+    @Action(description = "获得发布数据列表")
+    public void getReleasedatanew(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        String B = RequestUtil.getString(request, "DataType");
+//        String  DataType= RequestUtil.getString(request, "DataType");
+        String A = RequestUtil.getString(request, "sortOrder");
+        Long ddTaskId= RequestUtil.getLong(request, "id");
+        Long pageSize =RequestUtil.getLong(request, "pageSize");
+        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long a = pageSize*(pageNumber-1);
+        Long b = pageSize*(pageNumber);
+
+
+        String search= new String(RequestUtil.getString(request, "searchText").getBytes("ISO-8859-1"),"UTF-8");
+        String DataType= new String(RequestUtil.getString(request, "DataType").getBytes("ISO-8859-1"));
+
+        PageInfo pageinfo = new PageInfo();
+
+        pageinfo.setBf2(DataType);
+
+        JSONObject jsonObject = new JSONObject();
+        JSONObject json=new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+
+
+        List<OrderDataRelation>  orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
+       int allnum = 0;
+
+        if (A.compareTo("desc")==0) {
+            //desc 降序
+            Comparator<OrderDataRelation> cmp = new desc();
+            Collections.sort(orderDataRelation_list, cmp);
+        }
+        else if(A.compareTo("asc")==0){ //asc 升序
+            Comparator<OrderDataRelation> cmp = new asc();
+            Collections.sort(orderDataRelation_list, cmp);
+            }
+
+         if(b>orderDataRelation_list.size())
+        {
+            b = Long.valueOf(orderDataRelation_list.size());
+        }
+        List<PrivateData> taskPrivateDatas = null;
+        for (int h = Math.toIntExact(a);h<b;h++){
+            Long ddDataId=orderDataRelation_list.get(h).getDdDataId();
+            pageinfo.setId(ddDataId);
+            if (DataType == null || DataType.length() <= 0) {
+                taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
+                allnum=  this.orderDataRelationService.getPublishDataRelationList(ddTaskId).size();
+            }
+            else {
+                taskPrivateDatas = this.privateDataService.getBymodel(pageinfo);
+                allnum = taskPrivateDatas.size();
+            }
+
+            for (int i = 0; i < taskPrivateDatas.size(); i++) {
+                PrivateData mymode = taskPrivateDatas.get(i);
+                jsonObject.put("DdDataName", mymode.getDdDataName());
+                jsonObject.put("DdDataLastestValue", mymode.getDdDataLastestValue());
+                jsonObject.put("DdDataType", mymode.getDdDataType());
+                jsonObject.put("DdDataCreateTime", mymode.getDdDataCreateTime());
+                jsonObject.put("DdDataDescription", mymode.getDdDataDescription());
+                jsonObject.put("DdDataId", mymode.getDdDataId());
+                jsonMembers.add(jsonObject);
+            }
+        }
+
+        json.put("total", allnum);
+        json.put("rows", jsonMembers);
+        String jsonstring = formatJson(json.toString());
+        System.out.println(json.toString());
+//            system.out(json.toString());
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.append(jsonstring);
+        out.flush();
+        out.close();
+
+    }
+
     @RequestMapping("getReleasedata")
     @Action(description = "获得发布数据列表")
     public void getOrderdata(HttpServletRequest request, HttpServletResponse response)
@@ -202,17 +291,17 @@ return mv;
                 jsonMembers.add(jsonObject);
             }
         }
-            json.put("total", allnum);
-            json.put("rows", jsonMembers);
+        json.put("total", allnum);
+        json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
-            String jsonstring = formatJson(json.toString());
-            System.out.println(json.toString());
+        String jsonstring = formatJson(json.toString());
+        System.out.println(json.toString());
 //            system.out(json.toString());
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.append(jsonstring);
-            out.flush();
-            out.close();
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.append(jsonstring);
+        out.flush();
+        out.close();
     }
 
     @RequestMapping("getOrderdata")
