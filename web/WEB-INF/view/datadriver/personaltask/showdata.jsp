@@ -436,6 +436,8 @@
 //                values: [row.ddDataId],
 //            });
             $.get("createtopublish.ht?id=" + row.ddDataId + "&parent=publishpanel");
+            $table_private.bootstrapTable('refresh')
+            $table_publish.bootstrapTable('refresh')
         },
         'click #publishtr': function (e, value, row, index) {
 //            $table.bootstrapTable('remove', {
@@ -443,6 +445,8 @@
 //                values: [row.ddDataId],
 //            });
             $.get("canordertoorder.ht?id=" + row.ddDataId + "&parent=createpanel" + "&taskId=" +${taskId});
+            $table_publish.bootstrapTable('refresh')
+            $table_private.bootstrapTable('refresh')
         }
     };
 
