@@ -33,6 +33,45 @@ public class PrivateData extends BaseModel {
 
     private String ddDataTaskName;
 
+    private Long ddDataNodeId;
+
+    private String ddDataPath;
+
+    private String ddDataUnit;
+
+    private String ddDataEngName;
+
+    public String getDataEngName() {
+        return ddDataEngName;
+    }
+
+    public void setDdDataEngName(String ddDataEngName) {
+        this.ddDataEngName = ddDataEngName;
+    }
+
+    public String getDdDataUnit() {
+        return ddDataUnit;
+    }
+
+    public void setDdDataUnit(String ddDataUnit) {
+        this.ddDataUnit = ddDataUnit;
+    }
+
+    public String getDdDataPath() {
+        return ddDataPath;
+    }
+
+    public void setDdDataPath(String ddDataPath) {
+        this.ddDataPath = ddDataPath;
+    }
+
+    public Long getDdDataNodeId() {
+        return ddDataNodeId;
+    }
+
+    public void setDdDataNodeId(Long ddDataNodeId) {
+        this.ddDataNodeId = ddDataNodeId;
+    }
 
     public String getDdDataTaskName() {
         return ddDataTaskName;

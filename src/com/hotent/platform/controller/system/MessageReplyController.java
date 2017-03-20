@@ -41,7 +41,6 @@ public class MessageReplyController extends BaseController
 	 * 取得消息回复分页列表
 	 * @param request
 	 * @param response
-	 * @param page
 	 * @return
 	 * @throws Exception
 	 */
