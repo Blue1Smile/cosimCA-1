@@ -275,6 +275,19 @@ public class DataCenterController extends AbstractController {
 
     }
 
+    /**
+     * 分页函数
+     * by 杜
+     * 数据库分页
+     */
+    private PageInfo pagination(Long pageSize, Long pageNumber, Long id) {
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setPageSize((pageNumber - 1) * pageSize);
+        pageInfo.setPageNumber(pageSize);
+        pageInfo.setId(id);
+        return pageInfo;
+    }
+
     @RequestMapping("getReleasedata")
     @Action(description = "获得发布数据列表")
     public void getOrderdata(HttpServletRequest request, HttpServletResponse response)
@@ -283,11 +296,12 @@ public class DataCenterController extends AbstractController {
         Long ddTaskId = RequestUtil.getLong(request, "id");
         Long pageSize = RequestUtil.getLong(request, "pageSize");
         Long pageNumber = RequestUtil.getLong(request, "pageNumber");
-        PageInfo pageinfo = new PageInfo();
-        pageinfo.setPageSize((pageNumber - 1) * pageSize);
-        pageinfo.setPageNumber(pageSize);
-        pageinfo.setId(ddTaskId);
+//        PageInfo pageinfo = new PageInfo();
+//        pageinfo.setPageSize((pageNumber - 1) * pageSize);
+//        pageinfo.setPageNumber(pageSize);
+//        pageinfo.setId(ddTaskId);
 
+        PageInfo pageinfo = pagination(pageSize, pageNumber, ddTaskId);
 //        var db = new QHC_IIMSContext();
         //获得发布数据列表
         List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationListF(pageinfo);

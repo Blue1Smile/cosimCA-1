@@ -83,4 +83,17 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
 
         this.getBySqlKey("updatedata",privateData);
     }
+
+    public List<PrivateData> getListByIdPage(PageInfo pageInfo){
+        return this.getBySqlKey("getListByIdPage", pageInfo);
+    }
+
+    public List<PrivateData> getPublishDataList(Long taskId){
+        return this.getBySqlKey("getPublishDataList", taskId);
+    }
+
+    public List<PrivateData> getPublishListPage(PageInfo pageInfo){
+        return this.getBySqlKey("getPublishListPage", pageInfo);
+    }
+
 }

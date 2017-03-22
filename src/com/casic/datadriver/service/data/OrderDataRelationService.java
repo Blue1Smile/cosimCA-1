@@ -77,7 +77,7 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> getPublishDataRelationList(long ddtaskId) {
+    public List<OrderDataRelation> getPublishDataRelationList(Long ddtaskId) {
         return this.orderDataRelationDao.getPublishDataRelationList(ddtaskId);
     }
     public List<OrderDataRelation> getPublishDataRelationListF(PageInfo model) {
