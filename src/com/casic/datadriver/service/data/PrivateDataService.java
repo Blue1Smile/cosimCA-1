@@ -59,11 +59,21 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return this.privateDataDao.getDataById(id);
     }
 
-    /**
-     * 2016/12/4/�޸�
-     */
-    public void updatedata(PrivateData privateData){
 
+    public void updatedata(PrivateData privateData){
         this.privateDataDao.updatedata(privateData);
     }
+
+    public List<PrivateData> getListByIdPage(PageInfo pageInfo){
+        return this.privateDataDao.getListByIdPage(pageInfo);
+    }
+
+    public List<PrivateData> getPublishDataList(Long taskId){
+        return this.privateDataDao.getPublishDataList(taskId);
+    }
+
+    public List<PrivateData> getPublishListPage(PageInfo pageInfo){
+        return this.privateDataDao.getPublishListPage(pageInfo);
+    }
+
 }

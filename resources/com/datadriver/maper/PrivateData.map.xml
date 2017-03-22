@@ -78,6 +78,13 @@
         WHERE DD_DATA_TASK_ID=#{ddDataTaskId}
     </select>
 
+    <select id="getPublishDataList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM dd_private_data
+        WHERE DD_DATA_TASK_ID=#{ddDataTaskId} AND DD_DATA_PUBLISH_TYPE = 1
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from dd_private_data
     where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
@@ -94,7 +101,6 @@
     where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
   </delete>
 
-
     <select id="queryPrivateDataByddTaskID" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
@@ -103,7 +109,19 @@
         DD_DATA_TASK_ID=#{ddDataTaskId}
     </select>
 
+    <select id="getListByIdPage" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_private_data
+        where DD_DATA_TASK_ID = #{id} limit #{pageSize},#{pageNumber}
+    </select>
 
+    <select id="getPublishListPage" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_private_data
+        where DD_DATA_TASK_ID = #{id} AND DD_DATA_PUBLISH_TYPE = 1 limit #{pageSize},#{pageNumber}
+    </select>
     <insert id="add" parameterType="com.casic.datadriver.model.data.PrivateData">
     insert into dd_private_data (DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE,
     DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE,
