@@ -92,83 +92,16 @@
             </div>
             <div class="panel-body panelheight" id="publishpanel">
                 <table id="table_publish"></table>
-                <%--<ul id="publishpanel" class="scrum-stage-tasks">--%>
-                <%--<c:forEach var="publishDataListItem" items="${publishDataList}">--%>
-                <%--<li class="task task-card ui-sortable-handle" id="showRightPush"--%>
-                <%--onclick="showDataContent(${publishDataListItem.ddDataId})">--%>
-                <%--<span class="big-font glyphicon glyphicon-unchecked col-xs-2"></span>--%>
-                <%--<strong class="col-xs-5 overflow-card">${publishDataListItem.ddDataName}</strong>--%>
-                <%--<em class="col-xs-5 overflow-card">${publishDataListItem.ddDataTaskName}</em>--%>
-                <%--<input type="hidden" value="${publishDataListItem.ddDataId}"--%>
-                <%--name="release"/>--%>
-                <%--</li>--%>
-                <%--</c:forEach>--%>
-                <%--</ul>--%>
             </div>
         </div>
     </div>
-    <%--<div class="col-xs-3" style="height: 100%">--%>
-    <%--<div class="panel panel-success task-panel">--%>
-    <%--<div class="panel-heading">--%>
-    <%--可订阅--%>
-    <%--</div>--%>
-    <%--<div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">--%>
-    <%--<ul id="canorderpanel" class="scrum-stage-tasks">--%>
-    <%--<c:forEach var="canBeOrderPrivatedataListItem" items="${canBeOrderPrivatedataList}">--%>
-    <%--<li class="task task-card ui-sortable-handle " id="showRightPush"--%>
-    <%--onclick="showDataContent(${canBeOrderPrivatedataListItem.ddDataId})">--%>
-    <%--&lt;%&ndash;<div class="checkbox">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<input id="checkbox3" type="checkbox">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<label for="checkbox3">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;${canBeOrderPrivatedataListItem.ddDataName}&ndash;%&gt;--%>
-    <%--&lt;%&ndash;</label>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<label class="pull-right taskname">${canBeOrderPrivatedataListItem.ddDataTaskName}</label>&ndash;%&gt;--%>
-    <%--<strong class="col-xs-6 overflow-card">${canBeOrderPrivatedataListItem.ddDataName}</strong>--%>
-    <%--<em class="col-xs-6 overflow-card">${canBeOrderPrivatedataListItem.ddDataTaskName}</em>--%>
-    <%--<input type="hidden" value="${canBeOrderPrivatedataListItem.ddDataId}"--%>
-    <%--name="release"/>--%>
-    <%--</li>--%>
-    <%--</c:forEach>--%>
-    <%--</ul>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--<div class="col-xs-3" style="height: 100%">--%>
-    <%--<div class="panel panel-warning task-panel">--%>
-    <%--<div class="panel-heading">--%>
-    <%--已订阅--%>
-    <%--</div>--%>
-    <%--<div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">--%>
-    <%--<ul id="orderpanel" class="scrum-stage-tasks">--%>
-    <%--<c:forEach var="OrderPrivatedataListItem" items="${OrderPrivatedataList}">--%>
-    <%--<li class="task task-card ui-sortable-handle" id="showRightPush"--%>
-    <%--onclick="showDataContent(${OrderPrivatedataListItem.ddDataId})">--%>
-    <%--&lt;%&ndash;<div class="checkbox">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<input id="checkbox4" type="checkbox">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<label for="checkbox4">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;${OrderPrivatedataListItem.ddDataName}&ndash;%&gt;--%>
-    <%--&lt;%&ndash;</label>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<label class="pull-right taskname">${OrderPrivatedataListItem.ddDataTaskName}</label>&ndash;%&gt;--%>
-    <%--<strong class="col-xs-6 overflow-card">${OrderPrivatedataListItem.ddDataName}</strong>--%>
-    <%--<em class="col-xs-6 overflow-card">${OrderPrivatedataListItem.ddDataTaskName}</em>--%>
-    <%--<input type="hidden" value="${OrderPrivatedataListItem.ddDataId}"--%>
-    <%--name="release"/>--%>
-    <%--</li>--%>
-    <%--</c:forEach>--%>
-    <%--</ul>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
 </div>
 </body>
 
 <script type="text/javascript">
     //@ sourceURL=showdata.ht
     var $table_private = $('#table_private'),
-            $table_publish = $('#table_publish'),
-            $remove = $('#remove');
+            $table_publish = $('#table_publish');
     var curRow = {};
     function initTable() {
         $table_publish.bootstrapTable({
@@ -185,7 +118,7 @@
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
-            pageSize: 5,                       //每页的记录行数（*）
+            pageSize: 20,                       //每页的记录行数（*）
             queryParamsType: '',
             pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
@@ -297,7 +230,7 @@
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
-            pageSize: 5,                       //每页的记录行数（*）
+            pageSize: 20,                       //每页的记录行数（*）
             queryParamsType: '',
             pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
@@ -396,8 +329,8 @@
     }
     //刷新列表
     function refresh(e) {
-        if (e == 0) $('#table_publish').bootstrapTable('refresh', parameter)
-        if (e == 1) $('#table_private').bootstrapTable('refresh', parameter)
+        if (e == 0) $('#table_publish').bootstrapTable('refresh')
+        if (e == 1) $('#table_private').bootstrapTable('refresh')
     }
     //私有数据列表按钮
     function operateFormatterPrivate(value, row, index) {
@@ -431,20 +364,12 @@
 
     window.operateEvents = {
         'click #privatetr': function (e, value, row, index) {
-//            $table.bootstrapTable('remove', {
-//                field: 'ddDataId',
-//                values: [row.ddDataId],
-//            });
             $.get("createtopublish.ht?id=" + row.ddDataId + "&parent=publishpanel");
             $table_private.bootstrapTable('refresh')
             $table_publish.bootstrapTable('refresh')
         },
         'click #publishtr': function (e, value, row, index) {
-//            $table.bootstrapTable('remove', {
-//                field: 'ddDataId',
-//                values: [row.ddDataId],
-//            });
-            $.get("canordertoorder.ht?id=" + row.ddDataId + "&parent=createpanel" + "&taskId=" +${taskId});
+            $.get("createtopublish.ht?id=" + row.ddDataId + "&parent=createpanel" + "&taskId=" +${taskId});
             $table_publish.bootstrapTable('refresh')
             $table_private.bootstrapTable('refresh')
         }
