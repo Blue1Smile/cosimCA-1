@@ -3,9 +3,9 @@
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
 
-<link href="${ctx}/skins/main.css" rel="stylesheet"/>
-<link href="${ctx}/skins/other.css" rel="stylesheet"/>
-<script src="${ctx}/skins/jquery.js" type="text/javascript"></script>
+<%--<link href="${ctx}/skins/main.css" rel="stylesheet"/>--%>
+<%--<link href="${ctx}/skins/other.css" rel="stylesheet"/>--%>
+<script src="${ctx}/newtable/jquery.js" type="text/javascript"></script>
 <script src="${ctx}/skins/main.js" type="text/javascript"></script>
 <script src="${ctx}/skins/scrollbox.js" type="text/javascript"></script>
 

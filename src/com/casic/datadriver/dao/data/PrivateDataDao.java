@@ -1,13 +1,12 @@
 package com.casic.datadriver.dao.data;
 
-import java.util.List;
-
-import com.casic.datadriver.model.task.TaskInfo;
-import org.springframework.stereotype.Repository;
-
+import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.data.PrivateData;
 import com.hotent.core.db.BaseDao;
 import com.hotent.core.web.query.QueryFilter;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * The Class PrivateDataDao.
@@ -38,7 +37,9 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
         return this.getBySqlKey("queryPrivateDataByddTaskID", id);
     }
 
-
+    public List<PrivateData> getBymodel(PageInfo model) {
+        return this.getBySqlKey("getBymodel", model);
+    }
 
     /**
      * 2016/12/4/�޸�
@@ -82,4 +83,17 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
 
         this.getBySqlKey("updatedata",privateData);
     }
+
+    public List<PrivateData> getListByIdPage(PageInfo pageInfo){
+        return this.getBySqlKey("getListByIdPage", pageInfo);
+    }
+
+    public List<PrivateData> getPublishDataList(Long taskId){
+        return this.getBySqlKey("getPublishDataList", taskId);
+    }
+
+    public List<PrivateData> getPublishListPage(PageInfo pageInfo){
+        return this.getBySqlKey("getPublishListPage", pageInfo);
+    }
+
 }
