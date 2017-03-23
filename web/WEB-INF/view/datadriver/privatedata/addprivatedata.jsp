@@ -126,6 +126,7 @@
 </div>
 </body>
 <script type="text/javascript">
+    //@ sourceURL=addprivatedata.ht
     $(function () {
         $('#selectModeltr').hide();
         $('#selectModel').attr("disabled", "disabled");
@@ -136,7 +137,9 @@
             frm.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
-                window.location.reload(true);
+                $('#adddata').modal('hide');
+                $('#table_private').bootstrapTable('refresh');
+//                window.location.reload(true);
             }
         });
         $("#ddDataType").change(function () {

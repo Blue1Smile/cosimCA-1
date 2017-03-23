@@ -17,6 +17,7 @@
             top.location = '<%=request.getContextPath()%>/loginCloud.ht';
         }
         $(document).ready(function () {
+            $('[data-toggle="popover"]').popover()
             if (${not empty errMsg})
                 $("#isRight").append('<div class="alert alert-danger" role="alert">${errMsg}</div>');
         });
@@ -76,13 +77,13 @@
                 <div class="col-xs-6 col-xs-offset-3 social-login">
                     <h3>问题反馈:</h3>
                     <div class="social-login-buttons">
-                        <a class="btn btn-link-1 btn-link-1-facebook" href="#">
+                        <a class="btn btn-link-1 btn-link-1-facebook" href="#" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="办公室：26443 联系人：杜宇坤">
                             <i class="glyphicon glyphicon-phone-alt"></i> 电话
                         </a>
-                        <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+                        <a class="btn btn-link-1 btn-link-1-twitter" href="#" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="别着急，信息中心攻城狮正玩命加班中...">
                             <i class="glyphicon glyphicon-comment"></i> 消息
                         </a>
-                        <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+                        <a class="btn btn-link-1 btn-link-1-google-plus" href="#" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="内网邮件发送：王准忠">
                             <i class="glyphicon glyphicon-envelope"></i> 邮件
                         </a>
                     </div>
