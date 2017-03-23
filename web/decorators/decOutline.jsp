@@ -3,17 +3,16 @@
 <%@include file="/commons/cloud/global.jsp" %>
 <%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
-<%--<html lang="zh"  style="height: 100%; margin: 0px">--%>
 <html lang="zh-CN">
 <head>
-    <title><decorator:title default="工作台"/>协同设计</title>
+    <title>协同设计</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
-    <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+
     <script>
         $(function(){
             $(".layui-nav li a").each(function(index){
@@ -62,5 +61,5 @@
     <%--<%@include file="/commons/cloud/foot.jsp" %>--%>
 </div>
 </body>
-
+<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>

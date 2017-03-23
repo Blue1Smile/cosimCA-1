@@ -147,11 +147,7 @@
                     field: 'ddDataName',
                     title: '指标名称',
                     sortable: true,
-                    editable: {
-                        validate: function (va) {
-                            if (va.length == 0) return '指标名称不能为空';
-                        }
-                    },
+                    editable: false,
                     align: 'center',
                     visible: true
                 }, {//所属任务ID
@@ -167,13 +163,7 @@
                     title: '最新值',
                     sortable: true,
                     align: 'center',
-                    editable: {
-                        type: 'text',
-                        title: '值',
-                        validate: function (v) {
-                            if (isNaN(v)) return '值必须是数字';
-                        }
-                    }
+                    editable: false
                 }
                 , {//数据类型
                     field: 'ddDataType',
@@ -260,6 +250,8 @@
                     title: '指标名称',
                     sortable: false,
                     editable: {
+                        mode: 'inline',
+                        onblur: 'submit',
                         validate: function (va) {
                             if (va.length == 0) return '指标名称不能为空';
                         }
@@ -313,17 +305,17 @@
                 curRow = row;
             },
             onEditableSave: function (field, row, oldValue, $el) {
-                <%--$.ajax({--%>
-                <%--type: "post",--%>
-                <%--url: "${ctx}/datadriver/index/lastvalue.ht",--%>
-                <%--data: {strJson: JSON.stringify(row)},--%>
-                <%--success: function (data, status) {--%>
-                <%--},--%>
-                <%--error: function () {--%>
-                <%--},--%>
-                <%--complete: function () {--%>
-                <%--}--%>
-                <%--});--%>
+                $.ajax({
+                    type: "post",
+                    url: "${ctx}/datadriver/index/lastvalue.ht",
+                    data: {strJson: JSON.stringify(row)},
+                    success: function (data, status) {
+                    },
+                    error: function () {
+                    },
+                    complete: function () {
+                    }
+                });
             }
         });
     }
@@ -332,6 +324,11 @@
         if (e == 0) $('#table_publish').bootstrapTable('refresh')
         if (e == 1) $('#table_private').bootstrapTable('refresh')
     }
+    //数据名称是否能够更改
+//    function ifDataNameChange(value, row, index) {
+//        if (row.ddDataPublishType == 1)
+//            $('a').replaceWith($('a').text());
+//    }
     //私有数据列表按钮
     function operateFormatterPrivate(value, row, index) {
         if (row.ddDataPublishType == 0)
