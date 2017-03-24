@@ -34492,10 +34492,13 @@ mxClipboard.cut(editor.graph);
 });
 this.addAction('copy',function(editor)
 {
+    //@zx
+
 if(editor.graph.isEnabled())
 {
 mxClipboard.copy(editor.graph);
 }
+
 });
 this.addAction('paste',function(editor)
 {
