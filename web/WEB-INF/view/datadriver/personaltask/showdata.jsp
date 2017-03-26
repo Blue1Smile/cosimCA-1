@@ -40,15 +40,15 @@
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span> 创建单条数据</a></li>
-                        <li><a href="#" title="批量导入数据"><span class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
+                        <li><a href="javascript:void(0)" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span> 创建单条数据</a></li>
+                        <li><a href="javascript:void(0)" title="批量导入数据" onclick="importPrivateData(${taskId})"><span class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#" onclick="" title="发布私有数据"><span class="glyphicon glyphicon-ok"></span>
+                        <li><a href="javascript:void(0)" onclick="" title="发布私有数据"><span class="glyphicon glyphicon-ok"></span>
                             发布私有数据</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#" title="删除"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
-                        <li><a href="#" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
-                        <li><a href="#" onclick="refresh(1)" title="刷新私有数据看板"><span
+                        <li><a href="javascript:void(0)" title="删除"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
+                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
+                        <li><a href="javascript:void(0)" onclick="refresh(1)" title="刷新私有数据看板"><span
                                 class="glyphicon glyphicon-refresh"></span> 刷新</a></li>
                     </ul>
                 </div>
@@ -96,12 +96,21 @@
         </div>
     </div>
 </div>
+<%--导入数据--%>
+<div class="modal fade" id="exportData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 </body>
 
 <script type="text/javascript">
     //@ sourceURL=showdata.ht
     var $table_private = $('#table_private'),
             $table_publish = $('#table_publish');
+    var $export_xml = $('#export_xml');
     var curRow = {};
     function initTable() {
         $table_publish.bootstrapTable({
@@ -375,6 +384,14 @@
     $(function () {
         initTable();
     });
+
+    //Excel批量导入
+    function importPrivateData(taskId) {
+        $('#exportData').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/privatedata/importPrivateData.ht?id=" + taskId
+        })
+    }
     <%--function saveOrder() {--%>
     <%--var data = $(this).children('input').val();--%>
     <%--var parentid = $(this).parent().attr("id");--%>
