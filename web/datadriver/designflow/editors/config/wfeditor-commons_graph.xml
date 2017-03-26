@@ -43,8 +43,8 @@
 		</add>
 		<add as="task">
 			<Task label="Task"  任务类型="" 基本描述="" >
-				<mxCell vertex="1">	
-					<mxGeometry as="geometry" width="72" height="32"/>
+				<mxCell vertex="1" style="rounded">
+					<mxGeometry as="geometry" width="140" height="90"/>
 				</mxCell>
 			</Task>
 		</add>

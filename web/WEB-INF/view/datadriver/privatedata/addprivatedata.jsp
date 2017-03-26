@@ -17,19 +17,80 @@
 <html lang="zh-CN">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%--<script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/jquery/additional-methods.min.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.ext.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/util/util.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/util/form.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>--%>
-    <%--<link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>--%>
-
     <title>添加私有数据</title>
+    <style>
+        .tree {
+            overflow: auto;
+            min-height: 20px;
+            padding: 0px;
+            margin-bottom: 0px;
+            background-color: #fbfbfb;
+            border: 1px solid #999;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)
+        }
+
+        .tree li {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px 5px 0 5px;
+            position: relative
+        }
+
+        .tree li::before, .tree li::after {
+            content: '';
+            left: -20px;
+            position: absolute;
+            right: auto
+        }
+
+        .tree li::before {
+            border-left: 1px solid #999;
+            bottom: 50px;
+            height: 100%;
+            top: 0;
+            width: 1px
+        }
+
+        .tree li::after {
+            border-top: 1px solid #999;
+            height: 20px;
+            top: 25px;
+            width: 25px
+        }
+
+        .tree li span {
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border: 1px solid #999;
+            border-radius: 5px;
+            display: inline-block;
+            padding: 3px 8px;
+            text-decoration: none
+        }
+
+        .tree li.parent_li > span {
+            cursor: pointer
+        }
+
+        .tree > ul > li::before, .tree > ul > li::after {
+            border: 0
+        }
+
+        .tree li:last-child::before {
+            height: 30px
+        }
+
+        .tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span {
+            background: #eee;
+            border: 1px solid #94a0b4;
+            color: #000
+        }
+    </style>
 </head>
 <body>
 <div class="modal-header">
@@ -41,7 +102,7 @@
     <div class="container-fluid">
         <form id="privateDataForm" name="privateDataForm" method="post" action="${ctx}/datadriver/privatedata/save.ht"
               enctype="multipart/form-data">
-            <table id="AddHandlingFee" class="table table-striped" cellpadding="0" cellspacing="0"
+            <table id="AddHandlingFee" class="table table-bordered" cellpadding="0" cellspacing="0"
                    border="0"
                    type="main">
                 <tr>
@@ -74,7 +135,7 @@
                     <td><input type="text" id="ddDataCreatePerson" name="ddDataCreatePerson"
                                value="${sysName}" readonly class="form-control"/></td>
                 <tr>
-                    <th width="20%">任务基本描述:</th>
+                    <th width="20%">数据基本描述:</th>
                     <td colspan="3"><textarea id="ddDataDescription" name="ddDataDescription"
                                               value="" class="form-control"
                                               rows="5"/></textarea>
@@ -93,24 +154,38 @@
                 <tr id="initValue">
                     <th width="20%">初始值:</th>
                     <td colspan="5">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="ddDataLastestValue" name="ddDataLastestValue"
-                                   value="" required>
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">请选择数据单位 <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="#">毫米(mm)</a></li>
-                                    <li><a href="#">米(m)</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">度(°)</a></li>
-                                    <li><a href="#">分(′)</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">摄氏度(℃)</a></li>
-                                </ul>
-                            </div><!-- /btn-group -->
-                        </div><!-- /input-group -->
+                        <div class="tree well">
+
+                                <li>
+                                    <span>Parent</span> <a href="javascript:void(0)"
+                                                           id="parent"><i class="glyphicon glyphicon-plus"></i></a>
+                                    <ul>
+                                        <%--<li>--%>
+                                            <%--<span>Child</span> <a href="javascript:void(0)"><i--%>
+                                                <%--class="glyphicon glyphicon-plus"></i></a>--%>
+                                            <%--<ul>--%>
+                                                <%--<li>--%>
+                                                    <%--<span><input type="text" class="form-control"--%>
+                                                                 <%--id="exampleInputEmail1" placeholder="Email"></span>--%>
+                                                <%--</li>--%>
+                                            <%--</ul>--%>
+                                        <%--</li>--%>
+                                        <%--<li>--%>
+                                            <%--<span>Child</span> <a href="javascript:void(0)"><i--%>
+                                                <%--class="glyphicon glyphicon-plus"></i></a>--%>
+                                            <%--<ul>--%>
+                                                <%--<li>--%>
+                                                    <%--<span>Grand Child</span>--%>
+                                                <%--</li>--%>
+                                                <%--<li>--%>
+                                                    <%--<span>Grand Child</span>--%>
+                                                <%--</li>--%>
+                                            <%--</ul>--%>
+                                        <%--</li>--%>
+                                    </ul>
+                                </li>
+
+                        </div>
                     </td>
                 </tr>
 
@@ -154,7 +229,7 @@
             } else {
                 $('#selectModeltr').hide();
                 $('#selectModel').attr("disabled", "disabled");
-                if ( $("#initValue").length <= 0 ) {
+                if ($("#initValue").length <= 0) {
                     $('table').append('<tr id="initValue">' +
                             '<th width = "20%" > 初始值:</th>' +
                             '<td colspan = "5" >' +
@@ -164,7 +239,28 @@
                 }
             }
         });
+
+        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+        $('.tree li.parent_li > span').on('click', function (e) {
+            var children = $(this).parent('li.parent_li').find(' > ul > li');
+            if (children.is(":visible")) {
+                children.hide('fast');
+                $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+            } else {
+                children.show('fast');
+                $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+            }
+            e.stopPropagation();
+        });
+
+        $("#parent").click(function() {
+            $(this).parent("li").children("ul").append('<li><span>Child</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"><i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
+        });
     });
+
+    function addTreeNode(obj) {
+        $(obj).parent("li").children("ul").append('<li><span>Child_Child</span></li>');
+    }
 </script>
 <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.zh-CN.js"></script>
 </html>

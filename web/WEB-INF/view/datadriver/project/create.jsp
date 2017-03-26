@@ -95,7 +95,7 @@
         <div class="form-group">
             <div class="col-xs-12">
                 <button type="button" class="btn btn-primary btn-block" id="dataFormSave">完成并创建</button>
-                <a href="#" type="button" class="btn btn-default btn-block" disabled="disabled" title="暂不可用">从模版创建</a>
+                <a href="" type="button" class="btn btn-default btn-block" title="暂不可用">从模版创建</a>
             </div>
         </div>
     </div>
