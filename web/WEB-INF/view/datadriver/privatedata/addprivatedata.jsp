@@ -254,12 +254,18 @@
         });
 
         $("#parent").click(function() {
-            $(this).parent("li").children("ul").append('<li><span>Child</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"><i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
+            $(this).parent("li").children("ul").append('<li><span><input type="text" class="form-control"/></span> <a href="javascript:void(0)" id="child_node" onclick="confirm(this)"><i class="glyphicon glyphicon-ok"></i></a><ul></ul></li>');
         });
     });
 
     function addTreeNode(obj) {
-        $(obj).parent("li").children("ul").append('<li><span>Child_Child</span></li>');
+        $(obj).parent("li").children("ul").append('<li><span><input type="text" class="form-control"/></span><a href="javascript:void(0)" id="child_node" onclick="confirm(this)"><i class="glyphicon glyphicon-ok"></i></a></li>');
+    }
+
+    function confirm(obj) {
+        var this_val = $(obj).prev().children("input").val();
+        $(obj).parent("li").replaceWith('<li><span>'+this_val+'</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"><i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
+
     }
 </script>
 <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.zh-CN.js"></script>
