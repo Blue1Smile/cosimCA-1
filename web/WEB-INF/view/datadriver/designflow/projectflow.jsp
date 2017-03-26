@@ -7,7 +7,7 @@
 --%>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/commons/include/get.jsp" %>
+<%--<%@include file="/commons/include/get.jsp" %>--%>
 <html lang="zh-CN">
 <head>
     <title>项目流程</title>
