@@ -157,7 +157,7 @@
                         <div class="tree well">
 
                                 <li>
-                                    <span>Parent</span> <a href="javascript:void(0)"
+                                    <span id="parent_input">Parent</span> <a href="javascript:void(0)"
                                                            id="parent"><i class="glyphicon glyphicon-plus"></i></a>
                                     <ul>
                                         <%--<li>--%>
@@ -240,21 +240,26 @@
             }
         });
 
-        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '展开');
         $('.tree li.parent_li > span').on('click', function (e) {
             var children = $(this).parent('li.parent_li').find(' > ul > li');
             if (children.is(":visible")) {
                 children.hide('fast');
-                $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+                $(this).attr('title', '展开').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
             } else {
                 children.show('fast');
-                $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+                $(this).attr('title', '收敛').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
             }
             e.stopPropagation();
         });
 
         $("#parent").click(function() {
             $(this).parent("li").children("ul").append('<li><span><input type="text" class="form-control"/></span> <a href="javascript:void(0)" id="child_node" onclick="confirm(this)"><i class="glyphicon glyphicon-ok"></i></a><ul></ul></li>');
+        });
+
+        var $inputs = $("#ddDataName");
+        $inputs.keyup(function() {
+            $('#parent_input').html($inputs.val());
         });
     });
 
