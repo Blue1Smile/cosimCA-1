@@ -38,10 +38,6 @@
 	<br/><hr/>
 	<add as="Swimlane" template="swimlane" icon="images/swimlane.gif"/>
 	<add as="Task" template="task" icon="images/rectangle.gif"/>
-	<add as="Subprocess" template="subprocess" icon="images/rounded.gif"/>
-	<add as="Ellipse" template="shape" style="ellipse" icon="images/ellipse.gif"/>
-	<add as="Rhombus" template="shape" style="rhombus" icon="images/rhombus.gif"/>
-	<add as="Actor" template="shape" style="actor" icon="images/actor.gif"/>
 	<br/><hr/>
 	<add as="Event" template="symbol" style="symbol;image=images/symbols/event.png" icon="images/symbols/small_event.gif"/>
 	<add as="Event (Intermediate)" template="symbol" style="symbol;image=images/symbols/event_intermediate.png" icon="images/symbols/small_event_intermediate.gif"/>

@@ -43,9 +43,9 @@
 			</Swimlane>
 		</add>
 		<add as="task">
-			<Task label="Task"  任务类型="" 基本描述="" >
-				<mxCell vertex="1">	
-					<mxGeometry as="geometry" width="72" height="32"/>
+			<Task label="任务"  任务类型="" 基本描述="" >
+				<mxCell vertex="1" style="fontSize=13;fontFamily=黑体;rounded=1">
+					<mxGeometry as="geometry" width="90" height="40"/>
 				</mxCell>
 			</Task>
 		</add>
