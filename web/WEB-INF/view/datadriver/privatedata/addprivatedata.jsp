@@ -17,6 +17,10 @@
 <html lang="zh-CN">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <%--<%@include file="/commons/include/form.jsp" %>--%>
+    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <title>添加私有数据</title>
     <style>
         .tree {
@@ -100,77 +104,123 @@
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <form id="privateDataForm" name="privateDataForm" method="post" action="${ctx}/datadriver/privatedata/save.ht"
-              enctype="multipart/form-data">
-            <table id="AddHandlingFee" class="table table-bordered" cellpadding="0" cellspacing="0"
+        <table id="tab11" style="display: none">
+            <tbody>
+            <tr type="subdata">
+                <td height="30" align="center">
+                    <input type="text" name="NO" size="1" value="1" class="form-control"/></td>
+                <td align="center">
+                    <input type="text" name="ddDataName" class="form-control"/></td>
+                <td align="center">
+                    <ap:selectDB name="ddDataType" id="ddDataType"
+                                 where="parentId=10000025100454" optionValue="itemValue"
+                                 optionText="itemName" table="SYS_DIC"
+                                 selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                    </ap:selectDB>
+                </td>
+                <td align="center">
+                    <input type="text" name="ddDataDescription" class="form-control"/></td>
+                <td>
+                    <input class="btn btn-default btn-sm" type="button" id="Button1" onClick="deltr(this)"
+                           value="删行">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <form id="dataStructForm" method="post" action="${ctx}/datadriver/data/save.ht">
+            <table class="table table-bordered" cellpadding="0" cellspacing="0"
                    border="0"
                    type="main">
                 <tr>
                     <th width="20%">数据名称:</th>
-                    <td><input type="text" id="ddDataName" name="ddDataName"
+                    <td><input type="text" id="ddStructName" name="ddStructName"
                                value="" class="form-control" placeholder="请输入数据名称"/></td>
-                    <th width="20%">数据所属任务:</th>
-                    <td><input type="text" id="ddDataTaskName" name="ddDataTaskName"
-                               value="${taskInfo.ddTaskName}" class="form-control" readonly/></td>
+                    <%--<th width="20%">数据所属任务:</th>--%>
+                    <%--<td><input type="text" id="ddDataTaskName" name="ddDataTaskName"--%>
+                    <%--value="${taskInfo.ddTaskName}" class="form-control" readonly/></td>--%>
                 </tr>
                 <tr id="changemodelfile">
                     <th width="20%">数据类型:</th>
                     <td>
-                        <ap:selectDB name="ddDataType" id="ddDataType"
+                        <ap:selectDB name="ddType" id="ddType"
                                      where="parentId=10000025100454" optionValue="itemValue"
                                      optionText="itemName" table="SYS_DIC"
                                      selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
                         </ap:selectDB>
                     </td>
-                    <th width="20%">数据创建时间:</th>
-                    <td><input type="text" id="ddDataCreateTime" name="ddDataCreateTime"
-                               value="${currentTime}" readonly class="form_datetime form-control"/></td>
+                    <%--<th width="20%">数据创建时间:</th>--%>
+                    <%--<td><input type="text" id="ddDataCreateTime" name="ddDataCreateTime"--%>
+                    <%--value="${currentTime}" readonly class="form_datetime form-control"/></td>--%>
                     <%--<th width="20%">数据敏感度:</th>--%>
                     <%--<td><input type="text" id="ddDataSensitiveness" name="ddDataSensitiveness"--%>
-                               <%--value=""--%>
-                               <%--class="form-control"/></td>--%>
+                    <%--value=""--%>
+                    <%--class="form-control"/></td>--%>
                 </tr>
                 <tr>
 
-                    <th width="20%">数据创建人:</th>
-                    <td><input type="text" id="ddDataCreatePerson" name="ddDataCreatePerson"
-                               value="${sysName}" readonly class="form-control"/></td>
+                    <%--<th width="20%">数据创建人:</th>--%>
+                    <%--<td><input type="text" id="ddDataCreatePerson" name="ddDataCreatePerson"--%>
+                    <%--value="${sysName}" readonly class="form-control"/></td>--%>
 
-                <tr id="selectModeltr">
-                    <th width="20%">请选择文件:</th>
-                    <td colspan="5">
-                        <select id="selectModel" name="ddDataLastestValue" class="form-control">
-                            <c:forEach items="${modelCenterModelList}" var="modelCenterModelItem">
-                                <option value="${modelCenterModelItem.ddModelName}">${modelCenterModelItem.ddModelName}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
+                    <%--<tr id="selectModeltr">--%>
+                    <%--<th width="20%">请选择文件:</th>--%>
+                    <%--<td colspan="5">--%>
+                    <%--<select id="selectModel" name="ddDataLastestValue" class="form-control">--%>
+                    <%--<c:forEach items="${modelCenterModelList}" var="modelCenterModelItem">--%>
+                    <%--<option value="${modelCenterModelItem.ddModelName}">${modelCenterModelItem.ddModelName}</option>--%>
+                    <%--</c:forEach>--%>
+                    <%--</select>--%>
+                    <%--</td>--%>
+                    <%--</tr>--%>
                 <tr id="initValue">
                     <th width="20%">创建数据结构:</th>
                     <td colspan="5">
-                        <div class="tree well">
+                        <table id="privateData" width="700" border="0" cellspacing="0" cellpadding="0" type="sub" formType="page">
+                            <thead>
+                            <tr>
+                                <td height="30" align="center" bgcolor="#CCCCCC">序号</td>
+                                <td align="center" bgcolor="#CCCCCC">数据属性</td>
+                                <td align="center" bgcolor="#CCCCCC">数据类型</td>
+                                <td align="center" bgcolor="#CCCCCC">描述</td>
+                                <td><input class="btn btn-success btn-sm" type="button" id="btn_addtr" value="增行"></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr type="subdata">
+                                <td height="30" align="center"><input type="text" name="NO" size="1" value="1" class="form-control"/></td>
+                                <td align="center"><input type="text" name="ddDataName" class="form-control"/></td>
+                                <td align="center"><ap:selectDB name="ddDataType" id="ddDataType" where="parentId=10000025100454" optionValue="itemValue" optionText="itemName" table="SYS_DIC" selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control"></ap:selectDB></td>
+                                <td align="center"><input type="text" name="ddDataDescription" class="form-control"/></td>
+                                <td><input class="btn btn-default btn-sm" type="button" id="Button2" onClick="deltr(this)" value="删行"></td>
+                            </tr>
+                            </tbody>
+                        </table>
 
-                                <li>
-                                    <span id="parent_input">数据名称</span> <a href="javascript:void(0)"
-                                                           id="parent"><i class="glyphicon glyphicon-plus"></i></a>
-                                    <ul>
-                                    </ul>
-                                </li>
+                        <%--<div class="tree well">--%>
 
-                        </div>
+                        <%--<li>--%>
+                        <%--<span id="parent_input">数据名称</span> <a href="javascript:void(0)"--%>
+                        <%--id="parent"><i--%>
+                        <%--class="glyphicon glyphicon-plus"></i></a>--%>
+                        <%--<ul>--%>
+                        <%--</ul>--%>
+                        <%--</li>--%>
+
+                        <%--</div>--%>
                     </td>
                 </tr>
                 <tr>
                     <th width="20%">数据基本描述:</th>
-                    <td colspan="3"><textarea id="ddDataDescription" name="ddDataDescription"
+                    <td colspan="3"><textarea id="ddDescription" name="ddDescription"
                                               value="" class="form-control"
                                               rows="3"/></textarea>
                     </td>
                 </tr>
-                <input type="hidden" id="ddDataTaskId" name="ddDataTaskId"
+                <input type="hidden" id="ddTaskId" name="ddTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
+
+
         </form>
         <div class="row">
             <button class="btn btn-primary btn-block" id="dataFormSave">创建新私有数据</button>
@@ -181,13 +231,26 @@
 <script type="text/javascript">
     //@ sourceURL=addprivatedata.ht
     $(function () {
-        $('#selectModeltr').hide();
-        $('#selectModel').attr("disabled", "disabled");
+        var show_count = 20;   //要显示的条数
+        var count = 1;    //递增的开始值，这里是你的ID
+        $("#btn_addtr").click(function () {
+
+            var length = $("#privateData tbody tr").length;
+            //alert(length);
+            if (length < show_count)    //点击时候，如果当前的数字小于递增结束的条件
+            {
+                $("#tab11 tbody tr").clone().appendTo("#privateData tbody");   //在表格后面添加一行
+                changeIndex();//更新行号
+            }
+        });
+
+//        $('#selectModeltr').hide();
+//        $('#selectModel').attr("disabled", "disabled");
         var options = {};
-        var frm = $('#privateDataForm').form();
+        var frm = $('#dataStructForm').form();
         $("#dataFormSave").click(function () {
-            frm.setData();
-            frm.ajaxForm(options);
+            var form = $('#dataStructForm').setData();
+            form.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
                 $('#adddata').modal('hide');
@@ -195,62 +258,87 @@
 //                window.location.reload(true);
             }
         });
-        $("#ddDataType").change(function () {
+        $("#ddType").change(function () {
             if ($(this).val() == '文件') {
-                $('#selectModeltr').show();
-                $('#selectModel').removeAttr("disabled");
-                $('#initValue').remove();
+                $('#initValue').hide();
+//                $('#selectModeltr').show();
+//                $('#selectModel').removeAttr("disabled");
+//                $('#initValue').remove();
             } else if ($(this).val() == '模型') {
-                $('#selectModeltr').show();
-                $('#selectModel').removeAttr("disabled");
-                $('#initValue').remove();
+                $('#initValue').hide();
+//                $('#selectModeltr').show();
+//                $('#selectModel').removeAttr("disabled");
+//                $('#initValue').remove();
+            } else if ($(this).val() == '其它') {
+                $('#initValue').hide();
+//                $('#selectModeltr').show();
+//                $('#selectModel').removeAttr("disabled");
+//                $('#initValue').remove();
             } else {
-                $('#selectModeltr').hide();
-                $('#selectModel').attr("disabled", "disabled");
-                if ($("#initValue").length <= 0) {
-                    $('table').append('<tr id="initValue">' +
-                            '<th width = "20%" > 初始值:</th>' +
-                            '<td colspan = "5" >' +
-                            '<input type = "text" id="ddDataLastestValue" name="ddDataLastestValue" value="" class="form-control"/>' +
-                            '</td>' +
-                            '</tr>');
-                }
+                $('#initValue').show();
+//                $('#selectModeltr').hide();
+//                $('#selectModel').attr("disabled", "disabled");
+//                if ($("#initValue").length <= 0) {
+//                    $('table').append('<tr id="initValue">' +
+//                            '<th width = "20%" > 初始值:</th>' +
+//                            '<td colspan = "5" >' +
+//                            '<input type = "text" id="ddDataLastestValue" name="ddDataLastestValue" value="" class="form-control"/>' +
+//                            '</td>' +
+//                            '</tr>');
+//                }
             }
         });
 
-        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '展开');
-        $('.tree li.parent_li > span').on('click', function (e) {
-            var children = $(this).parent('li.parent_li').find(' > ul > li');
-            if (children.is(":visible")) {
-                children.hide('fast');
-                $(this).attr('title', '展开').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-            } else {
-                children.show('fast');
-                $(this).attr('title', '收敛').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
-            }
-            e.stopPropagation();
-        });
+//        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '展开');
+//        $('.tree li.parent_li > span').on('click', function (e) {
+//            var children = $(this).parent('li.parent_li').find(' > ul > li');
+//            if (children.is(":visible")) {
+//                children.hide('fast');
+//                $(this).attr('title', '展开').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+//            } else {
+//                children.show('fast');
+//                $(this).attr('title', '收敛').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+//            }
+//            e.stopPropagation();
+//        });
+//
+//        $("#parent").click(function () {
+//            $(this).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/><select class="form-control"><option value="0">类型一</option><option value="1">类型二</option><option value="2">类型三</option></select></span> <a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a><ul></ul></li>');
+//        });
+//
+//        var $inputs = $("#ddDataName");
+//        $inputs.keyup(function () {
+//            $('#parent_input').html($inputs.val());
+//        });
 
-        $("#parent").click(function() {
-            $(this).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/></span> <a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a><ul></ul></li>');
-        });
-
-        var $inputs = $("#ddDataName");
-        $inputs.keyup(function() {
-            $('#parent_input').html($inputs.val());
-        });
     });
 
-    function addTreeNode(obj) {
-        $(obj).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/></span><a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a></li>');
+    //    function addTreeNode(obj) {
+    //        $(obj).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/><select class="form-control"><option value="0">类型一</option><option value="1">类型二</option><option value="2">类型三</option></select></span><a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a></li>');
+    //    }
+    //
+    //    function confirm(obj) {
+    //        var this_val = $(obj).prev().children("input").val();
+    //        $(obj).parent("li").replaceWith('<li><span>' + this_val + '</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"> <i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
+    //    }
+
+    function changeIndex() {
+        var i = 1;
+        $("#privateData tbody tr").each(function () { //循环tab tbody下的tr
+            $(this).find("input[name='NO']").val(i++);//更新行号
+        });
     }
 
-    function confirm(obj) {
-        var this_val = $(obj).prev().children("input").val();
-        $(obj).parent("li").replaceWith('<li><span>'+this_val+'</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"> <i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
-
+    function deltr(opp) {
+        var length = $("#privateData tbody tr").length;
+        //alert(length);
+        if (length <= 1) {
+            alert("至少保留一行");
+        } else {
+            $(opp).parent().parent().remove();//移除当前行
+            changeIndex();
+        }
     }
 </script>
 <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.zh-CN.js"></script>
 </html>
-
