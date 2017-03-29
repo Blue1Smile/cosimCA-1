@@ -18,12 +18,17 @@
 
         table {
             background-color: #ffffff;
+            width: 100%;
+            margin: 0px;
         }
 
         .panel {
             padding-top: 0px !important;
-
         }
+        .panel-body{
+            padding: 0px !important;
+        }
+
     </style>
 </head>
 <body>
@@ -320,11 +325,23 @@
     }
 
     window.operateEvents = {
-        'click #privatetr': function (e, value, row, index) {
-            $.get("createtopublish.ht?id=" + row.ddDataId + "&parent=publishpanel");
+        'click #ordertr': function (e, value, row, index) {
+            $.get("canordertoorder.ht?id=" + row.ddDataId + "&parent=canorderpanel", function (data, status) {
+                if (status=='success'){
+                    $table_canbeorder.bootstrapTable('refresh');
+                    $table_order.bootstrapTable('refresh');
+                }
+            });
         },
-        'click #publishtr': function (e, value, row, index) {
-            $.get("canordertoorder.ht?id=" + row.ddDataId + "&parent=createpanel" + "&taskId=" +${taskId});
+        'click #canordertr': function (e, value, row, index) {
+            $.get("canordertoorder.ht?id=" + row.ddDataId + "&parent=orderpanel" + "&taskId=" +${taskId}, function (data, status) {
+                if (status=='success'){
+                    $table_canbeorder.bootstrapTable('refresh');
+                    $table_order.bootstrapTable('refresh');
+                }
+            });
+            $table_canbeorder.bootstrapTable('refresh');
+            $table_order.bootstrapTable('refresh');
         }
     };
 

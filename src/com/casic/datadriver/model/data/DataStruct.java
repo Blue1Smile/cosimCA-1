@@ -1,5 +1,11 @@
 package com.casic.datadriver.model.data;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+import java.util.Date;
+
 public class DataStruct {
     private Long ddStructId;
 
@@ -7,25 +13,35 @@ public class DataStruct {
 
     private String ddNodePath;
 
-    private Long ddDepthId;
-
-    private Integer ddDepth;
+    private Short ddDepth;
 
     private Long ddParentId;
 
     private String ddCatkey;
 
-    private String ddNodeKey;
-
     private Long ddTaskId;
-
-    private Long ddSn;
 
     private Short ddIsLeaf;
 
-    private String ddNodeCode;
+    private Short ddType;
 
-    private Short ddNodeCodeType;
+    private String ddDescription;
+
+    private Short ddPublishState;
+
+    private Short ddOrderState;
+
+    private Short ddSubmitState;
+
+    private String ddTaskName;
+
+    private String ddCreator;
+
+    private Date ddCreateTime;
+
+    private String ddEngName;
+
+    private Long ddProjectId;
 
     public Long getDdStructId() {
         return ddStructId;
@@ -51,19 +67,11 @@ public class DataStruct {
         this.ddNodePath = ddNodePath;
     }
 
-    public Long getDdDepthId() {
-        return ddDepthId;
-    }
-
-    public void setDdDepthId(Long ddDepthId) {
-        this.ddDepthId = ddDepthId;
-    }
-
-    public Integer getDdDepth() {
+    public Short getDdDepth() {
         return ddDepth;
     }
 
-    public void setDdDepth(Integer ddDepth) {
+    public void setDdDepth(Short ddDepth) {
         this.ddDepth = ddDepth;
     }
 
@@ -83,28 +91,12 @@ public class DataStruct {
         this.ddCatkey = ddCatkey;
     }
 
-    public String getDdNodeKey() {
-        return ddNodeKey;
-    }
-
-    public void setDdNodeKey(String ddNodeKey) {
-        this.ddNodeKey = ddNodeKey;
-    }
-
     public Long getDdTaskId() {
         return ddTaskId;
     }
 
     public void setDdTaskId(Long ddTaskId) {
         this.ddTaskId = ddTaskId;
-    }
-
-    public Long getDdSn() {
-        return ddSn;
-    }
-
-    public void setDdSn(Long ddSn) {
-        this.ddSn = ddSn;
     }
 
     public Short getDdIsLeaf() {
@@ -115,19 +107,169 @@ public class DataStruct {
         this.ddIsLeaf = ddIsLeaf;
     }
 
-    public String getDdNodeCode() {
-        return ddNodeCode;
+    public Short getDdType() {
+        return ddType;
     }
 
-    public void setDdNodeCode(String ddNodeCode) {
-        this.ddNodeCode = ddNodeCode;
+    public void setDdType(Short ddType) {
+        this.ddType = ddType;
     }
 
-    public Short getDdNodeCodeType() {
-        return ddNodeCodeType;
+    public String getDdDescription() {
+        return ddDescription;
     }
 
-    public void setDdNodeCodeType(Short ddNodeCodeType) {
-        this.ddNodeCodeType = ddNodeCodeType;
+    public void setDdDescription(String ddDescription) {
+        this.ddDescription = ddDescription;
+    }
+
+    public Short getDdPublishState() {
+        return ddPublishState;
+    }
+
+    public void setDdPublishState(Short ddPublishState) {
+        this.ddPublishState = ddPublishState;
+    }
+
+    public Short getDdOrderState() {
+        return ddOrderState;
+    }
+
+    public void setDdOrderState(Short ddOrderState) {
+        this.ddOrderState = ddOrderState;
+    }
+
+    public Short getDdSubmitState() {
+        return ddSubmitState;
+    }
+
+    public void setDdSubmitState(Short ddSubmitState) {
+        this.ddSubmitState = ddSubmitState;
+    }
+
+    public String getDdTaskName() {
+        return ddTaskName;
+    }
+
+    public void setDdTaskName(String ddTaskName) {
+        this.ddTaskName = ddTaskName;
+    }
+
+    public String getDdCreator() {
+        return ddCreator;
+    }
+
+    public void setDdCreator(String ddCreator) {
+        this.ddCreator = ddCreator;
+    }
+
+    public Date getDdCreateTime() {
+        return ddCreateTime;
+    }
+
+    public void setDdCreateTime(Date ddCreateTime) {
+        this.ddCreateTime = ddCreateTime;
+    }
+
+    public String getDdEngName() {
+        return ddEngName;
+    }
+
+    public void setDdEngName(String ddEngName) {
+        this.ddEngName = ddEngName;
+    }
+
+    public Long getDdProjectId() {
+        return ddProjectId;
+    }
+
+    public void setDdProjectId(Long ddProjectId) {
+        this.ddProjectId = ddProjectId;
+    }
+
+    /**
+     * @see Object#equals(Object)
+     */
+    public boolean equals(Object object)
+    {
+        if (!(object instanceof DataStruct))
+        {
+            return false;
+        }
+        DataStruct ti = (DataStruct) object;
+        return new EqualsBuilder()
+                .append(this.ddCatkey, ti.ddCatkey)
+                .append(this.ddCreateTime, ti.ddCreateTime)
+                .append(this.ddCreator, ti.ddCreator)
+                .append(this.ddDepth, ti.ddDepth)
+                .append(this.ddDescription, ti.ddDescription)
+                .append(this.ddEngName, ti.ddEngName)
+                .append(this.ddIsLeaf, ti.ddIsLeaf)
+                .append(this.ddNodePath, ti.ddNodePath)
+                .append(this.ddOrderState, ti.ddOrderState)
+                .append(this.ddParentId, ti.ddParentId)
+                .append(this.ddTaskId, ti.ddTaskId)
+                .append(this.ddPublishState, ti.ddPublishState)
+                .append(this.ddTaskName, ti.ddTaskName)
+                .append(this.ddStructId, ti.ddStructId)
+                .append(this.ddStructName, ti.ddStructName)
+                .append(this.ddSubmitState, ti.ddSubmitState)
+                .append(this.ddType, ti.ddType)
+                .append(this.ddProjectId, ti.ddProjectId)
+                .isEquals();
+    }
+
+    /**
+     * @see Object#hashCode()
+     */
+    public int hashCode()
+    {
+        return new HashCodeBuilder(-82280557, -700257973)
+                .append(this.ddCatkey)
+                .append(this.ddCreateTime)
+                .append(this.ddCreator)
+                .append(this.ddDepth)
+                .append(this.ddDescription)
+                .append(this.ddEngName)
+                .append(this.ddIsLeaf)
+                .append(this.ddNodePath)
+                .append(this.ddOrderState)
+                .append(this.ddParentId)
+                .append(this.ddTaskId)
+                .append(this.ddPublishState)
+                .append(this.ddTaskName)
+                .append(this.ddStructId)
+                .append(this.ddStructName)
+                .append(this.ddSubmitState)
+                .append(this.ddType)
+                .append(this.ddProjectId)
+                .toHashCode();
+    }
+
+    /**
+     * @see Object#toString()
+     */
+    public String toString()
+    {
+        return new ToStringBuilder(this)
+                .append(this.ddCatkey)
+                .append(this.ddCreateTime)
+                .append(this.ddCreator)
+                .append(this.ddDepth)
+                .append(this.ddDescription)
+                .append(this.ddEngName)
+                .append(this.ddIsLeaf)
+                .append(this.ddNodePath)
+                .append(this.ddOrderState)
+                .append(this.ddParentId)
+                .append(this.ddTaskId)
+                .append(this.ddPublishState)
+                .append(this.ddTaskName)
+                .append(this.ddStructId)
+                .append(this.ddStructName)
+                .append(this.ddSubmitState)
+                .append(this.ddType)
+                .append(this.ddProjectId)
+                .toString();
     }
 }

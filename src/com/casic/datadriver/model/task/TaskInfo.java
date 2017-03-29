@@ -2,6 +2,9 @@ package com.casic.datadriver.model.task;
 
 import com.casic.datadriver.model.data.PrivateData;
 import com.hotent.core.model.BaseModel;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -278,5 +281,112 @@ public class TaskInfo extends BaseModel {
 
     public void setDdTaskProjectName(String ddTaskProjectName) {
         this.ddTaskProjectName = ddTaskProjectName;
+    }
+
+    /**
+     * @see Object#equals(Object)
+     */
+    public boolean equals(Object object)
+    {
+        if (!(object instanceof TaskInfo))
+        {
+            return false;
+        }
+        TaskInfo ti = (TaskInfo) object;
+        return new EqualsBuilder()
+                .append(this.ddTaskActualEndTime, ti.ddTaskActualEndTime)
+                .append(this.ddTaskActualStartTime, ti.ddTaskActualStartTime)
+                .append(this.ddTaskActualTime, ti.ddTaskActualTime)
+                .append(this.ddTaskChildType, ti.ddTaskChildType)
+                .append(this.ddTaskCompleteRate, ti.ddTaskCompleteRate)
+                .append(this.ddTaskCompleteState, ti.ddTaskCompleteState)
+                .append(this.ddTaskCreatorId, ti.ddTaskCreatorId)
+                .append(this.ddTaskDescription, ti.ddTaskDescription)
+                .append(this.ddTaskEstimateTime, ti.ddTaskEstimateTime)
+                .append(this.ddTaskFixedPattern, ti.ddTaskFixedPattern)
+                .append(this.ddTaskId, ti.ddTaskId)
+                .append(this.ddTaskMilestone, ti.ddTaskMilestone)
+                .append(this.ddTaskName, ti.ddTaskName)
+                .append(this.ddTaskPerson, ti.ddTaskPerson)
+                .append(this.ddTaskPlanDuration, ti.ddTaskPlanDuration)
+                .append(this.ddTaskPlanEndTime, ti.ddTaskPlanEndTime)
+                .append(this.ddTaskPlanStartTime, ti.ddTaskPlanStartTime)
+                .append(this.ddTaskPlanTime, ti.ddTaskPlanTime)
+                .append(this.ddTaskPriority, ti.ddTaskPriority)
+                .append(this.ddTaskProjectId, ti.ddTaskProjectId)
+                .append(this.ddTaskProjectName, ti.ddTaskProjectName)
+                .append(this.ddTaskResourceId, ti.ddTaskResourceId)
+                .append(this.ddTaskResponsiblePerson, ti.ddTaskResponsiblePerson)
+                .append(this.ddTaskState, ti.ddTaskState)
+                .append(this.ddTaskType, ti.ddTaskType)
+                .isEquals();
+    }
+
+    /**
+     * @see Object#hashCode()
+     */
+    public int hashCode()
+    {
+        return new HashCodeBuilder(-82280557, -700257973)
+                .append(this.ddTaskActualEndTime)
+                .append(this.ddTaskActualStartTime)
+                .append(this.ddTaskActualTime)
+                .append(this.ddTaskChildType)
+                .append(this.ddTaskCompleteRate)
+                .append(this.ddTaskCompleteState)
+                .append(this.ddTaskCreatorId)
+                .append(this.ddTaskDescription)
+                .append(this.ddTaskEstimateTime)
+                .append(this.ddTaskFixedPattern)
+                .append(this.ddTaskId)
+                .append(this.ddTaskMilestone)
+                .append(this.ddTaskName)
+                .append(this.ddTaskPerson)
+                .append(this.ddTaskPlanDuration)
+                .append(this.ddTaskPlanEndTime)
+                .append(this.ddTaskPlanStartTime)
+                .append(this.ddTaskPlanTime)
+                .append(this.ddTaskPriority)
+                .append(this.ddTaskProjectId)
+                .append(this.ddTaskProjectName)
+                .append(this.ddTaskResourceId)
+                .append(this.ddTaskResponsiblePerson)
+                .append(this.ddTaskState)
+                .append(this.ddTaskType)
+                .toHashCode();
+    }
+
+    /**
+     * @see Object#toString()
+     */
+    public String toString()
+    {
+        return new ToStringBuilder(this)
+                .append(this.ddTaskActualEndTime)
+                .append(this.ddTaskActualStartTime)
+                .append(this.ddTaskActualTime)
+                .append(this.ddTaskChildType)
+                .append(this.ddTaskCompleteRate)
+                .append(this.ddTaskCompleteState)
+                .append(this.ddTaskCreatorId)
+                .append(this.ddTaskDescription)
+                .append(this.ddTaskEstimateTime)
+                .append(this.ddTaskFixedPattern)
+                .append(this.ddTaskId)
+                .append(this.ddTaskMilestone)
+                .append(this.ddTaskName)
+                .append(this.ddTaskPerson)
+                .append(this.ddTaskPlanDuration)
+                .append(this.ddTaskPlanEndTime)
+                .append(this.ddTaskPlanStartTime)
+                .append(this.ddTaskPlanTime)
+                .append(this.ddTaskPriority)
+                .append(this.ddTaskProjectId)
+                .append(this.ddTaskProjectName)
+                .append(this.ddTaskResourceId)
+                .append(this.ddTaskResponsiblePerson)
+                .append(this.ddTaskState)
+                .append(this.ddTaskType)
+                .toString();
     }
 }
