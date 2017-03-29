@@ -95,16 +95,6 @@
 			</table>
 			<table class="table-grid table-list" cellpadding="1" cellspacing="1" id="cloudResourceInstance" formType="window" type="sub">
 				<tr>
-					<td colspan="11">
-						<div class="group" align="left">
-				   			<a id="btnAdd" class="link add">添加</a>
-			    		</div>
-			    		<div align="center">
-						cloud_resource_instance : cloud_resource_instance
-			    		</div>
-		    		</td>
-				</tr>
-				<tr>
 					<th>资源名称</th>
 					<th>资源信息</th>
 					<th>图片地址</th>
@@ -117,34 +107,7 @@
 					<th>mode</th>
 					<th>操作</th>
 				</tr>
-				<c:forEach items="${cloudResourceInstanceList}" var="cloudResourceInstanceListItem" varStatus="status">
-				    <tr type="subdata">
-					    <td style="text-align: center" name="title">${cloudResourceInstanceListItem.title}</td>
-					    <td style="text-align: center" name="info">${cloudResourceInstanceListItem.info}</td>
-					    <td style="text-align: center" name="urlPic">${cloudResourceInstanceListItem.urlPic}</td>
-					    <td style="text-align: center" name="url1">${cloudResourceInstanceListItem.url1}</td>
-					    <td style="text-align: center" name="url1Name">${cloudResourceInstanceListItem.url1Name}</td>
-					    <td style="text-align: center" name="url2">${cloudResourceInstanceListItem.url2}</td>
-					    <td style="text-align: center" name="url2Name">${cloudResourceInstanceListItem.url2Name}</td>
-					    <td style="text-align: center" name="blank1">${cloudResourceInstanceListItem.blank1}</td>
-					    <td style="text-align: center" name="blank2">${cloudResourceInstanceListItem.blank2}</td>
-					    <td style="text-align: center" name="mode">${cloudResourceInstanceListItem.mode}</td>
-					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
-					    </td>
-						<input type="hidden" name="title" value="${cloudResourceInstanceListItem.title}"/>
-						<input type="hidden" name="info" value="${cloudResourceInstanceListItem.info}"/>
-						<input type="hidden" name="urlPic" value="${cloudResourceInstanceListItem.urlPic}"/>
-						<input type="hidden" name="url1" value="${cloudResourceInstanceListItem.url1}"/>
-						<input type="hidden" name="url1Name" value="${cloudResourceInstanceListItem.url1Name}"/>
-						<input type="hidden" name="url2" value="${cloudResourceInstanceListItem.url2}"/>
-						<input type="hidden" name="url2Name" value="${cloudResourceInstanceListItem.url2Name}"/>
-						<input type="hidden" name="blank1" value="${cloudResourceInstanceListItem.blank1}"/>
-						<input type="hidden" name="blank2" value="${cloudResourceInstanceListItem.blank2}"/>
-						<input type="hidden" name="mode" value="${cloudResourceInstanceListItem.mode}"/>
-				    </tr>
-				</c:forEach>
+
 				<tr type="append">
 			    	<td style="text-align: center" name="title"></td>
 			    	<td style="text-align: center" name="info"></td>
