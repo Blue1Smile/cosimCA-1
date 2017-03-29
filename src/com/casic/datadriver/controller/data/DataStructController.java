@@ -2,11 +2,17 @@ package com.casic.datadriver.controller.data;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.casic.datadriver.model.data.PrivateData;
+import net.sf.ezmorph.object.DateMorpher;
+import net.sf.json.JSONObject;
+import net.sf.json.util.JSONUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -24,9 +30,8 @@ import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
 
 /**
- * ?????????????.
  *
- * @author ???? ???2016/11/14 0014.
+ * @author 2016/11/14 0014.
  */
 @Controller
 @RequestMapping("/datadriver/data/")
@@ -46,11 +51,11 @@ public class DataStructController extends AbstractController {
 //     * @throws Exception
 //     *             the exception
 //     */
-//    @RequestMapping("save")
-//    @Action(description = "Ìí¼Ó»ò¸üÐÂdataStruct")
-//    public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        String resultMsg = null;
-//        DataStruct dataStruct = this.getFormObject(request, DataStruct.class);
+    @RequestMapping("save")
+    @Action(description = "æ·»åŠ dataStruct")
+    public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String resultMsg = null;
+        DataStruct dataStruct = getFormObject(request);
 //        try {
 //            if (dataStruct.getDdStructId() != null || dataStruct.getDdStructId() != 0) {
 //                dataStruct.setDdStructId((int) UniqueIdUtil.genId());
@@ -64,8 +69,20 @@ public class DataStructController extends AbstractController {
 //        } catch (Exception e) {
 //            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
 //        }
-//    }
+    }
 
+    private DataStruct getFormObject(HttpServletRequest request) throws Exception {
+        JSONUtils.getMorpherRegistry().registerMorpher(new DateMorpher((new String[]{"yyyy-MM-dd"})));
+
+        String json = RequestUtil.getString(request, "json");
+        JSONObject obj = JSONObject.fromObject(json);
+
+        Map<String, Class> map = new HashMap<String, Class>();
+        map.put("privateDataList", PrivateData.class);
+        DataStruct dataStruct = (DataStruct) JSONObject.toBean(obj, DataStruct.class, map);
+
+        return dataStruct;
+    }
     /**
      * Query dataStruct basic info list.
      *
@@ -78,7 +95,7 @@ public class DataStructController extends AbstractController {
      *             the exception
      */
     @RequestMapping("list")
-    @Action(description = "¸ù¾ÝÌõ¼þ²éÑ¯ÏîÄ¿»ù±¾ÐÅÏ¢ÁÐ±í")
+    @Action(description = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ð±ï¿½")
     public ModelAndView queryDataStructBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         QueryFilter queryFilter = new QueryFilter(request, "DataStructItem");
@@ -103,7 +120,6 @@ public class DataStructController extends AbstractController {
     }
 
     /**
-     * ???????????.
      *
      * @param bin
      *            the bin
@@ -112,5 +128,4 @@ public class DataStructController extends AbstractController {
     public void initBinder(ServletRequestDataBinder bin) {
         bin.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
     }
-
 }

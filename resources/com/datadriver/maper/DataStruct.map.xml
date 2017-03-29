@@ -1,32 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.casic.datadriver.model.data.DataStruct">
+<mapper namespace="com.casic.datadriver.mapper.DataStructMapper">
   <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.DataStruct">
     <id column="DD_STRUCT_ID" jdbcType="BIGINT" property="ddStructId" />
     <result column="DD_STRUCT_NAME" jdbcType="VARCHAR" property="ddStructName" />
     <result column="DD_NODE_PATH" jdbcType="VARCHAR" property="ddNodePath" />
-    <result column="DD_DEPTH_ID" jdbcType="BIGINT" property="ddDepthId" />
-    <result column="DD_DEPTH" jdbcType="INTEGER" property="ddDepth" />
+    <result column="DD_DEPTH" jdbcType="SMALLINT" property="ddDepth" />
     <result column="DD_PARENT_ID" jdbcType="BIGINT" property="ddParentId" />
     <result column="DD_CATKEY" jdbcType="VARCHAR" property="ddCatkey" />
-    <result column="DD_NODE_KEY" jdbcType="VARCHAR" property="ddNodeKey" />
     <result column="DD_TASK_ID" jdbcType="BIGINT" property="ddTaskId" />
-    <result column="DD_SN" jdbcType="BIGINT" property="ddSn" />
     <result column="DD_IS_LEAF" jdbcType="SMALLINT" property="ddIsLeaf" />
-    <result column="DD_NODE_CODE" jdbcType="VARCHAR" property="ddNodeCode" />
-    <result column="DD_NODE_CODE_TYPE" jdbcType="SMALLINT" property="ddNodeCodeType" />
+    <result column="DD_TYPE" jdbcType="SMALLINT" property="ddType" />
+    <result column="DD_DESCRIPTION" jdbcType="VARCHAR" property="ddDescription" />
+    <result column="DD_PUBLISH_STATE" jdbcType="SMALLINT" property="ddPublishState" />
+    <result column="DD_ORDER_STATE" jdbcType="SMALLINT" property="ddOrderState" />
+    <result column="DD_SUBMIT_STATE" jdbcType="SMALLINT" property="ddSubmitState" />
+    <result column="DD_TASK_NAME" jdbcType="VARCHAR" property="ddTaskName" />
+    <result column="DD_CREATOR" jdbcType="VARCHAR" property="ddCreator" />
+    <result column="DD_CREATE_TIME" jdbcType="TIMESTAMP" property="ddCreateTime" />
+    <result column="DD_ENG_NAME" jdbcType="VARCHAR" property="ddEngName" />
+    <result column="DD_PROJECT_ID" jdbcType="BIGINT" property="ddProjectId" />
   </resultMap>
+  <sql id="Base_Column_List">
+    DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH, DD_DEPTH, DD_PARENT_ID, DD_CATKEY, DD_TASK_ID,
+    DD_IS_LEAF, DD_TYPE, DD_DESCRIPTION, DD_PUBLISH_STATE, DD_ORDER_STATE, DD_SUBMIT_STATE,
+    DD_TASK_NAME, DD_CREATOR, DD_CREATE_TIME, DD_ENG_NAME, DD_PROJECT_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}
+  </select>
+  <select id="getStructByTaskId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT}
+  </select>
+  <select id="getStructByTaskAndPId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT} AND DD_PUBLISH_STATE = 1
+  </select>
+  <select id="getStructByTaskAndOId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT} AND DD_ORDER_STATE = 1
+  </select>
+  <select id="getStructByProjectAndPId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_PROJECT_ID = #{ddProjectId,jdbcType=BIGINT} AND DD_PUBLISH_STATE = 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dd_data_struct
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}
+  </delete>
   <insert id="insert" parameterType="com.casic.datadriver.model.data.DataStruct">
-    insert into dd_data_struct (DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH, 
-      DD_DEPTH_ID, DD_DEPTH, DD_PARENT_ID, 
-      DD_CATKEY, DD_NODE_KEY, DD_TASK_ID, 
-      DD_SN, DD_IS_LEAF, DD_NODE_CODE, 
-      DD_NODE_CODE_TYPE)
-    values (#{ddStructId,jdbcType=BIGINT}, #{ddStructName,jdbcType=VARCHAR}, #{ddNodePath,jdbcType=VARCHAR}, 
-      #{ddDepthId,jdbcType=BIGINT}, #{ddDepth,jdbcType=INTEGER}, #{ddParentId,jdbcType=BIGINT}, 
-      #{ddCatkey,jdbcType=VARCHAR}, #{ddNodeKey,jdbcType=VARCHAR}, #{ddTaskId,jdbcType=BIGINT}, 
-      #{ddSn,jdbcType=BIGINT}, #{ddIsLeaf,jdbcType=SMALLINT}, #{ddNodeCode,jdbcType=VARCHAR}, 
-      #{ddNodeCodeType,jdbcType=SMALLINT})
+    insert into dd_data_struct (DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH,
+    DD_DEPTH, DD_PARENT_ID, DD_CATKEY,
+    DD_TASK_ID, DD_IS_LEAF, DD_TYPE,
+    DD_DESCRIPTION, DD_PUBLISH_STATE, DD_ORDER_STATE,
+    DD_SUBMIT_STATE, DD_TASK_NAME, DD_CREATOR,
+    DD_CREATE_TIME, DD_ENG_NAME, DD_PROJECT_ID)
+    values (#{ddStructId,jdbcType=BIGINT}, #{ddStructName,jdbcType=VARCHAR}, #{ddNodePath,jdbcType=VARCHAR},
+    #{ddDepth,jdbcType=SMALLINT}, #{ddParentId,jdbcType=BIGINT}, #{ddCatkey,jdbcType=VARCHAR},
+    #{ddTaskId,jdbcType=BIGINT}, #{ddIsLeaf,jdbcType=SMALLINT}, #{ddType,jdbcType=SMALLINT},
+    #{ddDescription,jdbcType=VARCHAR}, #{ddPublishState,jdbcType=SMALLINT}, #{ddOrderState,jdbcType=SMALLINT},
+    #{ddSubmitState,jdbcType=SMALLINT}, #{ddTaskName,jdbcType=VARCHAR}, #{ddCreator,jdbcType=VARCHAR},
+    #{ddCreateTime,jdbcType=TIMESTAMP}, #{ddEngName,jdbcType=VARCHAR}, #{ddProjectId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.casic.datadriver.model.data.DataStruct">
     insert into dd_data_struct
@@ -40,9 +86,6 @@
       <if test="ddNodePath != null">
         DD_NODE_PATH,
       </if>
-      <if test="ddDepthId != null">
-        DD_DEPTH_ID,
-      </if>
       <if test="ddDepth != null">
         DD_DEPTH,
       </if>
@@ -52,23 +95,41 @@
       <if test="ddCatkey != null">
         DD_CATKEY,
       </if>
-      <if test="ddNodeKey != null">
-        DD_NODE_KEY,
-      </if>
       <if test="ddTaskId != null">
         DD_TASK_ID,
-      </if>
-      <if test="ddSn != null">
-        DD_SN,
       </if>
       <if test="ddIsLeaf != null">
         DD_IS_LEAF,
       </if>
-      <if test="ddNodeCode != null">
-        DD_NODE_CODE,
+      <if test="ddType != null">
+        DD_TYPE,
       </if>
-      <if test="ddNodeCodeType != null">
-        DD_NODE_CODE_TYPE,
+      <if test="ddDescription != null">
+        DD_DESCRIPTION,
+      </if>
+      <if test="ddPublishState != null">
+        DD_PUBLISH_STATE,
+      </if>
+      <if test="ddOrderState != null">
+        DD_ORDER_STATE,
+      </if>
+      <if test="ddSubmitState != null">
+        DD_SUBMIT_STATE,
+      </if>
+      <if test="ddTaskName != null">
+        DD_TASK_NAME,
+      </if>
+      <if test="ddCreator != null">
+        DD_CREATOR,
+      </if>
+      <if test="ddCreateTime != null">
+        DD_CREATE_TIME,
+      </if>
+      <if test="ddEngName != null">
+        DD_ENG_NAME,
+      </if>
+      <if test="ddProjectId != null">
+        DD_PROJECT_ID,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -81,11 +142,8 @@
       <if test="ddNodePath != null">
         #{ddNodePath,jdbcType=VARCHAR},
       </if>
-      <if test="ddDepthId != null">
-        #{ddDepthId,jdbcType=BIGINT},
-      </if>
       <if test="ddDepth != null">
-        #{ddDepth,jdbcType=INTEGER},
+        #{ddDepth,jdbcType=SMALLINT},
       </if>
       <if test="ddParentId != null">
         #{ddParentId,jdbcType=BIGINT},
@@ -93,24 +151,120 @@
       <if test="ddCatkey != null">
         #{ddCatkey,jdbcType=VARCHAR},
       </if>
-      <if test="ddNodeKey != null">
-        #{ddNodeKey,jdbcType=VARCHAR},
-      </if>
       <if test="ddTaskId != null">
         #{ddTaskId,jdbcType=BIGINT},
-      </if>
-      <if test="ddSn != null">
-        #{ddSn,jdbcType=BIGINT},
       </if>
       <if test="ddIsLeaf != null">
         #{ddIsLeaf,jdbcType=SMALLINT},
       </if>
-      <if test="ddNodeCode != null">
-        #{ddNodeCode,jdbcType=VARCHAR},
+      <if test="ddType != null">
+        #{ddType,jdbcType=SMALLINT},
       </if>
-      <if test="ddNodeCodeType != null">
-        #{ddNodeCodeType,jdbcType=SMALLINT},
+      <if test="ddDescription != null">
+        #{ddDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="ddPublishState != null">
+        #{ddPublishState,jdbcType=SMALLINT},
+      </if>
+      <if test="ddOrderState != null">
+        #{ddOrderState,jdbcType=SMALLINT},
+      </if>
+      <if test="ddSubmitState != null">
+        #{ddSubmitState,jdbcType=SMALLINT},
+      </if>
+      <if test="ddTaskName != null">
+        #{ddTaskName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddCreator != null">
+        #{ddCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="ddCreateTime != null">
+        #{ddCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ddEngName != null">
+        #{ddEngName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddProjectId != null">
+        #{ddProjectId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.data.DataStruct">
+    update dd_data_struct
+    <set>
+      <if test="ddStructName != null">
+        DD_STRUCT_NAME = #{ddStructName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddNodePath != null">
+        DD_NODE_PATH = #{ddNodePath,jdbcType=VARCHAR},
+      </if>
+      <if test="ddDepth != null">
+        DD_DEPTH = #{ddDepth,jdbcType=SMALLINT},
+      </if>
+      <if test="ddParentId != null">
+        DD_PARENT_ID = #{ddParentId,jdbcType=BIGINT},
+      </if>
+      <if test="ddCatkey != null">
+        DD_CATKEY = #{ddCatkey,jdbcType=VARCHAR},
+      </if>
+      <if test="ddTaskId != null">
+        DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT},
+      </if>
+      <if test="ddIsLeaf != null">
+        DD_IS_LEAF = #{ddIsLeaf,jdbcType=SMALLINT},
+      </if>
+      <if test="ddType != null">
+        DD_TYPE = #{ddType,jdbcType=SMALLINT},
+      </if>
+      <if test="ddDescription != null">
+        DD_DESCRIPTION = #{ddDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="ddPublishState != null">
+        DD_PUBLISH_STATE = #{ddPublishState,jdbcType=SMALLINT},
+      </if>
+      <if test="ddOrderState != null">
+        DD_ORDER_STATE = #{ddOrderState,jdbcType=SMALLINT},
+      </if>
+      <if test="ddSubmitState != null">
+        DD_SUBMIT_STATE = #{ddSubmitState,jdbcType=SMALLINT},
+      </if>
+      <if test="ddTaskName != null">
+        DD_TASK_NAME = #{ddTaskName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddCreator != null">
+        DD_CREATOR = #{ddCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="ddCreateTime != null">
+        DD_CREATE_TIME = #{ddCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ddEngName != null">
+        DD_ENG_NAME = #{ddEngName,jdbcType=VARCHAR},
+      </if>
+      <if test="ddEngName != null">
+        DD_PROJECT_ID = #{ddProjectId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.casic.datadriver.model.data.DataStruct">
+    update dd_data_struct
+    set DD_STRUCT_NAME = #{ddStructName,jdbcType=VARCHAR},
+    DD_NODE_PATH = #{ddNodePath,jdbcType=VARCHAR},
+    DD_DEPTH = #{ddDepth,jdbcType=SMALLINT},
+    DD_PARENT_ID = #{ddParentId,jdbcType=BIGINT},
+    DD_CATKEY = #{ddCatkey,jdbcType=VARCHAR},
+    DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT},
+    DD_IS_LEAF = #{ddIsLeaf,jdbcType=SMALLINT},
+    DD_TYPE = #{ddType,jdbcType=SMALLINT},
+    DD_DESCRIPTION = #{ddDescription,jdbcType=VARCHAR},
+    DD_PUBLISH_STATE = #{ddPublishState,jdbcType=SMALLINT},
+    DD_ORDER_STATE = #{ddOrderState,jdbcType=SMALLINT},
+    DD_SUBMIT_STATE = #{ddSubmitState,jdbcType=SMALLINT},
+    DD_TASK_NAME = #{ddTaskName,jdbcType=VARCHAR},
+    DD_CREATOR = #{ddCreator,jdbcType=VARCHAR},
+    DD_CREATE_TIME = #{ddCreateTime,jdbcType=TIMESTAMP},
+    DD_ENG_NAME = #{ddEngName,jdbcType=VARCHAR},
+    DD_PROJECT_ID = #{ddProjectId,jdbcType=BIGINT}
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}
+  </update>
 </mapper>

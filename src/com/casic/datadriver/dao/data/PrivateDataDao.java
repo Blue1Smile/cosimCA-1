@@ -59,7 +59,6 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     }
 
     /**
-     * ӳ��MAP��ɾ�������б���ʱû�õ�
      * 20161202
      */
     public void delByMainId(Long classId) {

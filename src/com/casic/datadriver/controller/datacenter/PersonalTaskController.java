@@ -29,10 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -137,6 +134,7 @@ public class PersonalTaskController extends AbstractController {
         return getAutoView().addObject("TaskInfo", taskInfo)
                 .addObject("taskInfoList", taskInfoList);
     }
+
     /**
      * 进入任务数据发布
      *
@@ -151,6 +149,7 @@ public class PersonalTaskController extends AbstractController {
         long taskId = RequestUtil.getLong(request, "id");
         return getAutoView().addObject("taskId", taskId);
     }
+
     /**
      * 进入任务数据订阅
      *
@@ -348,14 +347,23 @@ public class PersonalTaskController extends AbstractController {
             //根据项目id获取任务list
             List<TaskInfo> task_list = this.taskInfoService.queryTaskInfoByProjectId(ProjectId);
             //保证任务列表不包括任务本身
-            int taskLength= task_list.size()-1;
-            for(int i=0;i<taskLength;i++){
-                Long ddTaskId = task_list.get(i).getDdTaskId();
-                if (ddTaskId.equals(taskId)) {
-                    task_list.remove(i);
-                    i--;
+            Iterator<TaskInfo> it = task_list.iterator();
+
+            while (it.hasNext()) {
+                TaskInfo taskTempList = it.next();
+                if (taskTempList.getDdTaskId() == taskId) {
+                    it.remove();
                 }
             }
+
+//            int taskLength= task_list.size()-1;
+//            for(int i=0;i<taskLength;i++){
+//                Long ddTaskId = task_list.get(i).getDdTaskId();
+//                if (ddTaskId.equals(taskId)) {
+//                    task_list.remove(i);
+//                    i--;
+//                }
+//            }
 
             List<PrivateData> OrderPrivatedataList = new ArrayList<PrivateData>();
             List<OrderDataRelation> orderDataRelationList = orderDataRelationService.getOrderDataRelationList(taskId);
@@ -368,6 +376,7 @@ public class PersonalTaskController extends AbstractController {
             }//获取已订阅数据结束
 
             List<PrivateData> canBeOrderPrivatedataList = new ArrayList<PrivateData>();
+            PrivateData taskPrivateDatas = new PrivateData();
             //获取所有可订阅数据列表
             for (int i = 0; i < task_list.size(); i++) {
                 Long ddtaskId = task_list.get(i).getDdTaskId();
@@ -375,26 +384,11 @@ public class PersonalTaskController extends AbstractController {
 
                 for (OrderDataRelation orderDataRelation : publishDataRelation_list) {
                     Long ddDataId = orderDataRelation.getDdDataId();
-                    List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
-                    canBeOrderPrivatedataList.addAll(taskPrivateDatas);
+                    taskPrivateDatas = this.privateDataService.getDataById(ddDataId);
+                    canBeOrderPrivatedataList.add(taskPrivateDatas);
                 }
             }//获取可订阅数据列表结束
 
-            //获取数据列表
-//            if (OrderPrivatedataList.size() > 0 && canBeOrderPrivatedataList.size() > 0) {
-//                Integer Length2 = canBeOrderPrivatedataList.size();
-//                for (int i = 0; i < OrderPrivatedataList.size(); i++) {
-//                    for (int j = 0; j < Length2; j++) {
-//                        Long ddDataId1 = OrderPrivatedataList.get(i).getDdDataId();
-//                        Long ddDataId2 = canBeOrderPrivatedataList.get(j).getDdDataId();
-//                        if (ddDataId1.equals(ddDataId2)) {
-//                            canBeOrderPrivatedataList.remove(j);
-//                            Length2 = canBeOrderPrivatedataList.size();
-//                            j--;
-//                        }
-//                    }
-//                }
-//            }
             PrivateData tempPrivateData = new PrivateData();
             for (int i = 0; i < canBeOrderPrivatedataList.size(); i++) {
                 tempPrivateData = canBeOrderPrivatedataList.get(i);
@@ -411,16 +405,16 @@ public class PersonalTaskController extends AbstractController {
                 jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
                 jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
                 jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
-                for(int j=0;j<OrderPrivatedataList.size();j++){
-                    Long ddDataId1=OrderPrivatedataList.get(j).getDdDataId();
-                    if(ddDataId1.equals(tempPrivateData.getDdDataId())){
-                        jsonObject.put("ddOrderType",1);
-                    }
-                    else {
-                        jsonObject.put("ddOrderType",0);
+
+                for (int j = 0; j < OrderPrivatedataList.size(); j++) {
+                    Long ddDataId1 = OrderPrivatedataList.get(j).getDdDataId();
+                    if (ddDataId1.equals(tempPrivateData.getDdDataId())) {
+                        jsonObject.put("ddOrderType", 1);
+                        break;
+                    } else {
+                        jsonObject.put("ddOrderType", 0);
                     }
                 }
-
                 jsonMembers.add(jsonObject);
             }
             json.put("total", canBeOrderPrivatedataList.size());
@@ -479,7 +473,7 @@ public class PersonalTaskController extends AbstractController {
                 jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
                 jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
                 jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
-                jsonObject.put("ddOrderType",1);
+                jsonObject.put("ddOrderType", 1);
 
                 jsonMembers.add(jsonObject);
             }

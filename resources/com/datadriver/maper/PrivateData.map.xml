@@ -15,17 +15,15 @@
         <result column="DD_DATA_IS_DELIVERY" jdbcType="NUMERIC" property="ddDataIsDelivery"/>
         <result column="DD_DATA_SENSITIVENESS" jdbcType="NUMERIC" property="ddDataSensitiveness"/>
         <result column="DD_DATA_TASK_NAME" jdbcType="VARCHAR" property="ddDataTaskName"/>
-        <result column="DD_DATA_NODE_ID" jdbcType="NUMERIC" property="ddDataNodeId"/>
-        <result column="DD_DATA_PATH" jdbcType="VARCHAR" property="ddDataPath"/>
+        <result column="DD_DATA_PARENT_ID" jdbcType="NUMERIC" property="ddDataParentId"/>
         <result column="DD_DATA_UNIT" jdbcType="VARCHAR" property="ddDataUnit"/>
         <result column="DD_DATA_ENG_NAME" jdbcType="VARCHAR" property="ddDataEngName"/>
     </resultMap>
 
-
     <sql id="Base_Column_List">
     DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE, DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE, 
     DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
-    DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME, DD_DATA_NODE_ID, DD_DATA_PATH, DD_DATA_UNIT,
+    DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME, DD_DATA_PARENT_ID, DD_DATA_UNIT,
     DD_DATA_ENG_NAME
   </sql>
 
@@ -154,8 +152,7 @@
     DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
     DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
     DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
-    DD_DATA_NODE_ID = #{ddDataNodeId,jdbcType=NUMERIC},
-    DD_DATA_PATH = #{ddDataPath,jdbcType=VARCHAR},
+    DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC},
     DD_DATA_UNIT = #{ddDataUnit,jdbcType=VARCHAR},
     DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId}
@@ -175,8 +172,7 @@
     DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
     DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
     DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
-    DD_DATA_NODE_ID = #{ddDataNodeId,jdbcType=NUMERIC},
-    DD_DATA_PATH = #{ddDataPath,jdbcType=VARCHAR},
+    DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC},
     DD_DATA_UNIT = #{ddDataUnit,jdbcType=VARCHAR},
     DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId}
@@ -203,13 +199,13 @@
       DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, 
       DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
       DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS,
-      DD_DATA_NODE_ID, DD_DATA_PATH, DD_DATA_UNIT,
+      DD_DATA_PARENT_ID, DD_DATA_UNIT,
       DD_DATA_ENG_NAME)
     values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=VARCHAR},
       #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
       #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
       #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=DATE},
-      #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC}, #{ddDataTaskName,jdbcType=VARCHAR}, #{ddDataNodeId,jdbcType=NUMERIC}, #{ddDataPath,jdbcType=VARCHAR}, #{ddDataUnit,jdbcType=VARCHAR}, #{ddDataEngName,jdbcType=VARCHAR}
+      #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC}, #{ddDataTaskName,jdbcType=VARCHAR}, #{ddDataParentId,jdbcType=NUMERIC}, #{ddDataUnit,jdbcType=VARCHAR}, #{ddDataEngName,jdbcType=VARCHAR}
       )
   </insert>
 
@@ -257,10 +253,7 @@
                 DD_DATA_TASK_NAME,
             </if>
             <if test="ddDataNodeId != null">
-                DD_DATA_NODE_ID,
-            </if>
-            <if test="ddDataPath != null">
-                DD_DATA_PATH,
+                DD_DATA_PARENT_ID,
             </if>
             <if test="ddDataUnit != null">
                 DD_DATA_UNIT,
@@ -310,10 +303,7 @@
                 #{ddDataTaskName,jdbcType=VARCHAR},
             </if>
             <if test="ddDataNodeId != null">
-                #{ddDataNodeId,jdbcType=NUMERIC},
-            </if>
-            <if test="ddDataPath != null">
-                #{ddDataPath,jdbcType=VARCHAR},
+                #{ddDataParentId,jdbcType=NUMERIC},
             </if>
             <if test="ddDataUnit != null">
                 #{ddDataUnit,jdbcType=VARCHAR},
@@ -365,10 +355,7 @@
                 DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
             </if>
             <if test="ddDataNodeId != null">
-                DD_DATA_NODE_ID = #{ddDataTaskName,jdbcType=NUMERIC},
-            </if>
-            <if test="ddDataPath != null">
-                DD_DATA_PATH = #{ddDataTaskName,jdbcType=VARCHAR},
+                DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC},
             </if>
             <if test="ddDataUnit != null">
                 DD_DATA_UNIT = #{ddDataTaskName,jdbcType=VARCHAR},
@@ -395,8 +382,7 @@
       DD_DATA_IS_DELIVERY = #{ddDataIsDelivery,jdbcType=NUMERIC},
       DD_DATA_SENSITIVENESS = #{ddDataSensitiveness,jdbcType=NUMERIC},
       DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
-      DD_DATA_NODE_ID = #{ddDataNodeId,jdbcType=NUMERIC},
-      DD_DATA_PATH = #{ddDataPath,jdbcType=VARCHAR},
+      DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC},
       DD_DATA_UNIT = #{ddDataUnit,jdbcType=VARCHAR},
       DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
