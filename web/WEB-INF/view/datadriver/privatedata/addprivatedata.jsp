@@ -108,7 +108,7 @@
                 <tr>
                     <th width="20%">数据名称:</th>
                     <td><input type="text" id="ddDataName" name="ddDataName"
-                               value="" class="form-control"/></td>
+                               value="" class="form-control" placeholder="请输入数据名称"/></td>
                     <th width="20%">数据所属任务:</th>
                     <td><input type="text" id="ddDataTaskName" name="ddDataTaskName"
                                value="${taskInfo.ddTaskName}" class="form-control" readonly/></td>
@@ -122,25 +122,20 @@
                                      selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
                         </ap:selectDB>
                     </td>
-                    <th width="20%">数据敏感度:</th>
-                    <td><input type="text" id="ddDataSensitiveness" name="ddDataSensitiveness"
-                               value=""
-                               class="form-control"/></td>
-                </tr>
-                <tr>
                     <th width="20%">数据创建时间:</th>
                     <td><input type="text" id="ddDataCreateTime" name="ddDataCreateTime"
                                value="${currentTime}" readonly class="form_datetime form-control"/></td>
+                    <%--<th width="20%">数据敏感度:</th>--%>
+                    <%--<td><input type="text" id="ddDataSensitiveness" name="ddDataSensitiveness"--%>
+                               <%--value=""--%>
+                               <%--class="form-control"/></td>--%>
+                </tr>
+                <tr>
+
                     <th width="20%">数据创建人:</th>
                     <td><input type="text" id="ddDataCreatePerson" name="ddDataCreatePerson"
                                value="${sysName}" readonly class="form-control"/></td>
-                <tr>
-                    <th width="20%">数据基本描述:</th>
-                    <td colspan="3"><textarea id="ddDataDescription" name="ddDataDescription"
-                                              value="" class="form-control"
-                                              rows="5"/></textarea>
-                    </td>
-                </tr>
+
                 <tr id="selectModeltr">
                     <th width="20%">请选择文件:</th>
                     <td colspan="5">
@@ -152,44 +147,27 @@
                     </td>
                 </tr>
                 <tr id="initValue">
-                    <th width="20%">初始值:</th>
+                    <th width="20%">创建数据结构:</th>
                     <td colspan="5">
                         <div class="tree well">
 
                                 <li>
-                                    <span id="parent_input">Parent</span> <a href="javascript:void(0)"
+                                    <span id="parent_input">数据名称</span> <a href="javascript:void(0)"
                                                            id="parent"><i class="glyphicon glyphicon-plus"></i></a>
                                     <ul>
-                                        <%--<li>--%>
-                                            <%--<span>Child</span> <a href="javascript:void(0)"><i--%>
-                                                <%--class="glyphicon glyphicon-plus"></i></a>--%>
-                                            <%--<ul>--%>
-                                                <%--<li>--%>
-                                                    <%--<span><input type="text" class="form-control"--%>
-                                                                 <%--id="exampleInputEmail1" placeholder="Email"></span>--%>
-                                                <%--</li>--%>
-                                            <%--</ul>--%>
-                                        <%--</li>--%>
-                                        <%--<li>--%>
-                                            <%--<span>Child</span> <a href="javascript:void(0)"><i--%>
-                                                <%--class="glyphicon glyphicon-plus"></i></a>--%>
-                                            <%--<ul>--%>
-                                                <%--<li>--%>
-                                                    <%--<span>Grand Child</span>--%>
-                                                <%--</li>--%>
-                                                <%--<li>--%>
-                                                    <%--<span>Grand Child</span>--%>
-                                                <%--</li>--%>
-                                            <%--</ul>--%>
-                                        <%--</li>--%>
                                     </ul>
                                 </li>
 
                         </div>
                     </td>
                 </tr>
-
-
+                <tr>
+                    <th width="20%">数据基本描述:</th>
+                    <td colspan="3"><textarea id="ddDataDescription" name="ddDataDescription"
+                                              value="" class="form-control"
+                                              rows="3"/></textarea>
+                    </td>
+                </tr>
                 <input type="hidden" id="ddDataTaskId" name="ddDataTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
@@ -254,7 +232,7 @@
         });
 
         $("#parent").click(function() {
-            $(this).parent("li").children("ul").append('<li><span><input type="text" class="form-control"/></span> <a href="javascript:void(0)" id="child_node" onclick="confirm(this)"><i class="glyphicon glyphicon-ok"></i></a><ul></ul></li>');
+            $(this).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/></span> <a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a><ul></ul></li>');
         });
 
         var $inputs = $("#ddDataName");
@@ -264,12 +242,12 @@
     });
 
     function addTreeNode(obj) {
-        $(obj).parent("li").children("ul").append('<li><span><input type="text" class="form-control"/></span><a href="javascript:void(0)" id="child_node" onclick="confirm(this)"><i class="glyphicon glyphicon-ok"></i></a></li>');
+        $(obj).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/></span><a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a></li>');
     }
 
     function confirm(obj) {
         var this_val = $(obj).prev().children("input").val();
-        $(obj).parent("li").replaceWith('<li><span>'+this_val+'</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"><i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
+        $(obj).parent("li").replaceWith('<li><span>'+this_val+'</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"> <i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
 
     }
 </script>
