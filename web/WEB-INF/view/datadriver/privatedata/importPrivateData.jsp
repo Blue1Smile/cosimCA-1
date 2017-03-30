@@ -15,7 +15,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="myModalLabel">导入excel选择</h4>
 </div>
-<form class="form-horizontal" name="excelImportForm" action="${ctx}/datadriver/privatedata/importBrandSort.ht" id="uploadForm"
+<form class="form-horizontal" name="excelImportForm" action="${ctx}/datadriver/privatedata/importBrandSort.ht?id=<%=request.getParameter("id")%>&&projectId=<%=request.getParameter("projectId")%>" id="uploadForm"
       method="post" enctype="multipart/form-data">
     <div class="modal-body">
         <div class="alert alert-danger">导入excel文件格式必须严格按照<a class="alert-link" href="${ctx}/platform/system/sysFile/download.ht?fileId=10000026780072">上传文件格式(点击查看)</a></div>
