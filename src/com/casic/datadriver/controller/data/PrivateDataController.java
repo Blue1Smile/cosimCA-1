@@ -5,12 +5,11 @@ import com.casic.datadriver.model.data.DataVersion;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.modelcenter.ModelCenterModel;
 import com.casic.datadriver.model.task.TaskInfo;
-import com.casic.datadriver.model.model.Model;
+import com.casic.datadriver.service.ModelCenterService;
 import com.casic.datadriver.service.data.DataSnapShotIdService;
 import com.casic.datadriver.service.data.DataVersionService;
 import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.task.TaskInfoService;
-import com.casic.datadriver.service.ModelCenterService;
 import com.hotent.core.annotion.Action;
 import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
@@ -287,6 +286,8 @@ public class PrivateDataController extends AbstractController {
     public void importBrandSort(@RequestParam("filename") MultipartFile file,
                                 HttpServletRequest request, HttpServletResponse response) throws Exception {
         ResultMessage message = null;
+        Long taskId = RequestUtil.getLong(request, "id");
+        Long projectId = RequestUtil.getLong(request, "projectId");
         String preUrl = RequestUtil.getPrePage(request);
         try {
             String temp = request.getSession().getServletContext()
@@ -312,9 +313,9 @@ public class PrivateDataController extends AbstractController {
             if ((name == null || name.equals("")) && size == 0)
                 return;
             InputStream in = file.getInputStream();
-            List<PrivateData> BrandMobileInfos = privateDataService
-                    .importBrandPeriodSort(in);
-            int count = BrandMobileInfos.size();
+            int count = privateDataService
+                    .importBrandPeriodSort(in,taskId,projectId);
+//            int count = BrandMobileInfos.size();
 
             message = new ResultMessage(ResultMessage.Success, "成功导入"+count+"条");
         } catch (Exception ex) {
