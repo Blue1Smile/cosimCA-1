@@ -33,6 +33,18 @@ public class PrivateData extends BaseModel {
 
     private String ddDataTaskName;
 
+    public Long getDdDataParentId() {
+        return ddDataParentId;
+    }
+
+    public void setDdDataParentId(Long ddDataParentId) {
+        this.ddDataParentId = ddDataParentId;
+    }
+
+    public String getDdDataEngName() {
+        return ddDataEngName;
+    }
+
     private Long ddDataParentId;
 
     private String ddDataUnit;
