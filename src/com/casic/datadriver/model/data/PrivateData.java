@@ -29,7 +29,7 @@ public class PrivateData extends BaseModel {
 
     private Long ddDataIsDelivery;
 
-    private Long ddDataSensitiveness;
+    private String ddDataSensitiveness;
 
     private String ddDataTaskName;
 
@@ -159,11 +159,11 @@ public class PrivateData extends BaseModel {
         this.ddDataIsDelivery = ddDataIsDelivery;
     }
 
-    public Long getDdDataSensitiveness() {
+    public String getDdDataSensitiveness() {
         return ddDataSensitiveness;
     }
 
-    public void setDdDataSensitiveness(Long ddDataSensitiveness) {
+    public void setDdDataSensitiveness(String ddDataSensitiveness) {
         this.ddDataSensitiveness = ddDataSensitiveness;
     }
 }

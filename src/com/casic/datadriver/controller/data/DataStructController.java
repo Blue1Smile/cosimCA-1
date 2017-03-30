@@ -41,16 +41,16 @@ public class DataStructController extends AbstractController {
     @Resource
     private DataStructService dataStructService;
 
-//    /**
-//     * ?????????.
-//     *
-//     * @param request
-//     *            the request
-//     * @param response
-//     *            the response
-//     * @throws Exception
-//     *             the exception
-//     */
+    /**
+     * 添加结构化数据、文件、模型.
+     *
+     * @param request
+     *            the request
+     * @param response
+     *            the response
+     * @throws Exception
+     *             the exception
+     */
     @RequestMapping("save")
     @Action(description = "添加dataStruct")
     public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
