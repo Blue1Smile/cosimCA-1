@@ -38,24 +38,52 @@
     from dd_data_struct
     where DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT}
   </select>
+
+  <!--根据任务ID 查询已发布的数据-->
+  <!--id：任务id  backupsL：数据发布状态-->
+  <select id="getStructByPublish" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_TASK_ID = #{id,jdbcType=BIGINT} AND DD_PUBLISH_STATE =  #{backupsL,jdbcType=BIGINT}
+  </select>
+
+  <!--根据项目id查询项目中已发布的数据-->
+  <!--id：项目id  backupsL：项目中可订阅数据-->
+  <select id="getStructByProjectAndPId" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_PROJECT_ID = #{id,jdbcType=BIGINT} AND DD_PUBLISH_STATE =  #{backupsL,jdbcType=BIGINT}
+  </select>
+
+  <!--根据任务id查询已订阅数据-->
+  <!--id：任务id  backupsL：数据订阅状态-->
+  <select id="getStructByTaskAndOId" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_TASK_ID = #{id,jdbcType=BIGINT} AND DD_ORDER_STATE =  #{backupsL,jdbcType=BIGINT}
+  </select>
+
   <select id="getStructByTaskAndPId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from dd_data_struct
     where DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT} AND DD_PUBLISH_STATE = 1
   </select>
-  <select id="getStructByTaskAndOId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from dd_data_struct
-    where DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT} AND DD_ORDER_STATE = 1
-  </select>
-  <select id="getStructByProjectAndPId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from dd_data_struct
-    where DD_PROJECT_ID = #{ddProjectId,jdbcType=BIGINT} AND DD_PUBLISH_STATE = 1
-  </select>
+  <!--<select id="getStructByTaskAndOId" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from dd_data_struct-->
+    <!--where DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT} AND DD_ORDER_STATE = 1-->
+  <!--</select>-->
+  <!--<select id="getStructByProjectAndPId" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
+    <!--select-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from dd_data_struct-->
+    <!--where DD_PROJECT_ID = #{ddProjectId,jdbcType=BIGINT} AND DD_PUBLISH_STATE = 1-->
+  <!--</select>-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from dd_data_struct
     where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}

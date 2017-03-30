@@ -146,8 +146,9 @@ public class PersonalTaskController extends AbstractController {
     @RequestMapping("showdata")
     @Action(description = "显示私有和发布")
     public ModelAndView showdata(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        long taskId = RequestUtil.getLong(request, "id");
-        return getAutoView().addObject("taskId", taskId);
+        Long taskId = RequestUtil.getLong(request, "id");
+        Long projectId = RequestUtil.getLong(request, "projectId");
+        return getAutoView().addObject("taskId", taskId).addObject("projectId", projectId);
     }
 
     /**

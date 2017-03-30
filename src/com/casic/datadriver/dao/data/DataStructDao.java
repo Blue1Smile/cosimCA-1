@@ -1,11 +1,12 @@
 package com.casic.datadriver.dao.data;
-import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
+import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.DataStruct;
 import com.hotent.core.db.BaseDao;
 import com.hotent.core.web.query.QueryFilter;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * The Class DataStructDao.
@@ -23,6 +24,23 @@ public class DataStructDao extends BaseDao<DataStruct> {
     public List<DataStruct> queryDataStructBasicInfoList(QueryFilter queryFilter) {
         return this.getBySqlKey("queryDataStructBasicInfoList", queryFilter);
     }
+
+    public List<DataStruct> getStructByTaskId(Long id) {
+        return this.getBySqlKey("getStructByTaskId", id);
+    }
+
+    public List<DataStruct> getStructByPublish(QueryParameters queryparameters) {
+        return this.getBySqlKey("getStructByPublish", queryparameters);
+    }
+
+    public List<DataStruct> getStructByTaskAndOId(QueryParameters queryparameters) {
+        return this.getBySqlKey("getStructByTaskAndOId", queryparameters);
+    }
+
+    public List<DataStruct> getStructByProjectAndPId(QueryParameters queryparameters) {
+        return this.getBySqlKey("getStructByProjectAndPId", queryparameters);
+    }
+
 
     /*
      * (non-Javadoc)

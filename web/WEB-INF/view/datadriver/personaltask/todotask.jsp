@@ -50,7 +50,7 @@
             <ul class="dropdown-menu" style="overflow: auto">
                 <c:forEach var="taskInfoListItem" items="${taskInfoList}">
                     <li title="${taskInfoListItem.ddTaskProjectName}">
-                        <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}">${taskInfoListItem.ddTaskName}</a>
+                        <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}&projectId=${taskInfoListItem.ddTaskProjectId}">${taskInfoListItem.ddTaskName}</a>
                     </li>
                 </c:forEach>
             </ul>
@@ -65,21 +65,26 @@
         <%--</li>--%>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">任务约束</a>
         </li>
+        <li role="presentation" id="switch_attr_child"><a href="#child" data-toggle="tab" role="tab">子任务</a></li>
         <%--<li role="presentation" id="switch_attr_file"><a href="#file" data-toggle="tab" role="tab">模型文件</a></li>--%>
         <li role="presentation" id="switch_attr_source"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
         <li role="presentation" id="switch_attr_talk"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a></li>
         <div class="pull-right">
-            <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span>
-                进程统计
-            </a>
-            <a class="btn btn-success" href="#" id="create_data"
+
+            <a class="btn btn-success" href="javascript:void(0)" id="create_data"
                onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
             <a class="btn btn-primary" href="#" id="upload_file" onclick=""><span
                     class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
+            <a id="child_btn" href="#" class="btn btn-primary"><span class="glyphicon glyphicon-stats"></span>
+                创建子任务
+            </a>
             <a class="btn btn-info" href="#" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 提交审核</a>
+            <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span>
+                进程统计
+            </a>
             <button class="btn btn-default" onclick="location.reload()"><span
                     class="glyphicon glyphicon-refresh"></span> 刷新
             </button>
@@ -101,6 +106,8 @@
     <div role="tabpanel" class="tab-pane" id="talk">
     </div>
     <div role="tabpanel" class="tab-pane" id="source">
+    </div>
+    <div role="tabpanel" class="tab-pane" id="child">
     </div>
 </div>
 </div>
@@ -152,11 +159,12 @@
 <%--<script src="${ctx}/styles/loading/PerfectLoad.js"></script>--%>
 <script type="text/javascript">
     $(document).ready(function () {
-        $.get("showdata.ht?id=${TaskInfo.ddTaskId}", function (data) {
+        $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#data').html(data);
         });
         $("#create_data").show();
         $("#upload_file").hide();
+        $("#child_btn").hide();
     });
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
@@ -165,8 +173,8 @@
             switch_attr_order = document.getElementById('switch_attr_order'),
             statis_btn = document.getElementById('statis_btn'),
             create_task = document.getElementById('create_task'),
-            upload_file = document.getElementById('upload_file');
-
+            upload_file = document.getElementById('upload_file'),
+    switch_attr_child = document.getElementById('switch_attr_child');
     //显示数据详情
     function showDataContent(dataId) {
         $('#datadetail').modal({
@@ -202,18 +210,27 @@
         });
         $("#create_data").hide();
         $("#upload_file").hide();
+        $("#child_btn").hide();
     }
     switch_attr_publish.onclick = function () {
-        $.get("showdata.ht?id=${TaskInfo.ddTaskId}", function (data) {
+        alert(${TaskInfo.ddTaskProjectId});
+        $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#data').html(data);
         });
         $("#create_data").show();
         $("#upload_file").hide();
+        $("#child_btn").hide();
     }
     switch_attr_order.onclick = function () {
         $.get("showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
             $('#publish').html(data);
         });
+        $("#create_data").hide();
+        $("#upload_file").hide();
+        $("#child_btn").hide();
+    }
+    switch_attr_child.onclick = function (){
+        $("#child_btn").show();
         $("#create_data").hide();
         $("#upload_file").hide();
     }
@@ -237,6 +254,7 @@
         <%--});--%>
         $("#create_data").hide();
         $("#upload_file").hide();
+        $("#child_btn").hide();
     }
     //按钮点击操作
     statis_btn.onclick = function () {

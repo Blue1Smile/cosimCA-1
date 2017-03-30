@@ -22,6 +22,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
 </head>
 <body>
-<iframe src="${ctx}/datadriver/designflow/projectflow.ht?flag=0&id=${projectId}&processFlowXml=${processFlowXml}"></iframe>
+<div class="container-fluid">
+    <div class="col-xs-2">
+        <div class="panel">
+            <div class="panel-header">模版</div>
+            <div class="panel-body"></div>
+        </div>
+    </div>
+    <div class="col-xs-8">
+        <div class="panel-header">设计面板</div>
+        <div class="panel-body">
+            <%--<iframe src="${ctx}/datadriver/designflow/projectflow.ht?flag=0&id=${projectId}&processFlowXml=${processFlowXml}"></iframe>--%>
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="panel">
+            <div class="panel-header">属性</div>
+            <div class="panel-body"></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
