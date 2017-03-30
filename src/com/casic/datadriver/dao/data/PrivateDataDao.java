@@ -28,6 +28,11 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
         return this.getUnique("getDataById", id);
     }
 
+
+
+    public List<PrivateData> selectByStructid(long Structid){
+        return this.getBySqlKey("selectByStructid", Structid);
+    }
     /**
      * Query privateData basic info list.
      *

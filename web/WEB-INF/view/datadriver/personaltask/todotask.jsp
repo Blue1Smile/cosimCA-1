@@ -50,7 +50,7 @@
             <ul class="dropdown-menu" style="overflow: auto">
                 <c:forEach var="taskInfoListItem" items="${taskInfoList}">
                     <li title="${taskInfoListItem.ddTaskProjectName}">
-                        <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}">${taskInfoListItem.ddTaskName}</a>
+                        <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}&projectId=${taskInfoListItem.ddTaskProjectId}">${taskInfoListItem.ddTaskName}</a>
                     </li>
                 </c:forEach>
             </ul>
@@ -159,7 +159,7 @@
 <%--<script src="${ctx}/styles/loading/PerfectLoad.js"></script>--%>
 <script type="text/javascript">
     $(document).ready(function () {
-        $.get("showdata.ht?id=${TaskInfo.ddTaskId}", function (data) {
+        $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#data').html(data);
         });
         $("#create_data").show();
@@ -213,7 +213,8 @@
         $("#child_btn").hide();
     }
     switch_attr_publish.onclick = function () {
-        $.get("showdata.ht?id=${TaskInfo.ddTaskId}", function (data) {
+        alert(${TaskInfo.ddTaskProjectId});
+        $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#data').html(data);
         });
         $("#create_data").show();

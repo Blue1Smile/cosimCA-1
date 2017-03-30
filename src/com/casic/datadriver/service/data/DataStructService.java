@@ -1,16 +1,15 @@
 package com.casic.datadriver.service.data;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-import org.springframework.stereotype.Service;
-
+import com.casic.datadriver.dao.data.DataStructDao;
+import com.casic.datadriver.model.QueryParameters;
+import com.casic.datadriver.model.data.DataStruct;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
 import com.hotent.core.web.query.QueryFilter;
+import org.springframework.stereotype.Service;
 
-import com.casic.datadriver.dao.data.DataStructDao;
-import com.casic.datadriver.model.data.DataStruct;
+import javax.annotation.Resource;
+import java.util.List;
 /**
  * The Class DataStructService.
  */
@@ -53,5 +52,21 @@ public class DataStructService extends BaseService<DataStruct> {
     public List<DataStruct> queryDataStructBasicInfoList(QueryFilter queryFilter) {
         return this.dataStructDao.queryDataStructBasicInfoList(queryFilter);
     }
+
+    public List<DataStruct> getStructByTaskId(Long id) {
+        return this.dataStructDao.getStructByTaskId(id);
+    }
+
+    public List<DataStruct> getStructByPublish(QueryParameters queryparameters) {
+        return this.dataStructDao.getStructByPublish(queryparameters);
+    }
+
+    public List<DataStruct> getStructByTaskAndOId(QueryParameters queryparameters) {
+        return this.dataStructDao.getStructByTaskAndOId(queryparameters);
+    }
+    public List<DataStruct> getStructByProjectAndPId(QueryParameters queryparameters) {
+        return this.dataStructDao.getStructByProjectAndPId(queryparameters);
+    }
+
 
 }

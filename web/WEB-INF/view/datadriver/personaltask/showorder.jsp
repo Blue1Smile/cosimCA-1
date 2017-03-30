@@ -97,7 +97,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "canbeorderprivatedata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/datastruct/showpublishdataByProid.ht?id=${taskId}",
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -126,21 +126,16 @@
                     checkbox: true
                 },
                 {//第一列，数据ID
-                    field: 'ddDataId',
-                    title: '指标Id',
-                    sortable: true,
+                    field: 'ddStructId',
+                    title: '数据Id',
+                    sortable: false,
                     editable: false,
                     align: 'center',
                     visible: false
                 }, {//第二列，名称
-                    field: 'ddDataName',
+                    field: 'ddStructName',
                     title: '指标名称',
-                    sortable: true,
-                    editable: {
-                        validate: function (va) {
-                            if (va.length == 0) return '指标名称不能为空';
-                        }
-                    },
+                    sortable: false,
                     align: 'center',
                     visible: true
                 }, {//所属任务ID
@@ -151,29 +146,15 @@
                     align: 'center',
                     visible: false
                 }
-                , {//第三列，数值
-                    field: 'ddDataLastestValue',
-                    title: '最新值',
-                    sortable: true,
-                    align: 'center',
-                    editable: {
-                        type: 'text',
-                        title: '值',
-                        validate: function (v) {
-                            if (isNaN(v)) return '值必须是数字';
-                        }
-                    }
-                }
                 , {//数据类型
-                    field: 'ddDataType',
+                    field: 'ddType',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: true
-                }
-                , {//数据类型
-                    field: 'ddDataPublishType',
+                }, {//数据类型
+                    field: 'ddOrderState',
                     title: '发布订阅状态',
                     sortable: true,
                     editable: false,
@@ -190,15 +171,110 @@
             onClickRow: function (row, $element) {
                 curRow = row;
             },
+            onExpandRow: function (index, row, $detail) {
+                InitSubTablePro(index, row, $detail);
+            },
             onEditableSave: function (field, row, oldValue, $el) {
             }
         });
+
+        function InitSubTablePro(index, row, $detail) {
+            var parentid = row.ddStructId;
+            var cur_table = $detail.html('<table></table>').find('table');
+            // alert(row.ToolName);
+            $(cur_table).bootstrapTable({
+                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                method: 'get',
+                queryParams: { strParentID: parentid },
+                ajaxOptions: { strParentID: parentid },
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                // pagination: true,                   //是否显示分页（*）
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                clickToSelect: true,
+                detailView: false,//父子表
+                uniqueId: "MENU_ID",
+                pageSize: 10,
+                pageList: [10, 25],
+                columns: [{
+                    checkbox: true
+                },                {//第一列，数据ID
+                    field: 'ddDataId',
+                    title: '指标Id',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: false
+                }, {//第二列，名称
+                    field: 'ddDataName',
+                    title: '指标名称',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: true
+                }, {//所属任务ID
+                    field: 'ddDataTaskName',
+                    title: '所属项目ID',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: false
+                }
+                    , {//第三列，数值
+                        field: 'ddDataLastestValue',
+                        title: '最新值',
+                        sortable: true,
+                        align: 'center',
+                        editable: {
+                            mode: 'inline',
+                            onblur: 'submit',
+                            validate: function (va) {
+                                if (va.length == 0) return '指标名称不能为空';
+                            }
+                        },
+                    }
+                    , {//数据类型
+                        field: 'ddDataType',
+                        title: '数据类型',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
+                    }
+                    , {//数据类型
+                        field: 'ddDataPublishType',
+                        title: '发布订阅状态',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }, {
+                        field: 'operate',
+                        title: '操作',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatterCanOrder
+                    }
+                ],
+                //
+                //无线循环取子表，直到子表里面没有记录
+                onExpandRow: function (index, row, $Subdetail) {
+                    InitSubTable(index, row, $Subdetail);
+                },
+                onClickRow:function (row, tr)
+                {
+                    // alert(row.ToolUrl);
+                    // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                }
+
+
+            });
+        };
 
         $table_order.bootstrapTable({
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "orderprivatedata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/datastruct/showsubscriptiondata.ht?id=${taskId}",
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -227,21 +303,16 @@
                     checkbox: true
                 },
                 {//第一列，数据ID
-                    field: 'ddDataId',
+                    field: 'ddStructId',
                     title: '数据Id',
                     sortable: false,
                     editable: false,
                     align: 'center',
                     visible: false
                 }, {//第二列，名称
-                    field: 'ddDataName',
+                    field: 'ddStructName',
                     title: '指标名称',
                     sortable: false,
-                    editable: {
-                        validate: function (va) {
-                            if (va.length == 0) return '指标名称不能为空';
-                        }
-                    },
                     align: 'center',
                     visible: true
                 }, {//所属任务ID
@@ -252,28 +323,15 @@
                     align: 'center',
                     visible: false
                 }
-                , {//第三列，数值
-                    field: 'ddDataLastestValue',
-                    title: '最新值',
-                    sortable: true,
-                    align: 'center',
-                    editable: {
-                        type: 'text',
-                        title: '值',
-                        validate: function (v) {
-                            if (isNaN(v)) return '值必须是数字';
-                        }
-                    }
-                }
                 , {//数据类型
-                    field: 'ddDataType',
+                    field: 'ddType',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: true
                 }, {//数据类型
-                    field: 'ddDataPublishType',
+                    field: 'ddOrderState',
                     title: '发布订阅状态',
                     sortable: true,
                     editable: false,
@@ -290,9 +348,104 @@
             onClickRow: function (row, $element) {
                 curRow = row;
             },
+            onExpandRow: function (index, row, $detail) {
+                InitSubTable(index, row, $detail);
+            },
             onEditableSave: function (field, row, oldValue, $el) {
             }
         });
+
+        function InitSubTable(index, row, $detail) {
+            var parentid = row.ddStructId;
+            var cur_table = $detail.html('<table></table>').find('table');
+            // alert(row.ToolName);
+            $(cur_table).bootstrapTable({
+                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                method: 'get',
+                queryParams: { strParentID: parentid },
+                ajaxOptions: { strParentID: parentid },
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                // pagination: true,                   //是否显示分页（*）
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                clickToSelect: true,
+                detailView: false,//父子表
+                uniqueId: "MENU_ID",
+                pageSize: 10,
+                pageList: [10, 25],
+                columns: [{
+                    checkbox: true
+                },                {//第一列，数据ID
+                    field: 'ddDataId',
+                    title: '指标Id',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: false
+                }, {//第二列，名称
+                    field: 'ddDataName',
+                    title: '指标名称',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: true
+                }, {//所属任务ID
+                    field: 'ddDataTaskName',
+                    title: '所属项目ID',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: false
+                }
+                    , {//第三列，数值
+                        field: 'ddDataLastestValue',
+                        title: '最新值',
+                        sortable: true,
+                        align: 'center',
+                        editable: {
+                            mode: 'inline',
+                            onblur: 'submit',
+                            validate: function (va) {
+                                if (va.length == 0) return '指标名称不能为空';
+                            }
+                        },
+                    }
+                    , {//数据类型
+                        field: 'ddDataType',
+                        title: '数据类型',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
+                    }
+                    , {//数据类型
+                        field: 'ddDataPublishType',
+                        title: '发布订阅状态',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }, {
+                        field: 'operate',
+                        title: '操作',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatterCanOrder
+                    }
+                ],
+                //
+                //无线循环取子表，直到子表里面没有记录
+                onExpandRow: function (index, row, $Subdetail) {
+                    InitSubTable(index, row, $Subdetail);
+                },
+                onClickRow:function (row, tr)
+                {
+                    // alert(row.ToolUrl);
+                    // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                }
+
+
+            });
+        };
     }
     //刷新列表
     function refresh(e) {
