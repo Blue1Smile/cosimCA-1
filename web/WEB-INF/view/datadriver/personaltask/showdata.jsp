@@ -20,7 +20,7 @@
         table {
             background-color: #ffffff;
             width: 100% !important;
-            margin: 0px !important;
+            /*margin: 0px !important;*/
         }
 
         .panel {
@@ -37,9 +37,9 @@
             /*display:none !important;*/
         /*}*/
 
-        .bootstrap-table{
-            margin-top: -20px;
-        }
+        /*.bootstrap-table{*/
+            /*margin-top: -20px;*/
+        /*}*/
     </style>
 </head>
 <body>

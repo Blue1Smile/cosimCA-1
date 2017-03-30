@@ -1097,7 +1097,7 @@ layui.define(function(exports){
     return this.off(event, selector, callback)
   }
 
-  $.fn.live = function(event, callback){
+  $.fn.on = function(event, callback){
     $(document.body).delegate(this.selector, event, callback)
     return this
   }
