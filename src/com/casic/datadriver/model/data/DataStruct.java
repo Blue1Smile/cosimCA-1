@@ -29,11 +29,13 @@ public class DataStruct {
 
     private String ddDescription;
 
-
+    //0未发布   1已发布
     private Short ddPublishState;
 
+    //0为订阅   1已订阅
     private Short ddOrderState;
 
+    //0未提交   已提交
     private Short ddSubmitState;
 
     private String ddTaskName;
@@ -42,10 +44,19 @@ public class DataStruct {
 
     private Date ddCreateTime;
 
-
     private String ddEngName;
 
     private Long ddProjectId;
+
+    public Long getDdCreatorId() {
+        return ddCreatorId;
+    }
+
+    public void setDdCreatorId(Long ddCreatorId) {
+        this.ddCreatorId = ddCreatorId;
+    }
+
+    private Long ddCreatorId;
 
     protected List<PrivateData> privateDataList= new ArrayList<PrivateData>();
 
@@ -231,6 +242,7 @@ public class DataStruct {
                 .append(this.ddSubmitState, ti.ddSubmitState)
                 .append(this.ddType, ti.ddType)
                 .append(this.ddProjectId, ti.ddProjectId)
+                .append(this.ddCreatorId,ti.ddCreatorId)
                 .isEquals();
     }
 
@@ -258,6 +270,7 @@ public class DataStruct {
                 .append(this.ddSubmitState)
                 .append(this.ddType)
                 .append(this.ddProjectId)
+                .append(this.ddCreatorId)
                 .toHashCode();
     }
 
@@ -285,6 +298,7 @@ public class DataStruct {
                 .append(this.ddSubmitState)
                 .append(this.ddType)
                 .append(this.ddProjectId)
+                .append(this.ddCreatorId)
                 .toString();
     }
 }
