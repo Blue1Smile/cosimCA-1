@@ -213,7 +213,7 @@
         $("#child_btn").hide();
     }
     switch_attr_publish.onclick = function () {
-        alert(${TaskInfo.ddTaskProjectId});
+        <%--alert(${TaskInfo.ddTaskProjectId});--%>
         $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#data').html(data);
         });
