@@ -73,19 +73,6 @@
             </div>
             <div class="panel-body panelheight" id="createpanel">
                 <table id="table_private"></table>
-                <%--<ul id="createpanel" class="scrum-stage-tasks">--%>
-                <%--<c:forEach var="privateDataListbyTaskItem" items="${privateDataListbyTask}">--%>
-                <%--<li class="task task-card ui-sortable-handle " id="showRightPush">--%>
-                <%--<div class="row">--%>
-                <%--<strong class="col-xs-5 overflow-card" onclick="showDataContent(${privateDataListbyTaskItem.ddDataId})">${privateDataListbyTaskItem.ddDataName}</strong>--%>
-                <%--<em class="col-xs-5 overflow-card">${privateDataListbyTaskItem.ddDataTaskName}</em>--%>
-                <%--<a class="big-font glyphicon glyphicon-transfer col-xs-2"></a>--%>
-                <%--</div>--%>
-                <%--<input type="hidden" value="${privateDataListbyTaskItem.ddDataId}"--%>
-                <%--name="release"/>--%>
-                <%--</li>--%>
-                <%--</c:forEach>--%>
-                <%--</ul>--%>
             </div>
         </div>
     </div>
@@ -564,7 +551,7 @@
     }
     //设置table高度
     function getHeight() {
-        return $(window).height() - $('.panel-heading').outerHeight(true) - 65;
+        return $(window).height() - $('.panel-heading').outerHeight(true) - 52;
     }
 
     window.operateEvents = {

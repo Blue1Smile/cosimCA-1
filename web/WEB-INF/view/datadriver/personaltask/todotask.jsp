@@ -90,74 +90,77 @@
             </button>
         </div>
     </ul>
-</div>
-<br>
-<div class="tab-content board-view">
-    <div role="tabpanel" class="tab-pane active board-scrum-view" id="data" style="height: 100%">
-    </div>
-    <div role="tabpanel" class="tab-pane" id="index">
-    </div>
-    <div role="tabpanel" class="tab-pane" id="publish">
-    </div>
-    <%--<div role="tabpanel" class="tab-pane" id="order">--%>
-    <%--</div>--%>
-    <%--<div role="tabpanel" class="tab-pane" id="file">--%>
-    <%--</div>--%>
-    <div role="tabpanel" class="tab-pane" id="talk">
-    </div>
-    <div role="tabpanel" class="tab-pane" id="source">
-    </div>
-    <div role="tabpanel" class="tab-pane" id="child">
-    </div>
-</div>
-</div>
-<%--添加数据--%>
-<div class="modal fade" id="adddata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
 
+    <br>
+    <div class="tab-content board-view">
+        <div role="tabpanel" class="tab-pane active board-scrum-view" id="data" style="height: 100%">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="index">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="publish">
+        </div>
+        <%--<div role="tabpanel" class="tab-pane" id="order">--%>
+        <%--</div>--%>
+        <%--<div role="tabpanel" class="tab-pane" id="file">--%>
+        <%--</div>--%>
+        <div role="tabpanel" class="tab-pane" id="talk">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="source">
+        </div>
+        <div role="tabpanel" class="tab-pane" id="child">
+        </div>
+    </div>
+
+    <%--添加数据--%>
+    <div class="modal fade" id="adddata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <%--任务完成--%>
+    <div class="modal fade" id="submittask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <%--统计--%>
+    <div class="modal fade" id="statis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <%--数据详情--%>
+    <div class="modal fade" id="datadetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="overflow: auto" id="datadetailcontent" style="overflow: auto">
+
+            </div>
+        </div>
+    </div>
+
+    <%--文件上传--%>
+    <div class="modal fade" id="fileupload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="overflow: auto" id="fileuploadcontent" style="overflow: auto">
+
+            </div>
         </div>
     </div>
 </div>
-<%--任务完成--%>
-<div class="modal fade" id="submittask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-        </div>
-    </div>
-</div>
-<%--统计--%>
-<div class="modal fade" id="statis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-
-        </div>
-    </div>
-</div>
-
-<%--数据详情--%>
-<div class="modal fade" id="datadetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="overflow: auto" id="datadetailcontent" style="overflow: auto">
-
-        </div>
-    </div>
-</div>
-
-<%--文件上传--%>
-<div class="modal fade" id="fileupload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="overflow: auto" id="fileuploadcontent" style="overflow: auto">
-
-        </div>
-    </div>
-</div>
-
 </body>
 <script src="${ctx}/styles/slide/js/classie.js"></script>
 <%--<script src="${ctx}/styles/loading/PerfectLoad.js"></script>--%>
 <script type="text/javascript">
+    //@ sourceURL=todotask.ht
     $(document).ready(function () {
         $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#data').html(data);
@@ -165,6 +168,7 @@
         $("#create_data").show();
         $("#upload_file").hide();
         $("#child_btn").hide();
+
     });
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
@@ -174,7 +178,7 @@
             statis_btn = document.getElementById('statis_btn'),
             create_task = document.getElementById('create_task'),
             upload_file = document.getElementById('upload_file'),
-    switch_attr_child = document.getElementById('switch_attr_child');
+            switch_attr_child = document.getElementById('switch_attr_child');
     //显示数据详情
     function showDataContent(dataId) {
         $('#datadetail').modal({
@@ -229,7 +233,7 @@
         $("#upload_file").hide();
         $("#child_btn").hide();
     }
-    switch_attr_child.onclick = function (){
+    switch_attr_child.onclick = function () {
         $("#child_btn").show();
         $("#create_data").hide();
         $("#upload_file").hide();
