@@ -23,76 +23,82 @@
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
     <title>添加私有数据</title>
     <style>
-        .tree {
-            overflow: auto;
-            min-height: 20px;
+        /*.tree {*/
+            /*overflow: auto;*/
+            /*min-height: 20px;*/
+            /*padding: 0px;*/
+            /*margin-bottom: 0px;*/
+            /*background-color: #fbfbfb;*/
+            /*border: 1px solid #999;*/
+            /*-webkit-border-radius: 4px;*/
+            /*-moz-border-radius: 4px;*/
+            /*border-radius: 4px;*/
+            /*-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
+            /*-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
+            /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)*/
+        /*}*/
+
+        /*.tree li {*/
+            /*list-style-type: none;*/
+            /*margin: 0;*/
+            /*padding: 10px 5px 0 5px;*/
+            /*position: relative*/
+        /*}*/
+
+        /*.tree li::before, .tree li::after {*/
+            /*content: '';*/
+            /*left: -20px;*/
+            /*position: absolute;*/
+            /*right: auto*/
+        /*}*/
+
+        /*.tree li::before {*/
+            /*border-left: 1px solid #999;*/
+            /*bottom: 50px;*/
+            /*height: 100%;*/
+            /*top: 0;*/
+            /*width: 1px*/
+        /*}*/
+
+        /*.tree li::after {*/
+            /*border-top: 1px solid #999;*/
+            /*height: 20px;*/
+            /*top: 25px;*/
+            /*width: 25px*/
+        /*}*/
+
+        /*.tree li span {*/
+            /*-moz-border-radius: 5px;*/
+            /*-webkit-border-radius: 5px;*/
+            /*border: 1px solid #999;*/
+            /*border-radius: 5px;*/
+            /*display: inline-block;*/
+            /*padding: 3px 8px;*/
+            /*text-decoration: none*/
+        /*}*/
+
+        /*.tree li.parent_li > span {*/
+            /*cursor: pointer*/
+        /*}*/
+
+        /*.tree > ul > li::before, .tree > ul > li::after {*/
+            /*border: 0*/
+        /*}*/
+
+        /*.tree li:last-child::before {*/
+            /*height: 30px*/
+        /*}*/
+
+        /*.tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span {*/
+            /*background: #eee;*/
+            /*border: 1px solid #94a0b4;*/
+            /*color: #000*/
+        /*}*/
+        #privateData{
+            margin: 0px;
+        }
+        #addstructtd{
             padding: 0px;
-            margin-bottom: 0px;
-            background-color: #fbfbfb;
-            border: 1px solid #999;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)
-        }
-
-        .tree li {
-            list-style-type: none;
-            margin: 0;
-            padding: 10px 5px 0 5px;
-            position: relative
-        }
-
-        .tree li::before, .tree li::after {
-            content: '';
-            left: -20px;
-            position: absolute;
-            right: auto
-        }
-
-        .tree li::before {
-            border-left: 1px solid #999;
-            bottom: 50px;
-            height: 100%;
-            top: 0;
-            width: 1px
-        }
-
-        .tree li::after {
-            border-top: 1px solid #999;
-            height: 20px;
-            top: 25px;
-            width: 25px
-        }
-
-        .tree li span {
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border: 1px solid #999;
-            border-radius: 5px;
-            display: inline-block;
-            padding: 3px 8px;
-            text-decoration: none
-        }
-
-        .tree li.parent_li > span {
-            cursor: pointer
-        }
-
-        .tree > ul > li::before, .tree > ul > li::after {
-            border: 0
-        }
-
-        .tree li:last-child::before {
-            height: 30px
-        }
-
-        .tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span {
-            background: #eee;
-            border: 1px solid #94a0b4;
-            color: #000
         }
     </style>
 </head>
@@ -108,7 +114,7 @@
             <tbody>
             <tr type="subdata">
                 <td height="30" align="center">
-                    <input type="text" name="NO" size="1" value="1" class="form-control"/></td>
+                    <input type="text" name="NO" size="1" value="1" class="form-control" readonly/></td>
                 <td align="center">
                     <input type="text" name="ddDataName" class="form-control"/></td>
                 <td align="center">
@@ -174,7 +180,7 @@
                     <%--</tr>--%>
                 <tr id="initValue">
                     <th width="20%">创建数据结构:</th>
-                    <td colspan="5">
+                    <td colspan="5" id="addstructtd">
                         <table id="privateData" width="700" border="0" cellspacing="0" cellpadding="0" type="sub" formType="page">
                             <thead>
                             <tr>
@@ -187,7 +193,7 @@
                             </thead>
                             <tbody>
                             <tr type="subdata">
-                                <td height="30" align="center"><input type="text" name="NO" size="1" value="1" class="form-control"/></td>
+                                <td height="30" align="center"><input type="text" name="NO" size="1" value="1" class="form-control" readonly/></td>
                                 <td align="center"><input type="text" name="ddDataName" class="form-control"/></td>
                                 <td align="center"><ap:selectDB name="ddDataType" id="ddDataType" where="parentId=10000025100454" optionValue="itemValue" optionText="itemName" table="SYS_DIC" selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control"></ap:selectDB></td>
                                 <td align="center"><input type="text" name="ddDataDescription" class="form-control"/></td>
@@ -219,8 +225,6 @@
                 <input type="hidden" id="ddTaskId" name="ddTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
-
-
         </form>
         <div class="row">
             <button class="btn btn-primary btn-block" id="dataFormSave">创建新私有数据</button>

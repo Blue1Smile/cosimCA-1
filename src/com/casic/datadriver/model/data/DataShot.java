@@ -32,7 +32,7 @@ public class DataShot {
 
     private Long ddDataIsDelivery;
 
-    private Long ddDataSensitiveness;
+    private String ddDataSensitiveness;
 
     private String ddDataTaskName;
 
@@ -136,11 +136,11 @@ public class DataShot {
         this.ddDataIsDelivery = ddDataIsDelivery;
     }
 
-    public Long getDdDataSensitiveness() {
+    public String getDdDataSensitiveness() {
         return ddDataSensitiveness;
     }
 
-    public void setDdDataSensitiveness(Long ddDataSensitiveness) {
+    public void setDdDataSensitiveness(String ddDataSensitiveness) {
         this.ddDataSensitiveness = ddDataSensitiveness;
     }
 

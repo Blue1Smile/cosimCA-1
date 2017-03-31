@@ -1,12 +1,16 @@
 package com.casic.datadriver.service.data;
 
+import com.casic.datadriver.dao.data.DataStructDao;
 import com.casic.datadriver.dao.data.PrivateDataDao;
 import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.data.DataStruct;
 import com.casic.datadriver.model.data.PrivateData;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
+import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.query.QueryFilter;
+import com.hotent.platform.auth.ISysUser;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -18,6 +22,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +37,9 @@ public class PrivateDataService extends BaseService<PrivateData> {
     @Resource
     private PrivateDataDao privateDataDao;
 
+    @Resource
+    private DataStructDao dataStructDao;
+
     public boolean addDDPrivateData(PrivateData privateData) {
         this.privateDataDao.add(privateData);
         return true;
@@ -45,6 +53,10 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
     public List<PrivateData> queryPrivateDataBasicInfoList(QueryFilter queryFilter) {
         return this.privateDataDao.queryPrivateDataBasicInfoList(queryFilter);
+    }
+
+    public List<PrivateData> selectByStructid(Long Structid) {
+        return this.privateDataDao.selectByStructid(Structid);
     }
 
     public List<PrivateData> queryPrivateDataByddTaskID(long id) {
@@ -98,11 +110,13 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return value;
     }
 
-    private List<PrivateData> readBrandPeriodSorXls(InputStream is)
+    private List<PrivateData> readBrandPeriodSorXls(InputStream is,Long taskId,Long projectId)
             throws IOException, ParseException {
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
         List<PrivateData> brandMobileInfos = new ArrayList<PrivateData>();
+        List<DataStruct> DataStructlist = new ArrayList<DataStruct>();
         PrivateData brandMobileInfo;
+        DataStruct datastruct;
         // 循环工作表Sheet
         for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
             //根据表单序号获取表单
@@ -114,23 +128,56 @@ public class PrivateDataService extends BaseService<PrivateData> {
             // 循环行Row
             for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
                 brandMobileInfo = new PrivateData();
+                datastruct = new DataStruct();
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);
                 brandMobileInfo.setDdDataId(UniqueIdUtil.genId());
+                datastruct.setDdStructId(UniqueIdUtil.genId());
                 for (int i = 0; i < hssfRow.getLastCellNum(); i++) {
+                    brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
+                    brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
+                    brandMobileInfo.setDdDataType(String.valueOf(hssfRow.getCell(4)));
+                    brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
+//                   阈值定义问题
+//                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));
+                    brandMobileInfo.setDdDataUnit(String.valueOf(hssfRow.getCell(7)));
+                    brandMobileInfo.setDdDataTaskId(taskId);
+                    brandMobileInfo.setDdDataNodeId(datastruct.getDdStructId());
+                    brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
+                    brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
+                    ISysUser sysUser = ContextUtil.getCurrentUser();
+                    brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
+                    Date now = new Date();
+                    brandMobileInfo.setDdDataCreateTime(now);
 
+                    datastruct.setDdTaskId(taskId);
+                    datastruct.setDdProjectId(projectId);
+                    datastruct.setDdStructName(String.valueOf(hssfRow.getCell(0)));
+                    datastruct.setDdEngName(String.valueOf(hssfRow.getCell(1)));
+                    datastruct.setDdCreateTime(now);
+                    datastruct.setDdParentId(sysUser.getUserId());
+
+                    brandMobileInfos.add(brandMobileInfo);
+                    DataStructlist.add(datastruct);
                 }
-                brandMobileInfos.add(brandMobileInfo);
+
             }
         }
-        return brandMobileInfos;
-    }
 
-    public List<PrivateData> importBrandPeriodSort(InputStream in) throws Exception {
-        List<PrivateData> brandMobileInfos = readBrandPeriodSorXls(in);
         for (int a = 0; a < brandMobileInfos.size(); a++) {
             this.privateDataDao.add(brandMobileInfos.get(a));
         }
+
+        for (int a = 0; a < DataStructlist.size(); a++) {
+            this.privateDataDao.add(brandMobileInfos.get(a));
+        }
+
         return brandMobileInfos;
+    }
+
+    public int importBrandPeriodSort(InputStream in,Long taskId,Long projectId) throws Exception {
+        List<PrivateData> brandMobileInfos = readBrandPeriodSorXls(in,taskId,projectId);
+
+        return brandMobileInfos.size();
     }
 
 }
