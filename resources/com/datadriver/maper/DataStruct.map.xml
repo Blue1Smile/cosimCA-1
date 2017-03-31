@@ -89,20 +89,6 @@
     delete from dd_data_struct
     where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.casic.datadriver.model.data.DataStruct">
-    insert into dd_data_struct (DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH,
-    DD_DEPTH, DD_PARENT_ID, DD_CATKEY,
-    DD_TASK_ID, DD_IS_LEAF, DD_TYPE,
-    DD_DESCRIPTION, DD_PUBLISH_STATE, DD_ORDER_STATE,
-    DD_SUBMIT_STATE, DD_TASK_NAME, DD_CREATOR,
-    DD_CREATE_TIME, DD_ENG_NAME, DD_PROJECT_ID)
-    values (#{ddStructId,jdbcType=BIGINT}, #{ddStructName,jdbcType=VARCHAR}, #{ddNodePath,jdbcType=VARCHAR},
-    #{ddDepth,jdbcType=SMALLINT}, #{ddParentId,jdbcType=BIGINT}, #{ddCatkey,jdbcType=VARCHAR},
-    #{ddTaskId,jdbcType=BIGINT}, #{ddIsLeaf,jdbcType=SMALLINT}, #{ddType,jdbcType=SMALLINT},
-    #{ddDescription,jdbcType=VARCHAR}, #{ddPublishState,jdbcType=SMALLINT}, #{ddOrderState,jdbcType=SMALLINT},
-    #{ddSubmitState,jdbcType=SMALLINT}, #{ddTaskName,jdbcType=VARCHAR}, #{ddCreator,jdbcType=VARCHAR},
-    #{ddCreateTime,jdbcType=TIMESTAMP}, #{ddEngName,jdbcType=VARCHAR}, #{ddProjectId,jdbcType=VARCHAR})
-  </insert>
   <insert id="add" parameterType="com.casic.datadriver.model.data.DataStruct">
     insert into dd_data_struct (DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH,
     DD_DEPTH, DD_PARENT_ID, DD_CATKEY,
@@ -117,6 +103,23 @@
     #{ddSubmitState,jdbcType=SMALLINT}, #{ddTaskName,jdbcType=VARCHAR}, #{ddCreator,jdbcType=VARCHAR},
     #{ddCreateTime,jdbcType=TIMESTAMP}, #{ddEngName,jdbcType=VARCHAR}, #{ddProjectId,jdbcType=VARCHAR})
   </insert>
+
+  <insert id="addDataStruct" parameterType="com.casic.datadriver.model.data.DataStruct">
+
+    insert into dd_data_struct (DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH,
+    DD_DEPTH, DD_PARENT_ID, DD_CATKEY,
+    DD_TASK_ID, DD_IS_LEAF, DD_TYPE,
+    DD_DESCRIPTION, DD_PUBLISH_STATE, DD_ORDER_STATE,
+    DD_SUBMIT_STATE, DD_TASK_NAME, DD_CREATOR,
+    DD_CREATE_TIME, DD_ENG_NAME, DD_PROJECT_ID)
+    values (#{ddStructId,jdbcType=BIGINT}, #{ddStructName,jdbcType=VARCHAR}, #{ddNodePath,jdbcType=VARCHAR},
+    #{ddDepth,jdbcType=SMALLINT}, #{ddParentId,jdbcType=BIGINT}, #{ddCatkey,jdbcType=VARCHAR},
+    #{ddTaskId,jdbcType=BIGINT}, #{ddIsLeaf,jdbcType=SMALLINT}, #{ddType,jdbcType=SMALLINT},
+    #{ddDescription,jdbcType=VARCHAR}, #{ddPublishState,jdbcType=SMALLINT}, #{ddOrderState,jdbcType=SMALLINT},
+    #{ddSubmitState,jdbcType=SMALLINT}, #{ddTaskName,jdbcType=VARCHAR}, #{ddCreator,jdbcType=VARCHAR},
+    #{ddCreateTime,jdbcType=TIMESTAMP}, #{ddEngName,jdbcType=VARCHAR}, #{ddProjectId,jdbcType=VARCHAR})
+  </insert>
+
   <insert id="insertSelective" parameterType="com.casic.datadriver.model.data.DataStruct">
     insert into dd_data_struct
     <trim prefix="(" suffix=")" suffixOverrides=",">

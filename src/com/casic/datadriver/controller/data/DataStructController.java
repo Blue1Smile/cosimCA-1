@@ -379,6 +379,7 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
             jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
             jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+            jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
 
             jsonMembers.add(jsonObject);
         }
@@ -416,7 +417,7 @@ public class DataStructController extends AbstractController {
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
-        QueryParameters queryparameters = null;
+        QueryParameters queryparameters = new QueryParameters();
         queryparameters.setId(id);
         queryparameters.getBackupsL(1);
         List<DataStruct> structdata_list = dataStructService.getStructByPublish(queryparameters);
@@ -455,7 +456,7 @@ public class DataStructController extends AbstractController {
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
-        QueryParameters queryparameters = null;
+        QueryParameters queryparameters = new QueryParameters();
 
         queryparameters.setId(id);
         queryparameters.getBackupsL(1);
@@ -496,7 +497,7 @@ public class DataStructController extends AbstractController {
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
-        QueryParameters queryparameters = null;
+        QueryParameters queryparameters = new QueryParameters();
 
         queryparameters.setId(id);
         queryparameters.getBackupsL(1);

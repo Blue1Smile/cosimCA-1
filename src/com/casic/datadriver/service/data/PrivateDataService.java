@@ -110,7 +110,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return value;
     }
 
-    private List<PrivateData> readBrandPeriodSorXls(InputStream is,Long taskId,Long projectId)
+    private List<PrivateData> readBrandPeriodSorXls(InputStream is, Long taskId, Long projectId)
             throws IOException, ParseException {
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
         List<PrivateData> brandMobileInfos = new ArrayList<PrivateData>();
@@ -124,41 +124,51 @@ public class PrivateDataService extends BaseService<PrivateData> {
             if (hssfSheet == null) {
                 continue;
             }
-
+            String str = null;
+            Long StructId = Long.valueOf(0);
             // 循环行Row
             for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
                 brandMobileInfo = new PrivateData();
                 datastruct = new DataStruct();
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);
-                brandMobileInfo.setDdDataId(UniqueIdUtil.genId());
-                datastruct.setDdStructId(UniqueIdUtil.genId());
-                for (int i = 0; i < hssfRow.getLastCellNum(); i++) {
-                    brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
-                    brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
-                    brandMobileInfo.setDdDataType(String.valueOf(hssfRow.getCell(4)));
-                    brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
-//                   阈值定义问题
-//                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));
-                    brandMobileInfo.setDdDataUnit(String.valueOf(hssfRow.getCell(7)));
-                    brandMobileInfo.setDdDataTaskId(taskId);
-                    brandMobileInfo.setDdDataNodeId(datastruct.getDdStructId());
-                    brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
-                    brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
-                    ISysUser sysUser = ContextUtil.getCurrentUser();
-                    brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
-                    Date now = new Date();
-                    brandMobileInfo.setDdDataCreateTime(now);
 
+                ISysUser sysUser = ContextUtil.getCurrentUser();
+                Date now = new Date();
+
+                if (!String.valueOf(hssfRow.getCell(0)).equals(str)) {
+                    str = String.valueOf(hssfRow.getCell(0));
+                    StructId = UniqueIdUtil.genId();
+                    datastruct.setDdStructId(StructId);
                     datastruct.setDdTaskId(taskId);
                     datastruct.setDdProjectId(projectId);
                     datastruct.setDdStructName(String.valueOf(hssfRow.getCell(0)));
                     datastruct.setDdEngName(String.valueOf(hssfRow.getCell(1)));
                     datastruct.setDdCreateTime(now);
                     datastruct.setDdParentId(sysUser.getUserId());
-
-                    brandMobileInfos.add(brandMobileInfo);
                     DataStructlist.add(datastruct);
                 }
+                brandMobileInfo.setDdDataId(UniqueIdUtil.genId());
+
+
+                brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
+                brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
+                brandMobileInfo.setDdDataType(String.valueOf(hssfRow.getCell(4)));
+                brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
+//                   阈值定义问题
+//                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));
+                brandMobileInfo.setDdDataUnit(String.valueOf(hssfRow.getCell(7)));
+                brandMobileInfo.setDdDataTaskId(taskId);
+                brandMobileInfo.setDdDataNodeId(StructId);
+//                    brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
+//                    brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
+
+                brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
+                brandMobileInfo.setDdDataCreateTime(now);
+
+
+                brandMobileInfos.add(brandMobileInfo);
+
+//                }
 
             }
         }
@@ -168,14 +178,14 @@ public class PrivateDataService extends BaseService<PrivateData> {
         }
 
         for (int a = 0; a < DataStructlist.size(); a++) {
-            this.privateDataDao.add(brandMobileInfos.get(a));
+            this.dataStructDao.addDataStruct(DataStructlist.get(a));
         }
 
         return brandMobileInfos;
     }
 
-    public int importBrandPeriodSort(InputStream in,Long taskId,Long projectId) throws Exception {
-        List<PrivateData> brandMobileInfos = readBrandPeriodSorXls(in,taskId,projectId);
+    public int importBrandPeriodSort(InputStream in, Long taskId, Long projectId) throws Exception {
+        List<PrivateData> brandMobileInfos = readBrandPeriodSorXls(in, taskId, projectId);
 
         return brandMobileInfos.size();
     }
