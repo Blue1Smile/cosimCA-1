@@ -21,6 +21,7 @@ public class PrivateData extends BaseModel {
 
     private String ddDataLastestValue;
 
+
     private Long ddDataSubmiteState;
 
     private Long ddDataCreatePerson;
@@ -50,6 +51,7 @@ public class PrivateData extends BaseModel {
     private String ddDataUnit;
 
     private String ddDataEngName;
+
 
     public String getDataEngName() {
         return ddDataEngName;

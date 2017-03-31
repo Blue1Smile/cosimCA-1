@@ -129,6 +129,7 @@ public class DataStructController extends AbstractController {
                     }
                     resultMsg = getText("record.added", "cloud_account_info");
 
+
                 }
                 //如果是只有一个属性的结构型数据
                 else{
