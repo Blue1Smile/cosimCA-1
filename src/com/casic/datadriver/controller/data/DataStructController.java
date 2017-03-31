@@ -8,6 +8,8 @@ import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.service.data.DataStructService;
 import com.casic.datadriver.service.data.PrivateDataService;
 import com.hotent.core.annotion.Action;
+import com.hotent.core.util.UniqueIdUtil;
+import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
 import net.sf.json.JSONArray;
@@ -56,14 +58,12 @@ import static com.casic.cloud.controller.console.ConsoleController.formatJson;
  * @author 2016/11/14 0014.
  */
 @Controller
-@RequestMapping("/datadriver/datastruct/")
+@RequestMapping("/datadriver/data/")
 public class DataStructController extends AbstractController {
 
     /** The dataStruct service. */
     @Resource
     private DataStructService dataStructService;
-    @Resource
-    private PrivateDataService privateDataService;
 
     @Resource
     private PrivateDataService privateDataService;
@@ -282,14 +282,11 @@ public class DataStructController extends AbstractController {
         Long b = pageSize * (pageNumber);
 //        ModelCenterModel temp;88
         List<DataStruct> structdata_list = dataStructService.getStructByTaskId(id);
-//
-//
-//
+
         if (b > structdata_list.size()) {
             b = Long.valueOf(structdata_list.size());
         }
-//
-//
+
         JSONObject json=CombinationJSON(a,b,structdata_list);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
@@ -329,7 +326,7 @@ public class DataStructController extends AbstractController {
 //            jsonObject.put("num", mymode.getDdDataId());
             jsonMembers.add(jsonObject);
         }
-//
+
         json.put("total", list.size());
         json.put("rows", jsonMembers);
 
