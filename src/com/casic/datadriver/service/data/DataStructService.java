@@ -28,7 +28,7 @@ public class DataStructService extends BaseService<DataStruct> {
      * @return true, if successful
      */
     public boolean addDDDataStruct(DataStruct dataStruct) {
-        this.dataStructDao.add(dataStruct);
+        this.dataStructDao.addDataStruct(dataStruct);
         return true;
     }
 
