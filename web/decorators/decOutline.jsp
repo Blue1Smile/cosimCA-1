@@ -37,10 +37,10 @@
             margin: 0 8px 10px 30px;
             color: #1976D2;
         }
-        .row {
-             margin-right: 0px !important;
-             margin-left: 0px !important;
-        }
+        /*.row {*/
+             /*margin-right: 0px !important;*/
+             /*margin-left: 0px !important;*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -51,13 +51,13 @@
     </div>
 
     <%@include file="/commons/cloud/top_console.jsp" %>
-    <div class="col-xs-2">
-        <decorator:body/>
-    </div>
-    <div class="col-xs-10">
+    <%--<div class="col-xs-2">--%>
+        <%--<decorator:body/>--%>
+    <%--</div>--%>
+
     <%--<div class="row">--%>
         <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe" style="width: 100%;height: 650px"></iframe>
-    </div>
+
     <%--<%@include file="/commons/cloud/foot.jsp" %>--%>
 </div>
 </body>

@@ -21,6 +21,7 @@ public class PrivateData extends BaseModel {
 
     private String ddDataLastestValue;
 
+
     private Long ddDataSubmiteState;
 
     private Long ddDataCreatePerson;
@@ -29,15 +30,28 @@ public class PrivateData extends BaseModel {
 
     private Long ddDataIsDelivery;
 
-    private Long ddDataSensitiveness;
+    private String ddDataSensitiveness;
 
     private String ddDataTaskName;
+
+    public Long getDdDataParentId() {
+        return ddDataParentId;
+    }
+
+    public void setDdDataParentId(Long ddDataParentId) {
+        this.ddDataParentId = ddDataParentId;
+    }
+
+    public String getDdDataEngName() {
+        return ddDataEngName;
+    }
 
     private Long ddDataParentId;
 
     private String ddDataUnit;
 
     private String ddDataEngName;
+
 
     public String getDataEngName() {
         return ddDataEngName;
@@ -159,11 +173,11 @@ public class PrivateData extends BaseModel {
         this.ddDataIsDelivery = ddDataIsDelivery;
     }
 
-    public Long getDdDataSensitiveness() {
+    public String getDdDataSensitiveness() {
         return ddDataSensitiveness;
     }
 
-    public void setDdDataSensitiveness(Long ddDataSensitiveness) {
+    public void setDdDataSensitiveness(String ddDataSensitiveness) {
         this.ddDataSensitiveness = ddDataSensitiveness;
     }
 }

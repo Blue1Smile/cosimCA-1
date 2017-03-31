@@ -37,7 +37,7 @@ public class ProjectDao extends BaseDao<Project> {
 
 
 	/**
-	 * 20170107 ���������˲�ѯ��Ŀ
+	 * 20170107
 	 */
 	public List<Project> queryProjectlistByRes(Long ddProjectResponsiblePersonId) {
 		return this.getBySqlKey("queryProjectlistByRes", ddProjectResponsiblePersonId);

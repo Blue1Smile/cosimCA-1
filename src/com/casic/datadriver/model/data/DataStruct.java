@@ -29,6 +29,7 @@ public class DataStruct {
 
     private String ddDescription;
 
+
     private Short ddPublishState;
 
     private Short ddOrderState;
@@ -40,6 +41,7 @@ public class DataStruct {
     private String ddCreator;
 
     private Date ddCreateTime;
+
 
     private String ddEngName;
 

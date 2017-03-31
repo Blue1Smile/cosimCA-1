@@ -55,8 +55,10 @@
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
+
                         <li><a href="javascript:void(0)" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span> 创建单条数据</a></li>
                         <li><a href="javascript:void(0)" title="批量导入数据" onclick="importPrivateData(${taskId},${projectId})"><span class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
+
                         <li role="separator" class="divider"></li>
                         <li><a href="javascript:void(0)" onclick="" title="发布私有数据"><span class="glyphicon glyphicon-ok"></span>
                             发布私有数据</a></li>

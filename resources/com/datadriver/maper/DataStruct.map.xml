@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.casic.datadriver.mapper.DataStructMapper">
+<mapper namespace="com.casic.datadriver.model.data.DataStruct">
   <resultMap id="BaseResultMap" type="com.casic.datadriver.model.data.DataStruct">
     <id column="DD_STRUCT_ID" jdbcType="BIGINT" property="ddStructId" />
     <result column="DD_STRUCT_NAME" jdbcType="VARCHAR" property="ddStructName" />
@@ -21,6 +21,7 @@
     <result column="DD_ENG_NAME" jdbcType="VARCHAR" property="ddEngName" />
     <result column="DD_PROJECT_ID" jdbcType="BIGINT" property="ddProjectId" />
   </resultMap>
+
   <sql id="Base_Column_List">
     DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH, DD_DEPTH, DD_PARENT_ID, DD_CATKEY, DD_TASK_ID,
     DD_IS_LEAF, DD_TYPE, DD_DESCRIPTION, DD_PUBLISH_STATE, DD_ORDER_STATE, DD_SUBMIT_STATE,
@@ -102,7 +103,9 @@
     #{ddSubmitState,jdbcType=SMALLINT}, #{ddTaskName,jdbcType=VARCHAR}, #{ddCreator,jdbcType=VARCHAR},
     #{ddCreateTime,jdbcType=TIMESTAMP}, #{ddEngName,jdbcType=VARCHAR}, #{ddProjectId,jdbcType=VARCHAR})
   </insert>
+
   <insert id="addDataStruct" parameterType="com.casic.datadriver.model.data.DataStruct">
+
     insert into dd_data_struct (DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH,
     DD_DEPTH, DD_PARENT_ID, DD_CATKEY,
     DD_TASK_ID, DD_IS_LEAF, DD_TYPE,

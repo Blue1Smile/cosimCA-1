@@ -38,17 +38,17 @@
             <div class="panel-heading">
                 项目数据集合
                 <div class="btn-group pull-right">
-                    <a href="#" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    <a href="javascript:void(0)" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#" onclick="" title="订阅项目中的数据"><span class="glyphicon glyphicon-ok"></span>
+                        <li><a href="javascript:void(0)" onclick="" title="订阅项目中的数据"><span class="glyphicon glyphicon-ok"></span>
                             订阅</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#" title="隐藏已选择数据"><span class="glyphicon glyphicon-trash"></span> 隐藏</a></li>
-                        <li><a href="#" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
-                        <li><a href="#" onclick="refresh(1)" title="刷新项目数据列表"><span
+                        <li><a href="javascript:void(0)" title="隐藏已选择数据"><span class="glyphicon glyphicon-trash"></span> 隐藏</a></li>
+                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
+                        <li><a href="javascript:void(0)" onclick="refresh(1)" title="刷新项目数据列表"><span
                                 class="glyphicon glyphicon-refresh"></span> 刷新</a></li>
                     </ul>
                 </div>
@@ -69,10 +69,11 @@
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#" title="撤销订阅数据"><span class="glyphicon glyphicon-hand-left"></span> 撤销订阅</a></li>
+                        <li><a href="javascript:void(0)" title="撤销订阅数据"><span class="glyphicon glyphicon-hand-left"></span> 撤销订阅</a></li>
+                        <li><a href="javascript:void(0)" title="导出数据表"><span class="glyphicon glyphicon-export"></span> 导出数据</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
-                        <li><a href="#" onclick="refresh(0)" title="刷新私有数据看板"><span
+                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
+                        <li><a href="javascript:void(0)" onclick="refresh(0)" title="刷新私有数据看板"><span
                                 class="glyphicon glyphicon-refresh"></span> 刷新</a></li>
                     </ul>
                 </div>
