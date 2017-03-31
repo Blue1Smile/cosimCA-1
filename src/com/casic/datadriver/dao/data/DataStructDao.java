@@ -41,6 +41,9 @@ public class DataStructDao extends BaseDao<DataStruct> {
         return this.getBySqlKey("getStructByProjectAndPId", queryparameters);
     }
 
+    public void addDataStruct(DataStruct datastruct) {
+        this.getBySqlKey("addDataStruct", datastruct);
+    }
 
     /*
      * (non-Javadoc)

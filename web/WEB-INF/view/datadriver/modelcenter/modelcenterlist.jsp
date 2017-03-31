@@ -31,7 +31,7 @@
 <body>
 <div id="toolbar" class="btn-group">
     <a class="btn btn-info" href="#" id="create_index" onclick="createIndex()"><span
-            class="glyphicon glyphicon-plus"></span> 新增工具</a>
+            class="glyphicon glyphicon-plus"></span> 新增模型</a>
 </div>
 <table id="tb_departments" data-filter-control="true"
        data-url="showmodel.ht?Modeltype=<%=request.getParameter("Modeltype")%>&son=1">

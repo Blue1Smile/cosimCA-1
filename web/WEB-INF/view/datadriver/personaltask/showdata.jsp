@@ -135,7 +135,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showsubscriptiondata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/datastruct/showpublishdata.ht?id=${taskId}",
             <%--url: "showpublishdata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -295,6 +295,13 @@
                                 if (va.length == 0) return '指标名称不能为空';
                             }
                         },
+                    } , {//单位
+                        field: 'ddDataUnit',
+                        title: '单位',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
                     }
                     , {//数据类型
                         field: 'ddDataType',
@@ -394,7 +401,7 @@
                     sortable: true,
                     editable: false,
                     align: 'center',
-                    visible: true
+                    visible: false
                 }, {//数据类型
                     field: 'ddOrderState',
                     title: '发布订阅状态',
@@ -486,6 +493,14 @@
                                 if (va.length == 0) return '指标名称不能为空';
                             }
                         },
+                    }
+                    , {//单位
+                        field: 'ddDataUnit',
+                        title: '单位',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
                     }
                     , {//数据类型
                         field: 'ddDataType',
@@ -584,8 +599,8 @@
 
     //Excel批量导入
     function importPrivateData(taskId,projectId) {
-        alert(taskId);
-        alert(projectId);
+//        alert(taskId);
+//        alert(projectId);
         $('#exportData').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/privatedata/importPrivateData.ht?id=" + taskId + "&projectId=" + projectId

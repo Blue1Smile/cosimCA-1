@@ -133,15 +133,15 @@
     DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE,
     DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME,
     DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS,
-    DD_DATA_TASK_NAME, DD_DATA_NODE_ID,
-    DD_DATA_PATH, DD_DATA_UNIT,
+    DD_DATA_TASK_NAME,
+    DD_DATA_UNIT,DD_DATA_PARENT_ID,
     DD_DATA_ENG_NAME)
     values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=VARCHAR},
     #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
     #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
     #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=DATE},
     #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=NUMERIC}, #{ddDataTaskName,jdbcType=VARCHAR},
-    #{ddDataNodeId,jdbcType=NUMERIC}, #{ddDataPath,jdbcType=VARCHAR}, #{ddDataUnit,jdbcType=VARCHAR},
+    #{ddDataUnit,jdbcType=VARCHAR},#{ddDataParentId,jdbcType=NUMERIC},
     #{ddDataEngName,jdbcType=VARCHAR})
   </insert>
 

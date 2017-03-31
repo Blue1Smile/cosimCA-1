@@ -230,6 +230,13 @@
                                 if (va.length == 0) return '指标名称不能为空';
                             }
                         },
+                    } , {//单位
+                        field: 'ddDataUnit',
+                        title: '单位',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
                     }
                     , {//数据类型
                         field: 'ddDataType',
@@ -407,6 +414,13 @@
                                 if (va.length == 0) return '指标名称不能为空';
                             }
                         },
+                    } , {//单位
+                        field: 'ddDataUnit',
+                        title: '单位',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
                     }
                     , {//数据类型
                         field: 'ddDataType',
