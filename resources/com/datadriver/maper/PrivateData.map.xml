@@ -19,7 +19,6 @@
         <result column="DD_DATA_UNIT" jdbcType="VARCHAR" property="ddDataUnit"/>
         <result column="DD_DATA_ENG_NAME" jdbcType="VARCHAR" property="ddDataEngName"/>
     </resultMap>
-
     <sql id="Base_Column_List">
     DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE, DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE, 
     DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
