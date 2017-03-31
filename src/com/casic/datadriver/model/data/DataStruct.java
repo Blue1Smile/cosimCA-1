@@ -4,7 +4,9 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DataStruct {
     private Long ddStructId;
@@ -42,6 +44,8 @@ public class DataStruct {
     private String ddEngName;
 
     private Long ddProjectId;
+
+    protected List<PrivateData> privateDataList= new ArrayList<PrivateData>();
 
     public Long getDdStructId() {
         return ddStructId;
@@ -187,6 +191,15 @@ public class DataStruct {
         this.ddProjectId = ddProjectId;
     }
 
+    public void setPrivateDataList(List<PrivateData> privateDataList)
+    {
+        this.privateDataList = privateDataList;
+    }
+
+    public List<PrivateData> getPrivateDataList()
+    {
+        return this.privateDataList;
+    }
     /**
      * @see Object#equals(Object)
      */
