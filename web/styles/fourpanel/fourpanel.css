@@ -17,7 +17,7 @@ iframe {
 
 .task.task-card {
     /*height: 40px;*/
-    background-color: #fff;
+    background-color: rgba(197, 192, 192, 0.58);
     border-radius: 3px !important;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
     cursor: pointer !important;
@@ -44,7 +44,7 @@ li {
 
 .panelheight {
     position: relative;
-    height: 93%;
+    height: 100%;
 }
 
 /*.cbp-spmenu-push{*/

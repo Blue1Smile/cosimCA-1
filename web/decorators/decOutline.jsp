@@ -3,7 +3,7 @@
 <%@include file="/commons/cloud/global.jsp" %>
 <%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
-<html lang="zh-CN">
+<html lang="zh-CN" style="width: 100%;height: 100%">
 <head>
     <title>协同设计</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
@@ -21,7 +21,11 @@
                     $this.addClass("layui-this");
                 }
             });
+            $("#mainframe").height(getHeight());
         })
+        function getHeight() {
+            return $(window).height() - $('.layui-nav').outerHeight(true) - 80;
+        }
     </script>
 
     <style type="text/css">
@@ -43,8 +47,8 @@
         /*}*/
     </style>
 </head>
-<body>
-<div class="container-fluid">
+<body style="width: 100%;height: 100%">
+<div class="container-fluid" style="width: 100%;height: 100%">
     <br>
     <div class="row">
         <h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>
@@ -56,10 +60,11 @@
     <%--</div>--%>
 
     <%--<div class="row">--%>
-        <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe" style="width: 100%;height: 650px"></iframe>
+        <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe" style="width: 100%;"></iframe>
 
     <%--<%@include file="/commons/cloud/foot.jsp" %>--%>
 </div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+
 </html>
