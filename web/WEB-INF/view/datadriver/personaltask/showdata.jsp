@@ -162,7 +162,7 @@
                     visible: false
                 }, {//第二列，名称
                     field: 'ddStructName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: false,
                     align: 'center',
                     visible: true
@@ -252,14 +252,14 @@
                     checkbox: true
                 },                {//第一列，数据ID
                     field: 'ddDataId',
-                    title: '指标Id',
+                    title: '数据Id',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
                 }, {//第二列，名称
                     field: 'ddDataName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: true,
                     editable: false,
                     align: 'center',
@@ -360,7 +360,7 @@
                     visible: false
                 }, {//第二列，名称
                     field: 'ddStructName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: false,
                     align: 'center',
                     visible: true
@@ -445,14 +445,14 @@
                     checkbox: true
                 },                {//第一列，数据ID
                     field: 'ddDataId',
-                    title: '指标Id',
+                    title: '数据Id',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
                 }, {//第二列，名称
                     field: 'ddDataName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: true,
                     editable: false,
                     align: 'center',
