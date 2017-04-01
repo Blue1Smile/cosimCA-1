@@ -141,7 +141,7 @@
     #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=DATE},
 
     #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=VARCHAR}, #{ddDataTaskName,jdbcType=VARCHAR},
-    #{ddDataParentId,jdbcType=NUMERIC}, #{ddDataUnit,jdbcType=VARCHAR},
+     #{ddDataUnit,jdbcType=VARCHAR},#{ddDataParentId,jdbcType=NUMERIC},
     #{ddDataEngName,jdbcType=VARCHAR})
   </insert>
 
