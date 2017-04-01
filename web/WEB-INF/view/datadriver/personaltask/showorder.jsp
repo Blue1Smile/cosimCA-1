@@ -97,7 +97,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showpublishdataByProid.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showpublishdataByProid.ht?projectId=${projectId}",
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -120,7 +120,7 @@
             uniqueId: "ddDataId",                     //每一行的唯一标识，一般为主键列
             showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
-            detailView: false,                   //是否显示父子表
+            detailView: true,                   //是否显示父子表
             columns: [
                 {
                     checkbox: true
@@ -153,6 +153,13 @@
                     editable: false,
                     align: 'center',
                     visible: true
+                },{//数据类型
+                    field: 'ddPublishState',
+                    title: '发布状态',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: false
                 }, {//数据类型
                     field: 'ddOrderState',
                     title: '发布订阅状态',
@@ -183,7 +190,7 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
                 queryParams: { strParentID: parentid },
                 ajaxOptions: { strParentID: parentid },
@@ -224,13 +231,7 @@
                         title: '最新值',
                         sortable: true,
                         align: 'center',
-                        editable: {
-                            mode: 'inline',
-                            onblur: 'submit',
-                            validate: function (va) {
-                                if (va.length == 0) return '指标名称不能为空';
-                            }
-                        },
+                        editable: false,
                     } , {//单位
                         field: 'ddDataUnit',
                         title: '单位',
@@ -254,12 +255,6 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    }, {
-                        field: 'operate',
-                        title: '操作',
-                        align: 'center',
-                        events: operateEvents,
-                        formatter: operateFormatterCanOrder
                     }
                 ],
                 //
@@ -281,7 +276,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showsubscriptiondata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showsubscriptiondata.ht?id=${taskId}",
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -304,7 +299,7 @@
             uniqueId: "ddDataId",                     //每一行的唯一标识，一般为主键列
             showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
-            detailView: false,                   //是否显示父子表
+            detailView: true,                   //是否显示父子表
             columns: [
                 {
                     checkbox: true
@@ -367,7 +362,7 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
                 queryParams: { strParentID: parentid },
                 ajaxOptions: { strParentID: parentid },
@@ -408,13 +403,7 @@
                         title: '最新值',
                         sortable: true,
                         align: 'center',
-                        editable: {
-                            mode: 'inline',
-                            onblur: 'submit',
-                            validate: function (va) {
-                                if (va.length == 0) return '指标名称不能为空';
-                            }
-                        },
+                        editable:false,
                     } , {//单位
                         field: 'ddDataUnit',
                         title: '单位',
@@ -438,12 +427,6 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    }, {
-                        field: 'operate',
-                        title: '操作',
-                        align: 'center',
-                        events: operateEvents,
-                        formatter: operateFormatterCanOrder
                     }
                 ],
                 //
@@ -468,12 +451,12 @@
     }
     //私有数据列表按钮
     function operateFormatterCanOrder(value, row, index) {
-        if (row.ddOrderType == 0)
+        if (row.ddOrderState == 0)
             return [
                 '<a id="canordertr" class="publish" href="javascript:void(0)" title="点击订阅该数据项">订阅',
                 '</a>'
             ].join('');
-        if (row.ddOrderType == 1)
+        if (row.ddOrderState == 1)
             return [
                 '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
             ].join('');
@@ -481,9 +464,9 @@
 
     //发布数据列表按钮
     function operateFormatterOrder(value, row, index) {
-        if (row.ddOrderType == '1')
+        if (row.ddOrderState == '1')
             return [
-                '<a id="ordertr" class="" href="javascript:void(0)" title="点击撤销发布该数据">撤销',
+                '<a id="ordertr" class="" href="javascript:void(0)" title="点击撤销订阅该数据">撤销',
                 '</a>'
             ].join('');
     }
@@ -494,7 +477,7 @@
 
     window.operateEvents = {
         'click #ordertr': function (e, value, row, index) {
-            $.get("canordertoorder.ht?id=" + row.ddDataId + "&parent=canorderpanel", function (data, status) {
+            $.get("canordertoorder.ht?id=" + row.ddStructId + "&parent=canorderpanel", function (data, status) {
                 if (status=='success'){
                     $table_canbeorder.bootstrapTable('refresh');
                     $table_order.bootstrapTable('refresh');
@@ -502,7 +485,7 @@
             });
         },
         'click #canordertr': function (e, value, row, index) {
-            $.get("canordertoorder.ht?id=" + row.ddDataId + "&parent=orderpanel" + "&taskId=" +${taskId}, function (data, status) {
+            $.get("canordertoorder.ht?id=" + row.ddStructId + "&parent=orderpanel" + "&taskId=" +${taskId}, function (data, status) {
                 if (status=='success'){
                     $table_canbeorder.bootstrapTable('refresh');
                     $table_order.bootstrapTable('refresh');

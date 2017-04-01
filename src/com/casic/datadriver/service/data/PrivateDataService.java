@@ -145,6 +145,9 @@ public class PrivateDataService extends BaseService<PrivateData> {
                     datastruct.setDdEngName(String.valueOf(hssfRow.getCell(1)));
                     datastruct.setDdCreateTime(now);
                     datastruct.setDdParentId(sysUser.getUserId());
+                    datastruct.setDdOrderState((short)0);
+                    datastruct.setDdPublishState((short)0);
+                    datastruct.setDdSubmitState((short)0);
                     DataStructlist.add(datastruct);
                 }
                 brandMobileInfo.setDdDataId(UniqueIdUtil.genId());
@@ -159,8 +162,8 @@ public class PrivateDataService extends BaseService<PrivateData> {
                 brandMobileInfo.setDdDataUnit(String.valueOf(hssfRow.getCell(7)));
                 brandMobileInfo.setDdDataTaskId(taskId);
                 brandMobileInfo.setDdDataNodeId(StructId);
-//                    brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
-//                    brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
+                brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
+                brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
 
                 brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
                 brandMobileInfo.setDdDataCreateTime(now);

@@ -124,7 +124,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showpublishdata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showpublishdata.ht?id=${taskId}",
             <%--url: "showpublishdata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -148,7 +148,7 @@
             uniqueId: "ddDataId",                     //每一行的唯一标识，一般为主键列
             showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
-            detailView: false,                   //是否显示父子表
+            detailView: true,                   //是否显示父子表
             columns: [
                 {
                     checkbox: true
@@ -202,12 +202,12 @@
                     editable: false,
                     align: 'center',
                     visible: false
-                }, {
+                },  {
                     field: 'operate',
                     title: '操作',
                     align: 'center',
                     events: operateEvents,
-                    formatter: operateFormatterPrivate
+                    formatter: operateFormatterPublish
                 }
             ],
             onClickRow: function (row, $element) {
@@ -236,7 +236,7 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
                 queryParams: { strParentID: parentid },
                 ajaxOptions: { strParentID: parentid },
@@ -277,13 +277,7 @@
                         title: '最新值',
                         sortable: true,
                         align: 'center',
-                        editable: {
-                            mode: 'inline',
-                            onblur: 'submit',
-                            validate: function (va) {
-                                if (va.length == 0) return '指标名称不能为空';
-                            }
-                        },
+                        editable: false,
                     } , {//单位
                         field: 'ddDataUnit',
                         title: '单位',
@@ -307,13 +301,7 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    }, {
-                        field: 'operate',
-                        title: '操作',
-                        align: 'center',
-                        events: operateEvents,
-                        formatter: operateFormatterPublish
-                    }
+                    },
                 ],
                 //
                 //无线循环取子表，直到子表里面没有记录
@@ -334,7 +322,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showstructdata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showstructdata.ht?id=${taskId}",
             <%--url: "showprivatedata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -392,8 +380,15 @@
                     align: 'center',
                     visible: false
                 }, {//数据类型
+                    field: 'ddPublishState',
+                    title: '发布状态',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: false
+                },{//数据类型
                     field: 'ddOrderState',
-                    title: '发布订阅状态',
+                    title: '订阅状态',
                     sortable: true,
                     editable: false,
                     align: 'center',
@@ -434,7 +429,7 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
                 queryParams: { strParentID: parentid },
                 ajaxOptions: { strParentID: parentid },
@@ -506,12 +501,6 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    }, {
-                        field: 'operate',
-                        title: '操作',
-                        align: 'center',
-                        events: operateEvents,
-                        formatter: operateFormatterPrivate
                     }
                 ],
                 //
@@ -541,12 +530,12 @@
 //    }
     //私有数据列表按钮
     function operateFormatterPrivate(value, row, index) {
-        if (row.ddDataPublishType == 0)
+        if (row.ddPublishState == 0)
         return [
             '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
             '</a>'
         ].join('');
-        if (row.ddDataPublishType == 1)
+        if (row.ddPublishState == 1)
         return [
             '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
         ].join('');
@@ -554,12 +543,12 @@
 
     //发布数据列表按钮
     function operateFormatterPublish(value, row, index) {
-        if (row.ddDataPublishType == '1')
+        if (row.ddPublishState == '1')
         return [
             '<a id="publishtr" class="" href="javascript:void(0)" title="点击撤销发布该数据">收回',
             '</a>'
         ].join('');
-        if (row.ddDataPublishType == '0')
+        if (row.ddPublishState == '0')
         return [
             '未发布'
         ].join('');
@@ -570,13 +559,15 @@
     }
 
     window.operateEvents = {
+
         'click #privatetr': function (e, value, row, index) {
-            $.get("createtopublish.ht?id=" + row.ddDataId + "&parent=publishpanel");
+//            alert(row.ddStructId);
+            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel");
             $table_private.bootstrapTable('refresh')
             $table_publish.bootstrapTable('refresh')
         },
         'click #publishtr': function (e, value, row, index) {
-            $.get("createtopublish.ht?id=" + row.ddDataId + "&parent=createpanel" + "&taskId=" +${taskId});
+            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId});
             $table_publish.bootstrapTable('refresh')
             $table_private.bootstrapTable('refresh')
         }
