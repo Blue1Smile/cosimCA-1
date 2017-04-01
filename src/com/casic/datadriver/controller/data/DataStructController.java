@@ -5,8 +5,10 @@ import com.casic.datadriver.controller.AbstractController;
 import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.DataStruct;
 import com.casic.datadriver.model.data.PrivateData;
+import com.casic.datadriver.model.task.TaskInfo;
 import com.casic.datadriver.service.data.DataStructService;
 import com.casic.datadriver.service.data.PrivateDataService;
+import com.casic.datadriver.service.task.TaskInfoService;
 import com.hotent.core.annotion.Action;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
@@ -66,8 +68,10 @@ public class DataStructController extends AbstractController {
     private DataStructService dataStructService;
 
     @Resource
-    private PrivateDataService privateDataService;
+    private TaskInfoService taskInfoServiceDataService;
 
+    @Resource
+    private PrivateDataService privateDataService;
     /**
      * 添加结构化数据、文件、模型.
      *
@@ -84,47 +88,61 @@ public class DataStructController extends AbstractController {
         String resultMsg = null;
         String json = RequestUtil.getString(request, "json");
         DataStruct dataStruct = getFormObject(request);
-
+        //添加创建者名称和id
         ISysUser sysUser = ContextUtil.getCurrentUser();
+        dataStruct.setDdCreatorId(sysUser.getUserId());
         dataStruct.setDdCreator(sysUser.getUsername());
-
+        //添加当前时间
         Date currentTime = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateString = formatter.format(currentTime);
-//        dataStruct.setDdCreateTime(dateString);
+        dataStruct.setDdCreateTime(currentTime);
+        //添加所属任务名称和项目id
+        TaskInfo ownerTask = taskInfoServiceDataService.getById(dataStruct.getDdTaskId());
+        dataStruct.setDdProjectId(ownerTask.getDdTaskProjectId());
+        dataStruct.setDdTaskName(ownerTask.getDdTaskName());
+        //添加数据状态信息
+        Short type=0;
+        dataStruct.setDdOrderState(type);
+        dataStruct.setDdPublishState(type);
+        dataStruct.setDdSubmitState(type);
+        //用json数组存放返回的child信息
         JSONObject dataStructJson = JSONObject.fromObject(json);
         JSONArray childDataArray = dataStructJson.getJSONArray("privateDataList");
 
         try {
-
+            //新建进入if  更新进入else
             if (dataStruct.getDdStructId()==null||dataStruct.getDdStructId()==0) {
                 dataStruct.setDdStructId((Long) UniqueIdUtil.genId());
                 dataStructService.addDDDataStruct(dataStruct);
+
                 JSONObject dataJson = JSONObject.fromObject(childDataArray.get(0).toString());
                 //如果是结构型数据包括多个属性值
                 if(dataJson.size()==4) {
                     for (int i = 0; i < childDataArray.size(); i++) {
-                        JSONObject childDataJson = JSONObject.fromObject(childDataArray.get(i).toString());
+                        JSONObject privateDataJson = JSONObject.fromObject(childDataArray.get(i).toString());
 
-                        DataStruct childDataStruct = new DataStruct();
-                        childDataStruct.setDdDescription(childDataJson.getString("ddDataDescription"));
-                        childDataStruct.setDdTaskId(dataStruct.getDdTaskId());
-                        childDataStruct.setDdCreateTime(dataStruct.getDdCreateTime());
-                        childDataStruct.setDdParentId(dataStruct.getDdStructId());
-                        childDataStruct.setDdCreator(dataStruct.getDdCreator());
-//                        childDataStruct.setDdDepth();
-                        childDataStruct.setDdOrderState(dataStruct.getDdOrderState());
-                        childDataStruct.setDdStructName(childDataJson.getString("ddDataName"));
-                        dataStructService.addDDDataStruct(childDataStruct);
-
-//                        PrivateData childPrivateData = new PrivateData();
-//                        childPrivateData.setDdDataId(UniqueIdUtil.genId());
-//                        childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
-//                        childPrivateData.setDdDataPublishType(0l);
-//                        childPrivateData.setDdDataName(privateDataJson.getString("ddDataName"));
-//                        childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
-//                        childPrivateData.setDdDataType(privateDataJson.getString("ddDataType"));
-//                        childPrivateData.setDdDataDescription(privateDataJson.getString("ddDataDescription"));
+//                        DataStruct childDataStruct = new DataStruct();
+//                        childDataStruct.setDdDescription(childDataJson.getString("ddDataDescription"));
+//                        childDataStruct.setDdTaskId(dataStruct.getDdTaskId());
+//                        childDataStruct.setDdCreateTime(dataStruct.getDdCreateTime());
+//                        childDataStruct.setDdParentId(dataStruct.getDdStructId());
+//                        childDataStruct.setDdCreator(dataStruct.getDdCreator());
+//                        childDataStruct.setDdOrderState(dataStruct.getDdOrderState());
+//                        childDataStruct.setDdStructName(childDataJson.getString("ddDataName"));
+//                        dataStructService.addDDDataStruct(childDataStruct);
+                        //存储child信息
+                        PrivateData childPrivateData = new PrivateData();
+                        childPrivateData.setDdDataId(UniqueIdUtil.genId());
+                        childPrivateData.setDdDataName(privateDataJson.getString("ddDataName"));
+                        childPrivateData.setDdDataType(privateDataJson.getString("ddDataType"));
+                        childPrivateData.setDdDataDescription(privateDataJson.getString("ddDataDescription"));
+                        childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
+                        childPrivateData.setDdDataPublishType(0l);
+                        childPrivateData.setDdDataSubmiteState(0l);
+                        childPrivateData.setDdDataCreatePerson(dataStruct.getDdCreatorId());
+                        childPrivateData.setDdDataCreateTime(dataStruct.getDdCreateTime());
+                        childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
+                        childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
+                        privateDataService.add(childPrivateData);
 
                     }
                     resultMsg = getText("record.added", "cloud_account_info");
@@ -135,13 +153,19 @@ public class DataStructController extends AbstractController {
                 else{
                     PrivateData childPrivateData = new PrivateData();
                     childPrivateData.setDdDataId(UniqueIdUtil.genId());
-                    childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
-                    childPrivateData.setDdDataPublishType(0l);
                     childPrivateData.setDdDataName(dataStruct.getDdStructName());
-                    childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
-                    childPrivateData.setDdDataType(dataStruct.getDdType().toString());
+                    childPrivateData.setDdDataType("结构型数据");
                     childPrivateData.setDdDataDescription(dataStruct.getDdDescription());
-                    }
+                    childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
+                    childPrivateData.setDdDataPublishType(0l);
+                    childPrivateData.setDdDataSubmiteState(0l);
+                    childPrivateData.setDdDataCreatePerson(dataStruct.getDdCreatorId());
+                    childPrivateData.setDdDataCreateTime(dataStruct.getDdCreateTime());
+                    childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
+                    childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
+                    privateDataService.add(childPrivateData);
+
+                }
                 resultMsg = getText("record.added", "cloud_account_info");
 
             } else {
