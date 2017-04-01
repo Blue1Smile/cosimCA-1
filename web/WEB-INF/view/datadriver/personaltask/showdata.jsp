@@ -28,17 +28,17 @@
 
         }
 
-        .panel-body{
+        .panel-body {
             padding: 0px !important;
             border-radius: 0px !important;
         }
 
         /*thead{*/
-            /*display:none !important;*/
+        /*display:none !important;*/
         /*}*/
 
         /*.bootstrap-table{*/
-            /*margin-top: -20px;*/
+        /*margin-top: -20px;*/
         /*}*/
     </style>
 </head>
@@ -56,15 +56,21 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
 
-                        <li><a href="javascript:void(0)" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span> 创建单条数据</a></li>
-                        <li><a href="javascript:void(0)" title="批量导入数据" onclick="importPrivateData(${taskId},${projectId})"><span class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
+                        <li><a href="javascript:void(0)" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span>
+                            创建单条数据</a></li>
+                        <li><a href="javascript:void(0)" title="批量导入数据"
+                               onclick="importPrivateData(${taskId},${projectId})"><span
+                                class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
 
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0)" onclick="" title="发布私有数据"><span class="glyphicon glyphicon-ok"></span>
+                        <li><a href="javascript:void(0)" onclick="" title="发布私有数据"><span
+                                class="glyphicon glyphicon-ok"></span>
                             发布私有数据</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0)" title="删除"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
-                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
+                        <li><a href="javascript:void(0)" title="删除"><span class="glyphicon glyphicon-trash"></span>
+                            删除</a></li>
+                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span
+                                class="glyphicon glyphicon-retweet"></span> 反选</a></li>
                         <li><a href="javascript:void(0)" onclick="refresh(1)" title="刷新私有数据看板"><span
                                 class="glyphicon glyphicon-refresh"></span> 刷新</a></li>
                     </ul>
@@ -116,8 +122,8 @@
             $table_publish = $('#table_publish');
     var $export_xml = $('#export_xml');
     var curRow = {};
-    var projectID=0;
-    var taskID=0;
+    var projectID = 0;
+    var taskID = 0;
 
     function initTable() {
         $table_publish.bootstrapTable({
@@ -188,7 +194,7 @@
                     editable: false,
                     align: 'center',
                     visible: false
-                },{//项目ID
+                }, {//项目ID
                     field: 'ddProjectId',
                     title: '项目ID',
                     sortable: true,
@@ -202,7 +208,7 @@
                     editable: false,
                     align: 'center',
                     visible: false
-                },  {
+                }, {
                     field: 'operate',
                     title: '操作',
                     align: 'center',
@@ -236,10 +242,10 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id=' + row.ddStructId,
                 method: 'get',
-                queryParams: { strParentID: parentid },
-                ajaxOptions: { strParentID: parentid },
+                queryParams: {strParentID: parentid},
+                ajaxOptions: {strParentID: parentid},
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 // pagination: true,                   //是否显示分页（*）
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -250,7 +256,7 @@
                 pageList: [10, 25],
                 columns: [{
                     checkbox: true
-                },                {//第一列，数据ID
+                }, {//第一列，数据ID
                     field: 'ddDataId',
                     title: '数据Id',
                     sortable: true,
@@ -278,7 +284,7 @@
                         sortable: true,
                         align: 'center',
                         editable: false,
-                    } , {//单位
+                    }, {//单位
                         field: 'ddDataUnit',
                         title: '单位',
                         sortable: true,
@@ -308,8 +314,7 @@
                 onExpandRow: function (index, row, $Subdetail) {
                     InitSubTable(index, row, $Subdetail);
                 },
-                onClickRow:function (row, tr)
-                {
+                onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
                 }
@@ -386,7 +391,7 @@
                     editable: false,
                     align: 'center',
                     visible: false
-                },{//数据类型
+                }, {//数据类型
                     field: 'ddOrderState',
                     title: '订阅状态',
                     sortable: true,
@@ -424,15 +429,15 @@
 
         function InitSubTable(index, row, $detail) {
             var parentid = row.ddStructId;
-            projectID =row.ddProjectId;
-            taskID =row.ddTaskId;
+            projectID = row.ddProjectId;
+            taskID = row.ddTaskId;
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id=' + row.ddStructId,
                 method: 'get',
-                queryParams: { strParentID: parentid },
-                ajaxOptions: { strParentID: parentid },
+                queryParams: {strParentID: parentid},
+                ajaxOptions: {strParentID: parentid},
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 // pagination: true,                   //是否显示分页（*）
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -443,7 +448,7 @@
                 pageList: [10, 25],
                 columns: [{
                     checkbox: true
-                },                {//第一列，数据ID
+                }, {//第一列，数据ID
                     field: 'ddDataId',
                     title: '数据Id',
                     sortable: true,
@@ -508,8 +513,7 @@
                 onExpandRow: function (index, row, $Subdetail) {
                     InitSubTable(index, row, $Subdetail);
                 },
-                onClickRow:function (row, tr)
-                {
+                onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
                 }
@@ -524,34 +528,34 @@
         if (e == 1) $('#table_private').bootstrapTable('refresh')
     }
     //数据名称是否能够更改
-//    function ifDataNameChange(value, row, index) {
-//        if (row.ddDataPublishType == 1)
-//            $('a').replaceWith($('a').text());
-//    }
+    //    function ifDataNameChange(value, row, index) {
+    //        if (row.ddDataPublishType == 1)
+    //            $('a').replaceWith($('a').text());
+    //    }
     //私有数据列表按钮
     function operateFormatterPrivate(value, row, index) {
         if (row.ddPublishState == 0)
-        return [
-            '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
-            '</a>'
-        ].join('');
+            return [
+                '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
+                '</a>'
+            ].join('');
         if (row.ddPublishState == 1)
-        return [
-            '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
-        ].join('');
+            return [
+                '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
+            ].join('');
     }
 
     //发布数据列表按钮
     function operateFormatterPublish(value, row, index) {
         if (row.ddPublishState == '1')
-        return [
-            '<a id="publishtr" class="" href="javascript:void(0)" title="点击撤销发布该数据">收回',
-            '</a>'
-        ].join('');
+            return [
+                '<a id="publishtr" class="" href="javascript:void(0)" title="点击撤销发布该数据">收回',
+                '</a>'
+            ].join('');
         if (row.ddPublishState == '0')
-        return [
-            '未发布'
-        ].join('');
+            return [
+                '未发布'
+            ].join('');
     }
     //设置table高度
     function getHeight() {
@@ -559,17 +563,21 @@
     }
 
     window.operateEvents = {
-
         'click #privatetr': function (e, value, row, index) {
-//            alert(row.ddStructId);
-            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel");
-            $table_private.bootstrapTable('refresh')
-            $table_publish.bootstrapTable('refresh')
+            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel", function (data, status) {
+                if (status == 'success') {
+                    $table_private.bootstrapTable('refresh')
+                    $table_publish.bootstrapTable('refresh')
+                }
+            });
         },
         'click #publishtr': function (e, value, row, index) {
-            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId});
-            $table_publish.bootstrapTable('refresh')
-            $table_private.bootstrapTable('refresh')
+            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
+                if (status == 'success') {
+                    $table_publish.bootstrapTable('refresh')
+                    $table_private.bootstrapTable('refresh')
+                }
+            });
         }
     };
 
@@ -578,7 +586,7 @@
     });
 
     //Excel批量导入
-    function importPrivateData(taskId,projectId) {
+    function importPrivateData(taskId, projectId) {
 //        alert(taskId);
 //        alert(projectId);
         $('#exportData').modal({
