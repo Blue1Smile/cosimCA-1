@@ -67,6 +67,9 @@ public class DataStructService extends BaseService<DataStruct> {
     public List<DataStruct> getStructByProjectAndPId(QueryParameters queryparameters) {
         return this.dataStructDao.getStructByProjectAndPId(queryparameters);
     }
+    public List<DataStruct> getStructById(Long id) {
+        return this.dataStructDao.getStructById(id);
+    }
 
 
 }

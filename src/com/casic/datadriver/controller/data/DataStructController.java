@@ -8,33 +8,16 @@ import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.service.data.DataStructService;
 import com.casic.datadriver.service.data.PrivateDataService;
 import com.hotent.core.annotion.Action;
+import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.casic.datadriver.model.data.PrivateData;
-import com.casic.datadriver.service.data.PrivateDataService;
-//import com.fr.base.core.json.JSONArray;
-import com.hotent.core.util.ContextUtil;
 import com.hotent.platform.auth.ISysUser;
 import net.sf.ezmorph.object.DateMorpher;
-import net.sf.json.JSONObject;
 import net.sf.json.JSONArray;
-
+import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
-
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -48,9 +31,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.casic.cloud.controller.console.ConsoleController.formatJson;
+
+//import com.fr.base.core.json.JSONArray;
 
 
 /**
@@ -316,13 +303,13 @@ public class DataStructController extends AbstractController {
         for (int i = Math.toIntExact(a); i < b; i++) {
             DataStruct mymode = list.get(i);
             jsonObject.put("ddStructId", mymode.getDdStructId());
-            jsonObject.put("ddOrderState", mymode.getDdOrderState());
             jsonObject.put("ddStructName", mymode.getDdStructName());
             jsonObject.put("ddParentId", mymode.getDdParentId());
             jsonObject.put("ddTaskId", mymode.getDdTaskId());
             jsonObject.put("ddType", mymode.getDdType());
             jsonObject.put("ddOrderState", mymode.getDdOrderState());
             jsonObject.put("ddProjectId", mymode.getDdProjectId());
+            jsonObject.put("ddPublishState", mymode.getDdPublishState());
 //            jsonObject.put("num", mymode.getDdDataId());
             jsonMembers.add(jsonObject);
         }
@@ -419,7 +406,7 @@ public class DataStructController extends AbstractController {
         Long b = pageSize * (pageNumber);
         QueryParameters queryparameters = new QueryParameters();
         queryparameters.setId(id);
-        queryparameters.getBackupsL(1);
+        queryparameters.setBackupsL(Long.valueOf(1));
         List<DataStruct> structdata_list = dataStructService.getStructByPublish(queryparameters);
 
         if (b > structdata_list.size()) {
@@ -459,7 +446,7 @@ public class DataStructController extends AbstractController {
         QueryParameters queryparameters = new QueryParameters();
 
         queryparameters.setId(id);
-        queryparameters.getBackupsL(1);
+        queryparameters.setBackupsL(Long.valueOf(1));
 
         List<DataStruct> structdata_list = dataStructService.getStructByTaskAndOId(queryparameters);
 
@@ -494,13 +481,14 @@ public class DataStructController extends AbstractController {
         Long pageSize =RequestUtil.getLong(request, "pageSize");
         Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
         Long id= RequestUtil.getLong(request, "id");
+        Long projectId= RequestUtil.getLong(request, "projectId");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
         QueryParameters queryparameters = new QueryParameters();
 
-        queryparameters.setId(id);
-        queryparameters.getBackupsL(1);
+        queryparameters.setId(projectId);
+        queryparameters.setBackupsL(Long.valueOf(1));
 
         List<DataStruct> structdata_list = dataStructService.getStructByProjectAndPId(queryparameters);
 
