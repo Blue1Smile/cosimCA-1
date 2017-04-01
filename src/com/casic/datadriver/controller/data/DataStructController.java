@@ -164,10 +164,8 @@ public class DataStructController extends AbstractController {
                     childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
                     childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
                     privateDataService.add(childPrivateData);
-
                 }
                 resultMsg = getText("record.added", "cloud_account_info");
-
             } else {
                 dataStructService.update(dataStruct);
                 resultMsg = getText("record.updated", "cloud_account_info");

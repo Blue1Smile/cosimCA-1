@@ -124,7 +124,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showpublishdata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showpublishdata.ht?id=${taskId}",
             <%--url: "showpublishdata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -162,7 +162,7 @@
                     visible: false
                 }, {//第二列，名称
                     field: 'ddStructName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: false,
                     align: 'center',
                     visible: true
@@ -236,7 +236,7 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
                 queryParams: { strParentID: parentid },
                 ajaxOptions: { strParentID: parentid },
@@ -252,14 +252,14 @@
                     checkbox: true
                 },                {//第一列，数据ID
                     field: 'ddDataId',
-                    title: '指标Id',
+                    title: '数据Id',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
                 }, {//第二列，名称
                     field: 'ddDataName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: true,
                     editable: false,
                     align: 'center',
@@ -334,7 +334,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showstructdata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showstructdata.ht?id=${taskId}",
             <%--url: "showprivatedata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -372,7 +372,7 @@
                     visible: false
                 }, {//第二列，名称
                     field: 'ddStructName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: false,
                     align: 'center',
                     visible: true
@@ -434,7 +434,7 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
                 queryParams: { strParentID: parentid },
                 ajaxOptions: { strParentID: parentid },
@@ -450,14 +450,14 @@
                     checkbox: true
                 },                {//第一列，数据ID
                     field: 'ddDataId',
-                    title: '指标Id',
+                    title: '数据Id',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
                 }, {//第二列，名称
                     field: 'ddDataName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: true,
                     editable: false,
                     align: 'center',

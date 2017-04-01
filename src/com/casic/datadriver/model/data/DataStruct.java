@@ -29,13 +29,13 @@ public class DataStruct {
 
     private String ddDescription;
 
-    //0Î´·¢²¼   1ÒÑ·¢²¼
+    //0Î´ï¿½ï¿½ï¿½ï¿½   1ï¿½Ñ·ï¿½ï¿½ï¿½
     private Short ddPublishState;
 
-    //0Îª¶©ÔÄ   1ÒÑ¶©ÔÄ
+    //0Îªï¿½ï¿½ï¿½ï¿½   1ï¿½Ñ¶ï¿½ï¿½ï¿½
     private Short ddOrderState;
 
-    //0Î´Ìá½»   ÒÑÌá½»
+    //0Î´ï¿½á½»   ï¿½ï¿½ï¿½á½»
     private Short ddSubmitState;
 
     private String ddTaskName;
