@@ -226,7 +226,7 @@
         $("#child_btn").hide();
     }
     switch_attr_order.onclick = function () {
-        $.get("showorder.ht?id=${TaskInfo.ddTaskId}", function (data) {
+        $.get("showorder.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#publish').html(data);
         });
         $("#create_data").hide();

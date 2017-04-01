@@ -3,11 +3,13 @@ package com.casic.datadriver.controller.datacenter;
 
 import com.casic.datadriver.controller.AbstractController;
 import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.data.DataStruct;
 import com.casic.datadriver.model.data.DataVersion;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.task.TaskInfo;
 import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.data.DataStructService;
 import com.casic.datadriver.service.data.DataVersionService;
 import com.casic.datadriver.service.data.OrderDataRelationService;
 import com.casic.datadriver.service.data.PrivateDataService;
@@ -49,6 +51,8 @@ public class PersonalTaskController extends AbstractController {
     private TaskStartService taskStartService;
     @Resource
     private DataVersionService dataVersionService;
+    @Resource
+    private DataStructService dataStructService;
 
 
     /**
@@ -163,7 +167,8 @@ public class PersonalTaskController extends AbstractController {
     @Action(description = "显示订阅和已订阅")
     public ModelAndView showorder(HttpServletRequest request, HttpServletResponse response) throws Exception {
         long taskId = RequestUtil.getLong(request, "id");
-        return getAutoView().addObject("taskId", taskId);
+        Long projectId = RequestUtil.getLong(request, "projectId");
+        return getAutoView().addObject("taskId", taskId).addObject("projectId", projectId);
     }
 
     /**
@@ -819,23 +824,33 @@ public class PersonalTaskController extends AbstractController {
 
             //已订阅到可订阅
             if (parent.equals("canorderpanel")) {
-                List<OrderDataRelation> orderDataRelationList2 = orderDataRelationService.getOrderDataRelationList(taskId);
-                for (OrderDataRelation orderDataRelation1 : orderDataRelationList2) {
-                    if (orderDataRelation1.getDdDataId().equals(dataId)) {
-                        long dataId2 = orderDataRelation1.getDdOrderDataId();
-                        orderDataRelationService.delOrderByddDataId(dataId2);
-                    }
+//                List<OrderDataRelation> orderDataRelationList2 = orderDataRelationService.getOrderDataRelationList(taskId);
+//                for (OrderDataRelation orderDataRelation1 : orderDataRelationList2) {
+//                    if (orderDataRelation1.getDdDataId().equals(dataId)) {
+//                        long dataId2 = orderDataRelation1.getDdOrderDataId();
+//                        orderDataRelationService.delOrderByddDataId(dataId2);
+//                    }
+//                }
+                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
+                if (dataStruct.size() !=0) {
+                    dataStruct.get(0).setDdOrderState((short) 0);
+                    dataStructService.update(dataStruct.get(0));
                 }
             }
             //可订阅到已订阅
             if (parent.equals("orderpanel")) {
-                OrderDataRelation orderDataRelation = new OrderDataRelation();
-                orderDataRelation = orderDataRelationService.getOrderDataRelationById(dataId);
-
-                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
-                orderDataRelation.setDdOrderType(1L);
-                orderDataRelation.setDdTaskId(taskId);
-                orderDataRelationService.add(orderDataRelation);
+                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
+                if (dataStruct.size() !=0) {
+                    dataStruct.get(0).setDdOrderState((short) 1);
+                    dataStructService.update(dataStruct.get(0));
+                }
+//                OrderDataRelation orderDataRelation = new OrderDataRelation();
+//                orderDataRelation = orderDataRelationService.getOrderDataRelationById(dataId);
+//
+//                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
+//                orderDataRelation.setDdOrderType(1L);
+//                orderDataRelation.setDdTaskId(taskId);
+//                orderDataRelationService.add(orderDataRelation);
             }
         } catch (Exception e) {
             String resultMsg = null;
@@ -861,23 +876,35 @@ public class PersonalTaskController extends AbstractController {
             OrderDataRelation orderDataRelation = new OrderDataRelation();
             //发布到私有
             if (parent.equals("createpanel")) {
-                orderDataRelationService.delPublishByddDataId(dataId);
-                privateData = privateDataService.getDataById(dataId);
-                privateData.setDdDataPublishType(0l);
-                privateDataService.updatedata(privateData);
+                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
+                if (dataStruct.size() !=0) {
+                    dataStruct.get(0).setDdPublishState((short) 0);
+                    dataStructService.update(dataStruct.get(0));
+                }
+//                orderDataRelationService.delPublishByddDataId(dataId);
+//                privateData = privateDataService.getDataById(dataId);
+//                privateData.setDdDataPublishType(0l);
+//                privateDataService.updatedata(privateData);
             }
             //私有到发布
             if (parent.equals("publishpanel")) {
-                privateData = privateDataService.getDataById(dataId);
-                privateData.setDdDataPublishType(1l);
-                privateDataService.updatedata(privateData);
+                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
+                if (dataStruct.size() !=0)
+                {
+                    dataStruct.get(0).setDdPublishState((short)1);
+                    dataStructService.update(dataStruct.get(0));
+                }
 
-                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
-                orderDataRelation.setDdDataId(dataId);
-                orderDataRelation.setDdTaskId(privateData.getDdDataTaskId());
-                orderDataRelation.setDdDataName(privateData.getDdDataName());
-                orderDataRelation.setDdOrderType(0L);
-                orderDataRelationService.add(orderDataRelation);
+//                privateData = privateDataService.getDataById(dataId);
+//                privateData.setDdDataPublishType(1l);
+//                privateDataService.updatedata(privateData);
+//
+//                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
+//                orderDataRelation.setDdDataId(dataId);
+//                orderDataRelation.setDdTaskId(privateData.getDdDataTaskId());
+//                orderDataRelation.setDdDataName(privateData.getDdDataName());
+//                orderDataRelation.setDdOrderType(0L);
+//                orderDataRelationService.add(orderDataRelation);
             }
         } catch (Exception e) {
             String resultMsg = null;

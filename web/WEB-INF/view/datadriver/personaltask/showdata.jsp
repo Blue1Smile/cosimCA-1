@@ -28,17 +28,17 @@
 
         }
 
-        .panel-body{
+        .panel-body {
             padding: 0px !important;
             border-radius: 0px !important;
         }
 
         /*thead{*/
-            /*display:none !important;*/
+        /*display:none !important;*/
         /*}*/
 
         /*.bootstrap-table{*/
-            /*margin-top: -20px;*/
+        /*margin-top: -20px;*/
         /*}*/
     </style>
 </head>
@@ -56,15 +56,21 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
 
-                        <li><a href="javascript:void(0)" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span> 创建单条数据</a></li>
-                        <li><a href="javascript:void(0)" title="批量导入数据" onclick="importPrivateData(${taskId},${projectId})"><span class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
+                        <li><a href="javascript:void(0)" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span>
+                            创建单条数据</a></li>
+                        <li><a href="javascript:void(0)" title="批量导入数据"
+                               onclick="importPrivateData(${taskId},${projectId})"><span
+                                class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
 
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0)" onclick="" title="发布私有数据"><span class="glyphicon glyphicon-ok"></span>
+                        <li><a href="javascript:void(0)" onclick="" title="发布私有数据"><span
+                                class="glyphicon glyphicon-ok"></span>
                             发布私有数据</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0)" title="删除"><span class="glyphicon glyphicon-trash"></span> 删除</a></li>
-                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
+                        <li><a href="javascript:void(0)" title="删除"><span class="glyphicon glyphicon-trash"></span>
+                            删除</a></li>
+                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span
+                                class="glyphicon glyphicon-retweet"></span> 反选</a></li>
                         <li><a href="javascript:void(0)" onclick="refresh(1)" title="刷新私有数据看板"><span
                                 class="glyphicon glyphicon-refresh"></span> 刷新</a></li>
                     </ul>
@@ -116,15 +122,15 @@
             $table_publish = $('#table_publish');
     var $export_xml = $('#export_xml');
     var curRow = {};
-    var projectID=0;
-    var taskID=0;
+    var projectID = 0;
+    var taskID = 0;
 
     function initTable() {
         $table_publish.bootstrapTable({
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showpublishdata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showpublishdata.ht?id=${taskId}",
             <%--url: "showpublishdata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -148,7 +154,7 @@
             uniqueId: "ddDataId",                     //每一行的唯一标识，一般为主键列
             showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
-            detailView: false,                   //是否显示父子表
+            detailView: true,                   //是否显示父子表
             columns: [
                 {
                     checkbox: true
@@ -162,7 +168,7 @@
                     visible: false
                 }, {//第二列，名称
                     field: 'ddStructName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: false,
                     align: 'center',
                     visible: true
@@ -188,7 +194,7 @@
                     editable: false,
                     align: 'center',
                     visible: false
-                },{//项目ID
+                }, {//项目ID
                     field: 'ddProjectId',
                     title: '项目ID',
                     sortable: true,
@@ -207,7 +213,7 @@
                     title: '操作',
                     align: 'center',
                     events: operateEvents,
-                    formatter: operateFormatterPrivate
+                    formatter: operateFormatterPublish
                 }
             ],
             onClickRow: function (row, $element) {
@@ -236,10 +242,10 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id=' + row.ddStructId,
                 method: 'get',
-                queryParams: { strParentID: parentid },
-                ajaxOptions: { strParentID: parentid },
+                queryParams: {strParentID: parentid},
+                ajaxOptions: {strParentID: parentid},
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 // pagination: true,                   //是否显示分页（*）
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -250,16 +256,16 @@
                 pageList: [10, 25],
                 columns: [{
                     checkbox: true
-                },                {//第一列，数据ID
+                }, {//第一列，数据ID
                     field: 'ddDataId',
-                    title: '指标Id',
+                    title: '数据Id',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
                 }, {//第二列，名称
                     field: 'ddDataName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: true,
                     editable: false,
                     align: 'center',
@@ -277,14 +283,8 @@
                         title: '最新值',
                         sortable: true,
                         align: 'center',
-                        editable: {
-                            mode: 'inline',
-                            onblur: 'submit',
-                            validate: function (va) {
-                                if (va.length == 0) return '指标名称不能为空';
-                            }
-                        },
-                    } , {//单位
+                        editable: false,
+                    }, {//单位
                         field: 'ddDataUnit',
                         title: '单位',
                         sortable: true,
@@ -307,21 +307,14 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    }, {
-                        field: 'operate',
-                        title: '操作',
-                        align: 'center',
-                        events: operateEvents,
-                        formatter: operateFormatterPublish
-                    }
+                    },
                 ],
                 //
                 //无线循环取子表，直到子表里面没有记录
                 onExpandRow: function (index, row, $Subdetail) {
                     InitSubTable(index, row, $Subdetail);
                 },
-                onClickRow:function (row, tr)
-                {
+                onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
                 }
@@ -334,7 +327,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/datastruct/showstructdata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showstructdata.ht?id=${taskId}",
             <%--url: "showprivatedata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -372,7 +365,7 @@
                     visible: false
                 }, {//第二列，名称
                     field: 'ddStructName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: false,
                     align: 'center',
                     visible: true
@@ -392,8 +385,15 @@
                     align: 'center',
                     visible: false
                 }, {//数据类型
+                    field: 'ddPublishState',
+                    title: '发布状态',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: false
+                }, {//数据类型
                     field: 'ddOrderState',
-                    title: '发布订阅状态',
+                    title: '订阅状态',
                     sortable: true,
                     editable: false,
                     align: 'center',
@@ -429,15 +429,15 @@
 
         function InitSubTable(index, row, $detail) {
             var parentid = row.ddStructId;
-            projectID =row.ddProjectId;
-            taskID =row.ddTaskId;
+            projectID = row.ddProjectId;
+            taskID = row.ddTaskId;
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/datastruct/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id=' + row.ddStructId,
                 method: 'get',
-                queryParams: { strParentID: parentid },
-                ajaxOptions: { strParentID: parentid },
+                queryParams: {strParentID: parentid},
+                ajaxOptions: {strParentID: parentid},
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 // pagination: true,                   //是否显示分页（*）
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -448,16 +448,16 @@
                 pageList: [10, 25],
                 columns: [{
                     checkbox: true
-                },                {//第一列，数据ID
+                }, {//第一列，数据ID
                     field: 'ddDataId',
-                    title: '指标Id',
+                    title: '数据Id',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
                 }, {//第二列，名称
                     field: 'ddDataName',
-                    title: '指标名称',
+                    title: '数据名称',
                     sortable: true,
                     editable: false,
                     align: 'center',
@@ -506,12 +506,6 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    }, {
-                        field: 'operate',
-                        title: '操作',
-                        align: 'center',
-                        events: operateEvents,
-                        formatter: operateFormatterPrivate
                     }
                 ],
                 //
@@ -519,8 +513,7 @@
                 onExpandRow: function (index, row, $Subdetail) {
                     InitSubTable(index, row, $Subdetail);
                 },
-                onClickRow:function (row, tr)
-                {
+                onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
                 }
@@ -535,34 +528,34 @@
         if (e == 1) $('#table_private').bootstrapTable('refresh')
     }
     //数据名称是否能够更改
-//    function ifDataNameChange(value, row, index) {
-//        if (row.ddDataPublishType == 1)
-//            $('a').replaceWith($('a').text());
-//    }
+    //    function ifDataNameChange(value, row, index) {
+    //        if (row.ddDataPublishType == 1)
+    //            $('a').replaceWith($('a').text());
+    //    }
     //私有数据列表按钮
     function operateFormatterPrivate(value, row, index) {
-        if (row.ddDataPublishType == 0)
-        return [
-            '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
-            '</a>'
-        ].join('');
-        if (row.ddDataPublishType == 1)
-        return [
-            '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
-        ].join('');
+        if (row.ddPublishState == 0)
+            return [
+                '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
+                '</a>'
+            ].join('');
+        if (row.ddPublishState == 1)
+            return [
+                '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
+            ].join('');
     }
 
     //发布数据列表按钮
     function operateFormatterPublish(value, row, index) {
-        if (row.ddDataPublishType == '1')
-        return [
-            '<a id="publishtr" class="" href="javascript:void(0)" title="点击撤销发布该数据">收回',
-            '</a>'
-        ].join('');
-        if (row.ddDataPublishType == '0')
-        return [
-            '未发布'
-        ].join('');
+        if (row.ddPublishState == '1')
+            return [
+                '<a id="publishtr" class="" href="javascript:void(0)" title="点击撤销发布该数据">收回',
+                '</a>'
+            ].join('');
+        if (row.ddPublishState == '0')
+            return [
+                '未发布'
+            ].join('');
     }
     //设置table高度
     function getHeight() {
@@ -571,14 +564,20 @@
 
     window.operateEvents = {
         'click #privatetr': function (e, value, row, index) {
-            $.get("createtopublish.ht?id=" + row.ddDataId + "&parent=publishpanel");
-            $table_private.bootstrapTable('refresh')
-            $table_publish.bootstrapTable('refresh')
+            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel", function (data, status) {
+                if (status == 'success') {
+                    $table_private.bootstrapTable('refresh')
+                    $table_publish.bootstrapTable('refresh')
+                }
+            });
         },
         'click #publishtr': function (e, value, row, index) {
-            $.get("createtopublish.ht?id=" + row.ddDataId + "&parent=createpanel" + "&taskId=" +${taskId});
-            $table_publish.bootstrapTable('refresh')
-            $table_private.bootstrapTable('refresh')
+            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
+                if (status == 'success') {
+                    $table_publish.bootstrapTable('refresh')
+                    $table_private.bootstrapTable('refresh')
+                }
+            });
         }
     };
 
@@ -587,7 +586,7 @@
     });
 
     //Excel批量导入
-    function importPrivateData(taskId,projectId) {
+    function importPrivateData(taskId, projectId) {
 //        alert(taskId);
 //        alert(projectId);
         $('#exportData').modal({

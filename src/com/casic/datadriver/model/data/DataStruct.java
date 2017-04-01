@@ -29,13 +29,13 @@ public class DataStruct {
 
     private String ddDescription;
 
-    //0Î´·¢²¼   1ÒÑ·¢²¼
+    //0Î´ï¿½ï¿½ï¿½ï¿½   1ï¿½Ñ·ï¿½ï¿½ï¿½
     private Short ddPublishState;
 
-    //0Îª¶©ÔÄ   1ÒÑ¶©ÔÄ
+    //0Îªï¿½ï¿½ï¿½ï¿½   1ï¿½Ñ¶ï¿½ï¿½ï¿½
     private Short ddOrderState;
 
-    //0Î´Ìá½»   ÒÑÌá½»
+    //0Î´ï¿½á½»   ï¿½ï¿½ï¿½á½»
     private Short ddSubmitState;
 
     private String ddTaskName;
@@ -48,17 +48,7 @@ public class DataStruct {
 
     private Long ddProjectId;
 
-    public Long getDdCreatorId() {
-        return ddCreatorId;
-    }
-
-    public void setDdCreatorId(Long ddCreatorId) {
-        this.ddCreatorId = ddCreatorId;
-    }
-
     private Long ddCreatorId;
-
-    protected List<PrivateData> privateDataList= new ArrayList<PrivateData>();
 
     public Long getDdStructId() {
         return ddStructId;
@@ -67,6 +57,16 @@ public class DataStruct {
     public void setDdStructId(Long ddStructId) {
         this.ddStructId = ddStructId;
     }
+
+    public Long getDdCreatorId() {
+        return ddCreatorId;
+    }
+
+    public void setDdCreatorId(Long ddCreatorId) {
+        this.ddCreatorId = ddCreatorId;
+    }
+
+    protected List<PrivateData> privateDataList= new ArrayList<PrivateData>();
 
     public String getDdStructName() {
         return ddStructName;

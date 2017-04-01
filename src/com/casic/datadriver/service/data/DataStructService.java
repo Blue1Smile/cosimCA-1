@@ -28,7 +28,7 @@ public class DataStructService extends BaseService<DataStruct> {
      * @return true, if successful
      */
     public boolean addDDDataStruct(DataStruct dataStruct) {
-        this.dataStructDao.add(dataStruct);
+        this.dataStructDao.addDataStruct(dataStruct);
         return true;
     }
 
@@ -66,6 +66,9 @@ public class DataStructService extends BaseService<DataStruct> {
     }
     public List<DataStruct> getStructByProjectAndPId(QueryParameters queryparameters) {
         return this.dataStructDao.getStructByProjectAndPId(queryparameters);
+    }
+    public List<DataStruct> getStructById(Long id) {
+        return this.dataStructDao.getStructById(id);
     }
 
 

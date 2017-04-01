@@ -42,6 +42,16 @@
     where DD_TASK_ID = #{ddTaskId,jdbcType=BIGINT}
   </select>
 
+
+  <!--根据数据ID查询-->
+  <!--id：数据ID-->
+  <select id="getStructById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dd_data_struct
+    where DD_STRUCT_ID = #{id,jdbcType=BIGINT}
+  </select>
+
   <!--根据任务ID 查询已发布的数据-->
   <!--id：任务id  backupsL：数据发布状态-->
   <select id="getStructByPublish" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
@@ -245,7 +255,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.casic.datadriver.model.data.DataStruct">
+  <update id="update" parameterType="com.casic.datadriver.model.data.DataStruct">
     update dd_data_struct
     <set>
       <if test="ddStructName != null">
@@ -296,10 +306,10 @@
       <if test="ddEngName != null">
         DD_ENG_NAME = #{ddEngName,jdbcType=VARCHAR},
       </if>
-      <if test="ddProjectID != null">
+      <if test="ddProjectId != null">
         DD_PROJECT_ID = #{ddProjectId,jdbcType=BIGINT},
       </if>
-      <if test="ddCreatorID != null">
+      <if test="ddCreatorId != null">
         DD_CREATOR_ID = #{ddCreatorId,jdbcType=BIGINT},
       </if>
     </set>
