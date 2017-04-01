@@ -33,8 +33,8 @@ public class ProTaskDependanceDao extends BaseDao<ProTaskDependance> {
         return ProTaskDependance.class;
     }
 
-    public void deleteByProjectIdAndTaskId(Long ddProjectID,Long ddTaskID){
-       this.deleteByProjectIdAndTaskId( ddProjectID,ddTaskID);
+    public void deleteByProjectIdAndTaskId(Long ddProjectId,Long ddTaskID){
+       this.deleteByProjectIdAndTaskId( ddProjectId,ddTaskID);
     }
 
     public List<ProTaskDependance> getProTaskDependanceList(long projectId){

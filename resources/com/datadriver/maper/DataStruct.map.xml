@@ -306,10 +306,10 @@
       <if test="ddEngName != null">
         DD_ENG_NAME = #{ddEngName,jdbcType=VARCHAR},
       </if>
-      <if test="ddProjectID != null">
+      <if test="ddProjectId != null">
         DD_PROJECT_ID = #{ddProjectId,jdbcType=BIGINT},
       </if>
-      <if test="ddCreatorID != null">
+      <if test="ddCreatorId != null">
         DD_CREATOR_ID = #{ddCreatorId,jdbcType=BIGINT},
       </if>
     </set>

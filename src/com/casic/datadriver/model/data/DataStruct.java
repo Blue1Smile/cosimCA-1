@@ -48,17 +48,7 @@ public class DataStruct {
 
     private Long ddProjectId;
 
-    public Long getDdCreatorId() {
-        return ddCreatorId;
-    }
-
-    public void setDdCreatorId(Long ddCreatorId) {
-        this.ddCreatorId = ddCreatorId;
-    }
-
     private Long ddCreatorId;
-
-    protected List<PrivateData> privateDataList= new ArrayList<PrivateData>();
 
     public Long getDdStructId() {
         return ddStructId;
@@ -67,6 +57,16 @@ public class DataStruct {
     public void setDdStructId(Long ddStructId) {
         this.ddStructId = ddStructId;
     }
+
+    public Long getDdCreatorId() {
+        return ddCreatorId;
+    }
+
+    public void setDdCreatorId(Long ddCreatorId) {
+        this.ddCreatorId = ddCreatorId;
+    }
+
+    protected List<PrivateData> privateDataList= new ArrayList<PrivateData>();
 
     public String getDdStructName() {
         return ddStructName;
