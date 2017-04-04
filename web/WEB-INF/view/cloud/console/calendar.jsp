@@ -40,7 +40,7 @@
 
     <div class="container-fluid" style="height: 100%">
 
-        <div class="col-xs-8 col-xs-offset-2">
+        <div class="col-xs-10 col-xs-offset-1">
             <div class="panel panel-default" style="height: 100%">
                 <div class="panel-heading">个人看板
                     <p class="pull-right">
