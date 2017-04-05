@@ -18,18 +18,28 @@
         }
 
         table {
-            /*background-color: #ffffff;*/
-            width: 100%;
-            margin: 0px;
+            background-color: #ffffff;
+            width: 100% !important;
+            /*margin: 0px !important;*/
         }
 
         .panel {
             padding-top: 0px !important;
-        }
-        .panel-body{
-            padding: 5px !important;
+
         }
 
+        .panel-body {
+            padding: 5px !important;
+            border-radius: 0px !important;
+        }
+
+        /*thead{*/
+        /*display:none !important;*/
+        /*}*/
+
+        /*.bootstrap-table{*/
+        /*margin-top: -20px;*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -154,9 +164,9 @@
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
-            pageSize: 15,                       //每页的记录行数（*）
+            pageSize: 20,                       //每页的记录行数（*）
             queryParamsType: '',
-//            pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
+            pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 //            strictSearch: true,
             showColumns: false,                  //是否显示所有的列
@@ -247,8 +257,8 @@
                 clickToSelect: true,
                 detailView: false,//父子表
                 uniqueId: "MENU_ID",
-                pageSize: 10,
-                pageList: [10, 25],
+//                pageSize: 10,
+//                pageList: [10, 25],
                 columns: [{
                     checkbox: true
                 },                {//第一列，数据ID
@@ -333,9 +343,9 @@
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
-            pageSize: 15,                       //每页的记录行数（*）
+            pageSize: 20,                       //每页的记录行数（*）
             queryParamsType: '',
-//            pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
+            pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 //            strictSearch: true,
             showColumns: false,                  //是否显示所有的列
@@ -419,8 +429,8 @@
                 clickToSelect: true,
                 detailView: false,//父子表
                 uniqueId: "MENU_ID",
-                pageSize: 10,
-                pageList: [10, 25],
+//                pageSize: 10,
+//                pageList: [10, 25],
                 columns: [{
                     checkbox: true
                 },                {//第一列，数据ID
@@ -519,7 +529,7 @@
     }
     //设置table高度
     function getHeight() {
-        return $(window).height() - $('.panel-heading').outerHeight(true) - 65;
+        return $(window).height() - $('.panel-heading').outerHeight(true) - 160;
     }
 
     window.operateEvents = {

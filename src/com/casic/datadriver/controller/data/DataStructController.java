@@ -235,7 +235,7 @@ public class DataStructController extends AbstractController {
      *             the exception
      */
     @RequestMapping("list")
-    @Action(description = "����������ѯ��Ŀ������Ϣ�б�")
+    @Action(description = "结构化数据列表")
     public ModelAndView queryDataStructBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         QueryFilter queryFilter = new QueryFilter(request, "DataStructItem");

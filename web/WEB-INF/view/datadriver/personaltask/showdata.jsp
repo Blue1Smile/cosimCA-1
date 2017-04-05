@@ -60,9 +60,6 @@
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-
-                        <li><a href="javascript:void(0)" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span>
-                            创建单条数据</a></li>
                         <li><a href="javascript:void(0)" title="批量导入数据"
                                onclick="importPrivateData(${taskId},${projectId})"><span
                                 class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
@@ -188,8 +185,6 @@
             striped: false,                      //是否显示行间隔色
             cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,
-
-            //是否显示分页（*）
             sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
@@ -592,6 +587,8 @@
         if (row.ddPublishState == 0)
             return [
                 '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
+                '</a>',' ',
+                '<a id="privatetr_del" class="publish" href="javascript:void(0)" title="点击删除该数据项">删除',
                 '</a>'
             ].join('');
         if (row.ddPublishState == 1)
@@ -614,7 +611,7 @@
     }
     //设置table高度
     function getHeight() {
-        return $(window).height() - $('.panel-heading').outerHeight(true) - 52;
+        return $(window).height() - $('.panel-heading').outerHeight(true) - 80;
     }
 
     window.operateEvents = {
@@ -628,6 +625,14 @@
         },
         'click #publishtr': function (e, value, row, index) {
             $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
+                if (status == 'success') {
+                    $table_publish.bootstrapTable('refresh')
+                    $table_private.bootstrapTable('refresh')
+                }
+            });
+        },
+        'click #privatetr_del': function (e, value, row, index) {
+            $.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {
                 if (status == 'success') {
                     $table_publish.bootstrapTable('refresh')
                     $table_private.bootstrapTable('refresh')

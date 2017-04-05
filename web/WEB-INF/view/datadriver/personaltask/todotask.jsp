@@ -97,7 +97,7 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="index">
         </div>
-        <div role="tabpanel" class="tab-pane" id="publish">
+        <div role="tabpanel" class="tab-pane board-scrum-view" id="publish" style="height: 100%">
         </div>
         <%--<div role="tabpanel" class="tab-pane" id="order">--%>
         <%--</div>--%>
