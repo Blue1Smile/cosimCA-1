@@ -101,6 +101,10 @@
     delete from dd_data_struct
     where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}
   </delete>
+  <delete id="delById" parameterType="java.lang.Long">
+    delete from dd_data_struct
+    where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}
+  </delete>
   <insert id="add" parameterType="com.casic.datadriver.model.data.DataStruct">
     insert into dd_data_struct (DD_STRUCT_ID, DD_STRUCT_NAME, DD_NODE_PATH,
     DD_DEPTH, DD_PARENT_ID, DD_CATKEY,
