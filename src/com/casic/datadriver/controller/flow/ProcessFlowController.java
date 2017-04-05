@@ -1,5 +1,6 @@
 package com.casic.datadriver.controller.flow;
 
+import com.casic.cloud.controller.console.ConsoleController;
 import com.casic.datadriver.controller.AbstractController;
 import com.casic.datadriver.model.data.ProjectStart;
 import com.casic.datadriver.model.flow.ProcessFlow;
@@ -24,6 +25,7 @@ import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
 import com.hotent.platform.auth.ISysUser;
+import org.h2.tools.Console;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
@@ -148,7 +150,7 @@ public class ProcessFlowController extends AbstractController {
                     }
                 }
 
-               //输出改造后的xml
+                //输出改造后的xml
                 Format format = Format.getCompactFormat();
                 format.setEncoding("utf-8");
                 format.setIndent(" ");
@@ -165,7 +167,7 @@ public class ProcessFlowController extends AbstractController {
             }
             else
                 mv = this.getAutoView().addObject("projectId", projectId)
-                    .addObject("processFlowXml", tempXml).addObject("flag",flag);
+                        .addObject("processFlowXml", tempXml).addObject("flag",flag);
 
         } else {
             mv = this.getAutoView().addObject("projectId", projectId).addObject("flag",flag);
@@ -178,21 +180,31 @@ public class ProcessFlowController extends AbstractController {
     @Action(description = "根据项目进入流程设计iframe")
     public void DataSave_zx(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+        //获取request发送的xml
         request.setCharacterEncoding("utf-8");
         //	String test = URLDecoder.decode(request.getParameter("xml"), "UTF-8").replaceAll("&#xa;", "");
         String test = URLDecoder.decode(request.getParameter("xml"), "UTF-8").replaceAll("\n", "");
         //String xml = (String) request.getParameter("xml");
         //System.out.println(test);
+
+        //解析xml
         Reader in = new StringReader(test);
         Document doc = (new SAXBuilder()).build(in);
 
+        //根据结构 获取所有的task children
         Element mxGraphmodel = doc.getRootElement();
         Element root = mxGraphmodel.getChild("root");
+
         //String projectID = root.getChild("Layer").getAttributeValue("projectID");
         java.util.List task = root.getChildren("Task");
-        String projectID = root.getChild("Layer").getAttributeValue("projectId");
-        long projectId = Long.parseLong(projectID);
 
+        //在layer这里获取projectID,假设projectID没有并没有措施防错误
+        String projectID = root.getChild("Layer").getAttributeValue("projectId");
+        long projectId=0;
+        if(projectID!=null)
+            projectId = Long.parseLong(projectID);
+        else
+            System.out.println("can't get projectID");
         Project project = projectService.getById(projectId);
         List<TaskInfo> taskInfoList = project.getTaskInfoList();
 
@@ -283,7 +295,7 @@ public class ProcessFlowController extends AbstractController {
         //process数据库表存储
         ProcessFlow processflow;
         if(projectProcessAssocia==null){
-             processflow = new ProcessFlow();
+            processflow = new ProcessFlow();
             processflow.setDdProcessId(UniqueIdUtil.genId());
             processflow.setDdProcessXml(xml);
             processFlowService.addProcessFlow(processflow);
@@ -293,7 +305,7 @@ public class ProcessFlowController extends AbstractController {
             projectProcessAssocia.setDdProjectId(projectId);
             saveProjectProcessAssocia(projectProcessAssocia);
         }
-      else {
+        else {
             processflow = processFlowService.getById(projectProcessAssocia.getDdPrcessId());
             processflow.setDdProcessXml(xml);
 
