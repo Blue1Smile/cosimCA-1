@@ -209,7 +209,7 @@
 
     //tab切换操作
     switch_attr_index.onclick = function () {
-        $.get("${ctx}/datadriver/index/indexlist.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
+        $.get("${ctx}/datadriver/index/readonly.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#index').html(data);
         });
         $("#create_data").hide();

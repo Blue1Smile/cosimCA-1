@@ -5,6 +5,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@ taglib prefix="ap" uri="/appleTag" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
@@ -26,7 +27,7 @@
             padding-top: 0px !important;
         }
         .panel-body{
-            padding: 0px !important;
+            padding: 5px !important;
         }
 
     </style>
@@ -55,6 +56,29 @@
 
             </div>
             <div class="panel-body panelheight" id="canbeorderpanel">
+                <div id="toolbar_canbeorder" class="form-inline">
+                    <div class="form-group">
+                        <label for="dataNameCanBeOrder">名称：</label>
+                        <input id="dataNameCanBeOrder" class="form-control" type="text" value="" placeholder="任务名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddType">类型：</label>
+                        <ap:selectDB name="ddType" id="ddType"
+                                     where="parentId=10000025100454" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="" styleClass="form-control">
+                        </ap:selectDB>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddDataTaskNameCanBeOrder">任务：</label>
+                        <select id="ddDataTaskNameCanBeOrder" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="筛选"/>
+                </div>
                 <table id="table_canbeorder"></table>
             </div>
         </div>
@@ -79,6 +103,29 @@
                 </div>
             </div>
             <div class="panel-body panelheight" id="orderpanel">
+                <div id="toolbar_order" class="form-inline">
+                    <div class="form-group">
+                        <label for="dataNameOrder">名称：</label>
+                        <input id="dataNameOrder" class="form-control" type="text" value="" placeholder="任务名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddType">类型：</label>
+                        <ap:selectDB name="ddType" id="ddType"
+                                     where="parentId=10000025100454" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="" styleClass="form-control">
+                        </ap:selectDB>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddDataTaskNameOrder">任务：</label>
+                        <select id="ddDataTaskNameOrder" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="筛选"/>
+                </div>
                 <table id="table_order"></table>
             </div>
         </div>
@@ -99,7 +146,7 @@
             classes: "table table-condensed table-hover",
             url: "${ctx}/datadriver/data/showpublishdataByProid.ht?projectId=${projectId}",
             method: 'get',                      //请求方式（*）
-            toolbar: '#toolbar',                //工具按钮用哪个容器
+            toolbar: '#toolbar_canbeorder',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
             cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,                   //是否显示分页（*）
@@ -278,7 +325,7 @@
             classes: "table table-condensed table-hover",
             url: "${ctx}/datadriver/data/showsubscriptiondata.ht?id=${taskId}",
             method: 'get',                      //请求方式（*）
-            toolbar: '#toolbar',                //工具按钮用哪个容器
+            toolbar: '#toolbar_order',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
             cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,                   //是否显示分页（*）

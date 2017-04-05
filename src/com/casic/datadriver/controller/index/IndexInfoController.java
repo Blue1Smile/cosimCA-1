@@ -110,6 +110,24 @@ public class IndexInfoController extends BaseController {
     }
 
     /**
+     * 只读index列表
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("readonly")
+    @Action(description = "任务中的只读index")
+    public ModelAndView readonly(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long projectId = RequestUtil.getLong(request, "id");
+        ModelAndView mv = this.getAutoView().addObject("projectId",
+                projectId);
+        return mv;
+    }
+
+    /**
      * 查询index列表
      *
      * @param request  the request

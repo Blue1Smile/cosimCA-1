@@ -67,13 +67,13 @@
                                     </ap:selectDB>
                                 </td>
                             </tr>
+                            <%--<tr>--%>
+                                <%--<th width="20%">最优值:</th>--%>
+                                <%--<td><input type="text" id="ddIndexOptimum" name="ddIndexOptimum"--%>
+                                           <%--value="" class="form-control"/></td>--%>
+                            <%--</tr>--%>
                             <tr>
-                                <th width="20%">最优值:</th>
-                                <td><input type="text" id="ddIndexOptimum" name="ddIndexOptimum"
-                                           value="" class="form-control"/></td>
-                            </tr>
-                            <tr>
-                                <th width="20%">最新值:</th>
+                                <th width="20%">值域:</th>
                                 <td><input type="text" id="ddIndexLastestValue" name="ddIndexLastestValue"
                                            value="" class="form-control"/></td>
                             </tr>

@@ -34,7 +34,7 @@
         }
 
         .panel-body {
-            padding: 0px !important;
+            padding: 5px !important;
             border-radius: 0px !important;
         }
 
@@ -104,7 +104,7 @@
                             <option>3</option>
                         </select>
                     </div>
-                    <input class="btn btn-primary" type="submit" value="筛选"/>
+                    <input class="btn btn-default" type="submit" value="筛选"/>
                 </div>
                 <table id="table_private"></table>
             </div>
@@ -129,6 +129,29 @@
                 </div>
             </div>
             <div class="panel-body panelheight" id="publishpanel">
+                <div id="toolbar2" class="form-inline">
+                    <div class="form-group">
+                        <label for="dataName">名称：</label>
+                        <input id="dataName2" class="form-control" type="text" value="" placeholder="任务名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddType">类型：</label>
+                        <ap:selectDB name="ddType" id="ddType"
+                                     where="parentId=10000025100454" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="" styleClass="form-control">
+                        </ap:selectDB>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddDataTaskName">任务：</label>
+                        <select id="ddDataTaskName2" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="筛选"/>
+                </div>
                 <table id="table_publish"></table>
             </div>
         </div>
@@ -161,7 +184,7 @@
             url: "${ctx}/datadriver/data/showpublishdata.ht?id=${taskId}",
             <%--url: "showpublishdata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
-            toolbar: '#toolbar',                //工具按钮用哪个容器
+            toolbar: '#toolbar2',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
             cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,
