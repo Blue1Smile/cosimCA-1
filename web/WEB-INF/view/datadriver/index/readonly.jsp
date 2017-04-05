@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/11/20 0020
-  Time: 下午 3:41
+  User: d
+  Date: 2017/4/5
+  Time: 上午9:13
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
@@ -17,18 +17,13 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
-    <title>项目指标信息列表</title>
+    <title>只读指标信息</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
 </head>
 <body>
-<%--<p class="pull-right">--%>
-    <%--<a id="" class="btn btn-success" href="${ctx}/datadriver/datacenter/datasnapshot.ht?projectId=${projectId}"><span--%>
-            <%--class="glyphicon glyphicon-camera"></span> 数据快照</a>--%>
-<%--</p>--%>
-
-<table id="indextable"></table>
+<table id="indexreadonly"></table>
 <script type="text/javascript">
-    var $table = $('#indextable'),
+    var $table = $('#indexreadonly'),
             $remove = $('#remove');
     var curRow = {};
     function initTable() {
@@ -37,7 +32,7 @@
             url: "${ctx}/datadriver/index/indexjson.ht?id=${projectId}",
             //   pageList: [10, 25],
             method: 'get',                      //请求方式（*）
-            toolbar: '#toolbar4',                //工具按钮用哪个容器
+            toolbar: '#toolbar5',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,                   //是否显示分页（*）
@@ -72,11 +67,6 @@
                     field: 'ddIndexName',
                     title: '指标名称',
                     sortable: true,
-                    editable: {
-                        validate: function (va) {
-                            if (va.length == 0) return '指标名称不能为空';
-                        }
-                    },
                     // footerFormatter: ddDataNameFormatter,
                     align: 'center',
                     visible: true
@@ -94,13 +84,6 @@
                     title: '最新值',
                     sortable: true,
                     align: 'center',
-                    editable: {
-                        type: 'text',
-                        title: '值',
-                        validate: function (v) {
-                            if (isNaN(v)) return '值必须是数字';
-                        }
-                    }
                     //,
                     // footerFormatter: ddDataLastestValueFormatter
                 }
@@ -113,7 +96,7 @@
                     align: 'center',
                     visible: true
                 },
-//                {//最优值
+//                {//所属任务
 //                    field: 'ddIndexOptimum',
 //                    title: '最优值',
 //                    sortable: true,
@@ -121,14 +104,14 @@
 //                    // footerFormatter: ddDataNameFormatter,
 //                    align: 'center',
 //                    visible: true
-//                },
-                {
-                    field: 'operate',
-                    title: '操作',
-                    align: 'center',
-                    events: operateEvents,
-                    formatter: operateFormatter()
-                }
+//                }
+//                , {
+//                    field: 'operate',
+//                    title: '操作',
+//                    align: 'center',
+//                    events: operateEvents,
+//                    formatter: operateFormatter()
+//                }
             ],
             onClickRow: function (row, $element) {
                 curRow = row;
@@ -157,33 +140,13 @@
             $table.bootstrapTable('resetView');
         }, 200);
     }
-    //原始操作按钮
-    function operateFormatter(value, row, index) {
-        return [
-            '<a id="removetr" class="remove" href="javascript:void(0)" title="删除">',
-            '<i class="glyphicon glyphicon-remove"></i>',
-            '</a>'
-        ].join('');
-    }
-    window.operateEvents = {
-//        'click .like': function (e, value, row, index) {
-//            alert('You click like action, row: ' + JSON.stringify(row));
-//        },
-        'click .remove': function (e, value, row, index) {
-            $table.bootstrapTable('remove', {
-                field: 'ddIndexId',
-                values: [row.ddIndexId],
-            });
-            $.get('${ctx}/datadriver/index/delindex.ht?id=' + row.ddIndexId);
-        }
-
-    };
     $(function () {
         initTable();
     });
 </script>
 </body>
 </html>
+
 
 
 

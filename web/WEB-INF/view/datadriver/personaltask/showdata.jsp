@@ -34,7 +34,7 @@
         }
 
         .panel-body {
-            padding: 0px !important;
+            padding: 5px !important;
             border-radius: 0px !important;
         }
 
@@ -60,9 +60,6 @@
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-
-                        <li><a href="javascript:void(0)" title="创建单条数据"><span class="glyphicon glyphicon-plus"></span>
-                            创建单条数据</a></li>
                         <li><a href="javascript:void(0)" title="批量导入数据"
                                onclick="importPrivateData(${taskId},${projectId})"><span
                                 class="glyphicon glyphicon-import"></span> 批量导入数据</a></li>
@@ -104,7 +101,7 @@
                             <option>3</option>
                         </select>
                     </div>
-                    <input class="btn btn-primary" type="submit" value="筛选"/>
+                    <input class="btn btn-default" type="submit" value="筛选"/>
                 </div>
                 <table id="table_private"></table>
             </div>
@@ -129,6 +126,29 @@
                 </div>
             </div>
             <div class="panel-body panelheight" id="publishpanel">
+                <div id="toolbar2" class="form-inline">
+                    <div class="form-group">
+                        <label for="dataName">名称：</label>
+                        <input id="dataName2" class="form-control" type="text" value="" placeholder="任务名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddType">类型：</label>
+                        <ap:selectDB name="ddType" id="ddType"
+                                     where="parentId=10000025100454" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="" styleClass="form-control">
+                        </ap:selectDB>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddDataTaskName">任务：</label>
+                        <select id="ddDataTaskName2" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="筛选"/>
+                </div>
                 <table id="table_publish"></table>
             </div>
         </div>
@@ -161,12 +181,10 @@
             url: "${ctx}/datadriver/data/showpublishdata.ht?id=${taskId}",
             <%--url: "showpublishdata.ht?id=${taskId}",--%>
             method: 'get',                      //请求方式（*）
-            toolbar: '#toolbar',                //工具按钮用哪个容器
+            toolbar: '#toolbar2',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
             cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
             pagination: true,
-
-            //是否显示分页（*）
             sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
@@ -569,6 +587,8 @@
         if (row.ddPublishState == 0)
             return [
                 '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
+                '</a>',' ',
+                '<a id="privatetr_del" class="publish" href="javascript:void(0)" title="点击删除该数据项">删除',
                 '</a>'
             ].join('');
         if (row.ddPublishState == 1)
@@ -591,7 +611,7 @@
     }
     //设置table高度
     function getHeight() {
-        return $(window).height() - $('.panel-heading').outerHeight(true) - 52;
+        return $(window).height() - $('.panel-heading').outerHeight(true) - 80;
     }
 
     window.operateEvents = {
@@ -605,6 +625,14 @@
         },
         'click #publishtr': function (e, value, row, index) {
             $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
+                if (status == 'success') {
+                    $table_publish.bootstrapTable('refresh')
+                    $table_private.bootstrapTable('refresh')
+                }
+            });
+        },
+        'click #privatetr_del': function (e, value, row, index) {
+            $.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {
                 if (status == 'success') {
                     $table_publish.bootstrapTable('refresh')
                     $table_private.bootstrapTable('refresh')
