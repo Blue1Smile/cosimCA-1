@@ -256,7 +256,15 @@ public class DataStructController extends AbstractController {
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        super.del(request, response, this.dataStructService);
+//        super.del(request, response, this.dataStructService);
+        String preUrl = RequestUtil.getPrePage(request);
+        try {
+            Long ddStructId = RequestUtil.getLong(request, "id");
+            dataStructService.delById(ddStructId);
+            privateDataService.delBySructId(ddStructId);
+        } catch (Exception ex) {
+        }
+        response.sendRedirect(preUrl);
     }
 
     /**
