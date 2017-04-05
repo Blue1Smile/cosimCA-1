@@ -7,6 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@ taglib prefix="ap" uri="/appleTag" %>
 <html>
 <head>
     <title>数据看板</title>
@@ -78,6 +83,29 @@
 
             </div>
             <div class="panel-body panelheight" id="createpanel">
+                <div id="toolbar" class="form-inline">
+                    <div class="form-group">
+                        <label for="dataName">名称：</label>
+                        <input id="dataName" class="form-control" type="text" value="" placeholder="任务名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddType">类型：</label>
+                        <ap:selectDB name="ddType" id="ddType"
+                                     where="parentId=10000025100454" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="" styleClass="form-control">
+                        </ap:selectDB>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddDataTaskName">任务：</label>
+                        <select id="ddDataTaskName" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="筛选"/>
+                </div>
                 <table id="table_private"></table>
             </div>
         </div>
@@ -136,7 +164,9 @@
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
             cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-            pagination: true,                   //是否显示分页（*）
+            pagination: true,
+
+            //是否显示分页（*）
             sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
@@ -244,12 +274,13 @@
             $(cur_table).bootstrapTable({
                 url: '${ctx}/datadriver/data/showprivatedata.ht?id=' + row.ddStructId,
                 method: 'get',
+                classes: "table table-condensed table-hover",
                 queryParams: {strParentID: parentid},
                 ajaxOptions: {strParentID: parentid},
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 // pagination: true,                   //是否显示分页（*）
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-                clickToSelect: true,
+                clickToSelect: false,
                 detailView: false,//父子表
                 uniqueId: "MENU_ID",
                 pageSize: 10,
@@ -436,12 +467,13 @@
             $(cur_table).bootstrapTable({
                 url: '${ctx}/datadriver/data/showprivatedata.ht?id=' + row.ddStructId,
                 method: 'get',
+                classes: "table table-condensed table-hover",
                 queryParams: {strParentID: parentid},
                 ajaxOptions: {strParentID: parentid},
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 // pagination: true,                   //是否显示分页（*）
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-                clickToSelect: true,
+                clickToSelect: false,
                 detailView: false,//父子表
                 uniqueId: "MENU_ID",
                 pageSize: 10,
