@@ -273,7 +273,7 @@
             onEditableSave: function (field, row, oldValue, $el) {
                 <%--$.ajax({--%>
                 <%--type: "post",--%>
-                <%--url: "${ctx}/datadriver/index/lastvalue.ht",--%>
+                <%--url: "${ctx}/datadriver/privatedata/lastvalue.ht",--%>
                 <%--data: {strJson: JSON.stringify(row)},--%>
                 <%--success: function (data, status) {--%>
                 <%--},--%>
@@ -368,8 +368,20 @@
                 onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                },
+                onEditableSave: function (field, row, oldValue, $el) {
+                    <%--$.ajax({--%>
+                        <%--type: "post",--%>
+                        <%--url: "${ctx}/datadriver/privatedata/lastvalue.ht",--%>
+                        <%--data: {strJson: JSON.stringify(row)},--%>
+                        <%--success: function (data, status) {--%>
+                        <%--},--%>
+                        <%--error: function () {--%>
+                        <%--},--%>
+                        <%--complete: function () {--%>
+                        <%--}--%>
+                    <%--});--%>
                 }
-
 
             });
         };
@@ -465,15 +477,15 @@
             },
             onEditableSave: function (field, row, oldValue, $el) {
                 $.ajax({
-                    type: "post",
-                    url: "${ctx}/datadriver/index/lastvalue.ht",
-                    data: {strJson: JSON.stringify(row)},
-                    success: function (data, status) {
-                    },
-                    error: function () {
-                    },
-                    complete: function () {
-                    }
+                    <%--type: "post",--%>
+                    <%--url: "${ctx}/datadriver/privatedata/lastvalue.ht",--%>
+                    <%--data: {strJson: JSON.stringify(row)},--%>
+                    <%--success: function (data, status) {--%>
+                    <%--},--%>
+                    <%--error: function () {--%>
+                    <%--},--%>
+                    <%--complete: function () {--%>
+                    <%--}--%>
                 });
             }
         });
@@ -576,8 +588,20 @@
                 onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                },
+                onEditableSave: function (field, row, oldValue, $el) {
+                    $.ajax({
+                        type: "post",
+                        url: "${ctx}/datadriver/privatedata/lastvalue.ht",
+                        data: {strJson: JSON.stringify(row)},
+                        success: function (data, status) {
+                        },
+                        error: function () {
+                        },
+                        complete: function () {
+                        }
+            });
                 }
-
 
             });
         };
