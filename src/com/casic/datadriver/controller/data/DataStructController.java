@@ -98,7 +98,7 @@ public class DataStructController extends AbstractController {
         try {
             //新建进入if  更新进入else
             if (dataStruct.getDdStructId()==null||dataStruct.getDdStructId()==0) {
-                dataStruct.setDdStructId((Long) UniqueIdUtil.genId());
+                dataStruct.setDdStructId(UniqueIdUtil.genId());
                 dataStructService.addDDDataStruct(dataStruct);
 
                 JSONObject dataJson = JSONObject.fromObject(childDataArray.get(0).toString());
@@ -120,7 +120,7 @@ public class DataStructController extends AbstractController {
                         PrivateData childPrivateData = new PrivateData();
                         childPrivateData.setDdDataId(UniqueIdUtil.genId());
                         childPrivateData.setDdDataName(privateDataJson.getString("ddDataName"));
-                        childPrivateData.setDdDataType(privateDataJson.getString("ddDataType"));
+                        childPrivateData.setDdDataType(privateDataJson.getInt("ddDataType"));
                         childPrivateData.setDdDataDescription(privateDataJson.getString("ddDataDescription"));
                         childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
                         childPrivateData.setDdDataPublishType(0l);
@@ -132,16 +132,14 @@ public class DataStructController extends AbstractController {
                         privateDataService.add(childPrivateData);
 
                     }
-                    resultMsg = getText("record.added", "cloud_account_info");
-
-
+                    resultMsg = getText("record.added", "结构数据");
                 }
                 //如果是只有一个属性的结构型数据
                 else{
                     PrivateData childPrivateData = new PrivateData();
                     childPrivateData.setDdDataId(UniqueIdUtil.genId());
                     childPrivateData.setDdDataName(dataStruct.getDdStructName());
-                    childPrivateData.setDdDataType("结构型数据");
+                    childPrivateData.setDdDataType(1);
                     childPrivateData.setDdDataDescription(dataStruct.getDdDescription());
                     childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
                     childPrivateData.setDdDataPublishType(0l);
@@ -152,10 +150,10 @@ public class DataStructController extends AbstractController {
                     childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
                     privateDataService.add(childPrivateData);
                 }
-                resultMsg = getText("record.added", "cloud_account_info");
+                resultMsg = getText("record.added", "结构数据");
             } else {
                 dataStructService.update(dataStruct);
-                resultMsg = getText("record.updated", "cloud_account_info");
+                resultMsg = getText("record.updated", "结构数据");
             }
             writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
         } catch (Exception e) {
@@ -387,7 +385,18 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
             jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
             jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-            jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+            if (tempPrivateData.getDdDataType()==0){
+                jsonObject.put("ddDataType", "其它");
+            }
+            if (tempPrivateData.getDdDataType()==1){
+                jsonObject.put("ddDataType", "结构化数据");
+            }
+            if (tempPrivateData.getDdDataType()==2){
+                jsonObject.put("ddDataType", "文件");
+            }
+            if (tempPrivateData.getDdDataType()==2){
+                jsonObject.put("ddDataType", "模型");
+            }
             jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
 
             jsonMembers.add(jsonObject);

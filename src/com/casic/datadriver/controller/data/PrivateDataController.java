@@ -146,26 +146,26 @@ public class PrivateDataController extends AbstractController {
     @Action(description = "添加私有")
     public ModelAndView addprivatedata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ResultMessage resultMessage = null;
+        String resultMessage = "私有数据添加";
         ModelAndView mv = new ModelAndView();
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Long id = RequestUtil.getLong(request, "id");
             TaskInfo taskInfo = taskInfoService.getById(id);
 
             ISysUser sysUser = ContextUtil.getCurrentUser();
             String sysName = sysUser.getFullname();
-            Date currentTime = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateString = formatter.format(currentTime);
 
+            String dateString = formatter.format(currentTime);
             List<ModelCenterModel> modelCenterModelList = modelCenterService.getByTaskId(id);
-                    mv = this.getAutoView().addObject("taskInfo", taskInfo)
+            mv = this.getAutoView().addObject("taskInfo", taskInfo)
                     .addObject("currentTime", dateString)
                     .addObject("sysName", sysName)
                     .addObject("modelCenterModelList", modelCenterModelList);
-
+            writeResultMessage(response.getWriter(), resultMessage, ResultMessage.Success);
         } catch (Exception ex) {
-            resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败" + ex.getMessage());
+            writeResultMessage(response.getWriter(), resultMessage + "," + ex.getMessage(), ResultMessage.Fail);
         }
         return mv;
     }
@@ -240,8 +240,8 @@ public class PrivateDataController extends AbstractController {
 
             switch (Integer.parseInt(key)) {
                 case 0://更改数据类型
-                    String temp0 = obj.getString("0");
-                    privateData.setDdDataType(temp0);
+//                    String temp0 = obj.getString("0");
+                    privateData.setDdDataType(0);
                     break;
                 case 1://更改数据值
                     String temp1 = obj.getString("1");
@@ -314,10 +314,10 @@ public class PrivateDataController extends AbstractController {
                 return;
             InputStream in = file.getInputStream();
             int count = privateDataService
-                    .importBrandPeriodSort(in,taskId,projectId);
+                    .importBrandPeriodSort(in, taskId, projectId);
 //            int count = BrandMobileInfos.size();
 
-            message = new ResultMessage(ResultMessage.Success, "成功导入"+count+"条");
+            message = new ResultMessage(ResultMessage.Success, "成功导入" + count + "条");
         } catch (Exception ex) {
             // 改为人工刷新缓存KeyContextManager.clearPeriodCacheData(new
             // PeriodDimensions());// 清理所有缓存
