@@ -24,80 +24,81 @@
     <title>添加私有数据</title>
     <style>
         /*.tree {*/
-            /*overflow: auto;*/
-            /*min-height: 20px;*/
-            /*padding: 0px;*/
-            /*margin-bottom: 0px;*/
-            /*background-color: #fbfbfb;*/
-            /*border: 1px solid #999;*/
-            /*-webkit-border-radius: 4px;*/
-            /*-moz-border-radius: 4px;*/
-            /*border-radius: 4px;*/
-            /*-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
-            /*-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
-            /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)*/
+        /*overflow: auto;*/
+        /*min-height: 20px;*/
+        /*padding: 0px;*/
+        /*margin-bottom: 0px;*/
+        /*background-color: #fbfbfb;*/
+        /*border: 1px solid #999;*/
+        /*-webkit-border-radius: 4px;*/
+        /*-moz-border-radius: 4px;*/
+        /*border-radius: 4px;*/
+        /*-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
+        /*-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
+        /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)*/
         /*}*/
 
         /*.tree li {*/
-            /*list-style-type: none;*/
-            /*margin: 0;*/
-            /*padding: 10px 5px 0 5px;*/
-            /*position: relative*/
+        /*list-style-type: none;*/
+        /*margin: 0;*/
+        /*padding: 10px 5px 0 5px;*/
+        /*position: relative*/
         /*}*/
 
         /*.tree li::before, .tree li::after {*/
-            /*content: '';*/
-            /*left: -20px;*/
-            /*position: absolute;*/
-            /*right: auto*/
+        /*content: '';*/
+        /*left: -20px;*/
+        /*position: absolute;*/
+        /*right: auto*/
         /*}*/
 
         /*.tree li::before {*/
-            /*border-left: 1px solid #999;*/
-            /*bottom: 50px;*/
-            /*height: 100%;*/
-            /*top: 0;*/
-            /*width: 1px*/
+        /*border-left: 1px solid #999;*/
+        /*bottom: 50px;*/
+        /*height: 100%;*/
+        /*top: 0;*/
+        /*width: 1px*/
         /*}*/
 
         /*.tree li::after {*/
-            /*border-top: 1px solid #999;*/
-            /*height: 20px;*/
-            /*top: 25px;*/
-            /*width: 25px*/
+        /*border-top: 1px solid #999;*/
+        /*height: 20px;*/
+        /*top: 25px;*/
+        /*width: 25px*/
         /*}*/
 
         /*.tree li span {*/
-            /*-moz-border-radius: 5px;*/
-            /*-webkit-border-radius: 5px;*/
-            /*border: 1px solid #999;*/
-            /*border-radius: 5px;*/
-            /*display: inline-block;*/
-            /*padding: 3px 8px;*/
-            /*text-decoration: none*/
+        /*-moz-border-radius: 5px;*/
+        /*-webkit-border-radius: 5px;*/
+        /*border: 1px solid #999;*/
+        /*border-radius: 5px;*/
+        /*display: inline-block;*/
+        /*padding: 3px 8px;*/
+        /*text-decoration: none*/
         /*}*/
 
         /*.tree li.parent_li > span {*/
-            /*cursor: pointer*/
+        /*cursor: pointer*/
         /*}*/
 
         /*.tree > ul > li::before, .tree > ul > li::after {*/
-            /*border: 0*/
+        /*border: 0*/
         /*}*/
 
         /*.tree li:last-child::before {*/
-            /*height: 30px*/
+        /*height: 30px*/
         /*}*/
 
         /*.tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span {*/
-            /*background: #eee;*/
-            /*border: 1px solid #94a0b4;*/
-            /*color: #000*/
+        /*background: #eee;*/
+        /*border: 1px solid #94a0b4;*/
+        /*color: #000*/
         /*}*/
-        #privateData{
+        #privateData {
             margin: 0px;
         }
-        #addstructtd{
+
+        #addstructtd {
             padding: 0px;
         }
     </style>
@@ -151,7 +152,7 @@
                         <ap:selectDB name="ddType" id="ddType"
                                      where="parentId=10000025100454" optionValue="itemValue"
                                      optionText="itemName" table="SYS_DIC"
-                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control" onChange="change()">
                         </ap:selectDB>
                     </td>
                     <%--<th width="20%">数据创建时间:</th>--%>
@@ -181,7 +182,8 @@
                 <tr id="initValue">
                     <th width="20%">创建数据结构:</th>
                     <td colspan="5" id="addstructtd">
-                        <table id="privateData" width="700" border="0" cellspacing="0" cellpadding="0" type="sub" formType="page">
+                        <table id="privateData" width="700" border="0" cellspacing="0" cellpadding="0" type="sub"
+                               formType="page">
                             <thead>
                             <tr>
                                 <td height="30" align="center" bgcolor="#CCCCCC">序号</td>
@@ -193,26 +195,21 @@
                             </thead>
                             <tbody>
                             <tr type="subdata">
-                                <td height="30" align="center"><input type="text" name="NO" size="1" value="1" class="form-control" readonly/></td>
+                                <td height="30" align="center"><input type="text" name="NO" size="1" value="1"
+                                                                      class="form-control" readonly/></td>
                                 <td align="center"><input type="text" name="ddDataName" class="form-control"/></td>
-                                <td align="center"><ap:selectDB name="ddDataType" id="ddDataType" where="parentId=10000025100454" optionValue="itemValue" optionText="itemName" table="SYS_DIC" selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control"></ap:selectDB></td>
-                                <td align="center"><input type="text" name="ddDataDescription" class="form-control"/></td>
-                                <td><input class="btn btn-default btn-sm" type="button" id="Button2" onClick="deltr(this)" value="删行"></td>
+                                <td align="center"><ap:selectDB name="ddDataType" id="ddDataType"
+                                                                where="parentId=10000025100454" optionValue="itemValue"
+                                                                optionText="itemName" table="SYS_DIC"
+                                                                selectedValue="${indexInfo.ddIndexTypeId}"
+                                                                styleClass="form-control"></ap:selectDB></td>
+                                <td align="center"><input type="text" name="ddDataDescription" class="form-control"/>
+                                </td>
+                                <td><input class="btn btn-default btn-sm" type="button" id="Button2"
+                                           onClick="deltr(this)" value="删行"></td>
                             </tr>
                             </tbody>
                         </table>
-
-                        <%--<div class="tree well">--%>
-
-                        <%--<li>--%>
-                        <%--<span id="parent_input">数据名称</span> <a href="javascript:void(0)"--%>
-                        <%--id="parent"><i--%>
-                        <%--class="glyphicon glyphicon-plus"></i></a>--%>
-                        <%--<ul>--%>
-                        <%--</ul>--%>
-                        <%--</li>--%>
-
-                        <%--</div>--%>
                     </td>
                 </tr>
                 <tr>
@@ -247,39 +244,45 @@
                 changeIndex();//更新行号
             }
         });
-
-//        $('#selectModeltr').hide();
-//        $('#selectModel').attr("disabled", "disabled");
         var options = {};
+        if (showResponse) {
+            options.success = showResponse;
+        }
+        function showResponse(responseText) {
+            var obj = new com.hotent.form.ResultMessage(responseText);
+            if (obj.isSuccess()) {
+                $('#adddata').modal('hide');
+                $('#table_private').bootstrapTable('refresh');
+            } else {
+            }
+        }
+
         var frm = $('#dataStructForm').form();
         $("#dataFormSave").click(function () {
             var form = $('#dataStructForm').setData();
             form.ajaxForm(options);
             if (frm.valid()) {
                 form.submit();
-                $('#adddata').modal('hide');
-                $('#table_private').bootstrapTable('refresh');
-//                window.location.reload(true);
             }
         });
         $("#ddType").change(function () {
-            if ($(this).val() == '文件') {
-                $('#initValue').hide();
+            if ($('#ddType option:selected') .val() == 2) {
+                $('#subdata').remove();
 //                $('#selectModeltr').show();
 //                $('#selectModel').removeAttr("disabled");
 //                $('#initValue').remove();
-            } else if ($(this).val() == '模型') {
-                $('#initValue').hide();
+            } else if ($('#ddType option:selected') .val() == 3) {
+                $('#subdata').hide();
 //                $('#selectModeltr').show();
 //                $('#selectModel').removeAttr("disabled");
 //                $('#initValue').remove();
-            } else if ($(this).val() == '其它') {
-                $('#initValue').hide();
+            } else if ($('#ddType option:selected') .val() == 0) {
+                $('#subdata').hide();
 //                $('#selectModeltr').show();
 //                $('#selectModel').removeAttr("disabled");
 //                $('#initValue').remove();
             } else {
-                $('#initValue').show();
+                $('#subdata').show();
 //                $('#selectModeltr').hide();
 //                $('#selectModel').attr("disabled", "disabled");
 //                if ($("#initValue").length <= 0) {
@@ -341,6 +344,18 @@
         } else {
             $(opp).parent().parent().remove();//移除当前行
             changeIndex();
+        }
+    }
+    function change() {
+        var value_change = $("#ddType").val();
+        if (value_change == "2") {
+            $('#initValue').hide();
+        } else if (value_change == "3") {
+            $('#initValue').hide();
+        } else if (value_change == "0") {
+            $('#initValue').hide();
+        } else {
+            $('#initValue').show();
         }
     }
 </script>

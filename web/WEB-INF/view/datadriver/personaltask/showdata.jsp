@@ -303,30 +303,32 @@
                 uniqueId: "MENU_ID",
                 pageSize: 10,
                 pageList: [10, 25],
-                columns: [{
-                    checkbox: true
-                }, {//第一列，数据ID
-                    field: 'ddDataId',
-                    title: '数据Id',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: false
-                }, {//第二列，名称
-                    field: 'ddDataName',
-                    title: '数据名称',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: true
-                }, {//所属任务ID
-                    field: 'ddDataTaskName',
-                    title: '所属项目ID',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: false
-                }
+                columns: [
+//                        {
+//                    checkbox: true
+//                },
+                    {//第一列，数据ID
+                        field: 'ddDataId',
+                        title: '数据Id',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }, {//第二列，名称
+                        field: 'ddDataName',
+                        title: '数据名称',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
+                    }, {//所属任务ID
+                        field: 'ddDataTaskName',
+                        title: '所属项目ID',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }
                     , {//第三列，数值
                         field: 'ddDataLastestValue',
                         title: '最新值',
@@ -356,7 +358,7 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    },
+                    }
                 ],
                 //
                 //无线循环取子表，直到子表里面没有记录
@@ -496,30 +498,32 @@
                 uniqueId: "MENU_ID",
                 pageSize: 10,
                 pageList: [10, 25],
-                columns: [{
-                    checkbox: true
-                }, {//第一列，数据ID
-                    field: 'ddDataId',
-                    title: '数据Id',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: false
-                }, {//第二列，名称
-                    field: 'ddDataName',
-                    title: '数据名称',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: true
-                }, {//所属任务ID
-                    field: 'ddDataTaskName',
-                    title: '所属项目ID',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: false
-                }
+                columns: [
+//                        {
+//                    checkbox: true
+//                },
+                    {//第一列，数据ID
+                        field: 'ddDataId',
+                        title: '数据Id',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }, {//第二列，名称
+                        field: 'ddDataName',
+                        title: '数据名称',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
+                    }, {//所属任务ID
+                        field: 'ddDataTaskName',
+                        title: '所属项目ID',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }
                     , {//第三列，数值
                         field: 'ddDataLastestValue',
                         title: '最新值',
@@ -556,6 +560,12 @@
                         editable: false,
                         align: 'center',
                         visible: false
+                    }, {
+                        field: 'operate',
+                        title: '操作',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operatePrivateSub
                     }
                 ],
                 //
@@ -584,24 +594,40 @@
     //    }
     //私有数据列表按钮
     function operateFormatterPrivate(value, row, index) {
-        if (row.ddPublishState == 0)
+        if (row.ddPublishState == 0) {
             return [
-                '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
-                '</a>',' ',
-                '<a id="privatetr_del" class="publish" href="javascript:void(0)" title="点击删除该数据项">删除',
+                '<a id="privatetr" href="javascript:void(0)" title="点击发布该列数据">发布',
+                '</a>', ' ',
+
+                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
                 '</a>'
             ].join('');
+        }
         if (row.ddPublishState == 1)
             return [
                 '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
             ].join('');
     }
-
+    //子表操作
+    function operatePrivateSub(value, row, index) {
+        if (row.ddDataType == "文件" || row.ddDataType == "模型")
+            return [
+                '<a id="privatetr_file" href="javascript:void(0)" title="点击替换文件">上传',
+                '</a>', ' ',
+                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
+                '</a>'
+            ].join('');
+        if (row.ddDataType == "其它" || row.ddDataType == "结构化数据")
+            return [
+                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
+                '</a>'
+            ].join('');
+    }
     //发布数据列表按钮
     function operateFormatterPublish(value, row, index) {
         if (row.ddPublishState == '1')
             return [
-                '<a id="publishtr" class="" href="javascript:void(0)" title="点击撤销发布该数据">收回',
+                '<a id="publishtr" href="javascript:void(0)" title="点击撤销发布该数据">收回',
                 '</a>'
             ].join('');
         if (row.ddPublishState == '0')
@@ -638,17 +664,22 @@
                     $table_private.bootstrapTable('refresh')
                 }
             });
+        },
+        'click #privatetr_file': function (e, value, row, index) {
+            <%--$.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {--%>
+            <%--if (status == 'success') {--%>
+            <%--$table_publish.bootstrapTable('refresh')--%>
+            <%--$table_private.bootstrapTable('refresh')--%>
+            <%--}--%>
+            <%--});--%>
         }
     };
 
     $(function () {
         initTable();
     });
-
     //Excel批量导入
     function importPrivateData(taskId, projectId) {
-//        alert(taskId);
-//        alert(projectId);
         $('#exportData').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/privatedata/importPrivateData.ht?id=" + taskId + "&projectId=" + projectId

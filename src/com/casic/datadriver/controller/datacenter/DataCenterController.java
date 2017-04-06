@@ -458,7 +458,7 @@ public class DataCenterController extends AbstractController {
         Long ddDataId = RequestUtil.getLong(request, "id");
 
         List<DataVersion> dataVersion_list = this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
-        String DataType = privateDataService.getByddDataId(ddDataId).get(0).getDdDataType();
+        Integer DataType = privateDataService.getByddDataId(ddDataId).get(0).getDdDataType();
         Long DataTaskId = privateDataService.getDataById(ddDataId).getDdDataTaskId();
         JSONObject jsonObject = new JSONObject();
         JSONObject json = new JSONObject();
