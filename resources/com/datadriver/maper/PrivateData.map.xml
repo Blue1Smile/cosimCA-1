@@ -105,6 +105,11 @@
     where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
   </delete>
 
+    <delete id="delBySructId" parameterType="java.lang.Long">
+        delete from dd_private_data
+        where DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC}
+    </delete>
+
     <select id="queryPrivateDataByddTaskID" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>

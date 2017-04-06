@@ -96,16 +96,19 @@ public class DataStructController extends AbstractController {
         JSONArray childDataArray = dataStructJson.getJSONArray("privateDataList");
 
         try {
-            //新建进入if  更新进入else
-            if (dataStruct.getDdStructId()==null||dataStruct.getDdStructId()==0) {
-                dataStruct.setDdStructId(UniqueIdUtil.genId());
-                dataStructService.addDDDataStruct(dataStruct);
 
-                JSONObject dataJson = JSONObject.fromObject(childDataArray.get(0).toString());
-                //如果是结构型数据包括多个属性值
-                if(dataJson.size()==4) {
-                    for (int i = 0; i < childDataArray.size(); i++) {
-                        JSONObject privateDataJson = JSONObject.fromObject(childDataArray.get(i).toString());
+            //判断需要保存的类型
+            if (dataStructJson.getString("ddType").equals(1)) {
+                //新建进入if  更新进入else
+                if (dataStruct.getDdStructId() == null || dataStruct.getDdStructId() == 0) {
+                    dataStruct.setDdStructId((Long) UniqueIdUtil.genId());
+                    dataStructService.addDDDataStruct(dataStruct);
+
+                    JSONObject dataJson = JSONObject.fromObject(childDataArray.get(0).toString());
+                    //如果是结构型数据包括多个属性值
+                    if (dataJson.size() == 4) {
+                        for (int i = 0; i < childDataArray.size(); i++) {
+                            JSONObject privateDataJson = JSONObject.fromObject(childDataArray.get(i).toString());
 
 //                        DataStruct childDataStruct = new DataStruct();
 //                        childDataStruct.setDdDescription(childDataJson.getString("ddDataDescription"));
@@ -116,12 +119,35 @@ public class DataStructController extends AbstractController {
 //                        childDataStruct.setDdOrderState(dataStruct.getDdOrderState());
 //                        childDataStruct.setDdStructName(childDataJson.getString("ddDataName"));
 //                        dataStructService.addDDDataStruct(childDataStruct);
-                        //存储child信息
+                            //存储child信息
+                            PrivateData childPrivateData = new PrivateData();
+                            childPrivateData.setDdDataId(UniqueIdUtil.genId());
+                            childPrivateData.setDdDataName(privateDataJson.getString("ddDataName"));
+                            childPrivateData.setDdDataType(privateDataJson.getString("ddDataType"));
+                            childPrivateData.setDdDataDescription(privateDataJson.getString("ddDataDescription"));
+                            childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
+                            childPrivateData.setDdDataPublishType(0l);
+                            childPrivateData.setDdDataSubmiteState(0l);
+                            childPrivateData.setDdDataCreatePerson(dataStruct.getDdCreatorId());
+                            childPrivateData.setDdDataCreateTime(dataStruct.getDdCreateTime());
+                            childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
+                            childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
+                            privateDataService.add(childPrivateData);
+
+                        }
+                        resultMsg = getText("record.added", "cloud_account_info");
+
+
+                    }
+                    //如果是只有一个属性的结构型数据
+                    else {
                         PrivateData childPrivateData = new PrivateData();
                         childPrivateData.setDdDataId(UniqueIdUtil.genId());
-                        childPrivateData.setDdDataName(privateDataJson.getString("ddDataName"));
-                        childPrivateData.setDdDataType(privateDataJson.getInt("ddDataType"));
-                        childPrivateData.setDdDataDescription(privateDataJson.getString("ddDataDescription"));
+
+                        childPrivateData.setDdDataName(dataStruct.getDdStructName());
+                        childPrivateData.setDdDataType("结构型数据");
+                        childPrivateData.setDdDataDescription(dataStruct.getDdDescription());
+
                         childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
                         childPrivateData.setDdDataPublishType(0l);
                         childPrivateData.setDdDataSubmiteState(0l);
@@ -130,7 +156,6 @@ public class DataStructController extends AbstractController {
                         childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
                         childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
                         privateDataService.add(childPrivateData);
-
                     }
                     resultMsg = getText("record.added", "结构数据");
                 }
@@ -154,9 +179,13 @@ public class DataStructController extends AbstractController {
             } else {
                 dataStructService.update(dataStruct);
                 resultMsg = getText("record.updated", "结构数据");
+
+                }
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+            } 
             }
-            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
-        } catch (Exception e) {
+        }
+            catch (Exception e) {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
@@ -254,7 +283,15 @@ public class DataStructController extends AbstractController {
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        super.del(request, response, this.dataStructService);
+//        super.del(request, response, this.dataStructService);
+        String preUrl = RequestUtil.getPrePage(request);
+        try {
+            Long ddStructId = RequestUtil.getLong(request, "id");
+            dataStructService.delById(ddStructId);
+            privateDataService.delBySructId(ddStructId);
+        } catch (Exception ex) {
+        }
+        response.sendRedirect(preUrl);
     }
 
     /**

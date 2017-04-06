@@ -88,6 +88,11 @@ public class PrivateDataService extends BaseService<PrivateData> {
         this.privateDataDao.updatedata(privateData);
     }
 
+    public void delBySructId(Long ddDataParentId) {
+        this.privateDataDao.delBySructId(ddDataParentId);
+    }
+
+
     public List<PrivateData> getListByIdPage(PageInfo pageInfo) {
         return this.privateDataDao.getListByIdPage(pageInfo);
     }
