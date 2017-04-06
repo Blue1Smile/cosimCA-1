@@ -43,14 +43,15 @@ import static com.casic.cloud.controller.console.ConsoleController.formatJson;
 
 
 /**
- *
  * @author 2016/11/14 0014.
  */
 @Controller
 @RequestMapping("/datadriver/data/")
 public class DataStructController extends AbstractController {
 
-    /** The dataStruct service. */
+    /**
+     * The dataStruct service.
+     */
     @Resource
     private DataStructService dataStructService;
 
@@ -59,15 +60,13 @@ public class DataStructController extends AbstractController {
 
     @Resource
     private PrivateDataService privateDataService;
+
     /**
      * 添加结构化数据、文件、模型.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
-     * @throws Exception
-     *             the exception
+     * @param request  the request
+     * @param response the response
+     * @throws Exception the exception
      */
     @RequestMapping("save")
     @Action(description = "添加dataStruct")
@@ -87,7 +86,7 @@ public class DataStructController extends AbstractController {
         dataStruct.setDdProjectId(ownerTask.getDdTaskProjectId());
         dataStruct.setDdTaskName(ownerTask.getDdTaskName());
         //添加数据状态信息
-        Short type=0;
+        Short type = 0;
         dataStruct.setDdOrderState(type);
         dataStruct.setDdPublishState(type);
         dataStruct.setDdSubmitState(type);
@@ -98,7 +97,7 @@ public class DataStructController extends AbstractController {
         try {
 
             //判断需要保存的类型
-            if (dataStructJson.getString("ddType").equals(1)) {
+//            if (dataStructJson.getString("ddType").equals(1)) { //FIXME:d 不需要判断，全部是结构化数据，在结构化数据中不需要更新，只更新私有数据
                 //新建进入if  更新进入else
                 if (dataStruct.getDdStructId() == null || dataStruct.getDdStructId() == 0) {
                     dataStruct.setDdStructId((Long) UniqueIdUtil.genId());
@@ -123,7 +122,7 @@ public class DataStructController extends AbstractController {
                             PrivateData childPrivateData = new PrivateData();
                             childPrivateData.setDdDataId(UniqueIdUtil.genId());
                             childPrivateData.setDdDataName(privateDataJson.getString("ddDataName"));
-                            childPrivateData.setDdDataType(privateDataJson.getString("ddDataType"));
+                            childPrivateData.setDdDataType(privateDataJson.getInt("ddDataType"));
                             childPrivateData.setDdDataDescription(privateDataJson.getString("ddDataDescription"));
                             childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
                             childPrivateData.setDdDataPublishType(0l);
@@ -145,7 +144,7 @@ public class DataStructController extends AbstractController {
                         childPrivateData.setDdDataId(UniqueIdUtil.genId());
 
                         childPrivateData.setDdDataName(dataStruct.getDdStructName());
-                        childPrivateData.setDdDataType("结构型数据");
+                        childPrivateData.setDdDataType(1);
                         childPrivateData.setDdDataDescription(dataStruct.getDdDescription());
 
                         childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
@@ -160,7 +159,7 @@ public class DataStructController extends AbstractController {
                     resultMsg = getText("record.added", "结构数据");
                 }
                 //如果是只有一个属性的结构型数据
-                else{
+                else {
                     PrivateData childPrivateData = new PrivateData();
                     childPrivateData.setDdDataId(UniqueIdUtil.genId());
                     childPrivateData.setDdDataName(dataStruct.getDdStructName());
@@ -176,18 +175,20 @@ public class DataStructController extends AbstractController {
                     privateDataService.add(childPrivateData);
                 }
                 resultMsg = getText("record.added", "结构数据");
-            } else {
-                dataStructService.update(dataStruct);
-                resultMsg = getText("record.updated", "结构数据");
+//            } FIXME:d 不需要判断，全部是结构化数据，在结构化数据中不需要更新，只更新私有数据
+//            else {
+//                dataStructService.update(dataStruct);
+//                resultMsg = getText("record.updated", "结构数据");
+//
+//            }
+            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+        } catch (
+                Exception e)
 
-                }
-                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
-            } 
-            }
-        }
-            catch (Exception e) {
+        {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
+
     }
 
 //
@@ -250,16 +251,14 @@ public class DataStructController extends AbstractController {
 
         return dataStruct;
     }
+
     /**
      * Query dataStruct basic info list.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
+     * @param request  the request
+     * @param response the response
      * @return the list
-     * @throws Exception
-     *             the exception
+     * @throws Exception the exception
      */
     @RequestMapping("list")
     @Action(description = "结构化数据列表")
@@ -274,12 +273,9 @@ public class DataStructController extends AbstractController {
     /**
      * Del.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
-     * @throws Exception
-     *             the exception
+     * @param request  the request
+     * @param response the response
+     * @throws Exception the exception
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -295,9 +291,7 @@ public class DataStructController extends AbstractController {
     }
 
     /**
-     *
-     * @param bin
-     *            the bin
+     * @param bin the bin
      */
     @InitBinder
     public void initBinder(ServletRequestDataBinder bin) {
@@ -318,9 +312,9 @@ public class DataStructController extends AbstractController {
         request.setCharacterEncoding("UTF-8");
 
 
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
@@ -331,7 +325,7 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json=CombinationJSON(a,b,structdata_list);
+        JSONObject json = CombinationJSON(a, b, structdata_list);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -352,9 +346,8 @@ public class DataStructController extends AbstractController {
      * @param list:查询结果list
      * @throws Exception
      */
-    public JSONObject CombinationJSON(long a,long b,List<DataStruct> list)
-    {
-        JSONObject json=new JSONObject();
+    public JSONObject CombinationJSON(long a, long b, List<DataStruct> list) {
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
         JSONObject jsonObject = new JSONObject();
         for (int i = Math.toIntExact(a); i < b; i++) {
@@ -388,13 +381,13 @@ public class DataStructController extends AbstractController {
     public void selectPrivateByStructid(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
         JSONObject jsonObject = new JSONObject();
 
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
 //        Long a = pageSize * (pageNumber - 1);
 //        Long b = pageSize * (pageNumber);
@@ -408,7 +401,7 @@ public class DataStructController extends AbstractController {
 //        }
 //
 //
-        for (int i =0; i <privateData_list.size(); i++) {
+        for (int i = 0; i < privateData_list.size(); i++) {
             PrivateData tempPrivateData = privateData_list.get(i);
             jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
             jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
@@ -422,16 +415,16 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
             jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
             jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-            if (tempPrivateData.getDdDataType()==0){
+            if (tempPrivateData.getDdDataType() == 0) {
                 jsonObject.put("ddDataType", "其它");
             }
-            if (tempPrivateData.getDdDataType()==1){
+            if (tempPrivateData.getDdDataType() == 1) {
                 jsonObject.put("ddDataType", "结构化数据");
             }
-            if (tempPrivateData.getDdDataType()==2){
+            if (tempPrivateData.getDdDataType() == 2) {
                 jsonObject.put("ddDataType", "文件");
             }
-            if (tempPrivateData.getDdDataType()==2){
+            if (tempPrivateData.getDdDataType() == 2) {
                 jsonObject.put("ddDataType", "模型");
             }
             jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
@@ -466,9 +459,9 @@ public class DataStructController extends AbstractController {
         request.setCharacterEncoding("UTF-8");
 
 
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
@@ -481,7 +474,7 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json=CombinationJSON(a,b,structdata_list);
+        JSONObject json = CombinationJSON(a, b, structdata_list);
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -505,9 +498,9 @@ public class DataStructController extends AbstractController {
     public void showsubscriptiondata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
@@ -522,7 +515,7 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json=CombinationJSON(a,b,structdata_list);
+        JSONObject json = CombinationJSON(a, b, structdata_list);
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -546,10 +539,10 @@ public class DataStructController extends AbstractController {
     public void showpublishdataByProid(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
-        Long projectId= RequestUtil.getLong(request, "projectId");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
+        Long projectId = RequestUtil.getLong(request, "projectId");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
@@ -564,7 +557,7 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json=CombinationJSON(a,b,structdata_list);
+        JSONObject json = CombinationJSON(a, b, structdata_list);
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
