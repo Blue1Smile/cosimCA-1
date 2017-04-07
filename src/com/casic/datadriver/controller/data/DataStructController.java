@@ -4,9 +4,11 @@ package com.casic.datadriver.controller.data;
 import com.casic.datadriver.controller.AbstractController;
 import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.DataStruct;
+import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.task.TaskInfo;
 import com.casic.datadriver.service.data.DataStructService;
+import com.casic.datadriver.service.data.OrderDataRelationService;
 import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.task.TaskInfoService;
 import com.hotent.core.annotion.Action;
@@ -43,14 +45,15 @@ import static com.casic.cloud.controller.console.ConsoleController.formatJson;
 
 
 /**
- *
  * @author 2016/11/14 0014.
  */
 @Controller
 @RequestMapping("/datadriver/data/")
 public class DataStructController extends AbstractController {
 
-    /** The dataStruct service. */
+    /**
+     * The dataStruct service.
+     */
     @Resource
     private DataStructService dataStructService;
 
@@ -59,15 +62,15 @@ public class DataStructController extends AbstractController {
 
     @Resource
     private PrivateDataService privateDataService;
+    @Resource
+    private OrderDataRelationService orderdatarelationservice;
+
     /**
      * 添加结构化数据、文件、模型.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
-     * @throws Exception
-     *             the exception
+     * @param request  the request
+     * @param response the response
+     * @throws Exception the exception
      */
     @RequestMapping("save")
     @Action(description = "添加dataStruct")
@@ -87,7 +90,7 @@ public class DataStructController extends AbstractController {
         dataStruct.setDdProjectId(ownerTask.getDdTaskProjectId());
         dataStruct.setDdTaskName(ownerTask.getDdTaskName());
         //添加数据状态信息
-        Short type=0;
+        Short type = 0;
         dataStruct.setDdOrderState(type);
         dataStruct.setDdPublishState(type);
         dataStruct.setDdSubmitState(type);
@@ -97,13 +100,13 @@ public class DataStructController extends AbstractController {
 
         try {
             //新建进入if  更新进入else
-            if (dataStruct.getDdStructId()==null||dataStruct.getDdStructId()==0) {
+            if (dataStruct.getDdStructId() == null || dataStruct.getDdStructId() == 0) {
                 dataStruct.setDdStructId((Long) UniqueIdUtil.genId());
                 dataStructService.addDDDataStruct(dataStruct);
 
                 JSONObject dataJson = JSONObject.fromObject(childDataArray.get(0).toString());
                 //如果是结构型数据包括多个属性值
-                if(dataJson.size()==4) {
+                if (dataJson.size() == 4) {
                     for (int i = 0; i < childDataArray.size(); i++) {
                         JSONObject privateDataJson = JSONObject.fromObject(childDataArray.get(i).toString());
 
@@ -137,7 +140,7 @@ public class DataStructController extends AbstractController {
 
                 }
                 //如果是只有一个属性的结构型数据
-                else{
+                else {
                     PrivateData childPrivateData = new PrivateData();
                     childPrivateData.setDdDataId(UniqueIdUtil.genId());
                     childPrivateData.setDdDataName(dataStruct.getDdStructName());
@@ -223,16 +226,14 @@ public class DataStructController extends AbstractController {
 
         return dataStruct;
     }
+
     /**
      * Query dataStruct basic info list.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
+     * @param request  the request
+     * @param response the response
      * @return the list
-     * @throws Exception
-     *             the exception
+     * @throws Exception the exception
      */
     @RequestMapping("list")
     @Action(description = "结构化数据列表")
@@ -247,12 +248,9 @@ public class DataStructController extends AbstractController {
     /**
      * Del.
      *
-     * @param request
-     *            the request
-     * @param response
-     *            the response
-     * @throws Exception
-     *             the exception
+     * @param request  the request
+     * @param response the response
+     * @throws Exception the exception
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -260,9 +258,7 @@ public class DataStructController extends AbstractController {
     }
 
     /**
-     *
-     * @param bin
-     *            the bin
+     * @param bin the bin
      */
     @InitBinder
     public void initBinder(ServletRequestDataBinder bin) {
@@ -283,9 +279,9 @@ public class DataStructController extends AbstractController {
         request.setCharacterEncoding("UTF-8");
 
 
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
@@ -296,7 +292,7 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json=CombinationJSON(a,b,structdata_list);
+        JSONObject json = CombinationJSON(a, b, id,structdata_list);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -317,9 +313,8 @@ public class DataStructController extends AbstractController {
      * @param list:查询结果list
      * @throws Exception
      */
-    public JSONObject CombinationJSON(long a,long b,List<DataStruct> list)
-    {
-        JSONObject json=new JSONObject();
+    public JSONObject CombinationJSON(long a, long b, long taskId,List<DataStruct> list) {
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
         JSONObject jsonObject = new JSONObject();
         for (int i = Math.toIntExact(a); i < b; i++) {
@@ -332,7 +327,17 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddOrderState", mymode.getDdOrderState());
             jsonObject.put("ddProjectId", mymode.getDdProjectId());
             jsonObject.put("ddPublishState", mymode.getDdPublishState());
-//            jsonObject.put("num", mymode.getDdDataId());
+
+            QueryParameters queryparameters = new QueryParameters();
+            queryparameters.setId(taskId);
+            queryparameters.setType(mymode.getDdStructId());
+
+            int num = orderdatarelationservice.getDDOrderDataRelation(queryparameters).size();
+            if (num > 0) {
+                jsonObject.put("exist", 1);
+            } else if (num == 0) {
+                jsonObject.put("exist", 0);
+            }
             jsonMembers.add(jsonObject);
         }
 
@@ -353,13 +358,13 @@ public class DataStructController extends AbstractController {
     public void selectPrivateByStructid(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
         JSONObject jsonObject = new JSONObject();
 
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
 //        Long a = pageSize * (pageNumber - 1);
 //        Long b = pageSize * (pageNumber);
@@ -373,7 +378,7 @@ public class DataStructController extends AbstractController {
 //        }
 //
 //
-        for (int i =0; i <privateData_list.size(); i++) {
+        for (int i = 0; i < privateData_list.size(); i++) {
             PrivateData tempPrivateData = privateData_list.get(i);
             jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
             jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
@@ -420,9 +425,9 @@ public class DataStructController extends AbstractController {
         request.setCharacterEncoding("UTF-8");
 
 
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
@@ -435,7 +440,7 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json=CombinationJSON(a,b,structdata_list);
+        JSONObject json = CombinationJSON(a, b,id, structdata_list);
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -459,9 +464,9 @@ public class DataStructController extends AbstractController {
     public void showsubscriptiondata(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long id = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
@@ -471,12 +476,36 @@ public class DataStructController extends AbstractController {
         queryparameters.setBackupsL(Long.valueOf(1));
 
         List<DataStruct> structdata_list = dataStructService.getStructByTaskAndOId(queryparameters);
+        List<OrderDataRelation> OrderDataRelation_list = orderdatarelationservice.getOrderDataRelationList(id);
 
-        if (b > structdata_list.size()) {
-            b = Long.valueOf(structdata_list.size());
+//        if (b > structdata_list.size()) {
+//            b = Long.valueOf(structdata_list.size());
+//        }
+
+        if (b > OrderDataRelation_list.size()) {
+            b = Long.valueOf(OrderDataRelation_list.size());
         }
 
-        JSONObject json=CombinationJSON(a,b,structdata_list);
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+
+        for (int i = Math.toIntExact(a); i < b; i++) {
+            OrderDataRelation mymode = OrderDataRelation_list.get(i);
+            jsonObject.put("ddOrderDataId", mymode.getDdOrderDataId());
+            jsonObject.put("ddOrderType", mymode.getDdOrderType());
+            jsonObject.put("ddDataId", mymode.getDdDataId());
+            jsonObject.put("ddTaskId", mymode.getDdTaskId());
+            jsonObject.put("ddOpreationLevel", mymode.getDdOpreationLevel());
+            jsonObject.put("ddDataName", mymode.getDdDataName());
+
+//            jsonObject.put("num", mymode.getDdDataId());
+            jsonMembers.add(jsonObject);
+        }
+
+        json.put("total", OrderDataRelation_list.size());
+        json.put("rows", jsonMembers);
+//        JSONObject json=CombinationJSON(a,b,structdata_list);
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -500,10 +529,10 @@ public class DataStructController extends AbstractController {
     public void showpublishdataByProid(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id= RequestUtil.getLong(request, "id");
-        Long projectId= RequestUtil.getLong(request, "projectId");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        Long taskId = RequestUtil.getLong(request, "taskId");
+        Long projectId = RequestUtil.getLong(request, "projectId");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
@@ -518,7 +547,7 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json=CombinationJSON(a,b,structdata_list);
+        JSONObject json = CombinationJSON(a, b, taskId,structdata_list);
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());

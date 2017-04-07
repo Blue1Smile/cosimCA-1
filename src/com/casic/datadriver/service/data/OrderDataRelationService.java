@@ -2,6 +2,7 @@ package com.casic.datadriver.service.data;
 
 import com.casic.datadriver.dao.data.OrderDataRelationDao;
 import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
@@ -31,6 +32,15 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
         return true;
     }
 
+    public boolean delDDOrderDataRelation(QueryParameters queryparameters) {
+        this.orderDataRelationDao.delDDOrderDataRelation(queryparameters);
+        return true;
+    }
+
+    public  List<OrderDataRelation> getDDOrderDataRelation(QueryParameters queryparameters) {
+      return this.orderDataRelationDao.getDDOrderDataRelation(queryparameters);
+    }
+
     /*
      * (non-Javadoc)
      *
@@ -49,6 +59,10 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
      */
     public List<OrderDataRelation> getCanBeOrderDataList(long project) {
         return this.orderDataRelationDao.getCanBeOrderDataList(project);
+    }
+
+    public List<OrderDataRelation> getOrderDataRelationbyDataId(Long DataId) {
+        return this.orderDataRelationDao.getOrderDataRelationbyDataId(DataId);
     }
 
     /**
