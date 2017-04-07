@@ -248,7 +248,23 @@ public class DataStructController extends AbstractController {
         Map<String, Class> map = new HashMap<String, Class>();
         map.put("privateDataList", PrivateData.class);
         DataStruct dataStruct = (DataStruct) JSONObject.toBean(obj, DataStruct.class, map);
-
+//        if (obj.getString("ddType").equals(1)) {
+//            dataStruct.setDdType(dataStruct.struct);
+//        }
+//        else{
+//            if (obj.getString("ddType").equals(2)){
+//                dataStruct.setDdType(dataStruct.file);
+//            }
+//            else{
+//                if (obj.getString("ddType").equals(3)){
+//                    dataStruct.setDdType(dataStruct.model);
+//                }
+//                else{
+//                    dataStruct.setDdType(dataStruct.other);
+//                }
+//            }
+//
+//        }
         return dataStruct;
     }
 

@@ -9,6 +9,12 @@ import java.util.Date;
 import java.util.List;
 
 public class DataStruct {
+
+    public short struct=1;
+    public short model=3;
+    public short file=2;
+    public short other=4;
+
     private Long ddStructId;
 
     private String ddStructName;

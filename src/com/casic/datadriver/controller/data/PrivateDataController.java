@@ -327,4 +327,29 @@ public class PrivateDataController extends AbstractController {
         addMessage(message, request);
         response.sendRedirect(preUrl);
     }
+
+    /**
+     * 指标编辑、增加
+     *
+     * @return
+     */
+    @RequestMapping("lastvalue")
+    @Action(description = "指标值刷新")
+    public void refreshlastvalue(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        try {
+            String json = request.getParameter("strJson");
+            JSONObject obj = JSONObject.fromObject(json);
+
+            PrivateData privateData = privateDataService.getById(obj.getLong("ddDataId"));
+//            Map<String, Class> map = new HashMap<String, Class>();
+//            map.put("privateData", PrivateData.class);
+            privateData.setDdDataLastestValue(obj.getString("ddDataLastestValue"));
+//            PrivateData privateData = (PrivateData) JSONObject.toBean(obj, PrivateData.class, map);
+            privateDataService.update(privateData);
+        } catch (Exception e) {
+            String resultMsg = null;
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+        }
+    }
 }
