@@ -10,7 +10,7 @@
 <head>
     <title>项目基础信息添加</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%@include file="/commons/include/form.jsp" %>
+    <%@include file="/commons/datadriver/formbase.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>

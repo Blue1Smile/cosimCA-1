@@ -66,29 +66,29 @@
 
             </div>
             <div class="panel-body panelheight" id="canbeorderpanel">
-                <div id="toolbar_canbeorder" class="form-inline">
-                    <div class="form-group">
-                        <label for="dataNameCanBeOrder">名称：</label>
-                        <input id="dataNameCanBeOrder" class="form-control" type="text" value="" placeholder="任务名称"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddType">类型：</label>
-                        <ap:selectDB name="ddType" id="ddType"
-                                     where="parentId=10000025100454" optionValue="itemValue"
-                                     optionText="itemName" table="SYS_DIC"
-                                     selectedValue="" styleClass="form-control">
-                        </ap:selectDB>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddDataTaskNameCanBeOrder">任务：</label>
-                        <select id="ddDataTaskNameCanBeOrder" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-                    <input class="btn btn-default" type="submit" value="筛选"/>
-                </div>
+                <%--<div id="toolbar_canbeorder" class="form-inline">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="dataNameCanBeOrder">名称：</label>--%>
+                        <%--<input id="dataNameCanBeOrder" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddType">类型：</label>--%>
+                        <%--<ap:selectDB name="ddType" id="ddType"--%>
+                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                                     <%--optionText="itemName" table="SYS_DIC"--%>
+                                     <%--selectedValue="" styleClass="form-control">--%>
+                        <%--</ap:selectDB>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddDataTaskNameCanBeOrder">任务：</label>--%>
+                        <%--<select id="ddDataTaskNameCanBeOrder" class="form-control">--%>
+                            <%--<option>1</option>--%>
+                            <%--<option>2</option>--%>
+                            <%--<option>3</option>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                    <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
+                <%--</div>--%>
                 <table id="table_canbeorder"></table>
             </div>
         </div>
@@ -113,29 +113,29 @@
                 </div>
             </div>
             <div class="panel-body panelheight" id="orderpanel">
-                <div id="toolbar_order" class="form-inline">
-                    <div class="form-group">
-                        <label for="dataNameOrder">名称：</label>
-                        <input id="dataNameOrder" class="form-control" type="text" value="" placeholder="任务名称"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddType">类型：</label>
-                        <ap:selectDB name="ddType" id="ddType"
-                                     where="parentId=10000025100454" optionValue="itemValue"
-                                     optionText="itemName" table="SYS_DIC"
-                                     selectedValue="" styleClass="form-control">
-                        </ap:selectDB>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddDataTaskNameOrder">任务：</label>
-                        <select id="ddDataTaskNameOrder" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-                    <input class="btn btn-default" type="submit" value="筛选"/>
-                </div>
+                <%--<div id="toolbar_order" class="form-inline">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="dataNameOrder">名称：</label>--%>
+                        <%--<input id="dataNameOrder" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddType">类型：</label>--%>
+                        <%--<ap:selectDB name="ddType" id="ddType"--%>
+                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                                     <%--optionText="itemName" table="SYS_DIC"--%>
+                                     <%--selectedValue="" styleClass="form-control">--%>
+                        <%--</ap:selectDB>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddDataTaskNameOrder">任务：</label>--%>
+                        <%--<select id="ddDataTaskNameOrder" class="form-control">--%>
+                            <%--<option>1</option>--%>
+                            <%--<option>2</option>--%>
+                            <%--<option>3</option>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                    <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
+                <%--</div>--%>
                 <table id="table_order"></table>
             </div>
         </div>
