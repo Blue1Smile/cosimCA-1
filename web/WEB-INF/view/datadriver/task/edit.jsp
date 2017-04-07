@@ -84,6 +84,11 @@
         .muted {
             color: #A6A6A6;
         }
+
+        .editable-input{
+            width: 100%;
+            margin: 5px;
+        }
     </style>
 </head>
 <body style="height: 100%; margin: 0px;">
@@ -345,8 +350,11 @@
             }
         });
         $('#comments').editable({
-            showbuttons: true,
+            showbuttons: false,
             placement: 'bottom',
+            mode: 'inline',
+            onblur: 'submit',
+            inputclass: 'editable-input',
             rows: 5,
             url: function (params) {
                 taskItem = 3;

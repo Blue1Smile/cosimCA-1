@@ -5,7 +5,7 @@
 <head>
     <title>数据版本</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%@include file="/commons/include/get.jsp" %>
+    <%@include file="/commons/datadriver/getbase.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>

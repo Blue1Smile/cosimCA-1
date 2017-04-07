@@ -119,8 +119,16 @@
                 <td align="center">
                     <input type="text" name="ddDataName" class="form-control"/></td>
                 <td align="center">
-                    <ap:selectDB name="ddDataType" id="ddDataType"
-                                 where="parentId=10000025100454" optionValue="itemValue"
+                    <select name="ddDataType" class="form-control">
+                        <option value="0">数值</option>
+                        <%--<option value="1">结构型数据</option>--%>
+                        <option value="2">文件</option>
+                        <option value="3">模型</option>
+                    </select>
+                </td>
+                <td align="center">
+                    <ap:selectDB name="ddDataUnit" id="ddDataUnit"
+                                 where="parentId=10000010570022" optionValue="itemValue"
                                  optionText="itemName" table="SYS_DIC"
                                  selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
                     </ap:selectDB>
@@ -152,7 +160,8 @@
                         <ap:selectDB name="ddType" id="ddType"
                                      where="parentId=10000025100454" optionValue="itemValue"
                                      optionText="itemName" table="SYS_DIC"
-                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control" onChange="change()">
+                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control"
+                                     onChange="change()">
                         </ap:selectDB>
                     </td>
                     <%--<th width="20%">数据创建时间:</th>--%>
@@ -163,6 +172,16 @@
                     <%--value=""--%>
                     <%--class="form-control"/></td>--%>
                 </tr>
+                <%--<tr>--%>
+                <%--<th width="20%">数据单位:</th>--%>
+                <%--<td>--%>
+                <%--<ap:selectDB name="ddType" id="ddType"--%>
+                <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                <%--optionText="itemName" table="SYS_DIC"--%>
+                <%--selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control" onChange="change()">--%>
+                <%--</ap:selectDB>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
                 <tr>
 
                     <%--<th width="20%">数据创建人:</th>--%>
@@ -186,10 +205,11 @@
                                formType="page">
                             <thead>
                             <tr>
-                                <td height="30" align="center" bgcolor="#CCCCCC">序号</td>
-                                <td align="center" bgcolor="#CCCCCC">数据属性</td>
-                                <td align="center" bgcolor="#CCCCCC">数据类型</td>
-                                <td align="center" bgcolor="#CCCCCC">描述</td>
+                                <td height="20" align="center" bgcolor="#FFFCCC">序号</td>
+                                <td align="center" bgcolor="#FFFCCC">数据名称</td>
+                                <td align="center" bgcolor="#FFFCCC">数据类型</td>
+                                <td align="center" bgcolor="#FFFCCC">单位</td>
+                                <td align="center" bgcolor="#FFFCCC">描述</td>
                                 <td><input class="btn btn-success btn-sm" type="button" id="btn_addtr" value="增行"></td>
                             </tr>
                             </thead>
@@ -198,11 +218,26 @@
                                 <td height="30" align="center"><input type="text" name="NO" size="1" value="1"
                                                                       class="form-control" readonly/></td>
                                 <td align="center"><input type="text" name="ddDataName" class="form-control"/></td>
-                                <td align="center"><ap:selectDB name="ddDataType" id="ddDataType"
-                                                                where="parentId=10000025100454" optionValue="itemValue"
-                                                                optionText="itemName" table="SYS_DIC"
-                                                                selectedValue="${indexInfo.ddIndexTypeId}"
-                                                                styleClass="form-control"></ap:selectDB></td>
+                                <td align="center">
+                                    <%--<ap:selectDB name="ddDataType" id="ddDataType"--%>
+                                    <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                                    <%--optionText="itemName" table="SYS_DIC"--%>
+                                    <%--selectedValue="${indexInfo.ddIndexTypeId}"--%>
+                                    <%--styleClass="form-control"></ap:selectDB>--%>
+                                    <select name="ddDataType" class="form-control">
+                                        <option value="0">数值</option>
+                                        <%--<option value="1">结构型数据</option>--%>
+                                        <option value="2">文件</option>
+                                        <option value="3">模型</option>
+                                    </select>
+                                </td>
+                                <td align="center">
+                                    <ap:selectDB name="ddDataUnit" id="ddDataUnit"
+                                                 where="parentId=10000010570022" optionValue="itemValue"
+                                                 optionText="itemName" table="SYS_DIC"
+                                                 selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                                    </ap:selectDB>
+                                </td>
                                 <td align="center"><input type="text" name="ddDataDescription" class="form-control"/>
                                 </td>
                                 <td><input class="btn btn-default btn-sm" type="button" id="Button2"
@@ -266,17 +301,17 @@
             }
         });
         $("#ddType").change(function () {
-            if ($('#ddType option:selected') .val() == 2) {
+            if ($('#ddType option:selected').val() == 2) {
                 $('#subdata').remove();
 //                $('#selectModeltr').show();
 //                $('#selectModel').removeAttr("disabled");
 //                $('#initValue').remove();
-            } else if ($('#ddType option:selected') .val() == 3) {
+            } else if ($('#ddType option:selected').val() == 3) {
                 $('#subdata').hide();
 //                $('#selectModeltr').show();
 //                $('#selectModel').removeAttr("disabled");
 //                $('#initValue').remove();
-            } else if ($('#ddType option:selected') .val() == 0) {
+            } else if ($('#ddType option:selected').val() == 0) {
                 $('#subdata').hide();
 //                $('#selectModeltr').show();
 //                $('#selectModel').removeAttr("disabled");

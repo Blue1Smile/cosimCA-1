@@ -5,7 +5,7 @@
 <head>
     <title>模型树</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%@include file="/commons/include/get.jsp" %>
+    <%@include file="/commons/datadriver/getbase.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -78,7 +78,7 @@
 
         </div>
     </div>
-    <div class="col-xs-9">
+    <div class="col-xs-9" style="height: 100%">
         <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">模型列表</div>
             <div class="panel-body" style="height: 93%">

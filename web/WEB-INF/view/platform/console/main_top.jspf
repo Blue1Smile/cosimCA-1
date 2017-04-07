@@ -145,7 +145,7 @@
 
 <div class="index_top" >
 	<div class="left_logo">
-		<img id="logoImg" src="${ctx}${currentSystem.logo}" />
+		<img id="logoImg" src="${ctx}/${currentSystem.logo}" />
 	</div>
 	
 	<div class="search_welcome">
