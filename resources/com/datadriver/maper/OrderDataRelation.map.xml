@@ -25,9 +25,20 @@
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
-        where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
+        where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC}
     </select>
 
+    <delete id="delDDOrderDataRelation" parameterType="com.casic.datadriver.model.QueryParameters">
+        delete from dd_order_data_ralation
+       where DD_TASK_ID = #{id,jdbcType=NUMERIC} AND DD_DATA_ID = #{type,jdbcType=NUMERIC}
+    </delete>
+
+    <select id="getDDOrderDataRelation" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_TASK_ID = #{id,jdbcType=NUMERIC} AND DD_DATA_ID = #{type,jdbcType=NUMERIC}
+    </select>
 
     <select id="getOrderDataRelationListF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
         select
@@ -50,12 +61,12 @@
         where DD_TASK_ID = #{id} AND DD_ORDER_TYPE=0 limit #{pageSize},#{pageNumber}
     </select>
 
-    <!--<select id="getCanBeOrderDataList" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
-        <!--select-->
-        <!--<include refid="Base_Column_List"/>-->
-        <!--from dd_order_data_ralation-->
-        <!--where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0-->
-    <!--</select>-->
+    <select id="getOrderDataRelationbyDataId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_DATA_ID = #{DataId,jdbcType=NUMERIC}
+    </select>
 
     <select id="getOrderDataRelationById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select

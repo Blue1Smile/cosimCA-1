@@ -3,6 +3,7 @@ package com.casic.datadriver.controller.datacenter;
 
 import com.casic.datadriver.controller.AbstractController;
 import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.DataStruct;
 import com.casic.datadriver.model.data.DataVersion;
 import com.casic.datadriver.model.data.OrderDataRelation;
@@ -32,8 +33,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-
 /**
  * @author 2016/11/14
  */
@@ -804,6 +803,7 @@ public class PersonalTaskController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
+
     }
 
     /**
@@ -831,19 +831,33 @@ public class PersonalTaskController extends AbstractController {
 //                        orderDataRelationService.delOrderByddDataId(dataId2);
 //                    }
 //                }
-                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-                if (dataStruct.size() !=0) {
-                    dataStruct.get(0).setDdOrderState((short) 0);
-                    dataStructService.update(dataStruct.get(0));
-                }
+                QueryParameters queryparameters = new QueryParameters();
+                queryparameters.setId(taskId);
+                queryparameters.setType(dataId);
+//                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
+//                orderDataRelationService.getOrderDataRelationbyDataId(dataId);
+                boolean p = orderDataRelationService.delDDOrderDataRelation(queryparameters);
+
+//                if (dataStruct.size() !=0) {
+//                    dataStruct.get(0).setDdOrderState((short) 0);
+//                    dataStructService.update(dataStruct.get(0));
+//                }
             }
             //可订阅到已订阅
             if (parent.equals("orderpanel")) {
                 List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-                if (dataStruct.size() !=0) {
-                    dataStruct.get(0).setDdOrderState((short) 1);
-                    dataStructService.update(dataStruct.get(0));
-                }
+                OrderDataRelation orderdatarelation = new OrderDataRelation();
+
+                orderdatarelation.setDdTaskId(taskId);
+                orderdatarelation.setDdDataId(dataStruct.get(0).getDdStructId());
+                orderdatarelation.setDdOrderDataId(UniqueIdUtil.genId());
+                orderdatarelation.setDdDataName(dataStruct.get(0).getDdStructName());
+                orderDataRelationService.add(orderdatarelation);
+
+//                if (dataStruct.size() !=0) {
+//                    dataStruct.get(0).setDdOrderState((short) 1);
+//                    dataStructService.update(dataStruct.get(0));
+//                }
 //                OrderDataRelation orderDataRelation = new OrderDataRelation();
 //                orderDataRelation = orderDataRelationService.getOrderDataRelationById(dataId);
 //
@@ -877,9 +891,13 @@ public class PersonalTaskController extends AbstractController {
             //发布到私有
             if (parent.equals("createpanel")) {
                 List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-                if (dataStruct.size() !=0) {
+                int num = orderDataRelationService.getOrderDataRelationbyDataId(dataId).size();
+                if (dataStruct.size() != 0 && num == 0) {
                     dataStruct.get(0).setDdPublishState((short) 0);
                     dataStructService.update(dataStruct.get(0));
+                } else {
+//                   JOptionPane.showMessageDialog(null, "该数据已经被订阅！", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+//                    JOptionPane.showMessageDialog(null, "插入数据库成功！", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                 }
 //                orderDataRelationService.delPublishByddDataId(dataId);
 //                privateData = privateDataService.getDataById(dataId);
@@ -894,6 +912,7 @@ public class PersonalTaskController extends AbstractController {
                     dataStruct.get(0).setDdPublishState((short)1);
                     dataStructService.update(dataStruct.get(0));
                 }
+
 
 //                privateData = privateDataService.getDataById(dataId);
 //                privateData.setDdDataPublishType(1l);
@@ -910,6 +929,7 @@ public class PersonalTaskController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
+//        return "该数据已经被订阅！";
     }
 
 }
