@@ -83,7 +83,7 @@
 						<th width="20%">系统图标:</th>
 						<td><input type="hidden" id="logo" name="logo"
 							value="${subSystem.logo}" class="inputText" /> <img id="logoImg"
-							alt="" src="${ctx}${subSystem.logo}"> <a
+							alt="" src="${ctx}/${subSystem.logo}"> <a
 							class="link detail" href="javascript:selectIcon();">选择</a></td>
 					</tr>
 

@@ -80,29 +80,29 @@
 
             </div>
             <div class="panel-body panelheight" id="createpanel">
-                <div id="toolbar" class="form-inline">
-                    <div class="form-group">
-                        <label for="dataName">名称：</label>
-                        <input id="dataName" class="form-control" type="text" value="" placeholder="任务名称"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddType">类型：</label>
-                        <ap:selectDB name="ddType" id="ddType"
-                                     where="parentId=10000025100454" optionValue="itemValue"
-                                     optionText="itemName" table="SYS_DIC"
-                                     selectedValue="" styleClass="form-control">
-                        </ap:selectDB>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddDataTaskName">任务：</label>
-                        <select id="ddDataTaskName" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-                    <input class="btn btn-default" type="submit" value="筛选"/>
-                </div>
+                <%--<div id="toolbar" class="form-inline">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="dataName">名称：</label>--%>
+                        <%--<input id="dataName" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddType">类型：</label>--%>
+                        <%--<ap:selectDB name="ddType" id="ddType"--%>
+                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                                     <%--optionText="itemName" table="SYS_DIC"--%>
+                                     <%--selectedValue="" styleClass="form-control">--%>
+                        <%--</ap:selectDB>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddDataTaskName">任务：</label>--%>
+                        <%--<select id="ddDataTaskName" class="form-control">--%>
+                            <%--<option>1</option>--%>
+                            <%--<option>2</option>--%>
+                            <%--<option>3</option>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                    <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
+                <%--</div>--%>
                 <table id="table_private"></table>
             </div>
         </div>
@@ -126,29 +126,29 @@
                 </div>
             </div>
             <div class="panel-body panelheight" id="publishpanel">
-                <div id="toolbar2" class="form-inline">
-                    <div class="form-group">
-                        <label for="dataName">名称：</label>
-                        <input id="dataName2" class="form-control" type="text" value="" placeholder="任务名称"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddType">类型：</label>
-                        <ap:selectDB name="ddType" id="ddType"
-                                     where="parentId=10000025100454" optionValue="itemValue"
-                                     optionText="itemName" table="SYS_DIC"
-                                     selectedValue="" styleClass="form-control">
-                        </ap:selectDB>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddDataTaskName">任务：</label>
-                        <select id="ddDataTaskName2" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-                    <input class="btn btn-default" type="submit" value="筛选"/>
-                </div>
+                <%--<div id="toolbar2" class="form-inline">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="dataName">名称：</label>--%>
+                        <%--<input id="dataName2" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddType">类型：</label>--%>
+                        <%--<ap:selectDB name="ddType" id="ddType"--%>
+                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                                     <%--optionText="itemName" table="SYS_DIC"--%>
+                                     <%--selectedValue="" styleClass="form-control">--%>
+                        <%--</ap:selectDB>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddDataTaskName">任务：</label>--%>
+                        <%--<select id="ddDataTaskName2" class="form-control">--%>
+                            <%--<option>1</option>--%>
+                            <%--<option>2</option>--%>
+                            <%--<option>3</option>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                    <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
+                <%--</div>--%>
                 <table id="table_publish"></table>
             </div>
         </div>
@@ -273,7 +273,7 @@
             onEditableSave: function (field, row, oldValue, $el) {
                 <%--$.ajax({--%>
                 <%--type: "post",--%>
-                <%--url: "${ctx}/datadriver/index/lastvalue.ht",--%>
+                <%--url: "${ctx}/datadriver/privatedata/lastvalue.ht",--%>
                 <%--data: {strJson: JSON.stringify(row)},--%>
                 <%--success: function (data, status) {--%>
                 <%--},--%>
@@ -303,30 +303,32 @@
                 uniqueId: "MENU_ID",
                 pageSize: 10,
                 pageList: [10, 25],
-                columns: [{
-                    checkbox: true
-                }, {//第一列，数据ID
-                    field: 'ddDataId',
-                    title: '数据Id',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: false
-                }, {//第二列，名称
-                    field: 'ddDataName',
-                    title: '数据名称',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: true
-                }, {//所属任务ID
-                    field: 'ddDataTaskName',
-                    title: '所属项目ID',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: false
-                }
+                columns: [
+//                        {
+//                    checkbox: true
+//                },
+                    {//第一列，数据ID
+                        field: 'ddDataId',
+                        title: '数据Id',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }, {//第二列，名称
+                        field: 'ddDataName',
+                        title: '数据名称',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
+                    }, {//所属任务ID
+                        field: 'ddDataTaskName',
+                        title: '所属项目ID',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }
                     , {//第三列，数值
                         field: 'ddDataLastestValue',
                         title: '最新值',
@@ -356,7 +358,7 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    },
+                    }
                 ],
                 //
                 //无线循环取子表，直到子表里面没有记录
@@ -366,8 +368,20 @@
                 onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                },
+                onEditableSave: function (field, row, oldValue, $el) {
+                    <%--$.ajax({--%>
+                        <%--type: "post",--%>
+                        <%--url: "${ctx}/datadriver/privatedata/lastvalue.ht",--%>
+                        <%--data: {strJson: JSON.stringify(row)},--%>
+                        <%--success: function (data, status) {--%>
+                        <%--},--%>
+                        <%--error: function () {--%>
+                        <%--},--%>
+                        <%--complete: function () {--%>
+                        <%--}--%>
+                    <%--});--%>
                 }
-
 
             });
         };
@@ -463,15 +477,15 @@
             },
             onEditableSave: function (field, row, oldValue, $el) {
                 $.ajax({
-                    type: "post",
-                    url: "${ctx}/datadriver/index/lastvalue.ht",
-                    data: {strJson: JSON.stringify(row)},
-                    success: function (data, status) {
-                    },
-                    error: function () {
-                    },
-                    complete: function () {
-                    }
+                    <%--type: "post",--%>
+                    <%--url: "${ctx}/datadriver/privatedata/lastvalue.ht",--%>
+                    <%--data: {strJson: JSON.stringify(row)},--%>
+                    <%--success: function (data, status) {--%>
+                    <%--},--%>
+                    <%--error: function () {--%>
+                    <%--},--%>
+                    <%--complete: function () {--%>
+                    <%--}--%>
                 });
             }
         });
@@ -496,30 +510,32 @@
                 uniqueId: "MENU_ID",
                 pageSize: 10,
                 pageList: [10, 25],
-                columns: [{
-                    checkbox: true
-                }, {//第一列，数据ID
-                    field: 'ddDataId',
-                    title: '数据Id',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: false
-                }, {//第二列，名称
-                    field: 'ddDataName',
-                    title: '数据名称',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: true
-                }, {//所属任务ID
-                    field: 'ddDataTaskName',
-                    title: '所属项目ID',
-                    sortable: true,
-                    editable: false,
-                    align: 'center',
-                    visible: false
-                }
+                columns: [
+//                        {
+//                    checkbox: true
+//                },
+                    {//第一列，数据ID
+                        field: 'ddDataId',
+                        title: '数据Id',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }, {//第二列，名称
+                        field: 'ddDataName',
+                        title: '数据名称',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: true
+                    }, {//所属任务ID
+                        field: 'ddDataTaskName',
+                        title: '所属项目ID',
+                        sortable: true,
+                        editable: false,
+                        align: 'center',
+                        visible: false
+                    }
                     , {//第三列，数值
                         field: 'ddDataLastestValue',
                         title: '最新值',
@@ -556,6 +572,12 @@
                         editable: false,
                         align: 'center',
                         visible: false
+                    }, {
+                        field: 'operate',
+                        title: '操作',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operatePrivateSub
                     }
                 ],
                 //
@@ -566,8 +588,20 @@
                 onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
+                },
+                onEditableSave: function (field, row, oldValue, $el) {
+                    $.ajax({
+                        type: "post",
+                        url: "${ctx}/datadriver/privatedata/lastvalue.ht",
+                        data: {strJson: JSON.stringify(row)},
+                        success: function (data, status) {
+                        },
+                        error: function () {
+                        },
+                        complete: function () {
+                        }
+            });
                 }
-
 
             });
         };
@@ -584,24 +618,40 @@
     //    }
     //私有数据列表按钮
     function operateFormatterPrivate(value, row, index) {
-        if (row.ddPublishState == 0)
+        if (row.ddPublishState == 0) {
             return [
-                '<a id="privatetr" class="publish" href="javascript:void(0)" title="点击发布该列数据">发布',
-                '</a>',' ',
-                '<a id="privatetr_del" class="publish" href="javascript:void(0)" title="点击删除该数据项">删除',
+                '<a id="privatetr" href="javascript:void(0)" title="点击发布该列数据">发布',
+                '</a>', ' ',
+
+                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
                 '</a>'
             ].join('');
+        }
         if (row.ddPublishState == 1)
             return [
                 '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
             ].join('');
     }
-
+    //子表操作
+    function operatePrivateSub(value, row, index) {
+        if (row.ddDataType == "文件" || row.ddDataType == "模型")
+            return [
+                '<a id="privatetr_file" href="javascript:void(0)" title="点击替换文件">上传',
+                '</a>', ' ',
+                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
+                '</a>'
+            ].join('');
+        if (row.ddDataType == "其它" || row.ddDataType == "结构化数据")
+            return [
+                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
+                '</a>'
+            ].join('');
+    }
     //发布数据列表按钮
     function operateFormatterPublish(value, row, index) {
         if (row.ddPublishState == '1')
             return [
-                '<a id="publishtr" class="" href="javascript:void(0)" title="点击撤销发布该数据">收回',
+                '<a id="publishtr" href="javascript:void(0)" title="点击撤销发布该数据">收回',
                 '</a>'
             ].join('');
         if (row.ddPublishState == '0')
@@ -639,17 +689,22 @@
                     $table_private.bootstrapTable('refresh')
                 }
             });
+        },
+        'click #privatetr_file': function (e, value, row, index) {
+            <%--$.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {--%>
+            <%--if (status == 'success') {--%>
+            <%--$table_publish.bootstrapTable('refresh')--%>
+            <%--$table_private.bootstrapTable('refresh')--%>
+            <%--}--%>
+            <%--});--%>
         }
     };
 
     $(function () {
         initTable();
     });
-
     //Excel批量导入
     function importPrivateData(taskId, projectId) {
-//        alert(taskId);
-//        alert(projectId);
         $('#exportData').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/privatedata/importPrivateData.ht?id=" + taskId + "&projectId=" + projectId

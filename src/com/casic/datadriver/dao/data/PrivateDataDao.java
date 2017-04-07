@@ -70,6 +70,11 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
         this.delBySqlKey("delByMainId", classId);
     }
 
+    public void delBySructId(Long ddDataParentId) {
+        this.delBySqlKey("delBySructId", ddDataParentId);
+    }
+
+
     public List<PrivateData> getByMainId(Long classId) {
         return this.getBySqlKey("getPrivateDataList", classId);
     }

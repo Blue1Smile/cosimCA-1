@@ -88,6 +88,11 @@ public class PrivateDataService extends BaseService<PrivateData> {
         this.privateDataDao.updatedata(privateData);
     }
 
+    public void delBySructId(Long ddDataParentId) {
+        this.privateDataDao.delBySructId(ddDataParentId);
+    }
+
+
     public List<PrivateData> getListByIdPage(PageInfo pageInfo) {
         return this.privateDataDao.getListByIdPage(pageInfo);
     }
@@ -155,7 +160,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
                 brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
                 brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
-                brandMobileInfo.setDdDataType(String.valueOf(hssfRow.getCell(4)));
+                brandMobileInfo.setDdDataType(Integer.valueOf(String.valueOf(hssfRow.getCell(4))));
                 brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
 //                   阈值定义问题
 //                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));

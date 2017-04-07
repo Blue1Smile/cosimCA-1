@@ -62,8 +62,10 @@ public class DataStructController extends AbstractController {
 
     @Resource
     private PrivateDataService privateDataService;
+
     @Resource
     private OrderDataRelationService orderdatarelationservice;
+
 
     /**
      * 添加结构化数据、文件、模型.
@@ -99,16 +101,20 @@ public class DataStructController extends AbstractController {
         JSONArray childDataArray = dataStructJson.getJSONArray("privateDataList");
 
         try {
-            //新建进入if  更新进入else
-            if (dataStruct.getDdStructId() == null || dataStruct.getDdStructId() == 0) {
-                dataStruct.setDdStructId((Long) UniqueIdUtil.genId());
-                dataStructService.addDDDataStruct(dataStruct);
 
-                JSONObject dataJson = JSONObject.fromObject(childDataArray.get(0).toString());
-                //如果是结构型数据包括多个属性值
-                if (dataJson.size() == 4) {
-                    for (int i = 0; i < childDataArray.size(); i++) {
-                        JSONObject privateDataJson = JSONObject.fromObject(childDataArray.get(i).toString());
+
+            //判断需要保存的类型
+//            if (dataStructJson.getString("ddType").equals(1)) { //FIXME:d 不需要判断，全部是结构化数据，在结构化数据中不需要更新，只更新私有数据
+                //新建进入if  更新进入else
+                if (dataStruct.getDdStructId() == null || dataStruct.getDdStructId() == 0) {
+                    dataStruct.setDdStructId((Long) UniqueIdUtil.genId());
+                    dataStructService.addDDDataStruct(dataStruct);
+
+                    JSONObject dataJson = JSONObject.fromObject(childDataArray.get(0).toString());
+                    //如果是结构型数据包括多个属性值
+                    if (dataJson.size() == 4) {
+                        for (int i = 0; i < childDataArray.size(); i++) {
+                            JSONObject privateDataJson = JSONObject.fromObject(childDataArray.get(i).toString());
 
 //                        DataStruct childDataStruct = new DataStruct();
 //                        childDataStruct.setDdDescription(childDataJson.getString("ddDataDescription"));
@@ -119,12 +125,35 @@ public class DataStructController extends AbstractController {
 //                        childDataStruct.setDdOrderState(dataStruct.getDdOrderState());
 //                        childDataStruct.setDdStructName(childDataJson.getString("ddDataName"));
 //                        dataStructService.addDDDataStruct(childDataStruct);
-                        //存储child信息
+                            //存储child信息
+                            PrivateData childPrivateData = new PrivateData();
+                            childPrivateData.setDdDataId(UniqueIdUtil.genId());
+                            childPrivateData.setDdDataName(privateDataJson.getString("ddDataName"));
+                            childPrivateData.setDdDataType(privateDataJson.getInt("ddDataType"));
+                            childPrivateData.setDdDataDescription(privateDataJson.getString("ddDataDescription"));
+                            childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
+                            childPrivateData.setDdDataPublishType(0l);
+                            childPrivateData.setDdDataSubmiteState(0l);
+                            childPrivateData.setDdDataCreatePerson(dataStruct.getDdCreatorId());
+                            childPrivateData.setDdDataCreateTime(dataStruct.getDdCreateTime());
+                            childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
+                            childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
+                            privateDataService.add(childPrivateData);
+
+                        }
+                        resultMsg = getText("record.added", "cloud_account_info");
+
+
+                    }
+                    //如果是只有一个属性的结构型数据
+                    else {
                         PrivateData childPrivateData = new PrivateData();
                         childPrivateData.setDdDataId(UniqueIdUtil.genId());
-                        childPrivateData.setDdDataName(privateDataJson.getString("ddDataName"));
-                        childPrivateData.setDdDataType(privateDataJson.getString("ddDataType"));
-                        childPrivateData.setDdDataDescription(privateDataJson.getString("ddDataDescription"));
+
+                        childPrivateData.setDdDataName(dataStruct.getDdStructName());
+                        childPrivateData.setDdDataType(1);
+                        childPrivateData.setDdDataDescription(dataStruct.getDdDescription());
+
                         childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
                         childPrivateData.setDdDataPublishType(0l);
                         childPrivateData.setDdDataSubmiteState(0l);
@@ -133,18 +162,15 @@ public class DataStructController extends AbstractController {
                         childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
                         childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
                         privateDataService.add(childPrivateData);
-
                     }
-                    resultMsg = getText("record.added", "cloud_account_info");
-
-
+                    resultMsg = getText("record.added", "结构数据");
                 }
                 //如果是只有一个属性的结构型数据
                 else {
                     PrivateData childPrivateData = new PrivateData();
                     childPrivateData.setDdDataId(UniqueIdUtil.genId());
                     childPrivateData.setDdDataName(dataStruct.getDdStructName());
-                    childPrivateData.setDdDataType("结构型数据");
+                    childPrivateData.setDdDataType(1);
                     childPrivateData.setDdDataDescription(dataStruct.getDdDescription());
                     childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
                     childPrivateData.setDdDataPublishType(0l);
@@ -155,15 +181,21 @@ public class DataStructController extends AbstractController {
                     childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
                     privateDataService.add(childPrivateData);
                 }
-                resultMsg = getText("record.added", "cloud_account_info");
-            } else {
-                dataStructService.update(dataStruct);
-                resultMsg = getText("record.updated", "cloud_account_info");
-            }
+                resultMsg = getText("record.added", "结构数据");
+//            } FIXME:d 不需要判断，全部是结构化数据，在结构化数据中不需要更新，只更新私有数据
+//            else {
+//                dataStructService.update(dataStruct);
+//                resultMsg = getText("record.updated", "结构数据");
+//
+//            }
             writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
-        } catch (Exception e) {
+        } catch (
+                Exception e)
+
+        {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
+
     }
 
 //
@@ -223,7 +255,23 @@ public class DataStructController extends AbstractController {
         Map<String, Class> map = new HashMap<String, Class>();
         map.put("privateDataList", PrivateData.class);
         DataStruct dataStruct = (DataStruct) JSONObject.toBean(obj, DataStruct.class, map);
-
+//        if (obj.getString("ddType").equals(1)) {
+//            dataStruct.setDdType(dataStruct.struct);
+//        }
+//        else{
+//            if (obj.getString("ddType").equals(2)){
+//                dataStruct.setDdType(dataStruct.file);
+//            }
+//            else{
+//                if (obj.getString("ddType").equals(3)){
+//                    dataStruct.setDdType(dataStruct.model);
+//                }
+//                else{
+//                    dataStruct.setDdType(dataStruct.other);
+//                }
+//            }
+//
+//        }
         return dataStruct;
     }
 
@@ -254,7 +302,15 @@ public class DataStructController extends AbstractController {
      */
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        super.del(request, response, this.dataStructService);
+//        super.del(request, response, this.dataStructService);
+        String preUrl = RequestUtil.getPrePage(request);
+        try {
+            Long ddStructId = RequestUtil.getLong(request, "id");
+            dataStructService.delById(ddStructId);
+            privateDataService.delBySructId(ddStructId);
+        } catch (Exception ex) {
+        }
+        response.sendRedirect(preUrl);
     }
 
     /**
@@ -292,7 +348,9 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
+
         JSONObject json = CombinationJSON(a, b, id,structdata_list);
+
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -313,7 +371,9 @@ public class DataStructController extends AbstractController {
      * @param list:查询结果list
      * @throws Exception
      */
+
     public JSONObject CombinationJSON(long a, long b, long taskId,List<DataStruct> list) {
+
         JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
         JSONObject jsonObject = new JSONObject();
@@ -392,7 +452,18 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
             jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
             jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-            jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+            if (tempPrivateData.getDdDataType() == 0) {
+                jsonObject.put("ddDataType", "其它");
+            }
+            if (tempPrivateData.getDdDataType() == 1) {
+                jsonObject.put("ddDataType", "结构化数据");
+            }
+            if (tempPrivateData.getDdDataType() == 2) {
+                jsonObject.put("ddDataType", "文件");
+            }
+            if (tempPrivateData.getDdDataType() == 2) {
+                jsonObject.put("ddDataType", "模型");
+            }
             jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
 
             jsonMembers.add(jsonObject);
@@ -441,6 +512,7 @@ public class DataStructController extends AbstractController {
         }
 
         JSONObject json = CombinationJSON(a, b,id, structdata_list);
+
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -502,10 +574,10 @@ public class DataStructController extends AbstractController {
 //            jsonObject.put("num", mymode.getDdDataId());
             jsonMembers.add(jsonObject);
         }
-
         json.put("total", OrderDataRelation_list.size());
         json.put("rows", jsonMembers);
 //        JSONObject json=CombinationJSON(a,b,structdata_list);
+
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
@@ -532,6 +604,7 @@ public class DataStructController extends AbstractController {
         Long pageSize = RequestUtil.getLong(request, "pageSize");
         Long pageNumber = RequestUtil.getLong(request, "pageNumber");
         Long taskId = RequestUtil.getLong(request, "taskId");
+
         Long projectId = RequestUtil.getLong(request, "projectId");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
@@ -548,6 +621,7 @@ public class DataStructController extends AbstractController {
         }
 
         JSONObject json = CombinationJSON(a, b, taskId,structdata_list);
+
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
