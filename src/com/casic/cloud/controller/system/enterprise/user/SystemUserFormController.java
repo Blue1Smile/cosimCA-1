@@ -102,7 +102,7 @@ public class SystemUserFormController extends BaseFormController
 			
 			String enPassword = EncryptUtil.encryptSha256(sysUser.getPassword());
 			sysUser.setPassword(enPassword);
-			//【TIANZHI】
+
 			ISysOrg sysOrg = ContextUtil.getCurrentOrgFromSession();
 			sysUser.setShortAccount(sysUser.getAccount());
 			sysUser.setFullname(sysUser.getAccount());
