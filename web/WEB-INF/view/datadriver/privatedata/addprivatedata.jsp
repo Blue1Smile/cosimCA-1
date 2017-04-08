@@ -172,16 +172,16 @@
                     <%--value=""--%>
                     <%--class="form-control"/></td>--%>
                 </tr>
-                <%--<tr>--%>
-                <%--<th width="20%">数据单位:</th>--%>
-                <%--<td>--%>
-                <%--<ap:selectDB name="ddType" id="ddType"--%>
-                <%--where="parentId=10000025100454" optionValue="itemValue"--%>
-                <%--optionText="itemName" table="SYS_DIC"--%>
-                <%--selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control" onChange="change()">--%>
-                <%--</ap:selectDB>--%>
-                <%--</td>--%>
-                <%--</tr>--%>
+                <tr id="initUnit">
+                    <th width="20%">数据单位:</th>
+                    <td>
+                        <ap:selectDB name="ddUnitForPrivate" id="ddUnitForPrivate"
+                                     where="parentId=10000010570022" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                        </ap:selectDB>
+                    </td>
+                </tr>
                 <tr>
 
                     <%--<th width="20%">数据创建人:</th>--%>
@@ -267,6 +267,7 @@
 <script type="text/javascript">
     //@ sourceURL=addprivatedata.ht
     $(function () {
+        $('#initUnit').hide();
         var show_count = 20;   //要显示的条数
         var count = 1;    //递增的开始值，这里是你的ID
         $("#btn_addtr").click(function () {
@@ -385,12 +386,16 @@
         var value_change = $("#ddType").val();
         if (value_change == "2") {
             $('#initValue').hide();
+            $('#initUnit').hide();
         } else if (value_change == "3") {
             $('#initValue').hide();
+            $('#initUnit').hide();
         } else if (value_change == "0") {
             $('#initValue').hide();
+            $('#initUnit').show();
         } else {
             $('#initValue').show();
+            $('#initUnit').hide();
         }
     }
 </script>

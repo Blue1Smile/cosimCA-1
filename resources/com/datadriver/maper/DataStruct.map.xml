@@ -67,7 +67,7 @@
     select
     <include refid="Base_Column_List" />
     from dd_data_struct
-    where DD_PROJECT_ID = #{id,jdbcType=BIGINT} AND DD_PUBLISH_STATE =  #{backupsL,jdbcType=BIGINT}
+    where DD_PROJECT_ID = #{id,jdbcType=BIGINT} AND DD_PUBLISH_STATE =  #{backupsL,jdbcType=NUMERIC}
   </select>
 
   <!--根据任务id查询已订阅数据-->

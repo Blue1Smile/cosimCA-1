@@ -65,7 +65,7 @@
         <%--</li>--%>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">任务约束</a>
         </li>
-        <li role="presentation" id="switch_attr_child"><a href="#child" data-toggle="tab" role="tab">子任务</a></li>
+        <li role="presentation" id="switch_attr_child"><a href="#child" data-toggle="tab" role="tab">看板</a></li>
         <%--<li role="presentation" id="switch_attr_file"><a href="#file" data-toggle="tab" role="tab">模型文件</a></li>--%>
         <li role="presentation" id="switch_attr_source"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
         <li role="presentation" id="switch_attr_talk"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a></li>

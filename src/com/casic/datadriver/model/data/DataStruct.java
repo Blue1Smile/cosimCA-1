@@ -31,17 +31,14 @@ public class DataStruct {
 
     private Short ddIsLeaf;
 
-    private Short ddType;
+    private Integer ddType;
 
     private String ddDescription;
 
-    //0δ����   1�ѷ���
     private Short ddPublishState;
 
-    //0Ϊ����   1�Ѷ���
     private Short ddOrderState;
 
-    //0δ�ύ   ���ύ
     private Short ddSubmitState;
 
     private String ddTaskName;
@@ -55,6 +52,16 @@ public class DataStruct {
     private Long ddProjectId;
 
     private Long ddCreatorId;
+
+    private String ddUnitForPrivate;
+
+    public String getDdUnitForPrivate() {
+        return ddUnitForPrivate;
+    }
+
+    public void setDdUnitForPrivate(String ddUnitForPrivate) {
+        this.ddUnitForPrivate = ddUnitForPrivate;
+    }
 
     public Long getDdStructId() {
         return ddStructId;
@@ -130,11 +137,11 @@ public class DataStruct {
         this.ddIsLeaf = ddIsLeaf;
     }
 
-    public Short getDdType() {
+    public Integer getDdType() {
         return ddType;
     }
 
-    public void setDdType(Short ddType) {
+    public void setDdType(Integer ddType) {
         this.ddType = ddType;
     }
 
@@ -219,6 +226,8 @@ public class DataStruct {
     {
         return this.privateDataList;
     }
+
+
     /**
      * @see Object#equals(Object)
      */
