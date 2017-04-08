@@ -1,6 +1,7 @@
 package com.casic.datadriver.dao.data;
 
 import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.hotent.core.db.BaseDao;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,16 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
      */
     public List<OrderDataRelation> getCanBeOrderDataList(long projectId) {
         return this.getBySqlKey("getCanBeOrderDataList", projectId);
+    }
+    public List<OrderDataRelation> getOrderDataRelationbyDataId(Long DataId) {
+        return this.getBySqlKey("getOrderDataRelationbyDataId", DataId);
+    }
+    public List<OrderDataRelation> delDDOrderDataRelation(QueryParameters queryparameters) {
+        return this.getBySqlKey("delDDOrderDataRelation", queryparameters);
+    }
+
+    public List<OrderDataRelation> getDDOrderDataRelation(QueryParameters queryparameters) {
+        return this.getBySqlKey("getDDOrderDataRelation", queryparameters);
     }
     /**
      * Query OrderDataRelation basic info list.

@@ -676,6 +676,7 @@
         'click #publishtr': function (e, value, row, index) {
             $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
                 if (status == 'success') {
+//                    alert(data);
                     $table_publish.bootstrapTable('refresh')
                     $table_private.bootstrapTable('refresh')
                 }
