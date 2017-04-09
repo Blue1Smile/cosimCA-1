@@ -154,7 +154,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/data/showpublishdataByProid.ht?projectId=${projectId}"+ "&taskId=" +${taskId},
+            url: "${ctx}/datadriver/data/showCanBeOrder.ht?projectId=${projectId}"+ "&taskId=" +${taskId},
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar_canbeorder',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -333,7 +333,7 @@
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/data/showsubscriptiondata.ht?id=${taskId}",
+            url: "${ctx}/datadriver/data/showOrder.ht?id=${taskId}",
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar_order',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色

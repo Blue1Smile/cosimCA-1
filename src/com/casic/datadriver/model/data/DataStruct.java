@@ -10,10 +10,10 @@ import java.util.List;
 
 public class DataStruct {
 
-    public short struct=1;
-    public short model=3;
-    public short file=2;
-    public short other=4;
+    public short struct = 1;
+    public short model = 3;
+    public short file = 2;
+    public short other = 4;
 
     private Long ddStructId;
 
@@ -55,14 +55,6 @@ public class DataStruct {
 
     private String ddUnitForPrivate;
 
-    public String getDdUnitForPrivate() {
-        return ddUnitForPrivate;
-    }
-
-    public void setDdUnitForPrivate(String ddUnitForPrivate) {
-        this.ddUnitForPrivate = ddUnitForPrivate;
-    }
-
     public Long getDdStructId() {
         return ddStructId;
     }
@@ -71,15 +63,7 @@ public class DataStruct {
         this.ddStructId = ddStructId;
     }
 
-    public Long getDdCreatorId() {
-        return ddCreatorId;
-    }
-
-    public void setDdCreatorId(Long ddCreatorId) {
-        this.ddCreatorId = ddCreatorId;
-    }
-
-    protected List<PrivateData> privateDataList= new ArrayList<PrivateData>();
+    protected List<PrivateData> privateDataList = new ArrayList<PrivateData>();
 
     public String getDdStructName() {
         return ddStructName;
@@ -217,24 +201,35 @@ public class DataStruct {
         this.ddProjectId = ddProjectId;
     }
 
-    public void setPrivateDataList(List<PrivateData> privateDataList)
-    {
+    public Long getDdCreatorId() {
+        return ddCreatorId;
+    }
+
+    public void setDdCreatorId(Long ddCreatorId) {
+        this.ddCreatorId = ddCreatorId;
+    }
+
+    public String getDdUnitForPrivate() {
+        return ddUnitForPrivate;
+    }
+
+    public void setDdUnitForPrivate(String ddUnitForPrivate) {
+        this.ddUnitForPrivate = ddUnitForPrivate;
+    }
+
+    public void setPrivateDataList(List<PrivateData> privateDataList) {
         this.privateDataList = privateDataList;
     }
 
-    public List<PrivateData> getPrivateDataList()
-    {
+    public List<PrivateData> getPrivateDataList() {
         return this.privateDataList;
     }
-
 
     /**
      * @see Object#equals(Object)
      */
-    public boolean equals(Object object)
-    {
-        if (!(object instanceof DataStruct))
-        {
+    public boolean equals(Object object) {
+        if (!(object instanceof DataStruct)) {
             return false;
         }
         DataStruct ti = (DataStruct) object;
@@ -257,15 +252,14 @@ public class DataStruct {
                 .append(this.ddSubmitState, ti.ddSubmitState)
                 .append(this.ddType, ti.ddType)
                 .append(this.ddProjectId, ti.ddProjectId)
-                .append(this.ddCreatorId,ti.ddCreatorId)
+                .append(this.ddCreatorId, ti.ddCreatorId)
                 .isEquals();
     }
 
     /**
      * @see Object#hashCode()
      */
-    public int hashCode()
-    {
+    public int hashCode() {
         return new HashCodeBuilder(-82280557, -700257973)
                 .append(this.ddCatkey)
                 .append(this.ddCreateTime)
@@ -292,8 +286,7 @@ public class DataStruct {
     /**
      * @see Object#toString()
      */
-    public String toString()
-    {
+    public String toString() {
         return new ToStringBuilder(this)
                 .append(this.ddCatkey)
                 .append(this.ddCreateTime)

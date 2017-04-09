@@ -34,10 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.casic.cloud.controller.console.ConsoleController.formatJson;
 
@@ -302,7 +299,7 @@ public class DataStructController extends AbstractController {
         }
 
 
-        JSONObject json = CombinationJSON(a, b, id,structdata_list);
+        JSONObject json = CombinationJSON(a, b, id, structdata_list);
 
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
@@ -325,7 +322,7 @@ public class DataStructController extends AbstractController {
      * @throws Exception
      */
 
-    public JSONObject CombinationJSON(long a, long b, long taskId,List<DataStruct> list) {
+    public JSONObject CombinationJSON(long a, long b, long taskId, List<DataStruct> list) {
 
         JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
@@ -465,7 +462,7 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json = CombinationJSON(a, b,id, structdata_list);
+        JSONObject json = CombinationJSON(a, b, id, structdata_list);
 
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
@@ -485,63 +482,69 @@ public class DataStructController extends AbstractController {
      * @param request
      * @throws Exception
      */
-    @RequestMapping("showsubscriptiondata")
-    @Action(description = "根据任务查询订阅数据")
-    public void showsubscriptiondata(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("showOrder")
+    @Action(description = "显示任务已经订阅的数据")
+    public void showOrder(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
-        Long pageSize = RequestUtil.getLong(request, "pageSize");
-        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id = RequestUtil.getLong(request, "id");
+        Integer pageSize = RequestUtil.getInt(request, "pageSize");
+        Integer pageNumber = RequestUtil.getInt(request, "pageNumber");
+        Long taskId = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
-        Long a = pageSize * (pageNumber - 1);
-        Long b = pageSize * (pageNumber);
-        QueryParameters queryparameters = new QueryParameters();
+        Integer a = pageSize * (pageNumber - 1);
+        Integer b = pageSize * (pageNumber);
 
-        queryparameters.setId(id);
-        queryparameters.setBackupsL(Long.valueOf(1));
+//        List<DataStruct> structdata_list = dataStructService.getStructByTaskAndOId(queryparameters);
+        List<OrderDataRelation> OrderDataRelation_list = orderdatarelationservice.getOrderDataRelationList(taskId);
+        List<DataStruct> dataStructList = new ArrayList<DataStruct>();
+        //循环获取已订阅数据ID，查找私有数据
+        for (int i = 0; i < OrderDataRelation_list.size(); i++) {
+            OrderDataRelation orderDataRelation = OrderDataRelation_list.get(i);
+            DataStruct dataStruct = dataStructService.getById(orderDataRelation.getDdDataId());
+            dataStructList.add(dataStruct);
+        }//获取已订阅数据结束
 
-        List<DataStruct> structdata_list = dataStructService.getStructByTaskAndOId(queryparameters);
-        List<OrderDataRelation> OrderDataRelation_list = orderdatarelationservice.getOrderDataRelationList(id);
-
-//        if (b > structdata_list.size()) {
-//            b = Long.valueOf(structdata_list.size());
-//        }
-
-        if (b > OrderDataRelation_list.size()) {
-            b = Long.valueOf(OrderDataRelation_list.size());
+        if (b > dataStructList.size()) {
+            b = dataStructList.size();
         }
 
         JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
         JSONObject jsonObject = new JSONObject();
 
-        for (int i = Math.toIntExact(a); i < b; i++) {
-            OrderDataRelation mymode = OrderDataRelation_list.get(i);
-            jsonObject.put("ddOrderDataId", mymode.getDdOrderDataId());
-            jsonObject.put("ddOrderType", mymode.getDdOrderType());
-            jsonObject.put("ddDataId", mymode.getDdDataId());
+        for (int i = a; i < b; i++) {
+            DataStruct mymode = dataStructList.get(i);
+            jsonObject.put("ddStructId", mymode.getDdStructId());
+            jsonObject.put("ddStructName", mymode.getDdStructName());
+            jsonObject.put("ddCatkey", mymode.getDdCatkey());
+            jsonObject.put("ddCreateTime", mymode.getDdCreateTime());
+            jsonObject.put("ddCreator", mymode.getDdCreator());
+            jsonObject.put("ddCreatorId", mymode.getDdCreatorId());
+            jsonObject.put("ddDepth", mymode.getDdDepth());
+            jsonObject.put("ddDescription", mymode.getDdDescription());
+            jsonObject.put("ddEngName", mymode.getDdEngName());
+            jsonObject.put("ddIsLeaf", mymode.getDdIsLeaf());
+            jsonObject.put("ddNodePath", mymode.getDdNodePath());
+            jsonObject.put("ddOrderState", mymode.getDdOrderState());
+            jsonObject.put("ddParentId", mymode.getDdParentId());
+            jsonObject.put("ddProjectId", mymode.getDdProjectId());
+            jsonObject.put("ddPublishState", mymode.getDdPublishState());
+            jsonObject.put("ddSubmitState", mymode.getDdSubmitState());
             jsonObject.put("ddTaskId", mymode.getDdTaskId());
-            jsonObject.put("ddOpreationLevel", mymode.getDdOpreationLevel());
-            jsonObject.put("ddDataName", mymode.getDdDataName());
-
-//            jsonObject.put("num", mymode.getDdDataId());
+            jsonObject.put("ddTaskName", mymode.getDdTaskName());
+            jsonObject.put("ddType", mymode.getDdType());
             jsonMembers.add(jsonObject);
         }
         json.put("total", OrderDataRelation_list.size());
         json.put("rows", jsonMembers);
-//        JSONObject json=CombinationJSON(a,b,structdata_list);
-
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
-//      system.out(json.toString());
         PrintWriter out = null;
         out = response.getWriter();
         out.append(jsonstring);
         out.flush();
         out.close();
-
     }
 
     /**
@@ -550,9 +553,9 @@ public class DataStructController extends AbstractController {
      * @param request
      * @throws Exception
      */
-    @RequestMapping("showpublishdataByProid")
-    @Action(description = "根据项目id查询项目中已发布的数据")
-    public void showpublishdataByProid(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("showCanBeOrder")
+    @Action(description = "显示可被订阅数据")
+    public void showCanBeOrder(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
         Long pageSize = RequestUtil.getLong(request, "pageSize");
@@ -565,29 +568,46 @@ public class DataStructController extends AbstractController {
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
         QueryParameters queryparameters = new QueryParameters();
+        JSONObject json = new JSONObject();
 
         queryparameters.setId(projectId);
         queryparameters.setBackupsL(Long.valueOf(1));
-
         List<DataStruct> structdata_list = dataStructService.getStructByProjectAndPId(queryparameters);
 
         if (b > structdata_list.size()) {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json = CombinationJSON(a, b, taskId,structdata_list);
+        queryparameters.setId(taskId);
+        queryparameters.setBackupsL(Long.valueOf(0));
+        List<DataStruct> structListBeOrder = dataStructService.getStructByTaskAndOId(queryparameters);
+
+        List<DataStruct> canBeOrderList = new ArrayList<DataStruct>();
+        for (DataStruct canBeOrder : structdata_list) {
+            boolean flag = false;
+            for (DataStruct beOrder : structListBeOrder) {
+                if (canBeOrder.getDdStructId().equals(beOrder.getDdStructId())) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                canBeOrderList.add(canBeOrder);
+            }
+        }
+        if (canBeOrderList.isEmpty()) {
+            return;
+        } else {
+            json = CombinationJSON(a, b, taskId, canBeOrderList);
+        }
 
 //      String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
-//      system.out(json.toString());
         PrintWriter out = null;
         out = response.getWriter();
         out.append(jsonstring);
         out.flush();
         out.close();
-
     }
-//:
-//
 }

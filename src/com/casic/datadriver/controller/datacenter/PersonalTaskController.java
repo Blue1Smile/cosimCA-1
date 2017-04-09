@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 /**
  * @author 2016/11/14
  */
@@ -360,15 +361,6 @@ public class PersonalTaskController extends AbstractController {
                     it.remove();
                 }
             }
-
-//            int taskLength= task_list.size()-1;
-//            for(int i=0;i<taskLength;i++){
-//                Long ddTaskId = task_list.get(i).getDdTaskId();
-//                if (ddTaskId.equals(taskId)) {
-//                    task_list.remove(i);
-//                    i--;
-//                }
-//            }
 
             List<PrivateData> OrderPrivatedataList = new ArrayList<PrivateData>();
             List<OrderDataRelation> orderDataRelationList = orderDataRelationService.getOrderDataRelationList(taskId);
@@ -896,40 +888,26 @@ public class PersonalTaskController extends AbstractController {
                     dataStruct.get(0).setDdPublishState((short) 0);
                     dataStructService.update(dataStruct.get(0));
                 } else {
-//                   JOptionPane.showMessageDialog(null, "该数据已经被订阅！", "消息提示", JOptionPane.INFORMATION_MESSAGE);
-//                    JOptionPane.showMessageDialog(null, "插入数据库成功！", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                 }
-//                orderDataRelationService.delPublishByddDataId(dataId);
-//                privateData = privateDataService.getDataById(dataId);
-//                privateData.setDdDataPublishType(0l);
-//                privateDataService.updatedata(privateData);
             }
             //私有到发布
             if (parent.equals("publishpanel")) {
-                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-                if (dataStruct.size() !=0)
-                {
-                    dataStruct.get(0).setDdPublishState((short)1);
-                    dataStructService.update(dataStruct.get(0));
-                }
+                DataStruct dataStruct = dataStructService.getById(dataId);
+                dataStruct.setDdPublishState((short) 1);
+                dataStructService.update(dataStruct);
 
-
-//                privateData = privateDataService.getDataById(dataId);
-//                privateData.setDdDataPublishType(1l);
-//                privateDataService.updatedata(privateData);
-//
-//                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
-//                orderDataRelation.setDdDataId(dataId);
-//                orderDataRelation.setDdTaskId(privateData.getDdDataTaskId());
-//                orderDataRelation.setDdDataName(privateData.getDdDataName());
-//                orderDataRelation.setDdOrderType(0L);
-//                orderDataRelationService.add(orderDataRelation);
+                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
+                orderDataRelation.setDdDataId(dataId);
+                orderDataRelation.setDdTaskId(dataStruct.getDdTaskId());
+                orderDataRelation.setDdDataName(dataStruct.getDdStructName());
+                orderDataRelation.setDdOrderType(0L);
+                orderDataRelation.setDdProjectId(dataStruct.getDdProjectId());
+                orderDataRelationService.add(orderDataRelation);
             }
         } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
-//        return "该数据已经被订阅！";
     }
 
 }
