@@ -15,6 +15,16 @@ public class OrderDataRelation extends BaseModel {
 
     private String ddDataName;
 
+    public Long getDdProjectId() {
+        return ddProjectId;
+    }
+
+    public void setDdProjectId(Long ddProjectId) {
+        this.ddProjectId = ddProjectId;
+    }
+
+    private Long ddProjectId;
+
     public Long getDdOrderDataId() {
         return ddOrderDataId;
     }

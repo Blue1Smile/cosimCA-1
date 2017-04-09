@@ -45,8 +45,8 @@ public class DataStructDao extends BaseDao<DataStruct> {
         this.getBySqlKey("addDataStruct", datastruct);
     }
 
-    public List<DataStruct> getStructById(Long id) {
-        return this.getBySqlKey("getStructById", id);
+    public DataStruct getStructById(Long id) {
+        return this.getUnique("getStructById", id);
     }
 
     /*
