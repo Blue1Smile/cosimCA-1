@@ -26,8 +26,8 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
     public List<OrderDataRelation> getOrderDataRelationbyDataId(Long DataId) {
         return this.getBySqlKey("getOrderDataRelationbyDataId", DataId);
     }
-    public List<OrderDataRelation> delDDOrderDataRelation(QueryParameters queryparameters) {
-        return this.getBySqlKey("delDDOrderDataRelation", queryparameters);
+    public void delDDOrderDataRelation(QueryParameters queryparameters) {
+        this.getBySqlKey("delDDOrderDataRelation", queryparameters);
     }
 
     public List<OrderDataRelation> getDDOrderDataRelation(QueryParameters queryparameters) {

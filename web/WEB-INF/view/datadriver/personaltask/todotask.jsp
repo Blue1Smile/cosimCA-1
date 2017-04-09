@@ -206,16 +206,7 @@
     $("#adddata").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
-
     //tab切换操作
-    switch_attr_index.onclick = function () {
-        $.get("${ctx}/datadriver/index/readonly.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {
-            $('#index').html(data);
-        });
-        $("#create_data").hide();
-        $("#upload_file").hide();
-        $("#child_btn").hide();
-    }
     switch_attr_publish.onclick = function () {
         <%--alert(${TaskInfo.ddTaskProjectId});--%>
         $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
@@ -234,6 +225,9 @@
         $("#child_btn").hide();
     }
     switch_attr_child.onclick = function () {
+        $.get("${ctx}/datadriver/subtask/subtaskboard.ht", function (data) {
+            $('#child').html(data);
+        });
         $("#child_btn").show();
         $("#create_data").hide();
         $("#upload_file").hide();

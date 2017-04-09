@@ -333,10 +333,12 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddStructName", mymode.getDdStructName());
             jsonObject.put("ddParentId", mymode.getDdParentId());
             jsonObject.put("ddTaskId", mymode.getDdTaskId());
+            jsonObject.put("ddTaskName", mymode.getDdTaskName());
             jsonObject.put("ddType", mymode.getDdType());
             jsonObject.put("ddOrderState", mymode.getDdOrderState());
             jsonObject.put("ddProjectId", mymode.getDdProjectId());
             jsonObject.put("ddPublishState", mymode.getDdPublishState());
+            jsonObject.put("ddBeOrder", mymode.getDdBeOrder());
 
             QueryParameters queryparameters = new QueryParameters();
             queryparameters.setId(taskId);
@@ -578,22 +580,22 @@ public class DataStructController extends AbstractController {
             b = Long.valueOf(structdata_list.size());
         }
 
-        queryparameters.setId(taskId);
-        queryparameters.setBackupsL(Long.valueOf(0));
-        List<DataStruct> structListBeOrder = dataStructService.getStructByTaskAndOId(queryparameters);
-
+        List<OrderDataRelation> relationListBeOrder = orderdatarelationservice.getOrderDataRelationList(taskId);
         List<DataStruct> canBeOrderList = new ArrayList<DataStruct>();
         for (DataStruct canBeOrder : structdata_list) {
             boolean flag = false;
-            for (DataStruct beOrder : structListBeOrder) {
-                if (canBeOrder.getDdStructId().equals(beOrder.getDdStructId())) {
+            for (OrderDataRelation beOrder : relationListBeOrder) {
+                if (canBeOrder.getDdStructId().equals(beOrder.getDdDataId())) {
                     flag = true;
                     break;
                 }
             }
-            if (!flag) {
-                canBeOrderList.add(canBeOrder);
+            if (flag) {
+                canBeOrder.setDdBeOrder(1);
+            } else {
+                canBeOrder.setDdBeOrder(0);
             }
+            canBeOrderList.add(canBeOrder);
         }
         if (canBeOrderList.isEmpty()) {
             return;

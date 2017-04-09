@@ -32,9 +32,8 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
         return true;
     }
 
-    public boolean delDDOrderDataRelation(QueryParameters queryparameters) {
+    public void delDDOrderDataRelation(QueryParameters queryparameters) {
         this.orderDataRelationDao.delDDOrderDataRelation(queryparameters);
-        return true;
     }
 
     public  List<OrderDataRelation> getDDOrderDataRelation(QueryParameters queryparameters) {

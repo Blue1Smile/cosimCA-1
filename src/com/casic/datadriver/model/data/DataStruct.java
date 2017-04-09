@@ -55,6 +55,16 @@ public class DataStruct {
 
     private String ddUnitForPrivate;
 
+    public Integer getDdBeOrder() {
+        return ddBeOrder;
+    }
+
+    public void setDdBeOrder(Integer ddBeOrder) {
+        this.ddBeOrder = ddBeOrder;
+    }
+
+    private Integer ddBeOrder;
+
     public Long getDdStructId() {
         return ddStructId;
     }

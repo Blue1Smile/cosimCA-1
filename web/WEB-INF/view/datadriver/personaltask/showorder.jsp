@@ -182,44 +182,51 @@
                 {
                     checkbox: true
                 },
-                {//第一列，数据ID
+                {
                     field: 'ddStructId',
                     title: '数据Id',
                     sortable: false,
                     editable: false,
                     align: 'center',
                     visible: false
-                }, {//第二列，名称
+                }, {
                     field: 'ddStructName',
                     title: '数据名称',
                     sortable: false,
                     align: 'center',
                     visible: true
-                }, {//所属任务ID
-                    field: 'ddDataTaskName',
-                    title: '所属项目ID',
+                }, {
+                    field: 'ddTaskName',
+                    title: '任务名称',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: true
+                }, {
+                    field: 'ddTaskId',
+                    title: '任务ID',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
                 }
-                , {//数据类型
+                , {
                     field: 'ddType',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: true
-                },{//数据类型
-                    field: 'ddPublishState',
-                    title: '发布状态',
+                },{
+                    field: 'ddBeOrder',
+                    title: '当前任务状态',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
-                }, {//数据类型
+                }, {
                     field: 'ddOrderState',
-                    title: '发布订阅状态',
+                    title: '订阅状态',
                     sortable: true,
                     editable: false,
                     align: 'center',
@@ -245,7 +252,6 @@
         function InitSubTablePro(index, row, $detail) {
             var parentid = row.ddStructId;
             var cur_table = $detail.html('<table></table>').find('table');
-            // alert(row.ToolName);
             $(cur_table).bootstrapTable({
                 url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
@@ -361,44 +367,51 @@
                 {
                     checkbox: true
                 },
-                {//第一列，数据ID
-                    field: 'ddOrderDataId',
-                    title: 'Id',
+                {
+                    field: 'ddStructId',
+                    title: '数据ID',
                     sortable: false,
                     editable: false,
                     align: 'center',
                     visible: false
-                }, {//第二列，名称
-                    field: 'ddDataId',
-                    title: '数据id',
+                }, {
+                    field: 'ddStructName',
+                    title: '数据名称',
                     sortable: false,
                     align: 'center',
-                    visible: false
-                }, {//所属任务ID
-                    field: 'ddOrderType',
-                    title: '数据类型',
+                    visible: true
+                }, {
+                    field: 'ddTaskName',
+                    title: '任务名称',
                     sortable: true,
                     editable: false,
                     align: 'center',
-                    visible: false
-                }
-                , {//数据类型
+                    visible: true
+                }, {
                     field: 'ddTaskId',
                     title: '任务ID',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: false
-                }, {//数据名称
-                    field: 'ddDataName',
-                    title: '数据名称',
+                }, {
+                    field: 'ddType',
+                    title: '数据类型',
                     sortable: true,
                     editable: false,
                     align: 'center',
                     visible: true
-                }, {//是否订阅
-                    field: 'exist',
-                    title: '是否订阅',
+                }
+                , {
+                    field: 'ddPublishState',
+                    title: '数据发布状态',
+                    sortable: true,
+                    editable: false,
+                    align: 'center',
+                    visible: false
+                }, {
+                    field: 'ddOrderState',
+                    title: '数据订阅状态',
                     sortable: true,
                     editable: false,
                     align: 'center',
@@ -408,7 +421,7 @@
                     field: 'operate',
                     title: '操作',
                     align: 'center',
-                    events: operateEventsordertr,
+                    events: operateEvents,
                     formatter: operateFormatterOrder
                 }
             ],
@@ -511,17 +524,17 @@
     }
     //刷新列表
     function refresh(e) {
-        if (e == 0) $('#table_publish').bootstrapTable('refresh', parameter)
-        if (e == 1) $('#table_private').bootstrapTable('refresh', parameter)
+        if (e == 0) $('#table_canbeorder').bootstrapTable('refresh');
+        if (e == 1) $('#table_order').bootstrapTable('refresh');
     }
     //私有数据列表按钮
     function operateFormatterCanOrder(value, row, index) {
-        if (row.exist == 0)
+        if (row.ddBeOrder == 0)
             return [
-                '<a id="canordertr" class="publish" href="javascript:void(0)" title="点击订阅该数据项">订阅',
+                '<a id="canordertr" href="javascript:void(0)" title="点击订阅该数据项">订阅',
                 '</a>'
             ].join('');
-        if (row.exist == 1)
+        if (row.ddBeOrder == 1)
             return [
                 '<span class="glyphicon glyphicon-ok" style="color: green;"></span>'
             ].join('');
@@ -529,43 +542,35 @@
 
     //发布数据列表按钮
     function operateFormatterOrder(value, row, index) {
-//        if (row.ddOrderState == '1')
             return [
-                '<a id="ordertr" class="" href="javascript:void(0)" title="点击撤销订阅该数据">撤销',
+                '<a id="ordertr" href="javascript:void(0)" title="点击撤销订阅该数据">撤销',
                 '</a>'
             ].join('');
     }
     //设置table高度
     function getHeight() {
-        return $(window).height() - $('.panel-heading').outerHeight(true) - 160;
+        return $(window).height() - $('.panel-heading').outerHeight(true) - 120;
     }
 
     window.operateEvents = {
         'click #canordertr': function (e, value, row, index) {
-//            alert(222);
             $.get("canordertoorder.ht?id=" + row.ddStructId + "&parent=orderpanel" + "&taskId=" +${taskId}, function (data, status) {
                 if (status=='success'){
                     $table_canbeorder.bootstrapTable('refresh');
                     $table_order.bootstrapTable('refresh');
                 }
             });
-            $table_canbeorder.bootstrapTable('refresh');
-            $table_order.bootstrapTable('refresh');
-        }
-    };
-    window.operateEventsordertr = {
+        },
         'click #ordertr': function (e, value, row, index) {
-//            alert(222);
-            $.get("canordertoorder.ht?id=" + row.ddDataId + "&parent=canorderpanel" + "&taskId=" +${taskId}, function (data, status) {
+            $.get("canordertoorder.ht?id=" + row.ddStructId + "&parent=canorderpanel" + "&taskId=" +${taskId}, function (data, status) {
                 if (status=='success'){
                     $table_canbeorder.bootstrapTable('refresh');
                     $table_order.bootstrapTable('refresh');
                 }
             });
-            $table_canbeorder.bootstrapTable('refresh');
-            $table_order.bootstrapTable('refresh');
         }
     };
+
     $(function () {
         initTable();
     });

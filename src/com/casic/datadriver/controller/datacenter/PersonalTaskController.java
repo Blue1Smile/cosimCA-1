@@ -809,54 +809,30 @@ public class PersonalTaskController extends AbstractController {
     @RequestMapping("canordertoorder")
     @Action(description = "可订阅拖拽到订阅")
     public void canordertoorder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Long dataId = RequestUtil.getLong(request, "id");
+        Long taskId = RequestUtil.getLong(request, "taskId");
+        String parent = RequestUtil.getString(request, "parent");
         try {
-            long dataId = RequestUtil.getLong(request, "id");
-            long taskId = RequestUtil.getLong(request, "taskId");
-            String parent = RequestUtil.getString(request, "parent");
-
             //已订阅到可订阅
             if (parent.equals("canorderpanel")) {
-//                List<OrderDataRelation> orderDataRelationList2 = orderDataRelationService.getOrderDataRelationList(taskId);
-//                for (OrderDataRelation orderDataRelation1 : orderDataRelationList2) {
-//                    if (orderDataRelation1.getDdDataId().equals(dataId)) {
-//                        long dataId2 = orderDataRelation1.getDdOrderDataId();
-//                        orderDataRelationService.delOrderByddDataId(dataId2);
-//                    }
-//                }
                 QueryParameters queryparameters = new QueryParameters();
                 queryparameters.setId(taskId);
                 queryparameters.setType(dataId);
-//                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-//                orderDataRelationService.getOrderDataRelationbyDataId(dataId);
-                boolean p = orderDataRelationService.delDDOrderDataRelation(queryparameters);
-
-//                if (dataStruct.size() !=0) {
-//                    dataStruct.get(0).setDdOrderState((short) 0);
-//                    dataStructService.update(dataStruct.get(0));
-//                }
+                orderDataRelationService.delDDOrderDataRelation(queryparameters);
             }
             //可订阅到已订阅
             if (parent.equals("orderpanel")) {
-                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
+                DataStruct dataStruct = dataStructService.getStructById(dataId);
                 OrderDataRelation orderdatarelation = new OrderDataRelation();
 
                 orderdatarelation.setDdTaskId(taskId);
-                orderdatarelation.setDdDataId(dataStruct.get(0).getDdStructId());
+                orderdatarelation.setDdDataId(dataStruct.getDdStructId());
                 orderdatarelation.setDdOrderDataId(UniqueIdUtil.genId());
-                orderdatarelation.setDdDataName(dataStruct.get(0).getDdStructName());
-                orderDataRelationService.add(orderdatarelation);
+                orderdatarelation.setDdDataName(dataStruct.getDdStructName());
+                orderdatarelation.setDdOrderType(1l);
+                orderdatarelation.setDdProjectId(dataStruct.getDdProjectId());
 
-//                if (dataStruct.size() !=0) {
-//                    dataStruct.get(0).setDdOrderState((short) 1);
-//                    dataStructService.update(dataStruct.get(0));
-//                }
-//                OrderDataRelation orderDataRelation = new OrderDataRelation();
-//                orderDataRelation = orderDataRelationService.getOrderDataRelationById(dataId);
-//
-//                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
-//                orderDataRelation.setDdOrderType(1L);
-//                orderDataRelation.setDdTaskId(taskId);
-//                orderDataRelationService.add(orderDataRelation);
+                orderDataRelationService.add(orderdatarelation);
             }
         } catch (Exception e) {
             String resultMsg = null;
@@ -882,13 +858,9 @@ public class PersonalTaskController extends AbstractController {
             OrderDataRelation orderDataRelation = new OrderDataRelation();
             //发布到私有
             if (parent.equals("createpanel")) {
-                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-                int num = orderDataRelationService.getOrderDataRelationbyDataId(dataId).size();
-                if (dataStruct.size() != 0 && num == 0) {
-                    dataStruct.get(0).setDdPublishState((short) 0);
-                    dataStructService.update(dataStruct.get(0));
-                } else {
-                }
+                DataStruct dataStruct = dataStructService.getStructById(dataId);
+                dataStruct.setDdPublishState((short) 0);
+                dataStructService.update(dataStruct);
             }
             //私有到发布
             if (parent.equals("publishpanel")) {
