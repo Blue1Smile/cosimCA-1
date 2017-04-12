@@ -851,16 +851,21 @@ public class PersonalTaskController extends AbstractController {
     @RequestMapping("createtopublish")
     @Action(description = "私有和发布数据之间的拖拽")
     public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String resultMsg = "状态变更";
+        Long dataId = RequestUtil.getLong(request, "id");
+        String parent = RequestUtil.getString(request, "parent");
+        PrivateData privateData = new PrivateData();
+        OrderDataRelation orderDataRelation = new OrderDataRelation();
         try {
-            long dataId = RequestUtil.getLong(request, "id");
-            String parent = RequestUtil.getString(request, "parent");
-            PrivateData privateData = new PrivateData();
-            OrderDataRelation orderDataRelation = new OrderDataRelation();
             //发布到私有
             if (parent.equals("createpanel")) {
                 DataStruct dataStruct = dataStructService.getStructById(dataId);
-                dataStruct.setDdPublishState((short) 0);
-                dataStructService.update(dataStruct);
+                if (orderDataRelationService.getBeOrderDataByDataId(dataId).size() == 0) {
+                    dataStruct.setDdPublishState((short) 0);
+                    dataStructService.update(dataStruct);
+                } else {
+                    return;
+                }
             }
             //私有到发布
             if (parent.equals("publishpanel")) {
@@ -876,8 +881,8 @@ public class PersonalTaskController extends AbstractController {
                 orderDataRelation.setDdProjectId(dataStruct.getDdProjectId());
                 orderDataRelationService.add(orderDataRelation);
             }
+            writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Success);
         } catch (Exception e) {
-            String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }

@@ -81,21 +81,23 @@ public class OrderDataRelationDao extends BaseDao<OrderDataRelation> {
         return OrderDataRelation.class;
     }
 
-    public void delPublishByddDataTaskId(long ddDataTaskId) {
+    public void delPublishByddDataTaskId(Long ddDataTaskId) {
         this.getBySqlKey("delPublishByddDataTaskId", ddDataTaskId);
     }
 
 
-    public void delOrderByddDataTaskId(long ddDataTaskId) {
+    public void delOrderByddDataTaskId(Long ddDataTaskId) {
         this.getBySqlKey("delOrderByddDataTaskId", ddDataTaskId);
     }
 
-    public OrderDataRelation getOrderDataRelationById(long id){
+    public OrderDataRelation getOrderDataRelationById(Long id){
         return this.getUnique("getOrderDataRelationById", id);
     }
+    public List<OrderDataRelation> getBeOrderDataByDataId(Long taskId){
+        return this.getBySqlKey("getBeOrderDataByDataId", taskId);
+    }
+    public void delOrderByddDataId(Long dataId){this.delBySqlKey("delOrderByddDataId", dataId);}
 
-    public void delOrderByddDataId(long dataId){this.delBySqlKey("delOrderByddDataId", dataId);}
-
-    public void delPublishByddDataId(long dataId){this.getBySqlKey("delPublishByddDataId", dataId);}
+    public void delPublishByddDataId(Long dataId){this.getBySqlKey("delPublishByddDataId", dataId);}
 
 }
