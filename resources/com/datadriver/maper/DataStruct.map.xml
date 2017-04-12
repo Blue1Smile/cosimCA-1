@@ -94,6 +94,7 @@
         from dd_data_struct
         where DD_STRUCT_ID = #{ddStructId,jdbcType=BIGINT}
     </select>
+
     <!--<select id="getStructByTaskAndOId" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
     <!--select-->
     <!--<include refid="Base_Column_List" />-->

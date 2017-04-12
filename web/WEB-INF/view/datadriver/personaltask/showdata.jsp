@@ -229,7 +229,7 @@
                     visible: false
                 }
                 , {//数据类型
-                    field: 'ddType',
+                    field: 'shujuleixing',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
@@ -344,7 +344,7 @@
                         visible: true
                     }
                     , {//数据类型
-                        field: 'ddDataType',
+                        field: 'shujuleixing',
                         title: '数据类型',
                         sortable: true,
                         editable: false,
@@ -441,12 +441,12 @@
                     visible: false
                 }
                 , {//数据类型
-                    field: 'ddType',
+                    field: 'shujuleixing',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
                     align: 'center',
-                    visible: false
+                    visible: true
                 }, {//数据类型
                     field: 'ddPublishState',
                     title: '发布状态',
@@ -558,7 +558,7 @@
                         visible: true
                     }
                     , {//数据类型
-                        field: 'ddDataType',
+                        field: 'shujuleixing',
                         title: '数据类型',
                         sortable: true,
                         editable: false,
@@ -634,16 +634,9 @@
     }
     //子表操作
     function operatePrivateSub(value, row, index) {
-        if (row.ddDataType == "文件" || row.ddDataType == "模型")
+        if (row.ddDataType == 2 || row.ddDataType == 3)
             return [
                 '<a id="privatetr_file" href="javascript:void(0)" title="点击替换文件">上传',
-                '</a>', ' ',
-                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
-                '</a>'
-            ].join('');
-        if (row.ddDataType == "其它" || row.ddDataType == "结构化数据")
-            return [
-                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
                 '</a>'
             ].join('');
     }

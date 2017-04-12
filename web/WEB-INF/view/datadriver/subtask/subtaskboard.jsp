@@ -11,7 +11,6 @@
 <head>
     <title>任务看板</title>
     <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css"/>
-    <%--<script type="text/javascript" src="../../scripts/jquery-1.11.1.min.js"></script>--%>
     <script type="text/javascript" src="${ctx}/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="${ctx}/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="${ctx}/jqwidgets/jqxsortable.js"></script>
@@ -116,6 +115,61 @@
             $('#kanban').jqxKanban({
                 resources: resourcesAdapterFunc(),
                 source: dataAdapter,
+                // render items.
+                itemRenderer: function (item, data, resource) {
+                    $(item).find(".jqx-kanban-item-color-status").html("<span style='line-height: 23px; margin-left: 5px;'></span>");
+                    $(item).find(".jqx-kanban-item-text").css('background', item.color);
+                    item.on('dblclick', function (event) {
+                        var input = $("<textarea placeholder='(No Title)' style='border: none; width: 100%;' class='jqx-input'></textarea>");
+                        var addToHeader = false;
+                        var header = null;
+                        if (event.target.nodeName == "SPAN" && $(event.target).parent().hasClass('jqx-kanban-item-color-status')) {
+                            var input = $("<input placeholder='(No Title)' style='border: none; background: transparent; width: 80%;' class='jqx-input'/>");
+                            // add to header
+                            header = event.target;
+                            header.innerHTML = "";
+                            input.val($(event.target).text());
+                            $(header).append(input);
+                            addToHeader = true;
+                        }
+                        if (!addToHeader) {
+                            var textElement = item.find(".jqx-kanban-item-text");
+                            input.val(textElement.text());
+                            textElement[0].innerHTML = "";
+                            textElement.append(input);
+                        }
+
+                        input.mousedown(function (event) {
+                            event.stopPropagation();
+                        });
+                        input.mouseup(function (event) {
+                            event.stopPropagation();
+                        });
+
+                        input.blur(function () {
+                            var value = input.val();
+                            if (!addToHeader) {
+                                $("<span>" + value + "</span>").appendTo(textElement);
+                            }
+                            else {
+                                header.innerHTML = value;
+                            }
+                            input.remove();
+                        });
+                        input.keydown(function (event) {
+                            if (event.keyCode == 13) {
+                                if (!header) {
+                                    $("<span>" + $(event.target).val() + "</span>").insertBefore($(event.target));
+                                    $(event.target).remove();
+                                }
+                                else {
+                                    header.innerHTML = $(event.target).val();
+                                }
+                            }
+                        });
+                        input.focus();
+                    });
+                },
                 width: '100%',
                 height: '100%',
                 columns: [
@@ -125,6 +179,13 @@
                     {text: "通过审核", dataField: "done"}
                 ]
             });
+            //点击item事件
+            $('#kanban').on('itemAttrClicked', function (event) {
+                var args = event.args;
+                var itemId = args.itemId;
+                var attribute = args.attribute; // template, colorStatus, content, keyword, text, avatar
+            });
+
         });
     </script>
 </head>

@@ -117,6 +117,7 @@ public class DataStructController extends AbstractController {
                         childPrivateData.setDdDataCreateTime(dataStruct.getDdCreateTime());
                         childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
                         childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
+                        childPrivateData.setDdDataUnit(dataStruct.getDdUnitForPrivate());
                         privateDataService.add(childPrivateData);
                     }
                 }
@@ -284,7 +285,6 @@ public class DataStructController extends AbstractController {
             throws Exception {
         request.setCharacterEncoding("UTF-8");
 
-
         Long pageSize = RequestUtil.getLong(request, "pageSize");
         Long pageNumber = RequestUtil.getLong(request, "pageNumber");
         Long id = RequestUtil.getLong(request, "id");
@@ -339,17 +339,34 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddProjectId", mymode.getDdProjectId());
             jsonObject.put("ddPublishState", mymode.getDdPublishState());
             jsonObject.put("ddBeOrder", mymode.getDdBeOrder());
-
-            QueryParameters queryparameters = new QueryParameters();
-            queryparameters.setId(taskId);
-            queryparameters.setType(mymode.getDdStructId());
-
-            int num = orderdatarelationservice.getDDOrderDataRelation(queryparameters).size();
-            if (num > 0) {
-                jsonObject.put("exist", 1);
-            } else if (num == 0) {
-                jsonObject.put("exist", 0);
+            switch (mymode.getDdType())
+            {
+                case 0 :
+                    jsonObject.put("shujuleixing", "数值");
+                    break;
+                case 1 :
+                    jsonObject.put("shujuleixing", "结构型数据");
+                    break;
+                case 2 :
+                    jsonObject.put("shujuleixing", "文件");
+                    break;
+                case 3 :
+                    jsonObject.put("shujuleixing", "模型");
+                    break;
+                default :
+                    jsonObject.put("shujuleixing", "其它");
+                    break;
             }
+//FIXME:已经在具体函数中判断
+//            QueryParameters queryparameters = new QueryParameters();
+//            queryparameters.setId(taskId);
+//            queryparameters.setType(mymode.getDdStructId());
+//            int num = orderdatarelationservice.getDDOrderDataRelation(queryparameters).size();
+//            if (num > 0) {
+//                jsonObject.put("exist", 1);
+//            } else if (num == 0) {
+//                jsonObject.put("exist", 0);
+//            }
             jsonMembers.add(jsonObject);
         }
 
@@ -405,20 +422,25 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
             jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
             jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
-            if (tempPrivateData.getDdDataType() == 0) {
-                jsonObject.put("ddDataType", "数值");
+            jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+            switch (tempPrivateData.getDdDataType())
+            {
+                case 0 :
+                    jsonObject.put("shujuleixing", "数值");
+                    break;
+                case 1 :
+                    jsonObject.put("shujuleixing", "结构化数据");
+                    break;
+                case 2 :
+                    jsonObject.put("shujuleixing", "文件");
+                    break;
+                case 3 :
+                    jsonObject.put("shujuleixing", "模型");
+                break;
+                default :
+                    jsonObject.put("shujuleixing", "其它");
+                    break;
             }
-            if (tempPrivateData.getDdDataType() == 1) {
-                jsonObject.put("ddDataType", "结构化数据");
-            }
-            if (tempPrivateData.getDdDataType() == 2) {
-                jsonObject.put("ddDataType", "文件");
-            }
-            if (tempPrivateData.getDdDataType() == 2) {
-                jsonObject.put("ddDataType", "模型");
-            }
-            jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
-
             jsonMembers.add(jsonObject);
         }
 //
@@ -535,6 +557,24 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddTaskId", mymode.getDdTaskId());
             jsonObject.put("ddTaskName", mymode.getDdTaskName());
             jsonObject.put("ddType", mymode.getDdType());
+            switch (mymode.getDdType())
+            {
+                case 0 :
+                    jsonObject.put("shujuleixing", "数值");
+                    break;
+                case 1 :
+                    jsonObject.put("shujuleixing", "结构化数据");
+                    break;
+                case 2 :
+                    jsonObject.put("shujuleixing", "文件");
+                    break;
+                case 3 :
+                    jsonObject.put("shujuleixing", "模型");
+                    break;
+                default :
+                    jsonObject.put("shujuleixing", "其它");
+                    break;
+            }
             jsonMembers.add(jsonObject);
         }
         json.put("total", OrderDataRelation_list.size());

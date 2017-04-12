@@ -61,7 +61,7 @@
         <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab">任务</a>
         </li>
         <li role="presentation" id="switch_attr_index"><a href="#indextab" data-toggle="tab" role="tab">指标</a></li>
-        <li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>
+        <%--<li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>--%>
         <div class="pull-right">
             <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 流程统计</a>
             <a class="btn btn-success" href="#" id="create_task" onclick="createTask(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>
@@ -75,8 +75,8 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="indextab">
         </div>
-        <div role="tabpanel" class="tab-pane" id="calendar">
-        </div>
+        <%--<div role="tabpanel" class="tab-pane" id="calendar">--%>
+        <%--</div>--%>
     </div>
 </div>
 <%--任务创建--%>

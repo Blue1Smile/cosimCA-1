@@ -211,7 +211,7 @@
                     visible: false
                 }
                 , {
-                    field: 'ddType',
+                    field: 'shujuleixing',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
@@ -255,6 +255,7 @@
             $(cur_table).bootstrapTable({
                 url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
+                classes: "table table-condensed table-hover",
                 queryParams: { strParentID: parentid },
                 ajaxOptions: { strParentID: parentid },
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
@@ -304,7 +305,7 @@
                         visible: true
                     }
                     , {//数据类型
-                        field: 'ddDataType',
+                        field: 'shujuleixing',
                         title: '数据类型',
                         sortable: true,
                         editable: false,
@@ -395,7 +396,7 @@
                     align: 'center',
                     visible: false
                 }, {
-                    field: 'ddType',
+                    field: 'shujuleixing',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
@@ -436,12 +437,13 @@
         });
 
         function InitSubTable(index, row, $detail) {
-            var parentid = row.ddDataId;
+            var parentid = row.ddStructId;
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddDataId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
                 method: 'get',
+                classes: "table table-condensed table-hover",
                 queryParams: { strParentID: parentid },
                 ajaxOptions: { strParentID: parentid },
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
@@ -491,7 +493,7 @@
                         visible: true
                     }
                     , {//数据类型
-                        field: 'ddDataType',
+                        field: 'shujuleixing',
                         title: '数据类型',
                         sortable: true,
                         editable: false,
@@ -505,6 +507,12 @@
                         editable: false,
                         align: 'center',
                         visible: false
+                    },{
+                        field: 'operate',
+                        title: '操作',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatterOrderSub
                     }
                 ],
                 //
@@ -527,7 +535,7 @@
         if (e == 0) $('#table_canbeorder').bootstrapTable('refresh');
         if (e == 1) $('#table_order').bootstrapTable('refresh');
     }
-    //私有数据列表按钮
+    //可订阅数据列表按钮
     function operateFormatterCanOrder(value, row, index) {
         if (row.ddBeOrder == 0)
             return [
@@ -540,12 +548,24 @@
             ].join('');
     }
 
-    //发布数据列表按钮
+    //订阅数据列表按钮
     function operateFormatterOrder(value, row, index) {
             return [
                 '<a id="ordertr" href="javascript:void(0)" title="点击撤销订阅该数据">撤销',
                 '</a>'
             ].join('');
+    }
+    //订阅数据子列表按钮
+    function operateFormatterOrderSub(value, row, index) {
+        if (row.ddDataType == 2||row.ddDataType == 3){
+            return [
+                '<a id="ordertr_download" href="javascript:void(0)" title="点击下载文件">下载',
+                '</a>',' ',
+                '<a id="ordertr_view" href="javascript:void(0)" title="点击预览文件内容">预览',
+                '</a>'
+            ].join('');
+        }
+
     }
     //设置table高度
     function getHeight() {

@@ -75,7 +75,12 @@
         from dd_order_data_ralation
         where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
     </select>
-
+    <select id="getBeOrderDataByDataId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
+    </select>
     <select id="queryPublishDataRelationByddTaskIDF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

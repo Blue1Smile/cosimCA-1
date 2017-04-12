@@ -122,7 +122,9 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     public void delOrderByddDataTaskId(Long ddDataTaskId) {
         this.orderDataRelationDao.delOrderByddDataTaskId(ddDataTaskId);
     }
-
+    public List<OrderDataRelation> getBeOrderDataByDataId(Long dataId){
+        return this.orderDataRelationDao.getBeOrderDataByDataId(dataId);
+    }
     public void delOrderByddDataId(Long dataId){
         this.orderDataRelationDao.delOrderByddDataId(dataId);
     }
