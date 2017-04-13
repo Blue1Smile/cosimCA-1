@@ -80,29 +80,29 @@
 
             </div>
             <div class="panel-body panelheight" id="createpanel">
-                <div id="toolbar" class="form-inline">
-                    <div class="form-group">
-                        <label for="dataName">名称：</label>
-                        <input id="dataName" class="form-control" type="text" value="" placeholder="任务名称"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddType">类型：</label>
-                        <ap:selectDB name="ddType" id="ddType"
-                                     where="parentId=10000025100454" optionValue="itemValue"
-                                     optionText="itemName" table="SYS_DIC"
-                                     selectedValue="" styleClass="form-control">
-                        </ap:selectDB>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddDataTaskName">任务：</label>
-                        <select id="ddDataTaskName" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-                    <input class="btn btn-default" type="submit" value="筛选"/>
-                </div>
+                <%--<div id="toolbar" class="form-inline">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="dataName">名称：</label>--%>
+                        <%--<input id="dataName" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddType">类型：</label>--%>
+                        <%--<ap:selectDB name="ddType" id="ddType"--%>
+                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                                     <%--optionText="itemName" table="SYS_DIC"--%>
+                                     <%--selectedValue="" styleClass="form-control">--%>
+                        <%--</ap:selectDB>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddDataTaskName">任务：</label>--%>
+                        <%--<select id="ddDataTaskName" class="form-control">--%>
+                            <%--<option>1</option>--%>
+                            <%--<option>2</option>--%>
+                            <%--<option>3</option>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                    <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
+                <%--</div>--%>
                 <table id="table_private"></table>
             </div>
         </div>
@@ -126,29 +126,29 @@
                 </div>
             </div>
             <div class="panel-body panelheight" id="publishpanel">
-                <div id="toolbar2" class="form-inline">
-                    <div class="form-group">
-                        <label for="dataName">名称：</label>
-                        <input id="dataName2" class="form-control" type="text" value="" placeholder="任务名称"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddType">类型：</label>
-                        <ap:selectDB name="ddType" id="ddType"
-                                     where="parentId=10000025100454" optionValue="itemValue"
-                                     optionText="itemName" table="SYS_DIC"
-                                     selectedValue="" styleClass="form-control">
-                        </ap:selectDB>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddDataTaskName">任务：</label>
-                        <select id="ddDataTaskName2" class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-                    <input class="btn btn-default" type="submit" value="筛选"/>
-                </div>
+                <%--<div id="toolbar2" class="form-inline">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="dataName">名称：</label>--%>
+                        <%--<input id="dataName2" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddType">类型：</label>--%>
+                        <%--<ap:selectDB name="ddType" id="ddType"--%>
+                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                                     <%--optionText="itemName" table="SYS_DIC"--%>
+                                     <%--selectedValue="" styleClass="form-control">--%>
+                        <%--</ap:selectDB>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="ddDataTaskName">任务：</label>--%>
+                        <%--<select id="ddDataTaskName2" class="form-control">--%>
+                            <%--<option>1</option>--%>
+                            <%--<option>2</option>--%>
+                            <%--<option>3</option>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                    <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
+                <%--</div>--%>
                 <table id="table_publish"></table>
             </div>
         </div>
@@ -229,7 +229,7 @@
                     visible: false
                 }
                 , {//数据类型
-                    field: 'ddType',
+                    field: 'shujuleixing',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
@@ -344,7 +344,7 @@
                         visible: true
                     }
                     , {//数据类型
-                        field: 'ddDataType',
+                        field: 'shujuleixing',
                         title: '数据类型',
                         sortable: true,
                         editable: false,
@@ -441,12 +441,12 @@
                     visible: false
                 }
                 , {//数据类型
-                    field: 'ddType',
+                    field: 'shujuleixing',
                     title: '数据类型',
                     sortable: true,
                     editable: false,
                     align: 'center',
-                    visible: false
+                    visible: true
                 }, {//数据类型
                     field: 'ddPublishState',
                     title: '发布状态',
@@ -558,7 +558,7 @@
                         visible: true
                     }
                     , {//数据类型
-                        field: 'ddDataType',
+                        field: 'shujuleixing',
                         title: '数据类型',
                         sortable: true,
                         editable: false,
@@ -634,16 +634,9 @@
     }
     //子表操作
     function operatePrivateSub(value, row, index) {
-        if (row.ddDataType == "文件" || row.ddDataType == "模型")
+        if (row.ddDataType == 2 || row.ddDataType == 3)
             return [
                 '<a id="privatetr_file" href="javascript:void(0)" title="点击替换文件">上传',
-                '</a>', ' ',
-                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
-                '</a>'
-            ].join('');
-        if (row.ddDataType == "其它" || row.ddDataType == "结构化数据")
-            return [
-                '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
                 '</a>'
             ].join('');
     }
@@ -676,6 +669,7 @@
         'click #publishtr': function (e, value, row, index) {
             $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
                 if (status == 'success') {
+//                    alert(data);
                     $table_publish.bootstrapTable('refresh')
                     $table_private.bootstrapTable('refresh')
                 }

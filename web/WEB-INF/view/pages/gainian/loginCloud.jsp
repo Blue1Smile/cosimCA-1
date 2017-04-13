@@ -32,9 +32,7 @@
 					<td align="left"><font>单位：</font></td>
 					
 					<td>
-					<select name="orgSn" id="orgSn"><option value="620001">二院</option><option value="620002">三院 </option>
-					<option value="620003">061基地 </option> 
-					<option value="700800">马良_企业 </option> 
+					<select name="orgSn" id="orgSn"><option value="620001">二院</option>
 					</select>
 					</td>
 				</tr>

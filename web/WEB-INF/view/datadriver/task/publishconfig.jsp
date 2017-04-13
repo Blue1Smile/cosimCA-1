@@ -11,7 +11,7 @@
 <head>
     <title>任务数据定义</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%@include file="/commons/include/form.jsp" %>
+    <%@include file="/commons/datadriver/formbase.jsp" %>
     <script type="text/javascript" src="${ctx}/servlet/ValidJs?form=sysUser"></script>
     <%--<script type="text/javascript" src="${ctx}/js/hotent/displaytag.js"></script>--%>
     <script type="text/javascript" src="${ctx}/js/lg/plugins/ligerWindow.js"></script>

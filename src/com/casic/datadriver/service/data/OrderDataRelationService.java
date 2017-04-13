@@ -2,6 +2,7 @@ package com.casic.datadriver.service.data;
 
 import com.casic.datadriver.dao.data.OrderDataRelationDao;
 import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
@@ -31,6 +32,14 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
         return true;
     }
 
+    public void delDDOrderDataRelation(QueryParameters queryparameters) {
+        this.orderDataRelationDao.delDDOrderDataRelation(queryparameters);
+    }
+
+    public  List<OrderDataRelation> getDDOrderDataRelation(QueryParameters queryparameters) {
+      return this.orderDataRelationDao.getDDOrderDataRelation(queryparameters);
+    }
+
     /*
      * (non-Javadoc)
      *
@@ -51,22 +60,25 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
         return this.orderDataRelationDao.getCanBeOrderDataList(project);
     }
 
+    public List<OrderDataRelation> getOrderDataRelationbyDataId(Long DataId) {
+        return this.orderDataRelationDao.getOrderDataRelationbyDataId(DataId);
+    }
+
     /**
      * Query OrderDataRelation basic info list.
      *
-     * @param ddtaskId
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> getOrderDataRelationList(long ddtaskId) {
-        return this.orderDataRelationDao.getOrderDataRelationList(ddtaskId);
+    public List<OrderDataRelation> getOrderDataRelationList(Long id) {
+        return this.orderDataRelationDao.getOrderDataRelationList(id);
     }
 
     public List<OrderDataRelation> getOrderDataRelationListF(PageInfo model) {
         return this.orderDataRelationDao.getOrderDataRelationListF(model);
     }
 
-    public OrderDataRelation getOrderDataRelationById(long id) {
+    public OrderDataRelation getOrderDataRelationById(Long id) {
         return this.orderDataRelationDao.getOrderDataRelationById(id);
     }
 
@@ -110,11 +122,13 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     public void delOrderByddDataTaskId(Long ddDataTaskId) {
         this.orderDataRelationDao.delOrderByddDataTaskId(ddDataTaskId);
     }
-
-    public void delOrderByddDataId(long dataId){
+    public List<OrderDataRelation> getBeOrderDataByDataId(Long dataId){
+        return this.orderDataRelationDao.getBeOrderDataByDataId(dataId);
+    }
+    public void delOrderByddDataId(Long dataId){
         this.orderDataRelationDao.delOrderByddDataId(dataId);
     }
-    public void delPublishByddDataId(long dataId){
+    public void delPublishByddDataId(Long dataId){
         this.orderDataRelationDao.delPublishByddDataId(dataId);
     }
 }

@@ -5,7 +5,7 @@
 <head>
     <title>专业工具树</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%@include file="/commons/include/get.jsp" %>
+    <%@include file="/commons/datadriver/getbase.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -76,17 +76,17 @@
         }
 
     </script>
-</head
-<%
-request.setCharacterEncoding("UTF-8");
-    if (request.getParameter("major")==null)
-    {
-    }
-    else {
+    <%
+        request.setCharacterEncoding("UTF-8");
+        if (request.getParameter("major")==null)
+        {
+        }
+        else {
 
-String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");
-out.print("name:"+major);}
-%>
+            String major=new String(request.getParameter("major").getBytes("ISO-8859-1"),"utf-8");
+            out.print("name:"+major);}
+    %>
+</head
 <body>
 <div class="container-fluid" style="height: 100%">
     <div class="col-xs-3" style="height: 100%">
@@ -98,7 +98,7 @@ out.print("name:"+major);}
 
         </div>
     </div>
-    <div class="col-xs-9">
+    <div class="col-xs-9" style="height: 100%">
         <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">专业工具列表</div>
             <div class="panel-body" style="height: 93%">

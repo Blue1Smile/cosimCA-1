@@ -15,7 +15,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
-    <%@include file="/commons/include/form.jsp" %>
+    <%@include file="/commons/datadriver/formbase.jsp" %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>

@@ -1,10 +1,14 @@
 <%@page pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@ taglib prefix="hotent" uri="http://www.jee-soft.cn/paging" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css" href="${ctx}/js/jquery/plugins/jquery.chosen.css" />
-<script type="text/javascript" src="${ctx}/js/jquery/plugins/jquery.chosen.js""></script>
-<script type="text/javascript" src="${ctx}/js/jquery/plugins/jquery.htselect.js""></script>
+<script type="text/javascript" src="${ctx}/js/jquery/plugins/jquery.chosen.js"></script>
+<script type="text/javascript" src="${ctx}/js/jquery/plugins/jquery.htselect.js"></script>
 <script type="text/javascript">
 	var isStop = false,pWidth,sWidth;
 	$(function(){
@@ -144,9 +148,9 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
 <div class="index_top" >
-	<div class="left_logo">
-		<img id="logoImg" src="${ctx}${currentSystem.logo}" />
-	</div>
+	<%--<div class="left_logo">--%>
+		<%--<img id="logoImg" src="${ctx}${currentSystem.logo}" />--%>
+	<%--</div>--%>
 	
 	<div class="search_welcome">
 		<div class="welcome_panel">

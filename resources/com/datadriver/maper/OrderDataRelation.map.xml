@@ -8,32 +8,44 @@
         <result column="DD_TASK_ID" jdbcType="NUMERIC" property="ddTaskId"/>
         <result column="DD_OPREATION_LEVEL" jdbcType="NUMERIC" property="ddOpreationLevel"/>
         <result column="DD_DATA_NAME" jdbcType="VARCHAR" property="ddDataName"/>
+        <result column="DD_PROJECT_ID" jdbcType="NUMERIC" property="ddProjectId"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-    DD_ORDER_DATA_ID, DD_ORDER_TYPE, DD_DATA_ID, DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME
+    DD_ORDER_DATA_ID, DD_ORDER_TYPE, DD_DATA_ID, DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME, DD_PROJECT_ID
   </sql>
 
     <insert id="add" parameterType="com.casic.datadriver.model.data.OrderDataRelation">
     insert into dd_order_data_ralation (DD_ORDER_DATA_ID, DD_ORDER_TYPE, DD_DATA_ID,
-    DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME)
+    DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME, DD_PROJECT_ID)
     values (#{ddOrderDataId,jdbcType=NUMERIC}, #{ddOrderType,jdbcType=NUMERIC}, #{ddDataId,jdbcType=NUMERIC},
-    #{ddTaskId,jdbcType=NUMERIC}, #{ddOpreationLevel,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR})
+    #{ddTaskId,jdbcType=NUMERIC}, #{ddOpreationLevel,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddProjectId,jdbcType=NUMERIC})
   </insert>
 
-    <select id="getOrderDataRelationList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <delete id="delDDOrderDataRelation" parameterType="com.casic.datadriver.model.QueryParameters">
+        delete from dd_order_data_ralation
+       where DD_TASK_ID = #{id,jdbcType=NUMERIC} AND DD_DATA_ID = #{type,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
+    </delete>
+
+    <select id="getDDOrderDataRelation" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
-        where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
+        where DD_TASK_ID = #{id,jdbcType=NUMERIC} AND DD_DATA_ID = #{type,jdbcType=NUMERIC}
     </select>
-
 
     <select id="getOrderDataRelationListF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
         where DD_TASK_ID = #{id} AND DD_ORDER_TYPE=1 limit #{pageSize},#{pageNumber}
+    </select>
+
+    <select id="getOrderDataRelationList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_TASK_ID = #{id} AND DD_ORDER_TYPE=1
     </select>
 
     <select id="getPublishDataRelationList" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -50,12 +62,12 @@
         where DD_TASK_ID = #{id} AND DD_ORDER_TYPE=0 limit #{pageSize},#{pageNumber}
     </select>
 
-    <!--<select id="getCanBeOrderDataList" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
-        <!--select-->
-        <!--<include refid="Base_Column_List"/>-->
-        <!--from dd_order_data_ralation-->
-        <!--where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0-->
-    <!--</select>-->
+    <select id="getOrderDataRelationbyDataId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_DATA_ID = #{DataId,jdbcType=NUMERIC}
+    </select>
 
     <select id="getOrderDataRelationById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -63,7 +75,12 @@
         from dd_order_data_ralation
         where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
     </select>
-
+    <select id="getBeOrderDataByDataId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_order_data_ralation
+        where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
+    </select>
     <select id="queryPublishDataRelationByddTaskIDF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -120,9 +137,9 @@
 
     <insert id="insert" parameterType="com.casic.datadriver.model.data.OrderDataRelation">
     insert into dd_order_data_ralation (DD_ORDER_DATA_ID, DD_ORDER_TYPE, DD_DATA_ID, 
-      DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME)
+      DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME, DD_PROJECT_ID)
     values (#{ddOrderDataId,jdbcType=NUMERIC}, #{ddOrderType,jdbcType=NUMERIC}, #{ddDataId,jdbcType=NUMERIC},
-      #{ddTaskId,jdbcType=NUMERIC}, #{ddOpreationLevel,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR})
+      #{ddTaskId,jdbcType=NUMERIC}, #{ddOpreationLevel,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, , #{ddProjectId,jdbcType=NUMERIC})
   </insert>
     <insert id="insertSelective" parameterType="com.casic.datadriver.model.data.OrderDataRelation">
         insert into dd_order_data_ralation
@@ -144,6 +161,9 @@
             </if>
             <if test="ddOpreationLevel != null">
                 DD_DATA_NAME,
+            </if>
+            <if test="ddOpreationLevel != null">
+                DD_PROJECT_ID,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -194,7 +214,8 @@
       DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC},
       DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC},
       DD_OPREATION_LEVEL = #{ddOpreationLevel,jdbcType=NUMERIC},
-      DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR}
+      DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},
+      DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
     where DD_ORDER_DATA_ID = #{ddOrderDataId,jdbcType=NUMERIC}
   </update>
 </mapper>
