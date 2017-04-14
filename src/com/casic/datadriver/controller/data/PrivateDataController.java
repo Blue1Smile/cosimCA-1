@@ -259,7 +259,7 @@ public class PrivateDataController extends AbstractController {
                         dataVersion1.setDdDataVersion((long) (dataVersionList1.size() + 1));
                     } else {
                         dataVersion1.setDdDataVersion(0l);
-                    }
+                    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
                     dataVersionService.addDDDataVersion(dataVersion1);
                     privateData.setDdDataLastestValue(temp1);
                     break;
