@@ -128,9 +128,9 @@
                 </td>
                 <td align="center">
                     <ap:selectDB name="ddDataUnit" id="ddDataUnit"
-                                 where="parentId=10000010570022" optionValue="itemValue"
+                                 where="parentId=10000028500024" optionValue="itemValue"
                                  optionText="itemName" table="SYS_DIC"
-                                 selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                                 styleClass="form-control" selectedValue="">
                     </ap:selectDB>
                 </td>
                 <td align="center">
@@ -160,8 +160,8 @@
                         <ap:selectDB name="ddType" id="ddType"
                                      where="parentId=10000025100454" optionValue="itemValue"
                                      optionText="itemName" table="SYS_DIC"
-                                     selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control"
-                                     onChange="change()">
+                                     styleClass="form-control"
+                                     onChange="change()" selectedValue="">
                         </ap:selectDB>
                     </td>
                     <%--<th width="20%">数据创建时间:</th>--%>
@@ -172,16 +172,16 @@
                     <%--value=""--%>
                     <%--class="form-control"/></td>--%>
                 </tr>
-                <%--<tr>--%>
-                <%--<th width="20%">数据单位:</th>--%>
-                <%--<td>--%>
-                <%--<ap:selectDB name="ddType" id="ddType"--%>
-                <%--where="parentId=10000025100454" optionValue="itemValue"--%>
-                <%--optionText="itemName" table="SYS_DIC"--%>
-                <%--selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control" onChange="change()">--%>
-                <%--</ap:selectDB>--%>
-                <%--</td>--%>
-                <%--</tr>--%>
+                <tr id="initUnit">
+                    <th width="20%">数据单位:</th>
+                    <td>
+                        <ap:selectDB name="ddUnitForPrivate" id="ddUnitForPrivate"
+                                     where="parentId=10000028500024" optionValue="itemValue"
+                                     optionText="itemName" table="SYS_DIC"
+                                     styleClass="form-control" selectedValue="">
+                        </ap:selectDB>
+                    </td>
+                </tr>
                 <tr>
 
                     <%--<th width="20%">数据创建人:</th>--%>
@@ -209,7 +209,7 @@
                                 <td align="center" bgcolor="#FFFCCC">数据名称</td>
                                 <td align="center" bgcolor="#FFFCCC">数据类型</td>
                                 <td align="center" bgcolor="#FFFCCC">单位</td>
-                                <td align="center" bgcolor="#FFFCCC">描述</td>
+                                <td align="center" bgcolor="#FFFCCC">备注</td>
                                 <td><input class="btn btn-success btn-sm" type="button" id="btn_addtr" value="增行"></td>
                             </tr>
                             </thead>
@@ -233,9 +233,9 @@
                                 </td>
                                 <td align="center">
                                     <ap:selectDB name="ddDataUnit" id="ddDataUnit"
-                                                 where="parentId=10000010570022" optionValue="itemValue"
+                                                 where="parentId=10000028500024" optionValue="itemValue"
                                                  optionText="itemName" table="SYS_DIC"
-                                                 selectedValue="${indexInfo.ddIndexTypeId}" styleClass="form-control">
+                                                 styleClass="form-control" selectedValue="">
                                     </ap:selectDB>
                                 </td>
                                 <td align="center"><input type="text" name="ddDataDescription" class="form-control"/>
@@ -248,7 +248,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th width="20%">数据基本描述:</th>
+                    <th width="20%">备注:</th>
                     <td colspan="3"><textarea id="ddDescription" name="ddDescription"
                                               value="" class="form-control"
                                               rows="3"/></textarea>
@@ -267,6 +267,7 @@
 <script type="text/javascript">
     //@ sourceURL=addprivatedata.ht
     $(function () {
+        $('#initUnit').hide();
         var show_count = 20;   //要显示的条数
         var count = 1;    //递增的开始值，这里是你的ID
         $("#btn_addtr").click(function () {
@@ -385,12 +386,16 @@
         var value_change = $("#ddType").val();
         if (value_change == "2") {
             $('#initValue').hide();
+            $('#initUnit').hide();
         } else if (value_change == "3") {
             $('#initValue').hide();
+            $('#initUnit').hide();
         } else if (value_change == "0") {
             $('#initValue').hide();
+            $('#initUnit').show();
         } else {
             $('#initValue').show();
+            $('#initUnit').hide();
         }
     }
 </script>

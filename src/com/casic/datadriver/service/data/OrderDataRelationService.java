@@ -32,9 +32,8 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
         return true;
     }
 
-    public boolean delDDOrderDataRelation(QueryParameters queryparameters) {
+    public void delDDOrderDataRelation(QueryParameters queryparameters) {
         this.orderDataRelationDao.delDDOrderDataRelation(queryparameters);
-        return true;
     }
 
     public  List<OrderDataRelation> getDDOrderDataRelation(QueryParameters queryparameters) {
@@ -68,19 +67,18 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     /**
      * Query OrderDataRelation basic info list.
      *
-     * @param ddtaskId
      *            the query filter
      * @return the list
      */
-    public List<OrderDataRelation> getOrderDataRelationList(long ddtaskId) {
-        return this.orderDataRelationDao.getOrderDataRelationList(ddtaskId);
+    public List<OrderDataRelation> getOrderDataRelationList(Long id) {
+        return this.orderDataRelationDao.getOrderDataRelationList(id);
     }
 
     public List<OrderDataRelation> getOrderDataRelationListF(PageInfo model) {
         return this.orderDataRelationDao.getOrderDataRelationListF(model);
     }
 
-    public OrderDataRelation getOrderDataRelationById(long id) {
+    public OrderDataRelation getOrderDataRelationById(Long id) {
         return this.orderDataRelationDao.getOrderDataRelationById(id);
     }
 
@@ -124,11 +122,13 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     public void delOrderByddDataTaskId(Long ddDataTaskId) {
         this.orderDataRelationDao.delOrderByddDataTaskId(ddDataTaskId);
     }
-
-    public void delOrderByddDataId(long dataId){
+    public List<OrderDataRelation> getBeOrderDataByDataId(Long dataId){
+        return this.orderDataRelationDao.getBeOrderDataByDataId(dataId);
+    }
+    public void delOrderByddDataId(Long dataId){
         this.orderDataRelationDao.delOrderByddDataId(dataId);
     }
-    public void delPublishByddDataId(long dataId){
+    public void delPublishByddDataId(Long dataId){
         this.orderDataRelationDao.delPublishByddDataId(dataId);
     }
 }

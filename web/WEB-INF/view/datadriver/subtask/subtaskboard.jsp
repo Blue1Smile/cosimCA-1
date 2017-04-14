@@ -10,200 +10,186 @@
 <html>
 <head>
     <title>任务看板</title>
-    <script type="text/javascript" src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
-</head>
-<body id="task_board">
-<div class="row paneldocker" style="height: 100%">
-    <div class="col-xs-3" style="height: 100%">
-        <div class="panel panel-default task-panel">
-            <div class="panel-heading">
-                新创建
-                <button type="button" class="btn btn-xs btn-default pull-right" id="OnePunchSend">
-                    <span class="glyphicon glyphicon-send"></span> 全部发布
-                </button>
-            </div>
-            <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
-                <ul id="createpanel" class="scrum-stage-tasks">
-                    <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
-                        <li class="task task-card ui-sortable-handle "
-                            onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
-                                ${taskListbyUserItem.ddTaskName}
-                            <input value="${taskListbyUserItem.ddTaskId}" type="hidden">
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-3" style="height: 100%">
-        <div class="panel panel-info task-panel">
-            <div class="panel-heading">
-                已发布
-                <button type="button" class="btn btn-xs btn-info pull-right" id="OnePunchBack">
-                    <span class="glyphicon glyphicon-arrow-left"></span> 全部收回
-                </button>
-            </div>
-            <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
-                <ul id="publishpanel" class="scrum-stage-tasks">
-                    <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
-                        <li class="task task-card ui-sortable-handle"
-                            onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
-                                ${publishtaskListbyUserItem.ddTaskName}
-                            <input value="${publishtaskListbyUserItem.ddTaskId}" type="hidden">
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-3" style="height: 100%">
-        <div class="panel panel-success task-panel">
-            <div class="panel-heading">
-                待审核
-            </div>
-            <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden">
-                <ul id="checkpanel" class="scrum-stage-tasks">
-                    <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
-                        <li class="task task-card ui-sortable-handle"
-                            onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
-                                ${checkTaskInfoListItem.ddTaskName}
-                            <input value="${checkTaskInfoListItem.ddTaskId}" type="hidden">
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-3" style="height: 100%">
-        <div class="panel panel-warning task-panel">
-            <div class="panel-heading">
-                已完成
-            </div>
-            <div class="panel-body panelheight" style="overflow-y:auto; overflow-x: hidden;">
-                <ul id="completepanel" class="scrum-stage-tasks">
-                    <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
-                        <li class="task task-card ui-sortable-handle"
-                            onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
-                                ${completeTaskInfoListItem.ddTaskName}
-                            <input value="${completeTaskInfoListItem.ddTaskId}" type="hidden">
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-<script type="text/javascript">
-    function isEmptyValue(value) {
-        var type;
-        if (value == null || value == '') { // 等同于 value === undefined || value === null
-            return true;
+    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css"/>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxsortable.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxkanban.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxexpander.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxinput.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxcolorpicker.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxradiobutton.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxdropdownbutton.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqxbuttons.js"></script>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
-        type = Object.prototype.toString.call(value).slice(8, -1);
-        switch (type) {
-            case 'String':
-                return !$.trim(value);
-            case 'Array':
-                return !value.length;
-            case 'Object':
-                return $.isEmptyObject(value); // 普通对象使用 for...in 判断，有 key 即为 false
-            default:
-                return false; // 其他对象均视作非空
-        }
-    }
-    ;
-    $(document).ready(function () {
-        $("#createpanel,#publishpanel").dragsort({
-            itemSelector: "li",
-            dragSelector: "li",
-            dragBetween: true,
-            dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
-        });
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var fields = [
+                {name: "id", type: "string"},
+                {name: "status", map: "state", type: "string"},
+                {name: "text", map: "label", type: "string"},
+                {name: "tags", type: "string"},
+                {name: "color", map: "hex", type: "string"},
+                {name: "resourceId", type: "number"}
+            ];
 
-        $("#checkpanel,#completepanel").dragsort({
-            itemSelector: "li",
-            dragSelector: "li",
-            dragBetween: true,
-            dragEnd: saveOrder,
-            placeHolderTemplate: '<li class="task task-card ui-sortable-handle dropdown-color"></li>'
-        });
+            var source =
+            {
+                localData: [
+                    {
+                        id: "1161",
+                        state: "new",
+                        label: "Combine Orders",
+                        tags: "orders, combine",
+                        hex: "#5dc3f0",
+                        resourceId: 3
+                    },
+                    {
+                        id: "1645",
+                        state: "work",
+                        label: "Change Billing Address",
+                        tags: "billing",
+                        hex: "#f19b60",
+                        resourceId: 1
+                    },
+                    {
+                        id: "9213",
+                        state: "new",
+                        label: "One item added to the cart",
+                        tags: "cart",
+                        hex: "#5dc3f0",
+                        resourceId: 3
+                    },
+                    {
+                        id: "6546",
+                        state: "done",
+                        label: "Edit Item Price",
+                        tags: "price, edit",
+                        hex: "#5dc3f0",
+                        resourceId: 4
+                    },
+                    {id: "9034", state: "new", label: "Login 404 issue", tags: "issue, login", hex: "#6bbd49"}
+                ],
+                dataType: "array",
+                dataFields: fields
+            };
 
-        function saveOrder() {
-            var data = $(this).children('input').val();
-            var parentid = $(this).parent().attr("id");
-            $.post("movetask.ht?id=" + data + "&parent=" + parentid);
-        }
-    });
-    //生成全部新建panel中li的list并转换成json发送
-    $('#OnePunchSend').click(function (index) {
+            var dataAdapter = new $.jqx.dataAdapter(source);
 
-        var feedbackMap = new Object();
-        var valueList = new Array();
-        $("#createpanel>li").each(function () {
-            //将input=hidden的值压入list
-            var a = $(this).find("input").val();
-            if (a != null && a != "" && a != undefined) {
-                feedbackMap = a;
-                valueList.push(feedbackMap);
-            } else {
-                alert('生成list异常');
+            var resourcesAdapterFunc = function () {
+                var resourcesSource =
+                {
+                    localData: [
+                        {id: 0, name: "No name", image: "../../jqwidgets/styles/images/common.png", common: true},
+                        {id: 1, name: "Andrew Fuller", image: "../../images/andrew.png"},
+                        {id: 2, name: "Janet Leverling", image: "../../images/janet.png"},
+                        {id: 3, name: "Steven Buchanan", image: "../../images/steven.png"},
+                        {id: 4, name: "Nancy Davolio", image: "../../images/nancy.png"},
+                        {id: 5, name: "Michael Buchanan", image: "../../images/Michael.png"},
+                        {id: 6, name: "Margaret Buchanan", image: "../../images/margaret.png"},
+                        {id: 7, name: "Robert Buchanan", image: "../../images/robert.png"},
+                        {id: 8, name: "Laura Buchanan", image: "../../images/Laura.png"},
+                        {id: 9, name: "Laura Buchanan", image: "../../images/Anne.png"}
+                    ],
+                    dataType: "array",
+                    dataFields: [
+                        {name: "id", type: "number"},
+                        {name: "name", type: "string"},
+                        {name: "image", type: "string"},
+                        {name: "common", type: "boolean"}
+                    ]
+                };
+
+                var resourcesDataAdapter = new $.jqx.dataAdapter(resourcesSource);
+                return resourcesDataAdapter;
             }
-        });
-        if (isEmptyValue(valueList)) {
-            $(".paneldocker").prepend('<div class="alert alert-danger fade in"><button class="close" data-dismiss="alert"><span>&times;</span></button><p>列表为空不能进行相应的操作！</p></div>');
-        } else {
-            $.ajax({
-                type: "post",
-                url: "onepunchsend.ht?id=${Project.ddProjectId}&&parent=publishpanel",
-                data: {strJson: JSON.stringify(valueList)},
-                success: function (data, status) {
-                    if (status == "success") {
-                        $.get("showtask.ht?id=${Project.ddProjectId}", function (data) {
-                            $('#task').html(data);
+
+            $('#kanban').jqxKanban({
+                resources: resourcesAdapterFunc(),
+                source: dataAdapter,
+                // render items.
+                itemRenderer: function (item, data, resource) {
+                    $(item).find(".jqx-kanban-item-color-status").html("<span style='line-height: 23px; margin-left: 5px;'></span>");
+                    $(item).find(".jqx-kanban-item-text").css('background', item.color);
+                    item.on('dblclick', function (event) {
+                        var input = $("<textarea placeholder='(No Title)' style='border: none; width: 100%;' class='jqx-input'></textarea>");
+                        var addToHeader = false;
+                        var header = null;
+                        if (event.target.nodeName == "SPAN" && $(event.target).parent().hasClass('jqx-kanban-item-color-status')) {
+                            var input = $("<input placeholder='(No Title)' style='border: none; background: transparent; width: 80%;' class='jqx-input'/>");
+                            // add to header
+                            header = event.target;
+                            header.innerHTML = "";
+                            input.val($(event.target).text());
+                            $(header).append(input);
+                            addToHeader = true;
+                        }
+                        if (!addToHeader) {
+                            var textElement = item.find(".jqx-kanban-item-text");
+                            input.val(textElement.text());
+                            textElement[0].innerHTML = "";
+                            textElement.append(input);
+                        }
+
+                        input.mousedown(function (event) {
+                            event.stopPropagation();
                         });
-                    }
-                },
-                error: function () {
-                },
-                complete: function () {
-                }
-            });
-        }
-    });
-    //生成全部发布panel中li的list并转换成json发送
-    $('#OnePunchBack').click(function (index) {
-        var feedbackMap = new Object();
-        var valueList = new Array();
-        $("#publishpanel>li").each(function () {
-            //将input=hidden的值压入list
-            var a = $(this).find("input").val();
-            if (a != null && a != "" && a != undefined) {
-                feedbackMap = a;
-                valueList.push(feedbackMap);
-            } else {
-                alert('生成list异常');
-            }
-        });
+                        input.mouseup(function (event) {
+                            event.stopPropagation();
+                        });
 
-        $.ajax({
-            type: "post",
-            url: "onepunchback.ht?id=${Project.ddProjectId}&&parent=createpanel",
-            data: {strJsonBack: JSON.stringify(valueList)},
-            success: function (data, status) {
-                if (status == "success") {
-                    $.get("showtask.ht?id=${Project.ddProjectId}", function (data) {
-                        $('#task').html(data);
+                        input.blur(function () {
+                            var value = input.val();
+                            if (!addToHeader) {
+                                $("<span>" + value + "</span>").appendTo(textElement);
+                            }
+                            else {
+                                header.innerHTML = value;
+                            }
+                            input.remove();
+                        });
+                        input.keydown(function (event) {
+                            if (event.keyCode == 13) {
+                                if (!header) {
+                                    $("<span>" + $(event.target).val() + "</span>").insertBefore($(event.target));
+                                    $(event.target).remove();
+                                }
+                                else {
+                                    header.innerHTML = $(event.target).val();
+                                }
+                            }
+                        });
+                        input.focus();
                     });
-                } else {
-                }
-            },
-            error: function () {
-            },
-            complete: function () {
-            }
+                },
+                width: '100%',
+                height: '100%',
+                columns: [
+                    {text: "新建子任务", dataField: "new"},
+                    {text: "正在执行", dataField: "doing"},
+                    {text: "需要审核", dataField: "todo"},
+                    {text: "通过审核", dataField: "done"}
+                ]
+            });
+            //点击item事件
+            $('#kanban').on('itemAttrClicked', function (event) {
+                var args = event.args;
+                var itemId = args.itemId;
+                var attribute = args.attribute; // template, colorStatus, content, keyword, text, avatar
+            });
+
         });
-    });
-</script>
+    </script>
+</head>
+<body>
+<div id="kanban"></div>
+</body>
 </html>

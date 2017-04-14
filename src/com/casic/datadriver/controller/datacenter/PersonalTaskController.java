@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 /**
  * @author 2016/11/14
  */
@@ -360,15 +361,6 @@ public class PersonalTaskController extends AbstractController {
                     it.remove();
                 }
             }
-
-//            int taskLength= task_list.size()-1;
-//            for(int i=0;i<taskLength;i++){
-//                Long ddTaskId = task_list.get(i).getDdTaskId();
-//                if (ddTaskId.equals(taskId)) {
-//                    task_list.remove(i);
-//                    i--;
-//                }
-//            }
 
             List<PrivateData> OrderPrivatedataList = new ArrayList<PrivateData>();
             List<OrderDataRelation> orderDataRelationList = orderDataRelationService.getOrderDataRelationList(taskId);
@@ -817,54 +809,30 @@ public class PersonalTaskController extends AbstractController {
     @RequestMapping("canordertoorder")
     @Action(description = "可订阅拖拽到订阅")
     public void canordertoorder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Long dataId = RequestUtil.getLong(request, "id");
+        Long taskId = RequestUtil.getLong(request, "taskId");
+        String parent = RequestUtil.getString(request, "parent");
         try {
-            long dataId = RequestUtil.getLong(request, "id");
-            long taskId = RequestUtil.getLong(request, "taskId");
-            String parent = RequestUtil.getString(request, "parent");
-
             //已订阅到可订阅
             if (parent.equals("canorderpanel")) {
-//                List<OrderDataRelation> orderDataRelationList2 = orderDataRelationService.getOrderDataRelationList(taskId);
-//                for (OrderDataRelation orderDataRelation1 : orderDataRelationList2) {
-//                    if (orderDataRelation1.getDdDataId().equals(dataId)) {
-//                        long dataId2 = orderDataRelation1.getDdOrderDataId();
-//                        orderDataRelationService.delOrderByddDataId(dataId2);
-//                    }
-//                }
                 QueryParameters queryparameters = new QueryParameters();
                 queryparameters.setId(taskId);
                 queryparameters.setType(dataId);
-//                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-//                orderDataRelationService.getOrderDataRelationbyDataId(dataId);
-                boolean p = orderDataRelationService.delDDOrderDataRelation(queryparameters);
-
-//                if (dataStruct.size() !=0) {
-//                    dataStruct.get(0).setDdOrderState((short) 0);
-//                    dataStructService.update(dataStruct.get(0));
-//                }
+                orderDataRelationService.delDDOrderDataRelation(queryparameters);
             }
             //可订阅到已订阅
             if (parent.equals("orderpanel")) {
-                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
+                DataStruct dataStruct = dataStructService.getStructById(dataId);
                 OrderDataRelation orderdatarelation = new OrderDataRelation();
 
                 orderdatarelation.setDdTaskId(taskId);
-                orderdatarelation.setDdDataId(dataStruct.get(0).getDdStructId());
+                orderdatarelation.setDdDataId(dataStruct.getDdStructId());
                 orderdatarelation.setDdOrderDataId(UniqueIdUtil.genId());
-                orderdatarelation.setDdDataName(dataStruct.get(0).getDdStructName());
-                orderDataRelationService.add(orderdatarelation);
+                orderdatarelation.setDdDataName(dataStruct.getDdStructName());
+                orderdatarelation.setDdOrderType(1l);
+                orderdatarelation.setDdProjectId(dataStruct.getDdProjectId());
 
-//                if (dataStruct.size() !=0) {
-//                    dataStruct.get(0).setDdOrderState((short) 1);
-//                    dataStructService.update(dataStruct.get(0));
-//                }
-//                OrderDataRelation orderDataRelation = new OrderDataRelation();
-//                orderDataRelation = orderDataRelationService.getOrderDataRelationById(dataId);
-//
-//                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
-//                orderDataRelation.setDdOrderType(1L);
-//                orderDataRelation.setDdTaskId(taskId);
-//                orderDataRelationService.add(orderDataRelation);
+                orderDataRelationService.add(orderdatarelation);
             }
         } catch (Exception e) {
             String resultMsg = null;
@@ -883,53 +851,40 @@ public class PersonalTaskController extends AbstractController {
     @RequestMapping("createtopublish")
     @Action(description = "私有和发布数据之间的拖拽")
     public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String resultMsg = "状态变更";
+        Long dataId = RequestUtil.getLong(request, "id");
+        String parent = RequestUtil.getString(request, "parent");
+        PrivateData privateData = new PrivateData();
+        OrderDataRelation orderDataRelation = new OrderDataRelation();
         try {
-            long dataId = RequestUtil.getLong(request, "id");
-            String parent = RequestUtil.getString(request, "parent");
-            PrivateData privateData = new PrivateData();
-            OrderDataRelation orderDataRelation = new OrderDataRelation();
             //发布到私有
             if (parent.equals("createpanel")) {
-                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-                int num = orderDataRelationService.getOrderDataRelationbyDataId(dataId).size();
-                if (dataStruct.size() != 0 && num == 0) {
-                    dataStruct.get(0).setDdPublishState((short) 0);
-                    dataStructService.update(dataStruct.get(0));
+                DataStruct dataStruct = dataStructService.getStructById(dataId);
+                if (orderDataRelationService.getBeOrderDataByDataId(dataId).size() == 0) {
+                    dataStruct.setDdPublishState((short) 0);
+                    dataStructService.update(dataStruct);
                 } else {
-//                   JOptionPane.showMessageDialog(null, "该数据已经被订阅！", "消息提示", JOptionPane.INFORMATION_MESSAGE);
-//                    JOptionPane.showMessageDialog(null, "插入数据库成功！", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                    return;
                 }
-//                orderDataRelationService.delPublishByddDataId(dataId);
-//                privateData = privateDataService.getDataById(dataId);
-//                privateData.setDdDataPublishType(0l);
-//                privateDataService.updatedata(privateData);
             }
             //私有到发布
             if (parent.equals("publishpanel")) {
-                List<DataStruct> dataStruct = dataStructService.getStructById(dataId);
-                if (dataStruct.size() !=0)
-                {
-                    dataStruct.get(0).setDdPublishState((short)1);
-                    dataStructService.update(dataStruct.get(0));
-                }
+                DataStruct dataStruct = dataStructService.getById(dataId);
+                dataStruct.setDdPublishState((short) 1);
+                dataStructService.update(dataStruct);
 
-
-//                privateData = privateDataService.getDataById(dataId);
-//                privateData.setDdDataPublishType(1l);
-//                privateDataService.updatedata(privateData);
-//
-//                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
-//                orderDataRelation.setDdDataId(dataId);
-//                orderDataRelation.setDdTaskId(privateData.getDdDataTaskId());
-//                orderDataRelation.setDdDataName(privateData.getDdDataName());
-//                orderDataRelation.setDdOrderType(0L);
-//                orderDataRelationService.add(orderDataRelation);
+                orderDataRelation.setDdOrderDataId(UniqueIdUtil.genId());
+                orderDataRelation.setDdDataId(dataId);
+                orderDataRelation.setDdTaskId(dataStruct.getDdTaskId());
+                orderDataRelation.setDdDataName(dataStruct.getDdStructName());
+                orderDataRelation.setDdOrderType(0L);
+                orderDataRelation.setDdProjectId(dataStruct.getDdProjectId());
+                orderDataRelationService.add(orderDataRelation);
             }
+            writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Success);
         } catch (Exception e) {
-            String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
-//        return "该数据已经被订阅！";
     }
 
 }
