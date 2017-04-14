@@ -272,7 +272,6 @@ public class DataStructController extends AbstractController {
         bin.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
     }
 
-
     /**
      * 查询私有数据
      *
@@ -291,20 +290,16 @@ public class DataStructController extends AbstractController {
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
-//        ModelCenterModel temp;88
         List<DataStruct> structdata_list = dataStructService.getStructByTaskId(id);
 
         if (b > structdata_list.size()) {
             b = Long.valueOf(structdata_list.size());
         }
 
-
         JSONObject json = CombinationJSON(a, b, id, structdata_list);
-
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());
-//            system.out(json.toString());
         PrintWriter out = null;
         out = response.getWriter();
         out.append(jsonstring);

@@ -155,7 +155,15 @@
     </div>
 </div>
 <%--导入数据--%>
-<div class="modal fade" id="exportData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="importData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+<%--上传私有数据文件或模型--%>
+<div class="modal fade" id="uploadPrivateFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
@@ -684,12 +692,10 @@
             });
         },
         'click #privatetr_file': function (e, value, row, index) {
-            <%--$.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {--%>
-            <%--if (status == 'success') {--%>
-            <%--$table_publish.bootstrapTable('refresh')--%>
-            <%--$table_private.bootstrapTable('refresh')--%>
-            <%--}--%>
-            <%--});--%>
+            $('#uploadPrivateFile').modal({
+                keyboard: true,
+                remote: "${ctx}/datadriver/privatedata/uploadPrivateFile.ht?id=" + row.ddDataId
+            })
         }
     };
 
@@ -698,11 +704,15 @@
     });
     //Excel批量导入
     function importPrivateData(taskId, projectId) {
-        $('#exportData').modal({
+        $('#importData').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/privatedata/importPrivateData.ht?id=" + taskId + "&projectId=" + projectId
-        })
+        });
     }
+    //对话框关闭清除缓存
+    $("#uploadPrivateFile").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
     <%--function saveOrder() {--%>
     <%--var data = $(this).children('input').val();--%>
     <%--var parentid = $(this).parent().attr("id");--%>
