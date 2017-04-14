@@ -11,7 +11,9 @@
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+
     <script src="${ctx}/newtable/jquery.js"></script>
+
 
     <script>
         $(function () {
@@ -22,7 +24,8 @@
                 }
             });
             $("#mainframe").height(getHeight());
-        })
+        });
+
         function getHeight() {
             return $(window).height() - $('.layui-nav').outerHeight(true) - 80;
         }
@@ -67,5 +70,4 @@
 </div>
 </body>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-
 </html>

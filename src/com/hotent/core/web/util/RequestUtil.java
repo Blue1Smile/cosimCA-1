@@ -452,8 +452,7 @@ public class RequestUtil {
 
 	/**
 	 * 取得当前页URL,如有参数则带参数
-	 * 
-	 * @param HttpServletRequest
+	 *
 	 *            request
 	 * @return
 	 */
