@@ -35,6 +35,9 @@ public class OrderDataRelationService extends BaseService<OrderDataRelation> {
     public void delDDOrderDataRelation(QueryParameters queryparameters) {
         this.orderDataRelationDao.delDDOrderDataRelation(queryparameters);
     }
+    public void delDDPublishDataRelation(QueryParameters queryparameters) {
+        this.orderDataRelationDao.delDDPublishDataRelation(queryparameters);
+    }
 
     public  List<OrderDataRelation> getDDOrderDataRelation(QueryParameters queryparameters) {
       return this.orderDataRelationDao.getDDOrderDataRelation(queryparameters);
