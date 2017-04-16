@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
-
+    <link rel="stylesheet" type="text/css" href="${ctx}/styles/wizard/bootstro.min.css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
     <%@include file="/newtable/tablecontext.jsp" %>
     <script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
@@ -39,6 +39,10 @@
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+    <script type="text/javascript" src="${ctx}/styles/wizard/bootwizard.js"></script>
+
+    <script type="text/javascript" src="${ctx}/styles/wizard/bootstro.min.js"></script>
+    <script type="text/javascript" src="${ctx}/cookie/jquery.cookie.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -69,7 +73,6 @@
         <li role="presentation" id="switch_attr_source"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
         <li role="presentation" id="switch_attr_talk"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a></li>
         <div class="pull-right">
-
             <a class="btn btn-success" href="javascript:void(0)" id="create_data"
                onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
@@ -94,16 +97,16 @@
     <div class="tab-content board-view">
         <div role="tabpanel" class="tab-pane active board-scrum-view" id="data" style="height: 100%">
         </div>
-        <div role="tabpanel" class="tab-pane" id="index">
+        <div role="tabpanel" class="tab-pane board-scrum-view" id="index" style="height: 100%">
         </div>
         <div role="tabpanel" class="tab-pane board-scrum-view" id="publish" style="height: 100%">
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="talk">
+        <div role="tabpanel" class="tab-pane board-scrum-view" id="talk" style="height: 100%">
         </div>
-        <div role="tabpanel" class="tab-pane" id="source">
+        <div role="tabpanel" class="tab-pane board-scrum-view" id="source" style="height: 100%">
         </div>
-        <div role="tabpanel" class="tab-pane" id="child">
+        <div role="tabpanel" class="tab-pane board-scrum-view" id="child" style="height: 100%">
         </div>
     </div>
 
@@ -158,6 +161,22 @@
 <script type="text/javascript">
     //@ sourceURL=todotask.ht
     $(document).ready(function () {
+        var isbstro = $.cookie('bootstro');
+        if (!isbstro) {
+            wizard.bs.bstro([
+                ['#switch_attr_publish', '<strong style="margin-top:10px;">该tab页负责私有数据创建、展示、发布、管理，以及发布数据的展示、撤销。</strong>'],
+                ['#switch_attr_order', {
+                    content: '<strong style="margin-top:10px;">该tab页负责项目中所有可订阅数据的展示、订阅，以及已订阅数据的管理、展示、撤销订阅。</strong>',
+                    place: 'right'
+                }],
+            ], {
+                obtn: '我已了解，下次不再提示',
+                exit: function () {
+                    $.cookie('bootstro', 'ok', {expires: 30, path: '/'});
+                }
+            });
+        }
+
         $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#data').html(data);
         });
@@ -168,13 +187,13 @@
     });
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
-            switch_attr_data = document.getElementById('switch_attr_data'),
-            switch_attr_publish = document.getElementById('switch_attr_publish'),
-            switch_attr_order = document.getElementById('switch_attr_order'),
-            statis_btn = document.getElementById('statis_btn'),
-            create_task = document.getElementById('create_task'),
-            upload_file = document.getElementById('upload_file'),
-            switch_attr_child = document.getElementById('switch_attr_child');
+        switch_attr_data = document.getElementById('switch_attr_data'),
+        switch_attr_publish = document.getElementById('switch_attr_publish'),
+        switch_attr_order = document.getElementById('switch_attr_order'),
+        statis_btn = document.getElementById('statis_btn'),
+        create_task = document.getElementById('create_task'),
+        upload_file = document.getElementById('upload_file'),
+        switch_attr_child = document.getElementById('switch_attr_child');
     //显示数据详情
     function showDataContent(dataId) {
         $('#datadetail').modal({
@@ -248,13 +267,13 @@
         $('#statis').modal({
             keyboard: true,
             remote: "statis.ht?id=${TaskInfo.ddTaskId}"
-        })
+        });
     }
     upload_file.onclick = function () {
         $('#fileupload').modal({
             keyboard: true,
             remote: "uploadfile.ht?id=${TaskInfo.ddTaskId}"
-        })
+        });
     }
 </script>
 </html>

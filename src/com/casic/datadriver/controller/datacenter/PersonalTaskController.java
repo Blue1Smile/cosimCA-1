@@ -677,33 +677,37 @@ public class PersonalTaskController extends AbstractController {
         Long ddTaskId = RequestUtil.getLong(request, "id");
 
         List<OrderDataRelation> publishRelationList = orderDataRelationService.getPublishDataRelationList(ddTaskId);
-        List<PrivateData> publshListWithoutValue = new ArrayList<PrivateData>();
-        int valueLength = publishRelationList.size();
+        List<DataStruct> publishListWithoutValue = new ArrayList<DataStruct>();
 
         try {
-            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
+//            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
             List<TaskStart> taskStart_list = taskStartService.queryTaskStartByTaskId(ddTaskId);
 
             TaskInfo taskInfo = taskInfoService.getById(ddTaskId);
-
-
             if (taskInfo.getDdTaskState() == null || taskInfo.getDdTaskChildType() == null) {
                 taskInfo.setDdTaskState(taskInfo.createpanel);
                 taskInfo.setDdTaskChildType("createpanel");
             }
             //判断任务的当前状态，只有在正在执行中才允许提交
 
-            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) && taskInfo.getDdTaskChildType().equals("publishpanel")) {
+            if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) &&
+                    taskInfo.getDdTaskChildType().equals("publishpanel")) {
 
                 for (int i = 0; i < publishRelationList.size(); i++) {
-                    PrivateData publishData = privateDataService.getById(publishRelationList.get(i).getDdDataId());
-                    if (publishData.getDdDataLastestValue() == null) {
-                        publshListWithoutValue.add(publishData);
-                    } else {
-                        valueLength--;
+                    DataStruct dataStruct = dataStructService.getById(publishRelationList.get(i).getDdDataId());
+                    List<PrivateData> childList = privateDataService.selectByStructid(dataStruct.getDdStructId());
+                    int childLength = childList.size();
+                    for (int j=0;j<childList.size();j++){
+                          if(childList.get(j).getDdDataLastestValue()==null){
+                              childLength--;
+                          }
+                        if(childLength<childList.size()){
+                            publishListWithoutValue.add(dataStruct);
+                        }
                     }
                 }
-                if (valueLength == 0) {
+
+                if (publishListWithoutValue.size() == 0) {
                     taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
                     taskStartService.update(taskStart_list.get(0));
                     taskInfo.setDdTaskChildType("checkpanel");
@@ -719,8 +723,8 @@ public class PersonalTaskController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
-        return getAutoView().addObject("publshListWithoutValue", publshListWithoutValue)
-                .addObject("valueLength", valueLength).addObject("ddTaskId", ddTaskId);
+        return getAutoView().addObject("publishListWithoutValue", publishListWithoutValue)
+                .addObject("valueLength", publishListWithoutValue.size()).addObject("ddTaskId", ddTaskId);
     }
 
 
@@ -853,6 +857,8 @@ public class PersonalTaskController extends AbstractController {
     public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String resultMsg = "状态变更";
         Long dataId = RequestUtil.getLong(request, "id");
+        DataStruct dataStruct1=dataStructService.getStructById(dataId);
+        Long taskId = dataStruct1.getDdTaskId();
         String parent = RequestUtil.getString(request, "parent");
         PrivateData privateData = new PrivateData();
         OrderDataRelation orderDataRelation = new OrderDataRelation();
@@ -863,6 +869,12 @@ public class PersonalTaskController extends AbstractController {
                 if (orderDataRelationService.getBeOrderDataByDataId(dataId).size() == 0) {
                     dataStruct.setDdPublishState((short) 0);
                     dataStructService.update(dataStruct);
+                    QueryParameters queryparameters = new QueryParameters();
+                    queryparameters.setId(taskId);
+                    queryparameters.setType(dataId);
+                    orderDataRelationService.delDDPublishDataRelation(queryparameters);
+//                    List<OrderDataRelation> taskOrderRelationList =
+//                    for()
                 } else {
                     return;
                 }
@@ -886,6 +898,8 @@ public class PersonalTaskController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
+
 
 }
 

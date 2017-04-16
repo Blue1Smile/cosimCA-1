@@ -149,6 +149,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
                     datastruct.setDdStructName(String.valueOf(hssfRow.getCell(0)));
                     datastruct.setDdEngName(String.valueOf(hssfRow.getCell(1)));
                     datastruct.setDdCreateTime(now);
+                    datastruct.setDdType(hssfRow.getCell(4).CELL_TYPE_STRING);
                     datastruct.setDdParentId(sysUser.getUserId());
                     datastruct.setDdOrderState((short)0);
                     datastruct.setDdPublishState((short)0);
@@ -160,7 +161,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
                 brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
                 brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
-                brandMobileInfo.setDdDataType(Integer.valueOf(String.valueOf(hssfRow.getCell(4))));
+                brandMobileInfo.setDdDataType(hssfRow.getCell(4).CELL_TYPE_STRING);
                 brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
 //                   阈值定义问题
 //                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));

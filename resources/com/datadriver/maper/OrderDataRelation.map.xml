@@ -26,6 +26,10 @@
         delete from dd_order_data_ralation
        where DD_TASK_ID = #{id,jdbcType=NUMERIC} AND DD_DATA_ID = #{type,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
     </delete>
+    <delete id="delDDPublishDataRelation" parameterType="com.casic.datadriver.model.QueryParameters">
+        delete from dd_order_data_ralation
+        where DD_TASK_ID = #{id,jdbcType=NUMERIC} AND DD_DATA_ID = #{type,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
+    </delete>
 
     <select id="getDDOrderDataRelation" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
         select

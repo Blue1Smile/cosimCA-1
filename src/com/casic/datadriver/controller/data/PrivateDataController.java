@@ -169,7 +169,22 @@ public class PrivateDataController extends AbstractController {
         }
         return mv;
     }
-
+    /**
+     * 上传私有数据文件
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the add
+     * @throws Exception the exception
+     */
+    @RequestMapping("uploadPrivateFile")
+    @Action(description = "上传文件")
+    public ModelAndView uploadPrivateFile(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long dataId = RequestUtil.getLong(request, "id");
+        ModelAndView mv = this.getAutoView().addObject("dataStructId", dataId);
+        return mv;
+    }
     /**
      * 编辑任务
      *
@@ -340,12 +355,8 @@ public class PrivateDataController extends AbstractController {
         try {
             String json = request.getParameter("strJson");
             JSONObject obj = JSONObject.fromObject(json);
-
             PrivateData privateData = privateDataService.getById(obj.getLong("ddDataId"));
-//            Map<String, Class> map = new HashMap<String, Class>();
-//            map.put("privateData", PrivateData.class);
             privateData.setDdDataLastestValue(obj.getString("ddDataLastestValue"));
-//            PrivateData privateData = (PrivateData) JSONObject.toBean(obj, PrivateData.class, map);
             privateDataService.update(privateData);
         } catch (Exception e) {
             String resultMsg = null;
