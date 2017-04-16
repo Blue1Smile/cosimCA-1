@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!--主导航菜单 开始-->
-<ul class="layui-nav">
+<ul class="layui-nav" id="wizardnav">
     <li class="layui-nav-item"><a href="${ctx}/cloud/console/home.ht">主页</a></li>
     <c:forEach items="${resourcesList}" var="resourcesItem">
         <c:if test="${resourcesItem.parentId==0}">
