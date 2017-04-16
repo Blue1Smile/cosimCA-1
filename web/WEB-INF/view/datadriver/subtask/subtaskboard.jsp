@@ -5,11 +5,13 @@
   Time: 下午3:35
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<html lang="zh-CN">
 <head>
     <title>任务看板</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css"/>
     <script type="text/javascript" src="${ctx}/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="${ctx}/jqwidgets/jqxdata.js"></script>
