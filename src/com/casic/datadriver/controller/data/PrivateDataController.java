@@ -358,6 +358,21 @@ public class PrivateDataController extends AbstractController {
             PrivateData privateData = privateDataService.getById(obj.getLong("ddDataId"));
             privateData.setDdDataLastestValue(obj.getString("ddDataLastestValue"));
             privateDataService.update(privateData);
+            //更新数据版本
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            DataVersion dataVersion = new DataVersion();
+            dataVersion.setDdDataVersionId(UniqueIdUtil.genId());
+            dataVersion.setDdDataId(privateData.getDdDataId());
+            dataVersion.setDdDataChangeReason("发布人变更");
+            dataVersion.setDdDataRecordPersonId(ContextUtil.getCurrentUserId());
+            dataVersion.setDdDataRecordTime(df.format(new Date()));
+            dataVersion.setDdDataValue(privateData.getDdDataLastestValue());
+
+            List<DataVersion> dataVersionList1 = dataVersionService.queryDataVersionListByddDataId(privateData.getDdDataId());
+            dataVersion.setDdDataVersion((long) (dataVersionList1.size()));
+
+            dataVersionService.addDDDataVersion(dataVersion);
+            privateData.setDdDataLastestValue(obj.getString("ddDataLastestValue"));
         } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
