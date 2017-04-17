@@ -129,6 +129,14 @@ public class TaskStartService  extends BaseService<TaskStart> {
     public List<TaskStart> getByProjectStartId(Long projectStartId) {
         return dao.getByMainId(projectStartId);
     }
+    /**
+     *  根据项目id获取任务启动列表
+     * @param projectId
+     * @return
+     */
+    public List<TaskStart> getByProjectId(Long projectId) {
+        return dao.getByProjectId(projectId);
+    }
 
     /**
      * 根据项目ID，删除所有启动任务
