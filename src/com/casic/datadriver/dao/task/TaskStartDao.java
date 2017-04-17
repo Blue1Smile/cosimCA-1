@@ -20,6 +20,9 @@ public class TaskStartDao extends BaseDao<TaskStart> {
     public List<TaskStart> getByMainId(Long projectStartId) {
         return this.getBySqlKey("getByMainId", projectStartId);
     }
+    public List<TaskStart> getByProjectId(Long projectId) {
+        return this.getBySqlKey("getByProjectId", projectId);
+    }
 
     public List<TaskStart> queryTaskStartByResponceId(long taskResponcePerson) {
         return this.getBySqlKey("queryTaskStartByResponceId", taskResponcePerson);
