@@ -23,7 +23,7 @@ import com.hotent.platform.service.system.SysRoleService;
 import com.hotent.platform.webservice.api.util.adapter.GrantedAuthorityAdapter;
 
 /**
- * 对象功能:用户表 Model对象 开发公司:广州宏天软件有限公司 开发人员:hotent 创建时间:2011-11-03 16:02:45
+ * 对象功能:用户表 Model对象 开发公司: 开发人员:hotent 创建时间:2011-11-03 16:02:45
  */
 public class SysUser extends BaseModel implements ISysUser{
 	public final static String SEARCH_BY_ROL = "1";// 从角色

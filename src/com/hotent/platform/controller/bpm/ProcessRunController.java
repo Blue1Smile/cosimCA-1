@@ -82,7 +82,7 @@ import com.hotent.platform.service.system.SysTemplateService;
 import com.hotent.platform.service.system.SysUserService;
 
 /**
- * 对象功能:流程实例扩展控制器类 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2011-12-03 09:33:06
+ * 对象功能:流程实例扩展控制器类 开发公司: 开发人员:csx 创建时间:2011-12-03 09:33:06
  */
 @Controller
 @RequestMapping("/platform/bpm/processRun/")

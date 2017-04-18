@@ -8,7 +8,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 /**
  * 对象功能:SYS_PAUR Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-12-24 14:41:59
  */

@@ -26,7 +26,7 @@ import com.hotent.core.web.util.RequestUtil;
 import com.hotent.platform.service.system.ShareService;
 /**
  * 对象功能:JDBC 数据 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:Raise
  * 创建时间:2013-01-26
  */

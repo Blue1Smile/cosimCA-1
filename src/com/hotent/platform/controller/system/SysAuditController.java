@@ -22,7 +22,7 @@ import com.hotent.platform.service.system.SysAuditService;
 
 /**
  * 对象功能:系统日志 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-11-26 11:35:04
  */

@@ -15,7 +15,7 @@ import com.hotent.platform.model.worktime.WorkTime;
 
 /**
  * 对象功能:班次时间 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:cjj
  * 创建时间:2012-02-22 16:58:15
  */

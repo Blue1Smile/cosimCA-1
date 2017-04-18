@@ -22,7 +22,7 @@ import com.hotent.platform.auth.ISysUser;
 import com.hotent.platform.service.system.SysOrgService;
 
 /**
- * 对象功能:组织架构 控制器类 开发公司:广州宏天软件有限公司 开发人员:pkq 创建时间:2011-12-02 10:41:53
+ * 对象功能:组织架构 控制器类 开发公司: 开发人员:pkq 创建时间:2011-12-02 10:41:53
  */
 @Controller
 @RequestMapping("/cloud/config/enterprise/org")

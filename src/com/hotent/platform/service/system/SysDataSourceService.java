@@ -20,7 +20,7 @@ import com.hotent.platform.model.system.SysDataSource;
 
 /**
  * 对象功能:系统数据源管理 Service类 
- * 开发公司:广州宏天软件有限公司 
+ * 开发公司:
  * 开发人员:xwy 
  * 创建时间:2011-11-16 16:34:16
  */

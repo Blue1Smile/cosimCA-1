@@ -7,7 +7,7 @@ import com.hotent.platform.model.biz.BizSegProcLink;
 /**
  *<pre>
  * 对象功能:BIZ_SEG_PROC_LINK Dao类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:Raise
  * 创建时间:2013-04-11 11:48:44
  *</pre>

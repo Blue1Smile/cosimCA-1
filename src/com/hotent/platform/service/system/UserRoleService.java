@@ -12,7 +12,7 @@ import com.hotent.platform.model.system.UserRole;
 import com.hotent.platform.dao.system.UserRoleDao;
 
 /**
- * 对象功能:用户角色映射表 Service类 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2011-12-16 15:47:55
+ * 对象功能:用户角色映射表 Service类 开发公司: 开发人员:csx 创建时间:2011-12-16 15:47:55
  */
 @Service
 public class UserRoleService extends BaseService<UserRole> {

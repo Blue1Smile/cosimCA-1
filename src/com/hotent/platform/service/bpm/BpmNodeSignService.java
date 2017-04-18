@@ -24,7 +24,7 @@ import com.hotent.platform.model.bpm.BpmNodeSign;
 import com.hotent.platform.model.system.SysUserOrg;
 
 /**
- * 对象功能:会签任务投票规则 Service类 开发公司:广州宏天软件有限公司 开发人员:ray 创建时间:2011-12-14 08:41:55
+ * 对象功能:会签任务投票规则 Service类 开发公司: 开发人员:ray 创建时间:2011-12-14 08:41:55
  */
 @Service
 public class BpmNodeSignService extends BaseService<BpmNodeSign> {

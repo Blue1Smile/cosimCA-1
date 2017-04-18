@@ -16,7 +16,7 @@ import com.hotent.platform.model.bpm.TaskOpinion;
 import com.hotent.platform.dao.bpm.BpmProStatusDao;
 
 /**
- * 对象功能:流程节点状态 Service类 开发公司:广州宏天软件有限公司 开发人员:ray 创建时间:2012-07-19 11:42:55
+ * 对象功能:流程节点状态 Service类 开发公司: 开发人员:ray 创建时间:2012-07-19 11:42:55
  */
 @Service
 public class BpmProStatusService extends BaseService<BpmProStatus> {

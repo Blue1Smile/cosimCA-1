@@ -29,7 +29,7 @@ import com.hotent.platform.service.system.SysParamService;
 import com.hotent.platform.service.system.SysUserService;
 
 /**
- * 对象功能:组织参数属性 控制器类 开发公司:广州宏天软件有限公司 开发组织:csx 创建时间:2012-02-24 10:04:50
+ * 对象功能:组织参数属性 控制器类 开发公司: 开发组织:csx 创建时间:2012-02-24 10:04:50
  */
 @Controller
 @RequestMapping("/platform/system/sysOrgParam/")

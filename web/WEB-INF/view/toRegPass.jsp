@@ -68,8 +68,8 @@
 		</div>
 		
 		<div class="userform_right">
-			<p><strong>还不是天智网用户?</strong></p>
-			<p>现在免费注册成为天智网用户，即刻共享云资源。</p>
+			<p><strong>还不是用户?</strong></p>
+			<p>现在免费注册成为用户，即刻共享云资源。</p>
 			<p><a href="${ctx}/reg.ht" target="_blank"><img src="skins/btn_reg.jpg" /></a> <a href="${ctx}/toRegPass.ht" target="_blank"><img src="skins/btn_reg2.jpg" /></a></p><br />
 			<p><img src="${ctx}/images/banner2.jpg" width="335" height="92" /></p>
 		</div>

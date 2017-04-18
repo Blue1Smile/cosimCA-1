@@ -137,7 +137,7 @@
 				<!-- flex附件上传的 -->
 				<value>/platform/bpm/bpmDefinition/getXmlImport.ht</value>
 				
-				<!-- 天智网过滤 -->
+				<!-- 过滤 -->
 				<value>/contactus.jsp</value>
 				<value>/law.jsp</value>
 				<value>/cloud/system/news/more.ht</value>

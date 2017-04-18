@@ -19,7 +19,7 @@ import com.hotent.core.util.FileUtil;
 
 /**
  * 对象功能:fineReport报表外部参数处理
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:cjj
  * 创建时间:2012-04-18 11:56
  */

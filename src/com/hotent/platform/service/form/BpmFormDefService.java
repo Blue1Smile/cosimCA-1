@@ -52,7 +52,7 @@ import com.hotent.platform.xml.table.BpmFormTableXml;
 import com.hotent.platform.xml.util.MsgUtil;
 
 /**
- * 对象功能:BPM_FORM_DEF Service类 开发公司:广州宏天软件有限公司 开发人员:xwy 创建时间:2011-12-22 11:07:56
+ * 对象功能:BPM_FORM_DEF Service类 开发公司: 开发人员:xwy 创建时间:2011-12-22 11:07:56
  */
 @Service
 public class BpmFormDefService extends BaseService<BpmFormDef> {

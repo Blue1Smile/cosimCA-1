@@ -22,7 +22,7 @@ import com.hotent.platform.model.bpm.BpmNodeSet;
 import com.hotent.platform.model.bpm.ProcessRun;
 
 /**
- * 对象功能:BpmNodeSetService类 开发公司:广州宏天软件有限公司 开发人员:cjj 创建时间:2011-12-06 13:41:44
+ * 对象功能:BpmNodeSetService类 开发公司: 开发人员:cjj 创建时间:2011-12-06 13:41:44
  */
 @Service
 public class BpmNodeSetService extends BaseService<BpmNodeSet> {

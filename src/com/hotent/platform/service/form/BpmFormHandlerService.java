@@ -49,7 +49,7 @@ import freemarker.template.TemplateException;
 
 /**
  * 对象功能:自定义表单数据处理Service类 
- * 开发公司:广州宏天软件有限公司 
+ * 开发公司:
  * 开发人员:xwy 
  * 创建时间:2011-12-22 11:07:56
  */

@@ -51,7 +51,7 @@ import com.hotent.platform.service.system.SysUserService;
 
 /**
  * 对象功能:组织架构SYS_ORG 控制器类 
- * 开发公司:广州宏天软件有限公司 
+ * 开发公司:
  * 开发人员:pkq 
  * 创建时间:2011-11-09 11:20:13
  */

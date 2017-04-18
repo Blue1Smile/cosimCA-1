@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.hotent.core.model.BaseModel;
 
 /**
- * 对象功能:节点运行脚本 Model对象 开发公司:广州宏天软件有限公司 开发人员:phl 创建时间:2011-12-30 14:31:19
+ * 对象功能:节点运行脚本 Model对象 开发公司: 开发人员:phl 创建时间:2011-12-30 14:31:19
  */
 @XmlRootElement(name = "bpmNodeScript")
 @XmlAccessorType(XmlAccessType.NONE)

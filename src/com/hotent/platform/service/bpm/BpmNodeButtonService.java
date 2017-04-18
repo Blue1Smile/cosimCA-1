@@ -19,7 +19,7 @@ import com.hotent.platform.dao.bpm.BpmDefinitionDao;
 import com.hotent.platform.dao.bpm.BpmNodeButtonDao;
 
 /**
- * 对象功能:自定义工具条 Service类 开发公司:广州宏天软件有限公司 开发人员:ray 创建时间:2012-07-25 18:26:12
+ * 对象功能:自定义工具条 Service类 开发公司: 开发人员:ray 创建时间:2012-07-25 18:26:12
  */
 @Service
 public class BpmNodeButtonService extends BaseService<BpmNodeButton> {

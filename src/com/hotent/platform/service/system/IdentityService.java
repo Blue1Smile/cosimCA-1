@@ -12,7 +12,7 @@ import com.hotent.platform.dao.system.IdentityDao;
 
 /**
  * 对象功能:流水号生成 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-02-03 14:40:59
  */

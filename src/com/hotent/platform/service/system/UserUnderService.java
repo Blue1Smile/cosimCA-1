@@ -16,7 +16,7 @@ import com.hotent.platform.dao.system.UserUnderDao;
 
 /**
  * 对象功能:下属管理 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-07-05 10:08:08
  */

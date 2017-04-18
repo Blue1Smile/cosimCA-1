@@ -9,7 +9,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import com.hotent.core.model.BaseModel;
 /**
  * 对象功能:维度信息 Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:pkq
  * 创建时间:2011-11-08 12:04:21
  */

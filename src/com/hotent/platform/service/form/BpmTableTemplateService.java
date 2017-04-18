@@ -14,7 +14,7 @@ import com.hotent.platform.dao.form.BpmTableTemprightsDao;
 
 /**
  * 对象功能:查看表格业务数据的模板 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:heyifan
  * 创建时间:2012-05-22 14:58:08
  */

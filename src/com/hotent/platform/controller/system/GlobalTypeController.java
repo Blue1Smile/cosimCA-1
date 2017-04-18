@@ -36,7 +36,7 @@ import com.hotent.platform.service.system.SysTypeKeyService;
 
 /**
  * 对象功能:系统分类表 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2011-11-23 11:07:27
  */

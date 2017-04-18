@@ -26,7 +26,7 @@ import com.hotent.platform.service.system.SysRoleService;
 
 /**
  * 对象功能:角色资源映射 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-12-08 11:23:15
  */

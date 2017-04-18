@@ -32,7 +32,7 @@ import com.hotent.platform.service.mail.model.MailSetting;
 import com.hotent.platform.service.system.SysUserService;
 /**
  * 对象功能:外部邮件 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:zyp
  * 创建时间:2012-04-09 14:16:18
  * 

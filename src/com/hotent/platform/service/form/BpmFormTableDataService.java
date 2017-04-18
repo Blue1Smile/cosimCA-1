@@ -13,7 +13,7 @@ import com.hotent.platform.model.form.BpmFormData;
 
 /**
  * 对象功能:表数据类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:xwy
  * 创建时间:2012-02-10 10:48:16
  */

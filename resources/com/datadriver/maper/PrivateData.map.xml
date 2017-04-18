@@ -18,12 +18,13 @@
         <result column="DD_DATA_PARENT_ID" jdbcType="NUMERIC" property="ddDataParentId"/>
         <result column="DD_DATA_UNIT" jdbcType="VARCHAR" property="ddDataUnit"/>
         <result column="DD_DATA_ENG_NAME" jdbcType="VARCHAR" property="ddDataEngName"/>
+        <result column="DD_DATA_PATH" jdbcType="VARCHAR" property="ddDataPath"/>
     </resultMap>
     <sql id="Base_Column_List">
     DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE, DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE, 
     DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
     DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME, DD_DATA_PARENT_ID, DD_DATA_UNIT,
-    DD_DATA_ENG_NAME
+    DD_DATA_ENG_NAME, DD_DATA_PATH
   </sql>
 
     <select id="getAll" resultMap="BaseResultMap">
@@ -139,7 +140,7 @@
     DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS,
     DD_DATA_TASK_NAME,
     DD_DATA_UNIT,DD_DATA_PARENT_ID,
-    DD_DATA_ENG_NAME)
+    DD_DATA_ENG_NAME, DD_DATA_PATH)
     values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=NUMERIC},
     #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
     #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
@@ -147,7 +148,7 @@
 
     #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=VARCHAR}, #{ddDataTaskName,jdbcType=VARCHAR},
      #{ddDataUnit,jdbcType=VARCHAR},#{ddDataParentId,jdbcType=NUMERIC},
-    #{ddDataEngName,jdbcType=VARCHAR})
+    #{ddDataEngName,jdbcType=VARCHAR}, #{ddDataPath,jdbcType=VARCHAR})
   </insert>
 
     <update id="update" parameterType="com.casic.datadriver.model.data.PrivateData">
@@ -166,7 +167,8 @@
     DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
     DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC},
     DD_DATA_UNIT = #{ddDataUnit,jdbcType=VARCHAR},
-    DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR}
+    DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR},
+    DD_DATA_PATH = #{ddDataPath,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId}
   </update>
 
@@ -186,7 +188,8 @@
     DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
     DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC},
     DD_DATA_UNIT = #{ddDataUnit,jdbcType=VARCHAR},
-    DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR}
+    DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR},
+    DD_DATA_PATH = #{ddDataPath,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId}
   </update>
 
@@ -212,12 +215,12 @@
       DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
       DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS,
       DD_DATA_PARENT_ID, DD_DATA_UNIT,
-      DD_DATA_ENG_NAME)
+      DD_DATA_ENG_NAME, DD_DATA_PATH)
     values (#{ddDataId,jdbcType=NUMERIC}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=NUMERIC},
       #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=NUMERIC}, #{ddDataPublishType,jdbcType=NUMERIC},
       #{ddDataLastestValue,jdbcType=VARCHAR}, #{ddDataSubmiteState,jdbcType=NUMERIC},
       #{ddDataCreatePerson,jdbcType=NUMERIC}, #{ddDataCreateTime,jdbcType=DATE},
-      #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=VARCHAR}, #{ddDataTaskName,jdbcType=VARCHAR}, #{ddDataParentId,jdbcType=NUMERIC}, #{ddDataUnit,jdbcType=VARCHAR}, #{ddDataEngName,jdbcType=VARCHAR}
+      #{ddDataIsDelivery,jdbcType=NUMERIC}, #{ddDataSensitiveness,jdbcType=VARCHAR}, #{ddDataTaskName,jdbcType=VARCHAR}, #{ddDataParentId,jdbcType=NUMERIC}, #{ddDataUnit,jdbcType=VARCHAR}, #{ddDataEngName,jdbcType=VARCHAR}, #{ddDataPath,jdbcType=VARCHAR}
       )
   </insert>
 
@@ -273,6 +276,9 @@
             <if test="ddDataEngName != null">
                 DD_DATA_ENG_NAME,
             </if>
+            <if test="ddDataEngName != null">
+                DD_DATA_PATH,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="ddDataId != null">
@@ -322,6 +328,9 @@
             </if>
             <if test="ddDataEngName != null">
                 #{ddDataEngName,jdbcType=VARCHAR},
+            </if>
+            <if test="ddDataEngName != null">
+                #{ddDataPath,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -375,6 +384,9 @@
             <if test="ddDataEngName != null">
                 DD_DATA_ENG_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
             </if>
+            <if test="ddDataEngName != null">
+                DD_DATA_PATH = #{ddDataPath,jdbcType=VARCHAR},
+            </if>
         </set>
         where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
     </update>
@@ -396,7 +408,8 @@
       DD_DATA_TASK_NAME = #{ddDataTaskName,jdbcType=VARCHAR},
       DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC},
       DD_DATA_UNIT = #{ddDataUnit,jdbcType=VARCHAR},
-      DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR}
+      DD_DATA_ENG_NAME = #{ddDataEngName,jdbcType=VARCHAR},
+      DD_DATA_PATH = #{ddDataPath,jdbcType=VARCHAR}
     where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
   </update>
 
