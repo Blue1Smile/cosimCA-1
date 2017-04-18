@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -259,6 +260,7 @@ public class ModelCenterController {
             File file = new File(path+major);
             // 取得文件名。
             String filename = file.getName();
+            filename = URLEncoder.encode(filename,"UTF-8");
             // 取得文件的后缀名。
             String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
 
