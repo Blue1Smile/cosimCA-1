@@ -115,7 +115,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return value;
     }
 
-    private List<PrivateData> readBrandPeriodSorXls(InputStream is, Long taskId, Long projectId)
+    private List<PrivateData> readBrandPeriodSorXls(InputStream is, Long taskId, Long projectId,String taskname)
             throws IOException, ParseException {
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
         List<PrivateData> brandMobileInfos = new ArrayList<PrivateData>();
@@ -143,6 +143,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
                 if (!String.valueOf(hssfRow.getCell(0)).equals(str)) {
                     str = String.valueOf(hssfRow.getCell(0));
                     StructId = UniqueIdUtil.genId();
+                    datastruct.setDdTaskName(taskname);
                     datastruct.setDdStructId(StructId);
                     datastruct.setDdTaskId(taskId);
                     datastruct.setDdProjectId(projectId);
@@ -163,6 +164,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
                 brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
                 brandMobileInfo.setDdDataType(hssfRow.getCell(4).CELL_TYPE_STRING);
                 brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
+                brandMobileInfo.setDdDataTaskName(taskname);
 //                   阈值定义问题
 //                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));
                 brandMobileInfo.setDdDataUnit(String.valueOf(hssfRow.getCell(7)));
@@ -193,8 +195,8 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return brandMobileInfos;
     }
 
-    public int importBrandPeriodSort(InputStream in, Long taskId, Long projectId) throws Exception {
-        List<PrivateData> brandMobileInfos = readBrandPeriodSorXls(in, taskId, projectId);
+    public int importBrandPeriodSort(InputStream in, Long taskId, Long projectId,String taskname) throws Exception {
+        List<PrivateData> brandMobileInfos = readBrandPeriodSorXls(in, taskId, projectId,taskname);
 
         return brandMobileInfos.size();
     }

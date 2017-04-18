@@ -2,9 +2,7 @@ package com.casic.datadriver.model.data;
 
 import com.hotent.core.model.BaseModel;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class PrivateData extends BaseModel {
     private Long ddDataId;

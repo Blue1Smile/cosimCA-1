@@ -21,6 +21,7 @@
         <result column="DD_DATA_PATH" jdbcType="VARCHAR" property="ddDataPath"/>
     </resultMap>
     <sql id="Base_Column_List">
+
     DD_DATA_ID, DD_DATA_NAME, DD_DATA_TYPE, DD_DATA_DESCRIPTION, DD_DATA_TASK_ID, DD_DATA_PUBLISH_TYPE, 
     DD_DATA_LASTEST_VALUE, DD_DATA_SUBMITE_STATE, DD_DATA_CREATE_PERSON, DD_DATA_CREATE_TIME, 
     DD_DATA_IS_DELIVERY, DD_DATA_SENSITIVENESS, DD_DATA_TASK_NAME, DD_DATA_PARENT_ID, DD_DATA_UNIT,
@@ -60,7 +61,7 @@
         from dd_private_data
         where DD_DATA_ID = #{ddDataId}
     </select>
-    <!--备份2代表数据类型-->
+    <!--澶囦唤2浠ｈ〃鏁版嵁绫诲瀷-->
     <select id="getBymodel" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -91,20 +92,20 @@
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from dd_private_data
-    where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
-  </delete>
+        delete from dd_private_data
+        where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
+    </delete>
 
     <delete id="delByMainId">
-    DELETE FROM dd_private_data
-    WHERE
-    DD_DATA_TASK_ID=#{ddDataTaskId}
-  </delete>
+        DELETE FROM dd_private_data
+        WHERE
+        DD_DATA_TASK_ID=#{ddDataTaskId}
+    </delete>
 
     <delete id="delById" parameterType="java.lang.Long">
-    delete from dd_private_data
-    where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
-  </delete>
+        delete from dd_private_data
+        where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC}
+    </delete>
 
     <delete id="delBySructId" parameterType="java.lang.Long">
         delete from dd_private_data
