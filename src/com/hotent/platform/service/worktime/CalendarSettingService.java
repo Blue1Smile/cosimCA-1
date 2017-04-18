@@ -16,7 +16,7 @@ import com.hotent.platform.dao.worktime.CalendarSettingDao;;
 
 /**
  * 对象功能:日历设置 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-02-20 14:57:32
  */

@@ -20,7 +20,7 @@ import com.hotent.platform.service.system.SysTemplateService;
 
 /**
  * 对象功能:模版管理 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:pkq
  * 创建时间:2011-12-28 14:04:30
  */

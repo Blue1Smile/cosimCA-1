@@ -11,7 +11,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 /**
  * 对象功能:bpm_form_def Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:xwy
  * 创建时间:2012-02-13 14:02:45
  */

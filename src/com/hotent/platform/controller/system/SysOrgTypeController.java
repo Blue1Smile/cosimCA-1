@@ -27,7 +27,7 @@ import com.hotent.platform.service.bpm.thread.MessageUtil;
 import com.hotent.platform.service.system.SysOrgTypeService;
 /**
  * 对象功能:组织结构类型 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-11-27 09:55:21
  */

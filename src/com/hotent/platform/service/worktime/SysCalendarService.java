@@ -23,7 +23,7 @@ import com.hotent.platform.model.worktime.SysCalendar;
 
 /**
  * 对象功能:系统日历 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-02-20 14:57:32
  */

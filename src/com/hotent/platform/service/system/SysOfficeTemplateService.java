@@ -9,7 +9,7 @@ import com.hotent.platform.dao.system.SysOfficeTemplateDao;
 
 /**
  * 对象功能:office模版 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2012-05-25 10:16:16
  */

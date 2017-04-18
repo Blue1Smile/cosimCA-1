@@ -11,7 +11,7 @@ import com.hotent.platform.model.bpm.BpmDefVar;
 
 /**
  * 对象功能:流程变量定义 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:phl
  * 创建时间:2011-12-01 16:50:07
  */

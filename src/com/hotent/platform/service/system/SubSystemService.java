@@ -27,7 +27,7 @@ import com.hotent.platform.dao.system.SubSystemDao;
 
 /**
  * 对象功能:子系统管理 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-11-21 12:22:06
  */

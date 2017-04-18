@@ -25,7 +25,7 @@ import com.hotent.platform.model.form.BpmFormTemplate;
 
 /**
  * 对象功能:表单模板 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:zyp
  * 创建时间:2012-01-09 16:35:25
  */

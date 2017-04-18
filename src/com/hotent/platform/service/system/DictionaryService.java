@@ -15,7 +15,7 @@ import com.hotent.platform.dao.system.GlobalTypeDao;
 
 /**
  * 对象功能:数据字典 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ljf
  * 创建时间:2011-11-23 11:07:27
  */

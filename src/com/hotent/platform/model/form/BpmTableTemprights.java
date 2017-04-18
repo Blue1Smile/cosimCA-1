@@ -6,7 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
 /**
- * 对象功能:查看业务数据模板的权限信息 Model对象 开发公司:广州宏天软件有限公司 开发人员:heyifan 创建时间:2012-05-28
+ * 对象功能:查看业务数据模板的权限信息 Model对象 开发公司: 开发人员:heyifan 创建时间:2012-05-28
  * 09:04:05
  */
 public class BpmTableTemprights extends BaseModel {

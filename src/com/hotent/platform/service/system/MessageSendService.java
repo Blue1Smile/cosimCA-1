@@ -16,7 +16,7 @@ import com.hotent.platform.model.system.MessageReceiver;
 import com.hotent.platform.model.system.MessageSend;
 
 /**
- * 对象功能:发送消息 Service类 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2012-01-14 15:10:58
+ * 对象功能:发送消息 Service类 开发公司: 开发人员:csx 创建时间:2012-01-14 15:10:58
  */
 @Service
 public class MessageSendService extends BaseService<MessageSend>

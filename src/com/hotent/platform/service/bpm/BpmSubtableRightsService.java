@@ -14,7 +14,7 @@ import com.hotent.platform.dao.bpm.BpmSubtableRightsDao;
 /**
  *<pre>
  * 对象功能:子表权限 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:wwz
  * 创建时间:2013-01-16 10:04:39
  *</pre>

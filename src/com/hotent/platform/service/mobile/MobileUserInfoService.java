@@ -14,7 +14,7 @@ import com.hotent.platform.dao.mobile.MobileUserInfoDao;
 /**
  *<pre>
  * 对象功能:MOBILE_USER_INFO Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2013-01-06 11:55:09
  *</pre>

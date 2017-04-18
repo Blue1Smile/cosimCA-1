@@ -15,7 +15,7 @@ import com.hotent.platform.model.system.SysUserAgent;
 
 /**
  * 对象功能:SYS_USER_AGENT Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-12-27 11:54:23
  */

@@ -6,7 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 /**
  * 对象功能:流程任务评论Code: TASK_CMT Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:cjj
  * 创建时间:2012-04-06 17:10:11
  */

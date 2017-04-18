@@ -16,7 +16,7 @@ import com.hotent.platform.model.bpm.BpmNodeWsParams;
 /**
  * <pre>
  * 对象功能:流程webservice节点参数 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:zxh
  * 创建时间:2012-12-21 16:51:20
  * </pre>

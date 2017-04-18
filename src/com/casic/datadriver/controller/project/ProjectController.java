@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
+import com.casic.datadriver.model.data.DataStruct;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.flow.ProcessFlow;
 import com.casic.datadriver.model.flow.ProjectProcessAssocia;
 import com.casic.datadriver.model.project.ProjectStart;
 import com.casic.datadriver.model.task.TaskStart;
+import com.casic.datadriver.service.data.DataStructService;
 import com.casic.datadriver.service.data.OrderDataRelationService;
 import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.flow.ProcessFlowService;
@@ -103,7 +105,8 @@ public class ProjectController extends BaseController {
     private OrderDataRelationService orderDataRelationService;
     @Resource
     private PrivateDataService privateDataService;
-
+    @Resource
+    private DataStructService dataStructService;
     /**
      * 保存项目
      *
@@ -219,10 +222,50 @@ public class ProjectController extends BaseController {
     @RequestMapping("del")
     public void del(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String preUrl = RequestUtil.getPrePage(request);
+        Long projectId = RequestUtil.getLong(request, "id");
+        String resultMsg = null;
+
         try {
-            Long project = RequestUtil.getLong(request, "id");
-            projectService.delById(project);
-        } catch (Exception ex) {
+//            获取项目的所有任务列表
+//            List<TaskInfo>  taskInfoList = taskInfoService.queryTaskInfoByProjectId(projectId);
+//            List<TaskInfo>  publishTaskList = new ArrayList<TaskInfo>();
+//            for(int i=0;i<taskInfoList.size();i++){
+//                TaskInfo taskInfo = taskInfoList.get(i);
+//                if(taskInfo.getDdTaskChildType().equals("publishpanel")){
+//                    publishTaskList.add(taskInfoList.get(i));
+//                }
+//            }
+            projectService.delById(projectId);
+
+            //删除所有任务
+            List<TaskInfo>  taskInfoList = taskInfoService.queryTaskInfoByProjectId(projectId);
+                for(int i =0;i<taskInfoList.size();i++){
+                    Long taskId = taskInfoList.get(i).getDdTaskId();
+//                    taskStartService.delByTaskId(taskId);
+                    List<DataStruct> dataStructList = dataStructService.getStructByTaskId(taskInfoList.get(i).getDdTaskId());
+                    //删除所有数据结构
+                    for(int j=0;j<dataStructList.size();j++){
+                        Long structId = dataStructList.get(j).getDdStructId();
+                        dataStructService.delById(structId);
+                        List<PrivateData> childDataList = privateDataService.selectByStructid(structId);
+                        //删除所有私有数据
+                        for(int k=0;k<childDataList.size();k++){
+                            privateDataService.delById(childDataList.get(k).getDdDataId());
+                        }
+
+                    }
+                    //删除所有模型，文件
+
+
+
+
+                    taskInfoService.delById(taskId);
+                }
+
+            resultMsg = getText("added", "项目信息");
+                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+        } catch (Exception e) {
+            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
         response.sendRedirect(preUrl);
     }

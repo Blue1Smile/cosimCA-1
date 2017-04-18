@@ -20,7 +20,7 @@ import com.hotent.core.web.ResultMessage;
 
 /**
  * 对象功能:电子印章 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:raise
  * 创建时间:2012-08-29 11:26:00
  */

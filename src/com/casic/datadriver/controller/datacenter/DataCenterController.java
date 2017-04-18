@@ -26,9 +26,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * @author ???? ???2016/11/14 0014.
+ * @author 2016/11/14 0014.
  */
 @Controller
 @RequestMapping("/datadriver/datacenter/")
@@ -108,7 +110,7 @@ public class DataCenterController extends AbstractController {
         for (int i = 0; i < allLength; i++) {
             TaskInfo TaskInfo = allTaskInfo.get(i);
             allTaskId[i] = TaskInfo.getDdTaskId();
-            allTaskName[i] = TaskInfo.getDdTaskName();
+            allTaskName[i] = replaceBlank(TaskInfo.getDdTaskName());
         }
         ModelAndView mv = this.getAutoView().addObject("ProjectId", ProjectId)
                 .addObject("ProjectName", ProjectName).addObject("ProjectLength", ProjectLength)
@@ -129,7 +131,15 @@ public class DataCenterController extends AbstractController {
         }
         return mList;
     }
-
+    public static String replaceBlank(String str) {
+        String dest = "";
+        if (str!=null) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(str);
+            dest = m.replaceAll("");
+        }
+        return dest;
+    }
     /**
      * 2017/02/18/修改
      * 返回任务发布订购数据列表

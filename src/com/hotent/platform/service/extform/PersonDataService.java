@@ -14,7 +14,7 @@ import com.hotent.platform.dao.extform.PersonDataDao;
 /**
  *<pre>
  * 对象功能:PERSON_DATA Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2013-01-10 09:44:06
  *</pre>

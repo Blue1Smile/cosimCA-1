@@ -25,7 +25,7 @@ import com.hotent.platform.service.system.SubSystemService;
 import com.hotent.platform.service.system.SubSystemUtil;
 
 /**
- * 对象功能:子系统管理 控制器类 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2011-11-21 12:22:06
+ * 对象功能:子系统管理 控制器类 开发公司: 开发人员:csx 创建时间:2011-11-21 12:22:06
  */
 @Controller
 @RequestMapping("/platform/system/subSystem/")

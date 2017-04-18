@@ -15,8 +15,9 @@ import com.hotent.platform.dao.bpm.TaskCommentDao;
 import com.hotent.platform.model.bpm.TaskComment;
 
 /**
- * 对象功能:流程任务评论 Service类
- * 开发公司:广州宏天软件有限公司
+ * 对象功能:流程任务评论
+ Service类
+ * 开发公司:
  * 开发人员:cjj
  * 创建时间:2012-04-05 17:02:32
  */

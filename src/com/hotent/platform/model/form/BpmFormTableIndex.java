@@ -6,7 +6,7 @@ import com.hotent.core.model.BaseModel;
 
 /**
  * 对象功能:bpm_form_field Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:raise
  * 创建时间:2012-02-06 15:49:21
  */

@@ -18,7 +18,7 @@ import com.hotent.platform.dao.bpm.TaskForkDao;
 
 /**
  * 对象功能:任务分发 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2012-02-27 09:11:41
  */

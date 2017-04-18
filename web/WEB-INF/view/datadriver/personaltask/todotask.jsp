@@ -39,10 +39,11 @@
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-    <script type="text/javascript" src="${ctx}/styles/wizard/bootwizard.js"></script>
 
     <script type="text/javascript" src="${ctx}/styles/wizard/bootstro.min.js"></script>
     <script type="text/javascript" src="${ctx}/cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="${ctx}/styles/wizard/bootwizard.js"></script>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -170,8 +171,8 @@
                     place: 'right'
                 }],
             ], {
-                obtn: '我已了解，下次不再提示',
-                exit: function () {
+                obtn: '下次不再提示',
+                exit:function () {
                     $.cookie('bootstro', 'ok', {expires: 30, path: '/'});
                 }
             });
@@ -221,6 +222,10 @@
     $("#adddata").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
+    $("#submittask").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
+
     //tab切换操作
     switch_attr_publish.onclick = function () {
         $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {

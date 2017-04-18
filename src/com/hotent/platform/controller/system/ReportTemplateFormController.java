@@ -24,7 +24,7 @@ package com.hotent.platform.controller.system;//package com.hotent.platform.cont
 ///**
 // * 对象功能:报表模板
 // 控制器类
-// * 开发公司:广州宏天软件有限公司
+// * 开发公司:
 // * 开发人员:cjj
 // * 创建时间:2012-04-12 09:59:47
 // */

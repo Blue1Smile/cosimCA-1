@@ -25,7 +25,7 @@ import com.hotent.core.util.Dom4jUtil;
 import com.hotent.core.util.StringUtil;
 /**
  * 对象功能:自定义表 Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:xwy
  * 创建时间:2011-12-05 11:42:29
  */

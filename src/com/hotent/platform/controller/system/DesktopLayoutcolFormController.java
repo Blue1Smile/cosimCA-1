@@ -19,7 +19,7 @@ import com.hotent.platform.service.system.DesktopLayoutcolService;
 
 /**
  * 对象功能:桌面栏目管理表 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-03-20 16:39:01
  */
