@@ -32,7 +32,7 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="info">
                     <div class="well">
-                        <form class="form-horizontal" role="form" action="save.ht" id="setupform">
+                        <form class="form-horizontal" role="form" action="save.ht" id="setupform" method="post">
                             <table id="AddHandlingFee" cellpadding="0" cellspacing="0"
                                    border="0"
                                    type="main" class="table table-striped">
