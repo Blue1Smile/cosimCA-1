@@ -18,7 +18,7 @@ import com.hotent.platform.dao.bpm.ProcessRunDao;
 
 /**
  * 对象功能:流程运行日志 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:heyifan
  * 创建时间:2012-08-06 13:56:42
  */

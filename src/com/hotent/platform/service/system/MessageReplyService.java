@@ -13,7 +13,7 @@ import com.hotent.platform.model.system.MessageReply;
 
 /**
  * 对象功能:消息回复 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:pkq
  * 创建时间:2012-01-14 15:15:43
  */

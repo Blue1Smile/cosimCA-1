@@ -11,7 +11,7 @@ import com.hotent.core.util.StringUtil;
 /**
  * 对象功能:控件Service类。
  * 用于在freemaker模版中使用。
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:xwy
  * 创建时间:2012-02-10 10:48:16
  */

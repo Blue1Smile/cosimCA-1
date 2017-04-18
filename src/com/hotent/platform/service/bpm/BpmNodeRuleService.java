@@ -11,7 +11,7 @@ import com.hotent.platform.model.bpm.BpmNodeRule;
 import com.hotent.platform.dao.bpm.BpmNodeRuleDao;
 
 /**
- * 对象功能:流程节点规则 Service类 开发公司:广州宏天软件有限公司 开发人员:ray 创建时间:2011-12-14 15:41:53
+ * 对象功能:流程节点规则 Service类 开发公司: 开发人员:ray 创建时间:2011-12-14 15:41:53
  */
 @Service
 public class BpmNodeRuleService extends BaseService<BpmNodeRule> {

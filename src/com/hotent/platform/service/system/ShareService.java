@@ -10,7 +10,7 @@ import com.hotent.platform.model.system.Demension;
 
 /**
  * 对象功能:通用service
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:pkq
  * 创建时间:2012-09-20 13:57
  */

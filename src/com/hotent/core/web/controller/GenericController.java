@@ -92,7 +92,7 @@ public class GenericController
 				logger.error("your request url is not the right pattern, it is not allowed use this getAutoView method");
 				throw new Exception("url:[" + requestURI + "] is not in this pattern:[/子系统/包名/表对应实体名/实体操作方法名.ht]" );
 			}			
-		}else{//天智网的解析规则
+		}else{//的解析规则
 			String jspPath = "";
 			if(RequestUtil.getString(request, "saas")!=null && !RequestUtil.getString(request, "saas").equals("")){
 				jspPath = "/pages/" + RequestUtil.getString(request, "saas");

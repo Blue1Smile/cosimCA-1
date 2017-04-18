@@ -47,7 +47,7 @@ import com.hotent.platform.service.system.SubSystemUtil;
 
 /**
  * 对象功能:子系统资源 控制器类 
- * 开发公司:广州宏天软件有限公司 
+ * 开发公司:
  * 开发人员:csx 
  * 创建时间:2011-12-05 17:00:54
  */

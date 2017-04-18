@@ -18,7 +18,7 @@ import com.hotent.platform.dao.biz.BizRuVariableDao;
 /**
  *<pre>
  * 对象功能:BIZ_RU_VARIABLE Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:Raise
  * 创建时间:2013-04-20 14:29:43
  *</pre>

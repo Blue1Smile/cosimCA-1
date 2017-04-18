@@ -34,7 +34,7 @@ import com.hotent.platform.dao.system.SysUserOrgDao;
 
 /**
  * 对象功能:用户所属组织或部门 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:pkq
  * 创建时间:2011-12-07 18:23:24
  */

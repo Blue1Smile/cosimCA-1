@@ -12,7 +12,6 @@
 <head>
     <title>项目设置</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="modal-header">
@@ -96,7 +95,8 @@
                                     <td colspan="3">
                                         <div class="input-group">
                                             <input type="text" class="form-control" value="${creatorName}" readonly>
-                                            <span class="input-group-btn"><button class="btn btn-info" type="button">变更</button></span>
+                                            <span class="input-group-btn"><button class="btn btn-info"
+                                                                                  type="button">变更</button></span>
                                         </div><!-- /input-group -->
                                         <input type="hidden" id="ddProjectCreatorId"
                                                name="ddProjectCreatorId"
@@ -153,11 +153,9 @@
     </div>
 </div>
 </body>
-<%@include file="/commons/include/form.jsp" %>
-<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+
 <script type="text/javascript">
+    //@ sourceURL=setup.ht
     $(function () {
         var options = {};
         if (showResponse) {

@@ -7,7 +7,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.hotent.core.model.BaseModel;
 
 /**
- * 对象功能:节点特权 privilegemodel对象 开发公司:广州宏天软件有限公司 开发人员:wwz 创建时间:2012-12-25 12:00:41
+ * 对象功能:节点特权 privilegemodel对象 开发公司: 开发人员:wwz 创建时间:2012-12-25 12:00:41
  */
 public class BpmNodePrivilege extends BaseModel {
 	// PRIVILEGEID

@@ -4,7 +4,7 @@ import com.hotent.core.encrypt.EncryptUtil;
 import com.hotent.core.model.BaseModel;
 /**
  * 对象功能:系统数据源管理 Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2011-11-16 16:34:15
  */

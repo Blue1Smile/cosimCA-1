@@ -9,7 +9,7 @@ import com.hotent.platform.dao.bpm.BpmTaskCommentDao;
 
 /**
  * 对象功能:流程任务评论Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:phl
  * 创建时间:2012-02-14 10:31:55
  */

@@ -27,7 +27,7 @@ import com.hotent.platform.service.system.SysDataSourceService;
 
 /**
  * 对象功能:系统数据源管理 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2011-11-16 16:34:16
  */

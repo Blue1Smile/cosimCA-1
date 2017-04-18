@@ -11,7 +11,7 @@ import com.hotent.platform.dao.system.ResourcesUrlDao;
 
 /**
  * 对象功能:资源URL Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-12-05 17:00:58
  */

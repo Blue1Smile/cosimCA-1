@@ -14,7 +14,7 @@ import com.hotent.platform.dao.system.SysOrgTypeDao;
 
 /**
  * 对象功能:组织结构类型 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-11-27 09:55:21
  */

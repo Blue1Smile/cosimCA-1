@@ -32,7 +32,7 @@ import com.hotent.platform.model.form.BpmFormTableIndex;
 
 /**
  * 对象功能:索引重建计划控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:Raise
  * 创建时间:2011-12-01 14:23:26
  */

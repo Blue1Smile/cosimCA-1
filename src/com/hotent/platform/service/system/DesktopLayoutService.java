@@ -11,7 +11,7 @@ import com.hotent.platform.model.system.DesktopLayout;
 
 /**
  * 对象功能:桌面布局 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-03-20 16:39:01
  */

@@ -95,7 +95,7 @@ import com.hotent.platform.xml.util.MsgUtil;
 
 /**
  * 对象功能:流程定义扩展 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-11-21 22:50:46
  */

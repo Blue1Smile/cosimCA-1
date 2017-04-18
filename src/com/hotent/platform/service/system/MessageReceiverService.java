@@ -21,7 +21,7 @@ import com.hotent.platform.model.system.MessageReceiver;
 
 /**
  * 对象功能:消息接收者 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:pkq
  * 创建时间:2012-01-14 15:13:00
  */

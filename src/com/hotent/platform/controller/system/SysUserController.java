@@ -52,7 +52,7 @@ import com.hotent.platform.service.system.SysUserService;
 import com.hotent.platform.service.system.UserRoleService;
 
 /**
- * 对象功能:用户表 控制器类 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2011-11-28 10:17:09
+ * 对象功能:用户表 控制器类 开发公司: 开发人员:csx 创建时间:2011-11-28 10:17:09
  */
 @Controller
 @RequestMapping("/platform/system/sysUser/")

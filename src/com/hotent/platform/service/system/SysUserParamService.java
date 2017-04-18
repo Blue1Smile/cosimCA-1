@@ -15,7 +15,7 @@ import com.hotent.platform.model.system.SysUserParam;
 
 /**
  * 对象功能:人员参数属性 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2012-02-24 10:04:50
  */

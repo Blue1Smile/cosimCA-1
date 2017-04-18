@@ -13,7 +13,7 @@ import com.hotent.platform.model.bpm.TaskReminder;
 
 /**
  * 对象功能:任务节点催办时间设置 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-02-17 13:56:53
  */

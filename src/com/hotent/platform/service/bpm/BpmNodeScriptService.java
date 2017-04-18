@@ -14,7 +14,7 @@ import com.hotent.platform.dao.bpm.BpmNodeScriptDao;
 
 /**
  * 对象功能:节点运行脚本 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:phl
  * 创建时间:2011-12-30 14:31:20
  */

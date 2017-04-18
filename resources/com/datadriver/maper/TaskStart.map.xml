@@ -39,6 +39,13 @@ DD_TASK_START_ID,DD_PROJECT_START_ID,DD_TASK_ID,ACT_INST_ID,DD_TASK_STATUS,SORT_
     DD_TASK_ID=#{ddTaskID}
   </select>
 
+  <select id="getByProjectId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM dd_task_start
+    WHERE
+    DD_PROJECT_ID=#{ddProjectID}
+  </select>
+
   <update id="update" parameterType="com.casic.datadriver.model.task.TaskStart">
     update dd_task_start
     set DD_TASK_START_ID = #{ddTaskStartId,jdbcType=NUMERIC},
