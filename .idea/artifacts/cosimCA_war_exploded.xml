@@ -7,9 +7,9 @@
           <element id="module-output" name="cosimCA" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="commons-fileupload-1.2.2" />
           <element id="library" level="project" name="refLib1" />
-          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="commons-fileupload-1.2.2" />
+          <element id="library" level="project" name="lib1" />
           <element id="library" level="project" name="refLib" />
         </element>
       </element>
