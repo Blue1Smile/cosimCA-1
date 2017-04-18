@@ -34,7 +34,7 @@ import com.hotent.platform.service.bpm.IBpmNodeUserCalculation.CalcVars;
 import com.hotent.platform.service.form.BpmFormDefService;
 
 /**
- * 对象功能:BpmNOdeUser Service类 开发公司:广州宏天软件有限公司 开发人员:cjj 创建时间:2011-12-05 17:20:40
+ * 对象功能:BpmNOdeUser Service类 开发公司: 开发人员:cjj 创建时间:2011-12-05 17:20:40
  */
 @Service
 public class BpmNodeUserService extends BaseService<BpmNodeUser> {

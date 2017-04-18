@@ -13,10 +13,16 @@
     <title>项目基础信息列表</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <script src="${ctx}/newtable/jquery.js"></script>
-
+    <%--<script src="${ctx}/newtable/jquery.js"></script>--%>
+    <%@include file="/commons/datadriver/formbase.jsp" %>
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+    <script src="${ctx}/newtable/bootstrap.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
+    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+
     <style>
         .fl {
             float: left;
@@ -130,8 +136,17 @@
     </div>
 </div>
 </body>
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-<script src="${ctx}/newtable/bootstrap.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#myCreate").on("hidden.bs.modal", function () {
+            $(this).removeData("bs.modal");
+        });
+        $("#myModal").on("hidden.bs.modal", function () {
+            $(this).removeData("bs.modal");
+        });
+    })
+</script>
 </html>
 
 

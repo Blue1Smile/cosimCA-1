@@ -11,7 +11,7 @@ import com.hotent.core.model.BaseModel;
 import com.hotent.platform.controller.mail.MailAttachment;
 /**
  * 对象功能:OUT_MAIL Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:james
  * 创建时间:2012-04-09 14:16:17
  */

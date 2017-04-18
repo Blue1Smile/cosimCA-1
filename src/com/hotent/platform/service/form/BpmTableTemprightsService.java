@@ -17,7 +17,7 @@ import com.hotent.platform.model.form.BpmTableTemprights;
 import com.hotent.platform.dao.form.BpmTableTemprightsDao;
 
 /**
- * 对象功能:查看业务数据模板的权限信息 Service类 开发公司:广州宏天软件有限公司 开发人员:heyifan 创建时间:2012-05-28
+ * 对象功能:查看业务数据模板的权限信息 Service类 开发公司: 开发人员:heyifan 创建时间:2012-05-28
  * 09:04:06
  */
 @Service

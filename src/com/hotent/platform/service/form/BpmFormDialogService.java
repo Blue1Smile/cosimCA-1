@@ -38,7 +38,7 @@ import com.hotent.platform.dao.system.SysDataSourceDao;
 
 /**
  * 对象功能:通用表单对话框 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-06-25 11:05:09
  */

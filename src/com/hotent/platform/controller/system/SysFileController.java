@@ -37,7 +37,7 @@ import com.hotent.platform.service.system.SysTypeKeyService;
 import com.hotent.platform.service.system.SysUserService;
 /**
  * 对象功能:附件 控制器类 
- * 开发公司:广州宏天软件有限公司 
+ * 开发公司:
  * 开发人员:csx 
  * 创建时间:2011-11-26 18:19:16
  */

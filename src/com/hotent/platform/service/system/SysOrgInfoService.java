@@ -15,7 +15,7 @@ import com.hotent.platform.model.system.SysOrgInfo;
 /**
  *<pre>
  * 对象功能:SYS_ORG_INFO Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2013-04-11 13:34:44
  *</pre>

@@ -47,7 +47,7 @@ import com.hotent.platform.dao.system.SysDataSourceDao;
 import com.hotent.platform.dao.system.SysTableManageDao;
 
 /**
- * 对象功能:自定义表管理 Service类 开发公司:广州宏天软件有限公司 开发人员:Raise 创建时间:2012-06-25 11:05:09
+ * 对象功能:自定义表管理 Service类 开发公司: 开发人员:Raise 创建时间:2012-06-25 11:05:09
  */
 @Service
 public class SysTableManageService extends BaseService<SysTableManage> {

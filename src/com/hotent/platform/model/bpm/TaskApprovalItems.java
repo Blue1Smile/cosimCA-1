@@ -11,7 +11,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 /**
  * 对象功能:常用语管理 Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:cjj
  * 创建时间:2012-03-16 10:53:20
  */

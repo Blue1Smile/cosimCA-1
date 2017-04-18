@@ -9,7 +9,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 /**
 /**
  * 对象功能:组织架构SYS_ORG Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:pkq
  * 创建时间:2011-11-09 11:20:13
  */

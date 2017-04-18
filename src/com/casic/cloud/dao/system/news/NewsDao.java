@@ -9,7 +9,7 @@ import com.hotent.core.db.BaseDao;
 /**
  *<pre>
  * 对象功能:NEWS Dao类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2013-04-12 21:43:57
  *</pre>

@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.hotent.core.model.BaseModel;
 /**
  * 对象功能: 用户节点的上下级 Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2012-03-02 10:07:45
  */

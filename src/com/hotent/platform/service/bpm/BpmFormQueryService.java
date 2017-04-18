@@ -27,7 +27,7 @@ import com.hotent.platform.service.util.ServiceUtil;
 
 /**
  * 对象功能:通用表单查询 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-11-27 10:37:12
  */

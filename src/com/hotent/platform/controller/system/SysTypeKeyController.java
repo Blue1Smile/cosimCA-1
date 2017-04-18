@@ -20,7 +20,7 @@ import com.hotent.platform.service.system.SysTypeKeyService;
 
 /**
  * 对象功能:系统分类键定义 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2012-03-10 10:18:36
  */

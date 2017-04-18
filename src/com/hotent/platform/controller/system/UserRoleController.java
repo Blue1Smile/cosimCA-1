@@ -20,7 +20,7 @@ import com.hotent.platform.service.system.UserRoleService;
 
 /**
  * 对象功能:用户角色映射表 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-12-16 15:47:55
  */

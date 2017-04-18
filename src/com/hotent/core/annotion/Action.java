@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @company  广州宏天软件有限公司
+ * @company
  * @description 类的方法描述注解,用于aop拦截以获取正确方法其对应的描述
  * @author csx
  * @create 2010-02-03

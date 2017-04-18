@@ -11,7 +11,7 @@ import com.hotent.platform.dao.system.SysJobLogDao;
 
 /**
  * 对象功能:SYS_JOBLOG Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:phl
  * 创建时间:2011-12-28 17:01:51
  */

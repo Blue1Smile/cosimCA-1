@@ -38,7 +38,7 @@ import com.hotent.platform.service.system.SysUserOrgService;
 /**
  * 对象功能:表单权限 Service类。
  * 存储表单字段，子表，意见等权限。
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:xwy
  * 创建时间:2012-02-10 10:48:16
  */

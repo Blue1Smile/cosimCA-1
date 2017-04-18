@@ -19,9 +19,9 @@ OfficeControl=function(){
 		var _self=this;
 		this.isFileOpen=false;
 		this.templatetype = 1;// 模板类型
-		this.params={Caption:"广州宏天软件有限公司",MakerCaption:"广州宏天软件有限公司",
+		this.params={Caption:"",MakerCaption:"",
 			MakerKey:"CF4960BFDB79D36ADDC5493B116D39D6A4E335D9",
-			ProductCaption:"天智网",
+			ProductCaption:"",
 			ProductKey:"6FFE41262266E5CEFD207A8321AC0B398A5B772B",
 			TitlebarColor:"14402205"
 		};

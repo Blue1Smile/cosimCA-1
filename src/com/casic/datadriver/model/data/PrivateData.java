@@ -52,6 +52,15 @@ public class PrivateData extends BaseModel {
 
     private String ddDataEngName;
 
+    public String getDdDataPath() {
+        return ddDataPath;
+    }
+
+    public void setDdDataPath(String ddDataPath) {
+        this.ddDataPath = ddDataPath;
+    }
+
+    private String ddDataPath;
 
     public String getDataEngName() {
         return ddDataEngName;

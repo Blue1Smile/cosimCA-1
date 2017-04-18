@@ -24,7 +24,7 @@ import com.hotent.platform.dao.system.SysCodeTemplateDao;
 /**
  *<pre>
  * 对象功能:自定义表代码模版 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:zyp
  * 创建时间:2012-12-19 15:38:01
  *</pre>
