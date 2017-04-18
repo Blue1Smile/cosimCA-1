@@ -60,6 +60,7 @@ wizard.bs.bstro = function (bss, options) {
                 } else {
                     opt.finishButton = '<button class="btn btn-mini btn-success bootstro-finish-btn">' + options.obtn + '</button>';
                 }
+                opt.onExit = options.exit;
             }
             if (options.hasOwnProperty('stop')) {
                 opt.stopOnBackdropClick = options.stop;
