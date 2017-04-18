@@ -15,13 +15,13 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
-    <%@include file="/commons/datadriver/formbase.jsp" %>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
-    <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
-    <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
-    <link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+    <%--<%@include file="/commons/datadriver/formbase.jsp" %>--%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
+    <%--<script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>--%>
+    <%--<link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>--%>
 
     <title>提交信息</title>
 </head>
@@ -61,8 +61,8 @@
 
 
 </div>
-<div class="modal-footer">
-    <a class="btn btn-success btn-block" href="list.ht" id="confirm">确认</a>
-</div>
+<%--<div class="modal-footer">--%>
+    <%--<a class="btn btn-success btn-block" href="list.ht" id="confirm">确认</a>--%>
+<%--</div>--%>
 </body>
 </html>
