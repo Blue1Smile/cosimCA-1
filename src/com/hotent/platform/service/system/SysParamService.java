@@ -20,7 +20,7 @@ import com.hotent.platform.dao.system.SysParamDao;
 import com.hotent.platform.model.system.SysParam;
 
 /**
- * 对象功能:组织或人员参数属性 Service类 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2012-02-23 17:43:35
+ * 对象功能:组织或人员参数属性 Service类 开发公司: 开发人员:csx 创建时间:2012-02-23 17:43:35
  */
 @Service
 public class SysParamService extends BaseService<SysParam> {

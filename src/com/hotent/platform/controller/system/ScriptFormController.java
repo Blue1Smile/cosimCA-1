@@ -19,7 +19,7 @@ import com.hotent.platform.service.system.ScriptService;
 
 /**
  * 对象功能:脚本管理 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:ray
  * 创建时间:2012-01-05 12:01:20
  */

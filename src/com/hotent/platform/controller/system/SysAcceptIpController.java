@@ -20,7 +20,7 @@ import com.hotent.platform.service.system.SysAcceptIpService;
 
 /**
  * 对象功能:可访问地址 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2012-02-20 17:35:46
  */

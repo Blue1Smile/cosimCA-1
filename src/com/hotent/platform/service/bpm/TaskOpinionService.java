@@ -18,7 +18,7 @@ import com.hotent.platform.model.bpm.TaskOpinion;
 import com.hotent.platform.webservice.model.BpmFinishTask;
 
 /**
- * 对象功能:流程任务审批意见 Service类 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2012-01-11 16:06:11
+ * 对象功能:流程任务审批意见 Service类 开发公司: 开发人员:csx 创建时间:2012-01-11 16:06:11
  */
 @Service
 public class TaskOpinionService extends BaseService<TaskOpinion> {

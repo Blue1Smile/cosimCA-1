@@ -25,7 +25,7 @@ import com.hotent.platform.model.system.GlobalType;
 import com.hotent.platform.model.system.SysTypeKey;
 
 /**
- * 对象功能:总分类表 Service类 开发公司:广州宏天软件有限公司 
+ * 对象功能:总分类表 Service类 开发公司:
  * 开发人员:ljf 
  * 创建时间:2011-11-23 11:07:27
  */

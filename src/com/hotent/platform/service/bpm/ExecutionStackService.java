@@ -40,7 +40,7 @@ import com.hotent.platform.service.bpm.thread.TaskUserAssignService;
 
 /**
  * 对象功能:流程执行堆栈树 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-12-31 09:53:00
  */

@@ -13,7 +13,7 @@ import com.hotent.platform.dao.system.DemensionDao;
 
 /**
  * 对象功能:维度信息 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:pkq
  * 创建时间:2011-11-08 12:04:22
  */
@@ -34,7 +34,7 @@ public class DemensionService extends BaseService<Demension>
 	
 	/* *
 	 * 对象功能：判断是否存在该维度的记录
-	 * 开发公司:广州宏天软件有限公司
+	 * 开发公司:
 	 * 开发人员:pkq
      * 创建时间:2011-11-08 12:04:22 
 	 */
@@ -45,7 +45,7 @@ public class DemensionService extends BaseService<Demension>
 	
 	/**
 	 * 对象功能：根据查询条件查询维度的记录
-	 * 开发公司:广州宏天软件有限公司
+	 * 开发公司:
 	 * 开发人员:pkq
      * 创建时间:2011-11-08 12:04:22 
 	 */

@@ -19,7 +19,7 @@ import com.hotent.platform.service.system.SysParamService;
 
 /**
  * 对象功能:系统参数属性 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2012-02-23 17:43:35
  */

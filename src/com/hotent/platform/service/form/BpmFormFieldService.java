@@ -16,7 +16,7 @@ import com.hotent.platform.model.form.BpmFormField;
 
 /**
  * 对象功能:自定义表字段 Service类 
- * 开发公司:广州宏天软件有限公司 
+ * 开发公司:
  * 开发人员:xwy 
  * 创建时间:2011-11-30 15:20:14
  */

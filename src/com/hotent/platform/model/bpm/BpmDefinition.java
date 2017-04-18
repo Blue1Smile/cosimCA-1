@@ -22,7 +22,7 @@ import com.hotent.platform.xml.util.XmlDateAdapter;
 
 /**
  * 对象功能:流程定义扩展 Model对象
- * 开发公司: 广州宏天软件有限公司 
+ * 开发公司:
  * 开发人员:csx 
  * 创建时间:2011-11-30 15:41:24
  */

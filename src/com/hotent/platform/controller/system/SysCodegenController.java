@@ -40,7 +40,7 @@ import com.hotent.platform.service.form.BpmFormTableService;
 import com.hotent.platform.service.system.SysCodeTemplateService;
 /**
  * 对象功能:基于自定义表的代码生成器 控制器类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:zyp
  * 创建时间:2012-12-19 15:38:01
  */

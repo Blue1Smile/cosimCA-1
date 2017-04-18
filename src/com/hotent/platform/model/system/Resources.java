@@ -10,7 +10,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.hotent.core.model.BaseModel;
 /**
  * 对象功能:子系统资源 Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:csx
  * 创建时间:2011-12-05 17:00:54
  */

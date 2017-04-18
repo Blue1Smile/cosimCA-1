@@ -12,7 +12,7 @@ import com.hotent.platform.model.biz.BizRuVariable;
 /**
  *<pre>
  * 对象功能:BIZ_RU_VARIABLE Dao类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:Raise
  * 创建时间:2013-04-20 14:29:43
  *</pre>

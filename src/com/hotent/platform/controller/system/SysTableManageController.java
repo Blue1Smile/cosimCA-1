@@ -46,7 +46,7 @@ import com.hotent.core.web.ResultMessage;
 
 
 /**
- * 对象功能:自定义表管理 控制器类 开发公司:广州宏天软件有限公司 开发人员:ray 创建时间:2012-06-25 11:05:09
+ * 对象功能:自定义表管理 控制器类 开发公司: 开发人员:ray 创建时间:2012-06-25 11:05:09
  */
 @Controller
 @RequestMapping("/platform/system/sysTableManage/")

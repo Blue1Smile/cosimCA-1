@@ -46,7 +46,7 @@ import com.hotent.platform.xml.table.BpmFormTableXmlList;
 import com.hotent.platform.xml.util.MsgUtil;
 
 /**
- * 对象功能:自定义表 Service类 开发公司:广州宏天软件有限公司 开发人员:xwy 创建时间:2011-11-30 14:29:22
+ * 对象功能:自定义表 Service类 开发公司: 开发人员:xwy 创建时间:2011-11-30 14:29:22
  */
 @Service
 public class BpmFormTableService extends BaseService<BpmFormTable> {

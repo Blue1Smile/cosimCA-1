@@ -6,7 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 /**
  * 对象功能:报表参数 Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:cjj
  * 创建时间:2012-04-12 11:08:12
  */

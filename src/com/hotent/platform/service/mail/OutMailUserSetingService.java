@@ -18,7 +18,7 @@ import com.hotent.platform.service.mail.model.Mail;
 
 /**
  * 对象功能:邮箱设置 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:zyp
  * 创建时间:2012-04-09 13:43:51
  */

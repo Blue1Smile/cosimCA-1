@@ -30,7 +30,7 @@ import com.hotent.platform.service.system.SubSystemService;
 import com.hotent.platform.service.system.SysRoleService;
 
 /**
- * 对象功能:系统角色表 控制器类 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2011-11-28 11:39:03
+ * 对象功能:系统角色表 控制器类 开发公司: 开发人员:csx 创建时间:2011-11-28 11:39:03
  */
 @Controller
 @RequestMapping("/platform/system/sysRole/")

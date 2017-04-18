@@ -56,7 +56,7 @@ import com.sun.mail.imap.IMAPFolder;
 import com.sun.mail.pop3.POP3Folder;
 /**
  * 对象功能:外部邮件处理 Service类
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:zyp
  * 创建时间:2012-04-27 10:39:29
  */

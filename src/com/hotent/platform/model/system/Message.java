@@ -6,7 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
 /**
- * 对象功能:消息设置 Model对象 开发公司:广州宏天软件有限公司 开发人员:csx 创建时间:2012-02-08 16:45:56
+ * 对象功能:消息设置 Model对象 开发公司: 开发人员:csx 创建时间:2012-02-08 16:45:56
  */
 public class Message extends BaseModel {
 	// 表名称

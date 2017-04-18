@@ -36,7 +36,7 @@ import com.hotent.platform.service.system.DesktopLayoutService;
 import com.hotent.platform.service.system.DesktopMycolumnService;
 
 /**
- * 对象功能:桌面个人栏目 控制器类 开发公司:广州宏天软件有限公司 开发人员:ray 创建时间:2012-03-20 16:39:01
+ * 对象功能:桌面个人栏目 控制器类 开发公司: 开发人员:ray 创建时间:2012-03-20 16:39:01
  */
 @Controller
 @RequestMapping("/platform/system/desktopMycolumn/")

@@ -7,7 +7,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.hotent.core.model.BaseModel;
 /**
  * 对象功能:邮箱 Model对象
- * 开发公司:广州宏天软件有限公司
+ * 开发公司:
  * 开发人员:zyp
  * 创建时间:2012-04-09 13:43:50
  */
