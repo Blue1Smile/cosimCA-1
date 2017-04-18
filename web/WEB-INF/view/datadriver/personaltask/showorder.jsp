@@ -587,6 +587,11 @@
                 }
             });
         },
+        'click #ordertr_download': function (e, value, row, index) {
+            <%--$.get("${ctx}/datadriver/privatedata/getPrivatefile.ht?id=" + row.ddDataId, function (data, status) {--%>
+                window.location.href="${ctx}/datadriver/privatedata/getPrivatefile.ht?id=" + row.ddDataId;
+//            });
+        },
         'click #ordertr': function (e, value, row, index) {
             $.get("canordertoorder.ht?id=" + row.ddStructId + "&parent=canorderpanel" + "&taskId=" +${taskId}, function (data, status) {
                 if (status=='success'){

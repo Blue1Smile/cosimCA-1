@@ -34,8 +34,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.InputStream;
+import java.io.*;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -220,6 +220,7 @@ public class PrivateDataController extends AbstractController {
                         String realPath = getServletContext().getRealPath("/");
                         String path =realPath+ "/uploadPrivateData/" + dataId + "/" +myFileName;
 //                        String path ="d:"+ "/major/" + major + "/" + ddToolVersion +"_"+myFileName;
+                        privateData.setDdDataPath(path);
                         privateData.setDdDataLastestValue(myFileName);
 //                        privateData.setdd(myFileName);
                         File file = new File(path);
@@ -253,6 +254,53 @@ public class PrivateDataController extends AbstractController {
         }
 //        ModelAndView mv = this.getAutoView().addObject("dataStructId", dataId);
 //        return mv;
+    }
+    /**
+     * 下载私有数据文件
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the add
+     * @throws Exception the exception
+     */
+
+    @RequestMapping("getPrivatefile")
+    @Action(description = "下载数据文件")
+    public void getPrivatefile(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        //获取网站部署路径(通过ServletContext对象)，用于确定下载文件位置，从而实现下载
+        Long dataId = RequestUtil.getLong(request, "id");
+        PrivateData privateData = privateDataService.getById(dataId);
+//
+
+        String path = getServletContext().getRealPath("/");
+        try{
+            // path是指欲下载的文件的路径。
+            File file = new File(privateData.getDdDataPath());
+            // 取得文件名。
+            String filename = file.getName();
+            filename = URLEncoder.encode(filename,"UTF-8");
+            // 取得文件的后缀名。
+            String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
+
+            // 以流的形式下载文件。
+            InputStream fis = new BufferedInputStream(new FileInputStream(privateData.getDdDataPath()));
+            byte[] buffer = new byte[fis.available()];
+            fis.read(buffer);
+            fis.close();
+            // 清空response
+            response.reset();
+            // 设置response的Header
+            response.addHeader("Content-Disposition", "attachment;filename=" +filename);
+            response.addHeader("Content-Length", "" + file.length());
+            OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
+            response.setContentType("application/octet-stream");
+            toClient.write(buffer);
+            toClient.flush();
+            toClient.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     /**
      * 编辑任务
