@@ -32,7 +32,7 @@
             margin: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
+            /*overflow: auto;*/
         }
 
         .panel-body {
@@ -134,7 +134,7 @@
     <div class="col-xs-3" style="height: 100%">
         <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">项目树</div>
-            <div class="panel-body" style="height: 93%; overflow-x: hidden;overflow-y: auto">
+            <div class="panel-body" style="height: 93%; overflow-x: auto;overflow-y: auto">
                 <div id="demo2"></div>
             </div>
         </div>
