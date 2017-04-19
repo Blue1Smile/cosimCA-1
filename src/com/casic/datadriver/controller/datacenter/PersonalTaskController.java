@@ -677,7 +677,8 @@ public class PersonalTaskController extends AbstractController {
         Long ddTaskId = RequestUtil.getLong(request, "id");
 
         List<OrderDataRelation> publishRelationList = orderDataRelationService.getPublishDataRelationList(ddTaskId);
-        List<DataStruct> publishListWithoutValue = new ArrayList<DataStruct>();
+//        List<DataStruct> publishListWithoutValue = new ArrayList<DataStruct>();
+        List<PrivateData> childListWithoutValue = new ArrayList<PrivateData>();
 
         try {
 //            List<OrderDataRelation> orderDataRelation_list = this.orderDataRelationService.getPublishDataRelationList(ddTaskId);
@@ -693,28 +694,44 @@ public class PersonalTaskController extends AbstractController {
             if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) &&
                     taskInfo.getDdTaskChildType().equals("publishpanel")) {
 
+//                for (int i = 0; i < publishRelationList.size(); i++) {
+//                    DataStruct dataStruct = dataStructService.getById(publishRelationList.get(i).getDdDataId());
+//                    List<PrivateData> childList = privateDataService.selectByStructid(dataStruct.getDdStructId());
+//                    int childLength = childList.size();
+//                    for (int j=0;j<childList.size();j++){
+//                          if(childList.get(j).getDdDataLastestValue()==null){
+//                              childLength--;
+//                          }
+//                        if(childLength<childList.size()){
+//                            publishListWithoutValue.add(dataStruct);
+//                        }
+//                    }
+//                }
+                if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) &&
+                    taskInfo.getDdTaskChildType().equals("publishpanel")) {
+
                 for (int i = 0; i < publishRelationList.size(); i++) {
                     DataStruct dataStruct = dataStructService.getById(publishRelationList.get(i).getDdDataId());
                     List<PrivateData> childList = privateDataService.selectByStructid(dataStruct.getDdStructId());
                     int childLength = childList.size();
                     for (int j=0;j<childList.size();j++){
                           if(childList.get(j).getDdDataLastestValue()==null){
-                              childLength--;
+                              PrivateData childData= childList.get(j);
+                              //暂时用datapath存放结构体名
+                              childData.setDdDataPath(dataStruct.getDdStructName());
+                              childListWithoutValue.add(childData);
                           }
-                        if(childLength<childList.size()){
-                            publishListWithoutValue.add(dataStruct);
-                        }
                     }
                 }
 
-                if (publishListWithoutValue.size() == 0) {
+                if (childListWithoutValue.size() == 0) {
                     taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
                     taskStartService.update(taskStart_list.get(0));
                     taskInfo.setDdTaskChildType("checkpanel");
                     taskInfo.setDdTaskState(taskInfo.checkpanel);
                     taskInfoService.update(taskInfo);
                 }
-
+                }
             } else {
                 String resultMsg = null;
                 writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Fail);
@@ -723,8 +740,8 @@ public class PersonalTaskController extends AbstractController {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
-        return getAutoView().addObject("publishListWithoutValue", publishListWithoutValue)
-                .addObject("valueLength", publishListWithoutValue.size()).addObject("ddTaskId", ddTaskId);
+        return getAutoView().addObject("childListWithoutValue", childListWithoutValue)
+                .addObject("valueLength", childListWithoutValue.size()).addObject("ddTaskId", ddTaskId);
     }
 
 
