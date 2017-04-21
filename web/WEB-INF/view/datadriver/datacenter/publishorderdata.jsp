@@ -18,29 +18,33 @@
 <html lang="zh-CN" style="height: 100%; margin: 0px">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <title>进入任务页面</title>
-
+    <style>
+        .panelheight {
+            overflow: auto;
+        }
+    </style>
 </head>
 
-<body style="height: 100%; margin: 0px">
-<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"
-     style="padding-right: 0px">
-</div>
-<div class="container-fluid" >
-
+<body style="height: 100%;">
+<%--<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right entity-well" id="cbp-spmenu-s2"--%>
+     <%--style="padding-right: 0px">--%>
+<%--</div>--%>
+<div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist">
-        <li  class="active" role="presentation" id="switch_attr_Release"><a href="#Release" data-toggle="tab" role="tab">发布数据</a></li>
+        <li class="active" role="presentation" id="switch_attr_Release"><a href="#Release" data-toggle="tab"
+                                                                           role="tab">发布数据</a></li>
         <li role="presentation" id="switch_attr_Order"><a href="#Order" data-toggle="tab" role="tab">订阅数据</a></li>
     </ul>
     <div class="tab-content board-view">
-        <div role="tabpanel" class="tab-pane active" id="Release">
+        <div role="tabpanel" class="tab-pane active panelheight" id="Release">
         </div>
-        <div role="tabpanel" class="tab-pane" id="Order">
+        <div role="tabpanel" class="tab-pane panelheight" id="Order">
         </div>
     </div>
 </div>
+
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -51,7 +55,7 @@
         });
     });
     var switch_attr_Release = document.getElementById('switch_attr_Release'),
-            switch_attr_Order = document.getElementById('switch_attr_Order');
+        switch_attr_Order = document.getElementById('switch_attr_Order');
     switch_attr_Release.onclick = function () {
         $("#create_task").hide();
         $("#create_Release").show();
@@ -60,12 +64,12 @@
         });
     }
 
-   switch_attr_Order.onclick = function () {
-    $("#create_task").hide();
-    $("#create_Order").show();
-    $.get("${ctx}/datadriver/datacenter/Orderdata.ht?id=${taskId}", function (data) {
-        $('#Order').html(data);
-    });
-}
+    switch_attr_Order.onclick = function () {
+        $("#create_task").hide();
+        $("#create_Order").show();
+        $.get("${ctx}/datadriver/datacenter/Orderdata.ht?id=${taskId}", function (data) {
+            $('#Order').html(data);
+        });
+    }
 </script>
 </html>

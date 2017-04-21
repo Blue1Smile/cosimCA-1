@@ -19,7 +19,7 @@
 <script type="text/javascript" src="${ctx}/js/hotent/platform/system/FileMenu.js"></script>
 
 <script type="text/javascript">
-	var isSingle=${isSingle};
+	var isSingle='${isSingle}';
 	
 	var catKey="<%=GlobalType.CAT_FILE%>";
 	
@@ -231,7 +231,7 @@ body{overflow: hidden;}
 			</div>
 		</c:if>
 		<div position="bottom"  class="bottom" >
-				<a href='#' class='button'  onclick="fileUpload();" ><span class="icon upload"></span><span >上  传</span></a>
+				<a href='#' class='button'  onclick="fileUpload();"><span class="icon upload"></span><span >上  传</span></a>
 				<a href='#' class='button' style='margin-left:10px;'  onclick="selectFile()" ><span class="icon ok"></span><span >选择</span></a>
 				<a href='#' class='button' style='margin-left:10px;'  onclick="window.close()"><span class="icon cancel"></span><span >取消</span></a>
 		</div>

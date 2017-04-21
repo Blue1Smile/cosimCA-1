@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-table.css">
     <link rel="stylesheet" href="${ctx}/newtable/bootstrap-editable.css">
+
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
     <script src="${ctx}/newtable/bootstrap-table.js"></script>
@@ -25,9 +26,9 @@
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
+
+
     <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
-
-
 </head>
 <body>
 <div id="toolbar" class="btn-group">
@@ -38,7 +39,7 @@
        data-url="showtools.ht?major=<%=new String(request.getParameter("major").getBytes("ISO-8859-1"),"UTF-8")%>&son=1">
 </table>
 <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-    <script src="${ctx}/newtable/showtool.js"></script>
+<script src="${ctx}/newtable/showtool.js"></script>
 
 <div class="modal fade" id="addindex1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -47,8 +48,8 @@
         </div>
     </div>
 </div>
-    </body>
-    <script charset=UTF-8>
+</body>
+<script>
 
     function createIndex() {
         $('#addindex1').modal({
