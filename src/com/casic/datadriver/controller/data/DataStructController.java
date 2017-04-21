@@ -149,54 +149,6 @@ public class DataStructController extends AbstractController {
 
     }
 
-//
-//    int length=0;
-//    int[] childLength = new int[length];
-//
-//    for(int i=0;i<length;i++){
-//        childLength[i]=0;
-//
-//    }
-//    try {
-//        if (dataStruct.getDdStructId() != null || dataStruct.getDdStructId() != 0) {
-//            dataStruct.setDdStructId((Long) UniqueIdUtil.genId());
-//            dataStructService.addDDDataStruct(dataStruct);
-//            for(int i=0;i<length;i++){
-//                if(childLength[i]==0){
-//                    PrivateData privateData=new PrivateData();
-//                    privateData.setDdDataParentId(dataStruct.getDdStructId());
-//                    privateData.setDdDataId(UniqueIdUtil.genId());
-//                    privateData.setDdDataPublishType(0l);
-//                    privateDataService.addDDPrivateData(privateData);
-//                }
-//                else{
-//                    DataStruct childDataStruct = this.getFormObject(request, DataStruct.class);
-//                    childDataStruct.setDdStructId((Long) UniqueIdUtil.genId());
-//                    dataStructService.addDDDataStruct(childDataStruct);
-//                    for(int j=0;j<childLength[i];j++){
-//                        PrivateData privateData=new PrivateData();
-//                        privateData.setDdDataParentId(childDataStruct.getDdStructId());
-//                        privateData.setDdDataId(UniqueIdUtil.genId());
-//                        privateData.setDdDataPublishType(0l);
-//                        privateDataService.addDDPrivateData(privateData);
-//                    }
-//
-//                }
-//
-//                resultMsg = getText("record.added", "cloud_account_info");
-//
-//
-//            }
-//        } else {
-//            dataStructService.update(dataStruct);
-//            resultMsg = getText("record.updated", "cloud_account_info");
-//        }
-//        writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
-//    } catch (Exception e) {
-//        writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
-//    }
-
-
     private DataStruct getFormObject(HttpServletRequest request) throws Exception {
         JSONUtils.getMorpherRegistry().registerMorpher(new DateMorpher((new String[]{"yyyy-MM-dd"})));
 
@@ -206,23 +158,6 @@ public class DataStructController extends AbstractController {
         Map<String, Class> map = new HashMap<String, Class>();
         map.put("privateDataList", PrivateData.class);
         DataStruct dataStruct = (DataStruct) JSONObject.toBean(obj, DataStruct.class, map);
-//        if (obj.getString("ddType").equals(1)) {
-//            dataStruct.setDdType(dataStruct.struct);
-//        }
-//        else{
-//            if (obj.getString("ddType").equals(2)){
-//                dataStruct.setDdType(dataStruct.file);
-//            }
-//            else{
-//                if (obj.getString("ddType").equals(3)){
-//                    dataStruct.setDdType(dataStruct.model);
-//                }
-//                else{
-//                    dataStruct.setDdType(dataStruct.other);
-//                }
-//            }
-//
-//        }
         return dataStruct;
     }
 
@@ -286,17 +221,18 @@ public class DataStructController extends AbstractController {
 
         Long pageSize = RequestUtil.getLong(request, "pageSize");
         Long pageNumber = RequestUtil.getLong(request, "pageNumber");
-        Long id = RequestUtil.getLong(request, "id");
+        Long taskid = RequestUtil.getLong(request, "id");
         response.setContentType("application/json");
         Long a = pageSize * (pageNumber - 1);
         Long b = pageSize * (pageNumber);
-        List<DataStruct> structdata_list = dataStructService.getStructByTaskId(id);
+        List<DataStruct> structdata_list = dataStructService.getStructByTaskId(taskid);
+//        List<PrivateData> privateDataList = privateDataService.selectByStructid();
 
         if (b > structdata_list.size()) {
             b = Long.valueOf(structdata_list.size());
         }
 
-        JSONObject json = CombinationJSON(a, b, id, structdata_list);
+        JSONObject json = CombinationJSON(a, b, taskid, structdata_list);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());
         System.out.println(json.toString());

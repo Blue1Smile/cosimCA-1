@@ -557,11 +557,17 @@
     }
     //订阅数据子列表按钮
     function operateFormatterOrderSub(value, row, index) {
-        if (row.ddDataType == 2||row.ddDataType == 3){
+        if (row.ddDataType == 3){//模型
             return [
                 '<a id="ordertr_download" href="javascript:void(0)" title="点击下载文件">下载',
                 '</a>',' ',
                 '<a id="ordertr_view" href="javascript:void(0)" title="点击预览文件内容">预览',
+                '</a>'
+            ].join('');
+        }
+        if (row.ddDataType == 2){
+            return [//文件
+                '<a id="ordertr_download" href="javascript:void(0)" title="点击下载文件">预览',
                 '</a>'
             ].join('');
         }
@@ -580,6 +586,11 @@
                     $table_order.bootstrapTable('refresh');
                 }
             });
+        },
+        'click #ordertr_download': function (e, value, row, index) {
+            <%--$.get("${ctx}/datadriver/privatedata/getPrivatefile.ht?id=" + row.ddDataId, function (data, status) {--%>
+                window.location.href="${ctx}/datadriver/privatedata/getPrivatefile.ht?id=" + row.ddDataId;
+//            });
         },
         'click #ordertr': function (e, value, row, index) {
             $.get("canordertoorder.ht?id=" + row.ddStructId + "&parent=canorderpanel" + "&taskId=" +${taskId}, function (data, status) {

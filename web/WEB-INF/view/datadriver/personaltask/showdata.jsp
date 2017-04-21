@@ -630,7 +630,6 @@
             return [
                 '<a id="privatetr" href="javascript:void(0)" title="点击发布该列数据">发布',
                 '</a>', ' ',
-
                 '<a id="privatetr_del" href="javascript:void(0)" title="点击删除该数据项">删除',
                 '</a>'
             ].join('');
