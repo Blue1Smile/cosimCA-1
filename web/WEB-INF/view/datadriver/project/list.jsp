@@ -52,11 +52,11 @@
                 <div style="height: 34px;">
                     <form id="searchForm" method="post" action="list.ht">
                         <div class="fl">
-                            <input type="text" name="Q_name_SL " class="form-control"
+                            <input type="text" name="Q_name_SL" id="Q_name_SL"class="form-control"
                                    value="${param['Q_name_SL']}" placeholder="项目名称"/>
                         </div>
                         <div class="fr">
-                            <a class="layui-btn layui-btn-small layui-btn-normal" id="Search"><i class="layui-icon">
+                            <a class="layui-btn layui-btn-small layui-btn-normal" href="list.ht?name=" id="Search"><i class="layui-icon">
                                 &#xe615;</i> 查询</a>
                             <a class="layui-btn layui-btn-small" href="#" id="create" data-toggle="modal"
                                data-remote="create.ht"
