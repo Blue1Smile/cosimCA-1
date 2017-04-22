@@ -210,80 +210,24 @@ public class ProjectController extends BaseController {
             }
         }
         List<Project> projectList = new ArrayList<>();
-        projectList=allProjectList;
+//        projectList=allProjectList;
 
-//        if(projectName.equals(null)){
-//            projectList=allProjectList;
-//
-//        }
-//        else{
-//            for(int i=0; i<allProjectList.size();i++){
-//                if(allProjectList.get(i).getDdProjectName().equals(projectName)){
-//                    projectList.add(allProjectList.get(i));
-//                }
-//            }
-//        }
-        ModelAndView mv = this.getAutoView().addObject("projectList",
-                projectList);
-        return mv;
-    }
+        if(projectName==""){
+            projectList=allProjectList;
 
-    /**
-     * 查询项目列表
-     *
-     * @param request  the request
-     * @param response the response
-     * @return the list
-     * @throws Exception the exception
-     */
-    @RequestMapping("queryProject")
-    @Action(description = "根据条件查询项目基本信息列表")
-    public ModelAndView queryProject(HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-        Long userId = ContextUtil.getCurrentUserId();
-        List<Project> allProjectList = this.projectService.queryProjectBasicInfoList(userId);
-        String projectName=RequestUtil.getString(request, "name");
-
-        for (int i = 0; i < allProjectList.size(); i++) {
-            Project nowProject = allProjectList.get(i);
-            List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(nowProject.getDdProjectId());
-            int listLengthStart = 0;
-            int listLengthComplete = 0;
-            for (int j = 0; j < proTaskDependanceList.size(); j++) {
-                TaskInfo nowTask = taskInfoService.getById(proTaskDependanceList.get(j).getDdTaskId());
-                if (nowTask.getDdTaskChildType().equals("publishpanel") || nowTask.getDdTaskChildType().equals("checkpanel")) {
-                    listLengthStart++;
-                }
-                if (nowTask.getDdTaskChildType().equals("completepanel")) {
-                    listLengthComplete++;
-                }
-            }
-            if (listLengthComplete == proTaskDependanceList.size() && listLengthComplete != 0) {
-                allProjectList.get(i).setDdProjectPhaseId(allProjectList.get(i).complete);
-            } else {
-                if (listLengthStart > 0) {
-                    allProjectList.get(i).setDdProjectPhaseId(allProjectList.get(i).start);
-                } else {
-                    allProjectList.get(i).setDdProjectPhaseId(allProjectList.get(i).unstart);
-                }
-            }
         }
-        List<Project> projectList = new ArrayList<>();
-
-        if(!RequestUtil.getString(request,"name").equals(null)){
+        else{
             for(int i=0; i<allProjectList.size();i++){
                 if(allProjectList.get(i).getDdProjectName().equals(projectName)){
                     projectList.add(allProjectList.get(i));
                 }
             }
         }
-        else{
-            projectList=allProjectList;
-        }
         ModelAndView mv = this.getAutoView().addObject("projectList",
                 projectList);
         return mv;
     }
+
 
     /**
      * Del.

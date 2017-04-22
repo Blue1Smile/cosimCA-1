@@ -56,7 +56,7 @@
                                    value="${param['Q_name_SL']}" placeholder="项目名称"/>
                         </div>
                         <div class="fr">
-                            <a class="layui-btn layui-btn-small layui-btn-normal" href="list.ht?name=" id="Search"><i class="layui-icon">
+                            <a class="layui-btn layui-btn-small layui-btn-normal" href="#" onclick="queryProject()" id="Search"><i class="layui-icon">
                                 &#xe615;</i> 查询</a>
                             <a class="layui-btn layui-btn-small" href="#" id="create" data-toggle="modal"
                                data-remote="create.ht"
@@ -138,6 +138,7 @@
 </body>
 
 <script>
+
     $(document).ready(function () {
         $("#myCreate").on("hidden.bs.modal", function () {
             $(this).removeData("bs.modal");
@@ -146,6 +147,14 @@
             $(this).removeData("bs.modal");
         });
     })
+    function queryProject(){
+        var name=document.getElementById("Q_name_SL").value;
+        window.location.href = "${ctx}/datadriver/project/list.ht?name=" + name;
+//        $('#Search').modal({
+//            keyboard: true,
+//            remote: "list.ht?name=" + 123
+//        });
+    }
 </script>
 </html>
 
