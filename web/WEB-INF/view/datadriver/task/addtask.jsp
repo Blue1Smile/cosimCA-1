@@ -6,6 +6,16 @@
   Time: 下午3:10
   To change this template use File | Settings | File Templates.
 --%>
+<%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
+<%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
+<%--<script type="text/javascript" src="${ctx}/js/hotent/platform/system/IconDialog.js"></script>--%>
+<%--<script type="text/javascript" src="${ctx}/js/hotent/platform/form/CommonDialog.js"></script>--%>
+<%--<script type="text/javascript" src="${ctx}/js/hotent/platform/system/FlexUploadDialog.js"></script>--%>
+<%--<!-- ueditor -->--%>
+<%--<script type="text/javascript" charset="utf-8" src="${ctx}/js/ueditor/design-setting/editor_config.js"></script>--%>
+<%--<script type="text/javascript" charset="utf-8" src="${ctx}/js/ueditor/design-setting/editor_api.js"></script>--%>
+<%--<link rel="stylesheet" type="text/css" href="${ctx}/js/ueditor/themes/default/ueditor.css"/>--%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="ap" uri="/appleTag" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -42,11 +52,20 @@
                 </tr>
                 <tr>
                     <th width="20%">任务类型:</th>
-                    <td><input type="text" id="ddTaskType" name="ddTaskType"
-                               value="" class="form-control"/></td>
+                    <td>
+                        <select id="ddTaskType" name="ddTaskType" class="form-control">
+                            <option value="子任务">子任务</option>
+                            <option value="包任务">包任务</option>
+                        </select>
+                        <%--<input type="text" id="ddTaskType" name="ddTaskType"--%>
+                               <%--value="" class="form-control"/></td>--%>
                     <th width="20%">任务截至时间:</th>
+                    <%--<td><input type="text" id="ddTaskPlanEndTime" name="ddTaskPlanEndTime"--%>
+                               <%--value="<fmt:formatDate value='${businessChance.startTime}'--%>
+                               <%--pattern='yyyy-MM-dd'/>" class="inputText date" validate="{date:true,required:true}" /></td>--%>
+
                     <td><input type="text" name="ddTaskPlanEndTime"
-                               value="" readonly
+                               value=""
                                class="form_datetime form-control"/></td>
                 </tr>
                 <tr>
