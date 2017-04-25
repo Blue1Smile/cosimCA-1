@@ -44,15 +44,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>项目阶段</th>
-                                    <td>
-                                        <ap:selectDB name="ddProjectPhaseId" id="ddProjectPhaseId"
-                                                     where="parentId=10000027440009" optionValue="itemValue"
-                                                     optionText="itemName" table="SYS_DIC"
-                                                     selectedValue="${Project.ddProjectPhaseId}"
-                                                     styleClass="form-control">
-                                        </ap:selectDB>
-                                    </td>
                                     <th>所属型号</th>
                                     <td>
                                         <ap:selectDB name="ddProjectBelongModel" id="ddProjectBelongModel"
@@ -62,8 +53,6 @@
                                                      styleClass="form-control">
                                         </ap:selectDB>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>项目类型</th>
                                     <td>
                                         <ap:selectDB name="ddProjectType" id="ddProjectType"
@@ -73,12 +62,23 @@
                                                      styleClass="form-control">
                                         </ap:selectDB>
                                     </td>
+                                </tr>
+                                <tr>
                                     <th>密级</th>
                                     <td>
                                         <ap:selectDB name="ddProjectSecretLevel" id="ddProjectSecretLevel"
                                                      where="parentId=10000027440019" optionValue="itemValue"
                                                      optionText="itemName" table="SYS_DIC"
                                                      selectedValue="${Project.ddProjectSecretLevel}"
+                                                     styleClass="form-control">
+                                        </ap:selectDB>
+                                    </td>
+                                    <th>项目阶段</th>
+                                    <td>
+                                        <ap:selectDB name="ddProjectPhaseName" id="ddProjectPhaseName"
+                                                     where="parentId=10000027440009" optionValue="itemValue"
+                                                     optionText="itemName" table="SYS_DIC"
+                                                     selectedValue="${Project.ddProjectPhaseName}"
                                                      styleClass="form-control">
                                         </ap:selectDB>
                                     </td>

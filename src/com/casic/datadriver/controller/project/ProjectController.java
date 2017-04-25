@@ -162,7 +162,9 @@ public class ProjectController extends BaseController {
         Map<String, Class> map = new HashMap<String, Class>();
         map.put("taskInfoList", TaskInfo.class);
         Project project = (Project) JSONObject.toBean(obj, Project.class, map);
-
+//        project.setDdProjectPhaseName(obj.getString("ddProjectPhaseName"));
+//        project.setDdProjectSecretLevel(obj.getString("ddProjectSecretLevel"));
+//        project.setDdProjectType(obj.getString("ddProjectType"));
         return project;
     }
 
@@ -180,10 +182,11 @@ public class ProjectController extends BaseController {
     public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long userId = ContextUtil.getCurrentUserId();
-        List<Project> projectList = this.projectService.queryProjectBasicInfoList(userId);
+        List<Project> allProjectList = this.projectService.queryProjectBasicInfoList(userId);
+        String projectName=RequestUtil.getString(request, "name");
 
-        for (int i = 0; i < projectList.size(); i++) {
-            Project nowProject = projectList.get(i);
+        for (int i = 0; i < allProjectList.size(); i++) {
+            Project nowProject = allProjectList.get(i);
             List<ProTaskDependance> proTaskDependanceList = proTaskDependanceService.getProTaskDependanceList(nowProject.getDdProjectId());
             int listLengthStart = 0;
             int listLengthComplete = 0;
@@ -197,12 +200,26 @@ public class ProjectController extends BaseController {
                 }
             }
             if (listLengthComplete == proTaskDependanceList.size() && listLengthComplete != 0) {
-                projectList.get(i).setDdProjectPhaseId(projectList.get(i).complete);
+                allProjectList.get(i).setDdProjectPhaseId(allProjectList.get(i).complete);
             } else {
                 if (listLengthStart > 0) {
-                    projectList.get(i).setDdProjectPhaseId(projectList.get(i).start);
+                    allProjectList.get(i).setDdProjectPhaseId(allProjectList.get(i).start);
                 } else {
-                    projectList.get(i).setDdProjectPhaseId(projectList.get(i).unstart);
+                    allProjectList.get(i).setDdProjectPhaseId(allProjectList.get(i).unstart);
+                }
+            }
+        }
+        List<Project> projectList = new ArrayList<>();
+//        projectList=allProjectList;
+
+        if(projectName==""){
+            projectList=allProjectList;
+
+        }
+        else{
+            for(int i=0; i<allProjectList.size();i++){
+                if(allProjectList.get(i).getDdProjectName().equals(projectName)){
+                    projectList.add(allProjectList.get(i));
                 }
             }
         }

@@ -124,7 +124,7 @@
         </div>
     </div>
     <div class="panel-body" style="overflow: auto">
-        <div class="row" id="row">
+        <div class="row" id="row0">
             <div class="col-xs-4" id="card1">
                 <div class="panel panel-default">
                     <div class="panel-body card">
@@ -144,9 +144,8 @@
                             截止时间
                         </h5>
                         <a class="task-detail-executor" href="#" id="dob" data-type="combodate" data-pk="1"
-                           data-value="2017年12月10日">
-                            <%--<span class="glyphicon glyphicon-calendar"></span>--%>
-                            ${endtime}</a>
+                           data-value="${TaskInfo.ddTaskPlanEndTime}">
+                            </a>
                     </div>
                 </div>
             </div>
@@ -158,6 +157,7 @@
                         </h5>
                         <a class="task-detail-executor" id="taskPrioritySelect" data-type="select" data-pk="1"
                            href="#">
+
                             <c:choose>
                                 <c:when test="${TaskInfo.ddTaskPriority==3}"><span
                                         class="label label-danger">紧急</span></c:when>
@@ -172,7 +172,7 @@
             </div>
         </div>
 
-        <div class="row" id="row">
+        <div class="row" id="row1">
             <div class="panel panel-default">
                 <div class="list-group">
                     <a class="list-group-item" href="#" id="comments" data-type="textarea" data-pk="1" href="#">
@@ -195,7 +195,7 @@
                             </label>
                         </div>
                         <div class="radio radio-info radio-inline">
-                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0" checked>
                             <label for="ddTaskMilestone0">
                                 否
                             </label>
@@ -204,7 +204,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" id="row">
+        <div class="row" id="row2">
             <div class="panel panel-default">
                 <div class="panel-body"><h5 class="task-info-title">活动</h5>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -271,6 +271,9 @@
         </div>
     </div>
     <div class="panel-footer" style="position: relative; width: 100%; bottom: 1px;">
+        <%--<div class="col-xs-6">--%>
+            <%--<button class="btn btn-primary btn-block" id="taskEdit" onclick="onChangeTaskInfo()" >保存信息</button>--%>
+        <%--</div>--%>
         <div class="input-group">
             <input type="text" class="form-control" placeholder="输入@选择提醒人员" disabled="disabled" title="暂不可用">
             <span class="input-group-btn">
@@ -338,7 +341,7 @@
             placement: 'bottom',
             format: 'YYYY-MM-DD',
             viewformat: 'YYYY年 MM月 DD日',
-            template: 'YYYY年 MMMM月 DD日',
+            template: 'YYYY年 MM月 DD日',
             combodate: {
                 minYear: 2000,
                 maxYear: 2030,

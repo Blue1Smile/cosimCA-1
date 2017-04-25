@@ -44,7 +44,7 @@
             <%--<c:set var="checkAll">--%>
             <%--<input type="checkbox" id="chkall"/>--%>
             <%--</c:set>--%>
-            <display:table name="publishListWithoutValue" id="publshListWithoutValueItem" requestURI="movetask.ht"
+            <display:table name="childListWithoutValue" id="childListWithoutValue" requestURI="movetask.ht"
                            sort="external"
                            cellpadding="1"
                            cellspacing="1" export="false" class="table table-striped">
@@ -53,9 +53,9 @@
                 <%--</display:column>--%>
                 <%--<display:column property="ddDataId" title="数据ID" sortable="true" sortName="DD_DATA_ID"--%>
                 <%--maxLength="80"></display:column>--%>
-                <display:column property="ddStructName" title="数据结构名称" maxLength="80"></display:column>
-                <display:column property="ddCreateTime" title="创建时间" maxLength="80"></display:column>
-                <display:column property="ddDescription" title="数据结构描述" maxLength="80"></display:column>
+                <display:column property="ddDataPath" title="数据结构名称" maxLength="80"></display:column>
+                <display:column property="ddDataName" title="私有数据名称" maxLength="80"></display:column>
+                <display:column property="ddDataType" title="私有数据类型" maxLength="80"></display:column>
             </display:table>
         </c:otherwise></c:choose>
 

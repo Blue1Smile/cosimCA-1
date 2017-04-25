@@ -57,13 +57,13 @@ public class Project {
 	private Long ddProjectResponsiblePersonId;
 
 	/** The dd project type. */
-	private Long ddProjectType;
+	private String ddProjectType;
 
 	/** The dd project belong model. */
 	private String ddProjectBelongModel;
 
 	/** The dd project secret level. */
-	private Long ddProjectSecretLevel;
+	private String ddProjectSecretLevel;
 
 	/** The dd project change person id. */
 	private Long ddProjectChangePersonId;
@@ -94,6 +94,10 @@ public class Project {
 
 	/** The dd project schedule state. */
 	private String ddProjectScheduleState;
+
+	/** The dd project phase name. */
+	private String ddProjectPhaseName;
+
 
     //项目管理中的任务列表20161202
     protected List<TaskInfo> taskInfoList=new ArrayList<TaskInfo>();
@@ -293,7 +297,7 @@ public class Project {
 	 *
 	 * @return the dd project type
 	 */
-	public Long getDdProjectType() {
+	public String getDdProjectType() {
 		return ddProjectType;
 	}
 
@@ -303,7 +307,7 @@ public class Project {
 	 * @param ddProjectType
 	 *            the new dd project type
 	 */
-	public void setDdProjectType(Long ddProjectType) {
+	public void setDdProjectType(String ddProjectType) {
 		this.ddProjectType = ddProjectType;
 	}
 
@@ -331,7 +335,7 @@ public class Project {
 	 *
 	 * @return the dd project secret level
 	 */
-	public Long getDdProjectSecretLevel() {
+	public String getDdProjectSecretLevel() {
 		return ddProjectSecretLevel;
 	}
 
@@ -341,7 +345,7 @@ public class Project {
 	 * @param ddProjectSecretLevel
 	 *            the new dd project secret level
 	 */
-	public void setDdProjectSecretLevel(Long ddProjectSecretLevel) {
+	public void setDdProjectSecretLevel(String ddProjectSecretLevel) {
 		this.ddProjectSecretLevel = ddProjectSecretLevel;
 	}
 
@@ -534,6 +538,24 @@ public class Project {
 	public void setDdProjectScheduleState(String ddProjectScheduleState) {
 		this.ddProjectScheduleState = ddProjectScheduleState;
 	}
+	/**
+	 * Gets the dd project phase id.
+	 *
+	 * @return the dd project phase name
+	 */
+	public String getDdProjectPhaseName() {
+		return ddProjectPhaseName;
+	}
+
+	/**
+	 * Sets the dd project phase id.
+	 *
+	 * @param ddProjectPhaseName
+	 *            the new dd project phase name
+	 */
+	public void setDdProjectPhaseName(String ddProjectPhaseName) {
+		this.ddProjectPhaseName = ddProjectPhaseName;
+	}
 
 
 
@@ -620,6 +642,8 @@ public class Project {
 		builder.append(ddProjectCurrentStage);
 		builder.append(", ddProjectScheduleState=");
 		builder.append(ddProjectScheduleState);
+		builder.append(", ddProjectPhaseName=");
+		builder.append(ddProjectPhaseName);
 		builder.append("]");
 		return builder.toString();
 	}

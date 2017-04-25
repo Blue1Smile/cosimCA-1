@@ -20,10 +20,10 @@
 			property="ddProjectFixedPattern" />
 		<result column="DD_PROJECT_RESPONSIBLE_PERSON_ID" jdbcType="NUMERIC"
 			property="ddProjectResponsiblePersonId" />
-		<result column="DD_PROJECT_TYPE" jdbcType="NUMERIC" property="ddProjectType" />
+		<result column="DD_PROJECT_TYPE" jdbcType="VARCHAR" property="ddProjectType" />
 		<result column="DD_PROJECT_BELONG_MODEL" jdbcType="VARCHAR"
 			property="ddProjectBelongModel" />
-		<result column="DD_PROJECT_SECRET_LEVEL" jdbcType="NUMERIC"
+		<result column="DD_PROJECT_SECRET_LEVEL" jdbcType="VARCHAR"
 			property="ddProjectSecretLevel" />
 		<result column="DD_PROJECT_CHANGE_PERSON_ID" jdbcType="NUMERIC"
 			property="ddProjectChangePersonId" />
@@ -43,6 +43,8 @@
 			property="ddProjectCurrentStage" />
 		<result column="DD_PROJECT_SCHEDULE_STATE" jdbcType="VARCHAR"
 			property="ddProjectScheduleState" />
+		<result column="DD_PROJECT_PHASE_NAME" jdbcType="VARCHAR"
+				property="ddProjectPhaseName" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		DD_PROJECT_ID, DD_PROJECT_NAME,
@@ -56,7 +58,7 @@
 		DD_PROJECT_STATE, DD_PROJECT_PLAN_START_DATE,
 		DD_PROJECT_COMPLETE_DATE, DD_PROJECT_ACTUAL_START_DATE,
 		DD_PROJECT_ACTUAL_COMPLETE_DATA, DD_PROJECT_CURRENT_STAGE,
-		DD_PROJECT_SCHEDULE_STATE
+		DD_PROJECT_SCHEDULE_STATE,DD_PROJECT_PHASE_NAME
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
 		resultMap="BaseResultMap">
@@ -137,7 +139,7 @@
 		DD_PROJECT_STATE, DD_PROJECT_PLAN_START_DATE,
 		DD_PROJECT_COMPLETE_DATE, DD_PROJECT_ACTUAL_START_DATE,
 		DD_PROJECT_ACTUAL_COMPLETE_DATA, DD_PROJECT_CURRENT_STAGE,
-		DD_PROJECT_SCHEDULE_STATE)
+		DD_PROJECT_SCHEDULE_STATE,DD_PROJECT_PHASE_NAME)
 		values (#{ddProjectId,jdbcType=NUMERIC},
 		#{ddProjectName,jdbcType=VARCHAR},
 		#{ddProjectResponsibleUnits,jdbcType=VARCHAR},
@@ -148,9 +150,9 @@
 		#{ddProjectCreatorId,jdbcType=NUMERIC},
 		#{ddProjectFixedPattern,jdbcType=BIT},
 		#{ddProjectResponsiblePersonId,jdbcType=NUMERIC},
-		#{ddProjectType,jdbcType=NUMERIC},
+		#{ddProjectType,jdbcType=VARCHAR},
 		#{ddProjectBelongModel,jdbcType=VARCHAR},
-		#{ddProjectSecretLevel,jdbcType=NUMERIC},
+		#{ddProjectSecretLevel,jdbcType=VARCHAR},
 		#{ddProjectChangePersonId,jdbcType=NUMERIC},
 		#{ddProjectPriority,jdbcType=NUMERIC},
 		#{ddProjectRemark,jdbcType=VARCHAR},
@@ -160,7 +162,9 @@
 		#{ddProjectActualStartDate,jdbcType=DATE},
 		#{ddProjectActualCompleteData,jdbcType=DATE},
 		#{ddProjectCurrentStage,jdbcType=VARCHAR},
-		#{ddProjectScheduleState,jdbcType=VARCHAR})
+		#{ddProjectScheduleState,jdbcType=VARCHAR},
+		#{ddProjectPhaseName,jdbcType=VARCHAR}
+        )
 	</insert>
 
 
@@ -184,11 +188,11 @@
 		DD_PROJECT_RESPONSIBLE_PERSON_ID =
 		#{ddProjectResponsiblePersonId,jdbcType=NUMERIC},
 		DD_PROJECT_TYPE =
-		#{ddProjectType,jdbcType=NUMERIC},
+		#{ddProjectType,jdbcType=VARCHAR},
 		DD_PROJECT_BELONG_MODEL =
 		#{ddProjectBelongModel,jdbcType=VARCHAR},
 		DD_PROJECT_SECRET_LEVEL =
-		#{ddProjectSecretLevel,jdbcType=NUMERIC},
+		#{ddProjectSecretLevel,jdbcType=VARCHAR},
 		DD_PROJECT_CHANGE_PERSON_ID =
 		#{ddProjectChangePersonId,jdbcType=NUMERIC},
 		DD_PROJECT_PRIORITY =
@@ -207,7 +211,9 @@
 		DD_PROJECT_ACTUAL_COMPLETE_DATA =
 		#{ddProjectActualCompleteData,jdbcType=DATE},
 		DD_PROJECT_CURRENT_STAGE = #{ddProjectCurrentStage,jdbcType=VARCHAR},
-		DD_PROJECT_SCHEDULE_STATE = #{ddProjectScheduleState,jdbcType=VARCHAR}
+		DD_PROJECT_SCHEDULE_STATE = #{ddProjectScheduleState,jdbcType=VARCHAR},
+		DD_PROJECT_PHASE_NAME =
+		#{ddProjectPhaseName,jdbcType=VARCHAR}
 		where DD_PROJECT_ID = #{ddProjectId}
 	</update>
 
@@ -283,6 +289,9 @@
 			<if test="ddProjectScheduleState != null">
 				DD_PROJECT_SCHEDULE_STATE,
 			</if>
+			<if test="ddProjectPhaseName != null">
+				DD_PROJECT_PHASE_NAME,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="ddProjectId != null">
@@ -316,13 +325,13 @@
 				#{ddProjectResponsiblePersonId,jdbcType=NUMERIC},
 			</if>
 			<if test="ddProjectType != null">
-				#{ddProjectType,jdbcType=NUMERIC},
+				#{ddProjectType,jdbcType=VARCHAR},
 			</if>
 			<if test="ddProjectBelongModel != null">
 				#{ddProjectBelongModel,jdbcType=VARCHAR},
 			</if>
 			<if test="ddProjectSecretLevel != null">
-				#{ddProjectSecretLevel,jdbcType=NUMERIC},
+				#{ddProjectSecretLevel,jdbcType=VARCHAR},
 			</if>
 			<if test="ddProjectChangePersonId != null">
 				#{ddProjectChangePersonId,jdbcType=NUMERIC},
@@ -353,6 +362,9 @@
 			</if>
 			<if test="ddProjectScheduleState != null">
 				#{ddProjectScheduleState,jdbcType=VARCHAR},
+			</if>
+			<if test="ddProjectPhaseName != null">
+				#{ddProjectPhaseName,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -397,7 +409,7 @@
 				#{ddProjectResponsiblePersonId,jdbcType=NUMERIC},
 			</if>
 			<if test="ddProjectType != null">
-				DD_PROJECT_TYPE = #{ddProjectType,jdbcType=NUMERIC},
+				DD_PROJECT_TYPE = #{ddProjectType,jdbcType=VARCHAR},
 			</if>
 			<if test="ddProjectBelongModel != null">
 				DD_PROJECT_BELONG_MODEL =
@@ -405,7 +417,7 @@
 			</if>
 			<if test="ddProjectSecretLevel != null">
 				DD_PROJECT_SECRET_LEVEL =
-				#{ddProjectSecretLevel,jdbcType=NUMERIC},
+				#{ddProjectSecretLevel,jdbcType=VARCHAR},
 			</if>
 			<if test="ddProjectChangePersonId != null">
 				DD_PROJECT_CHANGE_PERSON_ID =
@@ -445,6 +457,10 @@
 				DD_PROJECT_SCHEDULE_STATE =
 				#{ddProjectScheduleState,jdbcType=VARCHAR},
 			</if>
+			<if test="ddProjectPhaseName != null">
+				DD_PROJECT_PHASE_NAME =
+				#{ddProjectPhaseName,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
 	</update>
@@ -469,11 +485,11 @@
 		DD_PROJECT_RESPONSIBLE_PERSON_ID =
 		#{ddProjectResponsiblePersonId,jdbcType=NUMERIC},
 		DD_PROJECT_TYPE =
-		#{ddProjectType,jdbcType=NUMERIC},
+		#{ddProjectType,jdbcType=VARCHAR},
 		DD_PROJECT_BELONG_MODEL =
 		#{ddProjectBelongModel,jdbcType=VARCHAR},
 		DD_PROJECT_SECRET_LEVEL =
-		#{ddProjectSecretLevel,jdbcType=NUMERIC},
+		#{ddProjectSecretLevel,jdbcType=VARCHAR},
 		DD_PROJECT_CHANGE_PERSON_ID =
 		#{ddProjectChangePersonId,jdbcType=NUMERIC},
 		DD_PROJECT_PRIORITY =
@@ -492,7 +508,9 @@
 		DD_PROJECT_ACTUAL_COMPLETE_DATA =
 		#{ddProjectActualCompleteData,jdbcType=DATE},
 		DD_PROJECT_CURRENT_STAGE = #{ddProjectCurrentStage,jdbcType=VARCHAR},
-		DD_PROJECT_SCHEDULE_STATE = #{ddProjectScheduleState,jdbcType=VARCHAR}
+		DD_PROJECT_SCHEDULE_STATE = #{ddProjectScheduleState,jdbcType=VARCHAR},
+		DD_PROJECT_PHASE_NAME =
+		#{ddProjectPhaseName,jdbcType=VARCHAR},
 		where DD_PROJECT_ID = #{ddProjectId,jdbcType=NUMERIC}
 	</update>
 </mapper>
