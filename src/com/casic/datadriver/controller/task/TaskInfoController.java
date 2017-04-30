@@ -627,8 +627,6 @@ public class TaskInfoController extends AbstractController {
                     taskInfo.setDdTaskDescription(temp3);
                     break;
             }
-
-
             taskInfoService.updateDDTask(taskInfo);
         } catch (Exception e) {
             String resultMsg = null;

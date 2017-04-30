@@ -313,6 +313,12 @@
             source: [
                 <c:forEach var="personItem" items="${sysUserList}">
                 {value: ${personItem.userId}, text: '${personItem.fullname}'},
+                <%--source: [--%>
+                 <%--<c:forEach var="personItem" items="${sysUserList}">--%>
+                 <%--{value: ${personItem.userId}, text: '${personItem.fullname}'},--%>
+
+            <%--</c:forEach>--%>
+//        ],
                 </c:forEach>
             ],
 
@@ -352,6 +358,12 @@
                 onChangeTaskInfo(params, taskItem);
             }
         });
+//        $('#ddTaskMilestone1').onclick({
+//            url: function (params) {
+//                taskItem = 4;
+//                onChangeTaskInfo(params, taskItem);
+//            }
+//        });
         $('#comments').editable({
             showbuttons: false,
             placement: 'bottom',

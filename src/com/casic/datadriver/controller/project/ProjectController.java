@@ -218,7 +218,7 @@ public class ProjectController extends BaseController {
         }
         else{
             for(int i=0; i<allProjectList.size();i++){
-                if(allProjectList.get(i).getDdProjectName().equals(projectName)){
+                if(allProjectList.get(i).getDdProjectName().contains(projectName)){
                     projectList.add(allProjectList.get(i));
                 }
             }
