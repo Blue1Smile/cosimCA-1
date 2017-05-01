@@ -278,7 +278,5 @@
             <property name="max" value="5"/>
             <property name="format" value="^$"/>
         </module>
-
     </module>
-
 </module>
