@@ -43,7 +43,7 @@ public class ProTaskDependanceController extends AbstractController  {
      *             the exception
      */
     @RequestMapping("save")
-    @Action(description = "Ìí¼Ó»ò¸üÐÂtaskinfo")
+    @Action(description = "ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ï¿½taskinfo")
     public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String resultMsg = null;
         ProTaskDependance proTaskDependance = this.getFormObject(request, ProTaskDependance.class);
@@ -74,7 +74,7 @@ public class ProTaskDependanceController extends AbstractController  {
      *             the exception
      */
     @RequestMapping("list")
-    @Action(description = "¸ù¾ÝÌõ¼þ²éÑ¯ÏîÄ¿»ù±¾ÐÅÏ¢ÁÐ±í")
+    @Action(description = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ð±ï¿½")
     public ModelAndView queryProTaskDependanceBasicInfoList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         QueryFilter queryFilter = new QueryFilter(request, "TaskItem");
