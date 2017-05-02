@@ -143,8 +143,10 @@
         <div class="panel panel-primary" style="height: 100%">
             <div class="panel-heading">数据中心列表</div>
             <div class="panel-body" style="height: 93%">
+
                 <div id="listFrame" style="height: 100%">
                 </div>
+
             </div>
         </div>
     </div>

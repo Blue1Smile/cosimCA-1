@@ -662,5 +662,20 @@ public class DataCenterController extends AbstractController {
         return mv;
     }
 
-
+    /**
+     * 项目数据订阅关系.
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("proorderrelation")
+    @Action(description = "返回查看项目的任务列表")
+    public ModelAndView proorderrelation(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long projectId = RequestUtil.getLong(request, "id");
+        ModelAndView mv = this.getAutoView().addObject("projectId", projectId);
+        return mv;
+    }
 }
