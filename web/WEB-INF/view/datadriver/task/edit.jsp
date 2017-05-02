@@ -309,7 +309,9 @@
         $('#executorSelect').editable({
             showbuttons: false,
             value: ${executorName.userId},
-            placement: 'bottom',
+            placement: 'right',
+            mode: 'inline',
+            onblur: 'submit',
             source: [
                 <c:forEach var="personItem" items="${sysUserList}">
                 {value: ${personItem.userId}, text: '${personItem.fullname}'},
@@ -330,7 +332,8 @@
         $('#taskPrioritySelect').editable({
             showbuttons: false,
             value: 1,
-            placement: 'left',
+            mode: 'inline',
+            onblur: 'submit',
             source: [
                 {value: 3, text: '紧急'},
                 {value: 2, text: '重要'},
@@ -344,7 +347,8 @@
 
         $('#dob').editable({
             showbuttons: true,
-            placement: 'bottom',
+            mode: 'inline',
+            onblur: 'submit',
             format: 'YYYY-MM-DD',
             viewformat: 'YYYY年 MM月 DD日',
             template: 'YYYY年 MM月 DD日',
