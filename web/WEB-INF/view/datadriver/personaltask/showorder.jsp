@@ -567,7 +567,7 @@
         }
         if (row.ddDataType == 2){
             return [//文件
-                '<a id="ordertr_download" href="javascript:void(0)" title="点击下载文件">预览',
+                '<a id="ordertr_download" href="javascript:void(0)" title="点击下载文件">下载',
                 '</a>'
             ].join('');
         }
