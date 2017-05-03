@@ -108,13 +108,13 @@
                     align: 'center',
                     visible: true
                 }
-                , {
-                    field: 'operate',
-                    title: '操作',
-                    align: 'center',
-                    events: operateEvents,
-                    formatter: operateFormatter()
-                }
+//                , {
+//                    field: 'operate',
+//                    title: '操作',
+//                    align: 'center',
+//                    events: operateEvents,
+//                    formatter: operateFormatter()
+//                }
             ],
             onClickRow: function (row, $element) {
                 curRow = row;

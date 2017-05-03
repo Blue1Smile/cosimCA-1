@@ -117,7 +117,7 @@ public class DataStructController extends AbstractController {
                         childPrivateData.setDdDataCreateTime(dataStruct.getDdCreateTime());
                         childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
                         childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
-                        childPrivateData.setDdDataUnit(dataStruct.getDdUnitForPrivate());
+                        childPrivateData.setDdDataUnit(privateDataList.get(i).getDdDataUnit());
                         privateDataService.add(childPrivateData);
                     }
                 }
@@ -274,6 +274,7 @@ public class DataStructController extends AbstractController {
             {
                 case 0 :
                     jsonObject.put("shujuleixing", "数值");
+
                     break;
                 case 1 :
                     jsonObject.put("shujuleixing", "结构型数据");
@@ -352,7 +353,26 @@ public class DataStructController extends AbstractController {
             jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
             jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
             jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-            jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
+            switch (tempPrivateData.getDdDataType())
+            {
+                case 0 :
+                    jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
+                    break;
+                case 1 :
+                    jsonObject.put("ddDataUnit", "--");
+                    break;
+                case 2 :
+                    jsonObject.put("ddDataUnit", "--");
+                    break;
+                case 3 :
+                    jsonObject.put("ddDataUnit", "--");
+                    break;
+                default :
+                    jsonObject.put("ddDataUnit", "其它");
+                    break;
+            }
+//            jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
+
             jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
             switch (tempPrivateData.getDdDataType())
             {
