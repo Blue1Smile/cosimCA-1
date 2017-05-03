@@ -139,6 +139,21 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
                 ISysUser sysUser = ContextUtil.getCurrentUser();
                 Date now = new Date();
+                Integer DataType = 0;
+                switch (String.valueOf(hssfRow.getCell(4))) {
+                    case "结构化数据":
+                        DataType = 1;
+                        break;
+                    case "文件":
+                        DataType = 2;
+                        break;
+                    case "模型":
+                        DataType = 3;
+                        break;
+                    case "数值":
+                        DataType = 0;
+                        break;
+                }
 
                 if (!String.valueOf(hssfRow.getCell(0)).equals(str)) {
                     str = String.valueOf(hssfRow.getCell(0));
@@ -150,7 +165,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
                     datastruct.setDdStructName(String.valueOf(hssfRow.getCell(0)));
                     datastruct.setDdEngName(String.valueOf(hssfRow.getCell(1)));
                     datastruct.setDdCreateTime(now);
-                    datastruct.setDdType(hssfRow.getCell(4).CELL_TYPE_STRING);
+                    datastruct.setDdType(DataType);
                     datastruct.setDdParentId(sysUser.getUserId());
                     datastruct.setDdOrderState((short)0);
                     datastruct.setDdPublishState((short)0);
@@ -162,7 +177,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
                 brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
                 brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
-                brandMobileInfo.setDdDataType(hssfRow.getCell(4).CELL_TYPE_STRING);
+                brandMobileInfo.setDdDataType(DataType);
                 brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
                 brandMobileInfo.setDdDataTaskName(taskname);
 //                   阈值定义问题
