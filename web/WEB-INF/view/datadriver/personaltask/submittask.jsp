@@ -15,14 +15,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html lang="zh-CN">
 <head>
-    <%--<%@include file="/commons/datadriver/formbase.jsp" %>--%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>--%>
-    <%--<link href="${ctx}/timeselect/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>--%>
-
     <title>提交信息</title>
 </head>
 <body>
@@ -37,32 +30,24 @@
         </c:otherwise></c:choose>
 </div>
 <div class="modal-body">
-    <c:choose><c:when test="${valueLength==0}">
-        <i class="glyphicon glyphicon-ok" style="font-size: large;color: #18a05e"></i>
-    </c:when>
+    <c:choose>
+        <c:when test="${valueLength==0}">
+            <i class="glyphicon glyphicon-ok" style="font-size: large;color: #18a05e"></i>
+        </c:when>
         <c:otherwise>
-            <%--<c:set var="checkAll">--%>
-            <%--<input type="checkbox" id="chkall"/>--%>
-            <%--</c:set>--%>
             <display:table name="childListWithoutValue" id="childListWithoutValue" requestURI="movetask.ht"
                            sort="external"
                            cellpadding="1"
                            cellspacing="1" export="false" class="table table-striped">
-                <%--<display:column title="${checkAll}" media="html" style="width:3%;">--%>
-                <%--<input type="checkbox" class="pk" name="id" value="${publshListWithoutValueItem.ddDataId}">--%>
-                <%--</display:column>--%>
-                <%--<display:column property="ddDataId" title="数据ID" sortable="true" sortName="DD_DATA_ID"--%>
-                <%--maxLength="80"></display:column>--%>
                 <display:column property="ddDataPath" title="数据结构名称" maxLength="80"></display:column>
                 <display:column property="ddDataName" title="私有数据名称" maxLength="80"></display:column>
                 <display:column property="ddDataType" title="私有数据类型" maxLength="80"></display:column>
             </display:table>
-        </c:otherwise></c:choose>
-
-
+        </c:otherwise>
+    </c:choose>
 </div>
-<%--<div class="modal-footer">--%>
-    <%--<a class="btn btn-success btn-block" href="list.ht" id="confirm">确认</a>--%>
-<%--</div>--%>
+<div class="modal-footer">
+    <a class="btn btn-success btn-block" href="list.ht" id="confirm">确认</a>
+</div>
 </body>
 </html>

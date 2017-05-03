@@ -173,6 +173,7 @@ public class PrivateDataController extends AbstractController {
         }
         return mv;
     }
+
     /**
      * 上传私有数据文件
      *
@@ -192,7 +193,7 @@ public class PrivateDataController extends AbstractController {
         //创建一个通用的多部分解析器
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         //判断 request 是否有文件上传,即多部分请求
-        if(multipartResolver.isMultipart(request)) {
+        if (multipartResolver.isMultipart(request)) {
             //转换成多部分request
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
             //取得request中的所有文件名
@@ -210,7 +211,7 @@ public class PrivateDataController extends AbstractController {
                     if (myFileName.trim() != "") {
                         System.out.println(myFileName);
                         //重命名上传后的文件名
-                        String fileName =  file1.getOriginalFilename();
+                        String fileName = file1.getOriginalFilename();
                         //定义上传路径//
                         ////
                         //取得根目录路径
@@ -218,7 +219,7 @@ public class PrivateDataController extends AbstractController {
 
                         ////
                         String realPath = getServletContext().getRealPath("/");
-                        String path =realPath+ "/uploadPrivateData/" + dataId + "/" +myFileName;
+                        String path = realPath + "/uploadPrivateData/" + dataId + "/" + myFileName;
 //                        String path ="d:"+ "/major/" + major + "/" + ddToolVersion +"_"+myFileName;
                         privateData.setDdDataPath(path);
                         privateData.setDdDataLastestValue(myFileName);
@@ -243,8 +244,7 @@ public class PrivateDataController extends AbstractController {
 //                    tservice.add(m);
 
 //                    response.sendRedirect("toollist1.ht?major="+major);//根据实际情况跳转w
-                }
-                else {
+                } else {
 
                 }
                 //记录上传该文件后的时间
@@ -255,6 +255,7 @@ public class PrivateDataController extends AbstractController {
 //        ModelAndView mv = this.getAutoView().addObject("dataStructId", dataId);
 //        return mv;
     }
+
     /**
      * 下载私有数据文件
      *
@@ -274,12 +275,12 @@ public class PrivateDataController extends AbstractController {
 //
 
         String path = getServletContext().getRealPath("/");
-        try{
+        try {
             // path是指欲下载的文件的路径。
             File file = new File(privateData.getDdDataPath());
             // 取得文件名。
             String filename = file.getName();
-            filename = URLEncoder.encode(filename,"UTF-8");
+            filename = URLEncoder.encode(filename, "UTF-8");
             // 取得文件的后缀名。
             String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
 
@@ -291,7 +292,7 @@ public class PrivateDataController extends AbstractController {
             // 清空response
             response.reset();
             // 设置response的Header
-            response.addHeader("Content-Disposition", "attachment;filename=" +filename);
+            response.addHeader("Content-Disposition", "attachment;filename=" + filename);
             response.addHeader("Content-Length", "" + file.length());
             OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
             response.setContentType("application/octet-stream");
@@ -302,6 +303,7 @@ public class PrivateDataController extends AbstractController {
             ex.printStackTrace();
         }
     }
+
     /**
      * 编辑任务
      *
@@ -391,7 +393,7 @@ public class PrivateDataController extends AbstractController {
                         dataVersion1.setDdDataVersion((long) (dataVersionList1.size() + 1));
                     } else {
                         dataVersion1.setDdDataVersion(0l);
-                    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                    }
                     dataVersionService.addDDDataVersion(dataVersion1);
                     privateData.setDdDataLastestValue(temp1);
                     break;
@@ -446,7 +448,7 @@ public class PrivateDataController extends AbstractController {
                 return;
             InputStream in = file.getInputStream();
             int count = privateDataService
-                    .importBrandPeriodSort(in, taskId, projectId,taskinfo.getDdTaskName());
+                    .importBrandPeriodSort(in, taskId, projectId, taskinfo.getDdTaskName());
 //            int count = BrandMobileInfos.size();
 
             message = new ResultMessage(ResultMessage.Success, "成功导入" + count + "条");
@@ -495,4 +497,19 @@ public class PrivateDataController extends AbstractController {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
+
+    /**
+     * 模型预览
+     *
+     * @return
+     */
+    @RequestMapping("viewModel")
+    @Action(description = "模型预览")
+    public ModelAndView viewModel(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long dataId = RequestUtil.getLong(request, "id");
+        PrivateData privateData = privateDataService.getDataById(dataId);
+        return getAutoView().addObject("dataPath", privateData.getDdDataPath());
+    }
+
 }

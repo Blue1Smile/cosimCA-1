@@ -93,9 +93,9 @@
         <!-- Checks the placement of right curly braces ('}') for  else, try, and catch tokens. The policy to verify is specified using property  option.
           option: 右大括号是否单独一行显示
           tokens: 定义检查的类型  -->
-        <module name="RightCurly">
-            <property name="option" value="alone"/>
-        </module>
+        <!--<module name="RightCurly">-->
+            <!--<property name="option" value="alone"/>-->
+        <!--</module>-->
 
         <!-- 检查在重写了equals方法后是否重写了hashCode方法 -->
         <module name="EqualsHashCode"/>
