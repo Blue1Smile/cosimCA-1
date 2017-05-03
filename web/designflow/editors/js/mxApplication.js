@@ -42,6 +42,7 @@
 			{
 				var node = mxUtils.load(config).getDocumentElement();
 				var editor = new mxEditor(node);
+				//onlyeditor = editor;
 
 				// Updates the window title after opening new files
 				var title = document.title;
@@ -49,7 +50,7 @@
 				{
 					document.title = title + ' - ' + sender.getTitle();
 				};
-
+				//$.load('${ctx}/datadriver/designflow/projectflow.ht')
 				editor.addListener(mxEvent.OPEN, funct);
 
 				// Prints the current root in the window title if the

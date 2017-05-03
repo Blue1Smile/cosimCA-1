@@ -10,6 +10,9 @@
 <%@include file="/commons/include/get.jsp" %>
 <html lang="zh-CN">
 <head>
+
+
+    <script type="text/javascript" src="${ctx}/js/jquery/jquery1.3.2.js"></script>
     <title>项目流程</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <style type="text/css" media="screen">
@@ -31,13 +34,17 @@
     <script type="text/javascript">
         mxBasePath = '${ctx}/src';
     </script>
+
     <script type="text/javascript" src="${ctx}/src/js/mxClient.js"></script>
     <script type="text/javascript" src="${ctx}/designflow/editors/js/mxApplication.js"></script>
     <script type="text/javascript">
         mxConstants.DEFAULT_HOTSPOT = 1;
+        var $j = jQuery.noConflict();
         var id='${projectId}';
         var xml='${processFlowXml}';
         var flag=${flag};
+        var onlyeditor;
+
         // Enables guides
         mxGraphHandler.prototype.guidesEnabled = true;
 
@@ -49,7 +56,7 @@
         mxEdgeHandler.prototype.snapToTerminals = true;
 
         window.onbeforeunload = function () {
-            return " ";
+            return "是否确认离开";
         };
     </script>
 </head>

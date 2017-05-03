@@ -25479,6 +25479,18 @@ mxGraph.prototype.removeCells=function(cells,includeEdges)
     if(cells==null)
     {
         cells=this.getDeletableCells(this.getSelectionCells());
+
+
+    }
+    for(i=0;i<cells.length;i++)
+    {
+       if(cells[i].getAttribute("status")=="publish")
+       {
+           mxUtils.alert("您所选的区域包含已发布任务，不允许删除");
+           return cells;
+       }
+
+
     }
     if(includeEdges)
     {
@@ -35314,9 +35326,10 @@ mxEditor.prototype.readGraphModel_new=function(node)
 
     this.resetHistory();
 };
-
+var currenteditor;
 mxEditor.prototype.save=function(url,linefeed)
 {
+    currenteditor = this;
     url=url||this.getUrlPost();
     if(url!=null&&url.length>0)
     {
@@ -35324,8 +35337,39 @@ mxEditor.prototype.save=function(url,linefeed)
         this.postDiagram(url,data);
         this.setModified(false);
     }
-    this.fireEvent(new mxEventObject(mxEvent.SAVE,'url',url));
-    window.close();
+    //this.fireEvent(new mxEventObject(mxEvent.SAVE,'url',url));
+
+  /*
+    $j.post('getXMLbyID.ht?projectId='+id+'&xml='+data, function (data2) {
+
+        var xmlcontent = mxUtils.parseXml(data2);
+        alert(data2);
+        currenteditor.readGraphModel(xmlcontent.documentElement);
+
+
+
+
+    });
+*/
+
+  /*
+  乱码解决不了
+    $.ajax({
+        type: 'POST',
+        url:'getXMLbyID.ht?projectId='+id+'&xml='+data,
+        success: function(data2){
+            var xmlcontent = mxUtils.parseXml(data2);
+            alert(data2);
+            currenteditor.readGraphModel(xmlcontent.documentElement);
+
+
+        },
+        contentType:"charset=UTF-8"
+    });
+
+*/
+
+   // window.close();
 };
 mxEditor.prototype.postDiagram=function(url,data)
 {
