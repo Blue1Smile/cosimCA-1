@@ -61,10 +61,10 @@
             </ul>
         </li>
         <li role="presentation" class="active" id="switch_attr_publish"><a href="#data" data-toggle="tab"
-                                                                           role="tab">私有&发布</a>
+                                                                           role="tab">输出数据</a>
         </li>
         <li role="presentation" id="switch_attr_order"><a href="#publish" data-toggle="tab"
-                                                          role="tab">集合&订阅</a>
+                                                          role="tab">输入数据</a>
         </li>
         <%--<li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">订阅数据</a>--%>
         <%--</li>--%>
