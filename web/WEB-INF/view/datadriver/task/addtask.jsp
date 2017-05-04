@@ -27,7 +27,25 @@
 <html lang="zh-CN">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
     <title>添加任务</title>
+    <meta charset="utf-8" />
+    <style>
+        #gggg ul {
+            display: none;
+        }
+
+        .hhf_select {
+            background-image: url(/img/aaa.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+
+        .hhf_select.active {
+            background-image: url(/img/bbb.png);
+        }
+    </style>
 </head>
 <body>
 <div class="modal-header">
@@ -58,11 +76,11 @@
                             <option value="包任务">包任务</option>
                         </select>
                         <%--<input type="text" id="ddTaskType" name="ddTaskType"--%>
-                               <%--value="" class="form-control"/></td>--%>
+                        <%--value="" class="form-control"/></td>--%>
                     <th width="20%">任务截至时间:</th>
                     <%--<td><input type="text" id="ddTaskPlanEndTime" name="ddTaskPlanEndTime"--%>
-                               <%--value="<fmt:formatDate value='${businessChance.startTime}'--%>
-                               <%--pattern='yyyy-MM-dd'/>" class="inputText date" validate="{date:true,required:true}" /></td>--%>
+                    <%--value="<fmt:formatDate value='${businessChance.startTime}'--%>
+                    <%--pattern='yyyy-MM-dd'/>" class="inputText date" validate="{date:true,required:true}" /></td>--%>
 
                     <td><input type="text" name="ddTaskPlanEndTime"
                                value=""
@@ -98,12 +116,40 @@
                     <th width="20%">任务负责人:</th>
                     <td>
                         <div class="layui-input-inline">
-                            <select name="ddTaskResponsiblePerson" class="form-control" id="personSelect">
-                                <c:forEach var="personItem" items="${sysUserList}">
-                                    <option value="${personItem.userId}"
-                                            <c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>
-                                </c:forEach>
+                            <%--<select name="ddTaskResponsiblePerson" class="form-control" id="personSelect">--%>
+                            <%--<c:forEach var="personItem" items="${sysUserList}">--%>
+                            <%--<optgroup label="${personItem.fullname}">--%>
+                            <%--<c:forEach var="personItem" items="${sysUserList}">--%>
+                            <%--<option value="${personItem.userId}"--%>
+                            <%--<c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>--%>
+                            <%--</c:forEach>--%>
+                            <%--</optgroup>--%>
+                            <%--<c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>--%>
+                            <%--</c:forEach>--%>
+                            <%--</select>--%>
+                            研究室：
+                            <select style="width: 100px;" id="roomSelect" onchange="roomChange(this);">
+                                <option value="-1">请选择</option>
                             </select>
+                            人员：
+                            <%--<select style="width: 100px;" id="personSelect" onchange="personChange(this)" ;>--%>
+                            <select style="width: 100px;" id="personSelect" >
+                                <option value="0">请选择</option>
+                            </select>
+
+
+
+                            <%--<select name="ddTaskResponsiblePerson" class="form-control" id="roomSelect">--%>
+                            <%--<c:forEach var="roomItem" items="${sysUserList}">--%>
+                            <%--<select name="ddTaskResponsiblePerson" class="form-control" id="personSelect">--%>
+                            <%--<c:forEach var="personItem" items="${sysUserList}">--%>
+                            <%--<option value="${personItem.userId}"--%>
+                            <%--<c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>--%>
+                            <%--</c:forEach>--%>
+                            <%--</select>--%>
+                            <%--<c:if test="${TaskInfo.ddTaskPerson == '${personItem.fullname}'}">selected="selected"</c:if>>${personItem.fullname}</option>--%>
+                            <%--</c:forEach>--%>
+                            <%--</select>--%>
                         </div>
                     </td>
                 </tr>
@@ -162,6 +208,53 @@
         } else {
         }
     }
+    //声明研究室
+    var room = ${sysOrgList}; //直接声明Array
+    //声明研究员
+    var person = ${userList};
+//    var person = [
+//        ["东城", "昌平", "海淀"],
+//        ["浦东", "高区"],
+//        ["济南", "青岛"]
+//    ];
+
+    //设置一个研究室的公共下标
+    var pIndex = -1;
+    var roomEle = document.getElementById("roomSelect");
+    var personEle = document.getElementById("personSelect");
+    //先设置省的值
+    for (var i = 0; i < room.length; i++) {
+        //声明option.<option value="room[i]">Pres[i]</option>
+        var op = new Option(room[i], i);
+        //添加
+        roomEle.options.add(op);
+    }
+    function roomChange(obj) {
+        if (obj.value == -1) {
+            personEle.options.length = 0;
+        }
+        //获取值
+        var val = obj.value;
+        pIndex = obj.value;
+        //获取人员
+        var per = person[val];
+
+        //先清空人员
+        personEle.options.length = 0;
+        for (var i = 0; i < per.length; i++) {
+            var op = new Option(per[i], i);
+            personEle.options.add(op);
+        }
+    }
+//    function personChange(obj) {
+//        var val = obj.selectedIndex;
+//        var per = person[val];
+//        personEle.options.length = 0;
+//        for (var i = 0; i < per.length; i++) {
+//            var op = new Option(per[i], i);
+//            personEle.options.add(op);
+//        }
+//    }
 </script>
 <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.zh-CN.js"></script>
 </html>
