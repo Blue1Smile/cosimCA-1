@@ -1,6 +1,7 @@
 package com.casic.datadriver.controller.task;
 
 import com.casic.datadriver.controller.AbstractController;
+import com.casic.datadriver.controller.datacenter.PersonalTaskController;
 import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.project.Project;
@@ -21,9 +22,13 @@ import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
+import com.hotent.platform.auth.ISysOrg;
 import com.hotent.platform.auth.ISysUser;
+import com.hotent.platform.model.system.SysOrg;
+import com.hotent.platform.service.system.SysOrgService;
 import com.hotent.platform.service.system.SysUserService;
 import net.sf.ezmorph.object.DateMorpher;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -36,6 +41,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -56,6 +62,8 @@ public class TaskInfoController extends AbstractController {
     private OrderDataRelationService orderDataRelationService;
     @Resource
     private SysUserService sysUserService;
+    @Resource
+    private SysOrgService sysOrgService;
     @Resource
     private ProjectService projectService;
     @Resource
@@ -181,16 +189,49 @@ public class TaskInfoController extends AbstractController {
         ResultMessage resultMessage = null;
         ModelAndView mv = new ModelAndView();
         try {
+            List<ISysOrg> sysOrgList=sysOrgService.getAll();
             List<ISysUser> sysUserList = sysUserService.getAll();
+
+//            JSONObject roomObject = new JSONObject();
+//            JSONArray jsonMembers = new JSONArray();
+            String roomString = "[";
+            for(int i =0; i < sysOrgList.size(); i++){
+
+//               roomString.concat("\"");
+//                roomString.concat(sysOrgList.get(i).getOrgName());
+//                roomString.concat("\"");
+                roomString=roomString+("\"");
+                roomString=roomString+(sysOrgList.get(i).getOrgName());
+                roomString=roomString+("\",");
+            }
+//            roomString=roomString.(",");
+            roomString=roomString+("]");
+
+            String userString = "[";
+            for(int i =0; i < sysOrgList.size(); i++) {
+                userString = userString + ("[");
+                for (int j = 0; j < sysUserList.size(); j++) {
+                    if(sysUserList.get(j).getOrgId().equals(sysOrgList.get(i).getOrgId())){
+                        userString = userString + ("\"");
+                        userString = userString + (sysUserList.get(j).getFullname());
+                        userString = userString + ("\",");
+                    }
+                }
+                userString=userString+("],");
+            }
+            userString=userString+("]");
             Long id = RequestUtil.getLong(request, "id");
             Project project = projectService.getById(id);
-            mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
+            mv = this.getAutoView().addObject("projectItem", project).addObject("sysOrgList", roomString)
+                    .addObject("userList", userString);
             resultMessage = new ResultMessage(ResultMessage.Success, "创建成功");
         } catch (Exception ex) {
             resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败" + ex.getMessage());
         }
         return mv;
     }
+
+
 
     /**
      * Del.

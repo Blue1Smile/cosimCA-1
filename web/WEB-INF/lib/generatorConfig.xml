@@ -9,13 +9,14 @@
         <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
         <property name="suppressAllComments" value="true"/>
     </commentGenerator>
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.133:3306/cloudnew" userId="root" password="chz123" />
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.126:3306/cloud1" userId="root" password="chz123" />
     <!-- 生成实体类 实体bean文件 -->
     <javaModelGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspace\cosimCA\src" />
     <!-- mapper xml文件 -->
     <sqlMapGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspace\cosimCA\src" />
     <!-- mapper 接口文件 ./src-->
     <javaClientGenerator targetPackage="com.casic.datadriver.mapper" targetProject="D:\work\workspace\cosimCA\src" type="XMLMAPPER" />
-    <table schema="" tableName="dd_data_snapshot" domainObjectName="DataSnapshot" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+    <table schema="" tableName="dd_process_block" domainObjectName="ProcessBlock" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
 </context>
 </generatorConfiguration>
