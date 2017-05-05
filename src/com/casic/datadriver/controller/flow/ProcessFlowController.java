@@ -165,9 +165,58 @@ public class ProcessFlowController extends AbstractController {
                         .addObject("processFlowXml", xml).addObject("flag",flag);
 
             }
-            else
+            else{
+                Reader in = new StringReader(tempXml);
+                Document doc = (new SAXBuilder()).build(in);
+
+                Element mxGraphmodel = doc.getRootElement();
+                Element root = mxGraphmodel.getChild("root");
+                //String projectID = root.getChild("Layer").getAttributeValue("projectID");
+                java.util.List task = root.getChildren("Task");
+
+
+
+
+                for (Iterator i = task.iterator(); i.hasNext(); ) {
+                    Element el = (Element) i.next();
+
+                    String taskid = el.getAttributeValue("oracleid");
+
+                    TaskInfo taskInfo = taskInfoService.getById(Long.parseLong(taskid));
+                    String ddTaskChildType = taskInfo.getDdTaskChildType();
+
+                    Element mxCell;
+                    mxCell = el.getChild("mxCell");
+                    String style = mxCell.getAttributeValue("style");
+
+                    if(ddTaskChildType.compareTo("publishpanel")==0) {
+                        el.setAttribute("status","publish");
+                    }
+                    else if(ddTaskChildType.compareTo("checkpanel")==0) {
+                        el.setAttribute("status","publish");
+                    }
+                    else if(ddTaskChildType.compareTo("completepanel")==0) {
+                        el.setAttribute("status","publish");
+                    }
+                }
+
+                //输出改造后的xml
+                Format format = Format.getCompactFormat();
+                format.setEncoding("utf-8");
+                format.setIndent(" ");
+                XMLOutputter xmlOutputter = new XMLOutputter();
+                java.io.StringWriter a = new java.io.StringWriter();
+                xmlOutputter.output(doc, a);
+                String str = a.toString();
+
+                //要对String str做掐头去尾
+                String xml = str.substring(40,str.lastIndexOf('>')+1);
                 mv = this.getAutoView().addObject("projectId", projectId)
-                        .addObject("processFlowXml", tempXml).addObject("flag",flag);
+                        .addObject("processFlowXml", xml).addObject("flag",flag);
+
+
+            }
+
 
         } else {
             mv = this.getAutoView().addObject("projectId", projectId).addObject("flag",flag);
@@ -257,6 +306,9 @@ public class ProcessFlowController extends AbstractController {
                         TaskInfo ti = (TaskInfo) it.next();
                         if(ti.getDdTaskId()==taskInfo.getDdTaskId())
                             it.remove();
+
+
+
                     }
                 }
             } catch (Exception e) {
@@ -265,6 +317,13 @@ public class ProcessFlowController extends AbstractController {
             el.setAttribute("oracleid", taskInfo.getDdTaskId().toString());
             System.out.println(taskInfo.getDdTaskId().toString());
         }
+        /*
+        for(Iterator it =taskInfoList.iterator();it.hasNext();)
+        {
+            TaskInfo ti = (TaskInfo) it.next();
+            taskInfoService.delById(ti.getDdTaskId());
+        }
+*/
         //保存流程XML
         if (projectId != 0)
             saveProcessXml(doc, projectId);
@@ -277,7 +336,7 @@ public class ProcessFlowController extends AbstractController {
      * @return void
      * @throws Exception the exception
      */
-    private void saveProcessXml(Document doc, long projectId) throws IOException {
+    private String saveProcessXml(Document doc, long projectId) throws IOException {
         ProjectProcessAssocia projectProcessAssocia ;
         Format format = Format.getCompactFormat();
         format.setEncoding("utf-8");
@@ -312,6 +371,7 @@ public class ProcessFlowController extends AbstractController {
             processFlowService.update(processflow);
 
         }
+        return xml;
     }
 
     /**
@@ -325,5 +385,144 @@ public class ProcessFlowController extends AbstractController {
         projectProcessAssocia.setDdPrcessAssociationId(UniqueIdUtil.genId());
         projectProcessAssociaService.add(projectProcessAssocia);
     }
+
+
+    @RequestMapping("getXMLbyID")
+    @Action(description = "根据项目进入流程设计iframe")
+    public void getXMLbyID(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        //获取request发送的xml
+        request.setCharacterEncoding("utf-8");
+        ProcessFlow processFlow = new ProcessFlow();
+        ModelAndView mv = new ModelAndView();
+
+
+        String test = RequestUtil.getString(request,"xml");
+        //解析xml
+        Reader in = new StringReader(test);
+        Document doc = (new SAXBuilder()).build(in);
+
+        //根据结构 获取所有的task children
+        Element mxGraphmodel = doc.getRootElement();
+        Element root = mxGraphmodel.getChild("root");
+
+        //String projectID = root.getChild("Layer").getAttributeValue("projectID");
+        java.util.List task = root.getChildren("Task");
+
+        //在layer这里获取projectID,假设projectID没有并没有措施防错误
+        String projectID = root.getChild("Layer").getAttributeValue("projectId");
+        long projectId=0;
+        if(projectID!=null)
+            projectId = Long.parseLong(projectID);
+        else
+            System.out.println("can't get projectID");
+        Project project = projectService.getById(projectId);
+        List<TaskInfo> taskInfoList = project.getTaskInfoList();
+
+        for (Iterator i = task.iterator(); i.hasNext(); ) {
+            TaskInfo taskInfo = new TaskInfo();
+
+            Element el = (Element) i.next();
+            String tasktype = el.getAttributeValue("任务类型");
+            String taskdesp = el.getAttributeValue("任务描述");
+            String taskid = el.getAttributeValue("oracleid");
+            //考虑null的情况
+            if (taskdesp != null)
+                taskInfo.setDdTaskDescription(taskdesp);
+            if (tasktype != null)
+                taskInfo.setDdTaskType(tasktype);
+            taskInfo.setDdTaskProjectId(projectId);
+            Project project2 = projectService.getById(projectId);
+            taskInfo.setDdTaskProjectName(project2.getDdProjectName());
+            taskInfo.setDdTaskName(el.getAttributeValue("label"));//任务名称
+            taskInfo.setDdTaskResponsiblePerson(ContextUtil.getCurrentUser().getUserId());
+            taskInfo.setDdTaskPerson(ContextUtil.getCurrentUser().getFullname());
+            //新增任务属性
+            taskInfo.setDdTaskChildType("createpanel");
+            if (taskid != null) {
+                taskInfo.setDdTaskId(Long.parseLong(taskid));
+            }
+            //项目任务依赖关系
+            ProTaskDependance proTaskDependance = new ProTaskDependance();
+            proTaskDependance.setDdProjectId(taskInfo.getDdTaskProjectId());
+            try {
+                if (taskInfo.getDdTaskId() == null || taskInfo.getDdTaskId() == 0) {
+                    taskInfo.setDdTaskId(UniqueIdUtil.genId());
+                    //任务添加
+                    taskInfoService.addDDTask(taskInfo);
+                    proTaskDependance.setDdTaskId(UniqueIdUtil.genId());
+                    proTaskDependance.setDdTaskId(taskInfo.getDdTaskId());
+                    proTaskDependanceService.addDDProTaskDependance(proTaskDependance);
+                    //resultMsg = getText("record.added", "添加完成");
+                } else {
+                    TaskInfo byId;
+                    byId = taskInfoService.getById(taskInfo.getDdTaskId());
+                    byId.setDdTaskName(el.getAttributeValue("label"));
+                    byId.setDdTaskDescription(taskdesp);
+                    byId.setDdTaskType(tasktype);
+
+                    taskInfoService.updateDDTask(byId);
+                    //resultMsg = getText("record.updated", "更新完成");
+                    for(Iterator it =taskInfoList.iterator();it.hasNext();)
+                    {
+                        TaskInfo ti = (TaskInfo) it.next();
+                        if(ti.getDdTaskId()==taskInfo.getDdTaskId())
+                            it.remove();
+
+
+
+                    }
+                }
+            } catch (Exception e) {
+                writeResultMessage(response.getWriter(), e.getMessage(), ResultMessage.Fail);
+            }
+            el.setAttribute("oracleid", taskInfo.getDdTaskId().toString());
+            System.out.println(taskInfo.getDdTaskId().toString());
+        }
+        /*
+        for(Iterator it =taskInfoList.iterator();it.hasNext();)
+        {
+            TaskInfo ti = (TaskInfo) it.next();
+            taskInfoService.delById(ti.getDdTaskId());
+        }
+*/
+        //保存流程XML
+        if (projectId != 0)
+            saveProcessXml(doc, projectId);
+
+        Long projectIdd = RequestUtil.getLong(request, "projectId");
+
+
+
+
+
+        ProjectProcessAssocia projectProcessAssocia = projectProcessAssociaService.selectByProjectId(projectIdd);
+        if (projectProcessAssocia != null) {
+            Long processFlowId = projectProcessAssocia.getDdPrcessId();
+            processFlow = processFlowService.getById(processFlowId);
+            String tempXml = processFlow.getDdProcessXml();
+
+
+
+
+
+            try{
+
+                java.io.PrintWriter out = response.getWriter();
+                out.append(tempXml);
+
+                out.flush();
+                out.close();
+            }catch (Exception e)
+            {
+                String resultMsg = null;
+                writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+            }
+
+
+        }
+    }
+
+
 
 }
