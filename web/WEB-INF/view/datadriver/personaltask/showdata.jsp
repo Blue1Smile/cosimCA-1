@@ -55,7 +55,7 @@
                 私有数据
 
                 <div class="btn-group pull-right">
-                    <a href="#" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    <a href="javascript:void(0)" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         更多<span class="caret"></span>
                     </a>
@@ -112,15 +112,15 @@
             <div class="panel-heading">
                 发布数据
                 <div class="btn-group pull-right">
-                    <a href="#" title="添加" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    <a href="javascript:void(0)" title="添加" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#" title="取消发布数据"><span class="glyphicon glyphicon-hand-left"></span> 撤销发布</a></li>
+                        <li><a href="javascript:void(0)" title="取消发布数据"><span class="glyphicon glyphicon-hand-left"></span> 撤销发布</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#" title="反选"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
-                        <li><a href="#" onclick="refresh(0)" title="刷新私有数据看板"><span
+                        <li><a href="javascript:void(0)" title="反选"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
+                        <li><a href="javascript:void(0)" onclick="refresh(0)" title="刷新私有数据看板"><span
                                 class="glyphicon glyphicon-refresh"></span> 刷新</a></li>
                     </ul>
                 </div>

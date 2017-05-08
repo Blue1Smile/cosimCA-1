@@ -78,7 +78,7 @@
 		<div class="panel-top">
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a href="#" class=" bar-button" onclick="selectSubTable()">添加子表</a></div>
+					<div class="group"><a href="javascript:void(0)" class=" bar-button" onclick="selectSubTable()">添加子表</a></div>
 					<div class="l-bar-separator"></div>
 				</div>	
 			</div>
@@ -89,7 +89,7 @@
 					<tr>
 						<td>${table.tableName}</td>
 						<td>${table.tableDesc}</td>
-						<td><a href="#" onclick="parent.showDetail('get.ht?iswin=1&tableId=${table.tableId}')" class="link detail">查看</a></td>
+						<td><a href="javascript:void(0)" onclick="parent.showDetail('get.ht?iswin=1&tableId=${table.tableId}')" class="link detail">查看</a></td>
 					</tr>
 					<tr style="font-style:italic; color:gray">
 						<td colspan="3">子表列表</td>
@@ -104,7 +104,7 @@
 							<td>${subTable.tableName}</td>
 							<td>${subTable.tableDesc}</td>
 							<td>
-								<a href="#" onclick="parent.showDetail('get.ht?iswin=1&tableId=${subTable.tableId}')" class="link detail">查看</a>
+								<a href="javascript:void(0)" onclick="parent.showDetail('get.ht?iswin=1&tableId=${subTable.tableId}')" class="link detail">查看</a>
 								<a href="unlinkSubTable.ht?subTableId=${subTable.tableId}" class="link del" onclick="parent.needRefresh = true">移除</a>
 							</td>
 						</tr>

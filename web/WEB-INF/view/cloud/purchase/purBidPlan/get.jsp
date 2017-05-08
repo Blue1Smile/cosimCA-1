@@ -31,9 +31,9 @@
 			tr += '<td>';
 			tr += '	<span class="attach">&ensp;&ensp; </span>&nbsp;&nbsp;';
 			//tr += '	<input type="hidden" class="pk" name="attachments" value="' + filePath + '"/> ';
-			tr += '	<a href="#" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
+			tr += '	<a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
 			tr += '</td>';
-			tr += '<td><a href="#" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
+			tr += '<td><a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
 			tr += '</tr>';
 			return tr;
 		}

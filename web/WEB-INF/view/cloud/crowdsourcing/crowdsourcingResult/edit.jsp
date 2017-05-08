@@ -29,9 +29,9 @@
 		var tr = '<tr class="'+fileId+'">';
 		tr += '<td>';
 		tr += '	<span class="attach">&ensp;&ensp; </span>&nbsp;&nbsp;';
-		tr += '	<a href="#" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
+		tr += '	<a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
 		tr += '</td>';
-		tr += '<td><a href="#" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
 		tr += '</tr>';
 		return tr;
 	}
@@ -118,7 +118,7 @@
 		
 	    <div class="panel-toolbar" style="display:none">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back " href="list.ht">返回</a></div>
 			</div>
@@ -211,7 +211,7 @@
 				</tr>
 				<c:forEach items="${crowdsourcingResultDetailList}" var="crowdsourcingResultDetailItem" varStatus="status">
 				    <tr type="subdata">
-					    <%-- <td style="text-align: center" name="resultName"><a href="#" onclick=javascript:downloadFile('${crowdsourcingResultDetailItem.resultAttachmentIds}'); >${crowdsourcingResultDetailItem.resultName}<span class="link-btn link-remove">查看 </span></a></td> --%>
+					    <%-- <td style="text-align: center" name="resultName"><a href="javascript:void(0)" onclick=javascript:downloadFile('${crowdsourcingResultDetailItem.resultAttachmentIds}'); >${crowdsourcingResultDetailItem.resultName}<span class="link-btn link-remove">查看 </span></a></td> --%>
 					   <td style="text-align: center;white-space:nowrap;" name="resultName">
 			    			<c:forEach items='${fn:split(crowdsourcingResultDetailItem.resultName,",")}' var='d' varStatus="s">
 			    				&nbsp;&nbsp;&nbsp;&nbsp;${d}&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:getFileInfo('${ctx}',${fn:split(crowdsourcingResultDetailItem.resultAttachmentIds,",")[s.index]});">查看信息</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openFile('${ctx}',${fn:split(crowdsourcingResultDetailItem.resultAttachmentIds,",")[s.index]}));">在线浏览</a>
@@ -224,8 +224,8 @@
 						<td style="text-align: center" name="submitTime"><fmt:formatDate value='${crowdsourcingResultDetailItem.submitTime}' pattern='yyyy-MM-dd'/></td>								
 						<td style="text-align: center" name="auditTime"><fmt:formatDate value='${crowdsourcingResultDetailItem.auditTime}' pattern='yyyy-MM-dd'/></td>								
 					    <td style="display:none">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="resultName" value="${crowdsourcingResultDetailItem.resultName}"/>
 						<input type="hidden" name="resultInfo" value="${crowdsourcingResultDetailItem.resultInfo}"/>
@@ -245,8 +245,8 @@
 					<td style="text-align: center" name="submitTime"></td>								
 					<td style="text-align: center" name="auditTime"></td>								
 			    	<td style="display:none">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="resultName" value=""/>
 			    	<input type="hidden" name="resultInfo" value=""/>

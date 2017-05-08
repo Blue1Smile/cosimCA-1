@@ -55,7 +55,7 @@
 										</c:otherwise>
 									</c:choose> </td>
 								<td>
-									<a href="#" class="link edit" onclick="setNodeRule('${nodeSet.nodeId}','${nodeSet.nodeName}')">编辑</a>
+									<a href="javascript:void(0)" class="link edit" onclick="setNodeRule('${nodeSet.nodeId}','${nodeSet.nodeName}')">编辑</a>
 								</td>
 							</tr>
 						</c:forEach>

@@ -418,13 +418,13 @@
 				<tr>
 					<td colspan="7">
 						<div class="group" align="left">
-				   			 <a href="#" onclick="add_onesupps();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd2.jpg'"
 												onmouseout="src='${ctx}/images/iconadd.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								  
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"

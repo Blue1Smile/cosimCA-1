@@ -105,13 +105,13 @@
 								<f:a alias="delSubsystem" href="del.ht?id=${subSystemItem.systemId}" css="link del">删除</f:a>
 							</c:when>
 							<c:otherwise>
-								<a href="#" class="link del disabled">删除</a>
+								<a href="javascript:void(0)" class="link del disabled">删除</a>
 							</c:otherwise>
 						</c:choose>
 						
 						<a href="edit.ht?id=${subSystemItem.systemId}" class="link edit">编辑</a>
 						<a href="exportXml.ht?systemId=${subSystemItem.systemId}" class="link download">导出</a>
-						<a href="#" onclick="ImportXml(${subSystemItem.systemId})" class="link upload">导入</a>
+						<a href="javascript:void(0)" onclick="ImportXml(${subSystemItem.systemId})" class="link upload">导入</a>
 					</display:column>
 				</display:table>
 				<hotent:paging tableId="subSystemItem"/>

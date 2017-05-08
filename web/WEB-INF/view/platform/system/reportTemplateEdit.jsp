@@ -1,6 +1,7 @@
 <%--
 	time:2012-04-12 09:59:47
-	desc:edit the 报表模板
+	desc:edit the 报表模板
+
 --%>
 <%@page language="java" pageEncoding="UTF-8"%>
 <%@include file="/commons/include/html_doctype.html"%>
@@ -62,7 +63,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>

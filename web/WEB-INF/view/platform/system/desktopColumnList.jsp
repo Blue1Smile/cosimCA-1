@@ -65,7 +65,7 @@ function previewTemplate(url){
 						<a href="del.ht?id=${desktopColumnItem.id}" class="link del">删除</a>
 						<a href="edit.ht?id=${desktopColumnItem.id}" class="link edit">编辑</a>
 						<a href="get.ht?id=${desktopColumnItem.id}" class="link detail">明细</a>
-						<a href="#" onclick="previewTemplate('getTemp.ht?id=${desktopColumnItem.id}');" class="link preview">预览</a>
+						<a href="javascript:void(0)" onclick="previewTemplate('getTemp.ht?id=${desktopColumnItem.id}');" class="link preview">预览</a>
 					</display:column>
 				</display:table>
 				<hotent:paging tableId="desktopColumnItem"/>

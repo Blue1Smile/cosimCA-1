@@ -86,7 +86,7 @@
 						<div class="toolBar">
 							<div class="group"><a class="link search" id="btnSearch">查询</a></div>
 							<div class="l-bar-separator"></div>
-							<div class="group"><a class="link add\" onclick="addNew('${parentId}','${typeId}','${returnUrl}')" href="#">添加字典</a></div>
+							<div class="group"><a class="link add\" onclick="addNew('${parentId}','${typeId}','${returnUrl}')" href="javascript:void(0)">添加字典</a></div>
 							<div class="l-bar-separator"></div>
 							<div class="group"><a class="link del"  action="del.ht">删除</a></div>
 						</div>	
@@ -123,8 +123,8 @@
 								<a href="del.ht?dicId=${dictionaryItem.dicId}" class="link del">删除</a>
 								<a href="upd1.ht?dicId=${dictionaryItem.dicId}&returnUrl=${returnUrl}" class="link edit">编辑</a>
 								<a href="get.ht?dicId=${dictionaryItem.dicId}" class="link detail">明细</a>
-								<a href="#" class="link moveup" onclick="sortUp(this)">向上</a>
-								<a href="#" class="link movedown" onclick="sortDown(this)">向下</a>							
+								<a href="javascript:void(0)" class="link moveup" onclick="sortUp(this)">向上</a>
+								<a href="javascript:void(0)" class="link movedown" onclick="sortDown(this)">向下</a>
 							</display:column>
 						</display:table>
 						

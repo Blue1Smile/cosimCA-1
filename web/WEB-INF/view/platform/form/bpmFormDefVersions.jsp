@@ -96,10 +96,10 @@
 					
 					<c:choose>
 						<c:when test="${bpmFormDefItem.designType==0 }">
-							<a href="#" onclick="javascript:jQuery.openFullWindow('edit.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">编辑</a>
+							<a href="javascript:void(0)" onclick="javascript:jQuery.openFullWindow('edit.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">编辑</a>
 						</c:when>
 						<c:otherwise >
-							<a href="#" onclick="javascript:jQuery.openFullWindow('designEdit.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">编辑</a>
+							<a href="javascript:void(0)" onclick="javascript:jQuery.openFullWindow('designEdit.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">编辑</a>
 						</c:otherwise>
 					</c:choose>
 					
@@ -110,7 +110,7 @@
 								<a target="_blank" href="${ctx}/platform/form/bpmFormHandler/edit.ht?formDefId=${bpmFormDefItem.formDefId}" class="link preview">预览</a>
 							</c:when>
 							<c:when test="${bpmFormDefItem.designType==1 }">
-								<a href="#" onclick="javascript:jQuery.openFullWindow('preview.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">预览</a>
+								<a href="javascript:void(0)" onclick="javascript:jQuery.openFullWindow('preview.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">预览</a>
 							</c:when>
 					</c:choose>
 					

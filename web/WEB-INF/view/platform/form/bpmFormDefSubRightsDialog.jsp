@@ -228,9 +228,9 @@
 				<div class="toolBar">
 					<div class="l-bar-separator"></div>
 					<div class="group">
-						<a class="link save" id="dataFormSave" href="#">保存</a>
-						<a class="link del" id="dataFormDel" href="#">删除权限</a>
-						<a class="link cancel" id="dataFormClose" href="#" onclick="window.close()">关闭</a>
+						<a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a>
+						<a class="link del" id="dataFormDel" href="javascript:void(0)">删除权限</a>
+						<a class="link cancel" id="dataFormClose" href="javascript:void(0)" onclick="window.close()">关闭</a>
 					</div>
 				</div>
 			</div>
@@ -285,7 +285,7 @@
 									</th>
 									<td>
 										<div style="margin:8px 0;">
-											<a href="#" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
+											<a href="javascript:void(0)" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
 											<font color="red">双击选取子表字段编写脚本；</font>
 										</div>
 										<textarea id="permissionseting" validate="{required:true,maxLength:2000}" codemirror="true" rows="12" cols="55" name="permissionseting" >return true;</textarea>

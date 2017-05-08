@@ -71,7 +71,7 @@
 				<display:column title="管理" media="html" style="width:180px">
 					<a href="${ctx}/platform/bpm/processRun/get.ht?runId=${bpmTaskAssigneeItem.runId}" class="link detail">明细</a>
 					<c:if test="${bpmTaskAssigneeItem.taskStatus==0}">
-					<a href="#" onclick="back(${bpmTaskAssigneeItem.id})" class="link back">收回</a>
+					<a href="javascript:void(0)" onclick="back(${bpmTaskAssigneeItem.id})" class="link back">收回</a>
 					</c:if>
 				</display:column>
 			</display:table>

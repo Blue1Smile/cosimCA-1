@@ -86,7 +86,7 @@
 						<a href="javascript:executeTask(${bpmTaskAssigneeItem.taskId})" class="link run">办理</a>
 					</c:if>
 					<c:if test="${bpmTaskAssigneeItem.taskStatus==1}">
-						<a href="#" onclick="recover(${bpmTaskAssigneeItem.runId})" class="link redo">追回</a>
+						<a href="javascript:void(0)" onclick="recover(${bpmTaskAssigneeItem.runId})" class="link redo">追回</a>
 					</c:if>
 				</display:column>
 			</display:table>

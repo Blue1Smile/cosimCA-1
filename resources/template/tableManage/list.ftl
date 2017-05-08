@@ -96,9 +96,9 @@ Desc:自定义表管理列表模板
 					</#list>
 <#----------------------------------------------------------------------
 					<td>
-						<a href="#" class="link detail">明细</a>
-						<a href="#" class="link edit">编辑</a>
-						<a href="#" class="link del">删除</a>
+						<a href="javascript:void(0)" class="link detail">明细</a>
+						<a href="javascript:void(0)" class="link edit">编辑</a>
+						<a href="javascript:void(0)" class="link del">删除</a>
 					</td>
 ---------------------------------------------------------------------------->
 				</tr>

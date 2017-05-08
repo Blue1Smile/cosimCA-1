@@ -235,7 +235,7 @@
 								<tr>
 									<td colspan="2" valign="top">
 									<div style="width:96px;display:inline-block;vertical-align:top;">脚本:</div>
-									<a href="#" onclick="selectScript()" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
+									<a href="javascript:void(0)" onclick="selectScript()" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
 									<br/>脚本中要使用到其他字段参与运算， 请使用“[字段名]”方式引用。<br />
 									<textarea id="script" name="script" rows="6" cols="70"></textarea>
 									</td>

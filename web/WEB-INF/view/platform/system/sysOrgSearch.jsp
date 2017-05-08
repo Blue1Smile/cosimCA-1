@@ -29,7 +29,7 @@
 				<display:column property="orgName" title="组织名称" sortable="true" sortName="orgName"></display:column>
 				<display:column property="orgDesc" title="备注" sortable="true" sortName="orgDesc"></display:column>
 				<display:column title="管理" media="html" style="width:150px">
-					<a href="#" class="link show" onclick="window.parent.setLocation('${sysOrgItem.orgId}')">定位</a>
+					<a href="javascript:void(0)" class="link show" onclick="window.parent.setLocation('${sysOrgItem.orgId}')">定位</a>
 				</display:column>
 			</display:table>
 			<hotent:paging tableId="sysOrgItem"/>

@@ -56,9 +56,9 @@
                                    value="${param['Q_name_SL']}" placeholder="项目名称"/>
                         </div>
                         <div class="fr">
-                            <a class="layui-btn layui-btn-small layui-btn-normal" href="#" onclick="queryProject()" id="Search"><i class="layui-icon">
+                            <a class="layui-btn layui-btn-small layui-btn-normal" href="javascript:void(0)" onclick="queryProject()" id="Search"><i class="layui-icon">
                                 &#xe615;</i> 查询</a>
-                            <a class="layui-btn layui-btn-small" href="#" id="create" data-toggle="modal"
+                            <a class="layui-btn layui-btn-small" href="javascript:void(0)" id="create" data-toggle="modal"
                                data-remote="create.ht"
                                data-target="#myCreate"><i class="layui-icon">&#xe61f;</i> 创建</a>
                             <a class="layui-btn layui-btn-small layui-btn-primary" onclick="location.reload()"><i
@@ -86,7 +86,7 @@
                 <display:column title="操作" media="html" style="width:25%">
                     <c:choose>
                         <c:when test="${projectList.ddProjectPhaseId==-1}">
-                            <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"
+                            <a class="layui-btn layui-btn-mini" id="setup" href="javascript:void(0)" data-toggle="modal"
                                data-remote="setup.ht?id=${projectList.ddProjectId}"
                                data-target="#myModal"><i
                                     class="layui-icon">
@@ -94,7 +94,7 @@
                             </a>
                         </c:when>
                         <c:when test="${projectList.ddProjectPhaseId==1}">
-                            <a class="layui-btn layui-btn-mini" id="setup" href="#" data-toggle="modal"
+                            <a class="layui-btn layui-btn-mini" id="setup" href="javascript:void(0)" data-toggle="modal"
                                data-remote="setup.ht?id=${projectList.ddProjectId}"
                                data-target="#myModal"><i
                                     class="layui-icon">
@@ -102,7 +102,7 @@
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a class="layui-btn layui-btn-mini layui-btn-disabled" id="setup" href="#"
+                            <a class="layui-btn layui-btn-mini layui-btn-disabled" id="setup" href="javascript:void(0)"
                                data-toggle="modal"
                                data-remote="setup.ht?id=${projectList.ddProjectId}"
                                data-target="#myModal"><i

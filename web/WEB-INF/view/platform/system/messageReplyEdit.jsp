@@ -45,7 +45,7 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="${returnUrl}">返回</a></div>
 				</div>

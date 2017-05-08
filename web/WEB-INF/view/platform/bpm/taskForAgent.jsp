@@ -58,7 +58,7 @@
 						</c:if>
 						<a href="detail.ht?taskId=${taskItem.id}" class="link detail" title="明细">明细</a>
 						<c:if test="${not empty taskItem.assignee}">
-						<a href="#" onclick="javascript:executeTask(${taskItem.id},'${taskItem.name}')" class="link run" title="执行">执行</a>
+						<a href="javascript:void(0)" onclick="javascript:executeTask(${taskItem.id},'${taskItem.name}')" class="link run" title="执行">执行</a>
 						</c:if>
 					</display:column>
 				</display:table>

@@ -18,7 +18,7 @@
 			<td width="35%">
 				<input type="hidden" id="lastDestTaskId" name="lastDestTaskId" value="">
 				<span id="jumpUserDiv"></span>
-				<a href="#" id="jumpUserLink" class="link grant" onclick="selectExeUsers(this)">选择..</a>
+				<a href="javascript:void(0)" id="jumpUserLink" class="link grant" onclick="selectExeUsers(this)">选择..</a>
 			</td>
 		</tr>
 	</table>

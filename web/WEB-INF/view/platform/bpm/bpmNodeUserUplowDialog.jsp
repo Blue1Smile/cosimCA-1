@@ -50,7 +50,7 @@ function add(){
 	
 	tr+='</td>';
 	tr+='<td>';
-	tr+='<a href="#" class="link del" onclick="handlerDelOne(this);">删除</a>';
+	tr+='<a href="javascript:void(0)" class="link del" onclick="handlerDelOne(this);">删除</a>';
 	tr+='</td>';
 	tr+='</tr>';
 	$("#demensionItem").append(tr);

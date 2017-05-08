@@ -217,7 +217,7 @@
 						<input size="35" type="text" id="user_name" name="feedbackName" class="r" readonly="readonly" value="${maitainTask.feedbackName}"   class="r" readonly="readonly" validate="{required:true,maxlength:96}"/></td>
 						<th style="width:120px;">物品编码</th>
 						<td><input size="35" id="prod_code" name="prodcode" value="${maitainTask.prodcode}"  class="r" readonly="readonly" validate="{required:true,maxlength:96}"/>
-						<!--<a href="#" onclick="preview()" class="link detail">请选择</a>-->
+						<!--<a href="javascript:void(0)" onclick="preview()" class="link detail">请选择</a>-->
 						</td>
 					</tr>				
 					<tr>
@@ -235,7 +235,7 @@
 						<span style="display: none;" id="div_show">
 			            <input size="35" type="hidden" id="ac_id" name="accendantId"  />
 						<input size="35" type="text" id="ac_name"  name="accendantName"  value="${maitainTask.accendantName}"  readonly="readonly" class="r" readonly="readonly" />
-						<a href="#" onclick="selUsers()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="selUsers()"  class="link detail">选择</a>
 						</span>
 						</td>
 						
@@ -363,7 +363,7 @@
 			<tr>
 				<th width="20%">物品名称: </th>
 				<td><input type="text" name="prodname" value=""  class="r" readonly="readonly" validate="{required:false,maxlength:108}"/>
-				<a href="#" onclick="preview_ware(this);" class="link detail">请选择</a>
+				<a href="javascript:void(0)" onclick="preview_ware(this);" class="link detail">请选择</a>
 				</td>
 				
 			</tr>

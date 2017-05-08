@@ -233,7 +233,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -275,8 +275,8 @@
 					<td>
 						<input type="hidden" id="inOrderId" name="inOrderId" value="${warehouseOut.inOrderId}"  class="inputText" validate="{required:false,maxlength:96}"  />
 						<input type="text" id="inOrderCode" name="inOrderCode" value="${warehouseOut.inOrderCode}"  class="inputText" validate="{required:false,maxlength:768}"  />
-						<font id="div_show" style="display: none; "><a href="#" onclick="getSaleOrders()"  class="link detail">选择</a></font>
-						<font id="div_cgck" style="display: none; "><a href="#" onclick="add_cgck()"  class="link detail">选择</a></font>
+						<font id="div_show" style="display: none; "><a href="javascript:void(0)" onclick="getSaleOrders()"  class="link detail">选择</a></font>
+						<font id="div_cgck" style="display: none; "><a href="javascript:void(0)" onclick="add_cgck()"  class="link detail">选择</a></font>
 					</td>
 				</tr>
 				<tr>
@@ -284,7 +284,7 @@
 					<td>
 						<input type="hidden" id="warehouseId" name="warehouseId" value="${warehouseOut.warehouseId}"  class="inputText" validate="{required:false,number:true }"  />
 						<input type="text" id="warehouseName" name="warehouseName" value="${warehouseOut.warehouseName}"  class="inputText" validate="{required:false,maxlength:768}"  />
-						<a href="#" onclick="preview()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="preview()"  class="link detail">选择</a>
 					</td>
 				</tr>
 				<tr>
@@ -308,19 +308,19 @@
 				<tr>
 					<td colspan="8">
 						<div class="group" align="left">
-				   			 <a href="#" onclick="add_wpsupps();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_wpsupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd2.jpg'"
 												onmouseout="src='${ctx}/images/iconadd.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								  
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								<!--				
-								<a href="#" onclick="add_onesupps();"   style="text-decoration: none;">
+								<a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd3.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd4.jpg'"
 												onmouseout="src='${ctx}/images/iconadd3.jpg'"
@@ -373,7 +373,7 @@
 			<tr>
 				<th width="20%">物品名称: </th>
 				<td><input type="text" name="materialName" value=""  class="inputText" validate="{required:false,maxlength:768}"/>
-					<a href="#" onclick="preview_material()"  class="link detail">选择</a> 		
+					<a href="javascript:void(0)" onclick="preview_material()"  class="link detail">选择</a>
 				</td>
 			</tr>
 			<tr>

@@ -45,7 +45,7 @@
 			<div class="panel-toolbar">
 				<div class="toolBar">
 					<div class="group">
-						<a class="link run" id="dataFormSave" href="#">下一步</a>
+						<a class="link run" id="dataFormSave" href="javascript:void(0)">下一步</a>
 					</div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" onclick="history.back()">返回</a></div>

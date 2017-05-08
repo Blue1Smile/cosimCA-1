@@ -286,7 +286,7 @@
 												<a href="javascript:;" class="link get" onclick="selectForm(this)">选择</a>
 												<a href="javascript:;" class="link clean" onclick="clearForm(this)">重选</a>
 												<a href="javascript:;" class="link auth" onclick="authorize(this,'')">表单授权</a>
-												<a href="#" class="tipinfo"><span>设置全局表单授权，多个流程定义绑定该表单时，则使用该表单的授权信息一致；倘若其他流程定义绑定该表单且需使用不同表单权限控制则不需设置全局表单授权。</span></a>
+												<a href="javascript:void(0)" class="tipinfo"><span>设置全局表单授权，多个流程定义绑定该表单时，则使用该表单的授权信息一致；倘若其他流程定义绑定该表单且需使用不同表单权限控制则不需设置全局表单授权。</span></a>
 											</div>
 											<div name="globalFormUrl" <c:if test="${globalForm!=null && globalForm.formType!=1 }">style="display: none" </c:if> class="url" >
 												表单URL:<input type="text" name="formUrlGlobal" value="${globalForm.formUrl }" class="inputText" size="85"/>

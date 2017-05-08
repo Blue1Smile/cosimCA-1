@@ -85,21 +85,21 @@
 						<td width="41" height="35" align="center" valign="middle"><span
 							style="font-family: Verdana, Geneva, sans-serif;"><img
 								src="${ctx}/images/icon3.jpg" width="13" height="9" /></span></td>
-						<td width="97" align="left" valign="middle"><a href="#"
+						<td width="97" align="left" valign="middle"><a href="javascript:void(0)"
 							class="link02">维修结算</a></td>
 					</tr>
 					<tr>
 						<td width="41" height="35" align="center" valign="middle"><span
 							style="font-family: Verdana, Geneva, sans-serif;"><img
 								src="${ctx}/images/icon3.jpg" width="13" height="9" /></span></td>
-						<td width="97" align="left" valign="middle"><a href="#"
+						<td width="97" align="left" valign="middle"><a href="javascript:void(0)"
 							class="link02">订货结算</a></td>
 					</tr>
 					<tr>
 						<td width="41" height="35" align="center" valign="middle"><span
 							style="font-family: Verdana, Geneva, sans-serif;"><img
 								src="${ctx}/images/icon3.jpg" width="13" height="9" /></span></td>
-						<td width="97" align="left" valign="middle"><a href="#"
+						<td width="97" align="left" valign="middle"><a href="javascript:void(0)"
 							class="link02">调拨结算</a></td>
 					</tr>
 				</table>
@@ -116,21 +116,21 @@
 						<td width="41" height="35" align="center" valign="middle"><span
 							style="font-family: Verdana, Geneva, sans-serif;"><img
 								src="${ctx}/images/icon3.jpg" width="13" height="9" /></span></td>
-						<td width="97" align="left" valign="middle"><a href="#"
+						<td width="97" align="left" valign="middle"><a href="javascript:void(0)"
 							class="link02">维修故障统计</a></td>
 					</tr>
 					<tr>
 						<td width="41" height="35" align="center" valign="middle"><span
 							style="font-family: Verdana, Geneva, sans-serif;"><img
 								src="${ctx}/images/icon3.jpg" width="13" height="9" /></span></td>
-						<td width="97" align="left" valign="middle"><a href="#"
+						<td width="97" align="left" valign="middle"><a href="javascript:void(0)"
 							class="link02">维修工时统计</a></td>
 					</tr>
 					<tr>
 						<td width="41" height="35" align="center" valign="middle"><span
 							style="font-family: Verdana, Geneva, sans-serif;"><img
 								src="${ctx}/images/icon3.jpg" width="13" height="9" /></span></td>
-						<td width="97" align="left" valign="middle"><a href="#"
+						<td width="97" align="left" valign="middle"><a href="javascript:void(0)"
 							class="link02">维修成本统计</a></td>
 					</tr>
 				</table>

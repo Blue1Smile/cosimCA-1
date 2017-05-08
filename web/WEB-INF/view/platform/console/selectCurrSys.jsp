@@ -54,7 +54,7 @@
 														<div class="show_sys">
 															<ul id="selectUl">
 																<c:forEach var="subSystemItem" items="${subSystemList}"> 
-																	<li id="${subSystemItem.systemId}"><a href="#">${subSystemItem.sysName}</a></li>
+																	<li id="${subSystemItem.systemId}"><a href="javascript:void(0)">${subSystemItem.sysName}</a></li>
 																</c:forEach>  
 															</ul>
 														</div>

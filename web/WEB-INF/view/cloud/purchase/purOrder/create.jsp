@@ -146,7 +146,7 @@
 		</div>
 <!-- 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -252,7 +252,7 @@
 				
 			      <tr>
 					<th width="20%">收货仓库名称: </th>
-					<td><input type="text" id="receivewarehouseName" name="receivewarehouseName" value="${purOrder.receivewarehouseName}"  class="inputText" validate="{required:false,maxlength:600}"  /><a href="#" onclick="add_archive()"  class="link detail">选择</a></td>
+					<td><input type="text" id="receivewarehouseName" name="receivewarehouseName" value="${purOrder.receivewarehouseName}"  class="inputText" validate="{required:false,maxlength:600}"  /><a href="javascript:void(0)" onclick="add_archive()"  class="link detail">选择</a></td>
 			
 					<th width="20%">收货仓库详细地址: </th>
 					<td><input type="text" id="receivewarehouseAddress" name="receivewarehouseAddress" value="${purOrder.receivewarehouseAddress}"  class="inputText" validate="{required:false,maxlength:768}"  /></td>
@@ -368,8 +368,8 @@
 			    	<td style="text-align: center" name="sumPrice"></td>
 					<td style="text-align: center" name="deliveryEnddate"></td>								
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materielId" value=""/>
 			    	<input type="hidden" name="materielCode" value=""/>

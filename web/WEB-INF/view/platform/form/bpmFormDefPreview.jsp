@@ -49,7 +49,7 @@ function closeWin(){
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<div class="group">
-					<a class="link save" id="dataFormSave" href="#">查看数据</a>
+					<a class="link save" id="dataFormSave" href="javascript:void(0)">查看数据</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				<div class="group">

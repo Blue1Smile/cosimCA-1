@@ -92,11 +92,11 @@ function init(){
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link add" href="#">添加</a></div>
+					<div class="group"><a class="link add" href="javascript:void(0)">添加</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link save" id="btnUpd" action="sort.ht">保存排序</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a  class="link init" id="bntInit" href="#">初始化按钮</a></div>
+					<div class="group"><a  class="link init" id="bntInit" href="javascript:void(0)">初始化按钮</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a  class="link del"  href="deByDefNodeId.ht?defId=${defId}&nodeId=${nodeId}&buttonFlag=${buttonFlag}">删除所有</a></div>
 					<c:if test="${buttonFlag}"> 

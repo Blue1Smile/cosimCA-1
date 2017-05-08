@@ -280,7 +280,7 @@ html { overflow-x: hidden; }
 									<td>
 										<div style="margin:8px 0;">
 											
-											<a href="#" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
+											<a href="javascript:void(0)" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
 											&nbsp;&nbsp;表单变量:<f:flowVar defId="${defId}" controlName="selFlowVar"></f:flowVar>
 										</div>
 										<textarea id="conditionCode"  rows="12" cols="55" name="conditionCode" >return true;</textarea>

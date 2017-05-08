@@ -86,14 +86,14 @@
 			<div class="toolBar">
 				<div class="group"><a class="link search" id="btnSearch">查询</a></div>
 				<div class="l-bar-separator"></div>
-				<div class="group"><a class="link add" onclick="newFormDef()"  href="#">添加</a></div>
+				<div class="group"><a class="link add" onclick="newFormDef()"  href="javascript:void(0)">添加</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group">
-					<a onclick="exportXml()" href="#" class="link download">导出</a>
+					<a onclick="exportXml()" href="javascript:void(0)" class="link download">导出</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				<div class="group">
-					<a onclick="importXml()" href="#" class="link upload">导入</a>
+					<a onclick="importXml()" href="javascript:void(0)" class="link upload">导入</a>
 				</div>
 			</div>	
 		</div>
@@ -162,11 +162,11 @@
 							
 						<c:choose>
 							<c:when test="${bpmFormDefItem.designType==0 }">
-								<a href="#" onclick="javascript:jQuery.openFullWindow('edit.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">编辑</a>
+								<a href="javascript:void(0)" onclick="javascript:jQuery.openFullWindow('edit.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">编辑</a>
 								<a href="publish.ht?formDefId=${bpmFormDefItem.formDefId }" class="link deploy" >发布</a>
 							</c:when>
 							<c:when test="${bpmFormDefItem.designType==1 }">
-								<a href="#" onclick="javascript:jQuery.openFullWindow('designEdit.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">编辑</a>
+								<a href="javascript:void(0)" onclick="javascript:jQuery.openFullWindow('designEdit.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link edit">编辑</a>
 								
 							</c:when>
 						</c:choose>
@@ -184,7 +184,7 @@
 								<a  class="link auth" href="javascript:authorizeDialog(${bpmFormDefItem.formKey})">表单权限</a>
 							</c:when>
 							<c:when test="${bpmFormDefItem.designType==1 }">
-								<a href="#" onclick="javascript:jQuery.openFullWindow('preview.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link preview">预览</a>
+								<a href="javascript:void(0)" onclick="javascript:jQuery.openFullWindow('preview.ht?formDefId=${bpmFormDefItem.formDefId}');" class="link preview">预览</a>
 								<c:if test="${bpmFormDefItem.isPublished==1}">
 									<a class="link auth"  href="javascript:authorizeDialog(${bpmFormDefItem.formKey})">表单权限</a>
 								</c:if>

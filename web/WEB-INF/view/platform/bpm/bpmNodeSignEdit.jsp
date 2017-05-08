@@ -315,7 +315,7 @@ function cleanCmp(obj){
 </div>
 	<div id="divScriptData" style="display: none;">
 		
-		<a href="#" id="btnScript" class="link var" title="常用脚本" onclick="selectScript()">常用脚本</a>
+		<a href="javascript:void(0)" id="btnScript" class="link var" title="常用脚本" onclick="selectScript()">常用脚本</a>
 		<ul>
 			<li>表达式必须返回Set&lt;String&gt;集合类型的数据,集合元素为用户Id。</li>
 		</ul>

@@ -51,14 +51,14 @@
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link flowDesign" onclick="window.open('design.ht')">在线流程设计</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link download"  href="#" onclick="exportXml()">导出</a></div>
+					<div class="group"><a class="link download"  href="javascript:void(0)" onclick="exportXml()">导出</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link upload"  href="#" onclick="importXml()">导入</a></div>
+					<div class="group"><a class="link upload"  href="javascript:void(0)" onclick="importXml()">导入</a></div>
 					<div class="l-bar-separator"></div>
 					 -->
-					<div class="group"><a class="link upload"  href="#" onclick="importXml()">新增模版</a></div>	
+					<div class="group"><a class="link upload"  href="javascript:void(0)" onclick="importXml()">新增模版</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link reload"  href="#" onclick="window.location.reload()">刷新</a></div>						
+					<div class="group"><a class="link reload"  href="javascript:void(0)" onclick="window.location.reload()">刷新</a></div>
 				</div>	
 			</div>
 			<div class="panel-search">
@@ -126,7 +126,7 @@
 						<f:a alias="flex" href="design.ht?defId=${bpmDefinitionItem.defId}" target="_blank" css="link flowDesign" >流程设计</f:a>
 						<c:if test="${bpmDefinitionItem.status==1}">
 							<f:a alias="setBpm" href="detail.ht?defId=${bpmDefinitionItem.defId}" css="link setting" >设置</f:a>
-							<f:a alias="startProcess" href="#" onclick="FlowUtil.startFlow(${bpmDefinitionItem.defId},'${bpmDefinitionItem.actDefId}')" css="link run" >启动</f:a>
+							<f:a alias="startProcess" href="javascript:void(0)" onclick="FlowUtil.startFlow(${bpmDefinitionItem.defId},'${bpmDefinitionItem.actDefId}')" css="link run" >启动</f:a>
 						</c:if>
 						<f:a alias="grantProcess" href="javascript:FlowRightDialog(${bpmDefinitionItem.defId},0,'${bpmDefinitionItem.defKey}')" css="link grant" >授权</f:a>
 						 --%>

@@ -142,7 +142,7 @@
 								.each(
 										function(index, row) {
 											var str = '<div class="content_01"><div class="content_02">';
-											str += '<a href="#"></a>'
+											str += '<a href="javascript:void(0)"></a>'
 													+ row.title + '</div>';
 											str += '<div>'
 													+ row.content
@@ -170,7 +170,7 @@
 						<a href="${ctx}/cloud/console/outline.ht" class="linkblue">待办任务</a>
 					</div>
 					<div class="sq_btn02">
-						<a href="#" class="linkblue"></a>
+						<a href="javascript:void(0)" class="linkblue"></a>
 					</div>
 				</div>
 				<div class="clear_10"></div>
@@ -179,7 +179,7 @@
 						<a href="${ctx}/console/outline.ht" class="linkblue">已办未结</a>
 					</div>
 					<div class="sq_btn02">
-						<a href="#" class="linkblue"></a>
+						<a href="javascript:void(0)" class="linkblue"></a>
 					</div>
 				</div>
 				<div class="clear_10"></div>
@@ -188,7 +188,7 @@
 						<a href="${ctx}/console/outline.ht" class="linkblue">已办完结</a>
 					</div>
 					<div class="sq_btn02">
-						<a href="#" class="linkblue"></a>
+						<a href="javascript:void(0)" class="linkblue"></a>
 					</div>
 				</div>
 				<div class="clear_10"></div>
@@ -197,7 +197,7 @@
 						<a href="${ctx}/busarea/chance/outline.ht" class="linkblue">商机发布</a>
 					</div>
 					<div class="sq_btn02">
-						<a href="#" class="linkblue"></a>
+						<a href="javascript:void(0)" class="linkblue"></a>
 					</div>
 				</div>
 			</div>
@@ -207,7 +207,7 @@
 						<textarea id="message" cols="" rows="" class="pub_input"></textarea>
 					</div>
 					<div class="pub02">
-						<a href="#"><img src="../images/btn_pub02.jpg" width="87"
+						<a href="javascript:void(0)"><img src="../images/btn_pub02.jpg" width="87"
 							height="87" onmouseover="src='../images/btn_pub02.jpg';"
 							onmouseout="src='../images/btn_pub01.jpg'" style="border:0;"
 							onclick="sendMessage();">
@@ -215,7 +215,7 @@
 					</div>
 				</div>
 				<div class="pub_fresh">
-					<a href="#"><img src="../images/icon2.jpg" width="40"
+					<a href="javascript:void(0)"><img src="../images/icon2.jpg" width="40"
 						height="13" style="border:0;">
 					</a>
 				</div>
@@ -245,10 +245,10 @@
 							class="link04">${enterprise.name }</a>
 					</div>
 					<div class="company04">
-						<a href="#" class="link02">联系人：${enterprise.connecter }</a>
+						<a href="javascript:void(0)" class="link02">联系人：${enterprise.connecter }</a>
 					</div>
 					<div class="company04">
-						<a href="#" class="link02">电话：${enterprise.telphone }</a>
+						<a href="javascript:void(0)" class="link02">电话：${enterprise.telphone }</a>
 					</div>
 				</div>
 			</div> 

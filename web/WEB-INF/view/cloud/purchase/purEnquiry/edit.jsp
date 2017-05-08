@@ -30,9 +30,9 @@
 		var tr = '<tr class="'+fileId+'">';
 		tr += '<td>';
 		tr += '	<span class="attach">&ensp;&ensp; </span>&nbsp;&nbsp;';
-		tr += '	<a href="#" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
+		tr += '	<a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
 		tr += '</td>';
-		tr += '<td><a href="#" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
 		tr += '</tr>';
 		return tr;
 	}
@@ -206,7 +206,7 @@
 		</div>
 	    <div class="panel-toolbar" style="display: none">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back " href="list.ht">返回</a></div>
 			</div>
@@ -215,9 +215,9 @@
 		<div class="panel-toolbar" style="display:none">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-						<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+						<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -323,7 +323,7 @@
 					<td>
 						<input type="hidden"  name="suppEnterpriseIds" id="suppEnterpriseIds" value="" size="60"/>
 						<input type="text" id="e_name" validate="{required:true,maxlength:300}" size="40"/>
-						<a href="#" onclick="add_supps()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="add_supps()"  class="link detail">选择</a>
 					</td>
 				</tr>
 				<!-- <tr>
@@ -393,8 +393,8 @@
 					    <td style="text-align: center" name="sumPrice">${purEnquiryDetailItem.sumPrice}</td>
 						<td style="text-align: center" name="deliveryEnddate"><fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern='yyyy-MM-dd'/></td>								
 					   <!-- <td style="text-align: center">
-					    	<a href="#" class="delproduct" >删除</a>
-					        <a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="delproduct" >删除</a>
+					        <a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 					    -->
 						<input type="hidden" name="materielId" value="${purEnquiryDetailItem.materielId}"/>
@@ -426,8 +426,8 @@
 			    	<td style="text-align: center" name="sumPrice"></td>
 					<td style="text-align: center" name="deliveryEnddate"></td>								
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materielId" value=""/>
 			    	<input type="hidden" name="purorderCode" value=""/>
@@ -470,7 +470,7 @@
 			</tr>
 			<tr>
 				<th width="20%">物品名: </th>
-				<td><input type="text" name="materielName" value=""  class="inputText" validate="{required:false,maxlength:768}"/> <a href="#" onclick="add_product();"  class="link detail">选择</a></td>
+				<td><input type="text" name="materielName" value=""  class="inputText" validate="{required:false,maxlength:768}"/> <a href="javascript:void(0)" onclick="add_product();"  class="link detail">选择</a></td>
 			</tr>
 			<!-- 
 			<tr>

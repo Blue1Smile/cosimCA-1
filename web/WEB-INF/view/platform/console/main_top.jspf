@@ -222,8 +222,8 @@
 			<div id="menuPanel" class="menuPanel"></div>
 		</div>
 		<div class="nav_button">
-			<a class="nav_left" href="#" onclick="rollLeft()" onmousedown="startRoll(0)" onmouseup="breakRoll()" title="向左移动"></a>
-			<a class="nav_right" href="#" onclick="rollRight()" onmousedown="startRoll(1)" onmouseup="breakRoll()" title="向右移动"></a>
+			<a class="nav_left" href="javascript:void(0)" onclick="rollLeft()" onmousedown="startRoll(0)" onmouseup="breakRoll()" title="向左移动"></a>
+			<a class="nav_right" href="javascript:void(0)" onclick="rollRight()" onmousedown="startRoll(1)" onmouseup="breakRoll()" title="向右移动"></a>
 		</div>
 	</div>
 	<div class="changge_skin"> 

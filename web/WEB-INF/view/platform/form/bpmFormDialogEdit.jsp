@@ -145,7 +145,7 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</div>
@@ -226,7 +226,7 @@
 										<option value="0">视图</option>
 									</select>
 									<input type="text" name="objectname" id="objectname">
-									<a href="#" id="btnSearch" class="link search">查询</a>
+									<a href="javascript:void(0)" id="btnSearch" class="link search">查询</a>
 									
 								</td>
 							</tr>
@@ -234,7 +234,7 @@
 						<tr>
 							<th width="20%">对话框字段设置: </th>
 							<td colspan="3" valign="top">
-								<a href="#" id="btnSetting" class="link setting" onclick="dialog()">设置列</a>
+								<a href="javascript:void(0)" id="btnSetting" class="link setting" onclick="dialog()">设置列</a>
 								<c:choose>
 									<c:when test="${bpmFormDialog.id==0}">
 										<br>

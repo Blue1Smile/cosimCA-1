@@ -39,7 +39,7 @@
 				图示：<span class="green-set">√</span>：表示已经设置 &nbsp;&nbsp;&nbsp;&nbsp;
 				<span class="red-set" >×</span>：表示未设置&nbsp;&nbsp;&nbsp;&nbsp;
 				<span class="normal-set" >-</span>：表示没有该功能&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#" class="link edit" title="设置" ></a>：表示可以对该功能进行设置
+				<a href="javascript:void(0)" class="link edit" title="设置" ></a>：表示可以对该功能进行设置
 			</div>
 			<form method="post" >
 				<input type="hidden" name="defId" value="${defId}" />
@@ -94,7 +94,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="FlowApprovalItemWindow({actDefId:'${actDefId}',activitiId:'',defId:'${defId}',callback:function(){window.location.reload()}});"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="FlowApprovalItemWindow({actDefId:'${actDefId}',activitiId:'',defId:'${defId}',callback:function(){window.location.reload()}});"></a>
 							</td>
 							 -->
 							
@@ -158,7 +158,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" 
+								<a href="javascript:void(0)" class="link edit" title="设置"
 								onclick="FlowEventWindow({type:'startEvent',actDefId:'${actDefId}',activitiId:'${startFlowNode.nodeId}',defId:'${defId}',callback:function(){window.location.reload()}});"></a>
 							</td>
 					
@@ -187,7 +187,7 @@
 									</c:otherwise>
 								</c:choose> 
 							</td>
-							<td><a href="#" class="link edit" title="设置" onclick="BpmNodeButtonWindow({defId:'${defId}',nodeId:'',callback:function(){window.location.reload()}})"></a></td>
+							<td><a href="javascript:void(0)" class="link edit" title="设置" onclick="BpmNodeButtonWindow({defId:'${defId}',nodeId:'',callback:function(){window.location.reload()}})"></a></td>
 							<td><span class="normal-set">-</span></td>
 							<td><span class="normal-set">-</span></td>
 							
@@ -227,7 +227,7 @@
 								</c:choose> 
 							</td>	
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="FlowEventWindow({type:'endEvent',actDefId:'${actDefId}',activitiId:'${endFlowNode.nodeId}',defId:'${defId}',callback:function(){window.location.reload()}});"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="FlowEventWindow({type:'endEvent',actDefId:'${actDefId}',activitiId:'${endFlowNode.nodeId}',defId:'${defId}',callback:function(){window.location.reload()}});"></a>
 							</td>	
 							<td><span class="normal-set">-</span></td>
 							<td><span class="normal-set">-</span></td>
@@ -265,7 +265,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="UserSetWindow({defId:'${defId}',nodeId:'${nodeSet.nodeId}',callback:function(){window.location.reload()}});"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="UserSetWindow({defId:'${defId}',nodeId:'${nodeSet.nodeId}',callback:function(){window.location.reload()}});"></a>
 							</td>
 							 -->
 							
@@ -282,7 +282,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="FlowApprovalItemWindow({actDefId:'${actDefId}',activitiId:'${nodeSet.nodeId}',defId:'${defId}',callback:function(){window.location.reload()}});"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="FlowApprovalItemWindow({actDefId:'${actDefId}',activitiId:'${nodeSet.nodeId}',defId:'${defId}',callback:function(){window.location.reload()}});"></a>
 							</td>
 							
 							 -->
@@ -325,7 +325,7 @@
 								<span class="normal-set">-</span>
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="FlowEventWindow({type:'userTask',actDefId:'${actDefId}',activitiId:'${nodeSet.nodeId}',defId:'${defId}'});"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="FlowEventWindow({type:'userTask',actDefId:'${actDefId}',activitiId:'${nodeSet.nodeId}',defId:'${defId}'});"></a>
 							</td>
 							<!-- 流程规则 -->
 							<td>	
@@ -339,7 +339,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="FlowRuleWindow({deployId:'${deployId}',actDefId:'${nodeSet.actDefId}',nodeId:'${nodeSet.nodeId}',nodeName:'${nodeSet.nodeName}',callback:function(){window.location.reload()}});"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="FlowRuleWindow({deployId:'${deployId}',actDefId:'${nodeSet.actDefId}',nodeId:'${nodeSet.nodeId}',nodeName:'${nodeSet.nodeName}',callback:function(){window.location.reload()}});"></a>
 							</td>
 							<!-- 流程表单 -->
 							<td>	
@@ -369,7 +369,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="BpmNodeButtonWindow({defId:'${defId}',nodeId:'${nodeSet.nodeId}',callback:function(){window.location.reload()}})"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="BpmNodeButtonWindow({defId:'${defId}',nodeId:'${nodeSet.nodeId}',callback:function(){window.location.reload()}})"></a>
 							</td>
 							 -->
 							
@@ -388,7 +388,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="FlowReminderWindow({actDefId:'${actDefId}',nodeId:'${nodeSet.nodeId}',callback:function(){window.location.reload()}})"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="FlowReminderWindow({actDefId:'${actDefId}',nodeId:'${nodeSet.nodeId}',callback:function(){window.location.reload()}})"></a>
 							</td>
 							 -->
 							
@@ -407,7 +407,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" onclick="MobileSetWindow({nodeId:'${nodeSet.nodeId}',defId:'${defId}',actDefId:'${actDefId}',callback:function(){window.location.reload()}});"></a>
+								<a href="javascript:void(0)" class="link edit" title="设置" onclick="MobileSetWindow({nodeId:'${nodeSet.nodeId}',defId:'${defId}',actDefId:'${actDefId}',callback:function(){window.location.reload()}});"></a>
 							</td>
 							 -->
 							
@@ -424,7 +424,7 @@
 								</c:choose> 
 							</td>
 							<td>
-								<a href="#" class="link edit" title="设置" 
+								<a href="javascript:void(0)" class="link edit" title="设置"
 									onclick="BpmNodeToolWindow({defId:'${defId}',setId:'${nodeSet.setId}',callback:function(){window.location.reload()}})"></a>
 							</td>							
 						</tr>

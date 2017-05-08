@@ -101,11 +101,11 @@
                 更多 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#">
+                <li><a href="javascript:void(0)">
                     <center>任务菜单</center>
                 </a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
+                <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
                 <li>
                     <c:choose>
                         <c:when test="${TaskInfo.ddTaskChildType=='createpanel'}">
@@ -131,7 +131,7 @@
                         <h5 class="task-info-title">
                             执行者
                         </h5>
-                        <a class="task-detail-executor" id="executorSelect" data-type="select" data-pk="1" href="#">
+                        <a class="task-detail-executor" id="executorSelect" data-type="select" data-pk="1" href="javascript:void(0)">
                             ${executorName.fullname}
                         </a>
                     </div>
@@ -143,7 +143,7 @@
                         <h5 class="task-info-title">
                             截止时间
                         </h5>
-                        <a class="task-detail-executor" href="#" id="dob" data-type="combodate" data-pk="1"
+                        <a class="task-detail-executor" href="javascript:void(0)" id="dob" data-type="combodate" data-pk="1"
                            data-value="${TaskInfo.ddTaskPlanEndTime}">
                             </a>
                     </div>
@@ -156,7 +156,7 @@
                             优先级
                         </h5>
                         <a class="task-detail-executor" id="taskPrioritySelect" data-type="select" data-pk="1"
-                           href="#">
+                           href="javascript:void(0)">
 
                             <c:choose>
                                 <c:when test="${TaskInfo.ddTaskPriority==3}"><span
@@ -175,7 +175,7 @@
         <div class="row" id="row1">
             <div class="panel panel-default">
                 <div class="list-group">
-                    <a class="list-group-item" href="#" id="comments" data-type="textarea" data-pk="1" href="#">
+                    <a class="list-group-item" href="javascript:void(0)" id="comments" data-type="textarea" data-pk="1" href="javascript:void(0)">
                         <c:choose>
                             <c:when test="${empty TaskInfo.ddTaskDescription}">
                                 <h5 class="task-info-title">添加描述</h5>
@@ -185,21 +185,40 @@
                             </c:otherwise>
                         </c:choose>
                     </a>
-                    <a class="list-group-item" href="#" title="暂不可用">添加子任务</a>
-                    <a class="list-group-item" href="#" title="暂不可用">添加标签</a>
-                    <a class="list-group-item" href="#">里程碑
-                        <div class="radio radio-info radio-inline">
-                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
-                            <label for="ddTaskMilestone1">
-                                是
-                            </label>
-                        </div>
-                        <div class="radio radio-info radio-inline">
-                            <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0" checked>
-                            <label for="ddTaskMilestone0">
-                                否
-                            </label>
-                        </div>
+                    <a class="list-group-item" href="javascript:void(0)" title="暂不可用">添加子任务</a>
+                    <a class="list-group-item" href="javascript:void(0)" title="暂不可用">添加标签</a>
+                    <a class="list-group-item" href="javascript:void(0)">里程碑
+                        <c:choose>
+                            <c:when test="${TaskInfo.ddTaskMilestone==1}">
+                                <div class="radio radio-info radio-inline">
+                                    <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1" checked>
+                                    <label for="ddTaskMilestone1">
+                                        是
+                                    </label>
+                                </div>
+                                <div class="radio radio-info radio-inline">
+                                    <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0">
+                                    <label for="ddTaskMilestone0">
+                                        否
+                                    </label>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="radio radio-info radio-inline">
+                                    <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone1" value="1">
+                                    <label for="ddTaskMilestone1">
+                                        是
+                                    </label>
+                                </div>
+                                <div class="radio radio-info radio-inline">
+                                    <input type="radio" name="ddTaskMilestone" id="ddTaskMilestone0" value="0" checked>
+                                    <label for="ddTaskMilestone0">
+                                        否
+                                    </label>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
                     </a>
                 </div>
             </div>
@@ -288,6 +307,8 @@
 <script>
     var curRow = {};
     var taskItem = 0;
+    var ddTaskMilestone1 = $('#ddTaskMilestone1');
+    var ddTaskMilestone0 = $('#ddTaskMilestone0');
     $("#personSelect").change(function () {
         var taskPerson = $("#personSelect").find("option:selected").text();
         $("#ddTaskPerson").val(taskPerson);
@@ -362,12 +383,16 @@
                 onChangeTaskInfo(params, taskItem);
             }
         });
-//        $('#ddTaskMilestone1').onclick({
-//            url: function (params) {
-//                taskItem = 4;
-//                onChangeTaskInfo(params, taskItem);
-//            }
-//        });
+        ddTaskMilestone1.onclick = function () {
+            <%--$.get("${ctx}/datadriver/index/readonly.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {--%>
+                <%--$('#index').html(data);--%>
+            <%--});--%>
+        }
+        ddTaskMilestone0.onclick = function () {
+            <%--$.get("${ctx}/datadriver/index/readonly.ht?id=${TaskInfo.ddTaskProjectId}", function (data) {--%>
+                <%--$('#index').html(data);--%>
+            <%--});--%>
+        }
         $('#comments').editable({
             showbuttons: false,
             placement: 'bottom',

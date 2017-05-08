@@ -52,7 +52,7 @@ function updateVars(id,varsValue){
 			<display:column property="type" title="变量类型" ></display:column>
 			<display:column property="textValue" title="变量值" ></display:column>
 			<display:column title="管理" media="html">
-				<a href="#" onclick="updateVars(${taskVarItem.id},'${taskVarItem.textValue}')" class="link flowDesign">修改</a>
+				<a href="javascript:void(0)" onclick="updateVars(${taskVarItem.id},'${taskVarItem.textValue}')" class="link flowDesign">修改</a>
 		     </display:column>
 			</display:table>
 		</div><!-- end of panel-body -->				

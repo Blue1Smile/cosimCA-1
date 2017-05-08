@@ -26,7 +26,7 @@
 				<div class="toolBar">
 				<c:choose>
 				<c:when test="${isOpenDialog==1}">
-					<div class="group"><a class="link close" href="#" onclick="window.close()">关闭</a></div>
+					<div class="group"><a class="link close" href="javascript:void(0)" onclick="window.close()">关闭</a></div>
 				</c:when>
 				<c:otherwise>
 					<div class="group"><a class="link back" href="${preUrl}" >返回</a></div>

@@ -46,7 +46,7 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<div class="group">
-					<a class="link save" id="save" href="#" onclick="save()">保存布局</a>  
+					<a class="link save" id="save" href="javascript:void(0)" onclick="save()">保存布局</a>
 				</div>
 				<div class="l-bar-separator"></div>				
 				<div class="group">

@@ -144,11 +144,11 @@ function searchDiscount(materialId){
 						<c:if test="${materialItem.sharedRepository == '1' }">
 							<a href="${ctx}/cloud/warehouse/warehouseAccounts/productNums.ht?id=${materialItem.id}" class="link detail" name="saleRepository" >经销商库存查询</a>
 						</c:if>
-						<a href="#" onclick="toPriceStrategy(${materialItem.id})" class="link detail">经销商价格策略管理</a>
+						<a href="javascript:void(0)" onclick="toPriceStrategy(${materialItem.id})" class="link detail">经销商价格策略管理</a>
 				</c:if>
 				<c:if test="${materialItem.type == '0' }">
 					<a href="${ctx}/cloud/warehouse/warehouseAccounts/productNums.ht?id=${materialItem.id}" class="link detail">供货商库存查询</a>
-					<a href="#" onclick="viewPriceStrategy(${materialItem.id})" class="link detail">返利折扣查询</a>		
+					<a href="javascript:void(0)" onclick="viewPriceStrategy(${materialItem.id})" class="link detail">返利折扣查询</a>
 				</c:if>			
 				<a href="get.ht?id=${materialItem.id}" class="link detail">明细</a>
 					
@@ -156,8 +156,8 @@ function searchDiscount(materialId){
 					<a href = "#" onclick="changeAdd('off',${materialItem.id},this)"class="link detail">下架</a>
 					<a href="" class="link detail">供货商库存查询</a>
 					<a href="" class="link detail">经销商库存查询</a></br>
-					<a href="#" onclick="searchDiscount(${materialItem.id})" class="link detail">返利折扣查询</a>
-					<a href="#" onclick="toPriceStrategy(${materialItem.id})" class="link detail">经销商价格策略管理</a>
+					<a href="javascript:void(0)" onclick="searchDiscount(${materialItem.id})" class="link detail">返利折扣查询</a>
+					<a href="javascript:void(0)" onclick="toPriceStrategy(${materialItem.id})" class="link detail">经销商价格策略管理</a>
 					<a href="get.ht?id=${materialItem.id}" class="link detail">明细</a> --%>
 					
 				</display:column>

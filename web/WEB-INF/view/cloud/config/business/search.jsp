@@ -20,7 +20,7 @@ function view(id,type){
 	<%@include file="/commons/cloud/top.jsp"%>
 		
 	<div id="zxsj" class="bggraybox">
-		<div class="title"><a href="#">在线商机</a></div>
+		<div class="title"><a href="javascript:void(0)">在线商机</a></div>
 		<c:if test="${not empty businessChanceList1}">
 		<ul>			
 			<li>
@@ -28,7 +28,7 @@ function view(id,type){
 				<div class="left">
 					<img src="${ctx}${businessChance.image}" width="100" height="100" onError="this.src='${ctx}/images/default-chance.jpg';"/>
 					<div class="left_desc">
-						<h5><a href="#" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
+						<h5><a href="javascript:void(0)" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
 						开始时间：<fmt:formatDate value="${businessChance.startTime}" pattern="yyyy-MM-dd"/>  截止时间：<fmt:formatDate value="${businessChance.endTime}" pattern="yyyy-MM-dd"/>
 						<p>
 							<c:if test="${businessChance.type=='1'}">
@@ -86,7 +86,7 @@ function view(id,type){
 				<div class="left">
 					<img src="${ctx}${businessChance.image}" width="100" height="100" onError="this.src='${ctx}/images/default-chance.jpg';"/>
 					<div class="left_desc">
-						<h5><a href="#" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
+						<h5><a href="javascript:void(0)" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
 						开始时间：<fmt:formatDate value="${businessChance.startTime}" pattern="yyyy-MM-dd"/>  截止时间：<fmt:formatDate value="${businessChance.endTime}" pattern="yyyy-MM-dd"/>
 						<p>
 							<c:if test="${businessChance.type=='1'}">
@@ -144,7 +144,7 @@ function view(id,type){
 				<div class="left">
 					<img src="${ctx}${businessChance.image}" width="100" height="100" onError="this.src='${ctx}/images/default-chance.jpg';"/>
 					<div class="left_desc">
-						<h5><a href="#" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
+						<h5><a href="javascript:void(0)" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
 						开始时间：<fmt:formatDate value="${businessChance.startTime}" pattern="yyyy-MM-dd"/>  截止时间：<fmt:formatDate value="${businessChance.endTime}" pattern="yyyy-MM-dd"/>
 						<p>
 							<c:if test="${businessChance.type=='1'}">
@@ -202,7 +202,7 @@ function view(id,type){
 				<div class="left">
 					<img src="${ctx}${businessChance.image}" width="100" height="100" onError="this.src='${ctx}/images/default-chance.jpg';"/>
 					<div class="left_desc">
-						<h5><a href="#" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
+						<h5><a href="javascript:void(0)" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
 						开始时间：<fmt:formatDate value="${businessChance.startTime}" pattern="yyyy-MM-dd"/>  截止时间：<fmt:formatDate value="${businessChance.endTime}" pattern="yyyy-MM-dd"/>
 						<p>
 							<c:if test="${businessChance.type=='1'}">
@@ -260,7 +260,7 @@ function view(id,type){
 				<div class="left">
 					<img src="${ctx}${businessChance.image}" width="100" height="100" onError="this.src='${ctx}/images/default-chance.jpg';"/>
 					<div class="left_desc">
-						<h5><a href="#" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
+						<h5><a href="javascript:void(0)" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></h5>
 						开始时间：<fmt:formatDate value="${businessChance.startTime}" pattern="yyyy-MM-dd"/>  截止时间：<fmt:formatDate value="${businessChance.endTime}" pattern="yyyy-MM-dd"/>
 						<p>
 							<c:if test="${businessChance.type=='1'}">

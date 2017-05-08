@@ -141,9 +141,9 @@
 <!-- 		<div class="panel-toolbar"> -->
 <!-- 			<div class="toolBar"> -->
 <%-- 				<c:if test="${applyFlag==0}"> --%>
-<!-- 					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div> -->
+<!-- 					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div> -->
 <!-- 					<div class="l-bar-separator"></div> -->
-<!-- 					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div> -->
+<!-- 					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div> -->
 <!-- 					<div class="l-bar-separator"></div> -->
 <!-- 					<div class="group"><a class="link back" href="list.ht">返回</a></div> -->
 <%-- 				</c:if> --%>

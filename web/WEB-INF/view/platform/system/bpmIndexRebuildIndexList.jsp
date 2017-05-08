@@ -110,18 +110,18 @@
 					<div class="group">
 						<c:choose>
 							<c:when test="${dbType=='db2'}">
-								<a id="editRebuildJob" class="link add disabled unsupport-rebuild-index" msg="DB2 数据库不支持在线索引重建" href="#">创建计划</a>
+								<a id="editRebuildJob" class="link add disabled unsupport-rebuild-index" msg="DB2 数据库不支持在线索引重建" href="javascript:void(0)">创建计划</a>
 							</c:when>
 							<c:when test="${dbType=='h2'}">
-								<a id="editRebuildJob" class="link add disabled unsupport-rebuild-index" msg="H2 数据库不支持索引重建" href="#">创建计划</a>
+								<a id="editRebuildJob" class="link add disabled unsupport-rebuild-index" msg="H2 数据库不支持索引重建" href="javascript:void(0)">创建计划</a>
 							</c:when>
 							<c:otherwise>
-								<a id="editRebuildJob" class="link add" href="#" onclick="editRebuildJob()">创建计划</a>
+								<a id="editRebuildJob" class="link add" href="javascript:void(0)" onclick="editRebuildJob()">创建计划</a>
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a id="searchIndex" class="link search" href="#" >查询</a></div>
+					<div class="group"><a id="searchIndex" class="link search" href="javascript:void(0)" >查询</a></div>
 				</div>	
 			</div>
 			<div class="panel-search">

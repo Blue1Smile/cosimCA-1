@@ -34,7 +34,7 @@
 			<div class="panel-toolbar">
 				<div class="toolBar">
 					<div class="group">
-						<div class="group"><a class="link run" id="btnViewSave" href="#">生成</a></div>
+						<div class="group"><a class="link run" id="btnViewSave" href="javascript:void(0)">生成</a></div>
 						<div class="l-bar-separator"></div>
 						<div class="group"><a class="link back" onclick="history.back()">返回</a></div>
 					</div>

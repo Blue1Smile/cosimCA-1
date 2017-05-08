@@ -352,11 +352,11 @@
 					<td colspan="10">
 						<div class="group" align="left">
 				   			<!-- <a id="btnAdd" class="link add">添加</a> -->
-				   			 <a href="#" onclick="add_document();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_document();"   style="text-decoration: none;">
 								<img src="${ctx}/images/iconadd.jpg" width="52" height="18" onmouseover="src='${ctx}/images/iconadd2.jpg'" onmouseout="src='${ctx}/images/iconadd.jpg'" style="border: 0;">
 							 </a>&nbsp;&nbsp;
 								  
-							<a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+							<a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 								<img src="${ctx}/images/icon_del2.jpg" height="18" width="52" onmouseover="src='${ctx}/images/icon_del.jpg'" onmouseout="src='${ctx}/images/icon_del2.jpg'" style="border: 0;">
 							 </a>
 			    		</div>
@@ -393,7 +393,7 @@
 					     <td style="text-align: center" name="uploadUsername">${resFilecheckDetailItem.uploadUsername}</td>
 						<td style="text-align: center" name="cuploadTime"><fmt:formatDate value='${resFilecheckDetailItem.uploadTime}' pattern='yyyy-MM-dd'/></td>
 				    <td style="text-align: center">
-				    	<a href="#" onclick="getFileInfo('${ctx}','${resFilecheckDetailItem.managementId}')">获取详情</a> <a href="#" onclick="openFile('${ctx}','${resFilecheckDetailItem.managementId}')">打开</a> <a href="#" onclick="downloadFile('${ctx}','${resFilecheckDetailItem.managementId}')">下载</a> 
+				    	<a href="javascript:void(0)" onclick="getFileInfo('${ctx}','${resFilecheckDetailItem.managementId}')">获取详情</a> <a href="javascript:void(0)" onclick="openFile('${ctx}','${resFilecheckDetailItem.managementId}')">打开</a> <a href="javascript:void(0)" onclick="downloadFile('${ctx}','${resFilecheckDetailItem.managementId}')">下载</a> 
 				    </td>
 				<!-- 	    <td style="text-align: center" name="uploadUserid">${resFilecheckDetailItem.uploadUserid}</td>
 					    <td style="text-align: center" name="uploadUsername">${resFilecheckDetailItem.uploadUsername}</td>
@@ -402,8 +402,8 @@
 					    <td style="text-align: center" name="managementId">${resFilecheckDetailItem.managementId}</td>
 					     -->	
 			<!-- 		    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						 <input type="hidden" name="fileName" value="${resFilecheckDetailItem.fileName}"/>
 						<input type="hidden" name="fileComment" value="${resFilecheckDetailItem.fileComment}"/>
@@ -428,8 +428,8 @@
 			    	<td style="text-align: center" name="managementId"></td>
 			    	  --> 
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	  
 			    	<input type="hidden" name="fileName" value=""/>

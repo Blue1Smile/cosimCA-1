@@ -72,7 +72,7 @@
 			<div class="panel-toolbar">
 				<div class="toolBar">
 					<div class="group">
-						<a class="link run" id="dataFormSave" href="#">下一步</a>
+						<a class="link run" id="dataFormSave" href="javascript:void(0)">下一步</a>
 					</div>
 				
 				</div>
@@ -98,7 +98,7 @@
 							<th width="20%">查询视图: </th>
 							<td>
 								<input type="text" name="viewName" id="viewName">
-								<a href="#" id="btnSearch" class="link search">查询</a>
+								<a href="javascript:void(0)" id="btnSearch" class="link search">查询</a>
 								
 							</td>
 						</tr>

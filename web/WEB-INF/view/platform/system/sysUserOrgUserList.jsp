@@ -62,7 +62,7 @@
 					   </c:choose>
 						<div class="l-bar-separator"></div>
 						<c:if test="${action == 'global' }">
-						<div class="group"><a class="link add"  href="#" onclick="addClick()">加入人员</a></div>
+						<div class="group"><a class="link add"  href="javascript:void(0)" onclick="addClick()">加入人员</a></div>
 						<div class="l-bar-separator"></div>
 						</c:if>
 						<div class="group"><a class="link del" action="${ctx}/platform/system/sysUserOrg/del.ht">移除</a></div>

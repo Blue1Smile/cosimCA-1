@@ -135,9 +135,9 @@
 				</div>
 				<div class="panel-toolbar">
 					<div class="toolBar">
-						<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+						<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 						<div class="l-bar-separator"></div>
-						<div class="group"><a class="link del" href="#" onclick="window.close();" >关闭</a></div>
+						<div class="group"><a class="link del" href="javascript:void(0)" onclick="window.close();" >关闭</a></div>
 					</div>
 				</div>
 				<div class="panel-detail">
@@ -178,7 +178,7 @@
 							</tr>
 							<tr>
 								<td colspan="2" style="height:25px">
-									<a href="#" id="btnAddRelation">添加关联:</a>
+									<a href="javascript:void(0)" id="btnAddRelation">添加关联:</a>
 									<span id="relationContainer">
 										<c:if test="${not empty relation}">
 											<c:forEach items="${relation.relations}" var="tmp">

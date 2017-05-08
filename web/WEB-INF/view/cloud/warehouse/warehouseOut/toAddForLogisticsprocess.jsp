@@ -119,7 +119,7 @@
 					<td>
 						<input size="35" type="hidden" id="warehouseId" name="warehouseId" value="${warehouseOut.warehouseId}"  class="inputText" validate="{required:false,number:true }"  />
 						<input size="35" type="text" id="warehouseName" readonly="readonly" name="warehouseName" value="${warehouseOut.warehouseName}"  class="inputText" validate="{required:false,maxlength:768}"  />
-						<a href="#" onclick="preview()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="preview()"  class="link detail">选择</a>
 					</td>
 				</tr>
 				<tr>
@@ -161,8 +161,8 @@
 					    <td style="text-align: center" name="sendNum">${warehouseOutDetailItem.sendNum}</td>
 					    <td style="text-align: center;display:none;" name="price">${warehouseOutDetailItem.price}</td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input size="35" type="hidden" name="serialNum" value="${warehouseOutDetailItem.serialNum}"/>
 						<input size="35" type="hidden" name="materialCode" value="${warehouseOutDetailItem.materialCode}"/>

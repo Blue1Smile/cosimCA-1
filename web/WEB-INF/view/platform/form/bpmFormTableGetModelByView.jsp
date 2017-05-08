@@ -55,7 +55,7 @@
 			<div class="panel-toolbar">
 				<div class="toolBar">
 					<div class="group">
-						<div class="group"><a class="link run" id="btnGenView" href="#">生成</a></div>
+						<div class="group"><a class="link run" id="btnGenView" href="javascript:void(0)">生成</a></div>
 						<div class="l-bar-separator"></div>
 						<div class="group"><a class="link back" onclick="javasrcipt:history.back()">返回</a></div>
 					</div>
@@ -124,7 +124,7 @@
 									<input type="text" name="comment" value="${col.comment }">
 								</td>
 								<td style="width:180px">
-									<a href="#" class="link del" onclick="delRow(this)">删除</a>	
+									<a href="javascript:void(0)" class="link del" onclick="delRow(this)">删除</a>
 									<a alt='上移' href='#' class='link moveup' onclick='sort(this,true)'>　</a>	
 									<a alt='下移' href='#' class='link movedown' onclick='sort(this,false)'>&nbsp;&nbsp;&nbsp;</a>
 								</td>

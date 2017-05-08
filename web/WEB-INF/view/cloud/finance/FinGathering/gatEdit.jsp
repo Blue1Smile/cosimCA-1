@@ -341,12 +341,12 @@ if(!isNaN(price)&&!isNaN(orderNum)){
 				<tr>
 					<td colspan="21">
 						<div class="group" align="left" style="display:none">
-								<a href="#" onclick="add_onesupps();"   style="text-decoration: none;">
+								<a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd3.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd4.jpg'"
 												onmouseout="src='${ctx}/images/iconadd3.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"

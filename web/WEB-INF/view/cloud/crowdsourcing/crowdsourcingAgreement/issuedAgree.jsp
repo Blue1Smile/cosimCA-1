@@ -174,9 +174,9 @@
 		<div class="panel-toolbar" style="display:none">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -273,11 +273,11 @@
 			    		</div> -->
 			    		<div class="group" align="left">
 				   			<!-- <a id="btnAdd" class="link add">添加</a> -->
-				   			 <a href="#" onclick="add_attachment();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_attachment();"   style="text-decoration: none;">
 								<img src="${ctx}/images/iconadd.jpg" width="52" height="18" onmouseover="src='${ctx}/images/iconadd2.jpg'" onmouseout="src='${ctx}/images/iconadd.jpg'" style="border: 0;">
 							 </a>&nbsp;&nbsp;
 								  
-							<a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+							<a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 								<img src="${ctx}/images/icon_del2.jpg" height="18" width="52" onmouseover="src='${ctx}/images/icon_del.jpg'" onmouseout="src='${ctx}/images/icon_del2.jpg'" style="border: 0;">
 							 </a>
 			    		</div>
@@ -322,8 +322,8 @@
 					    	<!-- <select  name="operatingAuthority" ><option value="0">查看信息</option><option value="1">在线浏览</option><option value="2">下载</option></select> -->
 					    </td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="attachmentName" value="${crowdsourcingAgreementDetailItem.attachmentName}"/>
 						<input type="hidden" name="attachmentType" value="${crowdsourcingAgreementDetailItem.attachmentType}"/>
@@ -343,8 +343,8 @@
 			    	<td style="text-align: center" name="attachmentManageId"></td>
 			    	<td style="text-align: center" name="operatingAuthority"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="attachmentName" value=""/>
 			    	<input type="hidden" name="attachmentType" value=""/>

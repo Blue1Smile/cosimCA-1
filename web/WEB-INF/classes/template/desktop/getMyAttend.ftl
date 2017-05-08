@@ -4,7 +4,7 @@
 <#list model as data>
 <li>
 <span align="right"><b></b></span>
-<a href="#" onclick="javascript:jQuery.openFullWindow('${ctxPath}/platform/bpm/processRun/get.ht?runId=${data.runId}')" class='contenttw'>${data.subject}</a>
+<a href="javascript:void(0)" onclick="javascript:jQuery.openFullWindow('${ctxPath}/platform/bpm/processRun/get.ht?runId=${data.runId}')" class='contenttw'>${data.subject}</a>
 </li>
 </#list>
 </ul>

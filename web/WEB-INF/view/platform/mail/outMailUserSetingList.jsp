@@ -80,7 +80,7 @@
 								</c:choose>
 								<a style="float: left" href="edit.ht?id=${outMailUserSetingItem.id}" class="link edit">编辑</a>
 								<a style="float: left" href="get.ht?id=${outMailUserSetingItem.id}" class="link detail">明细</a>
-								<a style="float: left" href="#" onclick="test(${outMailUserSetingItem.id})" class="link test">测试</a>
+								<a style="float: left" href="javascript:void(0)" onclick="test(${outMailUserSetingItem.id})" class="link test">测试</a>
 								<input type="hidden" id="outMailUserSetingId"value="${outMailUserSetingItem.id}">
 							</display:column>
 							

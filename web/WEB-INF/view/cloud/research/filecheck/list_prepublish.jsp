@@ -36,7 +36,7 @@
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link add" href="${ctx}/cloud/research/filecheck/start_prepublish.ht">添加</a></div> 
 					
-					<%-- <a class="link add" href="#" onclick="window.open('${ctx}/cloud/research/filecheck/create.ht')">添加</a></div> --%>
+					<%-- <a class="link add" href="javascript:void(0)" onclick="window.open('${ctx}/cloud/research/filecheck/create.ht')">添加</a></div> --%>
 					 
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link update" id="btnUpd" action="edit.ht">修改</a></div>

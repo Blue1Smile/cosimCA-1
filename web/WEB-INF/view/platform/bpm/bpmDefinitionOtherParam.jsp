@@ -116,42 +116,42 @@
 							</c:forEach>
 						</select>
 						
-						<a href="#" class="tipinfo"><span>当操作驳回至发起人时，流程回退到该选择的节点，默认为流程的第一个节点</span></a>
+						<a href="javascript:void(0)" class="tipinfo"><span>当操作驳回至发起人时，流程回退到该选择的节点，默认为流程的第一个节点</span></a>
 					</td>	
 				</tr>
 				<tr>
 					<th width="15%">跳过第一个任务:</th>
 					<td>
 						<input id="toFirstNode" type="checkbox" name="toFirstNode" value="1"  <c:if test="${bpmDefinition.toFirstNode==1 }">checked="checked"</c:if> />
-						<a href="#" class="tipinfo"><span>流程启动后直接完成第一个节点的任务。</span></a>
+						<a href="javascript:void(0)" class="tipinfo"><span>流程启动后直接完成第一个节点的任务。</span></a>
 					</td>	
 				</tr>
 				<tr>
 					<th width="15%">开始节点需要表单:</th>
 					<td>
 						<input id="needStartForm" type="checkbox" name="needStartForm" value="1"  <c:if test="${bpmDefinition.needStartForm==1 }">checked="checked"</c:if> />
-						<a href="#" class="tipinfo"><span>如果勾选，那么流程起始节点需要定义表单，默认为需要。</span></a>
+						<a href="javascript:void(0)" class="tipinfo"><span>如果勾选，那么流程起始节点需要定义表单，默认为需要。</span></a>
 					</td>	
 				</tr>
 				<tr>
 					<th width="15%">流程启动选择执行人:</th>
 					<td>
 						<input id="showFirstAssignee" type="checkbox" name="showFirstAssignee" value="1"  <c:if test="${bpmDefinition.showFirstAssignee==1 }">checked="checked"</c:if> />
-						<a href="#" class="tipinfo"><span>如果勾选，那么流程启动时可以改变下一步的执行人，默认不可以。</span></a>
+						<a href="javascript:void(0)" class="tipinfo"><span>如果勾选，那么流程启动时可以改变下一步的执行人，默认不可以。</span></a>
 					</td>	
 				</tr>
 				<tr>
 					<th width="15%">允许API调用:</th>
 					<td>
 						<input id="isOutForm" type="checkbox" name="isUseOutForm" value="1"  <c:if test="${bpmDefinition.isUseOutForm==1 }">checked="checked"</c:if> />
-						<a href="#" class="tipinfo"><span>如果勾选，那么流程执行时会转向设置的url业务表单上去。</span></a>
+						<a href="javascript:void(0)" class="tipinfo"><span>如果勾选，那么流程执行时会转向设置的url业务表单上去。</span></a>
 					</td>	
 				</tr>
 				<tr>
 					<th width="15%">表单明细Url:</th>
 					<td>
 						<input id="formDetailUrl" class="inputText" style="width:300px;" type="text" name="formDetailUrl" value="${bpmDefinition.formDetailUrl}"   />
-						<a href="#" class="tipinfo"><span>地址写法规则为：如果表单页面平台在同一个应用中，路径从根开始写,不需要上下文路径。如果需要使用的表单不再同一个应用下。则需要写完整路径如:http://***/crm/addUser.ht 。</span></a>
+						<a href="javascript:void(0)" class="tipinfo"><span>地址写法规则为：如果表单页面平台在同一个应用中，路径从根开始写,不需要上下文路径。如果需要使用的表单不再同一个应用下。则需要写完整路径如:http://***/crm/addUser.ht 。</span></a>
 					</td>	
 				</tr>
 			</table>

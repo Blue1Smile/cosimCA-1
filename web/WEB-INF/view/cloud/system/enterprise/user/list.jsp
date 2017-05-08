@@ -155,7 +155,7 @@
 					/////ht del e --%>		
 					<display:column title="管理" media="html" style="text-align:center;">
 					<%-- /////ht del b
-					    <f:a alias="userUnder" css="link primary" href="#" onclick="openUserUnder('${sysUserItem.userId}',this)">下属管理</f:a>
+					    <f:a alias="userUnder" css="link primary" href="javascript:void(0)" onclick="openUserUnder('${sysUserItem.userId}',this)">下属管理</f:a>
 					/////ht del e --%>
 					<%--
 						<f:a alias="delSysUser" css="link del" href="del.ht?userId=${sysUserItem.userId}">删除</f:a>

@@ -86,7 +86,7 @@ var dd;
 				<td >
 				<input type="hidden" id="user_id" name="accendant_id">
 				<input style="width:120px" type="text" id="user_name" name="accendant_name" readonly="readonly" validate="{required:true,maxlength:96}">
-				<a href="#" onclick="selUsers()" class="link detail">请选择</a>
+				<a href="javascript:void(0)" onclick="selUsers()" class="link detail">请选择</a>
 				</td>
 			</tr>
  

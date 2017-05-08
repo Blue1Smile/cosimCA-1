@@ -73,7 +73,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -87,7 +87,7 @@
 					<td>
 					<input type="hidden" id="capabilityClassId" name="capabilityClassId" value="${capabilityProperty.capabilityClassId}"  class="inputText"    />
 					<input type="text" id="capabilityClassName" name="capabilityClassName" value="${capabilityProperty.capabilityClassName}" readonly="readonly"  class="inputText"    />
-					<a href="#" onclick="preview()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="preview()"  class="link detail">选择</a>
 					
 					
 					</td>

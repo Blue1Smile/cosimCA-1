@@ -146,7 +146,7 @@
 					<td>
 						<input type="hidden" id="inOrderId" name="inOrderId" value="${warehouseIn.inOrderId}"  class="inputText" validate="{required:false,number:true }"  />
 						<input type="text" id="inOrderCode" name="inOrderCode" value="${warehouseIn.inOrderCode}"  class="inputText" validate="{required:false,maxlength:96}"  />
-						<a href="#" onclick="add_supps()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="add_supps()"  class="link detail">选择</a>
 					</td>
 				</tr>
 				
@@ -155,7 +155,7 @@
 					<td>
 						<input type="hidden" id="warehouseId" name="warehouseId" value="${warehouseIn.warehouseId}"  class="inputText" validate="{required:false,number:true }"  />
 						<input type="text" id="warehouseName" name="warehouseName" value="${warehouseIn.warehouseName}"  class="inputText" validate="{required:false,maxlength:96}"  />
-						<a href="#" onclick="preview()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="preview()"  class="link detail">选择</a>
 						
 					</td>
 				</tr>
@@ -219,8 +219,8 @@
 					    <td style="text-align: center" name="receivedamount">${warehouseInDetailItem.receivedamount}</td>
 					    <td style="text-align: center" name="price">${warehouseInDetailItem.price}</td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="serialnumber" value="${warehouseInDetailItem.serialnumber}"/>
 						<input type="hidden" name="materialcode" value="${warehouseInDetailItem.materialcode}"/>
@@ -240,8 +240,8 @@
 			    	<td style="text-align: center" name="receivedamount"></td>
 			    	<td style="text-align: center" name="price"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="serialnumber" value=""/>
 			    	<input type="hidden" name="materialcode" value=""/>
@@ -266,7 +266,7 @@
 				<th width="20%">物品编码: </th>
 				<td>
 				<input type="text" name="materialcode" value="" class="inputText" validate="{required:false,maxlength:96}"/>
-				 <a href="#" onclick="preview_material()"  class="link detail">选择</a> 
+				 <a href="javascript:void(0)" onclick="preview_material()"  class="link detail">选择</a>
 				</td>
 			</tr>
 			<tr>

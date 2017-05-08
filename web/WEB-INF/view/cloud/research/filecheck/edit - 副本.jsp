@@ -280,8 +280,8 @@
 					    <td style="text-align: center" name="managementId">${resFilecheckDetailItem.managementId}</td>
 					     -->	
 			<!-- 		    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="fileName" value="${resFilecheckDetailItem.fileName}"/>
 						<input type="hidden" name="fileComment" value="${resFilecheckDetailItem.fileComment}"/>
@@ -306,8 +306,8 @@
 			    	<td style="text-align: center" name="managementId"></td>
 			    	  
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	 -->  
 			    	<input type="hidden" name="fileName" value=""/>
@@ -354,7 +354,7 @@
 					    <td style="display: none" name="checkEnterpriseids">${resFilecheckOpinionItem.checkEnterpriseids}</td>
 					  <!--   <td style="text-align: center" name="checkOpinionids">${resFilecheckOpinionItem.checkOpinionids}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link edit" >编辑</a>
+					    	<a href="javascript:void(0)" class="link edit" >编辑</a>
 					    </td>
 					     -->
 						<input type="hidden" name="taskId" value="${resFilecheckOpinionItem.taskId}"/>
@@ -375,7 +375,7 @@
 			    	<td style="text-align: center" name="checkEnterpriseids"></td>
 		<!--	    	<td style="text-align: center" name="checkOpinionids"></td>		
 			    	<td style="text-align: center">
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	 -->				
 			    	<input type="hidden" name="taskId" value=""/>
@@ -461,7 +461,7 @@
 			<tr>
 				<th width="20%">审签人: </th>
 			   
-				<td><input readonly="readonly" type="text" id="user_name" name="checkUsernames"   value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="#" onclick="chooseUsers(this)" class="link detail">选择</a></td>
+				<td><input readonly="readonly" type="text" id="user_name" name="checkUsernames"   value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="javascript:void(0)" onclick="chooseUsers(this)" class="link detail">选择</a></td>
 			</tr>
 			
 		 	<tr style="display: none">
@@ -473,7 +473,7 @@
 		    
 		          <tr  class="enter"   id="enter_info">
 					<th  "width="20%">审签企业: </th>
-			    	<td><input readonly="readonly" type="text"  id="en_name" name="checkEnterprisenames" value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="#" onclick="chooseEntprises(this);"  class="link detail">选择</a></td>
+			    	<td><input readonly="readonly" type="text"  id="en_name" name="checkEnterprisenames" value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="javascript:void(0)" onclick="chooseEntprises(this);"  class="link detail">选择</a></td>
 				  </tr>
 				   
 	<!-- 	<tr>

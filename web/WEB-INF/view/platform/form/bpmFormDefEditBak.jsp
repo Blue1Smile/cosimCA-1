@@ -51,7 +51,7 @@
 			+ '</select>'
 			+ '</td>'
 			+ '<td style="border:0;padding:0;"><input id="txtr#type#name" type="text" style="width: 100%;" readonly/></td>'
-			+ '<td style="border:0;padding:0;width:60px;">&nbsp;<a id="ar#type#name" href="#" class="link get" onclick="selectCmp(\'#type\', \'r\', \'#name\')">选择</a></td>'
+			+ '<td style="border:0;padding:0;width:60px;">&nbsp;<a id="ar#type#name" href="javascript:void(0)" class="link get" onclick="selectCmp(\'#type\', \'r\', \'#name\')">选择</a></td>'
 			+ '</tr>'
 			+ '</table>'
 			+ '</td>'
@@ -70,7 +70,7 @@
 			+ '</select>'
 			+ '</td>'
 			+ '<td style="border:0;padding:0;"><input id="txtw#type#name" type="text" style="width: 100%;" readonly/></td>'
-			+ '<td style="border:0;padding:0;width:60px;">&nbsp;<a id="aw#type#name" href="#" class="link get" onclick="selectCmp(\'#type\', \'w\', \'#name\')">选择</a></td>'
+			+ '<td style="border:0;padding:0;width:60px;">&nbsp;<a id="aw#type#name" href="javascript:void(0)" class="link get" onclick="selectCmp(\'#type\', \'w\', \'#name\')">选择</a></td>'
 			+ '</tr>' + '</table>'
 			+ '</td>' + '</tr>';
 
@@ -544,7 +544,7 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<div class="group">
-					<a class="link save" id="dataFormSave" href="#">保存</a>
+					<a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				<div class="group">

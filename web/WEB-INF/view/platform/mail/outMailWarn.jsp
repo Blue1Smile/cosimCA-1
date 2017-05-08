@@ -42,7 +42,7 @@ if(count>0){window.location.href="tree.ht";}
       </tr>
       <tr>
         <td height="30" valign="top"><span class="STYLE1">没有添加邮箱，请先在<a href="../outMailUserSeting/list.ht">【邮箱配置管理】</a>里<a href="../outMailUserSeting/edit.ht">【添加邮箱】</a>,再浏览!</span></td>
-        <td valign="bottom" width="50"><a href="#"></a></td>
+        <td valign="bottom" width="50"><a href="javascript:void(0)"></a></td>
       </tr>
     </tbody></table></td>
   </tr>
