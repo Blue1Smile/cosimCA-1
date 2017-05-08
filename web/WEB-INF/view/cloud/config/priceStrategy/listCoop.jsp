@@ -136,7 +136,7 @@
 				
 					<div class="group"><a class="link search" id="btnSearch">查询</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link save" id="saveAll" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="saveAll" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 				
 					<!-- <div class="group"><a class="link update" id="btnUpd" action="edit.ht">修改</a></div>

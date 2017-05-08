@@ -188,7 +188,7 @@ function resetFrm(){
 		<div class="userform_right">
 			<p><strong>已经注册过账号了？</strong></p>
 			<p>即刻登录。</p>
-			<p><a href="#" target="_blank"><img src="skins/btn_login.jpg" /></a></p><br />
+			<p><a href="javascript:void(0)" target="_blank"><img src="skins/btn_login.jpg" /></a></p><br />
 			<p><img width="336" src="skins/bg_regs.jpg" /></p>
 		</div>
 		<div class="clear"></div>

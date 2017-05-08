@@ -88,7 +88,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -108,7 +108,7 @@
 					<td>
 					<input size="35" type="hidden" id="user_id" name="feedback_id" value="${feedback.id}" />
 					<input size="35" type="text" id="user_name" name="feedback_name" class="inputText" value="${feedback.fdman}" readonly="readonly"/>
-					<a href="#" onclick="preview()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="preview()"  class="link detail">选择</a>
 					</td>
 					<th style="width:120px">产品编码:  <span class="required"></span></th>
 					<td><input size="35" type="text" id="prodcode" name="prodcode" value="${feedback.prodcode}"  class="inputText" validate="{required:true,maxlength:96}"  /></td>
@@ -128,7 +128,7 @@
 					<td>
 					<input size="35" type="hidden" id="en_id" name="purenterp_id"  value="${feedback.purenter_id }"  />
 					<input size="35" type="text" id="en_name" name="purenter_name"  value="${feedback.purenter_name}"  readonly="readonly" class="inputText" validate="{required:true,maxlength:300}"  />
-					<a href="#" onclick="userview()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="userview()"  class="link detail">选择</a>
 					</td>
 				</tr>
 				<%-- <tr>

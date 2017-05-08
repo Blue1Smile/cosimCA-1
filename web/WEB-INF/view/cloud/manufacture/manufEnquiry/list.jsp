@@ -54,7 +54,7 @@
 					<div class="group"><a class="link search" id="btnSearch">查询</a></div>
 					<div class="l-bar-separator"></div>
 					<!--
-					<div class="group"><a class="link add" href="#" onclick="window.open('edit.ht')">添加</a></div>
+					<div class="group"><a class="link add" href="javascript:void(0)" onclick="window.open('edit.ht')">添加</a></div>
 					 -->
 					<div class="group"><a class="link add" href="edit.ht">添加</a></div>
 					<div class="l-bar-separator"></div>

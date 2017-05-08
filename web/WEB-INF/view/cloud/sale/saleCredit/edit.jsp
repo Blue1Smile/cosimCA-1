@@ -113,7 +113,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -132,7 +132,7 @@
 				</tr><tr>
 					<th width="20%">合作企业名称: </th>
 					<td><input type="text" id="coopenterpriseName" name="coopenterpriseName" value="${saleCredit.coopenterpriseName}"  class="inputText" validate="{required:true,maxlength:384}"  />
-					<a href="#" onclick="selSups()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="selSups()"  class="link detail">选择</a>
 					</td>
 				</tr>
 				<tr>

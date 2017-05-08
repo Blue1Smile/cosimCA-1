@@ -71,7 +71,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -90,7 +90,7 @@
 					<!-- <input type="text" id="parent" name="parent" value="${materialClass.parent}"  class="inputText" validate="{required:false,maxlength:96}"  /> -->
 					<input type="hidden" id="parentid" name="parentid" value="${materialClass.parentid}"  class="inputText"    />
 					<input type="text" id="parentname" name="parentname" value="${materialClass.parentname}" readonly="readonly"  class="inputText"    />
-					<a href="#" onclick="preview()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="preview()"  class="link detail">选择</a>
 					</td>
 				</tr>
 				<tr>

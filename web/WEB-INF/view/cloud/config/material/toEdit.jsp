@@ -230,7 +230,7 @@
 										value="${material.catalogId }" class="inputText" /> 
 										<input type="text" id="catalogName" name="catalogName"
 										value="${material.catalogName }" readonly="readonly" class="inputText" />
-                                      <a href="#" onclick="preview()" class="link detail">选择</a>  
+                                      <a href="javascript:void(0)" onclick="preview()" class="link detail">选择</a>
 								</div>
 								<div id="pronameTip"></div>
 
@@ -247,7 +247,7 @@
 <%-- 										value="${material.parentId }" class="inputText" /> <input --%>
 <!-- 										type="text" id="parentName" name="parentName" -->
 <%-- 										value="${material.parentName }" readonly="readonly" --%>
-<!-- 										class="inputText" /> <a href="#" onclick="preview2()" -->
+<!-- 										class="inputText" /> <a href="javascript:void(0)" onclick="preview2()" -->
 <!-- 										class="link detail">选择</a> -->
 <!-- 								</div> -->
 <!-- 								<div id="pronameTip"></div> -->
@@ -304,7 +304,7 @@
 									<table width="145" id="sysFileList"
 										class="table-grid table-list" id="0" cellpadding="1"
 										cellspacing="1"></table>
-									<a href="#" onclick="addFile()">添加附件</a>
+									<a href="javascript:void(0)" onclick="addFile()">添加附件</a>
 									<!-- <input type="file" name="attachments" id="attachments">  -->
 								</div>
 							</div>

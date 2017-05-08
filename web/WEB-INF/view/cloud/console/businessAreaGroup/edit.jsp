@@ -123,11 +123,11 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 				<c:choose>
 			    <c:when test="${businessAreaGroup.id !=null}">
-			       <a href="#"  onclick="delBusiness('${businessAreaGroup.id}')" class="link del">删除</a> 
+			       <a href="javascript:void(0)"  onclick="delBusiness('${businessAreaGroup.id}')" class="link del">删除</a>
 			    </c:when>
 			    <c:otherwise>
 			        

@@ -163,14 +163,14 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar step-first">
-				<div class="group"><a class="link next" id="first-next" href="#">下一步</a></div>
+				<div class="group"><a class="link next" id="first-next" href="javascript:void(0)">下一步</a></div>
 				<div class="l-bar-separator"></div>
 <!-- 				<div class="group"><a class="link back" href="list.ht">返回</a></div> -->
 			</div>
 			<div class="toolBar step-second hide">
-				<div class="group"><a class="link prev" id="second-prev" href="#">上一步</a></div>
+				<div class="group"><a class="link prev" id="second-prev" href="javascript:void(0)">上一步</a></div>
 				<div class="l-bar-separator"></div>
-				<div class="group"><a class="link save" href="#">保存</a></div>
+				<div class="group"><a class="link save" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 <!-- 				<div class="group"><a class="link back" href="list.ht">返回</a></div> -->
 			</div>
@@ -186,8 +186,8 @@
 								<div id="tablesTree" class="ztree" ></div>
 							</div>
 							<div id="tablesOperate">
-								<a class="sbutton button" href="#" onclick="treeSelect(1)"><span title="将左边的选择的节点插入到右边的脚本输入框中">选择节点</span></a>
-								<a class="sbutton button" href="#" onclick="treeSelect(2)"><span title="在右边的脚本输入框中插入一个基本查询语句的框架">查询模板</span></a>
+								<a class="sbutton button" href="javascript:void(0)" onclick="treeSelect(1)"><span title="将左边的选择的节点插入到右边的脚本输入框中">选择节点</span></a>
+								<a class="sbutton button" href="javascript:void(0)" onclick="treeSelect(2)"><span title="在右边的脚本输入框中插入一个基本查询语句的框架">查询模板</span></a>
 							</div>
 						</div>
 					</div>
@@ -279,7 +279,7 @@
 										<option value="${item['file'] }" setting="${item['setting']}" <c:if test="${item['file'] == sysCustomDisplay.template}">selected="selected"</c:if>>${item['name']}</option>
 									</c:forEach>
 								</select>
-								<a href="#" onclick="settingTemplate()">设置模板参数</a>
+								<a href="javascript:void(0)" onclick="settingTemplate()">设置模板参数</a>
 							</td>
 						</tr>
 						<tr>
@@ -312,7 +312,7 @@
 												</tr>
 												<tr>
 													<td style="text-align: center;">
-														<a id="selectCondition" style="margin-top: 30px;" onclick="selectCondition()" href="#" class="button">
+														<a id="selectCondition" style="margin-top: 30px;" onclick="selectCondition()" href="javascript:void(0)" class="button">
 														<span>==></span>
 														</a>
 													</td>

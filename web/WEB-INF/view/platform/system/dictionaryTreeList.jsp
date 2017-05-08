@@ -136,7 +136,7 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link add" onclick="addNew()" href="#">添加字典</a></div>
+					<div class="group"><a class="link add" onclick="addNew()" href="javascript:void(0)">添加字典</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link del"  action="del.ht">删除</a></div>
 				</div>	
@@ -173,10 +173,10 @@
 									<a href="upd1.ht?dicId=${dictionaryItem.dicId}&returnUrl=${returnUrl}" class="link edit">编辑</a>
 									<a href="add1.ht?typeId=${typeId}&parentId=${dictionaryItem.dicId}&returnUrl=${returnUrl}" class="link-add"><span class="link-btn">添加子结点</span></a>
 									<c:if test="${dictionaryItem.first==false}">
-										<a href="#" class="link moveup" onclick="sortUp(this)">向上</a>
+										<a href="javascript:void(0)" class="link moveup" onclick="sortUp(this)">向上</a>
 									</c:if>
 									<c:if test="${dictionaryItem.last==false}">
-										<a href="#" class="link movedown" onclick="sortDown(this)">向下</a>
+										<a href="javascript:void(0)" class="link movedown" onclick="sortDown(this)">向下</a>
 									</c:if>
 								</td>
 				    		</tr>

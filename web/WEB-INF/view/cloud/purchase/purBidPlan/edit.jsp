@@ -34,9 +34,9 @@
 		var tr = '<tr class="'+fileId+'">';
 		tr += '<td>';
 		tr += '	<span class="attach">&ensp;&ensp; </span>&nbsp;&nbsp;';
-		tr += '	<a href="#" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
+		tr += '	<a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
 		tr += '</td>';
-		tr += '<td><a href="#" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
 		tr += '</tr>';
 		return tr;
 	}
@@ -236,9 +236,9 @@ function selectedQuoteEnts(){
 		<div class="panel-toolbar" style="display:none">
 			<div class="toolBar">
 				<c:if test="${viewFlag.applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -248,7 +248,7 @@ function selectedQuoteEnts(){
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${viewFlag.applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -402,7 +402,7 @@ function selectedQuoteEnts(){
 					<th style="width:120px">资质要求说明（逗号分隔）: </th>
 					<td><input size="35" readonly class="r" type="text" id="qualifications" name="qualifications" value="${purBidPlan.qualifications}"  class="inputText" validate="{required:true,maxlength:256}"  />					
 					    <c:if test="${viewFlag.addquo == 1 }">
-					    	<a href="#" onclick="add_qua();" style="display:none">选择</a>
+					    	<a href="javascript:void(0)" onclick="add_qua();" style="display:none">选择</a>
 					    </c:if>
 					</td>
 				</tr>
@@ -453,8 +453,8 @@ function selectedQuoteEnts(){
 					    <td style="text-align: center" name="sumPrice">${purBidPlanDetailItem.sumPrice}</td>
 						<td style="text-align: center" name="deliveryEnddate"><fmt:formatDate value='${purBidPlanDetailItem.deliveryEnddate}' pattern='yyyy-MM-dd'/></td>								
 					    <td style="display:none" >
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="materielId" value="${purBidPlanDetailItem.materielId}"/>
 						<input type="hidden" name="materielName" value="${purBidPlanDetailItem.materielName}"/>
@@ -482,8 +482,8 @@ function selectedQuoteEnts(){
 			    	<td style="text-align: center" name="sumPrice"></td>
 					<td style="text-align: center" name="deliveryEnddate"></td>								
 			    	<td style="display:none" >
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materielId" value=""/>
 			    	<input type="hidden" name="materielName" value=""/>
@@ -541,15 +541,15 @@ function selectedQuoteEnts(){
 						    <td style="text-align: center" name="suppenterpriseName">${purBidPlanCertificateItem.suppenterpriseName}</td>				 			    
 						    <td style="text-align: center" name="attract">${purBidPlanCertificateItem.attract}
 								<c:if test="${ purBidPlanCertificateItem.num !=''}">
-							    	<a href="#" onclick="openFile(this);">查看 </a>
+							    	<a href="javascript:void(0)" onclick="openFile(this);">查看 </a>
 							    </c:if>
 						    </td>
 						    <td style="text-align: center" name="name">${purBidPlanCertificateItem.name}</td>
 						    <td style="text-align: center" name="type">${purBidPlanCertificateItem.type}</td>
 						    <td style="text-align: center" name="note">${purBidPlanCertificateItem.note}</td>
 						    <td style="text-align: center">
-						    	<a href="#" class="link del" style="display:none">删除</a>
-						    	<a href="#" class="link edit" style="display:none">编辑</a>
+						    	<a href="javascript:void(0)" class="link del" style="display:none">删除</a>
+						    	<a href="javascript:void(0)" class="link edit" style="display:none">编辑</a>
 						    </td>
 						    <input type="hidden" name="id" value="${purBidPlanCertificateItem.id}"/>
 						    <input type="hidden" name="num" value="${purBidPlanCertificateItem.num}"/>
@@ -571,8 +571,8 @@ function selectedQuoteEnts(){
 							    <td style="text-align: center" name="type">${purBidPlanCertificateItem.type}</td>
 							    <td style="text-align: center" name="note">${purBidPlanCertificateItem.note}</td>
 							    <td style="text-align: center">
-							    	<a href="#" class="link del">删除</a>
-							    	<a href="#" class="link edit">编辑</a>
+							    	<a href="javascript:void(0)" class="link del">删除</a>
+							    	<a href="javascript:void(0)" class="link edit">编辑</a>
 							    </td>
 							<input type="hidden" name="id" value="${purBidPlanCertificateItem.id}"/>
 							<input type="hidden" name="num" value="${purBidPlanCertificateItem.num}"/>
@@ -595,8 +595,8 @@ function selectedQuoteEnts(){
 			    	<td style="text-align: center" name="type"></td>
 			    	<td style="text-align: center" name="note"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="id" value=""/>
 			    	<input type="hidden" name="num" value=""/>
@@ -631,7 +631,7 @@ function selectedQuoteEnts(){
 			 -->
 			<tr>
 				<th width="20%">物品名称: </th>
-				<td><input type="text" name="materielName" value=""  class="inputText" validate="{required:false,maxlength:768}"/><a href="#" onclick="add_product();">选择</a></td>
+				<td><input type="text" name="materielName" value=""  class="inputText" validate="{required:false,maxlength:768}"/><a href="javascript:void(0)" onclick="add_product();">选择</a></td>
 			</tr>
 			<tr>
 				<th width="20%">物品编码: </th>
@@ -683,7 +683,7 @@ function selectedQuoteEnts(){
 			<tr>
 				<th width="20%">资质附件: </th>
 				<td><input type="text" name="attract" value=""  class="inputText" validate="{required:false,maxlength:768}"/>
-				 <a href="#" onclick="selectfile();">选择</a>
+				 <a href="javascript:void(0)" onclick="selectfile();">选择</a>
 				</td>
 			</tr>
 			<tr>

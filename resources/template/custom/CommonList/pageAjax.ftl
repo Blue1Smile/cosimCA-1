@@ -14,12 +14,12 @@
 		<div class="l-bar-separator"></div>
 		<div class="l-bar-group">
 			<div class="l-bar-button l-bar-btnfirst">
-				<a href="#" onclick="firstAjax(this,'${tableIdCode}')" title="首页">
+				<a href="javascript:void(0)" onclick="firstAjax(this,'${tableIdCode}')" title="首页">
 					<span class=""></span>
 				</a> 
 			</div>
 			<div class="l-bar-button l-bar-btnprev">
-				<a href="#" onclick="previousAjax(this,'${tableIdCode}');" title="上一页">
+				<a href="javascript:void(0)" onclick="previousAjax(this,'${tableIdCode}');" title="上一页">
 					<span class=""></span>
 				</a>
 			</div>
@@ -33,12 +33,12 @@
 		<div class="l-bar-separator"></div>
 		<div class="l-bar-group">
 			<div class="l-bar-button l-bar-btnnext">
-				<a href="#" onclick="nextAjax(this,'${tableIdCode}')" title="下一页">
+				<a href="javascript:void(0)" onclick="nextAjax(this,'${tableIdCode}')" title="下一页">
 					<span></span>
 				</a>
 			</div>
 			<div class="l-bar-button l-bar-btnlast">
-				<a href="#" onclick="lastAjax(this,'${tableIdCode}')" title="尾页">
+				<a href="javascript:void(0)" onclick="lastAjax(this,'${tableIdCode}')" title="尾页">
 					<span></span>
 				</a>
 			</div>
@@ -52,7 +52,7 @@
 		<div class="l-bar-separator"></div>
 		<div class="l-bar-group">
 			<div class="l-bar-button l-bar-btnload">
-				<a href="#" onclick="refreshAjax(this,'${pageURL_L}')">
+				<a href="javascript:void(0)" onclick="refreshAjax(this,'${pageURL_L}')">
 					<span class=""></span>
 				</a>
 			</div>

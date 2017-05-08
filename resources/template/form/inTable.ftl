@@ -1,7 +1,7 @@
 <br>
 <table style="border:1px solid #366092;border-collapse :collapse;width:100%;text-align:center;font-size: 12px;" >
     <tr style="height: 32px;background-color: #366092;">
-    	<td colspan="${fields?size +1}" style="border:1px solid #366092;text-align: left;padding-left: 4px;"><a class="link add" href="#" >添加</a></td>
+    	<td colspan="${fields?size +1}" style="border:1px solid #366092;text-align: left;padding-left: 4px;"><a class="link add" href="javascript:void(0)" >添加</a></td>
     </tr>
 	<tr style="height: 25px;">
 		<#list fields as field>

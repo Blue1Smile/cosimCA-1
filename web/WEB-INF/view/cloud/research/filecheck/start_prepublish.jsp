@@ -370,9 +370,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -382,7 +382,7 @@
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -428,7 +428,7 @@
 				<tr>
 					<th width="20%">审签者: </th>
 					<td><input style="width: 90%" type="text"  readonly class="r"  id="currentEnterpIds" name="currentEnterpIds"  class="inputText" validate="{required:true}"  />
-						<a href="#" onclick="selRoleBySups()"  class="link detail">选择</a></td>
+						<a href="javascript:void(0)" onclick="selRoleBySups()"  class="link detail">选择</a></td>
 				
 				</tr>
 				<tr style="display: none;">
@@ -450,11 +450,11 @@
 					<td colspan="10">
 						<div class="group" align="left">
 				   			<!-- <a id="btnAdd" class="link add">添加</a> -->
-				   			 <a href="#" onclick="add_document();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_document();"   style="text-decoration: none;">
 								<img src="${ctx}/images/iconadd.jpg" width="52" height="18" onmouseover="src='${ctx}/images/iconadd2.jpg'" onmouseout="src='${ctx}/images/iconadd.jpg'" style="border: 0;">
 							 </a>&nbsp;&nbsp;
 								  
-							<a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+							<a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 								<img src="${ctx}/images/icon_del2.jpg" height="18" width="52" onmouseover="src='${ctx}/images/icon_del.jpg'" onmouseout="src='${ctx}/images/icon_del2.jpg'" style="border: 0;">
 							 </a>
 			    		</div>
@@ -494,8 +494,8 @@
 					    <td style="text-align: center" name="managementId">${resFilecheckDetailItem.managementId}</td>
 					     -->	
 			<!-- 		    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="fileName" value="${resFilecheckDetailItem.fileName}"/>
 						<input type="hidden" name="fileComment" value="${resFilecheckDetailItem.fileComment}"/>
@@ -520,8 +520,8 @@
 			    	<td style="text-align: center" name="managementId"></td>
 			    	 -->    
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="fileName" value=""/>
 			    	<input type="hidden" name="fileComment" value=""/>

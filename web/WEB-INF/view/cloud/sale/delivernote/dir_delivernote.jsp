@@ -69,7 +69,7 @@
 		</div>
 <!-- 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -144,7 +144,7 @@
 				</tr>
 				<tr>
 					<th width="20%">发货仓库名称: </th>
-					<td><input type="text" id="deliverwarehouseName" name="deliverwarehouseName" value="${delivernote.deliverwarehouseName}"  class="inputText" validate="{required:false,maxlength:768}"  /><a href="#" onclick="add_archive()"  class="link detail">选择</a></td>
+					<td><input type="text" id="deliverwarehouseName" name="deliverwarehouseName" value="${delivernote.deliverwarehouseName}"  class="inputText" validate="{required:false,maxlength:768}"  /><a href="javascript:void(0)" onclick="add_archive()"  class="link detail">选择</a></td>
 					<th width="20%">发货仓库详细地址: </th>
 					<td><input type="text" id="deliverwarehouseAddress" name="deliverwarehouseAddress" value="${delivernote.deliverwarehouseAddress}"  class="inputText" validate="{required:false,maxlength:768}"  /></td>
 				</tr>
@@ -216,8 +216,8 @@
 						<td style="text-align: center" name="predeliveryEnddate"><fmt:formatDate value='${delivernoteDetailItem.predeliveryEnddate}' pattern='yyyy-MM-dd'/></td>								
 					
 	<!-- 				    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="materielId" value="${delivernoteDetailItem.materielId}"/>
 						<input type="hidden" name="materielCode" value="${delivernoteDetailItem.materielCode}"/>
@@ -245,8 +245,8 @@
 					<td style="text-align: center" name="deliveryEnddate"></td>								
 					<td style="text-align: center" name="predeliveryEnddate"></td>								
 <!-- 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td> -->
 			    	<input type="hidden" name="materielId" value=""/>
 			    	<input type="hidden" name="materielCode" value=""/>

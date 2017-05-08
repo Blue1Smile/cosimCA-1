@@ -110,7 +110,7 @@
             <div class="panel-heading">
                 已订阅数据
                 <div class="btn-group pull-right">
-                    <a href="#" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    <a href="javascript:void(0)" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         更多<span class="caret"></span>
                     </a>

@@ -96,7 +96,7 @@
 					<display:column title="管理" media="html" style="width:180px">
 						<a href="get.ht?runId=${processRunItem.runId}" class="link detail">明细</a>
 						<c:if test="${processRunItem.recover==1}">
-							<a href="#" onclick="recover(${processRunItem.runId})" class="link redo">追回</a>
+							<a href="javascript:void(0)" onclick="recover(${processRunItem.runId})" class="link redo">追回</a>
 						</c:if>
 						
 					</display:column>

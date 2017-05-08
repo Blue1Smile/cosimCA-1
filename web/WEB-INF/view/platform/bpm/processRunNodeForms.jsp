@@ -26,7 +26,7 @@
 			<c:forEach items="${historyTasks }" var="taskInfo">
 					<tr>
 						<th width="200" nowrap="nowrap">${taskInfo.name}(${taskInfo.taskDefinitionKey})</th>
-						<td><a href="#" class="link detail" style="font-size:15px;" onclick="jQuery.openFullWindow('${ctx}/platform/bpm/processRun/formHtml.ht?runId=${processRun.runId}&taskId=${taskInfo.id}')">查看表单</a></td>
+						<td><a href="javascript:void(0)" class="link detail" style="font-size:15px;" onclick="jQuery.openFullWindow('${ctx}/platform/bpm/processRun/formHtml.ht?runId=${processRun.runId}&taskId=${taskInfo.id}')">查看表单</a></td>
 					</tr>
 				</c:forEach>
 
@@ -38,7 +38,7 @@
 						<th width="200" nowrap="nowrap">${nodeSet.nodeName}(${nodeSet.nodeId})</th>
 						<td>
 						
-						<a href="#" class="link detail" style="font-size:15px;" onclick="jQuery.openFullWindow('${ctx}/platform/bpm/processRun/formHtml.ht?runId=${processRun.runId}&nodeId=${nodeSet.nodeId}')">查看表单</a>
+						<a href="javascript:void(0)" class="link detail" style="font-size:15px;" onclick="jQuery.openFullWindow('${ctx}/platform/bpm/processRun/formHtml.ht?runId=${processRun.runId}&nodeId=${nodeSet.nodeId}')">查看表单</a>
 						
 						</td>
 					</tr>

@@ -32,11 +32,11 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<div class="group">
-					<a class="link save" id="save" href="#" onclick="save()">保存布局</a>  
+					<a class="link save" id="save" href="javascript:void(0)" onclick="save()">保存布局</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				<div class="group">
-					<a class="link edit" id="change" href="#">编辑布局</a>
+					<a class="link edit" id="change" href="javascript:void(0)">编辑布局</a>
 				</div>
 				<div class="group">
 				   <span>鼠标拖动栏目可改变栏目所在位置</span>

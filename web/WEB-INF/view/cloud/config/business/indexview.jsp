@@ -18,7 +18,7 @@
 <c:forEach items="${businessChance}" var="businessChance">
 	<div class="pro_view_01"><img src="${ctx}${businessChance.image}" onError="this.src='${ctx}/images/default-chance.jpg';" width="220" height="220" /></div>
     <div class="pro_view_02">商机名称：${businessChance.name }</div>
-    <div class="pro_view_03">企业名称：<a href="#">${businessChance.companyName}</a></div>
+    <div class="pro_view_03">企业名称：<a href="javascript:void(0)">${businessChance.companyName}</a></div>
     <div class="pro_view_03">开始时间：<fmt:formatDate value="${businessChance.startTime}" pattern="yyyy-MM-dd"/> 截止时间：<fmt:formatDate value="${businessChance.endTime }" pattern="yyyy-MM-dd"/></div>
     <div class="pro_view_03">商机类型：${businessChance.type}</div>
     <div class="pro_view_03">

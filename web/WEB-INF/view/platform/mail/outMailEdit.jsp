@@ -251,7 +251,7 @@
 									<th width="15%">附件: </th>
 									<td>
 									<table width="145" id="sysFileList" class="table-grid table-list" id="0" cellpadding="1" cellspacing="1"></table>
-									<a href="#" onclick="addFile()">添加附件</a></td>
+									<a href="javascript:void(0)" onclick="addFile()">添加附件</a></td>
 								</tr>
 								<tr>
 									<td colspan="2">

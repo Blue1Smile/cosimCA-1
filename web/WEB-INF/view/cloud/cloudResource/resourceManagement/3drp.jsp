@@ -39,7 +39,7 @@ function divNums(){
 <div id="all">			
 <%@include file="/commons/cloud/top.jsp"%>	
 	<div id="model" class="bggraybox">
-		<div class="title"><a href="#">模型制作</a></div>
+		<div class="title"><a href="javascript:void(0)">模型制作</a></div>
 		<ul>
 			<li>
 				<div class="left">

@@ -203,9 +203,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -215,7 +215,7 @@
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -316,7 +316,7 @@
 					<td>
 						<input type="hidden"  name="suppEnterpriseIds" id="suppEnterpriseIds" value="" />
 						<input type="text" id="e_name" value="" readonly="readonly" validate="{required:true,maxlength:80}"/>
-						<a href="#" onclick="add_supps()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="add_supps()"  class="link detail">选择</a>
 					</td>				
 				</tr>
 			</table>
@@ -325,7 +325,7 @@
 					<td colspan="15">
 						<div class="group" align="left">
 							 	<a id="btnAdd" class="link add">添加</a>
-							<!-- <a href="#" onclick="add_product();">添加</a> -->
+							<!-- <a href="javascript:void(0)" onclick="add_product();">添加</a> -->
 							</div>
 			    		<div align="center">
 						委外加工询价单 :委外加工询价单产品详情
@@ -367,8 +367,8 @@
 					    <td style="text-align: center" name="planInrate">${manufEnquiryDetailItem.planInrate}</td>
 					    <!-- <td style="text-align: center" name="comments">${manufEnquiryDetailItem.comments}</td> -->
 					    <td style="text-align: center">
-					    	<a href="#" class="link del" >删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del" >删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="materialCode" value="${manufEnquiryDetailItem.materialCode}"/>
 						<input type="hidden" name="materialCodenotation" value="${manufEnquiryDetailItem.materialCodenotation}"/>
@@ -402,8 +402,8 @@
 			    	<td style="text-align: center" name="planInrate"></td>
 			    	<td style="text-align: center; display:none" name="comments"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materialCode" value=""/>
 			    	<input type="hidden" name="materialCodenotation" value=""/>
@@ -433,7 +433,7 @@
 		<table class="table-detail" cellpadding="0" cellspacing="0" border="0">
 			<tr>
 				<th width="20%">待加工物品编码: </th>
-				<td><input type="text" name="materialCode" value=""  class="inputText" validate="{required:false,maxlength:96}"/> <a href="#" onclick="add_product();"  class="link detail">选择</a></td> 
+				<td><input type="text" name="materialCode" value=""  class="inputText" validate="{required:false,maxlength:96}"/> <a href="javascript:void(0)" onclick="add_product();"  class="link detail">选择</a></td>
 			</tr>
 			<!-- 
 			<tr>

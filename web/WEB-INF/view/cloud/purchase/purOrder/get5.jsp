@@ -192,7 +192,7 @@
 						物品订单详情
 			    		</div>
 			    		<div align="right">
-						<a href="#" onclick="loc_Detail();">更多</a>
+						<a href="javascript:void(0)" onclick="loc_Detail();">更多</a>
 			    		</div>
 				</td>
 			</tr>

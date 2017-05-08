@@ -37,7 +37,7 @@ body {
         <td height="30" valign="top"><span class="STYLE1">以下仅限超级管理员在需要的时候使用<br/>没有桌面栏目，请先在<a href="../desktopColumn/list.ht">【桌面栏目】</a>里点"初使化模板",<br/>
         再在<a href="../desktopLayout/list.ht">【桌面布局】</a>中"重置"桌面栏目。保存成功后注销从新登录，即可.
         </span></td>
-        <td valign="bottom" width="10"><a href="#"></a></td>
+        <td valign="bottom" width="10"><a href="javascript:void(0)"></a></td>
       </tr>
     </tbody></table></td>
   </tr>

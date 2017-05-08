@@ -23,7 +23,7 @@
 			<c:forEach var="list2" items="${cloudResource}">
 				<c:if test='${list1.id==list2.parentId}'>
 					<div class="tag">
-						<strong><a href="#"> ${list2.name}</a></strong>
+						<strong><a href="javascript:void(0)"> ${list2.name}</a></strong>
 						
 							<c:forEach var="list3" items="${cloudResource2}">
 					
@@ -34,16 +34,16 @@
 											<a id="link" style="color:red" href="${ctx}${list3.openUrl}${list3.id}">${list3.name }</a>									
 										</c:if>
 										<c:if test='${empty list3.openUrl}'>
-											<a id="link"  href="#">${list3.name }</a>									
+											<a id="link"  href="javascript:void(0)">${list3.name }</a>
 										</c:if>
 									</c:if>
 									
 									<c:if test='${list3.openType=="1"}'>
 										<c:if test='${not empty list3.openUrl}'>
-											<a style="color:red" href="#" onClick="window.open('${list3.openUrl }') ">${list3.name }</a>									
+											<a style="color:red" href="javascript:void(0)" onClick="window.open('${list3.openUrl }') ">${list3.name }</a>
 										</c:if>
 										<c:if test='${empty list3.openUrl }'>
-											<a href="#" >${list3.name }</a>									
+											<a href="javascript:void(0)" >${list3.name }</a>
 										</c:if>										 	
 									</c:if> 
 									
@@ -53,7 +53,7 @@
 											<a id="link" style="color:red" href="${ctx}${list3.openUrl}">${list3.name }</a>									
 										</c:if>
 										<c:if test='${empty list3.openUrl}'>
-											<a id="link"  href="#">${list3.name }</a>									
+											<a id="link"  href="javascript:void(0)">${list3.name }</a>
 										</c:if>
 									</c:if>
 									

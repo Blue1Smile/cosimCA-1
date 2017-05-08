@@ -108,7 +108,7 @@ $(document).ready(function(){
 <div class="clear_10"></div>
 <!-- header  结束 -->
 <div style="margin:0 auto; width:1024px; text-align:center;">
-  <div class="logo"><a href="#"></a></div>
+  <div class="logo"><a href="javascript:void(0)"></a></div>
 </div>
 <!-- 页面主体  开始 -->
 <div id="main" style="text-align:center; padding-top:60px;"><a href="${ctx }/index.ht"><img src="${ctx }/images/tianhe_logo.png" width="194" height="42" longdesc="返回首页" /style="border:0" /></a></div>

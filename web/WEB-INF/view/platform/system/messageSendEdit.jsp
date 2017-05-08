@@ -86,7 +86,7 @@
 		<div class="panel-body">
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link sendMessage" id="dataFormSave" href="#">发送</a></div>
+					<div class="group"><a class="link sendMessage" id="dataFormSave" href="javascript:void(0)">发送</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht?userId=${userId}">返回</a></div>
 				</div>
@@ -105,8 +105,8 @@
 								<th width="20%">收信人: </th>
 								<td>
 								<input id="receiverName" name="receiverName"  size="80" readonly="readonly" value="${messageSend.receiverName}" />
-								<a href="#" onclick="addClick()" class="link get">选择</a>
-						        <a href="#" onclick="reSet()" class="link clean">清空</a>
+								<a href="javascript:void(0)" onclick="addClick()" class="link get">选择</a>
+						        <a href="javascript:void(0)" onclick="reSet()" class="link clean">清空</a>
 								<input type="hidden" id="receiverId" name="receiverId" value=""  class="inputText"/>
 								<input type="hidden" id="receiveType" name="receiveType" value=""  class="inputText"/>
 								</td>
@@ -115,8 +115,8 @@
 								<th width="20%">收信组织: </th>
 								<td>
 								<input id="receiverOrgName" name="receiverOrgName"  size="80" readonly="readonly" value="${messageSend.receiverOrgName}" />
-								<a href="#" onclick="showOrgDialog()" class="link get">选择</a>
-						        <a href="#" onclick="reSetOrg()" class="link clean">清空</a>
+								<a href="javascript:void(0)" onclick="showOrgDialog()" class="link get">选择</a>
+						        <a href="javascript:void(0)" onclick="reSetOrg()" class="link clean">清空</a>
 								<input type="hidden" id="receiverOrgId" name="receiverOrgId" value=""  class="inputText"/>
 								</td>
 							</tr>

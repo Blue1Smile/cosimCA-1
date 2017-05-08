@@ -150,7 +150,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存并发起</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存并发起</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -175,7 +175,7 @@
 				    <th style="width:120px;">返厂厂商: </th>
 				    <td><input size="35" type="hidden" id="en_id" name="purenterid" value="${returntask.purenterid}"   />
 					<input size="35" type="text" id="en_name" name="purenter_name" readonly="readonly" value="${returntask.purenter_name}"  class="inputText" validate="{required:true,maxlength:96}"  />
-					<a href="#" onclick="selSups()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="selSups()"  class="link detail">选择</a>
 					</td>
 					<th style="width:120px;">送修厂: </th>
 				    <td><input size="35" type="text" id="currentpurenter" name="currentpurenter" value="${returntask.currentpurenter }"  class="inputText" validate="{required:false,maxlength:96}"  /></td>
@@ -227,8 +227,8 @@
 					    <td style="text-align: center" name="unit">${returntaskDetailItem.unit}</td>
 					    <td style="text-align: center" name="price">${returntaskDetailItem.price}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input size="35" type="hidden" name="code" value="${returntaskDetailItem.code}"/>
 						<input size="35" type="hidden" name="prodcdoe" value="${returntaskDetailItem.prodcdoe}"/>
@@ -248,8 +248,8 @@
 			    	<td style="text-align: center" name="unit"></td>
 			    	<td style="text-align: center" name="price"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input size="35" type="hidden" name="code" value=""/>
 			    	<input size="35" type="hidden" name="prodcdoe" value=""/>
@@ -277,7 +277,7 @@
 			<tr>
 				<th width="20%">产品编码: </th>
 				<td><input size="35" type="text" name="prodcdoe" value=""  readonly="readonly" class="inputText" validate="{required:true,maxlength:96}"/>
-				<a href="#" onclick="preview()" class="link detail">请选择</a>
+				<a href="javascript:void(0)" onclick="preview()" class="link detail">请选择</a>
 				</td>
 			</tr>
 			<tr>

@@ -83,7 +83,7 @@
 						</div>
 
 						<div class="tab01_6">
-							<a href="#" onclick="view('${businessChance.id}');"
+							<a href="javascript:void(0)" onclick="view('${businessChance.id}');"
 								class="link01" name="${businessChance.id}">查看</a>
 						</div>
 					</div>

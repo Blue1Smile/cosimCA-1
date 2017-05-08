@@ -159,8 +159,8 @@
 					    <td style="text-align: center" name="price">${jobCardDetailItem.price}</td>
 					    <td style="text-align: center" name="nums">${jobCardDetailItem.nums}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input size="35" type="hidden" name="seq" value="${jobCardDetailItem.seq}"/>
 						<input size="35" type="hidden" name="prodname" value="${jobCardDetailItem.prodname}"/>
@@ -176,8 +176,8 @@
 			    	<td style="text-align: center" name="price"></td>
 			    	<td style="text-align: center" name="nums"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input size="35" type="hidden" name="seq" value=""/>
 			    	<input size="35" type="hidden" name="prodname" value=""/>

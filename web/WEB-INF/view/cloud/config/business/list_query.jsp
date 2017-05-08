@@ -55,7 +55,7 @@
                             	 </c:if>
                             	 </br>商机类型：${businessChance.type} </br>${businessChance.info.country}：${businessChance.info.province}${purchaseList.info.city}</span></div>
 	                     
-	                         <div class="tab01_6"><a href="#" onclick="view('${businessChance.id}');" class="link01" name="${businessChance.id}">查看</a> </div>
+	                         <div class="tab01_6"><a href="javascript:void(0)" onclick="view('${businessChance.id}');" class="link01" name="${businessChance.id}">查看</a> </div>
                         </div>
                         
                     </div>

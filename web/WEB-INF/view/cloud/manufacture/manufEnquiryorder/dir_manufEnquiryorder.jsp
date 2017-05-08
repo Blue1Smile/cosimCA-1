@@ -176,7 +176,7 @@
 		</div>
 			<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -201,7 +201,7 @@
 				</tr>
 				<tr>
 					<th width="20%">受托加工企业ID: </th>
-					<td><input type="text"  id="selectedenterpId" name="selectedenterpId" value=""  class="inputText" validate="{required:false,number:true }"  /><a href="#" onclick="selSups()">选择</a></td>
+					<td><input type="text"  id="selectedenterpId" name="selectedenterpId" value=""  class="inputText" validate="{required:false,number:true }"  /><a href="javascript:void(0)" onclick="selSups()">选择</a></td>
 				
 					<th width="20%">受托加工企业名: </th>
 					<td><input type="text"  id="selectedenterpName" name="selectedenterpName" value=""  class="inputText" validate="{required:false,maxlength:96}"  /></td>
@@ -370,8 +370,8 @@
 					    <td style="text-align: center" name="planInrate">${manufEnquiryorderDetailItem.planInrate}</td>
 					    <td style="text-align: center" name="comments">${manufEnquiryorderDetailItem.comments}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="materialCode" value="${manufEnquiryorderDetailItem.materialCode}"/>
 						<input type="hidden" name="materialCodenotation" value="${manufEnquiryorderDetailItem.materialCodenotation}"/>
@@ -405,8 +405,8 @@
 			    	<td style="text-align: center" name="planInrate"></td>
 			    	<td style="text-align: center" name="comments"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materialCode" value=""/>
 			    	<input type="hidden" name="materialCodenotation" value=""/>
@@ -457,8 +457,8 @@
 						<td style="text-align: center" name="planAogdate"><fmt:formatDate value='${manufEnquiryorderSuppliesItem.planAogdate}' pattern='yyyy-MM-dd'/></td>								
 					    <td style="text-align: center" name="comments">${manufEnquiryorderSuppliesItem.comments}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="suppliesCode" value="${manufEnquiryorderSuppliesItem.suppliesCode}"/>
 						<input type="hidden" name="suppliesCodenotation" value="${manufEnquiryorderSuppliesItem.suppliesCodenotation}"/>
@@ -480,8 +480,8 @@
 					<td style="text-align: center" name="planAogdate"></td>								
 			    	<td style="text-align: center" name="comments"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="suppliesCode" value=""/>
 			    	<input type="hidden" name="suppliesCodenotation" value=""/>
@@ -505,7 +505,7 @@
 		<table class="table-detail" cellpadding="0" cellspacing="0" border="0">
 			<tr>
 				<th width="20%">物品编码: </th>
-				<td><input type="text" name="materialCode" value=""  class="inputText" validate="{required:false,maxlength:96}"/><a href="#" onclick="add_product();" class="link detail">选择</a></td>
+				<td><input type="text" name="materialCode" value=""  class="inputText" validate="{required:false,maxlength:96}"/><a href="javascript:void(0)" onclick="add_product();" class="link detail">选择</a></td>
 			</tr>
 			<!-- 
 			<tr>
@@ -570,7 +570,7 @@
 		<table class="table-detail" cellpadding="0" cellspacing="0" border="0">
 			<tr>
 				<th width="20%">物品编码: </th>
-				<td><input type="text" name="suppliesCode" value=""  class="inputText" validate="{required:false,maxlength:96}"/><a href="#" onclick="add_product2();" class="link detail">选择</a></td>
+				<td><input type="text" name="suppliesCode" value=""  class="inputText" validate="{required:false,maxlength:96}"/><a href="javascript:void(0)" onclick="add_product2();" class="link detail">选择</a></td>
 			</tr>
 			<!-- 
 			<tr>

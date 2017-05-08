@@ -153,7 +153,7 @@
 						</c:choose>
 					</display:column>		
 					<display:column title="管理" media="html" style="text-align:center;">
-					    <f:a alias="userUnder" css="link primary" href="#" onclick="openUserUnder('${sysUserItem.userId}',this)">下属管理</f:a>
+					    <f:a alias="userUnder" css="link primary" href="javascript:void(0)" onclick="openUserUnder('${sysUserItem.userId}',this)">下属管理</f:a>
 						<f:a alias="delUser" css="link del" href="del.ht?userId=${sysUserItem.userId}">删除</f:a>
 						<f:a alias="updateUserInfo" css="link edit" href="edit.ht?userId=${sysUserItem.userId}">编辑</f:a>
 						<f:a alias="userInfo" css="link detail" href="get.ht?userId=${sysUserItem.userId}">明细</f:a>

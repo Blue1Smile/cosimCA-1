@@ -17,7 +17,7 @@
                     <div class="div01_1">
                     	<div class="div01_2">
                        	    <div class="div01_3"><img src="${ctx}${businessChance.image}" width="100" height="100" onError="this.src='${ctx}/images/default-chance.jpg';"/></div>
-                            <div class="div01_4"><span class="grey2"><a href="#" onclick="view('${businessChance.id}','${businessChance.type}');" class="link0423" name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link01">${businessChance.companyName}</a></span></div>
+                            <div class="div01_4"><span class="grey2"><a href="javascript:void(0)" onclick="view('${businessChance.id}','${businessChance.type}');" class="link0423" name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link01">${businessChance.companyName}</a></span></div>
                             <div class="div01_5"><span class="grey3">开始时间：<fmt:formatDate value="${businessChance.startTime}" pattern="yyyy-MM-dd"/>  截止时间：<fmt:formatDate value="${businessChance.endTime}" pattern="yyyy-MM-dd"/>  <br>
                             	 <c:if test="${businessChance.type=='1'}">
                             	  采购数量：${businessChance.purnum} 

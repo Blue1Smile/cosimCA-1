@@ -25,7 +25,7 @@ function addVar(falg,varId){
 						<div class="toolBar">
 							<div class="group"><a class="link search" id="btnSearch">查询</a></div>
 							<div class="l-bar-separator"></div>
-							<div class="group"><a class="link add" href="#" onclick="addVar('add','')" >添加</a></div>
+							<div class="group"><a class="link add" href="javascript:void(0)" onclick="addVar('add','')" >添加</a></div>
 							<div class="l-bar-separator"></div>
 							<div class="group"><a class="link del"  action="del.ht">删除</a></div>
 						</div>	
@@ -59,7 +59,7 @@ function addVar(falg,varId){
 							<display:column title="管理" media="html" style="width:180px">
 								<a  href="del.ht?varId=${bpmDefVarItem.varId}" class="link del">删除</a>
 								<a href="get.ht?varId=${bpmDefVarItem.varId}&actDefId=${actDefId}" class="link detail">明细</a>
-								<a onclick="addVar('edit','${bpmDefVarItem.varId}')" class="link flowDesign" href="#">编辑</a>
+								<a onclick="addVar('edit','${bpmDefVarItem.varId}')" class="link flowDesign" href="javascript:void(0)">编辑</a>
 							</display:column>
 						</display:table>
 					

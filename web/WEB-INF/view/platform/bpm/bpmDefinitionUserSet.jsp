@@ -79,13 +79,13 @@
 		</div>				
 	</div>
 	<div id="divScriptData" style="display: none;">
-		<a href="#" id="btnScript" class="link var" title="常用脚本" onclick="selectScript()">常用脚本</a>
+		<a href="javascript:void(0)" id="btnScript" class="link var" title="常用脚本" onclick="selectScript()">常用脚本</a>
 		<ul>
 			<li>可以使用的流程变量,[startUser],开始用户,<li>[startUser],上个任务的用户[prevUser]。</li>
 			<li>表达式必须返回Set&lt;String&gt;集合类型的数据,集合元素为用户Id。</li>
 		</ul>
 		<textarea id="txtScriptData" rows="10" cols="80" style="height: 200px;width:480px"></textarea>
 	</div>
-	<a href="#" id="btnReflesh" class="hidden" >刷新页面</a>
+	<a href="javascript:void(0)" id="btnReflesh" class="hidden" >刷新页面</a>
 </body>
 </html>

@@ -48,11 +48,11 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<div class="group">
-					<a class="link save" id="dataFormSave" href="#">补签</a>
+					<a class="link save" id="dataFormSave" href="javascript:void(0)">补签</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				<div class="group">
-					<a class="link del" href="#" onclick="window.close()">关闭</a>
+					<a class="link del" href="javascript:void(0)" onclick="window.close()">关闭</a>
 				</div>
 			</div>
 		</div>

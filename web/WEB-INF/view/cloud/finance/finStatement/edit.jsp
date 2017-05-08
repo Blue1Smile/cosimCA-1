@@ -390,7 +390,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -468,9 +468,9 @@
 					</td>
 					<th width="20%">来源单据号: </th>
 					<td><input type="text" id="sourceformCode" name="sourceformCode" value="${finStatement.sourceformCode}"  class="inputText" validate="{required:false,maxlength:512}"  />
-						<font id="div_supp" style="display: none; "><a href="#" onclick="add_supp()"  class="link detail">选择</a></font>
-						<font id="div_sale" style="display: none; "><a href="#" onclick="add_sale()"  class="link detail">选择</a></font>
-						<font id="div_smwx" style="display: none; "><a href="#" onclick="add_smwx()"  class="link detail">选择</a></font>
+						<font id="div_supp" style="display: none; "><a href="javascript:void(0)" onclick="add_supp()"  class="link detail">选择</a></font>
+						<font id="div_sale" style="display: none; "><a href="javascript:void(0)" onclick="add_sale()"  class="link detail">选择</a></font>
+						<font id="div_smwx" style="display: none; "><a href="javascript:void(0)" onclick="add_smwx()"  class="link detail">选择</a></font>
 				</tr>
 				<tr>
 					<th width="20%">总金额: </th>
@@ -489,7 +489,7 @@
 				<tr>
 					<th width="20%">付款企业: </th>
 					<td><input type="text" id="payenterpName" name="payenterpName" value="${finStatement.payenterpName}"  class="inputText" validate="{required:true,maxlength:96}"  />
-					<a href="#" onclick="add_info()"  class="link detail">选择</a></td>
+					<a href="javascript:void(0)" onclick="add_info()"  class="link detail">选择</a></td>
 					<th width="20%">付款人: </th>
 					<td><input type="text" id="payenterpUsername" name="payenterpUsername" value="${finStatement.payenterpUsername}"  class="inputText" validate="{required:true,maxlength:96}"  /></td>
 				</tr>
@@ -505,19 +505,19 @@
 					<td colspan="23">
 					
 <!-- 						<div class="group" align="left"> -->
-<!-- 				   			 <a href="#" onclick="add_supps();"   style="text-decoration: none;"> -->
+<!-- 				   			 <a href="javascript:void(0)" onclick="add_supps();"   style="text-decoration: none;"> -->
 <%-- 											<img src="${ctx}/images/iconadd.jpg" width="52" height="18" --%>
 <%-- 												onmouseover="src='${ctx}/images/iconadd2.jpg'" --%>
 <%-- 												onmouseout="src='${ctx}/images/iconadd.jpg'" --%>
 <!-- 												style="border: 0;"> </a>&nbsp;&nbsp; -->
 								  
-<!-- 								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;"> -->
+<!-- 								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;"> -->
 <%-- 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52" --%>
 <%-- 												onmouseover="src='${ctx}/images/icon_del.jpg'" --%>
 <%-- 												onmouseout="src='${ctx}/images/icon_del2.jpg'" --%>
 <!-- 												style="border: 0;"> </a>&nbsp;&nbsp; -->
 												
-<!-- 								<a href="#" onclick="add_onesupps();"   style="text-decoration: none;"> -->
+<!-- 								<a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;"> -->
 <%-- 											<img src="${ctx}/images/iconadd3.jpg" width="52" height="18" --%>
 <%-- 												onmouseover="src='${ctx}/images/iconadd4.jpg'" --%>
 <%-- 												onmouseout="src='${ctx}/images/iconadd3.jpg'" --%>
@@ -632,8 +632,8 @@
 <!-- 			    	<td style="text-align: center" name="orderNum2"></td> -->
 <!-- 			    	<td style="text-align: center" name="sumPrise"></td> -->
 <!-- 			    	<td style="text-align: center"> -->
-<!-- 			    		<a href="#" class="link del">删除</a> -->
-<!-- 			    		<a href="#" class="link edit">编辑</a> -->
+<!-- 			    		<a href="javascript:void(0)" class="link del">删除</a> -->
+<!-- 			    		<a href="javascript:void(0)" class="link edit">编辑</a> -->
 <!-- 			    	</td> -->
 <!-- 			    	<input type="hidden" name="code" value=""/> -->
 <!-- 			    	<input type="hidden" name="operateDate" value="" class="inputText date"/> -->

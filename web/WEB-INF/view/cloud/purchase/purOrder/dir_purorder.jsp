@@ -153,7 +153,7 @@
 									sumPrice=0;
 								}
 								total=total*1+sumPrice*1;
-    							var item = $('<tr type="subdata"><td><input type="checkbox" name="check" value=""/><input type="hidden"  name="materielId" value=""/></td><td ><input type="text" style="width: 70px;" name="materielCode"  value=" '+materielCode+ ' "/></td> <td ><input type="text" style="width: 80px;"  name="model"  value=" '+model+' "/> </td> <td ><input type="text"  style="width: 70px;" name="materielName"  value=" '+materielName+' "/>  </td><td ><input type="text" style="width: 80px;"  name="attributeInfo"   value=" '+attributeInfo+' "/> <td ><input type="text" style="width: 40px;" name="unit"  value=" '+unit+' "/>  </td><td ><input type="text"   name="orderNum" style="width:40px;"  value=" '+orderNum+' "  onblur="getSumPrice(this);" /> </td> <td ><input type="text" style="width: 50px;" name="price"  value=" '+price+' "  onblur="getSumPrice(this);"/>  </td><td ><input type="text" readonly style="width: 80px;" name="sumPrice"  value=" '+sumPrice+' "/>  </td> <td> <input type="text" style="width: 100px;" id="deliveryEnddate" name="deliveryEnddate" value="<fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern="yyyy-MM-dd"/>" class="inputText date" validate="{date:true}" /> <input type="hidden"  name="ismat" value="0"/> </td><td><a href="#" onclick="getHistory(this)">查看</a></td></tr>');
+    							var item = $('<tr type="subdata"><td><input type="checkbox" name="check" value=""/><input type="hidden"  name="materielId" value=""/></td><td ><input type="text" style="width: 70px;" name="materielCode"  value=" '+materielCode+ ' "/></td> <td ><input type="text" style="width: 80px;"  name="model"  value=" '+model+' "/> </td> <td ><input type="text"  style="width: 70px;" name="materielName"  value=" '+materielName+' "/>  </td><td ><input type="text" style="width: 80px;"  name="attributeInfo"   value=" '+attributeInfo+' "/> <td ><input type="text" style="width: 40px;" name="unit"  value=" '+unit+' "/>  </td><td ><input type="text"   name="orderNum" style="width:40px;"  value=" '+orderNum+' "  onblur="getSumPrice(this);" /> </td> <td ><input type="text" style="width: 50px;" name="price"  value=" '+price+' "  onblur="getSumPrice(this);"/>  </td><td ><input type="text" readonly style="width: 80px;" name="sumPrice"  value=" '+sumPrice+' "/>  </td> <td> <input type="text" style="width: 100px;" id="deliveryEnddate" name="deliveryEnddate" value="<fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern="yyyy-MM-dd"/>" class="inputText date" validate="{date:true}" /> <input type="hidden"  name="ismat" value="0"/> </td><td><a href="javascript:void(0)" onclick="getHistory(this)">查看</a></td></tr>');
 								$("#purOrderDetail").append(item);
 							};
 							$('#sumPrice').val(total.toFixed(2));
@@ -237,7 +237,7 @@
     		for ( var i = 0; i < ids.length; i++) {
 				var item = $('<tr type="subdata"><td><input type="checkbox" name="check" value="'+ ids[i]
 						+ '"/><input type="hidden"  name="materielId" value="'+ ids[i] + '"/></td><td ><input type="hidden" style="width: 70px;" name="materielCode"  value="'+ codes[i]+'"/>' + codes[i] + '</td> <td ><input type="hidden" style="width: 80px;"  name="model"  value="' + models[i] + '"/>' + models[i] + '</td> <td ><input type="hidden"  style="width: 80px;" name="materielName"  value="' + names[i] + '"/> ' + names[i] + ' </td><td ><input type="text" style="width: 80px;"  name="attributeInfo"   /> <td ><input type="hidden" style="width: 50px;" name="unit"  value="' + units[i] + '"/> ' + units[i]
-						+ ' </td><td ><input type="text"   name="orderNum" style="width:40px;"    onblur="getSumPrice(this);"/> </td> <td ><input type="text" style="width: 50px;" name="price"  value='+prices[i]+'  onblur="getSumPrice(this);">   </td><td ><input type="text" style="width: 80px;" name="sumPrice" readonly value=""/> <td> <input type="text" style="width: 100px;" id="deliveryEnddate" name="deliveryEnddate" value="<fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern="yyyy-MM-dd"/>" class="inputText date" validate="{date:true}" /> <input type="hidden"  name="ismat" value="0"/>  </td><td><a href="#" onclick="getHistory(this)">查看</a></td></tr>');
+						+ ' </td><td ><input type="text"   name="orderNum" style="width:40px;"    onblur="getSumPrice(this);"/> </td> <td ><input type="text" style="width: 50px;" name="price"  value='+prices[i]+'  onblur="getSumPrice(this);">   </td><td ><input type="text" style="width: 80px;" name="sumPrice" readonly value=""/> <td> <input type="text" style="width: 100px;" id="deliveryEnddate" name="deliveryEnddate" value="<fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern="yyyy-MM-dd"/>" class="inputText date" validate="{date:true}" /> <input type="hidden"  name="ismat" value="0"/>  </td><td><a href="javascript:void(0)" onclick="getHistory(this)">查看</a></td></tr>');
 				$("#purOrderDetail").append(item);
 			}
     		add_supps_window.close();
@@ -256,7 +256,7 @@
 	} 
 	//增加一行
 		function add_onesupps(){
-    		var item = $('<tr type="subdata"><td><input type="checkbox" name="check" value=""/><input type="hidden"  name="materielId" value=""/></td><td ><input type="text" style="width: 70px;" name="materielCode"  value=""/></td> <td ><input type="text" style="width: 70px;"  name="model"  value=""/> </td> <td ><input type="text"  style="width: 70px;" name="materielName"  value=""/>  </td><td ><input type="text" style="width: 80px;"  name="attributeInfo"   /> <td ><input type="text" style="width: 40px;" name="unit"  value=""/>  </td><td ><input type="text"   name="orderNum" style="width:40px;"   onblur="getSumPrice(this);" /> </td> <td ><input type="text" style="width: 50px;" name="price"  value=""  onblur="getSumPrice(this);"/>  </td><td ><input type="text" readonly style="width: 80px;" name="sumPrice"  value=""/>  </td> <td> <input type="text" style="width: 100px;" id="deliveryEnddate" name="deliveryEnddate" value="<fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern="yyyy-MM-dd"/>" class="inputText date" validate="{date:true}" /> <input type="hidden"  name="ismat" value="1"/> </td><td><a href="#" onclick="getHistory(this)">查看</a></td></tr>');
+    		var item = $('<tr type="subdata"><td><input type="checkbox" name="check" value=""/><input type="hidden"  name="materielId" value=""/></td><td ><input type="text" style="width: 70px;" name="materielCode"  value=""/></td> <td ><input type="text" style="width: 70px;"  name="model"  value=""/> </td> <td ><input type="text"  style="width: 70px;" name="materielName"  value=""/>  </td><td ><input type="text" style="width: 80px;"  name="attributeInfo"   /> <td ><input type="text" style="width: 40px;" name="unit"  value=""/>  </td><td ><input type="text"   name="orderNum" style="width:40px;"   onblur="getSumPrice(this);" /> </td> <td ><input type="text" style="width: 50px;" name="price"  value=""  onblur="getSumPrice(this);"/>  </td><td ><input type="text" readonly style="width: 80px;" name="sumPrice"  value=""/>  </td> <td> <input type="text" style="width: 100px;" id="deliveryEnddate" name="deliveryEnddate" value="<fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern="yyyy-MM-dd"/>" class="inputText date" validate="{date:true}" /> <input type="hidden"  name="ismat" value="1"/> </td><td><a href="javascript:void(0)" onclick="getHistory(this)">查看</a></td></tr>');
 				$("#purOrderDetail").append(item);
     	}
 	 
@@ -320,7 +320,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="${ctx}/cloud/sale/saleCopContract/list.ht">返回</a></div>
 			</div>
@@ -411,7 +411,7 @@
 				<tr>
 					<th width="20%">供应企业名称: </th>
 					<td><input size="35" type="text"  readonly="readonly" class="r" id="en_name" name="suppenterpName" value="${purOrder.suppenterpName}"  class="inputText" validate="{required:true,maxlength:96}"  readonly="readonly"/>
-					<a href="#" onclick="selSups()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="selSups()"  class="link detail">选择</a>
 					</td>
 					<th width="20%">供应商联系人姓名: </th>
 					<td><input type="text" id="suppenterpUsername" name="suppenterpUsername" value="${purOrder.suppenterpUsername}"  class="inputText" validate="{required:false,maxlength:96}"  /></td>
@@ -428,7 +428,7 @@
 				<tr>
 					<th width="20%">收货仓库名称: </th>
 					<td><input type="text" id="receivewarehouseName" readonly="readonly" class="r" name="receivewarehouseName" value="${purOrder.receivewarehouseName}"    validate="{required:true}"  />
-					<a href="#" onclick="add_archive()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="add_archive()"  class="link detail">选择</a>
 					</td>
 					<th width="20%">收货仓库详细地址: </th>
 					<td><input type="text" id="receivewarehouseAddress"   name="receivewarehouseAddress" value="${purOrder.receivewarehouseAddress}"  class="inputText" validate="{required:false,maxlength:768}"  /></td>
@@ -465,7 +465,7 @@
 					 
 					<!--<th width="20%">审签领导: </th>
 					<td><input type="text" readonly class="r" id="invitedUserNames" name="invitedUserNames"  readonly="readonly" value="${purOrder.invitedUserNames}"  class="inputText" validate="{required:true}"  />
-					   <a href="#" onclick="changeTaskUser()"  class="link detail">选择</a>
+					   <a href="javascript:void(0)" onclick="changeTaskUser()"  class="link detail">选择</a>
 					    <input type="hidden" id="invitedUserIds" name="invitedUserIds"    value="${purOrder.invitedUserIds}"    />
 					</td>-->
 					<th width="20%">票据要求: </th>
@@ -490,19 +490,19 @@
 				<tr>
 					<td colspan="11">
 						<div class="group" align="left">
-				   			 <a href="#" onclick="add_supps();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_supps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd2.jpg'"
 												onmouseout="src='${ctx}/images/iconadd.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								  
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 												
-								<a href="#" onclick="add_onesupps();"   style="text-decoration: none;">
+								<a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd3.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd4.jpg'"
 												onmouseout="src='${ctx}/images/iconadd3.jpg'"
@@ -540,7 +540,7 @@
 						<td><input type="text" style="width: 50px;" name="price"  value="${purOrderDetailItem.price}"  onblur="getSumPrice(this);"/></td>
 						<td><input type="text" readonly style="width: 80px;" name="sumPrice"  value="${purOrderDetailItem.sumPrice}"/></td>
 						<td><input type="text" style="width: 100px;" id="deliveryEnddate" name="deliveryEnddate" value="<fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern="yyyy-MM-dd"/>" class="inputText date" validate="{date:true}" /><input type="hidden" name="ismat" value="1"/></td>
-						<td><a href="#" onclick="getHistory(this)">查看</a></td>
+						<td><a href="javascript:void(0)" onclick="getHistory(this)">查看</a></td>
 						
 				    
 				    
@@ -570,8 +570,8 @@
 			    	<td style="text-align: center" name="sumPrice"></td>
 					<td style="text-align: center" name="deliveryEnddate"></td>								
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materielId" value=""/>
 			    	<input type="hidden" name="materielCode" value=""/>
@@ -600,7 +600,7 @@
 		     --> 
 			<tr>
 				<th width="20%">物品编码: </th>
-				<td><input type="text" readonly="readonly" name="materielCode" value=""  class="inputText" validate="{required:false,maxlength:96}"/> <a href="#" onclick="add_product();">选择</a></td>
+				<td><input type="text" readonly="readonly" name="materielCode" value=""  class="inputText" validate="{required:false,maxlength:96}"/> <a href="javascript:void(0)" onclick="add_product();">选择</a></td>
 			</tr>
 			<tr>
 				<th width="20%">物品规格: </th>

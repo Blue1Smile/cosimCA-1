@@ -76,9 +76,9 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a id="editRebuildJob" class="link add" href="#" onclick="editRebuildJob()">创建计划</a></div>
+					<div class="group"><a id="editRebuildJob" class="link add" href="javascript:void(0)" onclick="editRebuildJob()">创建计划</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a id="indexSearch" class="link search" href="#">查询</a></div>
+					<div class="group"><a id="indexSearch" class="link search" href="javascript:void(0)">查询</a></div>
 				</div>	
 			</div>
 		</div>

@@ -138,7 +138,7 @@
 						<input size="35" type="text" id="user_name" readonly class="r"  name="feedbackName" class="inputText" value="${maitainTask.feedbackName}"   class="inputText" validate="{required:true,maxlength:96}"/></td>
 						<th style="width:120px;">产品编码</th>
 						<td><input size="35" id="prodcode" name="prodcode" readonly class="r" value="${maitainTask.prodcode}"  class="inputText" validate="{required:true,maxlength:96}"/>
-<!-- 						<a href="#" onclick="preview()" class="link detail">请选择</a> -->
+<!-- 						<a href="javascript:void(0)" onclick="preview()" class="link detail">请选择</a> -->
 						</td>
 					</tr>				
 					<tr>

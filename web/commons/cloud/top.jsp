@@ -108,7 +108,7 @@ subMenu.style.display = "none";
 			href="${ctx}/help/help_about01.jsp" class="link01" target="_blank">帮助中心</a>
 		</span> <a href="${ctx}/index.ht" class="nav02" id="firstpage">首页</a>
 		<c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}">欢迎您，<a
-				id="username" href="#"><sec:authentication
+				id="username" href="javascript:void(0)"><sec:authentication
 					property="principal.fullname" /></a>，<a href="${ctx}/logout"
 				class="link01">注销</a>
 		</c:if>
@@ -119,12 +119,12 @@ subMenu.style.display = "none";
 
 		<!--会员信息框-->
 		<div id="userinfobox">
-			<a href="#"><img src="${ctx}/skins/avatar.jpg" /></a>
+			<a href="javascript:void(0)"><img src="${ctx}/skins/avatar.jpg" /></a>
 			<p>
-				<a href="#">会员名称</a>
+				<a href="javascript:void(0)">会员名称</a>
 			</p>
 			<p>
-				<a href="#">会员注销</a>
+				<a href="javascript:void(0)">会员注销</a>
 			</p>
 		</div>
 	</div>
@@ -134,7 +134,7 @@ subMenu.style.display = "none";
 <!--搜索表单开始 -->
 <div id="logo_zone">
 	<div id="logo_zone_left">
-		<a href="#">
+		<a href="javascript:void(0)">
 					<img src="${ctx}/testimg/logo6.jpg" />			
 		</a>
 	</div>
@@ -146,7 +146,7 @@ subMenu.style.display = "none";
 <!--主导航菜单 开始-->
 <div id="mainnav">
 	<ul>
-		<!--选中状态为class=on<a class="on" href="#">首页</a></li>-->
+		<!--选中状态为class=on<a class="on" href="javascript:void(0)">首页</a></li>-->
 		<li><a href="${ctx}/index.ht" class="nav02" id="firstpage">首页</a></li>
 		<li><a
 			href="${ctx}/cloud/config/businessDevchase/businessChance_list.ht"
@@ -157,7 +157,7 @@ subMenu.style.display = "none";
 			href="${ctx}/cloud/cloudResource/resourceManagement/resource.ht"
 			class="nav02">在线资源</a></li>
 		<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"> 
-			<a href="#" class="nav02">在线业务</a>
+			<a href="javascript:void(0)" class="nav02">在线业务</a>
 			<ul id="subnavigation" style="padding-left:0px;"> 
 				<li><a href="${ctx }/cloud/console/home.ht" style="font-weight: bold;">协同研发</a></li> 
 				<li><a href="${ctx }/cloud/console/home.ht" style="font-weight: bold;">协同采购</a></li> 

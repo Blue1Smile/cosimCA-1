@@ -101,7 +101,7 @@
 						<td>
 							<input type="hidden" id="lastDestTaskId" name="lastDestTaskId" value="">
 							<div id="jumpUserDiv"></div>
-							<a href="#" id="jumpUserLink" class="link get" onclick="selectExeUsers('${nodeUserMap.nodeId}')">&nbsp;&nbsp;</a>
+							<a href="javascript:void(0)" id="jumpUserLink" class="link get" onclick="selectExeUsers('${nodeUserMap.nodeId}')">&nbsp;&nbsp;</a>
 						</td>
 					</tr>
 					<tr>

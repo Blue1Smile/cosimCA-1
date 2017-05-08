@@ -220,7 +220,7 @@ function handlerDelOne(obj){
 										<input class="inputText valid " type="text"   name="paramValue" style="width: 70%;" value="${sysParamItem.paramValue }">
 									</td>
 									<td>
-									<a href="#" class="link del" onclick="handlerDelOne(this);">删除</a>
+									<a href="javascript:void(0)" class="link del" onclick="handlerDelOne(this);">删除</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -249,7 +249,7 @@ function handlerDelOne(obj){
 				<input type="text" style="width: 70%;" name="paramValue" class='inputText valid <c:if test="${isDate}">date</c:if>'><font color="red"></font>
 			</td>
 			<td>
-				<a onclick="handlerDelOne(this);" class="link del" href="#">删除</a>
+				<a onclick="handlerDelOne(this);" class="link del" href="javascript:void(0)">删除</a>
 			</td>
 		</tr>
 	</table>

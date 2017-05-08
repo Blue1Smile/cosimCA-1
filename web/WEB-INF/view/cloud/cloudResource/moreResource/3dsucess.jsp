@@ -40,7 +40,7 @@ function divNums(){
 <%@include file="/commons/cloud/top2.jsp"%>	
 		
 	<div id="detail_list" class="bggraybox">
-		<div class="title"><a href="#">模型制作</a><a href="#"></a></div>
+		<div class="title"><a href="javascript:void(0)">模型制作</a><a href="javascript:void(0)"></a></div>
 		<ul>
 			<li>
 				<div  style=" padding-left:350px; float:left;">

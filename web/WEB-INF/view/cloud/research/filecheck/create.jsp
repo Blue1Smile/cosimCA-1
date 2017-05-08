@@ -386,9 +386,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -398,7 +398,7 @@
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -456,11 +456,11 @@
 					<td colspan="10">
 						<div class="group" align="left">
 				   			<!-- <a id="btnAdd" class="link add">添加</a> -->
-				   			 <a href="#" onclick="add_document();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_document();"   style="text-decoration: none;">
 								<img src="${ctx}/images/iconadd.jpg" width="52" height="18" onmouseover="src='${ctx}/images/iconadd2.jpg'" onmouseout="src='${ctx}/images/iconadd.jpg'" style="border: 0;">
 							 </a>&nbsp;&nbsp;
 								  
-							<a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+							<a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 								<img src="${ctx}/images/icon_del2.jpg" height="18" width="52" onmouseover="src='${ctx}/images/icon_del.jpg'" onmouseout="src='${ctx}/images/icon_del2.jpg'" style="border: 0;">
 							 </a>
 			    		</div>
@@ -500,8 +500,8 @@
 					    <td style="text-align: center" name="managementId">${resFilecheckDetailItem.managementId}</td>
 					     -->	
 			<!-- 		    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="fileName" value="${resFilecheckDetailItem.fileName}"/>
 						<input type="hidden" name="fileComment" value="${resFilecheckDetailItem.fileComment}"/>
@@ -526,8 +526,8 @@
 			    	<td style="text-align: center" name="managementId"></td>
 			    	 -->    
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="fileName" value=""/>
 			    	<input type="hidden" name="fileComment" value=""/>
@@ -574,7 +574,7 @@
 					   <td style="text-align: center" name="checkOpinionids">${resFilecheckOpinionItem.checkOpinionids}</td>
 					     -->
 					    <td style="text-align: center">
-					    	<a href="#" class="link edit" >编辑</a>
+					    	<a href="javascript:void(0)" class="link edit" >编辑</a>
 					    </td>
 						<input type="hidden" name="taskId" value="${resFilecheckOpinionItem.taskId}"/>
 						<input type="hidden" name="taskName" value="${resFilecheckOpinionItem.taskName}"/>
@@ -595,7 +595,7 @@
 			    	<td style="text-align: center" name="checkOpinionids"></td>		
 			    	 -->				
 			    	<td style="text-align: center">
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="taskId" value=""/>
 			    	<input type="hidden" name="taskName" value=""/>
@@ -680,7 +680,7 @@
 			<tr>
 				<th width="20%">审签人: </th>
 			   
-				<td><input readonly="readonly" type="text" id="user_name" name="checkUsernames"   value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="#" onclick="chooseUsers(this)" class="link detail">选择</a></td>
+				<td><input readonly="readonly" type="text" id="user_name" name="checkUsernames"   value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="javascript:void(0)" onclick="chooseUsers(this)" class="link detail">选择</a></td>
 			</tr>
 			
 		 	<tr  style="display: none">
@@ -692,9 +692,9 @@
 		    
 		          <tr  class="enter"   id="enter_info">
 					<th  "width="20%">审签企业: </th>
-			    	<td><input readonly="readonly" type="text"  id="en_name" name="checkEnterprisenames" value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="#" onclick="selRoleBySups(this)"  class="link detail">选择</a> 
+			    	<td><input readonly="readonly" type="text"  id="en_name" name="checkEnterprisenames" value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="javascript:void(0)" onclick="selRoleBySups(this)"  class="link detail">选择</a>
 			    	</td>
-<!-- 			    	<td><input readonly="readonly" type="text"  id="en_name" name="checkEnterprisenames" value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="#" onclick="chooseEntprises(this)"  class="link detail">选择</a> 
+<!-- 			    	<td><input readonly="readonly" type="text"  id="en_name" name="checkEnterprisenames" value=""  class="inputText" validate="{required:false,maxlength:256}"/><a href="javascript:void(0)" onclick="chooseEntprises(this)"  class="link detail">选择</a>
 			    	<input type="checkbox" onclick="addMyEnt(this)">是否包含本企业</td> -->
 				  </tr>
 				   

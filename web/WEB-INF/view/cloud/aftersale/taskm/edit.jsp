@@ -118,10 +118,10 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存并发起</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存并发起</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
-				<!-- <div class="group"><a class="link detail" id="feedback_user" href="#"><font color="red">选择用户反馈</font></a></div> -->
+				<!-- <div class="group"><a class="link detail" id="feedback_user" href="javascript:void(0)"><font color="red">选择用户反馈</font></a></div> -->
 				
 			</div>
 		</div>
@@ -142,7 +142,7 @@
 						<input size="35" type="text" id="user_name" name="feedback_name" class="inputText" value="${taskM.feedback_name}"   class="inputText" validate="{required:true,maxlength:96}"/>
 						<th style="width:120px;">产品编码</th>
 						<td><input size="35" id="prodcode" name="prodcode" value="${taskM.prodcode}"  class="inputText" validate="{required:true,maxlength:96}"/>
-						<a href="#" onclick="preview()"  class="link detail">请选择</a>
+						<a href="javascript:void(0)" onclick="preview()"  class="link detail">请选择</a>
 						</td>
 					</tr>				
 					<tr>
@@ -159,7 +159,7 @@
 						<th>维修厂商</th><td>
 						<input size="35" type="hidden" id="en_id" name="purenterp_id" value="${taskM.purenterp_id}"    />
 						<input size="35" type="text" id="en_name" name="purenter_name" value="${taskM.purenter_name}"  readonly="readonly" class="inputText" validate="{required:true,maxlength:300}"  />
-						<a href="#" onclick="selSups()"  class="link detail">选择</a></td>
+						<a href="javascript:void(0)" onclick="selSups()"  class="link detail">选择</a></td>
 						<th>维修日期</th>
 						<td><input size="35" type="text" id="tdate" name="tdate" value="<fmt:formatDate value='<%=new Date() %>' pattern='yyyy-MM-dd'/>" class="inputText date" validate="{date:true}"></td>
 					</tr>

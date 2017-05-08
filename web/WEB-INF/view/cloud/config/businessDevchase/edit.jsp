@@ -102,7 +102,7 @@
 					<div class="panel-toolbar">
 						<div class="toolBar">
 							<c:if test="${info.state == 2}">
-								<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+								<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				 			</c:if>
 				 			<div class="l-bar-separator"></div>
 				 			<c:if test="${info.state != 2}">

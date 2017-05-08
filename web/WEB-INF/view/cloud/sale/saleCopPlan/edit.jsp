@@ -320,9 +320,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -332,7 +332,7 @@
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -457,7 +457,7 @@
 					<th style="width:120px">资质要求说明（逗号分隔）: </th>
 					<td><input size="35" type="text" id="qualifications" name="qualifications" value="${saleCopPlan.qualifications}"  class="inputText" validate="{required:true,maxlength:768}"  />
 					
-					<a href="#" onclick="add_qua();">选择</a>
+					<a href="javascript:void(0)" onclick="add_qua();">选择</a>
 					</td>
 				</tr>
 				<tr>
@@ -467,7 +467,7 @@
 					      	-->
 					      		<div class="cell" js_picarea="true"  size="100">
 										<table  width="145" name="attachment"    id="attachment" class="table-grid table-list"  cellpadding="2" cellspacing="2"></table>
-										<a href="#" onclick="addFile()">添加附件</a>
+										<a href="javascript:void(0)" onclick="addFile()">添加附件</a>
 								</div>
 						</td>
 					<th style="width:120px">库存信息: </th>
@@ -492,7 +492,7 @@
 					<td colspan="3">
 						<input size="35" type="hidden"  name="suppEnterpriseIds" id="suppEnterpriseIds" value="" size="80"/>
 						<input size="35" type="text" id="e_name" value="" readonly="readonly"   validate="{required:true,maxlength:300}" size="80"/>
-						<a href="#" onclick="add_supp()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="add_supp()"  class="link detail">选择</a>
 					</td>
 					
 				</tr>
@@ -501,19 +501,19 @@
 				<tr>
 					<td colspan="11">
 						<div class="group" align="left">
-				   			 <a href="#" onclick="add_supps();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_supps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd2.jpg'"
 												onmouseout="src='${ctx}/images/iconadd.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								  
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 												
-								<a href="#" onclick="add_onesupps();"   style="text-decoration: none;">
+								<a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd3.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd4.jpg'"
 												onmouseout="src='${ctx}/images/iconadd3.jpg'"
@@ -551,8 +551,8 @@
 					    <td style="text-align: center" name="firstNumber">${saleCopPlanDetailItem.firstNumber}</td>
 					    <td style="text-align: center" name="prise">${saleCopPlanDetailItem.prise}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input size="35" type="hidden" name="materialId" value="${saleCopPlanDetailItem.materialId}"/>
 						<input size="35" type="hidden" name="materialName" value="${saleCopPlanDetailItem.materialName}"/>
@@ -578,8 +578,8 @@
 			    	<td style="text-align: center" name="firstNumber"></td>
 			    	<td style="text-align: center" name="prise"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input size="35" type="hidden" name="materialId" value=""/>
 			    	<input size="35" type="hidden" name="materialName" value=""/>
@@ -609,7 +609,7 @@
 			</tr>
 			<tr>
 				<th style="width:120px">物品名: </th>
-				<td><input size="35" type="text" name="materialName" value=""  class="inputText" validate="{required:false,maxlength:768}"/><a href="#" onclick="add_product();">选择</a></td>
+				<td><input size="35" type="text" name="materialName" value=""  class="inputText" validate="{required:false,maxlength:768}"/><a href="javascript:void(0)" onclick="add_product();">选择</a></td>
 			</tr>
 			<tr>
 				<th style="width:120px">物品编码: </th>

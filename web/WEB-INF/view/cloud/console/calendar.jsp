@@ -44,7 +44,7 @@
             <div class="panel panel-default" style="height: 100%">
                 <div class="panel-heading">个人看板
                     <p class="pull-right">
-                        <a href="#" onclick="window.location.reload()" title="刷新看板">
+                        <a href="javascript:void(0)" onclick="window.location.reload()" title="刷新看板">
                             <span class="glyphicon glyphicon-refresh"></span>
                         </a>
                     </p>
@@ -58,9 +58,9 @@
                                         <h4>${projectItem.ddProjectName}</h4>
                                         <p style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><em>${projectItem.ddProjectDescription}</em></p>
                                         <div class="btn-group btn-group-xs col-xs-offset-6" role="group">
-                                            <a href="#" type="button" class="btn btn-info" onclick="showMyTask(${projectItem.ddProjectId})" title="待办任务列表">任务</a>
+                                            <a href="javascript:void(0)" type="button" class="btn btn-info" onclick="showMyTask(${projectItem.ddProjectId})" title="待办任务列表">任务</a>
                                             <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${projectItem.ddProjectId})" title="项目进度情况">进度</a>
-                                            <a href="#" type="button" class="btn btn-primary" title="进入项目讨论组" disabled="disabled" title="暂不可用">讨论</a>
+                                            <a href="javascript:void(0)" type="button" class="btn btn-primary" title="进入项目讨论组" disabled="disabled" title="暂不可用">讨论</a>
                                         </div>
                                     </div>
                                 </div>

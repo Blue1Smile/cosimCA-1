@@ -1,8 +1,4 @@
-/**
- * @author zhixin wen <wenzhixin2010@gmail.com>
- * version: 1.11.0
- * https://github.com/wenzhixin/bootstrap-table/
- */
+
 
 (function ($) {
     'use strict';
@@ -328,7 +324,7 @@
         strictSearch: false,
         searchAlign: 'right',
         selectItemName: 'btSelectItem',
-        showHeader: true,
+        showHeader: false,
         showFooter: false,
         showColumns: false,
         showPaginationSwitch: false,

@@ -99,7 +99,7 @@ function loginSubmit()
     <td width="41" height="35" align="center" valign="middle"><span style="font-family: Verdana, Geneva, sans-serif;"><img src="${ctx}/images/icon3.jpg"  width="13" height="9" /></span></td>
     <td width="97" align="left" valign="middle">
     <div class="sq11">
-    <a href="#" class="link02">批作业应用</a>
+    <a href="javascript:void(0)" class="link02">批作业应用</a>
     </div>
     </td>
   </tr>
@@ -107,7 +107,7 @@ function loginSubmit()
     <td width="41" height="35" align="center" valign="middle"><span style="font-family: Verdana, Geneva, sans-serif;"><img src="${ctx}/images/icon3.jpg"   width="13" height="9" /></span></td>
     <td width="97" align="left" valign="middle">
         <div class="sq12">
-    <a href="#" class="link02">交互式应用</a></td>
+    <a href="javascript:void(0)" class="link02">交互式应用</a></td>
         </div>
   </tr>  
  </table>
@@ -126,7 +126,7 @@ function loginSubmit()
     <td width="41" height="35" align="center" valign="middle"><span style="font-family: Verdana, Geneva, sans-serif;"><img src="${ctx}/images/icon3.jpg"   width="13" height="9" /></span></td>
     <td width="97" align="left" valign="middle">
   <div class="sq21">
-    <a href="#" class="link02">作业管理</a>
+    <a href="javascript:void(0)" class="link02">作业管理</a>
     </div>
     </td>
   </tr>
@@ -134,7 +134,7 @@ function loginSubmit()
     <td width="41" height="35" align="center" valign="middle"><span style="font-family: Verdana, Geneva, sans-serif;"><img src="${ctx}/images/icon3.jpg"   width="13" height="9" /></span></td>
     <td width="97" align="left" valign="middle">
   <div class="sq22">
-    <a href="#" class="link02">数据管理</a>
+    <a href="javascript:void(0)" class="link02">数据管理</a>
     </div>
 </td>
   </tr>

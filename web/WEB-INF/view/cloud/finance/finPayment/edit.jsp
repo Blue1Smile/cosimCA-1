@@ -289,7 +289,7 @@ $.ligerMessageBox.alert("请输入数字!");
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -336,7 +336,7 @@ $.ligerMessageBox.alert("请输入数字!");
 					<td><input type="text" id="sourceformType" name="sourceformType" value="采购结算"  class="inputText" validate="{required:true,maxlength:96}"  /></td>
 					<th width="20%">来源单据号: </th>
 					<td><input type="text" id="sourceformCode" name="sourceformCode" value="${finPayment.sourceformCode}"  class="inputText" validate="{required:true,maxlength:512}"  />
-						<font  id="div_show"><a href="#" onclick="add_supp()"  class="link detail">选择</a></font></td>
+						<font  id="div_show"><a href="javascript:void(0)" onclick="add_supp()"  class="link detail">选择</a></font></td>
 				</tr>
 				<tr>
 					<th width="20%">付款企业名称: </th>
@@ -347,7 +347,7 @@ $.ligerMessageBox.alert("请输入数字!");
 				<tr>
 					<th width="20%">收款企业名称: </th>
 					<td><input type="text" id="payeeenterpName" name="payeeenterpName" value="${finPayment.payeeenterpName}"  class="inputText" validate="{required:true,maxlength:96}"  />
-						<a href="#" onclick="add_info()"  class="link detail">选择</a></td>
+						<a href="javascript:void(0)" onclick="add_info()"  class="link detail">选择</a></td>
 					<th width="20%">收款人: </th>
 					<td><input type="text" id="payeeenterpUsername" name="payeeenterpUsername" value="${finPayment.payeeenterpUsername}"  class="inputText" validate="{required:true,maxlength:96}"  /></td>
 				</tr>
@@ -412,7 +412,7 @@ $.ligerMessageBox.alert("请输入数字!");
 				<tr>
 					<th width="20%">收款银行: </th>
 					<td><input type="text" id="gatherBank" name="gatherBank" value="${finPayment.gatherBank}"  class="inputText" validate="{required:false,maxlength:192}"  />
-						<a href="#" onclick="get_account()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="get_account()"  class="link detail">选择</a>
 					</td>
 					<th width="20%">收款账号: </th>
 					<td><input type="text" id="gatherNumber" name="gatherNumber" value="${finPayment.gatherNumber}"  class="inputText" validate="{required:false,maxlength:96}"  /></td>
@@ -420,7 +420,7 @@ $.ligerMessageBox.alert("请输入数字!");
 				<tr>
 					<th width="20%">付款银行: </th>
 					<td><input type="text" id="payenterpBank" name="payenterpBank" value="${finPayment.payenterpBank}"  class="inputText" validate="{required:false,maxlength:192}"  />
-					<a href="#" onclick="pay_account()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="pay_account()"  class="link detail">选择</a>
 					</td>
 					<th width="20%">付款账号: </th>
 					<td><input type="text" id="payenterpNumber" name="payenterpNumber" value="${finPayment.payenterpNumber}"  class="inputText" validate="{required:false,maxlength:96}"  /></td>
@@ -457,12 +457,12 @@ $.ligerMessageBox.alert("请输入数字!");
 				<tr>
 					<td colspan="21">
 						<div class="group" align="left" style="display:none">
-								<a href="#" onclick="add_onesupps();"   style="text-decoration: none;">
+								<a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd3.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd4.jpg'"
 												onmouseout="src='${ctx}/images/iconadd3.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"
@@ -522,8 +522,8 @@ $.ligerMessageBox.alert("请输入数字!");
 					    <td style="display:none" name="arriveBill">${finPaymentDetailItem.arriveBill}</td>
 					    <td style="display:none" name="remark">${finPaymentDetailItem.remark}</td>
 					    <td style="display:none">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="invoice" value="${finPaymentDetailItem.invoice}"/>
 						<input type="hidden" name="product" value="${finPaymentDetailItem.product}"/>
@@ -570,8 +570,8 @@ $.ligerMessageBox.alert("请输入数字!");
 			    	<td style="display:none" name="arriveBill"></td>
 			    	<td style="display:none" name="remark"></td>
 			    	<td style="display:none">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="invoice" value=""/>
 			    	<input type="hidden" name="product" value=""/>

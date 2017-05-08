@@ -110,7 +110,7 @@
 										<th width="20%" >脚本:<span class="required">*</span> </th>
 										<td>
 											<div>
-												<a href="#"  class="link var" title="常用脚本" onclick="slectScript('startScript')">常用脚本</a>
+												<a href="javascript:void(0)"  class="link var" title="常用脚本" onclick="slectScript('startScript')">常用脚本</a>
 												表单变量:<f:flowVar defId="${defId}" change="handFlowVars(this,'startScript')" controlName="selFlowVar"></f:flowVar>
 											</div>
 											<textarea id="startScript" name="script" codemirror="true" mirrorheight="200px" rows="10" cols="80" >${preModel.script}</textarea>
@@ -134,7 +134,7 @@
 										<th width="20%" >脚本:<span class="required">*</span> </th>
 										<td>
 											<div>
-												<a href="#"  class="link var" title="常用脚本" onclick="slectScript('endScript')">常用脚本</a>
+												<a href="javascript:void(0)"  class="link var" title="常用脚本" onclick="slectScript('endScript')">常用脚本</a>
 												表单变量:<f:flowVar defId="${defId}" change="handFlowVars(this,'endScript')" controlName="selFlowVar"></f:flowVar>
 											</div>
 											<textarea id="endScript" name="script" codemirror="true" mirrorheight="200px" rows="10" cols="80"  >${afterModel.script}</textarea>
@@ -158,7 +158,7 @@
 											<th width="20%" >脚本节点:<span class="required">*</span> </th>
 											<td>
 												<div>
-													<a href="#"  class="link var" title="常用脚本" onclick="slectScript('scriptScript')">常用脚本</a>
+													<a href="javascript:void(0)"  class="link var" title="常用脚本" onclick="slectScript('scriptScript')">常用脚本</a>
 													表单变量:<f:flowVar defId="${defId}" change="handFlowVars(this,'scriptScript')" controlName="selFlowVar"></f:flowVar>
 												</div>
 												<textarea id="scriptScript" name="script" codemirror="true" mirrorheight="200px" rows="10" cols="80" >${scrptModel.script}</textarea>
@@ -185,7 +185,7 @@
 												<th width="20%" >脚本:<span class="required">*</span> </th>
 												<td>
 													<div>
-														<a href="#"  class="link var" title="常用脚本" onclick="slectScript('preScript')">常用脚本</a>
+														<a href="javascript:void(0)"  class="link var" title="常用脚本" onclick="slectScript('preScript')">常用脚本</a>
 														表单变量:<f:flowVar defId="${defId}" change="handFlowVars(this,'preScript')" controlName="selFlowVar"></f:flowVar>
 													</div>
 													<textarea id="preScript" name="script" codemirror="true" mirrorheight="200px" rows="10" cols="80"  >${preModel.script}</textarea>
@@ -208,7 +208,7 @@
 												<th width="20%">脚本:<span class="required">*</span>  </th>
 												<td>
 													<div>
-														<a href="#"  class="link var" title="常用脚本" onclick="slectScript('afterScript')">常用脚本</a>
+														<a href="javascript:void(0)"  class="link var" title="常用脚本" onclick="slectScript('afterScript')">常用脚本</a>
 														表单变量:<f:flowVar defId="${defId}" change="handFlowVars(this,'afterScript')" controlName="selFlowVar"></f:flowVar>
 													</div>
 													<textarea id="afterScript" name="script" codemirror="true" mirrorheight="200px" rows="10" cols="80" >${afterModel.script}</textarea>
@@ -231,7 +231,7 @@
 												<th width="20%">脚本:<span class="required">*</span> </th>
 												<td>
 													<div>
-														<a href="#"  class="link var" title="常用脚本" onclick="slectScript('assignScript')">常用脚本</a>
+														<a href="javascript:void(0)"  class="link var" title="常用脚本" onclick="slectScript('assignScript')">常用脚本</a>
 														表单变量:<f:flowVar defId="${defId}" change="handFlowVars(this,'assignScript')" controlName="selFlowVar"></f:flowVar>
 													</div>
 													<textarea id="assignScript" name="script" codemirror="true" mirrorheight="200px" rows="10" cols="80" >${assignModel.script}</textarea>

@@ -97,11 +97,11 @@
                 更多 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#">
+                <li><a href="javascript:void(0)">
                     <center>任务菜单</center>
                 </a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
+                <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-download-alt"></span> 固化</a></li>
                 <li>
                     <c:choose>
                         <c:when test="${privateData.ddDataPublishType==0}">
@@ -124,7 +124,7 @@
                         <h5 class="task-info-title">
                             数据类型
                         </h5>
-                        <a class="task-detail-executor" id="typeSelect" data-type="select" data-pk="1" href="#">
+                        <a class="task-detail-executor" id="typeSelect" data-type="select" data-pk="1" href="javascript:void(0)">
                             ${privateData.ddDataType}
                         </a>
                     </div>
@@ -136,7 +136,7 @@
                         <h5 class="task-info-title">
                             数据最新值
                         </h5>
-                        <a class="task-detail-executor" href="#" id="lastestValue" data-type="text" data-pk="1">
+                        <a class="task-detail-executor" href="javascript:void(0)" id="lastestValue" data-type="text" data-pk="1">
                             ${privateData.ddDataLastestValue}</a>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                         <h5 class="task-info-title">
                             所属任务
                         </h5>
-                        <a class="task-detail-executor" href="#" id="belongTask" data-type="select" data-pk="1">
+                        <a class="task-detail-executor" href="javascript:void(0)" id="belongTask" data-type="select" data-pk="1">
                             ${privateData.ddDataTaskName}</a>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
         <div class="row" id="row">
             <div class="panel panel-default">
                 <div class="list-group">
-                    <a class="list-group-item" href="#" id="description" data-type="textarea" data-pk="1" href="#">
+                    <a class="list-group-item" href="javascript:void(0)" id="description" data-type="textarea" data-pk="1" href="javascript:void(0)">
                         <c:choose>
                             <c:when test="${empty privateData.ddDataDescription}">
                                 <h5 class="task-info-title">添加描述</h5>
@@ -166,7 +166,7 @@
                             </c:otherwise>
                         </c:choose>
                     </a>
-                    <a class="list-group-item" href="#" title="暂不可用"><h5 class="task-info-title">添加标签</h5></a>
+                    <a class="list-group-item" href="javascript:void(0)" title="暂不可用"><h5 class="task-info-title">添加标签</h5></a>
                 </div>
             </div>
         </div>

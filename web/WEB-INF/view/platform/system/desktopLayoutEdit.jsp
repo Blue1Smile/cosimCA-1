@@ -56,7 +56,7 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</div>
@@ -102,7 +102,7 @@
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
-										<a href="#" class="tipinfo"><span>提示：(只能填写0-100之间的数字，代表每一列的在首页桌面的百分比)</span></a>
+										<a href="javascript:void(0)" class="tipinfo"><span>提示：(只能填写0-100之间的数字，代表每一列的在首页桌面的百分比)</span></a>
 								</td>
 							</tr>
 							<tr>

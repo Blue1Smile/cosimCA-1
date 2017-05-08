@@ -117,7 +117,7 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<div class="group">
-					<a class="link save" id="btnDeploy" href="#">发布表单</a>
+					<a class="link save" id="btnDeploy" href="javascript:void(0)">发布表单</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				<div class="group">

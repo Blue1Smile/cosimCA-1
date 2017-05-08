@@ -7,12 +7,12 @@
 							href="${ctx }/cloud/console/enterprise.ht?EntId=${info.sysOrgInfoId } "
 							class="link04">${info.name }</a>
 				</h2>
-				<span><a href="#"><img src="${ctx }${info.logo}"
+				<span><a href="javascript:void(0)"><img src="${ctx }${info.logo}"
 							onError="this.src='${ctx}/images/default-chance.jpg'" width="80"
 							height="80" /></a></span>
-				<p><a href="#">人员： ${userName }
+				<p><a href="javascript:void(0)">人员： ${userName }
 						</a></p>
-				<p><a href="#">角色：设计师
+				<p><a href="javascript:void(0)">角色：设计师
 						</a></p>
 			</div>
 			
@@ -32,7 +32,7 @@
 				<h2 class="bluetitel"><a href="${ctx }/cloud/console/visitMore.ht?entId=${enterprise.sysOrgInfoId }" class="more">更多</a>最近使用的资源</h2>
 				<ul>
 				<c:forEach items="${cloudUseResList }" var="cloudUseResList">
-					<li style="margin-bottom:5px;"><a href="#"><img src="${ctx}/images/rollPic/${cloudUseResList.resName }_small.gif" onError="this.src='${ctx}/images/default-chance.jpg'" width="50" height="50"   style="border:0;"></a><a href="${cloudUseResList.resLink }"  target="_blank">${cloudUseResList.resName }</a>
+					<li style="margin-bottom:5px;"><a href="javascript:void(0)"><img src="${ctx}/images/rollPic/${cloudUseResList.resName }_small.gif" onError="this.src='${ctx}/images/default-chance.jpg'" width="50" height="50"   style="border:0;"></a><a href="${cloudUseResList.resLink }"  target="_blank">${cloudUseResList.resName }</a>
 						   <span><fmt:formatDate value="${cloudUseResList.resTime }" pattern="yyyy-MM-dd" /></span></li>
 				</c:forEach>
 				</ul>

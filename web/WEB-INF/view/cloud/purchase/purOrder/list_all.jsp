@@ -117,7 +117,7 @@
 <%--					<a href="del.ht?id=${purOrderItem.id}" class="link del">删除</a>
  					<a href="edit.ht?id=${purOrderItem.id}" class="link edit">编辑</a> --%>
 					<a href="get_all.ht?id=${purOrderItem.id}" class="link detail">明细</a>
-					<a href="#" onclick="returnID('${purOrderItem.id}','${purOrderItem.suppenterpId}','${purOrderItem.suppenterpName}','${purOrderItem.suppenterpUsername}');" class="link save">确定</a>
+					<a href="javascript:void(0)" onclick="returnID('${purOrderItem.id}','${purOrderItem.suppenterpId}','${purOrderItem.suppenterpName}','${purOrderItem.suppenterpUsername}');" class="link save">确定</a>
 				<!--	<c:if test="${type == 'direct' }">
 						<a href="${ctx}/platform/bpm/processRun/userImage.ht?action=process&action=process&runId=${purOrderItem.runId}" class="link detail">流程示意图</a>					
 					</c:if> -->

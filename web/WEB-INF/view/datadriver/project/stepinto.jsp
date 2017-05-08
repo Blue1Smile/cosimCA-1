@@ -47,7 +47,7 @@
 <div class="container-fluid" style="height: 100%">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
                 ${Project.ddProjectName} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -64,8 +64,8 @@
         <%--<li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>--%>
         <div class="pull-right">
             <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 流程统计</a>
-            <a class="btn btn-success" href="#" id="create_task" onclick="createTask(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>
-            <a class="btn btn-info" href="#" id="create_index" onclick="createIndex(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建指标</a>
+            <a class="btn btn-success" href="javascript:void(0)" id="create_task" onclick="createTask(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>
+            <a class="btn btn-info" href="javascript:void(0)" id="create_index" onclick="createIndex(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建指标</a>
         </div>
     </ul>
 

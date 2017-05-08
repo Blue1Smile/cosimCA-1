@@ -179,7 +179,7 @@
 						<input type="hidden" name="demId" id="demId" /> 
 						<input type="text" id="orgName" name="orgName" 
 						class="inputText" size="40" value="${param['orgName']}"/> &nbsp; 
-						<a href="#" onclick="$('#orgSearchForm').submit()" class='button'><span>查询</span></a>
+						<a href="javascript:void(0)" onclick="$('#orgSearchForm').submit()" class='button'><span>查询</span></a>
 						
 					</div>
 				</form>

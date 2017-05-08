@@ -18,7 +18,7 @@
           					        };
         		//加上菜单
         		$("div[name='taskMenu']").ligerMenuBar({ items: [
-                				{ text: '<a href="#">更多任务操作</a>', menu: menuItem}]
+                				{ text: '<a href="javascript:void(0)">更多任务操作</a>', menu: menuItem}]
         		});
         		
         		$("div[name='taskMenu']").removeClass('l-menubar');

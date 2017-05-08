@@ -214,7 +214,7 @@ ul.legendContainer li .legend{
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link close" href="#" onclick="window.close();" >关闭</a></div>
+				<div class="group"><a class="link close" href="javascript:void(0)" onclick="window.close();" >关闭</a></div>
 			</div>
 		</div>
 	</div>

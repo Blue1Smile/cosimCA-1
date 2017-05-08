@@ -59,7 +59,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -181,8 +181,8 @@
 						<td style="text-align: center" name="predeliveryEnddate"><fmt:formatDate value='${delivernoteDetailItem.predeliveryEnddate}' pattern='yyyy-MM-dd'/></td>								
 					    <td style="text-align: center" name="materielCode">${delivernoteDetailItem.materielCode}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input size="35" type="hidden" name="materielId" value="${delivernoteDetailItem.materielId}"/>
 						<input size="35" type="hidden" name="materielName" value="${delivernoteDetailItem.materielName}"/>
@@ -210,8 +210,8 @@
 					<td style="text-align: center" name="predeliveryEnddate"></td>								
 			    	<td style="text-align: center" name="materielCode"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input size="35" type="hidden" name="materielId" value=""/>
 			    	<input size="35" type="hidden" name="materielName" value=""/>

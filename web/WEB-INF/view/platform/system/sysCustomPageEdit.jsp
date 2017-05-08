@@ -85,9 +85,9 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
-				<div class="group"><a class="link close" href="#" onclick="window.close()">关闭</a></div>
+				<div class="group"><a class="link close" href="javascript:void(0)" onclick="window.close()">关闭</a></div>
 			</div>
 		</div>
 	</div>
@@ -116,7 +116,7 @@
 <!-- 						</div> -->
 <!-- 						<div style="width: 38%; float: right;margin:2px auto; border:1px solid gray;height: 300px;"> -->
 <!-- 							<div class="toolBar"> -->
-<!-- 								<div class="group"><a id="openPageEditor" class="link show" href="#">打开可视化编辑</a></div> -->
+<!-- 								<div class="group"><a id="openPageEditor" class="link show" href="javascript:void(0)">打开可视化编辑</a></div> -->
 <!-- 							</div> -->
 <!-- 						</div> -->
 <!-- 					</td> -->

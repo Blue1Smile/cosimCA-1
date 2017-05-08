@@ -86,8 +86,8 @@
 						<a href="del.ht?id=${sysTableManageItem.id}" class="link del">删除</a>
 						<a href="edit.ht?id=${sysTableManageItem.id}" class="link edit">编辑</a>
 						<a href="editDspTemplate.ht?id=${sysTableManageItem.id}" class="link redo">修改模板</a>
-						<a href="#" onclick="preview('${sysTableManageItem.id}')"  class="link detail">预览</a>
-						<a href="#" onclick="addToResource('${sysTableManageItem.id}','${sysTableManageItem.name}')"  class="link collapse">添加为菜单</a>
+						<a href="javascript:void(0)" onclick="preview('${sysTableManageItem.id}')"  class="link detail">预览</a>
+						<a href="javascript:void(0)" onclick="addToResource('${sysTableManageItem.id}','${sysTableManageItem.name}')"  class="link collapse">添加为菜单</a>
 					</display:column>
 				</display:table>
 				<hotent:paging tableId="sysTableManageItem"/>

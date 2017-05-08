@@ -24,15 +24,15 @@
         </c:if>
     </c:forEach>
     <li class="layui-nav-item" style="float: right">
-        <c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}"><a id="username" href="#"><span class="glyphicon glyphicon-user"></span> <sec:authentication
+        <c:if test="${not empty SPRING_SECURITY_LAST_USERNAME}"><a id="username" href="javascript:void(0)"><span class="glyphicon glyphicon-user"></span> <sec:authentication
                 property="principal.fullname"/></a></c:if>
         <dl class="layui-nav-child">
             <dd><a href="${ctx}/loginCloud.ht"><span class="glyphicon glyphicon-log-out"></span> 注销</a></dd>
-            <dd><a href="#"><span class="glyphicon glyphicon-info-sign"></span> 帮助</a></dd>
+            <dd><a href="javascript:void(0)"><span class="glyphicon glyphicon-info-sign"></span> 帮助</a></dd>
         </dl>
     </li>
     <li class="layui-nav-item" style="float: right">
-        <a href="#" title="暂不可用"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 消息 <span class="badge">42</span></a>
+        <a href="javascript:void(0)" title="暂不可用"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 消息 <span class="badge">42</span></a>
     </li>
 </ul>
 

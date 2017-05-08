@@ -58,7 +58,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存并发起</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存并发起</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -86,7 +86,7 @@
 						<input size="35" type="text" id="user_name" class="r" readonly name="feedbackName" class="inputText" value="${maitainTask.feedbackName}"   class="inputText" validate="{required:true,maxlength:96}"/></td>
 						<th style="width:120px;">产品编码</th>
 						<td><input size="35" id="prodcode" readonly class="r" name="prodcode" value="${maitainTask.prodcode}"  class="inputText" validate="{required:true,maxlength:96}"/>
-<!-- 						<a href="#" onclick="preview()" class="link detail" ">请选择</a> -->
+<!-- 						<a href="javascript:void(0)" onclick="preview()" class="link detail" ">请选择</a> -->
 						</td>
 					</tr>				
 					<tr>
@@ -105,7 +105,7 @@
 						<!-- 
 			            <input size="35" type="hidden" id="ac_id" name="accendantId"  />
 						<input size="35" type="text" id="ac_name"  name="accendantName"  value="${maitainTask.accendantName}"  readonly="readonly" class="inputText" validate="{required:true,maxlength:96}"  />
-						<a href="#" onclick="selUsers()"  class="link detail">选择</a> -->
+						<a href="javascript:void(0)" onclick="selUsers()"  class="link detail">选择</a> -->
 						</td>
 						
 					</tr>

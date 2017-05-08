@@ -110,7 +110,7 @@
 						</div>
 						<div class="l-bar-separator"></div>
 					</c:if>
-					<div class="group"><a class="link del" onclick="window.close()" href="#">关闭</a></div>
+					<div class="group"><a class="link del" onclick="window.close()" href="javascript:void(0)">关闭</a></div>
 				</div>
 			</div>
 		</div>

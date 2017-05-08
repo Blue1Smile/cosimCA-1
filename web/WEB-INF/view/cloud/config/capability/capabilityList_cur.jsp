@@ -17,7 +17,7 @@
 
 <!-- list开始 -->
 <div id="detail_list" class="bggraybox">
-		<div class="title"><a href="#">在线能力列表</a></div>
+		<div class="title"><a href="javascript:void(0)">在线能力列表</a></div>
 		<ul>
 		<c:forEach items="${capabilityList}" var="c1">
 			<li>

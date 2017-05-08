@@ -105,7 +105,7 @@ java.util.Date
 					<#if defKey?exists>
 					<c:if test="<#noparse>${empty </#noparse>${classVar}Item.flowRunId}">
 					<a href="del.ht?id=<#noparse>${</#noparse>${classVar}Item.id}" class="link del">删除</a>
-					<a href="#" onclick="startFlow(<#noparse>${</#noparse>${classVar}Item.id});" class="link run">启动</a>
+					<a href="javascript:void(0)" onclick="startFlow(<#noparse>${</#noparse>${classVar}Item.id});" class="link run">启动</a>
 					</c:if>
 					<#else>
 					<a href="del.ht?id=<#noparse>${</#noparse>${classVar}Item.id}" class="link del">删除</a>

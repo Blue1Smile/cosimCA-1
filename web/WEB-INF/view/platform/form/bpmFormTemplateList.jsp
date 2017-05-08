@@ -93,7 +93,7 @@
 									</c:otherwise>
 								</c:choose>
 								<a href="get.ht?templateId=${bpmFormTemplateItem.templateId}" class="link detail">明细</a>
-								<a href="#" onclick="copyTemplate('${bpmFormTemplateItem.templateId}','${bpmFormTemplateItem.templateName}','${bpmFormTemplateItem.alias}')"  class="link copy">复制</a>
+								<a href="javascript:void(0)" onclick="copyTemplate('${bpmFormTemplateItem.templateId}','${bpmFormTemplateItem.templateName}','${bpmFormTemplateItem.alias}')"  class="link copy">复制</a>
 							</display:column>
 						</display:table>
 						<hotent:paging tableId="bpmFormTemplateItem"/>

@@ -18,7 +18,7 @@
 			<c:forEach items="${classes2}" var="c2">
         		<c:if test="${c1.id==c2.parentId }">
 	        		<div class="tag">
-	        		<strong><a href="#">${c2.name}</a></strong>
+	        		<strong><a href="javascript:void(0)">${c2.name}</a></strong>
 	        		<c:forEach items="${classes3}" var="c3">
 	        		<c:if test="${c2.id==c3.parentId}">
 	        			<a href="${ctx}/cloud/config/capability/capabilityList.ht?type_id=${c3.id}">

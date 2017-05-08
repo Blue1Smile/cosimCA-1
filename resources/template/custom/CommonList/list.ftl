@@ -107,7 +107,7 @@ orderSeq：当前的排序类型
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<#if (conditions?size>0) >
-					<div class="group"><a class="link ajaxSearch" href="#" onclick="handlerSearchAjax(this)">查询</a></div>
+					<div class="group"><a class="link ajaxSearch" href="javascript:void(0)" onclick="handlerSearchAjax(this)">查询</a></div>
 					<div class="l-bar-separator"></div>
 				</#if>
 			</div>
@@ -136,7 +136,7 @@ orderSeq：当前的排序类型
 					<th>
 					<#if field.type!="clob">
 <#noparse>
-						<a href="#" onclick="linkSortAjax(this,'${tableIdCode}')" action="${displayURLP}" sort="${name}">
+						<a href="javascript:void(0)" onclick="linkSortAjax(this,'${tableIdCode}')" action="${displayURLP}" sort="${name}">
 							${comment}<#if (sortField?? && sortField=="${name}")><#if (orderSeq=="ASC")>↑<#else>↓</#if></#if>
 						</a>
 </#noparse>
@@ -181,12 +181,12 @@ orderSeq：当前的排序类型
 							<div class="l-bar-separator"></div>
 							<div class="l-bar-group">
 								<div class="l-bar-button l-bar-btnfirst">
-									<a href="#" onclick="firstAjax(this,'${tableIdCode}')" title="首页">
+									<a href="javascript:void(0)" onclick="firstAjax(this,'${tableIdCode}')" title="首页">
 										<span class=""></span>
 									</a> 
 								</div>
 								<div class="l-bar-button l-bar-btnprev">
-									<a href="#" onclick="previousAjax(this,'${tableIdCode}');" title="上一页">
+									<a href="javascript:void(0)" onclick="previousAjax(this,'${tableIdCode}');" title="上一页">
 										<span class=""></span>
 									</a>
 								</div>
@@ -200,12 +200,12 @@ orderSeq：当前的排序类型
 							<div class="l-bar-separator"></div>
 							<div class="l-bar-group">
 								<div class="l-bar-button l-bar-btnnext">
-									<a href="#" onclick="nextAjax(this,'${tableIdCode}')" title="下一页">
+									<a href="javascript:void(0)" onclick="nextAjax(this,'${tableIdCode}')" title="下一页">
 										<span></span>
 									</a>
 								</div>
 								<div class="l-bar-button l-bar-btnlast">
-									<a href="#" onclick="lastAjax(this,'${tableIdCode}')" title="尾页">
+									<a href="javascript:void(0)" onclick="lastAjax(this,'${tableIdCode}')" title="尾页">
 										<span></span>
 									</a>
 								</div>
@@ -219,7 +219,7 @@ orderSeq：当前的排序类型
 							<div class="l-bar-separator"></div>
 							<div class="l-bar-group">
 								<div class="l-bar-button l-bar-btnload">
-									<a href="#" onclick="refreshAjax(this,'${displayURLP}')">
+									<a href="javascript:void(0)" onclick="refreshAjax(this,'${displayURLP}')">
 										<span class=""></span>
 									</a>
 								</div>

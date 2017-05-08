@@ -109,10 +109,10 @@
 				
 				
 				<display:column title="配置" media="html" style="width:240px">
-					<a href="#" class="paras"  id="${toolUserItem.toolUserId}">参数配置</a>
-					<a href="#" class="input"  id="${toolUserItem.toolUserId}" style="margin-left: 10px;margin-right:10px">输入配置</a>
-					<a href="#" class="output"  id="${toolUserItem.toolUserId}" style="margin-right:10px">输出配置</a>
-					<a href="#" class="share"  id="${toolUserItem.toolUserId}" style="">共享配置</a>
+					<a href="javascript:void(0)" class="paras"  id="${toolUserItem.toolUserId}">参数配置</a>
+					<a href="javascript:void(0)" class="input"  id="${toolUserItem.toolUserId}" style="margin-left: 10px;margin-right:10px">输入配置</a>
+					<a href="javascript:void(0)" class="output"  id="${toolUserItem.toolUserId}" style="margin-right:10px">输出配置</a>
+					<a href="javascript:void(0)" class="share"  id="${toolUserItem.toolUserId}" style="">共享配置</a>
 				</display:column>
 				
 				

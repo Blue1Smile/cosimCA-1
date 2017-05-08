@@ -560,7 +560,7 @@ html { overflow-x: hidden; }
 																		<option value="1">或者</option>		
 																		<option value="2">取反</option>																					
 															</select>
-														<a onclick="generateCondition(this)" href="#" class="button">
+														<a onclick="generateCondition(this)" href="javascript:void(0)" class="button">
 															<span>生成</span>
 														</a>
 													</div>
@@ -609,7 +609,7 @@ html { overflow-x: hidden; }
 			
 			<div id="divScriptData" style="display: none;">
 		
-				<a href="#" id="btnScript" class="link var" title="常用脚本" onclick="selectScript()">常用脚本</a>
+				<a href="javascript:void(0)" id="btnScript" class="link var" title="常用脚本" onclick="selectScript()">常用脚本</a>
 				<ul>
 					<li>可以使用的流程变量,[startUser],开始用户,<li>[startUser],上个任务的用户[prevUser]。</li>
 					<li>表达式必须返回Set&lt;String&gt;集合类型的数据。</li>

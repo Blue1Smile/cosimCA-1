@@ -139,7 +139,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 			<#if defKey?exists>
 				<c:if test="<#noparse>${</#noparse>empty ${classVar}Item.flowRunId}">
 				<div class="l-bar-separator"></div>
@@ -228,7 +228,7 @@
 							</#if>											
 					    </#list>
 					    <input type="hidden" name="${subtable.variable.classVar}List[<#noparse>${i.index}</#noparse>].id" value="<#noparse>${</#noparse>${subtable.variable.classVar}Item.id}" />
-					    <td style="text-align: center"><a href="#" class="link del">删除</a></td>
+					    <td style="text-align: center"><a href="javascript:void(0)" class="link del">删除</a></td>
 				    </tr>
 				</c:forEach>
 				<tr type="append">
@@ -241,7 +241,7 @@
 					<input type="hidden" name="${field.fieldName}" value="<#noparse>${</#noparse>${subtable.variable.classVar}Item.${field.fieldName}}"/>
 					</#if>	
 				    </#list>
-				    <td style="text-align: center"><a href="#" class="link del">删除</a></td>
+				    <td style="text-align: center"><a href="javascript:void(0)" class="link del">删除</a></td>
 			    </tr>
 		    </table>
 			</#list>

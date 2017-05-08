@@ -240,7 +240,7 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</div>
@@ -317,7 +317,7 @@
 										<c:choose>
 											<c:when  test="${sysTableManage.id==0}">
 												<input readonly="readonly" type="text" name="objName" id="objName">
-												<a href="#" id="btnSelectTable" class="link get">选择对象</a>
+												<a href="javascript:void(0)" id="btnSelectTable" class="link get">选择对象</a>
 											</c:when>
 											<c:otherwise>
 												<span>${sysTableManage.objName}</span>
@@ -372,11 +372,11 @@
 							</div>
 							<div class="panel-toolbar">
 								<div class="group">
-									<a id="addParameter" class="link add" onclick="addParameter()" href="#"><span class="green">添加</span></a>
+									<a id="addParameter" class="link add" onclick="addParameter()" href="javascript:void(0)"><span class="green">添加</span></a>
 								</div>
 								<div class="l-bar-separator"></div>
 								<div class="group">
-									<a class="link tipinfo" href="#" onclick="helpInfoShow(this,'parameterSettingHelpInfo')">使用帮助</a>
+									<a class="link tipinfo" href="javascript:void(0)" onclick="helpInfoShow(this,'parameterSettingHelpInfo')">使用帮助</a>
 								</div>
 							</div>
 							<table id="parameters-table" class="table-grid" style="margin-top: 5px">
@@ -411,7 +411,7 @@
 										<input id="condition-script" value="2" type="radio" name="conditionType" <c:if test="${sysTableManage.conditionType==2}">checked="checked"</c:if> >
 									</span>
 									<span style="float: left;margin-left: 20px">
-										<a class="link tipinfo" href="#"  onclick="helpInfoShow(this,'conditionSettingHelpInfo')">使用帮助</a>
+										<a class="link tipinfo" href="javascript:void(0)"  onclick="helpInfoShow(this,'conditionSettingHelpInfo')">使用帮助</a>
 									</span>
 								</div>
 							</div>
@@ -435,7 +435,7 @@
 									<div class="condition-conds-div condition-conds-build" id="condition-build-div">
 										<div class="condition-conds-div-left">
 											<div class="condition-conds-div-left-div">
-												<a style="margin-top: 180px;" id="selectCondition" href="#" class="button">
+												<a style="margin-top: 180px;" id="selectCondition" href="javascript:void(0)" class="button">
 													<span>==></span>
 												</a>
 											</div>

@@ -19,7 +19,7 @@ function view(id,type){
 	<%@include file="/commons/cloud/top.jsp"%>
 	
 	<div id="zxsj" class="bggraybox">
-		<div class="title"><a href="#">在线商机</a></div>
+		<div class="title"><a href="javascript:void(0)">在线商机</a></div>
 		<ul>
 			<li>
 			<c:forEach items="${businessChanceList}" var="businessChance" varStatus="s">
@@ -27,7 +27,7 @@ function view(id,type){
 				  <table width="400" border="0" cellspacing="0" cellpadding="0">
 				    <tr>
 				      <td width="101" rowspan="2" align="left" valign="top"><img src="${ctx}${businessChance.image}" width="100" height="100" onError="this.src='${ctx}/images/default-chance.jpg';"/></td>
-				      <td width="299" height="25" align="left" valign="middle"><a href="#" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></td>
+				      <td width="299" height="25" align="left" valign="middle"><a href="javascript:void(0)" onclick="view('${businessChance.id}','${businessChance.type}');"  name="${businessChance.id}">${businessChance.classid}-${businessChance.name}</a></span> <span class="grey2"><a href="${ctx}/cloud/console/enterprise.ht?EntId=${businessChance.companyId}" class="link_zxsj">${businessChance.companyName}</a></td>
 			        </tr>
 				    <tr>
 				      <td align="left" valign="middle" class="zxsj_box03">

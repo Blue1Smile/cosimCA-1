@@ -67,7 +67,7 @@ function showResponse(responseText){
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<div class="group">
-					<a class="link save" id="dataFormSave" href="#">保存</a>
+					<a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a>
 					<a class="link back" href="javascript:history.back();">返回</a>
 				</div>
 			</div>
