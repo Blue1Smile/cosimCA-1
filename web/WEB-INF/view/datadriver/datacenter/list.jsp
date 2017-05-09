@@ -91,7 +91,7 @@
                             }();
                     start = start || 1;
                     layui.each(node, function (index, item) {
-                        if (start < length[index] && index < "${ProjectLength}") {
+                        if (start <= length[index] && index < "${ProjectLength}") {
                             var child = function (node, start) {
                                 var arr = [];
                                 for (var i = 0; i < length[index]; i++) {
