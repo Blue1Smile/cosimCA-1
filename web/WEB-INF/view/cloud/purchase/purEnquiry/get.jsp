@@ -171,7 +171,7 @@
 			<tr>
 				<th>单证号:</th>
 				<td>
-					<a href="#" onclick="getSaleQuote(${saleQuote.id});">${saleQuote.id}</a>
+					<a href="javascript:void(0)" onclick="getSaleQuote(${saleQuote.id});">${saleQuote.id}</a>
 				</td>
 				<th>制单日期:</th>
 				<td>

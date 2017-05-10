@@ -62,10 +62,10 @@
 			<div class="panel-toolbar">
 				<div class="toolBar">
 					<div class="group">
-						<a class="link ok" href="#">确定</a>
+						<a class="link ok" href="javascript:void(0)">确定</a>
 					</div>
 					<div class="l-bar-separator"></div>
-					<a class="link close" href="#">关闭</a>
+					<a class="link close" href="javascript:void(0)">关闭</a>
 				</div>
 			</div>
 		</div>

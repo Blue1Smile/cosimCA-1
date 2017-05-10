@@ -112,7 +112,7 @@ editBaseURL：编辑一行数据的BaseURL
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<#if hascond==1 >
-					<div class="group"><a class="link ajaxSearch" href="#" onclick="handlerSearchAjax(this)">查询</a></div>
+					<div class="group"><a class="link ajaxSearch" href="javascript:void(0)" onclick="handlerSearchAjax(this)">查询</a></div>
 					<div class="l-bar-separator"></div>
 				</#if>
 			</div>
@@ -142,7 +142,7 @@ editBaseURL：编辑一行数据的BaseURL
 							<th>
 								<#if field.ty!="clob">
 									<#noparse>
-									<a href="#" onclick="linkAjax(this)" action="${pageURL}&${tableIdCode}__ns__=${name}">
+									<a href="javascript:void(0)" onclick="linkAjax(this)" action="${pageURL}&${tableIdCode}__ns__=${name}">
 										${comment}<#if (sortField?? && sortField=="${name}")><#if (orderSeq=="ASC")>↑<#else>↓</#if></#if>
 									</a>
 									</#noparse>
@@ -170,7 +170,7 @@ editBaseURL：编辑一行数据的BaseURL
 					</#list>
 					<#if (editable && pkcols?? && pkcols?size>0)>
 					<td>
-						<a href="#" onclick="openLinkDialog(this,600,500)" action="${editBaseURL}?&__displayId__=<#noparse>${sysTableManage.id}</#noparse><#list pkcols as col>&__pk__${col.name}=<#noparse>${data.</#noparse>${col.name}<#noparse>}</#noparse></#list>" class="link edit">
+						<a href="javascript:void(0)" onclick="openLinkDialog(this,600,500)" action="${editBaseURL}?&__displayId__=<#noparse>${sysTableManage.id}</#noparse><#list pkcols as col>&__pk__${col.name}=<#noparse>${data.</#noparse>${col.name}<#noparse>}</#noparse></#list>" class="link edit">
 							编辑
 						</a>
 						<a href="${deleteBaseURL}?&__displayId__=<#noparse>${displayId}</#noparse><#list pkcols as col>&__pk__${col.name}=<#noparse>${data.</#noparse>${col.name}<#noparse>}</#noparse></#list>" class="link del">

@@ -109,7 +109,7 @@
 						<a href="${ctx}/cloud/console/outline.ht" class="linkblue2">待办任务</a>
 					</div>
 					<div class="sq_btn02">
-						<a href="#" class="linkblue"></a>
+						<a href="javascript:void(0)" class="linkblue"></a>
 					</div>
 				</div>
 				<div class="clear_10"></div>
@@ -118,7 +118,7 @@
 						<a href="${ctx}/console/outline.ht" class="linkblue2">已办未结</a>
 					</div>
 					<div class="sq_btn02">
-						<a href="#" class="linkblue"></a>
+						<a href="javascript:void(0)" class="linkblue"></a>
 					</div>
 				</div>
 				<div class="clear_10"></div>
@@ -127,7 +127,7 @@
 						<a href="${ctx}/console/outline.ht" class="linkblue2">已办完结</a>
 					</div>
 					<div class="sq_btn02">
-						<a href="#" class="linkblue"></a>
+						<a href="javascript:void(0)" class="linkblue"></a>
 					</div>
 				</div>
 				<div class="clear_10"></div>
@@ -136,7 +136,7 @@
 						<a href="${ctx}/cloud/config/business/add.ht" class="linkblue2">商机发布</a>
 					</div>
 					<div class="sq_btn02">
-						<a href="#" class="linkblue"></a>
+						<a href="javascript:void(0)" class="linkblue"></a>
 					</div>
 				</div>
 			</div>
@@ -148,7 +148,7 @@
 					<div class="panel-toolbar">
 						<div class="toolBar">
 							<div class="group">
-								<a class="link save" id="dataFormSave" href="#">保存</a>
+								<a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a>
 							</div>
 							<div class="l-bar-separator"></div>
 							<div class="group">

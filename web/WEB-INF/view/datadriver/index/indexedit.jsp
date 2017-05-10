@@ -81,7 +81,7 @@
                         <input id="ddIndexProjectId" name="ddIndexProjectId" type="hidden" value="${projectId}"/>
                     </form>
                     <div class="col-xs-12">
-                        <a href="#" class="btn btn-success btn-block" id="dataFormSave"><span
+                        <a href="javascript:void(0)" class="btn btn-success btn-block" id="dataFormSave"><span
                                 class="glyphicon glyphicon-ok"></span> 创建指标项</a>
                     </div>
                 </div>

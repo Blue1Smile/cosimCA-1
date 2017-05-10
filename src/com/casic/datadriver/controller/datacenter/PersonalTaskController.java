@@ -708,29 +708,29 @@ public class PersonalTaskController extends AbstractController {
 //                    }
 //                }
                 if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) &&
-                    taskInfo.getDdTaskChildType().equals("publishpanel")) {
+                        taskInfo.getDdTaskChildType().equals("publishpanel")) {
 
-                for (int i = 0; i < publishRelationList.size(); i++) {
-                    DataStruct dataStruct = dataStructService.getById(publishRelationList.get(i).getDdDataId());
-                    List<PrivateData> childList = privateDataService.selectByStructid(dataStruct.getDdStructId());
-                    int childLength = childList.size();
-                    for (int j=0;j<childList.size();j++){
-                          if(childList.get(j).getDdDataLastestValue()==null){
-                              PrivateData childData= childList.get(j);
-                              //暂时用datapath存放结构体名
-                              childData.setDdDataPath(dataStruct.getDdStructName());
-                              childListWithoutValue.add(childData);
-                          }
+                    for (int i = 0; i < publishRelationList.size(); i++) {
+                        DataStruct dataStruct = dataStructService.getById(publishRelationList.get(i).getDdDataId());
+                        List<PrivateData> childList = privateDataService.selectByStructid(dataStruct.getDdStructId());
+                        int childLength = childList.size();
+                        for (int j = 0; j < childList.size(); j++) {
+                            if (childList.get(j).getDdDataLastestValue() == null) {
+                                PrivateData childData = childList.get(j);
+                                //暂时用datapath存放结构体名
+                                childData.setDdDataPath(dataStruct.getDdStructName());
+                                childListWithoutValue.add(childData);
+                            }
+                        }
                     }
-                }
 
-                if (childListWithoutValue.size() == 0) {
-                    taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
-                    taskStartService.update(taskStart_list.get(0));
-                    taskInfo.setDdTaskChildType("checkpanel");
-                    taskInfo.setDdTaskState(taskInfo.checkpanel);
-                    taskInfoService.update(taskInfo);
-                }
+                    if (childListWithoutValue.size() == 0) {
+                        taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);
+                        taskStartService.update(taskStart_list.get(0));
+                        taskInfo.setDdTaskChildType("checkpanel");
+                        taskInfo.setDdTaskState(taskInfo.checkpanel);
+                        taskInfoService.update(taskInfo);
+                    }
                 }
             } else {
                 String resultMsg = null;
@@ -874,7 +874,7 @@ public class PersonalTaskController extends AbstractController {
     public void createtopublish(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String resultMsg = "状态变更";
         Long dataId = RequestUtil.getLong(request, "id");
-        DataStruct dataStruct1=dataStructService.getStructById(dataId);
+        DataStruct dataStruct1 = dataStructService.getStructById(dataId);
         Long taskId = dataStruct1.getDdTaskId();
         String parent = RequestUtil.getString(request, "parent");
         PrivateData privateData = new PrivateData();
@@ -910,12 +910,11 @@ public class PersonalTaskController extends AbstractController {
                 orderDataRelation.setDdProjectId(dataStruct.getDdProjectId());
                 orderDataRelationService.add(orderDataRelation);
             }
-            writeResultMessage(response.getWriter(), resultMsg , ResultMessage.Success);
+            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
         } catch (Exception e) {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
     }
-
 
 
 }

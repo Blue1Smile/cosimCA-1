@@ -99,7 +99,7 @@
                     editable: false,
 // footerFormatter: ddDataNameFormatter,
                     align: 'center',
-                    visible: true
+                    visible: false
                 }, {//第五列，
                     field: 'DdDataDescription',
                     title: '描述',
@@ -164,6 +164,15 @@
                     align: 'center',
                     visible: true
                 },
+                    {//第三列
+                        field: 'DdDataPath',
+                        title: '存放地址',
+                        sortable: true,
+                        editable: false,
+// footerFormatter: ddDataNameFormatter,
+                        align: 'center',
+                        visible: true
+                    },
                     {
                         field: 'operate',
                         title: '操作',

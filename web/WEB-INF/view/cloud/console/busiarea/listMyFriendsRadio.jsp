@@ -74,7 +74,7 @@
 				sortable="true" sortName="address"></display:column>
 			<display:column  title="采购记录" sortable="true" sortName="" >
 			<input value="" type="hidden" />
-			<a href="#" onclick="getAll('${myFriendsList.corpEnterprise.sysOrgInfoId}');">查看</a></display:column>
+			<a href="javascript:void(0)" onclick="getAll('${myFriendsList.corpEnterprise.sysOrgInfoId}');">查看</a></display:column>
 		</display:table>
 		<div class="l-clear"></div>
 	</div>

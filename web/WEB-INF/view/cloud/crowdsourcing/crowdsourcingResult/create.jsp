@@ -137,11 +137,11 @@
 		/* var tr = '<tr class="'+fileId+'">';
 		tr += '<td>';
 		tr += '	<span class="attach">&ensp;&ensp; </span>&nbsp;&nbsp;';
-		tr += '	<a href="#" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
+		tr += '	<a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
 		tr += '</td>';
-		tr += '<td><a href="#" onclick=javascript:downloadFile('${ctx}','+fileId+'); ><span class="link-btn link-remove">下载</span></a></td>';
-		tr += '<td><a href="#" onclick=javascript:openFile('${ctx}','+fileId+'); ><span class="link-btn link-remove">在线查看</span></a></td>';
-		tr += '<td><a href="#" onclick=javascript:delRow('+fileId+'); ><span class="link-btn link-remove">删除 </span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:downloadFile('${ctx}','+fileId+'); ><span class="link-btn link-remove">下载</span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:openFile('${ctx}','+fileId+'); ><span class="link-btn link-remove">在线查看</span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:delRow('+fileId+'); ><span class="link-btn link-remove">删除 </span></a></td>';
 		tr += '</tr>'; */
 		var tr = "<tr class="+fileId+"><td>"+fileName+"&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a href=\"javascript:downloadFile('${ctx}',"+fileId+");\">下载</a></td><td><a href=\"javascript:openFile('${ctx}',"+fileId+");\">在线浏览</a></td><td><a href=\"javascript:delRow('"+fileId+"','"+fileName+"')\">删除</a></td></tr>"
 		return tr;
@@ -153,9 +153,9 @@
 		tr += '	<input type="hidden" class="pk" name="resultNames" value="' + filePath + '"/> ';
 		tr += '	<a onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
 		tr += '</td>';
-		tr += '<td><a href="#" onclick=javascript:downloadFile('${ctx}','+fileId+'); ><span class="link-btn link-remove">下载</span></a></td>';
-		tr += '<td><a href="#" onclick=javascript:openFile('${ctx}','+fileId+'); ><span class="link-btn link-remove">在线查看</span></a></td>';
-		tr += '<td><a href="#" onclick=javascript:delRow('+fileId+'); ><span class="link-btn link-remove">删除 </span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:downloadFile('${ctx}','+fileId+'); ><span class="link-btn link-remove">下载</span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:openFile('${ctx}','+fileId+'); ><span class="link-btn link-remove">在线查看</span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:delRow('+fileId+'); ><span class="link-btn link-remove">删除 </span></a></td>';
 		tr += '</tr>'; */
 		var tr = "<tr class="+fileId+"><td>"+fileName+"&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a href=\"javascript:downloadFile('${ctx}',"+fileId+");\">下载</a></td><td><a href=\"javascript:openFile('${ctx}',"+fileId+");\">在线浏览</a></td><td><a href=\"javascript:delRow("+fileId+",'"+fileName+"')\">删除</a></td></tr>"
 		return tr;
@@ -266,7 +266,7 @@
 		
 	    <div class="panel-toolbar" style="display:none">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back " href="list.ht">返回</a></div>
 			</div>
@@ -333,7 +333,7 @@
 					<input type="hidden" name ="resultName" id="resultName" value="">
 			      		<div class="cell" js_picarea="true"  size="100">
 							<table  width="145" name="attachmentTable"    id="attachmentTable" class="table-grid table-list"  cellpadding="2" cellspacing="2"></table>
-							<a href="#" onclick="addFile()">添加文档</a>
+							<a href="javascript:void(0)" onclick="addFile()">添加文档</a>
 						</div>
 					</td>
 					<!--<td><input type="hidden" id="resultName" name="resultName" value="${crowdsourcingResult.resultName}"  class="inputText" validate="{required:false,maxlength:384}"  /></td>-->
@@ -384,8 +384,8 @@
 					    <td style="text-align: center" name="attachmentManageId">${crowdsourcingAgreementDetailItem.attachmentManageId}</td>
 					    <td style="text-align: center;display:none" name="operatingAuthority">${crowdsourcingAgreementDetailItem.operatingAuthority}</td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						
 				    </tr>
@@ -427,8 +427,8 @@
 							<td style="text-align: center" name="submitTime"><fmt:formatDate value='${crowdsourcingResultDetailItem.submitTime}' pattern='yyyy-MM-dd'/></td>								
 							<td style="text-align: center" name="auditTime"><fmt:formatDate value='${crowdsourcingResultDetailItem.auditTime}' pattern='yyyy-MM-dd'/></td>					    								
 					   <!--  <td style="display:none">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 					    <input type="hidden" name="resultName" value="${crowdsourcingResultDetailItem.id}"/>
 						<input type="hidden" name="resultName" value="${crowdsourcingResultDetailItem.resultName}"/>
@@ -449,8 +449,8 @@
 					<td style="text-align: center" name="submitTime"></td>								
 					<td style="text-align: center" name="auditTime"></td>								
 			    	<td style="display:none">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="resultName" value=""/>
 			    	<input type="hidden" name="resultInfo" value=""/>

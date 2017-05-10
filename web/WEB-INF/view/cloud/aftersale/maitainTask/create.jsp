@@ -361,7 +361,7 @@ function preview(){
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存并发起</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存并发起</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -398,14 +398,14 @@ function preview(){
 						<input size="35" type="hidden" id="user_id" name="feedbackId" value="${maitainTask.feedbackId}"   />
 						<input size="35" type="text" readonly="readonly" id="user_name" name="feedbackName" class="inputText" value="${maitainTask.feedbackName}"   class="inputText" validate="{required:true,maxlength:96}"/>
 						
-							<a href="#" onclick="selectOrgs()"  class="link detail">选择</a>
+							<a href="javascript:void(0)" onclick="selectOrgs()"  class="link detail">选择</a>
 						</td>
 					
 						
 						
 						<th style="width:120px;">物品编码</th>
 						<td><input size="35" id="prod_code" name="prodcode" value="${maitainTask.prodcode}"  class="inputText" validate="{required:true,maxlength:32}"/>
-						<!-- <a href="#" onclick="preview()" class="link detail">请选择</a> -->
+						<!-- <a href="javascript:void(0)" onclick="preview()" class="link detail">请选择</a> -->
 						</td>
 					</tr>				
 					<tr>
@@ -423,7 +423,7 @@ function preview(){
 						<span style="display: none;" id="div_show">
 			            <input size="35" type="hidden" id="ac_id" name="accendantId"  />
 						<input size="35" type="text" id="ac_name"  name="accendantName"  value="${maitainTask.accendantName}"  readonly="readonly" class="inputTex"   />
-						<a href="#" onclick="selUsers()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="selUsers()"  class="link detail">选择</a>
 						</span>
 						</td>
 						
@@ -465,13 +465,13 @@ function preview(){
 				<tr>
 					<td colspan="13">
 						<div class="group" align="left">
-				   				 <a href="#" onclick="add_wpsupps();"   style="text-decoration: none;">
+				   				 <a href="javascript:void(0)" onclick="add_wpsupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd2.jpg'"
 												onmouseout="src='${ctx}/images/iconadd.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								  
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"
@@ -582,7 +582,7 @@ function preview(){
 			<tr>
 				<th width="20%">物品名称: </th>
 				<td><input type="text" name="prodname" value="" readonly="readonly" class="inputText" validate="{required:false,maxlength:108}"/>
-				<a href="#" onclick="preview_ware(this);" class="link detail">请选择</a>
+				<a href="javascript:void(0)" onclick="preview_ware(this);" class="link detail">请选择</a>
 				</td>
 			</tr>
 			<tr>

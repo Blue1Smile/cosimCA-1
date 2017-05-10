@@ -225,7 +225,7 @@
 		
 	    <div class="panel-toolbar" style="display:none">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back " href="list.ht">返回</a></div>
 			</div>
@@ -292,7 +292,7 @@
 					<input type="hidden" name ="resultName" id="resultName" value="">
 			      		<div class="cell" js_picarea="true"  size="100">
 							<table  width="145" name="attachmentTable"    id="attachmentTable" class="table-grid table-list"  cellpadding="2" cellspacing="2"></table>
-							<a href="#" onclick="addFile()">添加文档</a>
+							<a href="javascript:void(0)" onclick="addFile()">添加文档</a>
 						</div>
 					</td>
 					<!--<td><input type="hidden" id="resultName" name="resultName" value="${crowdsourcingResult.resultName}"  class="inputText" validate="{required:false,maxlength:384}"  /></td>-->
@@ -333,8 +333,8 @@
 							<td style="text-align: center" name="submitTime"><fmt:formatDate value='${crowdsourcingResultDetailItem.submitTime}' pattern='yyyy-MM-dd'/></td>								
 							<td style="text-align: center" name="auditTime"><fmt:formatDate value='${crowdsourcingResultDetailItem.auditTime}' pattern='yyyy-MM-dd'/></td>					    								
 					   <!--  <td style="display:none">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="resultName" value="${crowdsourcingResultDetailItem.resultName}"/>
 						<input type="hidden" name="resultInfo" value="${crowdsourcingResultDetailItem.resultInfo}"/>
@@ -354,8 +354,8 @@
 					<td style="text-align: center" name="submitTime"></td>								
 					<td style="text-align: center" name="auditTime"></td>								
 			    	<td style="display:none">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="resultName" value=""/>
 			    	<input type="hidden" name="resultInfo" value=""/>

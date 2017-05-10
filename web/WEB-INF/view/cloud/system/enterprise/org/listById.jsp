@@ -133,9 +133,9 @@
 					<div class="toolBar">
 						<div class="group"><a class="link search" id="btnSearch">查询</a></div>
 						<div class="l-bar-separator"></div>
-						<!--  <div class="group"><a class="link add"  href="#" onclick="addWin('${orgId}','LA','${path}')">添加</a></div> 
+						<!--  <div class="group"><a class="link add"  href="javascript:void(0)" onclick="addWin('${orgId}','LA','${path}')">添加</a></div>
 						<div class="l-bar-separator"></div>-->
-						<div class="group"><a class="link del" id="btnDel" href="#" >删除</a></div>
+						<div class="group"><a class="link del" id="btnDel" href="javascript:void(0)" >删除</a></div>
 						<div class="l-bar-separator"></div>
 					</div>	
 				  </div>

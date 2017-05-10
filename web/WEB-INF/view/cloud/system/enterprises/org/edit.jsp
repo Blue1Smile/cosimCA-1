@@ -105,8 +105,8 @@
 							<th width="20%">主要负责人:</th>
 							<td>
 	                        <input type="text" class="inputText" readonly="readonly" style="width:300px" id="ownUserName" value="${sysOrg.ownUserName}" >
-						    <a href="#" onclick="addClick()" class="link get">选择</a>
-						    <a href="#" onclick="reSet()" class="link clean">清空</a>
+						    <a href="javascript:void(0)" onclick="addClick()" class="link get">选择</a>
+						    <a href="javascript:void(0)" onclick="reSet()" class="link clean">清空</a>
 						    <input  type="hidden" name="ownUser" id="ownUser" value="${sysOrg.ownUser}">
 							</td>
 						</tr>	

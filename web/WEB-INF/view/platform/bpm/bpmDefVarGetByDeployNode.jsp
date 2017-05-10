@@ -52,7 +52,7 @@
 						</display:column>
 						
 						<display:column title="选择">
-							<a href="#" onclick="selectVars('${bpmDefVarItem.varKey}','${bpmDefVarItem.varName}')" class="link edit" target="win">选择</a>
+							<a href="javascript:void(0)" onclick="selectVars('${bpmDefVarItem.varKey}','${bpmDefVarItem.varName}')" class="link edit" target="win">选择</a>
 						</display:column>
 					
 					</display:table>

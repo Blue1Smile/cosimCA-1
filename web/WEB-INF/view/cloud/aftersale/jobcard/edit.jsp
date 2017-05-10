@@ -68,7 +68,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -147,8 +147,8 @@
 					    <td style="text-align: center" name="prodcode">${jobCardDetailItem.prodcode}</td>
 					    <td style="text-align: center" name="nums">${jobCardDetailItem.nums}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input size="35" type="hidden" name="taskid" value="${jobCardDetailItem.taskid}"/>
 						<input size="35" type="hidden" name="seq" value="${jobCardDetailItem.seq}"/>
@@ -164,8 +164,8 @@
 			    	<td style="text-align: center" name="prodcode"></td>
 			    	<td style="text-align: center" name="nums"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input size="35" type="hidden" name="taskid" value=""/>
 			    	<input size="35" type="hidden" name="seq" value=""/>

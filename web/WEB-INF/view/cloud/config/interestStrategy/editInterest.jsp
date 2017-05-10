@@ -102,13 +102,13 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="listInterest.ht?currentEntid=${interestStrategy.enterpriseId}&materialId=${interestStrategy.materialId}">返回</a></div>
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -171,8 +171,8 @@
 					    <td style="text-align: center" name="capsNumber">${interestStrategyDetailItem.capsNumber}</td>
 					    <td style="text-align: center" name="interestValue">${interestStrategyDetailItem.interestValue}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 					    <input type="hidden" name="lowerNumber" value="${interestStrategyDetailItem.lowerNumber}"/>
 						<input type="hidden" name="capsNumber" value="${interestStrategyDetailItem.capsNumber}"/>
@@ -184,8 +184,8 @@
 			    	<td style="text-align: center" name="capsNumber"></td>
 			    	<td style="text-align: center" name="interestValue"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="lowerNumber" value=""/>
 			    	<input type="hidden" name="capsNumber" value=""/>

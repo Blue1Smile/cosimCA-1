@@ -30,7 +30,7 @@
 						<div class="toolBar">
 							<div class="group"><a class="link search" id="btnSearch">查询</a></div>
 							<div class="l-bar-separator"></div>
-							<div class="group"><a class="link add" onclick="addNew('${parentId}','${catKey}','${returnUrl}','${type}')"  href="#">添加分类</a></div>
+							<div class="group"><a class="link add" onclick="addNew('${parentId}','${catKey}','${returnUrl}','${type}')"  href="javascript:void(0)">添加分类</a></div>
 							<div class="l-bar-separator"></div>
 							<div class="group"><a class="link del"  action="del.ht">删除</a></div>
 						</div>	

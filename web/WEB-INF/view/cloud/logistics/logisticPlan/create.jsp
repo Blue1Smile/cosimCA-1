@@ -153,9 +153,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -165,7 +165,7 @@
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="${ctx}/cloud/sale/delivernote/list.ht">返回</a></div>
 				</c:if>
@@ -226,7 +226,7 @@
 					<th style="width:120px">制定物流计划公司: </th>
 					<td style="width:350px">
 						<input type="text" id="logisticsEnterpName" name="logisticsEnterpName" readonly="readonly" value="${logisticPlan.logisticsEnterpName}"  class="inputText" validate="{required:true,maxlength:96}"  />
-						<span id="selectEnterp"><a href="#" onclick="add_supps('selectEnterp')"  class="link detail">选择</a></span>
+						<span id="selectEnterp"><a href="javascript:void(0)" onclick="add_supps('selectEnterp')"  class="link detail">选择</a></span>
 					</td>
 					<th style="width:120px">重量: </th>
 					<td><input type="text" id="weight" name="weight" value="${logisticPlan.weight}"  class="inputText" validate="{required:false}"  />kg</td>
@@ -281,7 +281,7 @@
 					<td>
 						<input type="text" id="endReceiveEnterpName" readonly="readonly" name="endReceiveEnterpName" value="${logisticPlan.endReceiveEnterpName}"  class="inputText" validate="{required:false,maxlength:96}"  />
 						<c:if test="${addFlag==1}">
-							<span id="selectendReceive"><a href="#" onclick="add_supps('selectendReceive')"  class="link detail">选择</a></span>
+							<span id="selectendReceive"><a href="javascript:void(0)" onclick="add_supps('selectendReceive')"  class="link detail">选择</a></span>
 						</c:if>
 					</td>
 				</tr>
@@ -352,8 +352,8 @@
 					    <td style="text-align: center" name="unit">${logisticMaterialItem.unit}</td>
 					    <td style="text-align: center" name="num">${logisticMaterialItem.num}</td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<%-- <input type="hidden" name="materielId" value="${logisticMaterialItem.materielId}"/> --%>
 						<input type="hidden" name="materielCode" value="${logisticMaterialItem.materielCode}"/>
@@ -373,8 +373,8 @@
 			    	<td style="text-align: center" name="unit"></td>
 			    	<td style="text-align: center" name="num"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<!-- <input type="hidden" name="materielId" value=""/> -->
 			    	<input type="hidden" name="materielCode" value=""/>

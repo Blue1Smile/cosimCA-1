@@ -86,7 +86,7 @@
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link del"  action="del.ht">删除</a></div>
 					<div class="group"><a class="link download"  action="export.ht">导出</a></div>
-					<div class="group"><a class="link upload"  href="#"  onclick="ImportDefTableWindow()">导入</a></div>
+					<div class="group"><a class="link upload"  href="javascript:void(0)"  onclick="ImportDefTableWindow()">导入</a></div>
 				</div>	
 			</div>
 			<div class="panel-search">

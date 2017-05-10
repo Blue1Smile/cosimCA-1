@@ -350,7 +350,7 @@
 						<tr>
 							<td style="padding-left:10px;width:485px">
 							<textarea onkeyup="checkWord(this)"  onkeydown="getStrleng(this)" name="message" id="message" class="sq_textarea"></textarea></td>
-							<td align="left"><a href="#"><img src="${ctx }/images/btn_pub01.jpg" width="87"
+							<td align="left"><a href="javascript:void(0)"><img src="${ctx }/images/btn_pub01.jpg" width="87"
 							height="89" onmouseover="src='${ctx }/images/btn_pub02.jpg';"
 							onmouseout="src='${ctx }/images/btn_pub01.jpg'"
 							style="border: 0;" onclick="sendMessage();"></a></td>
@@ -364,7 +364,7 @@
 					<ul>
 					<c:forEach items="${cloudMessages}" var="cloudMessages">
 						<li>
-							<div class="avatar"><a href="#"><img src="${ctx}${cloudMessages.sendEnt.logo}" onError="this.src='${ctx}/images/default-chance.jpg'" width="50" height="50" style="border: 1px solid #6D6D6F;" /></a></div>
+							<div class="avatar"><a href="javascript:void(0)"><img src="${ctx}${cloudMessages.sendEnt.logo}" onError="this.src='${ctx}/images/default-chance.jpg'" width="50" height="50" style="border: 1px solid #6D6D6F;" /></a></div>
 							<div class="msg_right">
 								<p><a href="${ctx}/cloud/console/enterprise.ht?EntId=${cloudMessages.sendentId }"></a></p>
                                 <P class="msg_tt">${cloudMessages.title}</P>

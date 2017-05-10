@@ -49,7 +49,7 @@
 <div class="container-fluid">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
                 ${TaskInfo.ddTaskName} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" style="overflow: auto">
@@ -61,31 +61,31 @@
             </ul>
         </li>
         <li role="presentation" class="active" id="switch_attr_publish"><a href="#data" data-toggle="tab"
-                                                                           role="tab">私有&发布</a>
+                                                                           role="tab">输出数据</a>
         </li>
         <li role="presentation" id="switch_attr_order"><a href="#publish" data-toggle="tab"
-                                                          role="tab">集合&订阅</a>
+                                                          role="tab">输入数据</a>
         </li>
         <%--<li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">订阅数据</a>--%>
         <%--</li>--%>
         <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">任务约束</a>
         </li>
-        <li role="presentation" id="switch_attr_child"><a href="#child" data-toggle="tab" role="tab">看板</a></li>
+        <li role="presentation" id="switch_attr_child"><a href="#child" data-toggle="tab" role="tab">子任务</a></li>
         <li role="presentation" id="switch_attr_source"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
         <li role="presentation" id="switch_attr_talk"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a></li>
         <div class="pull-right">
             <a class="btn btn-success" href="javascript:void(0)" id="create_data"
                onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
-            <a class="btn btn-primary" href="#" id="upload_file" onclick=""><span
+            <a class="btn btn-primary" href="javascript:void(0)" id="upload_file" onclick=""><span
                     class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
-            <a id="child_btn" href="#" class="btn btn-primary"><span class="glyphicon glyphicon-stats"></span>
+            <a id="child_btn" href="javascript:void(0)" class="btn btn-primary"><span class="glyphicon glyphicon-stats"></span>
                 创建子任务
             </a>
-            <a class="btn btn-info" href="#" data-toggle="modal" id="submit_btn"
+            <a class="btn btn-info" href="javascript:void(0)" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 提交审核</a>
-            <a id="statis_btn" href="#" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span>
+            <a id="statis_btn" href="javascript:void(0)" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span>
                 进程统计
             </a>
             <button class="btn btn-default" onclick="location.reload()"><span

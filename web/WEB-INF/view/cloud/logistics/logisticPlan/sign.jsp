@@ -186,9 +186,9 @@
 <%-- 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list0.ht">返回</a></div>
 				</c:if>
@@ -198,7 +198,7 @@
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list0.ht">返回</a></div>
 				</c:if>
@@ -303,13 +303,13 @@
 					<th width="20%">起始发货企业名称: </th>
 					<td><input type="text" id="startPostEnterpName" name="startPostEnterpName" value="${logisticPlan.startPostEnterpName}"  class="inputText" validate="{required:false,maxlength:96}"  />
 						<c:if test="${logisticPlan.logisticsModel=='direct'}">
-							<a href="#" onclick="add_supps('selectstartPost')"  class="link detail" >选择</a>
+							<a href="javascript:void(0)" onclick="add_supps('selectstartPost')"  class="link detail" >选择</a>
 						</c:if>
 					</td>
 					<th width="20%">最终收货企业名称 : </th>
 					<td><input type="text" id="endReceiveEnterpName" name="endReceiveEnterpName" value="${logisticPlan.endReceiveEnterpName}"  class="inputText" validate="{required:false,maxlength:96}"  />
 						<c:if test="${logisticPlan.logisticsModel=='direct'}">
-							<a href="#" onclick="add_supps('selectendReceive')"  class="link detail" >选择</a>
+							<a href="javascript:void(0)" onclick="add_supps('selectendReceive')"  class="link detail" >选择</a>
 						</c:if>
 					</td>
 				</tr>
@@ -381,8 +381,8 @@
 					    <td style="text-align: center" name="unit">${logisticMaterialItem.unit}</td>
 					    <td style="text-align: center" name="num">${logisticMaterialItem.num}</td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<%-- <input type="hidden" name="materielId" value="${logisticMaterialItem.materielId}"/> --%>
 						<input type="hidden" name="materielCode" value="${logisticMaterialItem.materielCode}"/>
@@ -402,8 +402,8 @@
 			    	<td style="text-align: center" name="unit"></td>
 			    	<td style="text-align: center" name="num"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<!-- <input type="hidden" name="materielId" value=""/> -->
 			    	<input type="hidden" name="materielCode" value=""/>
@@ -486,8 +486,8 @@
 					    <td style="text-align: center;display:none" name="receiveWarehouseName">${logisticsPlanDtlItem.receiveWarehouseName}</td>
 					    <td style="text-align: center" name="receiveAddress">${logisticsPlanDtlItem.receiveAddress}</td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="shipOrderId" value="${logisticsPlanDtlItem.shipOrderId}"/>
 						<input type="hidden" name="shipStepType" value="${logisticsPlanDtlItem.shipStepType}"/>
@@ -545,8 +545,8 @@
 			    	<td style="text-align: center;display:none;" name="receiveWarehouseName"></td>
 			    	<td style="text-align: center" name="receiveAddress"></td>
 			    	<td style="text-align: center;white-space:nowrap;">
-			    		<!-- <a href="#" class="link del">删除</a> -->
-			    		<a href="#" class="link edit">编辑</a>
+			    		<!-- <a href="javascript:void(0)" class="link del">删除</a> -->
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<!-- <input type="hidden" name="shipOrderId" value=""/> -->
 			    	<input type="hidden" name="shipStepType" value=""/>
@@ -649,7 +649,7 @@
 				<th width="20%">运输企业名称: </th>
 				<td>
 					<input type="text" name="shipEnterpName" value="" readonly="readonly"  class="inputText" validate="{required:true,maxlength:384}"/>
-					<a href="#" onclick="add_supps('ship')"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="add_supps('ship')"  class="link detail">选择</a>
 				</td>
 			</tr>
 			<tr style="display:none;">
@@ -671,7 +671,7 @@
 			<tr style="display:none;">
 				<th width="20%">取货企业名称: </th>
 				<td><input type="text" name="postEnterpName" value=""  class="inputText" validate="{required:false,maxlength:384}"/>
-				<a href="#" onclick="add_supps('post')"  class="link detail">选择</a></td>
+				<a href="javascript:void(0)" onclick="add_supps('post')"  class="link detail">选择</a></td>
 			</tr>
 			<tr style="display:none;">
 				<th width="20%">取货企业联系人ID: </th>
@@ -704,7 +704,7 @@
 			<tr>
 				<th width="20%">收货企业名称: </th>
 				<td><input type="text" name="receiveEnterpName" value="" readonly="readonly"  class="inputText" validate="{required:true,maxlength:384}"/>
-				<a href="#" onclick="add_supps('receive')"  class="link detail">选择</a>
+				<a href="javascript:void(0)" onclick="add_supps('receive')"  class="link detail">选择</a>
 				</td>
 			</tr>
 			 <tr style="display:none;">

@@ -39,7 +39,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link add" id="dataFormSave" href="#">创建</a></div>
+				<div class="group"><a class="link add" id="dataFormSave" href="javascript:void(0)">创建</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="icons.ht">返回</a></div>
 			</div>

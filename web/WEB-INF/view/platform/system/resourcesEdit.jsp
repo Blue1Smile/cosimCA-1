@@ -74,7 +74,7 @@
 			'<input class="inputText" type="text" name="url"	style="width: 95%;" >',
 			'</td>',
 			'<td style="text-align:center;">',
-			'<a href="#" class="link del" onclick="singleDell(this);">删除</a>',
+			'<a href="javascript:void(0)" class="link del" onclick="singleDell(this);">删除</a>',
 			'</td>',
 			'</tr>'];
 			
@@ -110,7 +110,7 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 				</div>
 			</div>
@@ -222,7 +222,7 @@
 					    				<input class="inputText" type="text" name="url"	style="width: 95%;" value="${resourcesUrlItem.url}" >
 					    			</td>
 					    			<td style="text-align: center;">
-					    				<a href="#" class="link del" onclick="singleDell(this);">删除</a>
+					    				<a href="javascript:void(0)" class="link del" onclick="singleDell(this);">删除</a>
 									</td>
 					    		</tr>
 					    	</c:forEach>

@@ -101,11 +101,11 @@
 					</div>
 					<div class="l-bar-separator"></div>
 					<div class="group">
-						<a class="link download" href="#" onclick="ExportXml()">导出</a>
+						<a class="link download" href="javascript:void(0)" onclick="ExportXml()">导出</a>
 					</div>
 					<div class="l-bar-separator"></div>
 					<div class="group">
-						<a class="link upload" href="#" onclick="ImportXml()">导入</a>
+						<a class="link upload" href="javascript:void(0)" onclick="ImportXml()">导入</a>
 					</div>
 				</div>
 			</div>
@@ -167,7 +167,7 @@
 						<c:otherwise>
 								子表
 								<c:if test="${bpmFormTableItem.mainTableId == 0}">
-								<a href="#"
+								<a href="javascript:void(0)"
 									onclick="assignMainTable(${bpmFormTableItem.tableId})">分配主表</a>
 							</c:if>
 						</c:otherwise>
@@ -204,7 +204,7 @@
 									href="delByTableId.ht?tableId=${bpmFormTableItem.tableId}"
 									css="link del">删除</f:a>
 								<c:if test="${bpmFormTableItem.isMain == 1  && bpmFormTableItem.isPublished==0}">
-									<a href="#" class="link table"
+									<a href="javascript:void(0)" class="link table"
 										onclick="generator('${bpmFormTableItem.tableId}')">生成表</a>
 								</c:if>
 							</c:if>
@@ -216,7 +216,7 @@
 							<f:a alias="delTable"
 								href="delExtTableById.ht?tableId=${bpmFormTableItem.tableId}"
 								css="link del">删除</f:a>
-							<a href="#"
+							<a href="javascript:void(0)"
 								onclick="showRelation('${bpmFormTableItem.tableId}','${bpmFormTableItem.dsName}')">表关系</a>
 						</c:otherwise>
 					</c:choose>

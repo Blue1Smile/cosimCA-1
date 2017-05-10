@@ -478,7 +478,7 @@
 					<div class="toolBar">
 						<div class="group"><a class="link add" id="btnAdd">增加</a></div>
 						<div class="l-bar-separator"></div>
-						<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+						<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 						<div class="l-bar-separator"></div>
 						<div class="group"><a class="link del" onclick="javascript:window.close();">关闭</a></div>
 					</div>
@@ -559,12 +559,12 @@
 											</tr>
 											<tr>
 												<th >
-													<a href="#" class="link tipinfo"><span style="z-index: 100;text-align: left;">条件表达要求是返回Boolean值的脚本。返回true,表示满足条件；返回talse,表示条件不满足。如果表达式为空，将视为返回true。</span></a>
+													<a href="javascript:void(0)" class="link tipinfo"><span style="z-index: 100;text-align: left;">条件表达要求是返回Boolean值的脚本。返回true,表示满足条件；返回talse,表示条件不满足。如果表达式为空，将视为返回true。</span></a>
 													条件表达式:
 												</th>
 												<td colspan="3">
 													<div class="condExp-control">
-														<a href="#"  class="link var" title="常用脚本" onclick="condExpSelectScript(this)">常用脚本</a>
+														<a href="javascript:void(0)"  class="link var" title="常用脚本" onclick="condExpSelectScript(this)">常用脚本</a>
 <%-- 													<f:flowVar defId="${defId}"></f:flowVar> --%>
 														<span class="green">表单变量</span>		
 														<select name="flowVar" onchange="selectFlowVar(this,1)">
@@ -578,7 +578,7 @@
 														</select>
 														<span class="green">值</span>
 														<input name="flowValue"/>
-														<a onclick="generateExpress(this)" href="#" class="button">
+														<a onclick="generateExpress(this)" href="javascript:void(0)" class="button">
 															<span>生成</span>
 														</a>
 													</div>
@@ -613,7 +613,7 @@
 												<th >执行脚本: </th>
 												<td colspan="3">
 													<div class="condExp-control">
-														<a href="#"  class="link var" title="常用脚本" onclick="scriptSelectScript(this)">常用脚本</a>
+														<a href="javascript:void(0)"  class="link var" title="常用脚本" onclick="scriptSelectScript(this)">常用脚本</a>
 														<span class="green">表单变量:</span>
 <%-- 														<f:flowVar defId="${defId}" controlName="selFlowVar"></f:flowVar> --%>
 														<select name="flowVar" onchange="selectFlowVar(this,2)">
@@ -674,7 +674,7 @@
 												</td>
 											</tr>
 											<tr class="send-msg-tr">
-												<th><a href="#" class="tipinfo"><span>每过多长的时间发送催办信息。 </span></a>发送的间隔:</th>
+												<th><a href="javascript:void(0)" class="tipinfo"><span>每过多长的时间发送催办信息。 </span></a>发送的间隔:</th>
 												<td id="endTr">
 													<input class="day-input" type="text" name="reminderEndDay" value="${reminderEndDay}"/>
 													<span>天</span>
@@ -712,7 +712,7 @@
 									     		<th width="60" >邮件内容: </th>
 												<td>
 													<div>
-														<a href="#"  class="link var" title="选择模板内容" onclick="slectTemplate('mailContent',false)">选择模板内容</a>
+														<a href="javascript:void(0)"  class="link var" title="选择模板内容" onclick="slectTemplate('mailContent',false)">选择模板内容</a>
 													</div>
 													<textarea id="mailContent"  name="mailContent" class="ckeditor-editor" rows="20" cols="50">${taskReminder.mailContent}</textarea>
 												</td>
@@ -727,7 +727,7 @@
 										     	<th width="60" >站内消息内容: </th>
 												<td>
 													<div>
-														<a href="#"  class="link var" title="选择模板内容" onclick="slectTemplate('msgContent',false)">选择模板内容</a>
+														<a href="javascript:void(0)"  class="link var" title="选择模板内容" onclick="slectTemplate('msgContent',false)">选择模板内容</a>
 													</div>
 													<textarea id="msgContent"  name="msgContent" class="ckeditor-editor" rows="12" cols="50">${taskReminder.msgContent}</textarea>
 												</td>
@@ -742,7 +742,7 @@
 										     	<th width="60" >手机短信内容: </th>
 												<td>
 												<div>
-													<a href="#"  class="link var" title="选择模板内容" onclick="slectTemplate('smsContent',true)">选择模板内容</a>
+													<a href="javascript:void(0)"  class="link var" title="选择模板内容" onclick="slectTemplate('smsContent',true)">选择模板内容</a>
 												</div>
 												<textarea id="smsContent" name="smsContent" rows="12" cols="50">${taskReminder.smsContent}</textarea>
 												</td>

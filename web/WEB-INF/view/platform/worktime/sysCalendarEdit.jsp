@@ -237,7 +237,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link prev" id="previousMonth"  href="javascript:noticeSave('pre',${wtYear},${wtMon})">上月</a></div>
 				<div class="l-bar-separator"></div>
@@ -266,7 +266,7 @@
 								&nbsp;&nbsp;<input type="hidden" name="id" value="${sysCalendar.id}" />
 							</li>
 							<li style="float: left;">
-								<a href="#" class="link search" onclick="jump()" style="height: 15px;"><span >跳转</span></a>
+								<a href="javascript:void(0)" class="link search" onclick="jump()" style="height: 15px;"><span >跳转</span></a>
 							</li>
 						</ul>
 					</form>

@@ -103,7 +103,7 @@
 		<div class="panel-top">
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link run" id="dataFormSave" href="#">生成</a></div>
+					<div class="group"><a class="link run" id="dataFormSave" href="javascript:void(0)">生成</a></div>
 				</div>
 			</div>
 		</div>
@@ -113,7 +113,7 @@
 			<div position="top">
 				<div class="row">
 					&nbsp;<span class="label">是否覆盖原有文件:</span>&nbsp;<input type="checkbox" name="override"  class="inputText" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="label">流程定义:</span>&nbsp;<input type="text" id="flowName" name="flowName" readonly="readonly"  class="inputText" value="" />&nbsp;<a  href="#" onclick="selectFlow()"  class="button"><span>选 择...</span></a>
+					<span class="label">流程定义:</span>&nbsp;<input type="text" id="flowName" name="flowName" readonly="readonly"  class="inputText" value="" />&nbsp;<a  href="javascript:void(0)" onclick="selectFlow()"  class="button"><span>选 择...</span></a>
 					<input type="hidden" name="defKey" id="defKey" value=""/>
 				</div>
 			</div>

@@ -103,9 +103,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -266,8 +266,8 @@
 					    <td style="text-align: center" name="priseRegion">${saleReCopPlanDetailItem.priseRegion}</td>
 					    <td style="text-align: center" name="accountType">${saleReCopPlanDetailItem.accountType}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="materialId" value="${saleReCopPlanDetailItem.materialId}"/>
 						<input type="hidden" name="materialName" value="${saleReCopPlanDetailItem.materialName}"/>
@@ -297,8 +297,8 @@
 			    	<td style="text-align: center" name="priseRegion"></td>
 			    	<td style="text-align: center" name="accountType"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materialId" value=""/>
 			    	<input type="hidden" name="materialName" value=""/>
@@ -337,8 +337,8 @@
 					    <td style="text-align: center" name="qualificationAttachment">${saleReCopPlanQualificationItem.qualificationAttachment}</td>
 					    <td style="text-align: center" name="qualificationNote">${saleReCopPlanQualificationItem.qualificationNote}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="qualificationName" value="${saleReCopPlanQualificationItem.qualificationName}"/>
 						<input type="hidden" name="qualificationAttachment" value="${saleReCopPlanQualificationItem.qualificationAttachment}"/>
@@ -350,8 +350,8 @@
 			    	<td style="text-align: center" name="qualificationAttachment"></td>
 			    	<td style="text-align: center" name="qualificationNote"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="qualificationName" value=""/>
 			    	<input type="hidden" name="qualificationAttachment" value=""/>

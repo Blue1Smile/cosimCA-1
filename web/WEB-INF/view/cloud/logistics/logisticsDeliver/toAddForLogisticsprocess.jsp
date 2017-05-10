@@ -164,8 +164,8 @@
 					    <td style="text-align: center" name="unit">${logisticMaterialItem.unit}</td>
 					    <td style="text-align: center" name="num">${logisticMaterialItem.num}</td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="materielId" value="${logisticMaterialItem.materielId}"/>
 						<input type="hidden" name="materielCode" value="${logisticMaterialItem.materielCode}"/>

@@ -330,15 +330,15 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<div class="group">
-					<a class="link save" id="btnSaveForm" href="#">保存</a>
+					<a class="link save" id="btnSaveForm" href="javascript:void(0)">保存</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				<div class="group">
-					<a class="link run" id="btnNext" href="#">下一步</a>
+					<a class="link run" id="btnNext" href="javascript:void(0)">下一步</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				<div class="group">
-					<a class="link preview" id="btnPreView" href="#">预览</a>
+					<a class="link preview" id="btnPreView" href="javascript:void(0)">预览</a>
 				</div>
 				<div class="l-bar-separator"></div>
 				

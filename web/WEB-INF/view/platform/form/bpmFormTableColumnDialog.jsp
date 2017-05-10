@@ -110,10 +110,10 @@ function autoGetKey(inputObj){
 			<div class="panel-toolbar">
 				<div class="toolBar">
 					<div class="group">
-						<a class="link save" id="dataFormSave" href="#">添加</a>
+						<a class="link save" id="dataFormSave" href="javascript:void(0)">添加</a>
 					</div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link del" href="#" onclick="window.close();">关闭</a></div>
+					<div class="group"><a class="link del" href="javascript:void(0)" onclick="window.close();">关闭</a></div>
 				</div>
 			</div>
 	</div>
@@ -253,7 +253,7 @@ function autoGetKey(inputObj){
 				<tr id="trScript" >
 					<th width=100>脚本:</td>
 					<td colspan="3">
-						<a href="#" onclick="selectScript()" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
+						<a href="javascript:void(0)" onclick="selectScript()" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
 						<br/>脚本中要使用到其他字段参与运算， 请使用“[字段名]”方式引用。<br />
 						<textarea id="script" codemirror="true" name="script" rows="6" cols="70"></textarea>
 					</td>

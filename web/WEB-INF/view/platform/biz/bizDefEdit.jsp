@@ -58,7 +58,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back " href="list.ht">返回</a></div>
 			</div>
@@ -104,7 +104,7 @@
 					    <td style="text-align: center"><input type="text" name="segmentName" value="${bizDefSegmentItem.segmentName}" validate="{required:false,maxlength:768}" class="inputText"/></td>
 					    <td style="text-align: center"><input type="text" name="actDefKey" value="${bizDefSegmentItem.actDefKey}" validate="{required:false,maxlength:768}" class="inputText"/></td>
 					    <td style="text-align: center"><input type="text" name="segmentDescription" value="${bizDefSegmentItem.segmentDescription}" validate="{required:false}" class="inputText"/></td>
-					    <td style="text-align: center"><a href="#" class="link del">删除</a></td>
+					    <td style="text-align: center"><a href="javascript:void(0)" class="link del">删除</a></td>
 				    </tr>
 				</c:forEach>
 				<tr type="append">
@@ -112,7 +112,7 @@
 				    <td style="text-align: center"><input type="text" name="segmentName" value="" validate="{required:false,maxlength:768}" class="inputText"/></td>
 				    <td style="text-align: center"><input type="text" name="actDefKey" value="" validate="{required:false,maxlength:768}" class="inputText"/></td>
 				   <td style="text-align: center"><input type="text" name="segmentDescription" value="" validate="{required:false}" class="inputText"/></td>
-				    <td style="text-align: center"><a href="#" class="link del">删除</a></td>
+				    <td style="text-align: center"><a href="javascript:void(0)" class="link del">删除</a></td>
 			    </tr>
 		    </table>
 			<input type="hidden" name="bizDefId" value="${bizDef.bizDefId}" />					

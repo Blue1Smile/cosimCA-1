@@ -77,7 +77,7 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</div>
@@ -97,7 +97,7 @@
 								<th width="20%">栏目别名: </th>
 								<td>
 									<input type="text" id="templateId" name="templateId" style="width: 20%;" value="${desktopColumn.templateId}"  class="inputText" style="width: 80%;"/>
-									<a href="#" class="tipinfo"><span>别名在系统中不能重复</span></a>
+									<a href="javascript:void(0)" class="tipinfo"><span>别名在系统中不能重复</span></a>
 								</td>
 							</tr>
 							<tr>
@@ -110,13 +110,13 @@
 							<tr id="serviceMethod" <c:if test="${desktopColumn.methodType!=0}">style="display:none"</c:if>>
 								<th width="20%">方法路径: </th>
 								<td><input type="text"  name="serviceMethod" style="width: 40%;" value="${desktopColumn.serviceMethod}"  class="inputText" style="width: 80%;"/>
-									<a href="#" class="tipinfo"><span>填写格式:service+"."+方法名,service为spring的service名称。</span></a>
+									<a href="javascript:void(0)" class="tipinfo"><span>填写格式:service+"."+方法名,service为spring的service名称。</span></a>
 								</td>
 							</tr>
 							<tr id="queryAlias" <c:if test="${desktopColumn.methodType!=1}">style="display:none"</c:if> >
 								<th width="20%">自定义查询: </th>
 								<td>
-									<input type="text"  name="queryAlias" style="width: 20%;" value="${desktopColumn.queryAlias}"  readonly="readonly" class="inputText" />&nbsp;<a  href="#" onclick="selectQuery()"  class="button"><span>选 择...</span></a>
+									<input type="text"  name="queryAlias" style="width: 20%;" value="${desktopColumn.queryAlias}"  readonly="readonly" class="inputText" />&nbsp;<a  href="javascript:void(0)" onclick="selectQuery()"  class="button"><span>选 择...</span></a>
 								</td>
 							</tr>
 							<tr>

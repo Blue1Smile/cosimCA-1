@@ -46,8 +46,8 @@
 			<hotent:paging tableId="bpmFormQueryItem" showExplain="false"/>
 		</div><!-- end of panel-body -->	
 		<div position="bottom"  class="bottom" >
-			<a href="#" class="button"  onclick="selectQuery()" ><span class="icon ok"></span><span >选择</span></a>
-			<a href="#" class="button" style="margin-left:10px;"  onclick="window.close()"><span class="icon cancel"></span><span >取消</span></a>
+			<a href="javascript:void(0)" class="button"  onclick="selectQuery()" ><span class="icon ok"></span><span >选择</span></a>
+			<a href="javascript:void(0)" class="button" style="margin-left:10px;"  onclick="window.close()"><span class="icon cancel"></span><span >取消</span></a>
 		</div>			
 	</div> <!-- end of panel -->
 </body>

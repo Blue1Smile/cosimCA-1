@@ -105,7 +105,7 @@
 				<div class="toolBar">
 					<div class="group"><a class="link search" id="btnSearch">查询</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link addMessage " href="#"  onclick="emailedit(${types})">写邮件</a></div>
+					<div class="group"><a class="link addMessage " href="javascript:void(0)"  onclick="emailedit(${types})">写邮件</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link reload" onclick="emailsync(${types})"" id="emailsync">同步邮件</a></div>
 					<div class="l-bar-separator"></div>

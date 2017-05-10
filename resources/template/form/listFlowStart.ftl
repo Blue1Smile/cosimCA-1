@@ -84,7 +84,7 @@
 						<#noparse><#if data.flowrunid_?? ></#noparse>
 						<#noparse><#else></#noparse> 
 							<#noparse><#if data.defid_?? && data.defid_!='0' ></#noparse>
-								<a href="#" onclick="javascript:jQuery.openFullWindow('../../bpm/taskInfo/startFlowForm.ht?defId=<#noparse>${data.defid_}&businessKey=${data.id}</#noparse>')"  class="link dataList">启动流程</a>
+								<a href="javascript:void(0)" onclick="javascript:jQuery.openFullWindow('../../bpm/taskInfo/startFlowForm.ht?defId=<#noparse>${data.defid_}&businessKey=${data.id}</#noparse>')"  class="link dataList">启动流程</a>
 							<#noparse></#if></#noparse>
 						<#noparse></#if></#noparse>
 					</td>

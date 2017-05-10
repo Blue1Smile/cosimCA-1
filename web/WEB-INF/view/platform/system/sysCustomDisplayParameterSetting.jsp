@@ -241,7 +241,7 @@
 			</table>
 		</div>
 		<div id="centerArea">
-			<a id="selectCondition" href="#" class="button">
+			<a id="selectCondition" href="javascript:void(0)" class="button">
 				<span>==></span>
 			</a>
 		</div>

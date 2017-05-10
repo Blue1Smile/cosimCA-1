@@ -69,7 +69,7 @@
 								<font color="blue">主键索引</font> 
 							</c:when>
 							<c:otherwise>
-								<a href="#" class="link edit" onclick="editIndex('${tableId }','${table.tableName}','${index.indexName}')">编辑</a>
+								<a href="javascript:void(0)" class="link edit" onclick="editIndex('${tableId }','${table.tableName}','${index.indexName}')">编辑</a>
 								<a href="delIndex.ht?tableName=${table.tableName}&indexName=${index.indexName}" class="link del">删除</a>
 							</c:otherwise>
 						</c:choose>

@@ -103,9 +103,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -244,8 +244,8 @@
 					    <td style="text-align: center" name="attachmentManageId">${crowdsourcingAgreementDetailItem.attachmentManageId}</td>
 					    <td style="text-align: center" name="operatingAuthority">${crowdsourcingAgreementDetailItem.operatingAuthority}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="attachmentName" value="${crowdsourcingAgreementDetailItem.attachmentName}"/>
 						<input type="hidden" name="attachmentType" value="${crowdsourcingAgreementDetailItem.attachmentType}"/>
@@ -265,8 +265,8 @@
 			    	<td style="text-align: center" name="attachmentManageId"></td>
 			    	<td style="text-align: center" name="operatingAuthority"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="attachmentName" value=""/>
 			    	<input type="hidden" name="attachmentType" value=""/>

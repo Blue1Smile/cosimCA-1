@@ -103,9 +103,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -115,7 +115,7 @@
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -276,8 +276,8 @@
 					    <td style="text-align: center" name="planInrate">${manufEnquiryorderDetailItem.planInrate}</td>
 					    <td style="text-align: center" name="comments">${manufEnquiryorderDetailItem.comments}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="materialCode" value="${manufEnquiryorderDetailItem.materialCode}"/>
 						<input type="hidden" name="materialCodenotation" value="${manufEnquiryorderDetailItem.materialCodenotation}"/>
@@ -311,8 +311,8 @@
 			    	<td style="text-align: center" name="planInrate"></td>
 			    	<td style="text-align: center" name="comments"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materialCode" value=""/>
 			    	<input type="hidden" name="materialCodenotation" value=""/>
@@ -363,8 +363,8 @@
 						<td style="text-align: center" name="planAogdate"><fmt:formatDate value='${manufEnquiryorderSuppliesItem.planAogdate}' pattern='yyyy-MM-dd'/></td>								
 					    <td style="text-align: center" name="comments">${manufEnquiryorderSuppliesItem.comments}</td>
 					    <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="suppliesCode" value="${manufEnquiryorderSuppliesItem.suppliesCode}"/>
 						<input type="hidden" name="suppliesCodenotation" value="${manufEnquiryorderSuppliesItem.suppliesCodenotation}"/>
@@ -386,8 +386,8 @@
 					<td style="text-align: center" name="planAogdate"></td>								
 			    	<td style="text-align: center" name="comments"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="suppliesCode" value=""/>
 			    	<input type="hidden" name="suppliesCodenotation" value=""/>

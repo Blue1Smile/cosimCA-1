@@ -42,7 +42,7 @@
 			tr+='<input class="inputText" type="text" name="url"	style="width: 95%;" onchange="setDefaultUrl(this);">';
 			tr+='</td>';
 			tr+='<td style="text-align:center">';
-			tr+='<a href="#" class="link del" onclick="handlerDelOne(this);">删除</a>';
+			tr+='<a href="javascript:void(0)" class="link del" onclick="handlerDelOne(this);">删除</a>';
 			tr+='</td>';
 			tr+='</tr>';
 			$("#resourcesUrlItem").append(tr);
@@ -108,7 +108,7 @@
 			    			</td>
 			    			
 			    			<td style="text-align: center;">
-			    				<a href="#" class="link del" onclick="handlerDelOne(this);">删除</a>
+			    				<a href="javascript:void(0)" class="link del" onclick="handlerDelOne(this);">删除</a>
 							</td>
 			    		</tr>
 			    	</c:forEach>

@@ -131,7 +131,7 @@
 		<br/>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">申请</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">申请</a></div>
 				<div class="l-bar-separator"></div>
 				<!-- <div class="group"><a class="link back" href="list.ht">返回</a></div> -->
 			</div>

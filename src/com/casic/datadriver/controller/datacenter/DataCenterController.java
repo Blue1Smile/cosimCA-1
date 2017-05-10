@@ -263,7 +263,22 @@ public class DataCenterController extends AbstractController {
             PrivateData mymode = taskPrivateDatas.get(i);
             jsonObject.put("DdDataName", mymode.getDdDataName());
             jsonObject.put("DdDataLastestValue", mymode.getDdDataLastestValue());
-            jsonObject.put("DdDataType", mymode.getDdDataType());
+            switch (mymode.getDdDataType()) {
+                case 1:
+                    DataType = "结构型数据";
+                    break;
+                case 2:
+                    DataType = "文件";
+                    break;
+                case 3:
+                    DataType = "模型";
+                    break;
+                case 4:
+                    DataType = "";
+                    break;
+            }
+            jsonObject.put("DdDataType",DataType);
+            jsonObject.put("DdDataPath",mymode.getDdDataPath());
             jsonObject.put("DdDataCreateTime", mymode.getDdDataCreateTime());
             jsonObject.put("DdDataDescription", mymode.getDdDataDescription());
             jsonObject.put("DdDataId", mymode.getDdDataId());
@@ -661,5 +676,20 @@ public class DataCenterController extends AbstractController {
         return mv;
     }
 
-
+    /**
+     * 项目数据订阅关系.
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("proorderrelation")
+    @Action(description = "返回查看项目的任务列表")
+    public ModelAndView proorderrelation(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long projectId = RequestUtil.getLong(request, "id");
+        ModelAndView mv = this.getAutoView().addObject("projectId", projectId);
+        return mv;
+    }
 }

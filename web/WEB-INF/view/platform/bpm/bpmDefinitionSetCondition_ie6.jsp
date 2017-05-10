@@ -118,7 +118,7 @@ body{
 							<th>条件表达式</th>
 							<td>
 								<div style="margin: 8px 0; ">
-									<a href="#" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
+									<a href="javascript:void(0)" id="btnScript" class="link var" title="常用脚本">常用脚本</a>
 									&nbsp;&nbsp;表单变量:
 									<f:flowVar defId="${defId}" change="handFlowVars(this)"></f:flowVar>
 								</div> 
@@ -126,17 +126,17 @@ body{
 									<div style="padding: 4px;">
 										<c:choose>
 											<c:when test="${inNode.isMultiple==true}">
-												<a href="#" name="signResult"
+												<a href="javascript:void(0)" name="signResult"
 													result='signResult_${inNode.nodeId}=="pass"'>[${inNode.nodeName}]投票通过</a>
 															&nbsp;
-															<a href="#" name="signResult"
+															<a href="javascript:void(0)" name="signResult"
 													result='signResult_${inNode.nodeId}=="refuse"'>[${inNode.nodeName}]投票不通过</a>
 											</c:when>
 											<c:otherwise>
-												<a href="#" name="signResult"
+												<a href="javascript:void(0)" name="signResult"
 													result="approvalStatus_${inNode.nodeId}==1">[${inNode.nodeName}]-通过</a>
 															&nbsp;
-															<a href="#" name="signResult"
+															<a href="javascript:void(0)" name="signResult"
 													result="approvalStatus_${inNode.nodeId}==2">[${inNode.nodeName}]-反对</a>
 											</c:otherwise>
 										</c:choose>

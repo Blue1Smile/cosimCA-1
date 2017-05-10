@@ -78,7 +78,7 @@
 			'</a>',
 			'</td>',
 			'<td>',
-			'	<a href="#" class="link del" onclick="singleDel(this);">删除</a>',
+			'	<a href="javascript:void(0)" class="link del" onclick="singleDel(this);">删除</a>',
 			'</td>',
 			'</tr>',
 			];
@@ -117,7 +117,7 @@
 				<div class="panel-toolbar">
 					<div class="toolBar">
 						<div class="group">
-							<a class="link save" id="dataFormSave" href="#">保存</a>
+							<a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a>
 						</div>
 						<div class="l-bar-separator"></div>
 						<div class="group">
@@ -136,7 +136,7 @@
 						<th width="20%">执行代理人:</th>
 						<td colspan="3"><input type="text" id="tofullname"
 							name="tofullname" value="${sysUserAgent.tofullname}"
-							class="inputText" readonly="readonly" size="40" /> <a href="#"
+							class="inputText" readonly="readonly" size="40" /> <a href="javascript:void(0)"
 							class="button" onclick="add();"><span>选 择...</span></a></td>
 					</tr>
 					<tr>
@@ -182,7 +182,7 @@
 					<div class="panel-toolbar">
 						<div class="toolBar">
 							<div class="group">
-								<a class="link add" href="#" onclick="addFlow();">添加代理流程</a>
+								<a class="link add" href="javascript:void(0)" onclick="addFlow();">添加代理流程</a>
 							</div>
 						</div>
 					</div>
@@ -203,7 +203,7 @@
 												value="${bpmAgentItem.defKey}" /> <a
 												href="${ctx}/platform/bpm/bpmDefinition/get.ht?defKey=${bpmAgentItem.defKey}"
 												target="_blank">${bpmAgentItem.subject}</a></td>
-											<td><a href="#" class="link del"
+											<td><a href="javascript:void(0)" class="link del"
 												onclick="singleDel(this);">删除</a></td>
 										</tr>
 									</c:forEach>

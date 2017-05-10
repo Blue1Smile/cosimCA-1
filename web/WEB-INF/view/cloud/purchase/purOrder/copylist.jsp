@@ -102,7 +102,7 @@
 				<display:column property="postcode" title="收货地址邮编" sortable="true" sortName="postcode"></display:column> --%>
 				<display:column title="管理" media="html" style="width:160px">
 					<a href="get.ht?id=${purOrderItem.id}" class="link detail">明细</a>
-					<a href="#" onclick="returnID(${purOrderItem.id});" class="link save">确定</a>
+					<a href="javascript:void(0)" onclick="returnID(${purOrderItem.id});" class="link save">确定</a>
 				</display:column>
 			</display:table>
 			<hotent:paging tableId="purOrderItem"/>

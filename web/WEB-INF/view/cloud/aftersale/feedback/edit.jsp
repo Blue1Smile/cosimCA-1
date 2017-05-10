@@ -84,7 +84,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -130,7 +130,7 @@
 			    </select></td></tr>
 			    <tr><th style="width:120px;">厂商</th><td>
 			    <input size="35" type="hidden" id="en_id" name="purenter_id" value="${feedback.purenter_id }"/>
-			    <input size="35" id="en_name" name="purenter_name" value="${feedback.purenter_name}"  readonly="readonly" class="inputText" validate="{required:false,maxlength:32}"/><a href="#" onclick="userview()"  class="link detail">选择</a></td><th style="width:120px;">状态</th><td><input size="35" id="statu" name="statu" value="待办" readonly="readonly" class="inputText" validate="{required:false,maxlength:24}"/></td></tr>		
+			    <input size="35" id="en_name" name="purenter_name" value="${feedback.purenter_name}"  readonly="readonly" class="inputText" validate="{required:false,maxlength:32}"/><a href="javascript:void(0)" onclick="userview()"  class="link detail">选择</a></td><th style="width:120px;">状态</th><td><input size="35" id="statu" name="statu" value="待办" readonly="readonly" class="inputText" validate="{required:false,maxlength:24}"/></td></tr>
 				
 			</table>
 			<input size="35" type="hidden" name="id" value="${feedback.id}" />

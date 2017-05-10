@@ -39,7 +39,7 @@
 			<c:if test="${canReturn!='0'}">
 				<div class="group">
 				    <!-- 不注释掉，分级授权，组织下用户查看明细后，会返回所有用户 -->
-					<!--<a class="link back" href="#" onclick="returnBack()">返回</a>-->
+					<!--<a class="link back" href="javascript:void(0)" onclick="returnBack()">返回</a>-->
 				</div>
 			</c:if>
 			<div class="group">

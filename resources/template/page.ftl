@@ -16,12 +16,12 @@
 		<div class="l-bar-separator"></div>
 		<div class="l-bar-group">
 			<div class="l-bar-button l-bar-btnfirst">
-				<a href="#" onclick="first('${tableIdCode}')" title="首页">
+				<a href="javascript:void(0)" onclick="first('${tableIdCode}')" title="首页">
 					<span class=""></span>
 				</a> 
 			</div>
 			<div class="l-bar-button l-bar-btnprev">
-				<a href="#" onclick="previous('${tableIdCode}');" title="上一页">
+				<a href="javascript:void(0)" onclick="previous('${tableIdCode}');" title="上一页">
 					<span class=""></span>
 				</a>
 			</div>
@@ -35,12 +35,12 @@
 		<div class="l-bar-separator"></div>
 		<div class="l-bar-group">
 			<div class="l-bar-button l-bar-btnnext">
-				<a href="#" onclick="next('${tableIdCode}')" title="下一页">
+				<a href="javascript:void(0)" onclick="next('${tableIdCode}')" title="下一页">
 					<span></span>
 				</a>
 			</div>
 			<div class="l-bar-button l-bar-btnlast">
-				<a href="#" onclick="last('${tableIdCode}')" title="尾页">
+				<a href="javascript:void(0)" onclick="last('${tableIdCode}')" title="尾页">
 					<span></span>
 				</a>
 			</div>

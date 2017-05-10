@@ -61,7 +61,7 @@
     <td width="41" height="35" align="center" valign="middle"><span style="font-family: Verdana, Geneva, sans-serif;"><img src="${ctx}/images/icon3.jpg"   width="13" height="9" /></span></td>
     <td width="97" align="left" valign="middle">
     <div class="sq11">
-    <a href="#" class="link02">Windows通用应用</a>
+    <a href="javascript:void(0)" class="link02">Windows通用应用</a>
     </div>
     </td>
   </tr>  
@@ -69,7 +69,7 @@
     <td width="41" height="35" align="center" valign="middle"><span style="font-family: Verdana, Geneva, sans-serif;"><img src="${ctx}/images/icon3.jpg"  width="13" height="9" /></span></td>
     <td width="97" align="left" valign="middle">
     <div class="sq12">
-    <a href="#" class="link02">Linux通用应用</a>
+    <a href="javascript:void(0)" class="link02">Linux通用应用</a>
     </div>
     </td>
   </tr>
@@ -85,7 +85,7 @@
     <td width="41" height="35" align="center" valign="middle"><span style="font-family: Verdana, Geneva, sans-serif;"><img  src="${ctx}/images/icon3.jpg"  width="13" height="9" /></span></td>
     <td width="97" align="left" valign="middle">
   <div class="sq21">
-    <a href="#" class="link02">集群资源监控</a>
+    <a href="javascript:void(0)" class="link02">集群资源监控</a>
     </div>
     </td>
   </tr>

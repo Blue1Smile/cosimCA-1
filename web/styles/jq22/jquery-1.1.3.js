@@ -2164,7 +2164,7 @@ jQuery.each({
  * Removes all child nodes from the set of matched elements.
  *
  * @example $("p").empty()
- * @before <p>Hello, <span>Person</span> <a href="#">and person</a></p>
+ * @before <p>Hello, <span>Person</span> <a href="javascript:void(0)">and person</a></p>
  * @result [ <p></p> ]
  *
  * @name empty

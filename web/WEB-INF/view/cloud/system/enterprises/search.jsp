@@ -52,7 +52,7 @@
  
 <!-- list 开始 -->
 <div id="detail_list" class="bggraybox">
-		<div class="title"><a href="#">企业列表</a></div>
+		<div class="title"><a href="javascript:void(0)">企业列表</a></div>
 		<ul>
 		<c:forEach items="${sysOrgInfoList}" var="c1">
 			<li>

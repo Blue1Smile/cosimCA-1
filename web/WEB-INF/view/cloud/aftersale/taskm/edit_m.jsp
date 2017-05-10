@@ -155,11 +155,11 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存并发起</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存并发起</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list_m.ht">返回</a></div>
 				<!--
-				<div class="group"><a class="link detail" id="feedback_user" href="#"><font color="red">选择用户反馈</font></a></div>
+				<div class="group"><a class="link detail" id="feedback_user" href="javascript:void(0)"><font color="red">选择用户反馈</font></a></div>
 				-->
 			</div>
 		</div>
@@ -179,7 +179,7 @@
 						<input size="35" type="text" id="user_name" name="feedback_name" class="inputText" value="${taskM.feedback_name}"   class="inputText" validate="{required:true,maxlength:96}"/></td>
 						<th style="width:120px;">产品编码</th>
 						<td><input size="35" id="prodcode" name="prodcode" value="${taskM.prodcode}"  class="inputText" validate="{required:true,maxlength:96}"/>
-						<a href="#" onclick="add_supps()" class="link detail">请选择</a>
+						<a href="javascript:void(0)" onclick="add_supps()" class="link detail">请选择</a>
 						</td>
 					</tr>				
 					<tr>
@@ -197,7 +197,7 @@
 						<th>维修人员</th><td >
 			            <input size="35" type="hidden" id="ac_id" name="accendant_id"  />
 						<input size="35" type="text" id="ac_name"  name="accendant_name"  value="${taskM.accendant_name}"  readonly="readonly" class="inputText" validate="{required:true,maxlength:96}"  />
-						<a href="#" onclick="selUsers()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="selUsers()"  class="link detail">选择</a>
 						</td>
 						<th style="width:120px;">维修日期</th>
 						<td><input size="35" type="text" id="tdate" name="tdate" value="<fmt:formatDate value='${taskM.tdate }' pattern='yyyy-MM-dd'/>" class="inputText date" validate="{date:true}"></td>

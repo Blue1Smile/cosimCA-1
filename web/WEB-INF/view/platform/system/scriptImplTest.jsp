@@ -154,7 +154,7 @@ ScriptImpl   si=(ScriptImpl)AppUtil.getBean("scriptImpl");
    <td style="width:10%" class="formTitle" align="right"> "1"
    <textarea id="receiver_arg" name="receiver_arg"  rows="2"  style="width:328px !important">
    </textarea>
-	<a href="#" onclick="argSubmit()" class="link get">运行</a>
+	<a href="javascript:void(0)" onclick="argSubmit()" class="link get">运行</a>
 	</td>
    <td style="width:30%" class="formTitle"><%=si.getUserRoles("1") %></td>
    <td style="width:10%" class="formTitle" > √</td>

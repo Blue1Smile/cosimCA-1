@@ -542,7 +542,7 @@
 			</div>
 			<div class="panel-toolbar">
 				<div class="toolBar">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="${returnUrl}">返回</a></div>
 				</div>
@@ -556,7 +556,7 @@
 			           		<table class="table-detail" cellpadding="0" cellspacing="0" border="0">
 								<tr>
 									<td rowspan="<c:if test="${not empty sysUser.userId}">9</c:if><c:if test="${empty sysUser.userId}">10</c:if>" align="center" width="26%">
-									<div style="float:top !important;background: none;height: 24px;padding:0px 6px 0px 112px;"><a class="link uploadPhoto" href="#" onclick="addPic();">上传照片</a></div>
+									<div style="float:top !important;background: none;height: 24px;padding:0px 6px 0px 112px;"><a class="link uploadPhoto" href="javascript:void(0)" onclick="addPic();">上传照片</a></div>
 									<div class="person_pic_div">
 										<p><img id="personPic" src="${ctx}/${pictureLoad}"  alt="个人相片" /></p>
 									</div>
@@ -708,7 +708,7 @@
 						    			</td>
 						    			
 						    			<td style="text-align: center;">
-						    			 <a href="#" onclick="delrow('${orgItem.orgId}')" class="link del">移除</a>
+						    			 <a href="javascript:void(0)" onclick="delrow('${orgItem.orgId}')" class="link del">移除</a>
 						    			</td>
 						    		</tr>
 						    	</c:forEach>
@@ -760,7 +760,7 @@
 						    			</td>
 						    			
 						    			<td style="text-align: center;">
-						    			 <a href="#" onclick="delrow('${posItem.posId}')" class="link del">移除</a>
+						    			 <a href="javascript:void(0)" onclick="delrow('${posItem.posId}')" class="link del">移除</a>
 						    			</td>
 						    		</tr>
 						    	</c:forEach>
@@ -811,7 +811,7 @@
 						    			    ${rolItem.systemName}
 						    			</td>
 						    			<td style="text-align: center;">
-						    			 <a href="#" onclick="delrow('${rolItem.roleId}')" class="link del">移除</a>
+						    			 <a href="javascript:void(0)" onclick="delrow('${rolItem.roleId}')" class="link del">移除</a>
 						    			</td>
 						    		</tr>
 						    	</c:forEach>

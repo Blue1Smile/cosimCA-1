@@ -52,7 +52,7 @@
 	
 	<!-- 能力详细信息 开始 -->
 	<div id="detail2" class="bggraybox">
-		<div class="title"><a href="#">在线能力</a> &gt; <a href="#">${capability.typeName }</a></div>
+		<div class="title"><a href="javascript:void(0)">在线能力</a> &gt; <a href="javascript:void(0)">${capability.typeName }</a></div>
 		<p style="clear:both"></p>
 		
 		<p class="w1 bottom_1"><strong>能力基本信息</strong></p>

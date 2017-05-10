@@ -105,7 +105,7 @@
 							<display:column title="管理" media="html" style="text-align:center">
 								<c:choose>
 									<c:when test="${sysRoleItem.allowDel==0}">
-										<a href="#" class="link del disabled" >删除</a>
+										<a href="javascript:void(0)" class="link del disabled" >删除</a>
 									</c:when>
 									<c:otherwise>
 										<f:a alias="delRole" css="link del" href="del.ht?roleId=${sysRoleItem.roleId}">删除</f:a>
@@ -113,7 +113,7 @@
 								</c:choose>
 								<c:choose>
 									<c:when test="${sysRoleItem.allowEdit==0}">
-										<a href="#" class="link edit disabled" >编辑</a>
+										<a href="javascript:void(0)" class="link edit disabled" >编辑</a>
 									</c:when>
 									<c:otherwise>
 										<f:a alias="updRole" css="link edit" href="edit.ht?roleId=${sysRoleItem.roleId}">编辑</f:a>

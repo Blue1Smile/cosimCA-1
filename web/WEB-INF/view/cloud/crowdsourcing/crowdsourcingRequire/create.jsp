@@ -238,9 +238,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -250,7 +250,7 @@
 					<div class="group"><a id="btnNotAgree" class="link notAgree">反对</a></div>
 				</c:if>
 				<c:if test="${applyFlag==2}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -352,7 +352,7 @@
 				</tr>
 				<tr>
 					<th width="20%">研发物品编码: </th>
-					<td><input type="text" id="materialCode" name="materialCode" value="${crowdsourcingRequire.materialCode}"  class="inputText" validate="{required:false,maxlength:96}"  /><a href="#" onclick="add_supps();"  class="link detail">选择</a></td>
+					<td><input type="text" id="materialCode" name="materialCode" value="${crowdsourcingRequire.materialCode}"  class="inputText" validate="{required:false,maxlength:96}"  /><a href="javascript:void(0)" onclick="add_supps();"  class="link detail">选择</a></td>
 <!-- 				</tr>
 				<tr> -->
 					<th width="20%">研发物品名称: </th>
@@ -409,11 +409,11 @@
 					<td colspan="7">
 						<div class="group" align="left">
 				   			<!-- <a id="btnAdd" class="link add">添加</a> -->
-				   			 <a href="#" onclick="add_attachment();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)" onclick="add_attachment();"   style="text-decoration: none;">
 								<img src="${ctx}/images/iconadd.jpg" width="52" height="18" onmouseover="src='${ctx}/images/iconadd2.jpg'" onmouseout="src='${ctx}/images/iconadd.jpg'" style="border: 0;">
 							 </a>&nbsp;&nbsp;
 								  
-							<a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+							<a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 								<img src="${ctx}/images/icon_del2.jpg" height="18" width="52" onmouseover="src='${ctx}/images/icon_del.jpg'" onmouseout="src='${ctx}/images/icon_del2.jpg'" style="border: 0;">
 							 </a>
 			    		</div>
@@ -443,8 +443,8 @@
 					    <td style="text-align: center;display:none;" name="attachmentManageId">${crowdsourcingRequireDetailItem.attachmentManageId}</td>
 					    <td name="operatingAuthority">${crowdsourcingRequireDetailItem.operatingAuthority}</td>
 					    <!-- <td style="text-align: center">
-					    	<a href="#" class="link del">删除</a>
-					    	<a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="link del">删除</a>
+					    	<a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td> -->
 						<input type="hidden" name="attachmentName" value="${crowdsourcingRequireDetailItem.attachmentName}"/>
 						<input type="hidden" name="attachmentType" value="${crowdsourcingRequireDetailItem.attachmentType}"/>
@@ -464,8 +464,8 @@
 			    	<td style="text-align: center" name="attachmentManageId"></td>
 			    	<td style="display:none;" name="operatingAuthority"></td>
 			    	<td style="display:none;">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="attachmentName" value=""/>
 			    	<input type="hidden" name="attachmentType" value=""/>

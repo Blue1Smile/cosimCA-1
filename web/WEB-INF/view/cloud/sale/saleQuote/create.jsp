@@ -27,9 +27,9 @@
 			var tr = '<tr class="'+fileId+'">';
 			tr += '<td>';
 			tr += '	<span class="attach">&ensp;&ensp; </span>&nbsp;&nbsp;';
-			tr += '	<a href="#" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
+			tr += '	<a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
 			tr += '</td>';
-			tr += '<td><a href="#" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
+			tr += '<td><a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
 			tr += '</tr>';
 			return tr;
 		}
@@ -162,9 +162,9 @@
 <!-- 		<div class="panel-toolbar"> -->
 <!-- 			<div class="toolBar"> -->
 <%-- 				<c:if test="${applyFlag==0}"> --%>
-<!-- 					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div> -->
+<!-- 					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div> -->
 <!-- 					<div class="l-bar-separator"></div> -->
-<!-- 					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div> -->
+<!-- 					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div> -->
 <!-- 					<div class="l-bar-separator"></div> -->
 <!-- 					<div class="group"><a class="link back" href="list.ht">返回</a></div> -->
 <%-- 				</c:if> --%>
@@ -311,8 +311,8 @@
 						<td style="text-align: center" name="deliveryEnddate"><fmt:formatDate value='${saleQuoteDetailItem.deliveryEnddate}' pattern='yyyy-MM-dd'/></td>								
 						<td style="text-align: center" name="predeliverDate"><input size="16" type="text" name="predeliverDate" value="<fmt:formatDate value='${saleQuoteDetailItem.predeliverDate}' pattern='yyyy-MM-dd'/>" class="inputText date"/></td>								
 					    <td style="text-align: center">
-			    			<a href="#" class="link del">删除</a>
-			    			<a href="#" class="link edit">编辑</a>
+			    			<a href="javascript:void(0)" class="link del">删除</a>
+			    			<a href="javascript:void(0)" class="link edit">编辑</a>
 							<c:if test="${saleQuoteDetailItem.materielLev == '1' }">
 								<a href="" onclick="jQuery.openFullWindow('${ctx}/cloud/warehouse/warehouseMaterialMapping/mappingSetting.ht')" class="link detail">绑定</a>
 							</c:if>
@@ -340,8 +340,8 @@
 					<td style="text-align: center" name="predeliverDate"></td>								
 			    	<td style="text-align: center" name="materielCode"></td>
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 						<c:if test="${saleQuoteDetailItem.materielLev == '1' }">
 							<a href="" onclick="jQuery.openFullWindow('${ctx}/cloud/warehouse/warehouseMaterialMapping/mappingSetting.ht')" class="link detail">绑定</a>
 						</c:if>

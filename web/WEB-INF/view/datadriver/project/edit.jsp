@@ -67,7 +67,7 @@
                 <blockquote class="layui-elem-quote">
                     <div style="height: 40px;">
                         <div class="fr">
-                            <a class="layui-btn layui-btn-normal" id="dataFormSave" href="#"><i
+                            <a class="layui-btn layui-btn-normal" id="dataFormSave" href="javascript:void(0)"><i
                                     class="layui-icon">&#xe61e;</i> 保存</a>
                             <a class="layui-btn layui-btn-primary" id="back" href="list.ht"><i
                                     class="layui-icon">&#xe603;</i> 返回</a>

@@ -75,7 +75,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link del" href="#">删除</a></div>
+				<div class="group"><a class="link del" href="javascript:void(0)">删除</a></div>
 			</div>
 			
 		</div>
@@ -83,7 +83,7 @@
 			<form id="iconForm" method="post" action="uploadIcon.ht">
 				<div class="group"><input type="file"  id="iconFile"  name="iconFile"  /></div>
 				<div class="l-bar-separator"></div>
-					<a class="link upload" href="#">上传</a></div>
+					<a class="link upload" href="javascript:void(0)">上传</a></div>
 				<input type="hidden" name="path" id="iconPath" value="${iconPath}" />
 			</form>
 		</div>

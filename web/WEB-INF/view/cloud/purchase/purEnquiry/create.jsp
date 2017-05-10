@@ -59,8 +59,8 @@
 		tr += '	<input type="hidden" class="pk" name="attachments" value="' + filePath + '"/> ';
 		tr += '	<a onclick=javascript:downloadFile('+fileId+'); >'+fileName+'</a> ';
 		tr += '</td>';
-		tr += '<td><a href="#" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
-		tr += '<td><a href="#" onclick=javascript:delRow('+fileId+'); ><span class="link-btn link-remove">删除 </span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:downloadFile('+fileId+'); ><span class="link-btn link-remove">查看 </span></a></td>';
+		tr += '<td><a href="javascript:void(0)" onclick=javascript:delRow('+fileId+'); ><span class="link-btn link-remove">删除 </span></a></td>';
 		tr += '</tr>';
 		return tr;
 	}
@@ -287,7 +287,7 @@
 		
 	    <div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back " href="list.ht">返回</a></div>
 			</div>
@@ -297,9 +297,9 @@
 		<div class="panel-toolbar">
 			<div class="toolBar">
 				<c:if test="${applyFlag==0}">
-					<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+					<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 					<div class="l-bar-separator"></div>
-					<div class="group"><a class="link apply" id="dataFormStart" href="#">申请</a></div>
+					<div class="group"><a class="link apply" id="dataFormStart" href="javascript:void(0)">申请</a></div>
 					<div class="l-bar-separator"></div>
 					<div class="group"><a class="link back" href="list.ht">返回</a></div>
 				</c:if>
@@ -392,7 +392,7 @@
 					<td  style="display: none;">
 						<input type="hidden"  name="suppEnterpriseIds" id="suppEnterpriseIds"  value="${purEnquiry.enterpriseId}" size="60"/>
 						<input readonly class="r" type="text" id="e_name" value=""  validate="{required:false,maxlength:300}" size="40"/>
-						<!-- <a href="#" onclick="add_supps()"  class="link detail">选择</a> -->
+						<!-- <a href="javascript:void(0)" onclick="add_supps()"  class="link detail">选择</a> -->
 					</td>
 					<th width="20%">总金额: </th>
 					<td><input type="text" id="sumPrice" name="sumPrice"  readonly  value="${purEnquiry.sumPrice}"  class="inputText" validate="{required:false,number:true}"  /></td>
@@ -409,7 +409,7 @@
 					<input type="hidden" name ="attachment" id="attachment" value="">
 			      		<div class="cell" js_picarea="true"  size="100">
 							<table  width="145" name="attachmentTable"    id="attachmentTable" class="table-grid table-list"  cellpadding="2" cellspacing="2"></table>
-							<a href="#" onclick="addFile()">添加文档</a>
+							<a href="javascript:void(0)" onclick="addFile()">添加文档</a>
 							
 						</div>
 					</td>
@@ -420,19 +420,19 @@
 				<tr>
 					<td colspan="10">
 						<div class="group" align="left">
-								 <a href="#" onclick="add_supps();"   style="text-decoration: none;">
+								 <a href="javascript:void(0)" onclick="add_supps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd2.jpg'"
 												onmouseout="src='${ctx}/images/iconadd.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								  
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 												
-								<a href="#" onclick="add_onesupps();"   style="text-decoration: none;">
+								<a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd3.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd4.jpg'"
 												onmouseout="src='${ctx}/images/iconadd3.jpg'"
@@ -477,8 +477,8 @@
 					    <td style="text-align: center" name="sumPrice">${purEnquiryDetailItem.sumPrice}</td>
 						<td style="text-align: center" name="deliveryEnddate"><fmt:formatDate value='${purEnquiryDetailItem.deliveryEnddate}' pattern='yyyy-MM-dd'/></td>								
 					    <td style="text-align: center">
-					    	<a href="#" class="delproduct" >删除</a>
-					        <a href="#" class="link edit">编辑</a>
+					    	<a href="javascript:void(0)" class="delproduct" >删除</a>
+					        <a href="javascript:void(0)" class="link edit">编辑</a>
 					    </td>
 						<input type="hidden" name="materielId" value="${purEnquiryDetailItem.materielId}"/>
 						
@@ -508,8 +508,8 @@
 			    	<td style="text-align: center" name="sumPrice"></td>
 					<td style="text-align: center" name="deliveryEnddate"></td>								
 			    	<td style="text-align: center">
-			    		<a href="#" class="link del">删除</a>
-			    		<a href="#" class="link edit">编辑</a>
+			    		<a href="javascript:void(0)" class="link del">删除</a>
+			    		<a href="javascript:void(0)" class="link edit">编辑</a>
 			    	</td>
 			    	<input type="hidden" name="materielId" value=""/>
 			    	<input type="hidden" name="purorderCode" value=""/>
@@ -555,7 +555,7 @@
 			</tr>
 			<tr>
 				<th width="20%">物品名: </th>
-				<td><input type="text" name="materielName" value=""  class="inputText" validate="{required:false,maxlength:768}"/> <a href="#" onclick="add_product();"  class="link detail">选择</a></td>
+				<td><input type="text" name="materielName" value=""  class="inputText" validate="{required:false,maxlength:768}"/> <a href="javascript:void(0)" onclick="add_product();"  class="link detail">选择</a></td>
 			</tr>
 			<!-- 
 			<tr>

@@ -144,7 +144,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<div class="group"><a class="link back" href="list.ht">返回</a></div>
 			</div>
@@ -179,7 +179,7 @@
 					<td>
 						<input type="hidden" id="warehouseId" name="warehouseId" value="${warehouseSettings.warehouseId}"  class="inputText" validate="{required:false,number:true }"  />
 						<input type="text" id="warehouseName" name="warehouseName" value="${warehouseSettings.warehouseName}"  class="inputText" validate="{required:false,maxlength:96}"  />
-						<a href="#" onclick="priview_warehouse()"  class="link detail">选择</a>
+						<a href="javascript:void(0)" onclick="priview_warehouse()"  class="link detail">选择</a>
 					</td>
 				</tr>
 			</table>
@@ -189,19 +189,19 @@
 						<div class="group" align="left">
 				   		 
 				   			
-				   			 <a href="#"   onclick="add_supps();"   style="text-decoration: none;">
+				   			 <a href="javascript:void(0)"   onclick="add_supps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd2.jpg'"
 												onmouseout="src='${ctx}/images/iconadd.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								  
-								  <a href="#"  onclick="delproduct();"   style="text-decoration: none;">
+								  <a href="javascript:void(0)"  onclick="delproduct();"   style="text-decoration: none;">
 											<img src="${ctx}/images/icon_del2.jpg" height="18" width="52"
 												onmouseover="src='${ctx}/images/icon_del.jpg'"
 												onmouseout="src='${ctx}/images/icon_del2.jpg'"
 												style="border: 0;"> </a>&nbsp;&nbsp;
 								<!--				
-								<a href="#" onclick="add_onesupps();"   style="text-decoration: none;">
+								<a href="javascript:void(0)" onclick="add_onesupps();"   style="text-decoration: none;">
 											<img src="${ctx}/images/iconadd3.jpg" width="52" height="18"
 												onmouseover="src='${ctx}/images/iconadd4.jpg'"
 												onmouseout="src='${ctx}/images/iconadd3.jpg'"
@@ -266,7 +266,7 @@
 				<th width="20%">物品编码: </th>
 				<td>
 					<input type="text" name="productcode" value=""  class="inputText" validate="{required:false,maxlength:96}"/>
-					<a href="#" onclick="preview_material()"  class="link detail">选择</a>
+					<a href="javascript:void(0)" onclick="preview_material()"  class="link detail">选择</a>
 				</td>				
 			</tr>
 			<tr>

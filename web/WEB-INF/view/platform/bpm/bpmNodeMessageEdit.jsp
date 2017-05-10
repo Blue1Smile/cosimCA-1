@@ -182,8 +182,8 @@
 							<th width="20%">邮件接收人: </th>
 							<td valign="top">
 							<textarea id="receiver_mail" name="receiver_mail"  rows="2" readonly="readonly" style="width:328px !important">${receiver_mail}</textarea>
-							<a href="#" onclick="addClick('receiver_mail')" class="link get">选择</a>
-					        <a href="#" onclick="reSet('receiver_mail')" class="link clean">清空</a>
+							<a href="javascript:void(0)" onclick="addClick('receiver_mail')" class="link get">选择</a>
+					        <a href="javascript:void(0)" onclick="reSet('receiver_mail')" class="link clean">清空</a>
 							</td>
 						</tr>
 						
@@ -201,8 +201,8 @@
 							<th width="20%">短信接收人: </th>
 							<td valign="top">
 							<textarea id="receiver_mobile" name="receiver_mobile" rows="3" readonly="readonly" style="width:328px !important">${receiver_mobile}</textarea>
-							<a href="#" onclick="addClick('receiver_mobile')" class="link get">选择</a>
-					        <a href="#" onclick="reSet('receiver_mobile')" class="link clean">清空</a>
+							<a href="javascript:void(0)" onclick="addClick('receiver_mobile')" class="link get">选择</a>
+					        <a href="javascript:void(0)" onclick="reSet('receiver_mobile')" class="link clean">清空</a>
 					        <label><input type="checkbox" value="1" <c:if test="${sendToStartUser_mobile==1 }">checked="checked"</c:if> name="sendToStartUser_mobile"/>发送至流程发起人</label>
 							</td>
 						</tr>								
@@ -227,8 +227,8 @@
 							<th width="20%">消息接收人: </th>
 							<td valign="top">
 							<textarea id="receiver_inner" name="receiver_inner"  rows="3" readonly="readonly" style="width:328px !important">${receiver_inner}</textarea>
-							<a href="#" onclick="addClick('receiver_inner')" class="link get">选择</a>
-					        <a href="#" onclick="reSet('receiver_inner')" class="link clean">清空</a>
+							<a href="javascript:void(0)" onclick="addClick('receiver_inner')" class="link get">选择</a>
+					        <a href="javascript:void(0)" onclick="reSet('receiver_inner')" class="link clean">清空</a>
 							</td>
 						</tr>									
 						<tr>

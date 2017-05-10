@@ -73,7 +73,7 @@ a:hover{text-decoration:underline;color:#ff781f;}
 				${enterprise.name}
 			</c:if>
 		</div>
-		<span class="afriend"><a href="#" onClick="addFriend('${enterprise.sysOrgInfoId }');"><img src="${ctx}/skins/btn_addfr.jpg" /></a></span>
+		<span class="afriend"><a href="javascript:void(0)" onClick="addFriend('${enterprise.sysOrgInfoId }');"><img src="${ctx}/skins/btn_addfr.jpg" /></a></span>
 		<c:if test="${enterprise.showimage=='' || enterprise.showimage == null}">
 			<img class="bannerimg" src="${ctx}/skins/cm1.jpg" />
 		</c:if>
@@ -107,7 +107,7 @@ a:hover{text-decoration:underline;color:#ff781f;}
                 
 				<div class="cmimg">
 					<!-- 
-					<a href="#" target="_blank">
+					<a href="javascript:void(0)" target="_blank">
 						<img src="skins/taocibiaoqian.jpg" /></a>
 						-->
 					</div>				 
@@ -158,7 +158,7 @@ a:hover{text-decoration:underline;color:#ff781f;}
 				<c:forEach items="${capabilitylist}" var="capabilitylist">
 					<li>
 						<div class="cmimg">
-							<a href="#" target="_blank">
+							<a href="javascript:void(0)" target="_blank">
 							<img src="${ctx}${capabilitylist.pic}" onError="this.src='${ctx}/images/default-chance.jpg'" width="80" height="84" />
 							</a>
 						</div>
@@ -178,7 +178,7 @@ a:hover{text-decoration:underline;color:#ff781f;}
 				<ul>
 				<c:forEach items="${aptitudeList}" var="apt">
 					<li>
-						<div class="cmimg"><a href="#" target="_blank"><img src="${ctx}${apt.catePic}" onError="this.src='${ctx}/images/default-chance.jpg'" width="80" height="84" /></a></div>
+						<div class="cmimg"><a href="javascript:void(0)" target="_blank"><img src="${ctx}${apt.catePic}" onError="this.src='${ctx}/images/default-chance.jpg'" width="80" height="84" /></a></div>
 						<div class="cmdesc">
 							<p><font>证件类型：</font>${apt.cateType }</p>
 							<p><font>发证机构：</font>${apt.cateOrg}</p>
@@ -226,7 +226,7 @@ a:hover{text-decoration:underline;color:#ff781f;}
 			<div class="blue_box" id="memberinfobox">
 				<h2 class="bluetitel"><a href="${ctx }/cloud/console/enterprise.ht?EntId=${enterprise.sysOrgInfoId } " class="link04">${enterprise.name }</a></h2>				
 				<span>
-					<a href="#">
+					<a href="javascript:void(0)">
 						<img src="${ctx }${enterprise.logo}"
 							onError="this.src='${ctx}/images/default-chance.jpg'" width="80"
 							height="80" />
@@ -244,7 +244,7 @@ a:hover{text-decoration:underline;color:#ff781f;}
 				<ul>
 				<c:forEach items="${enterpriseVisitedList }" var="enterpriseVisitedList">
 					<li>
-						<a href="#" target="_blank"><img src="${ctx }${enterpriseVisitedList.visitEnterprise.logo}"
+						<a href="javascript:void(0)" target="_blank"><img src="${ctx }${enterpriseVisitedList.visitEnterprise.logo}"
 							onError="this.src='${ctx}/images/default-chance.jpg'" width="50"
 							height="50" style="border: 1px solid #6D6D6F;"/></a>
 						<p><a href="${ctx }/cloud/console/enterprise.ht?EntId=${enterpriseVisitedList.visitEnterprise.sysOrgInfoId}" class="date3" title="${enterpriseVisitedList.visitEnterprise.name}">

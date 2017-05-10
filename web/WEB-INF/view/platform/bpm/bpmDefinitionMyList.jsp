@@ -57,7 +57,7 @@ html,body {
 					</display:column>
 					<c:if test="${empty param['isListOnly']}">
 					<display:column title="管理" media="html" style="width:120px;text-align:center">
-						<a href="#" onclick="FlowUtil.startFlow(${bpmDefinitionItem.defId},'${bpmDefinitionItem.actDefId}')"  class="link run" title="启动流程">启动</a>
+						<a href="javascript:void(0)" onclick="FlowUtil.startFlow(${bpmDefinitionItem.defId},'${bpmDefinitionItem.actDefId}')"  class="link run" title="启动流程">启动</a>
 						<a href="get.ht?defId=${bpmDefinitionItem.defId}&returnFromDetail=true" class="link detail" title="流程明细">明细</a>
 					</display:column>
 					</c:if>

@@ -33,20 +33,20 @@
 			<!--幻灯片-->
 			<div id="ppt">
 				<div class="slides_container">
-					<a href="#"><img src="testimg/${saas}/banner_01.jpg"/></a>
-					<a href="#"><img src="testimg/${saas}/banner_02.jpg"/></a>
-					<a href="#"><img src="testimg/${saas}/banner_03.jpg"/></a>
-					<a href="#"><img src="testimg/${saas}/banner_04.jpg"/></a>
+					<a href="javascript:void(0)"><img src="testimg/${saas}/banner_01.jpg"/></a>
+					<a href="javascript:void(0)"><img src="testimg/${saas}/banner_02.jpg"/></a>
+					<a href="javascript:void(0)"><img src="testimg/${saas}/banner_03.jpg"/></a>
+					<a href="javascript:void(0)"><img src="testimg/${saas}/banner_04.jpg"/></a>
 				</div>
 			</div>
 			
 			<!--在线商机 开始-->
 			<div id="onlinechange" class="blue_box">
 				<div id="onlinemenu">
-					<h2 class="bluetitel">在线商机<a href="#" class="more">&raquo;更多</a></h2>
+					<h2 class="bluetitel">在线商机<a href="javascript:void(0)" class="more">&raquo;更多</a></h2>
 					<ul class="ui_tabs_nav">
 						<!--每个菜单对应的more连接-->
-						<li><a class="on" href="#" link="${ctx}/cloud/config/business/moreBusinessChance.ht?type=5"><!--把更多连接刚在link=""中--><span>研发商机</span></a></li>
+						<li><a class="on" href="javascript:void(0)" link="${ctx}/cloud/config/business/moreBusinessChance.ht?type=5"><!--把更多连接刚在link=""中--><span>研发商机</span></a></li>
 						<li><a href="javascript:"  link="${ctx}/cloud/config/business/moreBusinessChance.ht?type=1"><span>采购商机</span></a></li>
 						<li><a href="javascript:"  link="${ctx}/cloud/config/business/moreBusinessChance.ht?type=3"><span>生产商机</span></a></li>
 						<li><a href="javascript:"  link="${ctx}/cloud/config/business/moreBusinessChance.ht?type=2"><span>营销商机</span></a></li>                
@@ -61,14 +61,14 @@
 						<c:forEach items="${developmentlist}" var="developmentlist" varStatus="s">
 						<li>
 							<div class="proimg">
-								<a href="#" target="_blank">
+								<a href="javascript:void(0)" target="_blank">
 									<img src="${ctx}/${developmentlist.image}" onError="this.src='${ctx}/images/product_img05.jpg';" 
 									width="80" height="80" />
 								</a>
 							</div>
 							<div class="prodesc">
 								<h2>
-									<a href="#"	onclick="view('${developmentlist.id}','${developmentlist.type}');" class="ctitle" title="${developmentlist.classid}-${developmentlist.name}">
+									<a href="javascript:void(0)"	onclick="view('${developmentlist.id}','${developmentlist.type}');" class="ctitle" title="${developmentlist.classid}-${developmentlist.name}">
 										<ap:textTip value="${developmentlist.classid}-${developmentlist.name}" max="10" more=".."/>										
 									</a>	
 									<a href="${ctx}/cloud/console/enterprise.ht?EntId=${developmentlist.companyId}" class="cname" title="${developmentlist.companyName}">
@@ -97,7 +97,7 @@
 						<c:forEach items="${purchaselist}" var="purchaseList" varStatus="s">
 						<li>
 							<div class="proimg">
-								<a href="#" target="_blank">
+								<a href="javascript:void(0)" target="_blank">
 									<img src="${ctx}/${purchaseList.image}"
 										onError="this.src='${ctx}/images/product_img01.jpg';"
 										width="80" height="80" />
@@ -105,7 +105,7 @@
 							</div>
 							<div class="prodesc">
 								<h2>
-									<a href="#" onclick="view('${purchaseList.id}','${purchaseList.type}');" class="cname" 
+									<a href="javascript:void(0)" onclick="view('${purchaseList.id}','${purchaseList.type}');" class="cname"
 										name="${purchaseList.id}" title="${purchaseList.classid}-${purchaseList.name}">
 										<ap:textTip value="${purchaseList.classid}-${purchaseList.name}" max="10" more=".."/>
 									</a>
@@ -141,7 +141,7 @@
 							</div>
 							<div class="prodesc">
 								<h2>
-									<a href="#" class="cname"
+									<a href="javascript:void(0)" class="cname"
 										onclick="view('${producelist.id}','${producelist.type}');"
 										name="${producelist.id}" title="${producelist.classid}-${producelist.name}">
 										<ap:textTip value="${producelist.classid}-${producelist.name}" max="10" more=".."/>										
@@ -177,7 +177,7 @@
 							</div>
 							<div class="prodesc">
 								<h2>
-									<a href="#" onclick="view('${marketinglist.id}','${marketinglist.type}');" name="${marketinglist.id}" class="cname" title="${marketinglist.classid}-${marketinglist.name}">										
+									<a href="javascript:void(0)" onclick="view('${marketinglist.id}','${marketinglist.type}');" name="${marketinglist.id}" class="cname" title="${marketinglist.classid}-${marketinglist.name}">
 										<ap:textTip value="${marketinglist.classid}-${marketinglist.name}" max="10" more=".."/>
 									</a>
 									<a href="${ctx}/cloud/console/enterprise.ht?EntId=${marketinglist.companyId}" class="ctitle">
@@ -211,7 +211,7 @@
 							</div>
 							<div class="prodesc">
 								<h2>
-									<a href="#" onclick="view('${servelist.id}','${servelist.type}');" 
+									<a href="javascript:void(0)" onclick="view('${servelist.id}','${servelist.type}');"
 										name="${servelist.id}" class="cname">
 										<ap:textTip value="${servelist.classid}-${servelist.name}" max="10" more=".."/>
 									</a>
@@ -274,7 +274,7 @@
 			
 			<!--行业动态-->
 			<div class="blue_box" id="hangye">
-				<h2 class="bluetitel"><a href="#" class="more">更多</a>行业动态</h2>
+				<h2 class="bluetitel"><a href="javascript:void(0)" class="more">更多</a>行业动态</h2>
 				<div id="divCloudTag" style="width: 252px; height: 189px; font-size: 12px; border: #9ccefd 1px solid; background-color: #f6f7f9; margin: 0px; padding: 0; position: relative; overflow: hidden; padding-top: 10px; padding-bottom: 10px; list-style-type: none;">
 					<a target="_blank" class="red">电气机械及器材制造业</a>
 					<a target="_blank" class="green">通信设备、计算机及其他电子设备制造业</a>
@@ -297,7 +297,7 @@
 		
 		<!--在线资源-->
 		<div id="online_source" class="blue_box">
-			<h2 class="bluetitel"><a href="#" class="more">更多</a>在线资源</h2>
+			<h2 class="bluetitel"><a href="javascript:void(0)" class="more">更多</a>在线资源</h2>
 			<div id="source_left">
 				<p>计算资源：206万亿次</p>
 				<p>软件资源：12类</p>
@@ -315,7 +315,7 @@
 						<br/>北航计算中心</a>
 					</div>
 					<div>
-						<a href="#" onclick="window.open('http://www.citycloudstore.com/SCS/html/index.html')">
+						<a href="javascript:void(0)" onclick="window.open('http://www.citycloudstore.com/SCS/html/index.html')">
 						<img src="${ctx}/images/rollPic/img_25.JPG" width=120 height=80	border=0>
 						<br>曙光云商城</a>
 					</div>
@@ -336,12 +336,12 @@
 						<br>CPMD</a>
 					</div>
 					<div>
-						<a href="#" onclick="window.open('http://182.50.3.222/Citrix/XenApp/loading.htm')">
+						<a href="javascript:void(0)" onclick="window.open('http://182.50.3.222/Citrix/XenApp/loading.htm')">
 						<img src="${ctx}/images/rollPic/img_06.jpg" width=120 height=80	border=0>
 						<br>Citrix</a>
 					</div>
 				<%-- 	<div>
-						<a href="#" onclick="window.open('http://www.fseport.gov.cn')">
+						<a href="javascript:void(0)" onclick="window.open('http://www.fseport.gov.cn')">
 						<img src="${ctx}/images/rollPic/img_07.jpg" width=120 height=80	border=0>
 						<br>佛山电子口岸</a>
 					</div> --%>
@@ -375,7 +375,7 @@
 			<div id="last" class="blue_box">
 				<form id="frm_ind" action="${ctx}/cloud/system/enterprises/search_ind.ht" method="post">
 					<input type="hidden" name="industry" id="industry"></input>
-					<h2 class="bluetitel"><a href="#" class="more">更多</a>最新加入</h2>
+					<h2 class="bluetitel"><a href="javascript:void(0)" class="more">更多</a>最新加入</h2>
 					<div>
 						<ul>
 							<c:forEach items="${infoList}" var="c1" begin="0" end="4">

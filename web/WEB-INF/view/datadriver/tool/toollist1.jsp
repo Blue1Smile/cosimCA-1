@@ -32,7 +32,7 @@
 </head>
 <body>
 <div id="toolbar" class="btn-group">
-    <a class="btn btn-info" href="#" id="create_index" onclick="createIndex()"><span
+    <a class="btn btn-info" href="javascript:void(0)" id="create_index" onclick="createIndex()"><span
             class="glyphicon glyphicon-plus"></span> 新增工具</a>
 </div>
 <table id="tb_departments"

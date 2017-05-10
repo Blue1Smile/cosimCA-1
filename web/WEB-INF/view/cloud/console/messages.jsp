@@ -15,7 +15,7 @@
 			<textarea id="message" cols="" rows="" class="pub_input"></textarea>
 		</div>
 		<div class="pub02">
-			<a href="#"><img src="${ctx }/images/btn_pub01.jpg" width="87"
+			<a href="javascript:void(0)"><img src="${ctx }/images/btn_pub01.jpg" width="87"
 				height="89" onmouseover="src='${ctx }/images/btn_pub02.jpg';"
 				onmouseout="src='${ctx }/images/btn_pub01.jpg'"
 				style="border: 0;" onclick="sendMessage();"></a>

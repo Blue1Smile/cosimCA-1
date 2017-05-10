@@ -43,22 +43,34 @@
     </style>
 </head>
 <body>
+<%--模型预览--%>
+<div class="modal fade" id="model_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
 <div class="row paneldocker" style="height: 100%">
     <div class="col-xs-6" style="height: 100%">
         <div class="panel panel-default task-panel">
             <div class="panel-heading">
                 项目数据集合
                 <div class="btn-group pull-right">
-                    <a href="javascript:void(0)" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    <a href="javascript:void(0)" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true"
                        aria-expanded="false">
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="javascript:void(0)" onclick="" title="订阅项目中的数据"><span class="glyphicon glyphicon-ok"></span>
+                        <li><a href="javascript:void(0)" onclick="" title="订阅项目中的数据"><span
+                                class="glyphicon glyphicon-ok"></span>
                             订阅</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0)" title="隐藏已选择数据"><span class="glyphicon glyphicon-trash"></span> 隐藏</a></li>
-                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
+                        <li><a href="javascript:void(0)" title="隐藏已选择数据"><span class="glyphicon glyphicon-trash"></span>
+                            隐藏</a></li>
+                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span
+                                class="glyphicon glyphicon-retweet"></span> 反选</a></li>
                         <li><a href="javascript:void(0)" onclick="refresh(1)" title="刷新项目数据列表"><span
                                 class="glyphicon glyphicon-refresh"></span> 刷新</a></li>
                     </ul>
@@ -67,27 +79,27 @@
             </div>
             <div class="panel-body panelheight" id="canbeorderpanel">
                 <%--<div id="toolbar_canbeorder" class="form-inline">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label for="dataNameCanBeOrder">名称：</label>--%>
-                        <%--<input id="dataNameCanBeOrder" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label for="ddType">类型：</label>--%>
-                        <%--<ap:selectDB name="ddType" id="ddType"--%>
-                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
-                                     <%--optionText="itemName" table="SYS_DIC"--%>
-                                     <%--selectedValue="" styleClass="form-control">--%>
-                        <%--</ap:selectDB>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label for="ddDataTaskNameCanBeOrder">任务：</label>--%>
-                        <%--<select id="ddDataTaskNameCanBeOrder" class="form-control">--%>
-                            <%--<option>1</option>--%>
-                            <%--<option>2</option>--%>
-                            <%--<option>3</option>--%>
-                        <%--</select>--%>
-                    <%--</div>--%>
-                    <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
+                <%--<div class="form-group">--%>
+                <%--<label for="dataNameCanBeOrder">名称：</label>--%>
+                <%--<input id="dataNameCanBeOrder" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
+                <%--</div>--%>
+                <%--<div class="form-group">--%>
+                <%--<label for="ddType">类型：</label>--%>
+                <%--<ap:selectDB name="ddType" id="ddType"--%>
+                <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                <%--optionText="itemName" table="SYS_DIC"--%>
+                <%--selectedValue="" styleClass="form-control">--%>
+                <%--</ap:selectDB>--%>
+                <%--</div>--%>
+                <%--<div class="form-group">--%>
+                <%--<label for="ddDataTaskNameCanBeOrder">任务：</label>--%>
+                <%--<select id="ddDataTaskNameCanBeOrder" class="form-control">--%>
+                <%--<option>1</option>--%>
+                <%--<option>2</option>--%>
+                <%--<option>3</option>--%>
+                <%--</select>--%>
+                <%--</div>--%>
+                <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
                 <%--</div>--%>
                 <table id="table_canbeorder"></table>
             </div>
@@ -98,15 +110,18 @@
             <div class="panel-heading">
                 已订阅数据
                 <div class="btn-group pull-right">
-                    <a href="#" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    <a href="javascript:void(0)" title="点击获得更多列表操作" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         更多<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="javascript:void(0)" title="撤销订阅数据"><span class="glyphicon glyphicon-hand-left"></span> 撤销订阅</a></li>
-                        <li><a href="javascript:void(0)" title="导出数据表"><span class="glyphicon glyphicon-export"></span> 导出数据</a></li>
+                        <li><a href="javascript:void(0)" title="撤销订阅数据"><span
+                                class="glyphicon glyphicon-hand-left"></span> 撤销订阅</a></li>
+                        <li><a href="javascript:void(0)" title="导出数据表"><span class="glyphicon glyphicon-export"></span>
+                            导出数据</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span class="glyphicon glyphicon-retweet"></span> 反选</a></li>
+                        <li><a href="javascript:void(0)" title="选择没有被选中的数据"><span
+                                class="glyphicon glyphicon-retweet"></span> 反选</a></li>
                         <li><a href="javascript:void(0)" onclick="refresh(0)" title="刷新私有数据看板"><span
                                 class="glyphicon glyphicon-refresh"></span> 刷新</a></li>
                     </ul>
@@ -114,27 +129,27 @@
             </div>
             <div class="panel-body panelheight" id="orderpanel">
                 <%--<div id="toolbar_order" class="form-inline">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label for="dataNameOrder">名称：</label>--%>
-                        <%--<input id="dataNameOrder" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label for="ddType">类型：</label>--%>
-                        <%--<ap:selectDB name="ddType" id="ddType"--%>
-                                     <%--where="parentId=10000025100454" optionValue="itemValue"--%>
-                                     <%--optionText="itemName" table="SYS_DIC"--%>
-                                     <%--selectedValue="" styleClass="form-control">--%>
-                        <%--</ap:selectDB>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label for="ddDataTaskNameOrder">任务：</label>--%>
-                        <%--<select id="ddDataTaskNameOrder" class="form-control">--%>
-                            <%--<option>1</option>--%>
-                            <%--<option>2</option>--%>
-                            <%--<option>3</option>--%>
-                        <%--</select>--%>
-                    <%--</div>--%>
-                    <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
+                <%--<div class="form-group">--%>
+                <%--<label for="dataNameOrder">名称：</label>--%>
+                <%--<input id="dataNameOrder" class="form-control" type="text" value="" placeholder="任务名称"/>--%>
+                <%--</div>--%>
+                <%--<div class="form-group">--%>
+                <%--<label for="ddType">类型：</label>--%>
+                <%--<ap:selectDB name="ddType" id="ddType"--%>
+                <%--where="parentId=10000025100454" optionValue="itemValue"--%>
+                <%--optionText="itemName" table="SYS_DIC"--%>
+                <%--selectedValue="" styleClass="form-control">--%>
+                <%--</ap:selectDB>--%>
+                <%--</div>--%>
+                <%--<div class="form-group">--%>
+                <%--<label for="ddDataTaskNameOrder">任务：</label>--%>
+                <%--<select id="ddDataTaskNameOrder" class="form-control">--%>
+                <%--<option>1</option>--%>
+                <%--<option>2</option>--%>
+                <%--<option>3</option>--%>
+                <%--</select>--%>
+                <%--</div>--%>
+                <%--<input class="btn btn-default" type="submit" value="筛选"/>--%>
                 <%--</div>--%>
                 <table id="table_order"></table>
             </div>
@@ -146,15 +161,15 @@
 <script type="text/javascript">
     //@ sourceURL=showdata.ht
     var $table_canbeorder = $('#table_canbeorder'),
-            $table_order = $('#table_order'),
-            $remove = $('#remove');
+        $table_order = $('#table_order'),
+        $remove = $('#remove');
     var curRow = {};
     function initTable() {
         $table_canbeorder.bootstrapTable({
             checkboxHeader: true,
             idField: "ddDataId",
             classes: "table table-condensed table-hover",
-            url: "${ctx}/datadriver/data/showCanBeOrder.ht?projectId=${projectId}"+ "&taskId=" +${taskId},
+            url: "${ctx}/datadriver/data/showCanBeOrder.ht?projectId=${projectId}" + "&taskId=" +${taskId},
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar_canbeorder',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -217,7 +232,7 @@
                     editable: false,
                     align: 'center',
                     visible: true
-                },{
+                }, {
                     field: 'ddBeOrder',
                     title: '当前任务状态',
                     sortable: true,
@@ -253,11 +268,11 @@
             var parentid = row.ddStructId;
             var cur_table = $detail.html('<table></table>').find('table');
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id=' + row.ddStructId,
                 method: 'get',
                 classes: "table table-condensed table-hover",
-                queryParams: { strParentID: parentid },
-                ajaxOptions: { strParentID: parentid },
+                queryParams: {strParentID: parentid},
+                ajaxOptions: {strParentID: parentid},
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 // pagination: true,                   //是否显示分页（*）
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -268,7 +283,7 @@
 //                pageList: [10, 25],
                 columns: [{
                     checkbox: true
-                },                {//第一列，数据ID
+                }, {//第一列，数据ID
                     field: 'ddDataId',
                     title: '数据Id',
                     sortable: true,
@@ -296,7 +311,7 @@
                         sortable: true,
                         align: 'center',
                         editable: false,
-                    } , {//单位
+                    }, {//单位
                         field: 'ddDataUnit',
                         title: '单位',
                         sortable: true,
@@ -326,8 +341,7 @@
                 onExpandRow: function (index, row, $Subdetail) {
                     InitSubTable(index, row, $Subdetail);
                 },
-                onClickRow:function (row, tr)
-                {
+                onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
                 }
@@ -441,11 +455,11 @@
             var cur_table = $detail.html('<table></table>').find('table');
             // alert(row.ToolName);
             $(cur_table).bootstrapTable({
-                url: '${ctx}/datadriver/data/showprivatedata.ht?id='+row.ddStructId,
+                url: '${ctx}/datadriver/data/showprivatedata.ht?id=' + row.ddStructId,
                 method: 'get',
                 classes: "table table-condensed table-hover",
-                queryParams: { strParentID: parentid },
-                ajaxOptions: { strParentID: parentid },
+                queryParams: {strParentID: parentid},
+                ajaxOptions: {strParentID: parentid},
                 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                 // pagination: true,                   //是否显示分页（*）
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -456,7 +470,7 @@
 //                pageList: [10, 25],
                 columns: [{
                     checkbox: true
-                },                {//第一列，数据ID
+                }, {//第一列，数据ID
                     field: 'ddDataId',
                     title: '指标Id',
                     sortable: true,
@@ -483,8 +497,8 @@
                         title: '最新值',
                         sortable: true,
                         align: 'center',
-                        editable:false,
-                    } , {//单位
+                        editable: false,
+                    }, {//单位
                         field: 'ddDataUnit',
                         title: '单位',
                         sortable: true,
@@ -507,7 +521,7 @@
                         editable: false,
                         align: 'center',
                         visible: false
-                    },{
+                    }, {
                         field: 'operate',
                         title: '操作',
                         align: 'center',
@@ -520,8 +534,7 @@
                 onExpandRow: function (index, row, $Subdetail) {
                     InitSubTable(index, row, $Subdetail);
                 },
-                onClickRow:function (row, tr)
-                {
+                onClickRow: function (row, tr) {
                     // alert(row.ToolUrl);
                     // window.location.href="gettool.ht?major="+row.ToolUrl+"&name="+row.ToolName;
                 }
@@ -550,24 +563,24 @@
 
     //订阅数据列表按钮
     function operateFormatterOrder(value, row, index) {
-            return [
-                '<a id="ordertr" href="javascript:void(0)" title="点击撤销订阅该数据">撤销',
-                '</a>'
-            ].join('');
+        return [
+            '<a id="ordertr" href="javascript:void(0)" title="点击撤销订阅该数据">撤销',
+            '</a>'
+        ].join('');
     }
     //订阅数据子列表按钮
     function operateFormatterOrderSub(value, row, index) {
-        if (row.ddDataType == 3){//模型
+        if (row.ddDataType == 3) {//模型
             return [
                 '<a id="ordertr_download" href="javascript:void(0)" title="点击下载文件">下载',
-                '</a>',' ',
+                '</a>', ' ',
                 '<a id="ordertr_view" href="javascript:void(0)" title="点击预览文件内容">预览',
                 '</a>'
             ].join('');
         }
-        if (row.ddDataType == 2){
+        if (row.ddDataType == 2) {
             return [//文件
-                '<a id="ordertr_download" href="javascript:void(0)" title="点击下载文件">预览',
+                '<a id="ordertr_download" href="javascript:void(0)" title="点击下载文件">下载',
                 '</a>'
             ].join('');
         }
@@ -581,7 +594,7 @@
     window.operateEvents = {
         'click #canordertr': function (e, value, row, index) {
             $.get("canordertoorder.ht?id=" + row.ddStructId + "&parent=orderpanel" + "&taskId=" +${taskId}, function (data, status) {
-                if (status=='success'){
+                if (status == 'success') {
                     $table_canbeorder.bootstrapTable('refresh');
                     $table_order.bootstrapTable('refresh');
                 }
@@ -589,19 +602,27 @@
         },
         'click #ordertr_download': function (e, value, row, index) {
             <%--$.get("${ctx}/datadriver/privatedata/getPrivatefile.ht?id=" + row.ddDataId, function (data, status) {--%>
-                window.location.href="${ctx}/datadriver/privatedata/getPrivatefile.ht?id=" + row.ddDataId;
+            window.location.href = "${ctx}/datadriver/privatedata/getPrivatefile.ht?id=" + row.ddDataId;
 //            });
+        },
+        'click #ordertr_view': function (e, value, row, index) {
+            $('#model_content').modal({
+                keyboard: true,
+                remote: "${ctx}/datadriver/privatedata/viewModel.ht?id=" + row.ddDataId
+            });
         },
         'click #ordertr': function (e, value, row, index) {
             $.get("canordertoorder.ht?id=" + row.ddStructId + "&parent=canorderpanel" + "&taskId=" +${taskId}, function (data, status) {
-                if (status=='success'){
+                if (status == 'success') {
                     $table_canbeorder.bootstrapTable('refresh');
                     $table_order.bootstrapTable('refresh');
                 }
             });
         }
     };
-
+    $("#model_content").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
     $(function () {
         initTable();
     });

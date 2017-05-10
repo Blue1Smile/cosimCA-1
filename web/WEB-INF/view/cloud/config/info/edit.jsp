@@ -184,7 +184,7 @@
 		</div>
 		<div class="panel-toolbar">
 			<div class="toolBar">
-				<div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+				<div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
 				<div class="l-bar-separator"></div>
 				<!-- 企业信息为审核通过时，提示信息 -->
 				<c:if test="${info.state != 2}">
@@ -772,8 +772,8 @@
 									    <td style="text-align: center" name="endDate">${aptitudeItem.endDate}</td>
 									    <td style="text-align: center" name="catePic">${aptitudeItem.catePic} </td>
 									    <td style="text-align: center">
-									    	<a href="#" class="link del">删除</a>
-									    	<a href="#" class="link edit">编辑</a>
+									    	<a href="javascript:void(0)" class="link del">删除</a>
+									    	<a href="javascript:void(0)" class="link edit">编辑</a>
 									    </td>
 										<input type="hidden" name="infoId" value="${aptitudeItem.infoId}"/>
 										<input type="hidden" name="cateType" value="${aptitudeItem.cateType}"/>
@@ -792,8 +792,8 @@
 							    	<td style="text-align: center" name="endDate"></td>
 							    	<td style="text-align: center" name="catePic"></td>
 							    	<td style="text-align: center">
-							    		<a href="#" class="link del">删除</a>
-							    		<a href="#" class="link edit">编辑</a>
+							    		<a href="javascript:void(0)" class="link del">删除</a>
+							    		<a href="javascript:void(0)" class="link edit">编辑</a>
 							    	</td>
 							    	<input type="hidden" name="infoId" value=""/>
 							    	<input type="hidden" name="cateType" value=""/>

@@ -50,7 +50,7 @@
     <div class="panel-top">
         <div class="panel-toolbar">
             <div class="toolBar">
-                <div class="group"><a class="link save" id="dataFormSave" href="#">保存</a></div>
+                <div class="group"><a class="link save" id="dataFormSave" href="javascript:void(0)">保存</a></div>
             </div>
         </div>
     </div>
@@ -219,8 +219,8 @@
                                     <td style="text-align: center"
                                         name="ddDataSensitiveness">${privateDataList.ddDataSensitiveness}</td>
                                     <td style="text-align: center">
-                                        <a href="#" class="link del">删除</a>
-                                        <a href="#" class="link edit">编辑</a>
+                                        <a href="javascript:void(0)" class="link del">删除</a>
+                                        <a href="javascript:void(0)" class="link edit">编辑</a>
                                     </td>
                                     <input type="hidden" name="ddDataId" value="${privateDataList.ddDataId}"/>
                                     <input type="hidden" name="ddDataName" value="${privateDataList.ddDataName}"/>
@@ -250,8 +250,8 @@
                                 <td style="text-align: center" name="ddDataSensitiveness"></td>
 
                                 <td style="text-align: center">
-                                    <a href="#" class="link del">删除</a>
-                                    <a href="#" class="link edit">编辑</a>
+                                    <a href="javascript:void(0)" class="link del">删除</a>
+                                    <a href="javascript:void(0)" class="link edit">编辑</a>
                                 </td>
                                 <input type="hidden" name="ddDataId" value=""/>
                                 <input type="hidden" name="ddDataName" value=""/>
