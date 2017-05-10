@@ -67,8 +67,7 @@ public class DataCenterController extends AbstractController {
             throws Exception {
         List<Project> AllProjectList = projectService.getAll();
 
-        List<Project> tempProjectList = new ArrayList<Project>();
-        List<Project> ProjectList = new ArrayList<Project>();
+        List<Project> tempProjectList = new ArrayList<>();
         for (int i = 0; i < AllProjectList.size(); i++) {
             if (AllProjectList.get(i).getDdProjectCreatorId().equals(ContextUtil.getCurrentUser().getUserId())) {
 
@@ -85,14 +84,14 @@ public class DataCenterController extends AbstractController {
                 }
             }
         }
-        ProjectList = removeDuplicate(tempProjectList);
+        List<Project> ProjectList = removeDuplicate(tempProjectList);
 
         int ProjectLength = ProjectList.size();
         Long[] ProjectId = new Long[ProjectLength];
         String[] ProjectName = new String[ProjectLength];
         int allLength = 0;
         int[] TaskLength = new int[ProjectList.size()];
-        List<TaskInfo> allTaskInfo = new ArrayList<TaskInfo>();
+        List<TaskInfo> allTaskInfo = new ArrayList<>();
         for (int i = 0; i < ProjectList.size(); i++) {
             Project project = ProjectList.get(i);
             ProjectId[i] = project.getDdProjectId();
