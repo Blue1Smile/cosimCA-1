@@ -121,6 +121,10 @@
 
         $("#create_task").show();
         $("#create_index").hide();
+        //关闭任务详情模态框
+        $("#taskdetail").on("hidden.bs.modal", function() {
+            $(this).removeData("bs.modal");
+        });
     });
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
