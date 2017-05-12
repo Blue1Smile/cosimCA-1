@@ -23,36 +23,6 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     public List<PrivateData> queryPrivateDataBasicInfoList(QueryFilter queryFilter) {
         return this.getBySqlKey("queryPrivateDataBasicInfoList", queryFilter);
     }
-
-    public PrivateData getDataById(long id){
-        return this.getUnique("getDataById", id);
-    }
-
-
-
-    public List<PrivateData> selectByStructid(long Structid){
-        return this.getBySqlKey("selectByStructid", Structid);
-    }
-    /**
-     * Query privateData basic info list.
-     *
-     * @return the list
-     */
-    public List<PrivateData> queryPrivateDataByddTaskID(long id) {
-        return this.getBySqlKey("queryPrivateDataByddTaskID", id);
-    }
-
-    public List<PrivateData> getBymodel(PageInfo model) {
-        return this.getBySqlKey("getBymodel", model);
-    }
-
-    /**
-     * 2016/12/4/�޸�
-     */
-    public List<PrivateData> getByddDataId(long id) {
-        return this.getBySqlKey("getByddDataId", id);
-    }
-
     /*
      * (non-Javadoc)
      *
@@ -64,45 +34,79 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     }
 
     /**
-     * 20161202
+     * 添加一个数据
      */
-    public void delByMainId(Long classId) {
-        this.delBySqlKey("delByMainId", classId);
-    }
-
-    public void delBySructId(Long ddDataParentId) {
-        this.delBySqlKey("delBySructId", ddDataParentId);
-    }
-
-
-    public List<PrivateData> getByMainId(Long classId) {
-        return this.getBySqlKey("getPrivateDataList", classId);
+    public void addSingleData(PrivateData privateData) {
+        this.add(privateData);
     }
 
     /**
-     * mapper�л�ûʵ��
+     * 获取所有数据
      */
-    public List<PrivateData> getAllInstance(QueryFilter queryFilter) {
-        return this.getBySqlKey("getAllPrivateDataList", queryFilter);
+    public List<PrivateData> getAll() {
+        return this.getAll();
     }
+
     /**
-     * 2016/12/4/�޸�
+     * 根据数据ID获取数据
      */
-    public void updatedata(PrivateData privateData){
-
-        this.getBySqlKey("updatedata",privateData);
+    public PrivateData getDataById(Long dataId) {
+        return this.getUnique("getDataById", dataId);
     }
 
-    public List<PrivateData> getListByIdPage(PageInfo pageInfo){
-        return this.getBySqlKey("getListByIdPage", pageInfo);
+    /**
+     * 根据数据ParentID获取数据
+     */
+    public List<PrivateData> getDataListByPId(Long parentId) {
+        return this.getBySqlKey("getDataListByPId", parentId);
     }
 
-    public List<PrivateData> getPublishDataList(Long taskId){
-        return this.getBySqlKey("getPublishDataList", taskId);
+    /**
+     * 获取任务发布的数据
+     */
+    public List<PrivateData> getPubListByTaskId(Long taskId) {
+        return this.getBySqlKey("getPubListByTaskId", taskId);
     }
 
-    public List<PrivateData> getPublishListPage(PageInfo pageInfo){
-        return this.getBySqlKey("getPublishListPage", pageInfo);
+    /**
+     * 获取任务未发布的数据
+     */
+    public List<PrivateData> getUnPubListByTaskId(Long taskId) {
+        return this.getBySqlKey("getUnPubListByTaskId", taskId);
     }
 
+    /**
+     * 获取任务订阅的数据
+     */
+    public List<PrivateData> getOrdListByTaskId(Long taskId) {
+        return this.getBySqlKey("getOrdListByTaskId", taskId);
+    }
+
+    /**
+     * 获取任务未订阅的数据
+     */
+    public List<PrivateData> getUnOrdListByTaskId(Long taskId) {
+        return this.getBySqlKey("getUnOrdListByTaskId", taskId);
+    }
+
+    /**
+     * 获取任务所有数据
+     */
+    public List<PrivateData> getDataListByTaskId(Long taskId) {
+        return this.getBySqlKey("getDataByTaskId", taskId);
+    }
+
+    /**
+     * 更新数据
+     */
+    public void updateData(PrivateData privateData) {
+        this.update(privateData);
+    }
+
+    /**
+     * 根据任务ID删除单个数据
+     */
+    public void delByTaskId(Long taskId) {
+        this.delBySqlKey("delByTaskId", taskId);
+    }
 }
