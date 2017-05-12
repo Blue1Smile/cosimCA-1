@@ -32,7 +32,7 @@ $(document).ready(function () {
                 parentDataField: {name: 'parentId'}
             },
             id: 'dataId',
-            url: 'showstructdata.ht',
+            url: 'input.ht?taskId=${}',
             addRow: function (rowID, rowData, position, parentID, commit) {
                 commit(true);
                 newRowID = rowID;
