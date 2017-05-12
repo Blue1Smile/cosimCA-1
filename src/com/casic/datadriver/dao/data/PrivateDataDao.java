@@ -23,6 +23,7 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     public List<PrivateData> queryPrivateDataBasicInfoList(QueryFilter queryFilter) {
         return this.getBySqlKey("queryPrivateDataBasicInfoList", queryFilter);
     }
+
     /*
      * (non-Javadoc)
      *
@@ -94,6 +95,13 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
      */
     public List<PrivateData> getDataListByTaskId(Long taskId) {
         return this.getBySqlKey("getDataByTaskId", taskId);
+    }
+
+    /**
+     * 获取项目所有数据
+     */
+    public List<PrivateData> getDataListByProId(Long projectId) {
+        return this.getBySqlKey("getDataListByProId", projectId);
     }
 
     /**
