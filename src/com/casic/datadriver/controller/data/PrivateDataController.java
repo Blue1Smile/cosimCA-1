@@ -522,9 +522,9 @@ public class PrivateDataController extends AbstractController {
      * @return the list
      * @throws Exception the exception
      */
-    @RequestMapping("Inputdata")
+    @RequestMapping("inputData")
     @Action(description = "输入数据")
-    public String Inputdata(HttpServletRequest request, HttpServletResponse response)
+    public String inputData(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long taskId = RequestUtil.getLong(request, "taskId");
         Long projectId = RequestUtil.getLong(request, "projectId");
@@ -539,9 +539,9 @@ public class PrivateDataController extends AbstractController {
      * @return the list
      * @throws Exception the exception
      */
-    @RequestMapping("Outputdata")
+    @RequestMapping("outputData")
     @Action(description = "输出数据")
-    public String Outputdata(HttpServletRequest request, HttpServletResponse response)
+    public String outputData(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long taskId = RequestUtil.getLong(request, "taskId");
         return  privateDataService.getOutputdataByTaskId(taskId);
