@@ -5,62 +5,62 @@
 var outputTable = (function () {
     var newRowID = null;
     var init = function () {
-        var employees = [
-            {
-                "dataId": 1,
-                "dataName": "Nancy",
-                "filePath": "Davolio",
-                "parentId": 2
-            },
-            {
-                "dataId": 2,
-                "dataName": "Andrew",
-                "filePath": "Fuller",
-                "parentId": null
-            },
-            {
-                "dataId": 3,
-                "dataName": "Janet",
-                "filePath": "Leverling",
-                "parentId": 2
-            },
-            {
-                "dataId": 4,
-                "dataName": "Margaret",
-                "filePath": "Peacock",
-                "parentId": 2
-            },
-            {
-                "dataId": 5,
-                "dataName": "Steven",
-                "filePath": "Buchanan",
-                "parentId": 2
-            },
-            {
-                "dataId": 6,
-                "dataName": "Michael",
-                "filePath": "Suyama",
-                "parentId": 5
-            },
-            {
-                "dataId": 7,
-                "dataName": "Robert",
-                "filePath": "King",
-                "parentId": 5
-            },
-            {
-                "dataId": 8,
-                "dataName": "Laura",
-                "filePath": "Callahan",
-                "parentId": 2
-            },
-            {
-                "dataId": 9,
-                "dataName": "Anne",
-                "filePath": "Dodsworth",
-                "parentId": 5
-            }
-        ];
+        // var employees = [
+        //     {
+        //         "dataId": 1,
+        //         "dataName": "Nancy",
+        //         "filePath": "Davolio",
+        //         "parentId": 2
+        //     },
+        //     {
+        //         "dataId": 2,
+        //         "dataName": "Andrew",
+        //         "filePath": "Fuller",
+        //         "parentId": null
+        //     },
+        //     {
+        //         "dataId": 3,
+        //         "dataName": "Janet",
+        //         "filePath": "Leverling",
+        //         "parentId": 2
+        //     },
+        //     {
+        //         "dataId": 4,
+        //         "dataName": "Margaret",
+        //         "filePath": "Peacock",
+        //         "parentId": 2
+        //     },
+        //     {
+        //         "dataId": 5,
+        //         "dataName": "Steven",
+        //         "filePath": "Buchanan",
+        //         "parentId": 2
+        //     },
+        //     {
+        //         "dataId": 6,
+        //         "dataName": "Michael",
+        //         "filePath": "Suyama",
+        //         "parentId": 5
+        //     },
+        //     {
+        //         "dataId": 7,
+        //         "dataName": "Robert",
+        //         "filePath": "King",
+        //         "parentId": 5
+        //     },
+        //     {
+        //         "dataId": 8,
+        //         "dataName": "Laura",
+        //         "filePath": "Callahan",
+        //         "parentId": 2
+        //     },
+        //     {
+        //         "dataId": 9,
+        //         "dataName": "Anne",
+        //         "filePath": "Dodsworth",
+        //         "parentId": 5
+        //     }
+        // ];
         // prepare the data
         var source =
             {
@@ -110,6 +110,7 @@ var outputTable = (function () {
         $("#treeGridOut").jqxTreeGrid(
             {
                 width: 850,
+                height:700,
                 source: dataAdapter,
                 pageable: true,
                 editable: true,
@@ -117,6 +118,7 @@ var outputTable = (function () {
                 altRows: true,
                 hierarchicalCheckboxes: true,
                 checkboxes: true,
+                theme: "darkblue",
                 ready: function () {
                     // called when the DatatreeGrid is loaded.
                 },
@@ -124,8 +126,9 @@ var outputTable = (function () {
                 toolbarHeight: 35,
                 renderToolbar: function (toolBar) {
                     var toTheme = function (className) {
-                        if (theme == "") return className;
-                        return className + " " + className + "-" + theme;
+                        // if (theme == "")
+                            return className;
+                        // return className + " " + className + "-" + theme;
                     }
                     // appends buttons to the status bar.
                     var container = $("<div style='overflow: hidden; position: relative; height: 100%; width: 100%;'></div>");

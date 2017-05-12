@@ -240,11 +240,13 @@ public class ProjectController extends BaseController {
                         Long structId = dataStructList.get(j).getDdStructId();
                         dataStructService.delById(structId);
 //                        List<PrivateData> childDataList = privateDataService.selectByStructid(structId);
+
                         List<PrivateData> childDataList = null;
+
                         //删除所有私有数据
-                        for(int k=0;k<childDataList.size();k++){
-                            privateDataService.delById(childDataList.get(k).getDdDataId());
-                        }
+//                        for(int k=0;k<childDataList.size();k++){
+//                            privateDataService.delById(childDataList.get(k).getDdDataId());
+//                        }
 
                     }
                     //删除所有模型，文件

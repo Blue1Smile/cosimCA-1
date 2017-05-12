@@ -208,9 +208,9 @@ public class PersonalTaskController extends AbstractController {
 
             PageInfo pageInfo = pagination(pageSize, pageNumber, taskId);
 
-            List<PrivateData> privateDataList = privateDataService.getListByIdPage(pageInfo);
-
-            List<PrivateData> privateDataListTotal = privateDataService.queryPrivateDataByddTaskID(taskId);
+//            List<PrivateData> privateDataList = privateDataService.getListByIdPage(pageInfo);
+//
+//            List<PrivateData> privateDataListTotal = privateDataService.queryPrivateDataByddTaskID(taskId);
 
 //            List<OrderDataRelation> publishDataRelationList = orderDataRelationService.getPublishDataRelationList(taskId);
 //            //任务私有数据
@@ -237,25 +237,25 @@ public class PersonalTaskController extends AbstractController {
 //                }
 //            }//获取私有数据结束
             PrivateData tempPrivateData = new PrivateData();
-            for (int i = 0; i < privateDataList.size(); i++) {
-                tempPrivateData = privateDataList.get(i);
-                jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
-                jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
-                jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
-                jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
-                jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
-                jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
-                jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
-                jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
-                jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
-                jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
-                jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
-                jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-                jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
-
-                jsonMembers.add(jsonObject);
-            }
-            json.put("total", privateDataListTotal.size());
+//            for (int i = 0; i < privateDataList.size(); i++) {
+//                tempPrivateData = privateDataList.get(i);
+//                jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
+//                jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
+//                jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
+//                jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
+//                jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
+//                jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
+//                jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
+//                jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
+//                jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
+//                jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
+//                jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
+//                jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
+//                jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+//
+//                jsonMembers.add(jsonObject);
+//            }
+//            json.put("total", privateDataListTotal.size());
             json.put("rows", jsonMembers);
 
             String jsonstring = formatJson(json.toString());
@@ -289,32 +289,32 @@ public class PersonalTaskController extends AbstractController {
             Long pageSize = RequestUtil.getLong(request, "pageSize");
             Long pageNumber = RequestUtil.getLong(request, "pageNumber");
             long taskId = RequestUtil.getLong(request, "id");
-            List<PrivateData> publishDataListTotal = privateDataService.getPublishDataList(taskId);
+//            List<PrivateData> publishDataListTotal = privateDataService.getPublishDataList(taskId);
 
 
             PageInfo pageInfo = pagination(pageSize, pageNumber, taskId);
-            List<PrivateData> publishDataList = privateDataService.getPublishListPage(pageInfo);
+//            List<PrivateData> publishDataList = privateDataService.getPublishListPage(pageInfo);
             PrivateData tempPrivateData = new PrivateData();
-            for (int i = 0; i < publishDataList.size(); i++) {
-                tempPrivateData = publishDataList.get(i);
-
-                jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
-                jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
-                jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
-                jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
-                jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
-                jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
-                jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
-                jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
-                jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
-                jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
-                jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
-                jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-                jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
-
-                jsonMembers.add(jsonObject);
-            }
-            json.put("total", publishDataListTotal.size());
+//            for (int i = 0; i < publishDataList.size(); i++) {
+//                tempPrivateData = publishDataList.get(i);
+//
+//                jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
+//                jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
+//                jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
+//                jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
+//                jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
+//                jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
+//                jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
+//                jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
+//                jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
+//                jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
+//                jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
+//                jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
+//                jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+//
+//                jsonMembers.add(jsonObject);
+//            }
+//            json.put("total", publishDataListTotal.size());
             json.put("rows", jsonMembers);
 
             String jsonstring = formatJson(json.toString());
@@ -387,33 +387,33 @@ public class PersonalTaskController extends AbstractController {
             }//获取可订阅数据列表结束
 
             PrivateData tempPrivateData = new PrivateData();
-            for (int i = 0; i < canBeOrderPrivatedataList.size(); i++) {
-                tempPrivateData = canBeOrderPrivatedataList.get(i);
-                jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
-                jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
-                jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
-                jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
-                jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
-                jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
-                jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
-                jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
-                jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
-                jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
-                jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
-                jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-                jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
-
-                for (int j = 0; j < OrderPrivatedataList.size(); j++) {
-                    Long ddDataId1 = OrderPrivatedataList.get(j).getDdDataId();
-                    if (ddDataId1.equals(tempPrivateData.getDdDataId())) {
-                        jsonObject.put("ddOrderType", 1);
-                        break;
-                    } else {
-                        jsonObject.put("ddOrderType", 0);
-                    }
-                }
-                jsonMembers.add(jsonObject);
-            }
+//            for (int i = 0; i < canBeOrderPrivatedataList.size(); i++) {
+//                tempPrivateData = canBeOrderPrivatedataList.get(i);
+//                jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
+//                jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
+//                jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
+//                jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
+//                jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
+//                jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
+//                jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
+//                jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
+//                jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
+//                jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
+//                jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
+//                jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
+//                jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+//
+//                for (int j = 0; j < OrderPrivatedataList.size(); j++) {
+//                    Long ddDataId1 = OrderPrivatedataList.get(j).getDdDataId();
+//                    if (ddDataId1.equals(tempPrivateData.getDdDataId())) {
+//                        jsonObject.put("ddOrderType", 1);
+//                        break;
+//                    } else {
+//                        jsonObject.put("ddOrderType", 0);
+//                    }
+//                }
+//                jsonMembers.add(jsonObject);
+//            }
             json.put("total", canBeOrderPrivatedataList.size());
             json.put("rows", jsonMembers);
 
@@ -455,25 +455,25 @@ public class PersonalTaskController extends AbstractController {
                 OrderPrivatedataList.add(privateDataforOrderData);
             }//获取已订阅数据结束
             PrivateData tempPrivateData = new PrivateData();
-            for (int i = 0; i < OrderPrivatedataList.size(); i++) {
-                tempPrivateData = OrderPrivatedataList.get(i);
-                jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
-                jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
-                jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
-                jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
-                jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
-                jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
-                jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
-                jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
-                jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
-                jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
-                jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
-                jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-                jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
-                jsonObject.put("ddOrderType", 1);
-
-                jsonMembers.add(jsonObject);
-            }
+//            for (int i = 0; i < OrderPrivatedataList.size(); i++) {
+//                tempPrivateData = OrderPrivatedataList.get(i);
+//                jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
+//                jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
+//                jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
+//                jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
+//                jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
+//                jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
+//                jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
+//                jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
+//                jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
+//                jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
+//                jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
+//                jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
+//                jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+//                jsonObject.put("ddOrderType", 1);
+//
+//                jsonMembers.add(jsonObject);
+//            }
             json.put("total", OrderPrivatedataList.size());
             json.put("rows", jsonMembers);
 
@@ -651,7 +651,7 @@ public class PersonalTaskController extends AbstractController {
             Map<String, Class> map = new HashMap<String, Class>();
             map.put("privateData", PrivateData.class);
             PrivateData privateData = (PrivateData) JSONObject.toBean(obj, PrivateData.class, map);
-            privateDataService.updatedata(privateData);
+//            privateDataService.updatedata(privateData);
             //添加数据版本记录
             DataVersion dataVersion = new DataVersion();
             dataVersion.setDdDataVersionId(UniqueIdUtil.genId());
@@ -710,19 +710,19 @@ public class PersonalTaskController extends AbstractController {
                 if (taskStart_list.get(0).getDdTaskStatus().equals(taskStart_list.get(0).publishpanel) &&
                         taskInfo.getDdTaskChildType().equals("publishpanel")) {
 
-                    for (int i = 0; i < publishRelationList.size(); i++) {
-                        DataStruct dataStruct = dataStructService.getById(publishRelationList.get(i).getDdDataId());
-                        List<PrivateData> childList = privateDataService.selectByStructid(dataStruct.getDdStructId());
-                        int childLength = childList.size();
-                        for (int j = 0; j < childList.size(); j++) {
-                            if (childList.get(j).getDdDataLastestValue() == null) {
-                                PrivateData childData = childList.get(j);
-                                //暂时用datapath存放结构体名
-                                childData.setDdDataPath(dataStruct.getDdStructName());
-                                childListWithoutValue.add(childData);
-                            }
-                        }
-                    }
+//                    for (int i = 0; i < publishRelationList.size(); i++) {
+//                        DataStruct dataStruct = dataStructService.getById(publishRelationList.get(i).getDdDataId());
+////                        List<PrivateData> childList = privateDataService.selectByStructid(dataStruct.getDdStructId());
+//                        int childLength = childList.size();
+//                        for (int j = 0; j < childList.size(); j++) {
+//                            if (childList.get(j).getDdDataLastestValue() == null) {
+//                                PrivateData childData = childList.get(j);
+//                                //暂时用datapath存放结构体名
+//                                childData.setDdDataPath(dataStruct.getDdStructName());
+//                                childListWithoutValue.add(childData);
+//                            }
+//                        }
+//                    }
 
                     if (childListWithoutValue.size() == 0) {
                         taskStart_list.get(0).setDdTaskStatus(TaskStart.checkpanel);

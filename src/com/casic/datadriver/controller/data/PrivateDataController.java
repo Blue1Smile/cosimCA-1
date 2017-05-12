@@ -84,6 +84,7 @@ public class PrivateDataController extends AbstractController {
         try {
             if (privateData.getDdDataId() == null || privateData.getDdDataId() == 0) {
                 privateData.setDdDataId(UniqueIdUtil.genId());
+
                 privateData.setDdDataPublishState((byte)0);
                 privateDataService.addSingleData(privateData);
                 resultMsg = getText("record.added", "数据信息");
@@ -375,6 +376,7 @@ public class PrivateDataController extends AbstractController {
             switch (Integer.parseInt(key)) {
                 case 0://更改数据类型
 //                    String temp0 = obj.getString("0");
+
                     privateData.setDdDataType((byte) 0);
                     break;
                 case 1://更改数据值
@@ -408,6 +410,7 @@ public class PrivateDataController extends AbstractController {
                     privateData.setDdDataDescription(temp3);
                     break;
             }
+
             privateDataService.updateData(privateData);
         } catch (Exception e) {
             String resultMsg = null;

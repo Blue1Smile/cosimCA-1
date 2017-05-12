@@ -128,18 +128,18 @@ public class TaskInfoService extends BaseService<TaskInfo> {
             }
         }
     }
-    public List<PrivateData> getPrivateDataList(Long id) {
-        return privateDataDao.getByMainId(id);
+    public List<PrivateData> getPrivateDataList(Long taskId) {
+        return this.privateDataDao.getDataListByTaskId(taskId);
     }
 
-    public List<PrivateData> getAllPrivateDataList(QueryFilter queryFilter) {
-        return privateDataDao.getAllInstance(queryFilter);
-    }
+//    public List<PrivateData> g(QueryFilter queryFilter) {
+////        return privateDataDao.getAllInstance(queryFilter);
+//    }
     /**删除关系表
      */
     private void delByPk(Long id){
         proTaskDependanceDao.delByTaskId(id);
-        privateDataDao.delByMainId(id);
+//        privateDataDao.delByMainId(id);
     }
     /**删除任务和关系表
      */

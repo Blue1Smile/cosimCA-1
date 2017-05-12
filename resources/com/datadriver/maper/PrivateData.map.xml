@@ -144,7 +144,7 @@
         select
         <include refid="Base_Column_List"/>
         from dd_private_data
-        where DD_DATA_PROJ_ID = #{projectId}
+        where DD_DATA_PROJ_ID = #{projectId} AND DD_DATA_TASK_ID != #{taskId}
     </select>
 
     <update id="update" parameterType="com.casic.datadriver.model.data.PrivateData">

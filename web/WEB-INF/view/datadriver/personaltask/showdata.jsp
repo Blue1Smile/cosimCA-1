@@ -15,8 +15,10 @@
 <html>
 <head>
     <title>数据看板</title>
+    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css" />
     <script type="text/javascript" src="${ctx}/jqwidgets/jqx-all.js"></script>
-    <script type="text/javascript" src="${ctx}/jqwidgets/table/inputable.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/table/outputable.js"></script>
+    <%--<script type="text/javascript" src="${ctx}/jqwidgets/scripts/demos.js"></script>--%>
     <style>
         table {
             background-color: #ffffff;
@@ -36,11 +38,9 @@
 <body>
 <div class="row paneldocker" style="height: 100%">
     <div class="col-xs-6" style="height: 100%">
-        <div class="panel panel-default task-panel">
-            <div class="panel-body panelheight" id="createpanel">
+
                 <div id="treeGridOut"></div>
-            </div>
-        </div>
+
     </div>
 </div>
 <%--导入数据--%>

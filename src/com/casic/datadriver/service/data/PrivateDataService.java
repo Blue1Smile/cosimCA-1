@@ -71,6 +71,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
        return privateDataDao.getAll();
     }
 
+
     /**
      * 根据数据ID获取数据
      */
@@ -130,6 +131,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
         return sb.toString();
     }
+
     /**
      * 获取任务未发布的数据
      */
@@ -250,8 +252,6 @@ public class PrivateDataService extends BaseService<PrivateData> {
         System.out.println(jsonstring);
         return jsonstring;
     }
-
-
     public static String getValue(HSSFCell cell) {
         String value = "";
         if (cell == null) {
@@ -334,7 +334,6 @@ public class PrivateDataService extends BaseService<PrivateData> {
 //                brandMobileInfo.setDdDataNodeId(StructId);
 //                brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
 //                brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
-//
 //                brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
                 brandMobileInfo.setDdDataCreateTime(now);
 

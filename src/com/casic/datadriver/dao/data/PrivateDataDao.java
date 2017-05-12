@@ -100,7 +100,7 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     /**
      * 获取项目所有数据
      */
-    public List<PrivateData> getDataListByProId(Long projectId) {
+    public List<PrivateData> getDataListByProId(Long projectId, QueryFilter queryFilter) {
         return this.getBySqlKey("getDataListByProId", projectId);
     }
 

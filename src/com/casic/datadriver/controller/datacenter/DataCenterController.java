@@ -237,6 +237,7 @@ public class DataCenterController extends AbstractController {
 //            }
 
 
+
         if (DataType == null || DataType.length() <= 0) {
 //            taskPrivateDatas = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
             allnum = taskPrivateDatas.size();
@@ -338,6 +339,7 @@ public class DataCenterController extends AbstractController {
 
         for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
             Long ddDataId = orderDataRelation.getDdDataId();
+
             List<PrivateData> taskPrivateDatas = null;
 //            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
 
@@ -351,6 +353,7 @@ public class DataCenterController extends AbstractController {
                 jsonObject.put("DdDataId", mymode.getDdDataId());
                 jsonMembers.add(jsonObject);
             }
+
         }
         json.put("total", allnum);
         json.put("rows", jsonMembers);
@@ -389,6 +392,7 @@ public class DataCenterController extends AbstractController {
         for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
             Long ddDataId = orderDataRelation.getDdDataId();
 //            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
+
             List<PrivateData> taskPrivateDatas = null;
 
             for (int i = 0; i < taskPrivateDatas.size(); i++) {
@@ -401,6 +405,7 @@ public class DataCenterController extends AbstractController {
                 jsonObject.put("DdDataId", mymodel.getDdDataId());
                 jsonMembers.add(jsonObject);
             }
+
         }
         json.put("total", orderDataRelation_list.size());
         json.put("rows", jsonMembers);
@@ -481,6 +486,7 @@ public class DataCenterController extends AbstractController {
     @Action(description = "返回任务发布订购数据列表")
     public ModelAndView showDataVersion(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+
 //        Long ddDataId = RequestUtil.getLong(request, "id");
 //
 //        List<DataVersion> dataVersion_list = this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
@@ -545,6 +551,7 @@ public class DataCenterController extends AbstractController {
 
         dataSnapInfoIdService.add(dataSnapInfoId);
         List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(projectId);
+
         for (int i = 0; i < taskInfoList.size(); i++) {
 //            List<PrivateData> privateDataList = privateDataService.queryPrivateDataByddTaskID(taskInfoList.get(i).getDdTaskId());
             List<PrivateData> privateDataList =null;
@@ -578,18 +585,19 @@ public class DataCenterController extends AbstractController {
         Long ddTaskId = RequestUtil.getLong(request, "ddTaskId");
         String ddSnapShotTime = RequestUtil.getString(request, "ddSnapShotTime");
 //        List<PrivateData> privateDataList = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
+
         List<PrivateData> privateDataList = null;
         List<DataSnapshot> dataSnapshotList = new ArrayList<DataSnapshot>();
-        for (int i = 0; i < privateDataList.size(); i++) {
-            List<DataSnapshot> privateDataSnapshotList = dataSnapshotService.getByddDataId(privateDataList.get(i).getDdDataId());
-            for (int j = 0; j < privateDataSnapshotList.size(); j++) {
-                String time = privateDataSnapshotList.get(j).getDdSnapshotTime();
-                if (time.equals(ddSnapShotTime)) {
-                    dataSnapshotList.add(privateDataSnapshotList.get(j));
-                }
-            }
-
-        }
+//        for (int i = 0; i < privateDataList.size(); i++) {
+//            List<DataSnapshot> privateDataSnapshotList = dataSnapshotService.getByddDataId(privateDataList.get(i).getDdDataId());
+//            for (int j = 0; j < privateDataSnapshotList.size(); j++) {
+//                String time = privateDataSnapshotList.get(j).getDdSnapshotTime();
+//                if (time.equals(ddSnapShotTime)) {
+//                    dataSnapshotList.add(privateDataSnapshotList.get(j));
+//                }
+//            }
+//
+//        }
         ModelAndView mv = this.getAutoView().addObject("dataSnapshotList",
                 dataSnapshotList);
         return mv;
@@ -603,6 +611,7 @@ public class DataCenterController extends AbstractController {
      * @param response the response
      * @throws Exception the exception
      */
+
     @RequestMapping("showdatashot")
     @Action(description = "查看数据快照")
     public ModelAndView showdatashot(HttpServletRequest request, HttpServletResponse response) throws Exception {
