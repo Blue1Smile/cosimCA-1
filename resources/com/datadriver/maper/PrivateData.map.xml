@@ -123,21 +123,21 @@
         select
         <include refid="Base_Column_List"/>
         from dd_private_data
-        where DD_DATA_TASK_ID = #{id} AND DD_DATA_PUBLISH_STATE = 0
+        where DD_DATA_TASK_ID = #{taskId} AND DD_DATA_PUBLISH_STATE = 0
     </select>
 
     <select id="getOrdListByTaskId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_private_data
-        where DD_DATA_TASK_ID = #{id} AND DD_DATA_ORDER_STATE = 1
+        where DD_DATA_TASK_ID = #{taskId} AND DD_DATA_ORDER_STATE = 1
     </select>
 
     <select id="getUnOrdListByTaskId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_private_data
-        where DD_DATA_TASK_ID = #{id} AND DD_DATA_ORDER_STATE = 0
+        where DD_DATA_TASK_ID = #{taskId} AND DD_DATA_ORDER_STATE = 0
     </select>
 
     <update id="update" parameterType="com.casic.datadriver.model.data.PrivateData">
@@ -172,16 +172,16 @@
     <delete id="delByTaskId">
         DELETE FROM dd_private_data
         WHERE
-        DD_DATA_TASK_ID=#{ddDataTaskId}
+        DD_DATA_TASK_ID=#{taskId}
     </delete>
 
     <delete id="delDataById" parameterType="java.lang.Long">
         delete from dd_private_data
-        where DD_DATA_ID = #{ddDataId,jdbcType=BIGINT}
+        where DD_DATA_ID = #{dataId,jdbcType=BIGINT}
     </delete>
 
     <delete id="delByPId" parameterType="java.lang.Long">
         delete from dd_private_data
-        where DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=NUMERIC}
+        where DD_DATA_PARENT_ID = #{parentId,jdbcType=NUMERIC}
     </delete>
 </mapper>
