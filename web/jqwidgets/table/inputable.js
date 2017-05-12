@@ -1,6 +1,6 @@
 /**
  * Created by d on 2017/5/9.
- * 任务输入表单js
+ * 任务输出表单js
  */
 $(document).ready(function () {
     var newRowID = null;
@@ -9,35 +9,38 @@ $(document).ready(function () {
         {
             dataType: "tab",
             dataFields: [
-                {name: "Id", type: "number"},
-                {name: "Name", type: "string"},
-                {name: "ParentID", type: "number"},
-                {name: "Population", type: "number"}
+                {name: "dataId", type: "number"},
+                {name: "dataName", type: "string"},
+                {name: "filePath", type: "string"},
+                {name: "parentId", type: "number"},
+                {name: "taskId", type: "number"},
+                {name: "dataType", type: "string"},
+                {name: "dataDescription", type: "string"},
+                {name: "publishState", type: "string"},
+                {name: "orderState", type: "string"},
+                {name: "submitState", type: "string"},
+                {name: "taskName", type: "string"},
+                {name: "creator", type: "string"},
+                {name: "createTime", type: "string"},
+                {name: "projectId", type: "number"},
+                {name: "creatorId", type: "number"},
+                {name: "dataUnit", type: "string"},
+                {name: "dataValue", type: "string"}
             ],
             hierarchy: {
-                keyDataField: {name: 'Id'},
-                parentDataField: {name: 'ParentID'}
+                keyDataField: {name: 'dataId'},
+                parentDataField: {name: 'parentId'}
             },
-            id: 'Id',
-            url: '../sampledata/locations.tsv',
+            id: 'dataId',
+            url: 'showstructdata.ht',
             addRow: function (rowID, rowData, position, parentID, commit) {
-                // synchronize with the server - send insert command
-                // call commit with parameter true if the synchronization with the server is successful
-                // and with parameter false if the synchronization failed.
-                // you can pass additional argument to the commit callback which represents the new ID if it is generated from a DB.
                 commit(true);
                 newRowID = rowID;
             },
             updateRow: function (rowID, rowData, commit) {
-                // synchronize with the server - send update command
-                // call commit with parameter true if the synchronization with the server is successful
-                // and with parameter false if the synchronization failed.
                 commit(true);
             },
             deleteRow: function (rowID, commit) {
-                // synchronize with the server - send delete command
-                // call commit with parameter true if the synchronization with the server is successful
-                // and with parameter false if the synchronization failed.
                 commit(true);
             }
         };
@@ -46,7 +49,7 @@ $(document).ready(function () {
             // data is loaded.
         }
     });
-    $("#treeGrid").jqxTreeGrid(
+    $("#treeGridOut").jqxTreeGrid(
         {
             width: 850,
             source: dataAdapter,
@@ -144,71 +147,74 @@ $(document).ready(function () {
                     }
                 }
                 var rowKey = null;
-                $("#treeGrid").on('rowSelect', function (event) {
+                $("#treeGridOut").on('rowSelect', function (event) {
                     var args = event.args;
                     rowKey = args.key;
                     updateButtons('Select');
                 });
-                $("#treeGrid").on('rowUnselect', function (event) {
+                $("#treeGridOut").on('rowUnselect', function (event) {
                     updateButtons('Unselect');
                 });
-                $("#treeGrid").on('rowEndEdit', function (event) {
+                $("#treeGridOut").on('rowEndEdit', function (event) {
                     updateButtons('End Edit');
                 });
-                $("#treeGrid").on('rowBeginEdit', function (event) {
+                $("#treeGridOut").on('rowBeginEdit', function (event) {
                     updateButtons('Edit');
                 });
                 addButton.click(function (event) {
                     if (!addButton.jqxButton('disabled')) {
-                        $("#treeGrid").jqxTreeGrid('expandRow', rowKey);
+                        $("#treeGridOut").jqxTreeGrid('expandRow', rowKey);
                         // add new empty row.
-                        $("#treeGrid").jqxTreeGrid('addRow', null, {}, 'first', rowKey);
+                        $("#treeGridOut").jqxTreeGrid('addRow', null, {}, 'first', rowKey);
                         // select the first row and clear the selection.
-                        $("#treeGrid").jqxTreeGrid('clearSelection');
-                        $("#treeGrid").jqxTreeGrid('selectRow', newRowID);
+                        $("#treeGridOut").jqxTreeGrid('clearSelection');
+                        $("#treeGridOut").jqxTreeGrid('selectRow', newRowID);
                         // edit the new row.
-                        $("#treeGrid").jqxTreeGrid('beginRowEdit', newRowID);
+                        $("#treeGridOut").jqxTreeGrid('beginRowEdit', newRowID);
                         updateButtons('add');
                     }
                 });
                 cancelButton.click(function (event) {
                     if (!cancelButton.jqxButton('disabled')) {
                         // cancel changes.
-                        $("#treeGrid").jqxTreeGrid('endRowEdit', rowKey, true);
+                        $("#treeGridOut").jqxTreeGrid('endRowEdit', rowKey, true);
                     }
                 });
                 updateButton.click(function (event) {
                     if (!updateButton.jqxButton('disabled')) {
                         // save changes.
-                        $("#treeGrid").jqxTreeGrid('endRowEdit', rowKey, false);
+                        $("#treeGridOut").jqxTreeGrid('endRowEdit', rowKey, false);
                     }
                 });
                 editButton.click(function () {
                     if (!editButton.jqxButton('disabled')) {
-                        $("#treeGrid").jqxTreeGrid('beginRowEdit', rowKey);
+                        $("#treeGridOut").jqxTreeGrid('beginRowEdit', rowKey);
                         updateButtons('edit');
                     }
                 });
                 deleteButton.click(function () {
                     if (!deleteButton.jqxButton('disabled')) {
-                        var selection = $("#treeGrid").jqxTreeGrid('getSelection');
+                        var selection = $("#treeGridOut").jqxTreeGrid('getSelection');
                         if (selection.length > 1) {
                             var keys = new Array();
                             for (var i = 0; i < selection.length; i++) {
-                                keys.push($("#treeGrid").jqxTreeGrid('getKey', selection[i]));
+                                keys.push($("#treeGridOut").jqxTreeGrid('getKey', selection[i]));
                             }
-                            $("#treeGrid").jqxTreeGrid('deleteRow', keys);
+                            $("#treeGridOut").jqxTreeGrid('deleteRow', keys);
                         }
                         else {
-                            $("#treeGrid").jqxTreeGrid('deleteRow', rowKey);
+                            $("#treeGridOut").jqxTreeGrid('deleteRow', rowKey);
                         }
                         updateButtons('delete');
                     }
                 });
             },
             columns: [
-                {text: 'Location Name', dataField: "Name", align: 'center', width: '50%'},
-                {text: 'Population', dataField: "Population", align: 'right', cellsAlign: 'right', width: '50%'}
+                {text: '名称', dataField: "dataName", align: 'left', width: '25%'},
+                {text: '类型', dataField: "dataType", align: 'left', width: '10%'},
+                {text: '最新值', dataField: "dataValue", align: 'left', width: '30%'},
+                {text: '单位', dataField: "dataUnit", align: 'left', width: '10%'},
+                {text: '发布状态', dataField: "publishState", align: 'left', width: '20%'}
             ]
         });
 });
