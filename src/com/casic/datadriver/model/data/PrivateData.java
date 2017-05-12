@@ -4,93 +4,57 @@ import com.hotent.core.model.BaseModel;
 
 import java.util.Date;
 
-public class PrivateData extends BaseModel {
+public class PrivateData extends BaseModel{
+
     private Long ddDataId;
 
     private String ddDataName;
 
-    private Integer ddDataType;
+    private Byte ddDataType;
 
     private String ddDataDescription;
 
     private Long ddDataTaskId;
 
-    private Long ddDataPublishType;
+    private Byte ddDataPublishState;
 
-    private String ddDataLastestValue;
+    private Short ddDataOrderState;
 
-
-    private Long ddDataSubmiteState;
-
-    private Long ddDataCreatePerson;
+    private Short ddDataIsSubmit;
 
     private Date ddDataCreateTime;
 
-    private Long ddDataIsDelivery;
+    private String ddDataCreator;
 
-    private String ddDataSensitiveness;
+    private Long ddDataCreatorId;
 
-    private String ddDataTaskName;
+    private Long ddDataSenMin;
 
-    public Long getDdDataParentId() {
-        return ddDataParentId;
-    }
-
-    public void setDdDataParentId(Long ddDataParentId) {
-        this.ddDataParentId = ddDataParentId;
-    }
-
-    public String getDdDataEngName() {
-        return ddDataEngName;
-    }
+    private Long ddDataSenMax;
 
     private Long ddDataParentId;
 
+    private String ddDataLastestValue;
+
     private String ddDataUnit;
+
+    private String ddDataTaskName;
 
     private String ddDataEngName;
 
-    public String getDdDataPath() {
-        return ddDataPath;
-    }
-
-    public void setDdDataPath(String ddDataPath) {
-        this.ddDataPath = ddDataPath;
-    }
-
     private String ddDataPath;
 
-    public String getDataEngName() {
-        return ddDataEngName;
-    }
+    private String ddDataNodePath;
 
-    public void setDdDataEngName(String ddDataEngName) {
-        this.ddDataEngName = ddDataEngName;
-    }
+    private Short ddDataDepth;
 
-    public String getDdDataUnit() {
-        return ddDataUnit;
-    }
+    private Short ddDataIsLeaf;
 
-    public void setDdDataUnit(String ddDataUnit) {
-        this.ddDataUnit = ddDataUnit;
-    }
+    private Long ddDataProjId;
 
-    public Long getDdDataNodeId() {
-        return ddDataParentId;
-    }
+    private Long ddDataReserved1;
 
-    public void setDdDataNodeId(Long ddDataParentId) {
-        this.ddDataParentId = ddDataParentId;
-    }
-
-    public String getDdDataTaskName() {
-        return ddDataTaskName;
-    }
-
-    public void setDdDataTaskName(String ddDataTaskName) {
-        this.ddDataTaskName = ddDataTaskName;
-    }
+    private String ddDataReserved2;
 
     public Long getDdDataId() {
         return ddDataId;
@@ -108,11 +72,11 @@ public class PrivateData extends BaseModel {
         this.ddDataName = ddDataName;
     }
 
-    public Integer getDdDataType() {
+    public Byte getDdDataType() {
         return ddDataType;
     }
 
-    public void setDdDataType(Integer ddDataType) {
+    public void setDdDataType(Byte ddDataType) {
         this.ddDataType = ddDataType;
     }
 
@@ -132,36 +96,28 @@ public class PrivateData extends BaseModel {
         this.ddDataTaskId = ddDataTaskId;
     }
 
-    public Long getDdDataPublishType() {
-        return ddDataPublishType;
+    public Byte getDdDataPublishState() {
+        return ddDataPublishState;
     }
 
-    public void setDdDataPublishType(Long ddDataPublishType) {
-        this.ddDataPublishType = ddDataPublishType;
+    public void setDdDataPublishState(Byte ddDataPublishState) {
+        this.ddDataPublishState = ddDataPublishState;
     }
 
-    public String getDdDataLastestValue() {
-        return ddDataLastestValue;
+    public Short getDdDataOrderState() {
+        return ddDataOrderState;
     }
 
-    public void setDdDataLastestValue(String ddDataLastestValue) {
-        this.ddDataLastestValue = ddDataLastestValue;
+    public void setDdDataOrderState(Short ddDataOrderState) {
+        this.ddDataOrderState = ddDataOrderState;
     }
 
-    public Long getDdDataSubmiteState() {
-        return ddDataSubmiteState;
+    public Short getDdDataIsSubmit() {
+        return ddDataIsSubmit;
     }
 
-    public void setDdDataSubmiteState(Long ddDataSubmiteState) {
-        this.ddDataSubmiteState = ddDataSubmiteState;
-    }
-
-    public Long getDdDataCreatePerson() {
-        return ddDataCreatePerson;
-    }
-
-    public void setDdDataCreatePerson(Long ddDataCreatePerson) {
-        this.ddDataCreatePerson = ddDataCreatePerson;
+    public void setDdDataIsSubmit(Short ddDataIsSubmit) {
+        this.ddDataIsSubmit = ddDataIsSubmit;
     }
 
     public Date getDdDataCreateTime() {
@@ -172,19 +128,131 @@ public class PrivateData extends BaseModel {
         this.ddDataCreateTime = ddDataCreateTime;
     }
 
-    public Long getDdDataIsDelivery() {
-        return ddDataIsDelivery;
+    public String getDdDataCreator() {
+        return ddDataCreator;
     }
 
-    public void setDdDataIsDelivery(Long ddDataIsDelivery) {
-        this.ddDataIsDelivery = ddDataIsDelivery;
+    public void setDdDataCreator(String ddDataCreator) {
+        this.ddDataCreator = ddDataCreator;
     }
 
-    public String getDdDataSensitiveness() {
-        return ddDataSensitiveness;
+    public Long getDdDataCreatorId() {
+        return ddDataCreatorId;
     }
 
-    public void setDdDataSensitiveness(String ddDataSensitiveness) {
-        this.ddDataSensitiveness = ddDataSensitiveness;
+    public void setDdDataCreatorId(Long ddDataCreatorId) {
+        this.ddDataCreatorId = ddDataCreatorId;
+    }
+
+    public Long getDdDataSenMin() {
+        return ddDataSenMin;
+    }
+
+    public void setDdDataSenMin(Long ddDataSenMin) {
+        this.ddDataSenMin = ddDataSenMin;
+    }
+
+    public Long getDdDataSenMax() {
+        return ddDataSenMax;
+    }
+
+    public void setDdDataSenMax(Long ddDataSenMax) {
+        this.ddDataSenMax = ddDataSenMax;
+    }
+
+    public Long getDdDataParentId() {
+        return ddDataParentId;
+    }
+
+    public void setDdDataParentId(Long ddDataParentId) {
+        this.ddDataParentId = ddDataParentId;
+    }
+
+    public String getDdDataLastestValue() {
+        return ddDataLastestValue;
+    }
+
+    public void setDdDataLastestValue(String ddDataLastestValue) {
+        this.ddDataLastestValue = ddDataLastestValue;
+    }
+
+    public String getDdDataUnit() {
+        return ddDataUnit;
+    }
+
+    public void setDdDataUnit(String ddDataUnit) {
+        this.ddDataUnit = ddDataUnit;
+    }
+
+    public String getDdDataTaskName() {
+        return ddDataTaskName;
+    }
+
+    public void setDdDataTaskName(String ddDataTaskName) {
+        this.ddDataTaskName = ddDataTaskName;
+    }
+
+    public String getDdDataEngName() {
+        return ddDataEngName;
+    }
+
+    public void setDdDataEngName(String ddDataEngName) {
+        this.ddDataEngName = ddDataEngName;
+    }
+
+    public String getDdDataPath() {
+        return ddDataPath;
+    }
+
+    public void setDdDataPath(String ddDataPath) {
+        this.ddDataPath = ddDataPath;
+    }
+
+    public String getDdDataNodePath() {
+        return ddDataNodePath;
+    }
+
+    public void setDdDataNodePath(String ddDataNodePath) {
+        this.ddDataNodePath = ddDataNodePath;
+    }
+
+    public Short getDdDataDepth() {
+        return ddDataDepth;
+    }
+
+    public void setDdDataDepth(Short ddDataDepth) {
+        this.ddDataDepth = ddDataDepth;
+    }
+
+    public Short getDdDataIsLeaf() {
+        return ddDataIsLeaf;
+    }
+
+    public void setDdDataIsLeaf(Short ddDataIsLeaf) {
+        this.ddDataIsLeaf = ddDataIsLeaf;
+    }
+
+    public Long getDdDataProjId() {
+        return ddDataProjId;
+    }
+
+    public void setDdDataProjId(Long ddDataProjId) {
+        this.ddDataProjId = ddDataProjId;
+    }
+
+    public Long getDdDataReserved1() {
+        return ddDataReserved1;
+    }
+
+    public void setDdDataReserved1(Long ddDataReserved1) {
+        this.ddDataReserved1 = ddDataReserved1;
+    }
+
+    public String getDdDataReserved2() {
+        return ddDataReserved2;
+    }
+
+    public void setDdDataReserved2(String ddDataReserved2) {
+        this.ddDataReserved2 = ddDataReserved2;
     }
 }
