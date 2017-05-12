@@ -24,15 +24,6 @@
             background-color: #ffffff;
             width: 100% !important;
         }
-
-        .panel {
-            padding-top: 0px !important;
-        }
-
-        .panel-body {
-            padding: 5px !important;
-            border-radius: 0px !important;
-        }
     </style>
 </head>
 <body>
@@ -100,9 +91,8 @@
             })
         }
     };
-
     $(function () {
-        outputTable.init()
+        outputTableInit("${ctx}/datadriver/privatedata/outputData.ht?taskId=${taskId}");
     });
     //Excel批量导入
     function importPrivateData(taskId, projectId) {
@@ -117,4 +107,5 @@
     });
 
 </script>
+
 </html>
