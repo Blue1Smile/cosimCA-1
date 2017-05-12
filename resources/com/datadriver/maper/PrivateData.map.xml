@@ -140,6 +140,13 @@
         where DD_DATA_TASK_ID = #{taskId} AND DD_DATA_ORDER_STATE = 0
     </select>
 
+    <select id="getDataListByProId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_private_data
+        where DD_DATA_PROJ_ID = #{projectId}
+    </select>
+
     <update id="update" parameterType="com.casic.datadriver.model.data.PrivateData">
         update dd_private_data
         set DD_DATA_NAME = #{ddDataName,jdbcType=VARCHAR},

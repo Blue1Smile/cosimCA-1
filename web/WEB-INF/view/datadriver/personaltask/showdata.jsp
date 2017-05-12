@@ -102,7 +102,7 @@
     };
 
     $(function () {
-        initTable();
+        outputTable.init()
     });
     //Excel批量导入
     function importPrivateData(taskId, projectId) {
