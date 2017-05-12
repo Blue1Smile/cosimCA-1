@@ -1,16 +1,18 @@
 package com.casic.datadriver.service.data;
 
 import com.casic.datadriver.dao.data.DataStructDao;
+import com.casic.datadriver.dao.data.OrderDataRelationDao;
 import com.casic.datadriver.dao.data.PrivateDataDao;
-import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.DataStruct;
 import com.casic.datadriver.model.data.PrivateData;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
 import com.hotent.core.util.ContextUtil;
 import com.hotent.core.util.UniqueIdUtil;
-import com.hotent.core.web.query.QueryFilter;
 import com.hotent.platform.auth.ISysUser;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -25,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.casic.datadriver.controller.ModelCenterController.addIndentBlank;
+
 /**
  * The Class PrivateDataService.
  */
@@ -36,6 +40,9 @@ public class PrivateDataService extends BaseService<PrivateData> {
      */
     @Resource
     private PrivateDataDao privateDataDao;
+
+    @Resource
+    private OrderDataRelationDao orderDataRelationDao;
 
     @Resource
     private DataStructDao dataStructDao;
@@ -50,60 +57,200 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return this.privateDataDao;
     }
 
-
-    public List<PrivateData> queryPrivateDataBasicInfoList(QueryFilter queryFilter) {
-        return this.privateDataDao.queryPrivateDataBasicInfoList(queryFilter);
-    }
-
-    public List<PrivateData> selectByStructid(Long Structid) {
-        return this.privateDataDao.selectByStructid(Structid);
-    }
-
-    public List<PrivateData> queryPrivateDataByddTaskID(long id) {
-        return this.privateDataDao.queryPrivateDataByddTaskID(id);
+    /**
+     * 添加一个数据
+     */
+    public void addSingleData(PrivateData privateData) {
+        privateDataDao.addSingleData(privateData);
     }
 
     /**
-     * 2016/12/4/�޸�
+     * 获取所有数据
      */
-
-    public List<PrivateData> getByddDataId(long id) {
-        return this.privateDataDao.getByddDataId(id);
-    }
-
-    public List<PrivateData> getBymodel(PageInfo model) {
-        return this.privateDataDao.getBymodel(model);
+    public List<PrivateData> getAll() {
+       return privateDataDao.getAll();
     }
 
     /**
-     * 2017/02/16/
+     * 根据数据ID获取数据
      */
-
-    public PrivateData getDataById(long id) {
-        return this.privateDataDao.getDataById(id);
+    public PrivateData getDataById(Long dataId) {
+        return privateDataDao.getDataById(dataId);
     }
 
-
-    public void updatedata(PrivateData privateData) {
-        this.privateDataDao.updatedata(privateData);
+    /**
+     * 根据数据ParentID获取数据
+     */
+    public List<PrivateData> getDataListByPId(Long parentId) {
+        return privateDataDao.getDataListByPId(parentId);
     }
 
-    public void delBySructId(Long ddDataParentId) {
-        this.privateDataDao.delBySructId(ddDataParentId);
+    /**
+     * 获取任务发布的数据
+     */
+    public String getPubListByTaskId(Long taskId) {
+
+        return null;
+    }
+    public static String formatJson(String jsonStr) {
+        if (null == jsonStr || "".equals(jsonStr)) return "";
+        StringBuilder sb = new StringBuilder();
+        char last = '\0';
+        char current = '\0';
+        int indent = 0;
+        for (int i = 0; i < jsonStr.length(); i++) {
+            last = current;
+            current = jsonStr.charAt(i);
+            switch (current) {
+                case '{':
+                case '[':
+                    sb.append(current);
+                    sb.append('\n');
+                    indent++;
+                    addIndentBlank(sb, indent);
+                    break;
+                case '}':
+                case ']':
+                    sb.append('\n');
+                    indent--;
+                    addIndentBlank(sb, indent);
+                    sb.append(current);
+                    break;
+                case ',':
+                    sb.append(current);
+                    if (last != '\\') {
+                        sb.append('\n');
+                        addIndentBlank(sb, indent);
+                    }
+                    break;
+                default:
+                    sb.append(current);
+            }
+        }
+
+        return sb.toString();
+    }
+    /**
+     * 获取任务未发布的数据
+     */
+    public List<PrivateData> getUnPubListByTaskId(Long taskId) {
+        return privateDataDao.getUnPubListByTaskId(taskId);
     }
 
-
-    public List<PrivateData> getListByIdPage(PageInfo pageInfo) {
-        return this.privateDataDao.getListByIdPage(pageInfo);
+    /**
+     * 获取任务订阅的数据
+     */
+    public List<PrivateData> getOrdListByTaskId(Long taskId) {
+        return privateDataDao.getOrdListByTaskId(taskId);
     }
 
-    public List<PrivateData> getPublishDataList(Long taskId) {
-        return this.privateDataDao.getPublishDataList(taskId);
+    /**
+     * 获取任务未订阅的数据
+     */
+    public List<PrivateData> getUnOrdListByTaskId(Long taskId) {
+        return privateDataDao.getUnOrdListByTaskId(taskId);
     }
 
-    public List<PrivateData> getPublishListPage(PageInfo pageInfo) {
-        return this.privateDataDao.getPublishListPage(pageInfo);
+    /**
+     * 获取任务输出数据(私有)
+     */
+    public String getOutputdataByTaskId(Long taskId) {
+        return ToJson(privateDataDao.getDataListByTaskId(taskId));
     }
+
+    /**
+     * 获取任务输入数据(项目)
+     */
+    public String getInputdataByprojectId(Long projectId,Long taskId) {
+        List<PrivateData> allPrivateData = privateDataDao.getDataListByProId(projectId);
+        QueryParameters queryParameters = null;
+        JSONObject jsonObject = new JSONObject();
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        queryParameters.setId(taskId);
+        for(int i = 0; i < allPrivateData.size(); i++)
+        {
+            PrivateData mymodel = allPrivateData.get(i);
+            queryParameters.setType(mymodel.getDdDataId());
+            jsonObject.put("dataId",mymodel.getDdDataId());
+            jsonObject.put("dataName",mymodel.getDdDataName());
+            jsonObject.put("filePath",mymodel.getDdDataPath());
+            jsonObject.put("parentId",mymodel.getDdDataParentId());
+            jsonObject.put("taskId",mymodel.getDdDataTaskId());
+            jsonObject.put("dataType",mymodel.getDdDataType());
+            jsonObject.put("dataDescription",mymodel.getDdDataDescription());
+            jsonObject.put("publishState",mymodel.getDdDataPublishState());
+            jsonObject.put("orderState",mymodel.getDdDataOrderState());
+            jsonObject.put("submitState",mymodel.getDdDataIsSubmit());
+            jsonObject.put("taskName",mymodel.getDdDataTaskName());
+            jsonObject.put("creator",mymodel.getDdDataCreator());
+            jsonObject.put("createTime",mymodel.getDdDataCreateTime());
+            jsonObject.put("projectId",mymodel.getDdDataProjId());
+            jsonObject.put("creatorId",mymodel.getDdDataCreatorId());
+            jsonObject.put("dataUnit",mymodel.getDdDataUnit());
+            jsonObject.put("dataValue",mymodel.getDdDataLastestValue());
+            if(orderDataRelationDao.getDDOrderDataRelation(queryParameters).size()>0)
+            {
+                jsonObject.put("torderState",1) ;//已经订阅该数据
+            }else{
+                jsonObject.put("torderState",0) ;//没有订阅该数据
+            }
+            jsonMembers.add(jsonObject);
+        }
+        return formatJson(jsonMembers.toString());
+    }
+
+    /**
+     * 更新数据
+     */
+    public void updateData(PrivateData privateData) {
+        privateDataDao.updateData(privateData);
+    }
+
+    /**
+     * 根据任务ID删除单个数据
+     */
+    public void delByTaskId(Long taskId) {
+        privateDataDao.delByTaskId(taskId);
+    }
+
+    /**
+     * 生成输出json
+     */
+    public String ToJson(List<PrivateData> list)
+    {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+
+        for (int i = 0; i < list.size(); i++) {
+            PrivateData mymodel = list.get(i);
+            jsonObject.put("dataId",mymodel.getDdDataId());
+            jsonObject.put("dataName",mymodel.getDdDataName());
+            jsonObject.put("filePath",mymodel.getDdDataPath());
+            jsonObject.put("parentId",mymodel.getDdDataParentId());
+            jsonObject.put("taskId",mymodel.getDdDataTaskId());
+            jsonObject.put("dataType",mymodel.getDdDataType());
+            jsonObject.put("dataDescription",mymodel.getDdDataDescription());
+            jsonObject.put("publishState",mymodel.getDdDataPublishState());
+            jsonObject.put("orderState",mymodel.getDdDataOrderState());
+            jsonObject.put("submitState",mymodel.getDdDataIsSubmit());
+            jsonObject.put("taskName",mymodel.getDdDataTaskName());
+            jsonObject.put("creator",mymodel.getDdDataCreator());
+            jsonObject.put("createTime",mymodel.getDdDataCreateTime());
+            jsonObject.put("projectId",mymodel.getDdDataProjId());
+            jsonObject.put("creatorId",mymodel.getDdDataCreatorId());
+            jsonObject.put("dataUnit",mymodel.getDdDataUnit());
+            jsonObject.put("dataValue",mymodel.getDdDataLastestValue());
+            jsonMembers.add(jsonObject);
+        }
+//        json.put("rows", jsonMembers);
+//        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
+        String jsonstring = formatJson(jsonMembers.toString());
+        System.out.println(jsonstring);
+        return jsonstring;
+    }
+
 
     public static String getValue(HSSFCell cell) {
         String value = "";
@@ -177,18 +324,18 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
                 brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
                 brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
-                brandMobileInfo.setDdDataType(DataType);
+//                brandMobileInfo.setDdDataType(DataType);
                 brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
                 brandMobileInfo.setDdDataTaskName(taskname);
 //                   阈值定义问题
 //                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));
                 brandMobileInfo.setDdDataUnit(String.valueOf(hssfRow.getCell(7)));
                 brandMobileInfo.setDdDataTaskId(taskId);
-                brandMobileInfo.setDdDataNodeId(StructId);
-                brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
-                brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
-
-                brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
+//                brandMobileInfo.setDdDataNodeId(StructId);
+//                brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
+//                brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
+//
+//                brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
                 brandMobileInfo.setDdDataCreateTime(now);
 
 
