@@ -238,13 +238,13 @@ public class DataCenterController extends AbstractController {
 //            }
 
 
-        if (DataType == null || DataType.length() <= 0) {
-            taskPrivateDatas = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
-            allnum = taskPrivateDatas.size();
-        } else {
-            taskPrivateDatas = this.privateDataService.getBymodel(pageinfo);
-            allnum = taskPrivateDatas.size();
-        }
+//        if (DataType == null || DataType.length() <= 0) {
+//            taskPrivateDatas = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
+//            allnum = taskPrivateDatas.size();
+//        } else {
+//            taskPrivateDatas = this.privateDataService.getBymodel(pageinfo);
+//            allnum = taskPrivateDatas.size();
+//        }
         if (b > taskPrivateDatas.size()) {
             b = Long.valueOf(taskPrivateDatas.size());
         }
@@ -339,18 +339,18 @@ public class DataCenterController extends AbstractController {
 
         for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
             Long ddDataId = orderDataRelation.getDdDataId();
-            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
+//            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
 
-            for (int i = 0; i < taskPrivateDatas.size(); i++) {
-                PrivateData mymode = taskPrivateDatas.get(i);
-                jsonObject.put("DdDataName", mymode.getDdDataName());
-                jsonObject.put("DdDataLastestValue", mymode.getDdDataLastestValue());
-                jsonObject.put("DdDataType", mymode.getDdDataType());
-                jsonObject.put("DdDataCreateTime", mymode.getDdDataCreateTime());
-                jsonObject.put("DdDataDescription", mymode.getDdDataDescription());
-                jsonObject.put("DdDataId", mymode.getDdDataId());
-                jsonMembers.add(jsonObject);
-            }
+//            for (int i = 0; i < taskPrivateDatas.size(); i++) {
+//                PrivateData mymode = taskPrivateDatas.get(i);
+//                jsonObject.put("DdDataName", mymode.getDdDataName());
+//                jsonObject.put("DdDataLastestValue", mymode.getDdDataLastestValue());
+//                jsonObject.put("DdDataType", mymode.getDdDataType());
+//                jsonObject.put("DdDataCreateTime", mymode.getDdDataCreateTime());
+//                jsonObject.put("DdDataDescription", mymode.getDdDataDescription());
+//                jsonObject.put("DdDataId", mymode.getDdDataId());
+//                jsonMembers.add(jsonObject);
+//            }
         }
         json.put("total", allnum);
         json.put("rows", jsonMembers);
@@ -388,18 +388,18 @@ public class DataCenterController extends AbstractController {
 
         for (OrderDataRelation orderDataRelation : orderDataRelation_list) {
             Long ddDataId = orderDataRelation.getDdDataId();
-            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
+//            List<PrivateData> taskPrivateDatas = this.privateDataService.getByddDataId(ddDataId);
 
-            for (int i = 0; i < taskPrivateDatas.size(); i++) {
-                PrivateData mymodel = taskPrivateDatas.get(i);
-                jsonObject.put("DdDataName", mymodel.getDdDataName());
-                jsonObject.put("DdDataLastestValue", mymodel.getDdDataLastestValue());
-                jsonObject.put("DdDataType", mymodel.getDdDataType());
-                jsonObject.put("DdDataCreateTime", mymodel.getDdDataCreateTime());
-                jsonObject.put("DdDataDescription", mymodel.getDdDataDescription());
-                jsonObject.put("DdDataId", mymodel.getDdDataId());
-                jsonMembers.add(jsonObject);
-            }
+//            for (int i = 0; i < taskPrivateDatas.size(); i++) {
+//                PrivateData mymodel = taskPrivateDatas.get(i);
+//                jsonObject.put("DdDataName", mymodel.getDdDataName());
+//                jsonObject.put("DdDataLastestValue", mymodel.getDdDataLastestValue());
+//                jsonObject.put("DdDataType", mymodel.getDdDataType());
+//                jsonObject.put("DdDataCreateTime", mymodel.getDdDataCreateTime());
+//                jsonObject.put("DdDataDescription", mymodel.getDdDataDescription());
+//                jsonObject.put("DdDataId", mymodel.getDdDataId());
+//                jsonMembers.add(jsonObject);
+//            }
         }
         json.put("total", orderDataRelation_list.size());
         json.put("rows", jsonMembers);
@@ -483,20 +483,20 @@ public class DataCenterController extends AbstractController {
         Long ddDataId = RequestUtil.getLong(request, "id");
 
         List<DataVersion> dataVersion_list = this.dataVersionService.queryDataVersionListByddDataId(ddDataId);
-        Integer DataType = privateDataService.getByddDataId(ddDataId).get(0).getDdDataType();
+//        Integer DataType = privateDataService.getByddDataId(ddDataId).get(0).getDdDataType();
         Long DataTaskId = privateDataService.getDataById(ddDataId).getDdDataTaskId();
         JSONObject jsonObject = new JSONObject();
         JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
 
-        for (int i = 0; i < dataVersion_list.size(); i++) {
-            DataVersion mymodel = dataVersion_list.get(i);
-            jsonObject.put("DdDataVersion", mymodel.getDdDataVersion());
-            jsonObject.put("ddDataRecordTime", mymodel.getDdDataRecordTime());
-            jsonObject.put("ddDataValue", mymodel.getDdDataValue());
-            jsonObject.put("DataType", DataType);
-            jsonMembers.add(jsonObject);
-        }
+//        for (int i = 0; i < dataVersion_list.size(); i++) {
+//            DataVersion mymodel = dataVersion_list.get(i);
+//            jsonObject.put("DdDataVersion", mymodel.getDdDataVersion());
+//            jsonObject.put("ddDataRecordTime", mymodel.getDdDataRecordTime());
+//            jsonObject.put("ddDataValue", mymodel.getDdDataValue());
+//            jsonObject.put("DataType", DataType);
+//            jsonMembers.add(jsonObject);
+//        }
 
         json.put("total", dataVersion_list.size());
         json.put("rows", jsonMembers);
@@ -544,19 +544,19 @@ public class DataCenterController extends AbstractController {
 
         dataSnapInfoIdService.add(dataSnapInfoId);
         List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(projectId);
-        for (int i = 0; i < taskInfoList.size(); i++) {
-            List<PrivateData> privateDataList = privateDataService.queryPrivateDataByddTaskID(taskInfoList.get(i).getDdTaskId());
-            for (int j = 0; j < privateDataList.size(); j++) {
-                DataSnapshot dataSnapshot = new DataSnapshot();
-
-                dataSnapshot.setDdDataSnapshotId(UniqueIdUtil.genId());
-                dataSnapshot.setDdDataId(privateDataList.get(j).getDdDataId());
-                dataSnapshot.setDdDataValue(privateDataList.get(j).getDdDataLastestValue());
-                dataSnapshot.setDdSnapshotTime(dateString);
-
-                dataSnapshotService.add(dataSnapshot);
-            }
-        }
+//        for (int i = 0; i < taskInfoList.size(); i++) {
+//            List<PrivateData> privateDataList = privateDataService.queryPrivateDataByddTaskID(taskInfoList.get(i).getDdTaskId());
+//            for (int j = 0; j < privateDataList.size(); j++) {
+//                DataSnapshot dataSnapshot = new DataSnapshot();
+//
+//                dataSnapshot.setDdDataSnapshotId(UniqueIdUtil.genId());
+//                dataSnapshot.setDdDataId(privateDataList.get(j).getDdDataId());
+//                dataSnapshot.setDdDataValue(privateDataList.get(j).getDdDataLastestValue());
+//                dataSnapshot.setDdSnapshotTime(dateString);
+//
+//                dataSnapshotService.add(dataSnapshot);
+//            }
+//        }
         response.sendRedirect(preUrl);
     }
 
@@ -575,18 +575,18 @@ public class DataCenterController extends AbstractController {
             throws Exception {
         Long ddTaskId = RequestUtil.getLong(request, "ddTaskId");
         String ddSnapShotTime = RequestUtil.getString(request, "ddSnapShotTime");
-        List<PrivateData> privateDataList = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
+//        List<PrivateData> privateDataList = this.privateDataService.queryPrivateDataByddTaskID(ddTaskId);
         List<DataSnapshot> dataSnapshotList = new ArrayList<DataSnapshot>();
-        for (int i = 0; i < privateDataList.size(); i++) {
-            List<DataSnapshot> privateDataSnapshotList = dataSnapshotService.getByddDataId(privateDataList.get(i).getDdDataId());
-            for (int j = 0; j < privateDataSnapshotList.size(); j++) {
-                String time = privateDataSnapshotList.get(j).getDdSnapshotTime();
-                if (time.equals(ddSnapShotTime)) {
-                    dataSnapshotList.add(privateDataSnapshotList.get(j));
-                }
-            }
-
-        }
+//        for (int i = 0; i < privateDataList.size(); i++) {
+//            List<DataSnapshot> privateDataSnapshotList = dataSnapshotService.getByddDataId(privateDataList.get(i).getDdDataId());
+//            for (int j = 0; j < privateDataSnapshotList.size(); j++) {
+//                String time = privateDataSnapshotList.get(j).getDdSnapshotTime();
+//                if (time.equals(ddSnapShotTime)) {
+//                    dataSnapshotList.add(privateDataSnapshotList.get(j));
+//                }
+//            }
+//
+//        }
         ModelAndView mv = this.getAutoView().addObject("dataSnapshotList",
                 dataSnapshotList);
         return mv;
@@ -600,40 +600,40 @@ public class DataCenterController extends AbstractController {
      * @param response the response
      * @throws Exception the exception
      */
-    @RequestMapping("showdatashot")
-    @Action(description = "查看数据快照")
-    public ModelAndView showdatashot(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String resultMsg = null;
-
-
-        Long ddDataSnapshotId = RequestUtil.getLong(request, "ddDataSnapshotId");
-        DataSnapshot dataSnapshot = dataSnapshotService.getById(ddDataSnapshotId);
-        Long ddDataId = dataSnapshot.getDdDataId();
-        PrivateData privateData = privateDataService.getById(ddDataId);
-
-        DataShot dataShot = new DataShot();
-        dataShot.setDdDataCreatePerson(privateData.getDdDataCreatePerson());
-        dataShot.setDdDataCreateTime(privateData.getDdDataCreateTime());
-        dataShot.setDdDataDescription(privateData.getDdDataDescription());
-        dataShot.setDdDataId(privateData.getDdDataId());
-        dataShot.setDdDataName(privateData.getDdDataName());
-        dataShot.setDdDataIsDelivery(privateData.getDdDataIsDelivery());
-        dataShot.setDdDataPublishType(privateData.getDdDataPublishType());
-        dataShot.setDdDataSensitiveness(privateData.getDdDataSensitiveness());
-        dataShot.setDdDataSnapShotId(dataSnapshot.getDdDataSnapshotId());
-        dataShot.setDdDataCreateTime(privateData.getDdDataCreateTime());
-        dataShot.setDdDataSubmiteState(privateData.getDdDataSubmiteState());
-        dataShot.setDdDataTaskName(privateData.getDdDataTaskName());
-        dataShot.setDdDataType(privateData.getDdDataType());
-        dataShot.setDdSnapshotPersonId(dataSnapshot.getDdSnapshotPersonId());
-        dataShot.setDdDataValue(dataSnapshot.getDdDataValue());
-        dataShot.setDdDataTag(dataSnapshot.getDdDataTag());
-        dataShot.setDdSnapshotTime(dataSnapshot.getDdSnapshotTime());
-
-        ModelAndView mv = this.getAutoView().addObject("dataShot", dataShot);
-        return mv;
-
-    }
+//    @RequestMapping("showdatashot")
+//    @Action(description = "查看数据快照")
+//    public ModelAndView showdatashot(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        String resultMsg = null;
+//
+//
+//        Long ddDataSnapshotId = RequestUtil.getLong(request, "ddDataSnapshotId");
+//        DataSnapshot dataSnapshot = dataSnapshotService.getById(ddDataSnapshotId);
+//        Long ddDataId = dataSnapshot.getDdDataId();
+//        PrivateData privateData = privateDataService.getById(ddDataId);
+//
+////        DataShot dataShot = new DataShot();
+////        dataShot.setDdDataCreatePerson(privateData.getDdDataCreatePerson());
+////        dataShot.setDdDataCreateTime(privateData.getDdDataCreateTime());
+////        dataShot.setDdDataDescription(privateData.getDdDataDescription());
+////        dataShot.setDdDataId(privateData.getDdDataId());
+////        dataShot.setDdDataName(privateData.getDdDataName());
+////        dataShot.setDdDataIsDelivery(privateData.getDdDataIsDelivery());
+////        dataShot.setDdDataPublishType(privateData.getDdDataPublishType());
+////        dataShot.setDdDataSensitiveness(privateData.getDdDataSensitiveness());
+////        dataShot.setDdDataSnapShotId(dataSnapshot.getDdDataSnapshotId());
+////        dataShot.setDdDataCreateTime(privateData.getDdDataCreateTime());
+////        dataShot.setDdDataSubmiteState(privateData.getDdDataSubmiteState());
+////        dataShot.setDdDataTaskName(privateData.getDdDataTaskName());
+////        dataShot.setDdDataType(privateData.getDdDataType());
+////        dataShot.setDdSnapshotPersonId(dataSnapshot.getDdSnapshotPersonId());
+////        dataShot.setDdDataValue(dataSnapshot.getDdDataValue());
+////        dataShot.setDdDataTag(dataSnapshot.getDdDataTag());
+////        dataShot.setDdSnapshotTime(dataSnapshot.getDdSnapshotTime());
+//
+////        ModelAndView mv = this.getAutoView().addObject("dataShot", dataShot);
+//        return mv;
+//
+//    }
 
     /**
      * 数据快照列表.

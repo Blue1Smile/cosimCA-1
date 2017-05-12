@@ -55,25 +55,25 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return this.privateDataDao.queryPrivateDataBasicInfoList(queryFilter);
     }
 
-    public List<PrivateData> selectByStructid(Long Structid) {
-        return this.privateDataDao.selectByStructid(Structid);
-    }
-
-    public List<PrivateData> queryPrivateDataByddTaskID(long id) {
-        return this.privateDataDao.queryPrivateDataByddTaskID(id);
-    }
+//    public List<PrivateData> selectByStructid(Long Structid) {
+//        return this.privateDataDao.selectByStructid(Structid);
+//    }
+//
+//    public List<PrivateData> queryPrivateDataByddTaskID(long id) {
+//        return this.privateDataDao.queryPrivateDataByddTaskID(id);
+//    }
 
     /**
      * 2016/12/4/�޸�
      */
 
-    public List<PrivateData> getByddDataId(long id) {
-        return this.privateDataDao.getByddDataId(id);
-    }
-
-    public List<PrivateData> getBymodel(PageInfo model) {
-        return this.privateDataDao.getBymodel(model);
-    }
+//    public List<PrivateData> getByddDataId(long id) {
+//        return this.privateDataDao.getByddDataId(id);
+//    }
+//
+//    public List<PrivateData> getBymodel(PageInfo model) {
+//        return this.privateDataDao.getBymodel(model);
+//    }
 
     /**
      * 2017/02/16/
@@ -84,26 +84,26 @@ public class PrivateDataService extends BaseService<PrivateData> {
     }
 
 
-    public void updatedata(PrivateData privateData) {
-        this.privateDataDao.updatedata(privateData);
-    }
+//    public void updatedata(PrivateData privateData) {
+//        this.privateDataDao.updatedata(privateData);
+//    }
+//
+//    public void delBySructId(Long ddDataParentId) {
+//        this.privateDataDao.delBySructId(ddDataParentId);
+//    }
 
-    public void delBySructId(Long ddDataParentId) {
-        this.privateDataDao.delBySructId(ddDataParentId);
-    }
 
+//    public List<PrivateData> getListByIdPage(PageInfo pageInfo) {
+//        return this.privateDataDao.getListByIdPage(pageInfo);
+//    }
 
-    public List<PrivateData> getListByIdPage(PageInfo pageInfo) {
-        return this.privateDataDao.getListByIdPage(pageInfo);
-    }
-
-    public List<PrivateData> getPublishDataList(Long taskId) {
-        return this.privateDataDao.getPublishDataList(taskId);
-    }
-
-    public List<PrivateData> getPublishListPage(PageInfo pageInfo) {
-        return this.privateDataDao.getPublishListPage(pageInfo);
-    }
+//    public List<PrivateData> getPublishDataList(Long taskId) {
+//        return this.privateDataDao.getPublishDataList(taskId);
+//    }
+//
+//    public List<PrivateData> getPublishListPage(PageInfo pageInfo) {
+//        return this.privateDataDao.getPublishListPage(pageInfo);
+//    }
 
     public static String getValue(HSSFCell cell) {
         String value = "";
@@ -177,18 +177,18 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
                 brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
                 brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
-                brandMobileInfo.setDdDataType(DataType);
+//                brandMobileInfo.setDdDataType(DataType);
                 brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
                 brandMobileInfo.setDdDataTaskName(taskname);
 //                   阈值定义问题
 //                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));
                 brandMobileInfo.setDdDataUnit(String.valueOf(hssfRow.getCell(7)));
                 brandMobileInfo.setDdDataTaskId(taskId);
-                brandMobileInfo.setDdDataNodeId(StructId);
-                brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
-                brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
+//                brandMobileInfo.setDdDataNodeId(StructId);
+//                brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
+//                brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
 
-                brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
+//                brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
                 brandMobileInfo.setDdDataCreateTime(now);
 
 

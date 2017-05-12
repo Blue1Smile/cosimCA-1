@@ -84,11 +84,11 @@ public class PrivateDataController extends AbstractController {
         try {
             if (privateData.getDdDataId() == null || privateData.getDdDataId() == 0) {
                 privateData.setDdDataId(UniqueIdUtil.genId());
-                privateData.setDdDataPublishType(0l);
+//                privateData.setDdDataPublishType(0l);
                 privateDataService.addDDPrivateData(privateData);
                 resultMsg = getText("record.added", "数据信息");
             } else {
-                privateDataService.updatedata(privateData);
+//                privateDataService.updatedata(privateData);
                 resultMsg = getText("record.updated", "数据信息");
             }
             writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
@@ -129,7 +129,7 @@ public class PrivateDataController extends AbstractController {
         if (id == null || id == 0) {
             privateDataInfoList = privateDataService.getAll();
         } else {
-            privateDataInfoList = privateDataService.queryPrivateDataByddTaskID(id);
+//            privateDataInfoList = privateDataService.queryPrivateDataByddTaskID(id);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList", privateDataInfoList)
                 .addObject("taskInfo", taskInfo);
@@ -375,7 +375,7 @@ public class PrivateDataController extends AbstractController {
             switch (Integer.parseInt(key)) {
                 case 0://更改数据类型
 //                    String temp0 = obj.getString("0");
-                    privateData.setDdDataType(0);
+//                    privateData.setDdDataType(0);
                     break;
                 case 1://更改数据值
                     String temp1 = obj.getString("1");
@@ -408,7 +408,7 @@ public class PrivateDataController extends AbstractController {
                     privateData.setDdDataDescription(temp3);
                     break;
             }
-            privateDataService.updatedata(privateData);
+//            privateDataService.updatedata(privateData);
         } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);

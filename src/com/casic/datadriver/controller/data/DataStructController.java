@@ -111,9 +111,9 @@ public class DataStructController extends AbstractController {
                         childPrivateData.setDdDataEngName(privateDataList.get(i).getDdDataEngName());
                         childPrivateData.setDdDataDescription(privateDataList.get(i).getDdDataDescription());
                         childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
-                        childPrivateData.setDdDataPublishType(0l);
-                        childPrivateData.setDdDataSubmiteState(0l);
-                        childPrivateData.setDdDataCreatePerson(dataStruct.getDdCreatorId());
+//                        childPrivateData.setDdDataPublishType(0l);
+//                        childPrivateData.setDdDataSubmiteState(0l);
+//                        childPrivateData.setDdDataCreatePerson(dataStruct.getDdCreatorId());
                         childPrivateData.setDdDataCreateTime(dataStruct.getDdCreateTime());
                         childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
                         childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
@@ -127,13 +127,13 @@ public class DataStructController extends AbstractController {
                     childPrivateData.setDdDataId(UniqueIdUtil.genId());
 
                     childPrivateData.setDdDataName(dataStruct.getDdStructName());
-                    childPrivateData.setDdDataType(dataStruct.getDdType());
+//                    childPrivateData.setDdDataType(dataStruct.getDdType());
                     childPrivateData.setDdDataDescription(dataStruct.getDdDescription());
 
                     childPrivateData.setDdDataTaskId(dataStruct.getDdTaskId());
-                    childPrivateData.setDdDataPublishType(0l);
-                    childPrivateData.setDdDataSubmiteState(0l);
-                    childPrivateData.setDdDataCreatePerson(dataStruct.getDdCreatorId());
+//                    childPrivateData.setDdDataPublishType(0l);
+//                    childPrivateData.setDdDataSubmiteState(0l);
+//                    childPrivateData.setDdDataCreatePerson(dataStruct.getDdCreatorId());
                     childPrivateData.setDdDataCreateTime(dataStruct.getDdCreateTime());
                     childPrivateData.setDdDataTaskName(dataStruct.getDdTaskName());
                     childPrivateData.setDdDataParentId(dataStruct.getDdStructId());
@@ -193,7 +193,7 @@ public class DataStructController extends AbstractController {
         try {
             Long ddStructId = RequestUtil.getLong(request, "id");
             dataStructService.delById(ddStructId);
-            privateDataService.delBySructId(ddStructId);
+//            privateDataService.delBySructId(ddStructId);
         } catch (Exception ex) {
         }
         response.sendRedirect(preUrl);
@@ -330,7 +330,7 @@ public class DataStructController extends AbstractController {
 //        Long a = pageSize * (pageNumber - 1);
 //        Long b = pageSize * (pageNumber);
 //        ModelCenterModel temp;88
-        List<PrivateData> privateData_list = privateDataService.selectByStructid(id);
+//        List<PrivateData> privateData_list = privateDataService.selectByStructid(id);
 //
 //
 //
@@ -339,63 +339,63 @@ public class DataStructController extends AbstractController {
 //        }
 //
 //
-        for (int i = 0; i < privateData_list.size(); i++) {
-            PrivateData tempPrivateData = privateData_list.get(i);
-            jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
-            jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
-            jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
-            jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
-            jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
-            jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
-            jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
-            jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
-            jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
-            jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
-            jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
-            jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
-            switch (tempPrivateData.getDdDataType())
-            {
-                case 0 :
-                    jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
-                    break;
-                case 1 :
-                    jsonObject.put("ddDataUnit", "--");
-                    break;
-                case 2 :
-                    jsonObject.put("ddDataUnit", "--");
-                    break;
-                case 3 :
-                    jsonObject.put("ddDataUnit", "--");
-                    break;
-                default :
-                    jsonObject.put("ddDataUnit", "其它");
-                    break;
-            }
-//            jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
-
-            jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
-            switch (tempPrivateData.getDdDataType())
-            {
-                case 0 :
-                    jsonObject.put("shujuleixing", "数值");
-                    break;
-                case 1 :
-                    jsonObject.put("shujuleixing", "结构化数据");
-                    break;
-                case 2 :
-                    jsonObject.put("shujuleixing", "文件");
-                    break;
-                case 3 :
-                    jsonObject.put("shujuleixing", "模型");
-                break;
-                default :
-                    jsonObject.put("shujuleixing", "其它");
-                    break;
-            }
-            jsonMembers.add(jsonObject);
-        }
+//        for (int i = 0; i < privateData_list.size(); i++) {
+//            PrivateData tempPrivateData = privateData_list.get(i);
+//            jsonObject.put("ddDataLastestValue", tempPrivateData.getDdDataLastestValue());
+////            jsonObject.put("ddDataCreatePerson", tempPrivateData.getDdDataCreatePerson());
+////            jsonObject.put("ddDataCreateTime", tempPrivateData.getDdDataCreateTime());
+////            jsonObject.put("ddDataDescription", tempPrivateData.getDdDataDescription());
+////            jsonObject.put("ddDataId", tempPrivateData.getDdDataId());
+////            jsonObject.put("ddDataIsDelivery", tempPrivateData.getDdDataIsDelivery());
+////            jsonObject.put("ddDataName", tempPrivateData.getDdDataName());
+////            jsonObject.put("ddDataPublishType", tempPrivateData.getDdDataPublishType());
+////            jsonObject.put("ddDataSensitiveness", tempPrivateData.getDdDataSensitiveness());
+////            jsonObject.put("ddDataSubmiteState", tempPrivateData.getDdDataSubmiteState());
+//            jsonObject.put("ddDataTaskId", tempPrivateData.getDdDataTaskId());
+//            jsonObject.put("ddDataTaskName", tempPrivateData.getDdDataTaskName());
+//            switch (tempPrivateData.getDdDataType())
+//            {
+//                case 0 :
+//                    jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
+//                    break;
+//                case 1 :
+//                    jsonObject.put("ddDataUnit", "--");
+//                    break;
+//                case 2 :
+//                    jsonObject.put("ddDataUnit", "--");
+//                    break;
+//                case 3 :
+//                    jsonObject.put("ddDataUnit", "--");
+//                    break;
+//                default :
+//                    jsonObject.put("ddDataUnit", "其它");
+//                    break;
+//            }
+////            jsonObject.put("ddDataUnit", tempPrivateData.getDdDataUnit());
 //
-        json.put("total", privateData_list.size());
+//            jsonObject.put("ddDataType", tempPrivateData.getDdDataType());
+//            switch (tempPrivateData.getDdDataType())
+//            {
+//                case 0 :
+//                    jsonObject.put("shujuleixing", "数值");
+//                    break;
+//                case 1 :
+//                    jsonObject.put("shujuleixing", "结构化数据");
+//                    break;
+//                case 2 :
+//                    jsonObject.put("shujuleixing", "文件");
+//                    break;
+//                case 3 :
+//                    jsonObject.put("shujuleixing", "模型");
+//                break;
+//                default :
+//                    jsonObject.put("shujuleixing", "其它");
+//                    break;
+//            }
+//            jsonMembers.add(jsonObject);
+//        }
+//
+//        json.put("total", privateData_list.size());
         json.put("rows", jsonMembers);
 //        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
         String jsonstring = formatJson(json.toString());

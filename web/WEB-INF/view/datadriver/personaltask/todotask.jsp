@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/wizard/bootstro.min.css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
-    <%@include file="/newtable/tablecontext.jsp" %>
+    <%--<%@include file="/newtable/tablecontext.jsp" %>--%>
     <script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
 
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
@@ -79,9 +79,9 @@
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
             <a class="btn btn-primary" href="javascript:void(0)" id="upload_file" onclick=""><span
                     class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
-            <a id="child_btn" href="javascript:void(0)" class="btn btn-primary"><span class="glyphicon glyphicon-stats"></span>
-                创建子任务
-            </a>
+            <%--<a id="child_btn" href="javascript:void(0)" class="btn btn-primary"><span class="glyphicon glyphicon-stats"></span>--%>
+                <%--创建子任务--%>
+            <%--</a>--%>
             <a class="btn btn-info" href="javascript:void(0)" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 提交审核</a>
@@ -162,21 +162,21 @@
 <script type="text/javascript">
     //@ sourceURL=todotask.ht
     $(document).ready(function () {
-        var isbstro = $.cookie('bootstro');
-        if (!isbstro) {
-            wizard.bs.bstro([
-                ['#switch_attr_publish', '<strong style="margin-top:10px;">该tab页负责私有数据创建、展示、发布、管理，以及发布数据的展示、撤销。</strong>'],
-                ['#switch_attr_order', {
-                    content: '<strong style="margin-top:10px;">该tab页负责项目中所有可订阅数据的展示、订阅，以及已订阅数据的管理、展示、撤销订阅。</strong>',
-                    place: 'right'
-                }],
-            ], {
-                obtn: '下次不再提示',
-                exit:function () {
-                    $.cookie('bootstro', 'ok', {expires: 30, path: '/'});
-                }
-            });
-        }
+//        var isbstro = $.cookie('bootstro');
+//        if (!isbstro) {
+//            wizard.bs.bstro([
+//                ['#switch_attr_publish', '<strong style="margin-top:10px;">该tab页负责私有数据创建、展示、发布、管理，以及发布数据的展示、撤销。</strong>'],
+//                ['#switch_attr_order', {
+//                    content: '<strong style="margin-top:10px;">该tab页负责项目中所有可订阅数据的展示、订阅，以及已订阅数据的管理、展示、撤销订阅。</strong>',
+//                    place: 'right'
+//                }],
+//            ], {
+//                obtn: '下次不再提示',
+//                exit:function () {
+//                    $.cookie('bootstro', 'ok', {expires: 30, path: '/'});
+//                }
+//            });
+//        }
 
         $.get("showdata.ht?id=${TaskInfo.ddTaskId}&projectId=${TaskInfo.ddTaskProjectId}", function (data) {
             $('#data').html(data);
