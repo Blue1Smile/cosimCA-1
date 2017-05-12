@@ -1,53 +1,31 @@
 package com.casic.datadriver.controller.project;
 
 
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.io.IOException;
-import java.io.InputStream;
-
-
 import com.casic.datadriver.model.data.DataStruct;
-import com.casic.datadriver.model.data.OrderDataRelation;
 import com.casic.datadriver.model.data.PrivateData;
 import com.casic.datadriver.model.flow.ProcessFlow;
 import com.casic.datadriver.model.flow.ProjectProcessAssocia;
-import com.casic.datadriver.model.project.ProjectStart;
+import com.casic.datadriver.model.project.Project;
+import com.casic.datadriver.model.task.ProTaskDependance;
+import com.casic.datadriver.model.task.TaskInfo;
 import com.casic.datadriver.model.task.TaskStart;
 import com.casic.datadriver.service.data.DataStructService;
 import com.casic.datadriver.service.data.OrderDataRelationService;
 import com.casic.datadriver.service.data.PrivateDataService;
 import com.casic.datadriver.service.flow.ProcessFlowService;
 import com.casic.datadriver.service.flow.ProjectProcessAssociaService;
-import com.casic.datadriver.service.task.TaskStartService;
-import com.hotent.core.util.ContextUtil;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.casic.datadriver.model.project.Project;
-import com.casic.datadriver.model.task.TaskInfo;
-import com.casic.datadriver.service.ProjectStartCmd;
 import com.casic.datadriver.service.project.ProjectService;
 import com.casic.datadriver.service.project.ProjectStartService;
-import com.casic.datadriver.service.task.TaskInfoService;
 import com.casic.datadriver.service.task.ProTaskDependanceService;
-import com.casic.datadriver.model.task.ProTaskDependance;
+import com.casic.datadriver.service.task.TaskInfoService;
+import com.casic.datadriver.service.task.TaskStartService;
 import com.hotent.core.annotion.Action;
-import com.hotent.core.bpm.model.ProcessCmd;
-import com.hotent.core.bpm.util.BpmUtil;
 import com.hotent.core.util.ContextUtil;
-import com.hotent.core.util.ExceptionUtil;
-import com.hotent.core.util.StringUtil;
 import com.hotent.core.util.UniqueIdUtil;
 import com.hotent.core.web.ResultMessage;
 import com.hotent.core.web.controller.BaseController;
-import com.hotent.core.web.query.QueryFilter;
 import com.hotent.core.web.util.RequestUtil;
 import com.hotent.platform.auth.ISysUser;
-import com.hotent.platform.service.bpm.thread.MessageUtil;
 import com.hotent.platform.service.system.ResourcesService;
 import com.hotent.platform.service.system.SubSystemService;
 import net.sf.ezmorph.object.DateMorpher;
@@ -66,10 +44,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 项目管理
@@ -265,6 +240,9 @@ public class ProjectController extends BaseController {
                         Long structId = dataStructList.get(j).getDdStructId();
                         dataStructService.delById(structId);
 //                        List<PrivateData> childDataList = privateDataService.selectByStructid(structId);
+
+                        List<PrivateData> childDataList = null;
+
                         //删除所有私有数据
 //                        for(int k=0;k<childDataList.size();k++){
 //                            privateDataService.delById(childDataList.get(k).getDdDataId());

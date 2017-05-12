@@ -325,7 +325,7 @@ public class ModelCenterController {
     }
 
     //添加空格
-    private static void addIndentBlank(StringBuilder sb, int indent) {
+    public static void addIndentBlank(StringBuilder sb, int indent) {
         for (int i = 0; i < indent; i++) {
             sb.append('\t');
         }
