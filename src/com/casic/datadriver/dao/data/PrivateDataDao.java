@@ -104,6 +104,13 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     }
 
     /**
+     * 根据ID删除单个数据
+     */
+    public void delDataById(Long dataId) {
+        this.delBySqlKey("delDataById", dataId);
+    }
+
+    /**
      * 根据任务ID删除单个数据
      */
     public void delByTaskId(Long taskId) {

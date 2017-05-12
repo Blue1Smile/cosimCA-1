@@ -57,6 +57,8 @@ $(document).ready(function () {
             editable: true,
             showToolbar: true,
             altRows: true,
+            hierarchicalCheckboxes: true,
+            checkboxes: true,
             ready: function () {
                 // called when the DatatreeGrid is loaded.
             },
