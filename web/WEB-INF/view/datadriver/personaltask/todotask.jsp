@@ -22,13 +22,13 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/default.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/slide/css/component.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/newtable/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>
-    <link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="${ctx}/styles/check/font-awesome.css"/>--%>
+    <%--<link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>--%>
+    <%--<link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/wizard/bootstro.min.css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
     <%--<%@include file="/newtable/tablecontext.jsp" %>--%>
-    <script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>
+    <%--<script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>--%>
 
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
     <script type="text/javascript" src="${ctx}/js/jquery/jquery.validate.min.js"></script>
@@ -46,7 +46,11 @@
 
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="#">${TaskInfo.ddTaskProjectName}</a></li>
+        <li class="active">${TaskInfo.ddTaskName}</li>
+    </ol>
     <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
