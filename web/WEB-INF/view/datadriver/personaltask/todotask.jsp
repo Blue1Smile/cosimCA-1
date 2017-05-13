@@ -82,13 +82,17 @@
         <%--<li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">订阅数据</a>--%>
         <%--</li>--%>
         <li role="presentation" class="reponav-item" id="switch_attr_index"><a href="#index" data-toggle="tab"
-                                                                               role="tab">任务约束</a>
+                                                                               role="tab"><span
+                class="glyphicon glyphicon-compressed"></span> 任务约束</a>
         </li>
         <li role="presentation" id="switch_attr_child" class="reponav-item"><a href="#child" data-toggle="tab"
-                                                                               role="tab">子任务</a></li>
+                                                                               role="tab"><span
+                class="glyphicon glyphicon-th"></span> 子任务</a></li>
         <li role="presentation" id="switch_attr_source" class="reponav-item"><a href="#source" data-toggle="tab"
-                                                                                role="tab">设计资源</a></li>
-        <li role="presentation" id="switch_attr_talk" class="reponav-item"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a>
+                                                                                role="tab"><span
+                class="glyphicon glyphicon-cloud"></span> 设计资源</a></li>
+        <li role="presentation" id="switch_attr_talk" class="reponav-item"><a href="#talk" data-toggle="tab" role="tab"><span
+                class="glyphicon glyphicon-comment"></span> 项目研讨</a>
         </li>
         <div class="pull-right">
             <a class="btn btn-success" href="javascript:void(0)" id="create_data"
