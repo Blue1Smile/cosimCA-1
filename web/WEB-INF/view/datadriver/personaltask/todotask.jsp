@@ -27,6 +27,8 @@
     <%--<link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/wizard/bootstro.min.css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
+    <script src="${ctx}/newtable/bootstrap.js"></script>
+    <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
     <%--<%@include file="/newtable/tablecontext.jsp" %>--%>
     <%--<script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>--%>
 
@@ -43,12 +45,11 @@
     <script type="text/javascript" src="${ctx}/styles/wizard/bootstro.min.js"></script>
     <script type="text/javascript" src="${ctx}/cookie/jquery.cookie.js"></script>
     <script type="text/javascript" src="${ctx}/styles/wizard/bootwizard.js"></script>
-
 </head>
 <body>
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="#">${TaskInfo.ddTaskProjectName}</a></li>
+        <li><a href="list.ht">${TaskInfo.ddTaskProjectName}</a></li>
         <li class="active">${TaskInfo.ddTaskName}</li>
     </ol>
     <ul class="nav nav-tabs" role="tablist" id="myTab">
@@ -64,19 +65,19 @@
                 </c:forEach>
             </ul>
         </li>
-        <li role="presentation" class="active" id="switch_attr_publish"><a href="#data" data-toggle="tab"
+        <li role="presentation" class="active reponav-item" id="switch_attr_publish"><a href="#data" data-toggle="tab"
                                                                            role="tab">输出数据</a>
         </li>
-        <li role="presentation" id="switch_attr_order"><a href="#publish" data-toggle="tab"
+        <li role="presentation" class="reponav-item" id="switch_attr_order"><a href="#publish" data-toggle="tab"
                                                           role="tab">输入数据</a>
         </li>
         <%--<li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">订阅数据</a>--%>
         <%--</li>--%>
-        <li role="presentation" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">任务约束</a>
+        <li role="presentation" class="reponav-item" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">任务约束</a>
         </li>
-        <li role="presentation" id="switch_attr_child"><a href="#child" data-toggle="tab" role="tab">子任务</a></li>
-        <li role="presentation" id="switch_attr_source"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
-        <li role="presentation" id="switch_attr_talk"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a></li>
+        <li role="presentation" id="switch_attr_child" class="reponav-item"><a href="#child" data-toggle="tab" role="tab">子任务</a></li>
+        <li role="presentation" id="switch_attr_source" class="reponav-item"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
+        <li role="presentation" id="switch_attr_talk" class="reponav-item"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a></li>
         <div class="pull-right">
             <a class="btn btn-success" href="javascript:void(0)" id="create_data"
                onclick="createPrivateData(${TaskInfo.ddTaskId})"><span

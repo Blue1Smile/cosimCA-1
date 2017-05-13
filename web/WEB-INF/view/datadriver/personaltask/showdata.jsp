@@ -49,24 +49,18 @@
         'click #privatetr': function (e, value, row, index) {
             $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel", function (data, status) {
                 if (status == 'success') {
-                    $table_private.bootstrapTable('refresh')
-                    $table_publish.bootstrapTable('refresh')
                 }
             });
         },
         'click #publishtr': function (e, value, row, index) {
             $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
                 if (status == 'success') {
-                    $table_publish.bootstrapTable('refresh')
-                    $table_private.bootstrapTable('refresh')
                 }
             });
         },
         'click #privatetr_del': function (e, value, row, index) {
             $.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {
                 if (status == 'success') {
-                    $table_publish.bootstrapTable('refresh')
-                    $table_private.bootstrapTable('refresh')
                 }
             });
         },
