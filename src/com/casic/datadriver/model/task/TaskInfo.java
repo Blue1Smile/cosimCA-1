@@ -34,7 +34,7 @@ public class TaskInfo extends BaseModel {
 
     private String ddTaskChildType;
 
-    private Long ddTaskPriority;
+    private Short ddTaskPriority;
 
     private Long ddTaskMilestone;
 
@@ -153,11 +153,11 @@ public class TaskInfo extends BaseModel {
         this.ddTaskChildType = ddTaskChildType;
     }
 
-    public Long getDdTaskPriority() {
+    public Short getDdTaskPriority() {
         return ddTaskPriority;
     }
 
-    public void setDdTaskPriority(Long ddTaskPriority) {
+    public void setDdTaskPriority(Short ddTaskPriority) {
         this.ddTaskPriority = ddTaskPriority;
     }
 

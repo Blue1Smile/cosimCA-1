@@ -90,6 +90,7 @@ public class TaskInfoController extends AbstractController {
                 taskInfo.setDdTaskId(UniqueIdUtil.genId());
                 taskInfo.setDdTaskChildType("createpanel");
                 taskInfo.setDdTaskState(taskInfo.createpanel);
+                //TODO:需要添加任务优先级，否则会造成个人任务显示列表出错
                 taskInfoService.addDDTask(taskInfo);
                 proTaskDependance.setDdTaskId(UniqueIdUtil.genId());
                 proTaskDependance.setDdTaskId(taskInfo.getDdTaskId());
@@ -654,7 +655,7 @@ public class TaskInfoController extends AbstractController {
                     break;
                 case 1:
                     long temp1 = obj.getLong("1");
-                    taskInfo.setDdTaskPriority(temp1);
+                    taskInfo.setDdTaskPriority((short) temp1);
                     break;
                 case 2:
                     String temp2 = obj.getString("2");
