@@ -91,6 +91,7 @@
 </body>
 <script src="${ctx}/newtable/jquery.js"></script>
 <script src="${ctx}/newtable/bootstrap.js"></script>
+<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 <script>
     //监控信息
     function showStatis(projectId){
@@ -112,5 +113,5 @@
         $(this).removeData("bs.modal");
     });
 </script>
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+
 </html>

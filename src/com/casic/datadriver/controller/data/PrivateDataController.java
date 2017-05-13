@@ -84,11 +84,12 @@ public class PrivateDataController extends AbstractController {
         try {
             if (privateData.getDdDataId() == null || privateData.getDdDataId() == 0) {
                 privateData.setDdDataId(UniqueIdUtil.genId());
-                privateData.setDdDataPublishType(0l);
-                privateDataService.addDDPrivateData(privateData);
+
+                privateData.setDdDataPublishState((byte)0);
+                privateDataService.addSingleData(privateData);
                 resultMsg = getText("record.added", "数据信息");
             } else {
-                privateDataService.updatedata(privateData);
+                privateDataService.updateData(privateData);
                 resultMsg = getText("record.updated", "数据信息");
             }
             writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
@@ -129,7 +130,7 @@ public class PrivateDataController extends AbstractController {
         if (id == null || id == 0) {
             privateDataInfoList = privateDataService.getAll();
         } else {
-            privateDataInfoList = privateDataService.queryPrivateDataByddTaskID(id);
+//            privateDataInfoList = privateDataService.queryPrivateDataByddTaskID(id);
         }
         ModelAndView mv = this.getAutoView().addObject("privateDataList", privateDataInfoList)
                 .addObject("taskInfo", taskInfo);
@@ -375,7 +376,8 @@ public class PrivateDataController extends AbstractController {
             switch (Integer.parseInt(key)) {
                 case 0://更改数据类型
 //                    String temp0 = obj.getString("0");
-                    privateData.setDdDataType(0);
+
+                    privateData.setDdDataType((byte) 0);
                     break;
                 case 1://更改数据值
                     String temp1 = obj.getString("1");
@@ -408,7 +410,8 @@ public class PrivateDataController extends AbstractController {
                     privateData.setDdDataDescription(temp3);
                     break;
             }
-            privateDataService.updatedata(privateData);
+
+            privateDataService.updateData(privateData);
         } catch (Exception e) {
             String resultMsg = null;
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
@@ -511,5 +514,36 @@ public class PrivateDataController extends AbstractController {
         PrivateData privateData = privateDataService.getDataById(dataId);
         return getAutoView().addObject("dataPath", privateData.getDdDataPath());
     }
+    /**
+     * 输入数据.
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("inputData")
+    @Action(description = "输入数据")
+    public String inputData(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long taskId = RequestUtil.getLong(request, "taskId");
+        Long projectId = RequestUtil.getLong(request, "projectId");
+        return  privateDataService.getInputdataByprojectId(projectId,taskId);
+    }
 
+    /**
+     * 输出数据.
+     *
+     * @param request  the request
+     * @param response the response
+     * @return the list
+     * @throws Exception the exception
+     */
+    @RequestMapping("outputData")
+    @Action(description = "输出数据")
+    public String outputData(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        Long taskId = RequestUtil.getLong(request, "taskId");
+        return  privateDataService.getOutputdataByTaskId(taskId);
+    }
 }

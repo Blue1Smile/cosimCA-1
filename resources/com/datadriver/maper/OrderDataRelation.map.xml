@@ -10,7 +10,6 @@
         <result column="DD_DATA_NAME" jdbcType="VARCHAR" property="ddDataName"/>
         <result column="DD_PROJECT_ID" jdbcType="NUMERIC" property="ddProjectId"/>
     </resultMap>
-
     <sql id="Base_Column_List">
     DD_ORDER_DATA_ID, DD_ORDER_TYPE, DD_DATA_ID, DD_TASK_ID, DD_OPREATION_LEVEL, DD_DATA_NAME, DD_PROJECT_ID
   </sql>
@@ -31,14 +30,16 @@
         where DD_TASK_ID = #{id,jdbcType=NUMERIC} AND DD_DATA_ID = #{type,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
     </delete>
 
-    <select id="getDDOrderDataRelation" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
+    <select id="getDDOrderDataRelation" parameterType="com.casic.datadriver.model.QueryParameters"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
         where DD_TASK_ID = #{id,jdbcType=NUMERIC} AND DD_DATA_ID = #{type,jdbcType=NUMERIC}
     </select>
 
-    <select id="getOrderDataRelationListF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+    <select id="getOrderDataRelationListF" parameterType="com.casic.datadriver.model.PageInfo"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
@@ -59,7 +60,8 @@
         where DD_TASK_ID = #{ddTaskId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=0
     </select>
 
-    <select id="getPublishDataRelationListF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+    <select id="getPublishDataRelationListF" parameterType="com.casic.datadriver.model.PageInfo"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
@@ -85,14 +87,16 @@
         from dd_order_data_ralation
         where DD_DATA_ID = #{ddDataId,jdbcType=NUMERIC} AND DD_ORDER_TYPE=1
     </select>
-    <select id="queryPublishDataRelationByddTaskIDF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+    <select id="queryPublishDataRelationByddTaskIDF" parameterType="com.casic.datadriver.model.PageInfo"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation
         where DD_TASK_ID = #{id} AND DD_ORDER_TYPE=0 limit #{pageSize},#{pageNumber}
     </select>
 
-    <select id="queryOrderDataRelationByddTaskIDF" parameterType="com.casic.datadriver.model.PageInfo" resultMap="BaseResultMap">
+    <select id="queryOrderDataRelationByddTaskIDF" parameterType="com.casic.datadriver.model.PageInfo"
+            resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from dd_order_data_ralation

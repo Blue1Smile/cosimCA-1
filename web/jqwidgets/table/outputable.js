@@ -2,12 +2,12 @@
  * Created by d on 2017/5/9.
  * 任务输出表单js
  */
-$(document).ready(function () {
-    var newRowID = null;
+var newRowID = null;
+function outputTableInit(path) {
     // prepare the data
     var source =
         {
-            dataType: "tab",
+            dataType: "json",
             dataFields: [
                 {name: "dataId", type: "number"},
                 {name: "dataName", type: "string"},
@@ -32,7 +32,8 @@ $(document).ready(function () {
                 parentDataField: {name: 'parentId'}
             },
             id: 'dataId',
-            url: 'showstructdata.ht',
+            url: path,
+            // url: 'showstructdata.ht',
             addRow: function (rowID, rowData, position, parentID, commit) {
                 commit(true);
                 newRowID = rowID;
@@ -52,11 +53,15 @@ $(document).ready(function () {
     $("#treeGridOut").jqxTreeGrid(
         {
             width: 850,
+            height: 700,
             source: dataAdapter,
             pageable: true,
             editable: true,
             showToolbar: true,
             altRows: true,
+            hierarchicalCheckboxes: true,
+            checkboxes: true,
+            theme: "darkblue",
             ready: function () {
                 // called when the DatatreeGrid is loaded.
             },
@@ -64,8 +69,9 @@ $(document).ready(function () {
             toolbarHeight: 35,
             renderToolbar: function (toolBar) {
                 var toTheme = function (className) {
-                    if (theme == "") return className;
-                    return className + " " + className + "-" + theme;
+                    // if (theme == "")
+                    return className;
+                    // return className + " " + className + "-" + theme;
                 }
                 // appends buttons to the status bar.
                 var container = $("<div style='overflow: hidden; position: relative; height: 100%; width: 100%;'></div>");
@@ -81,10 +87,22 @@ $(document).ready(function () {
                 container.append(cancelButton);
                 container.append(updateButton);
                 toolBar.append(container);
-                addButton.jqxButton({cursor: "pointer", enableDefault: false, disabled: true, height: 25, width: 25});
+                addButton.jqxButton({
+                    cursor: "pointer",
+                    enableDefault: false,
+                    disabled: true,
+                    height: 25,
+                    width: 25
+                });
                 addButton.find('div:first').addClass(toTheme('jqx-icon-plus'));
                 addButton.jqxTooltip({position: 'bottom', content: "Add"});
-                editButton.jqxButton({cursor: "pointer", disabled: true, enableDefault: false, height: 25, width: 25});
+                editButton.jqxButton({
+                    cursor: "pointer",
+                    disabled: true,
+                    enableDefault: false,
+                    height: 25,
+                    width: 25
+                });
                 editButton.find('div:first').addClass(toTheme('jqx-icon-edit'));
                 editButton.jqxTooltip({position: 'bottom', content: "Edit"});
                 deleteButton.jqxButton({
@@ -217,4 +235,4 @@ $(document).ready(function () {
                 {text: '发布状态', dataField: "publishState", align: 'left', width: '20%'}
             ]
         });
-});
+}
