@@ -1,6 +1,5 @@
 package com.casic.datadriver.dao.data;
 
-import com.casic.datadriver.model.PageInfo;
 import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.PrivateData;
 import com.hotent.core.db.BaseDao;
@@ -54,6 +53,13 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
      */
     public PrivateData getDataById(Long dataId) {
         return this.getUnique("getDataById", dataId);
+    }
+
+    /**
+     * 根据任务ID和数据名称获取数据ID
+     */
+    public PrivateData getDataIdByTaskIdAndDataName(QueryParameters queryParameters){
+        return this.getUnique("getDataIdByTaskIdAndDataName", queryParameters);
     }
 
     /**

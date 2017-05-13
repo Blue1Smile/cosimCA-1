@@ -4,7 +4,6 @@ import com.casic.datadriver.dao.data.DataStructDao;
 import com.casic.datadriver.dao.data.OrderDataRelationDao;
 import com.casic.datadriver.dao.data.PrivateDataDao;
 import com.casic.datadriver.model.QueryParameters;
-import com.casic.datadriver.model.data.DataStruct;
 import com.casic.datadriver.model.data.PrivateData;
 import com.hotent.core.db.IEntityDao;
 import com.hotent.core.service.BaseService;
@@ -26,8 +25,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static com.casic.datadriver.controller.ModelCenterController.addIndentBlank;
 
 /**
  * The Class PrivateDataService.
@@ -68,7 +65,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
      * 获取所有数据
      */
     public List<PrivateData> getAll() {
-       return privateDataDao.getAll();
+        return privateDataDao.getAll();
     }
 
 
@@ -92,6 +89,17 @@ public class PrivateDataService extends BaseService<PrivateData> {
     public String getPubListByTaskId(Long taskId) {
 
         return null;
+    }
+
+    /**
+     * 根据任务ID和数据名称获取数据ID
+     */
+    public Long getDataIdByTaskIdAndDataName(Long taskId, String dataName) {
+        QueryParameters queryParameters = new QueryParameters();
+        queryParameters.setId(taskId);
+        queryParameters.setName(dataName);
+        PrivateData privateData = privateDataDao.getDataIdByTaskIdAndDataName(queryParameters);
+        return privateData.getDdDataId();
     }
 
     /**
@@ -124,23 +132,23 @@ public class PrivateDataService extends BaseService<PrivateData> {
         List<PrivateData> privateDataList = privateDataDao.getDataListByTaskId(taskId);
         for (int i = 0; i < privateDataList.size(); i++) {
             PrivateData privateData = privateDataList.get(i);
-            jsonObject.put("dataId",privateData.getDdDataId());
-            jsonObject.put("dataName",privateData.getDdDataName());
-            jsonObject.put("filePath",privateData.getDdDataPath());
-            jsonObject.put("parentId",privateData.getDdDataParentId());
-            jsonObject.put("taskId",privateData.getDdDataTaskId());
-            jsonObject.put("dataType",privateData.getDdDataType());
-            jsonObject.put("dataDescription",privateData.getDdDataDescription());
-            jsonObject.put("publishState",privateData.getDdDataPublishState());
-            jsonObject.put("orderState",privateData.getDdDataOrderState());
-            jsonObject.put("submitState",privateData.getDdDataIsSubmit());
-            jsonObject.put("taskName",privateData.getDdDataTaskName());
-            jsonObject.put("creator",privateData.getDdDataCreator());
-            jsonObject.put("createTime",privateData.getDdDataCreateTime());
-            jsonObject.put("projectId",privateData.getDdDataProjId());
-            jsonObject.put("creatorId",privateData.getDdDataCreatorId());
-            jsonObject.put("dataUnit",privateData.getDdDataUnit());
-            jsonObject.put("dataValue",privateData.getDdDataLastestValue());
+            jsonObject.put("dataId", privateData.getDdDataId());
+            jsonObject.put("dataName", privateData.getDdDataName());
+            jsonObject.put("filePath", privateData.getDdDataPath());
+            jsonObject.put("parentId", privateData.getDdDataParentId());
+            jsonObject.put("taskId", privateData.getDdDataTaskId());
+            jsonObject.put("dataType", privateData.getDdDataType());
+            jsonObject.put("dataDescription", privateData.getDdDataDescription());
+            jsonObject.put("publishState", privateData.getDdDataPublishState());
+            jsonObject.put("orderState", privateData.getDdDataOrderState());
+            jsonObject.put("submitState", privateData.getDdDataIsSubmit());
+            jsonObject.put("taskName", privateData.getDdDataTaskName());
+            jsonObject.put("creator", privateData.getDdDataCreator());
+            jsonObject.put("createTime", privateData.getDdDataCreateTime());
+            jsonObject.put("projectId", privateData.getDdDataProjId());
+            jsonObject.put("creatorId", privateData.getDdDataCreatorId());
+            jsonObject.put("dataUnit", privateData.getDdDataUnit());
+            jsonObject.put("dataValue", privateData.getDdDataLastestValue());
             jsonMembers.add(jsonObject);
         }
         String jsonstring = jsonMembers.toString();
@@ -150,7 +158,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
     /**
      * 获取任务输入数据(项目)
      */
-    public String getInputDataByTaskId(Long projectId,Long taskId) {
+    public String getInputDataByTaskId(Long projectId, Long taskId) {
         QueryParameters queryParameters = new QueryParameters();
         queryParameters.setId(taskId);
         queryParameters.setBackupsL(projectId);
@@ -158,32 +166,30 @@ public class PrivateDataService extends BaseService<PrivateData> {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
 
-        for(int i = 0; i < allPrivateData.size(); i++)
-        {
+        for (int i = 0; i < allPrivateData.size(); i++) {
             PrivateData privateData = allPrivateData.get(i);
             queryParameters.setType(privateData.getDdDataId());
-            jsonObject.put("dataId",privateData.getDdDataId());
-            jsonObject.put("dataName",privateData.getDdDataName());
-            jsonObject.put("filePath",privateData.getDdDataPath());
-            jsonObject.put("parentId",privateData.getDdDataParentId());
-            jsonObject.put("taskId",privateData.getDdDataTaskId());
-            jsonObject.put("dataType",privateData.getDdDataType());
-            jsonObject.put("dataDescription",privateData.getDdDataDescription());
-            jsonObject.put("publishState",privateData.getDdDataPublishState());
-            jsonObject.put("orderState",privateData.getDdDataOrderState());
-            jsonObject.put("submitState",privateData.getDdDataIsSubmit());
-            jsonObject.put("taskName",privateData.getDdDataTaskName());
-            jsonObject.put("creator",privateData.getDdDataCreator());
-            jsonObject.put("createTime",privateData.getDdDataCreateTime());
-            jsonObject.put("projectId",privateData.getDdDataProjId());
-            jsonObject.put("creatorId",privateData.getDdDataCreatorId());
-            jsonObject.put("dataUnit",privateData.getDdDataUnit());
-            jsonObject.put("dataValue",privateData.getDdDataLastestValue());
-            if(orderDataRelationDao.getDDOrderDataRelation(queryParameters).size()>0)
-            {
-                jsonObject.put("torderState",1) ;//已经订阅该数据
-            }else{
-                jsonObject.put("torderState",0) ;//没有订阅该数据
+            jsonObject.put("dataId", privateData.getDdDataId());
+            jsonObject.put("dataName", privateData.getDdDataName());
+            jsonObject.put("filePath", privateData.getDdDataPath());
+            jsonObject.put("parentId", privateData.getDdDataParentId());
+            jsonObject.put("taskId", privateData.getDdDataTaskId());
+            jsonObject.put("dataType", privateData.getDdDataType());
+            jsonObject.put("dataDescription", privateData.getDdDataDescription());
+            jsonObject.put("publishState", privateData.getDdDataPublishState());
+            jsonObject.put("orderState", privateData.getDdDataOrderState());
+            jsonObject.put("submitState", privateData.getDdDataIsSubmit());
+            jsonObject.put("taskName", privateData.getDdDataTaskName());
+            jsonObject.put("creator", privateData.getDdDataCreator());
+            jsonObject.put("createTime", privateData.getDdDataCreateTime());
+            jsonObject.put("projectId", privateData.getDdDataProjId());
+            jsonObject.put("creatorId", privateData.getDdDataCreatorId());
+            jsonObject.put("dataUnit", privateData.getDdDataUnit());
+            jsonObject.put("dataValue", privateData.getDdDataLastestValue());
+            if (orderDataRelationDao.getDDOrderDataRelation(queryParameters).size() > 0) {
+                jsonObject.put("torderState", 1);//已经订阅该数据
+            } else {
+                jsonObject.put("torderState", 0);//没有订阅该数据
             }
             jsonMembers.add(jsonObject);
         }
@@ -214,13 +220,12 @@ public class PrivateDataService extends BaseService<PrivateData> {
         return value;
     }
 
-    private List<PrivateData> readBrandPeriodSorXls(InputStream is, Long taskId, Long projectId,String taskname)
+    private List<PrivateData> readBrandPeriodSorXls(InputStream is, Long taskId, Long projectId, String taskname)
             throws IOException, ParseException {
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
-        List<PrivateData> brandMobileInfos = new ArrayList<PrivateData>();
-        List<DataStruct> DataStructlist = new ArrayList<DataStruct>();
-        PrivateData brandMobileInfo;
-        DataStruct datastruct;
+        List<PrivateData> privateDatalist = new ArrayList<PrivateData>();
+        PrivateData privateData;
+
         // 循环工作表Sheet
         for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
             //根据表单序号获取表单
@@ -232,14 +237,14 @@ public class PrivateDataService extends BaseService<PrivateData> {
             Long StructId = Long.valueOf(0);
             // 循环行Row
             for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
-                brandMobileInfo = new PrivateData();
-                datastruct = new DataStruct();
+                privateData = new PrivateData();
+
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);
 
                 ISysUser sysUser = ContextUtil.getCurrentUser();
                 Date now = new Date();
-                Integer DataType = 0;
-                switch (String.valueOf(hssfRow.getCell(4))) {
+                byte DataType = 0;
+                switch (String.valueOf(hssfRow.getCell(2))) {
                     case "结构化数据":
                         DataType = 1;
                         break;
@@ -254,62 +259,68 @@ public class PrivateDataService extends BaseService<PrivateData> {
                         break;
                 }
 
-                if (!String.valueOf(hssfRow.getCell(0)).equals(str)) {
-                    str = String.valueOf(hssfRow.getCell(0));
-                    StructId = UniqueIdUtil.genId();
-                    datastruct.setDdTaskName(taskname);
-                    datastruct.setDdStructId(StructId);
-                    datastruct.setDdTaskId(taskId);
-                    datastruct.setDdProjectId(projectId);
-                    datastruct.setDdStructName(String.valueOf(hssfRow.getCell(0)));
-                    datastruct.setDdEngName(String.valueOf(hssfRow.getCell(1)));
-                    datastruct.setDdCreateTime(now);
-                    datastruct.setDdType(DataType);
-                    datastruct.setDdParentId(sysUser.getUserId());
-                    datastruct.setDdOrderState((short)0);
-                    datastruct.setDdPublishState((short)0);
-                    datastruct.setDdSubmitState((short)0);
-                    DataStructlist.add(datastruct);
+                if (!String.valueOf(hssfRow.getCell(0)).equals("null")) {
+
+
+                    privateData.setDdDataId(UniqueIdUtil.genId());
+                    privateData.setDdDataTaskId(taskId);
+                    String a = String.valueOf(hssfRow.getCell(7));
+                    if(String.valueOf(hssfRow.getCell(7)).equals("null"))
+                    {
+
+                    }
+                    else {
+                        privateData.setDdDataParentId(getDataIdByTaskIdAndDataName(taskId, String.valueOf(hssfRow.getCell(7))));
+                    }
+
+                    privateData.setDdDataPublishState((byte) 0);
+                    privateData.setDdDataOrderState((short) 0);
+                    privateData.setDdDataIsSubmit((short) 0);
+                    privateData.setDdDataCreateTime(now);
+                    privateData.setDdDataTaskName(taskname);
+                    privateData.setDdDataCreatorId(ContextUtil.getCurrentUserId());
+                    if(!String.valueOf(hssfRow.getCell(0)).equals("null"))
+                    {
+                        privateData.setDdDataName(String.valueOf(hssfRow.getCell(0)));
+                    }
+
+                    if(!String.valueOf(hssfRow.getCell(1)).equals("null"))
+                    {
+                        privateData.setDdDataEngName(String.valueOf(hssfRow.getCell(1)));
+                    }
+
+                    if(!String.valueOf(hssfRow.getCell(5)).equals("null"))
+                    {
+                        privateData.setDdDataLastestValue(String.valueOf(hssfRow.getCell(5)));
+                    }
+
+                    if(!String.valueOf(hssfRow.getCell(4)).equals("null"))
+                    {
+                        privateData.setDdDataSenMax((long) 1);
+                    }
+
+                    if(!String.valueOf(hssfRow.getCell(3)).equals("null"))
+                    {
+                        privateData.setDdDataSenMin((long) 4);
+                    }
+
+                    if(!String.valueOf(hssfRow.getCell(6)).equals("null"))
+                    {
+                        privateData.setDdDataUnit(String.valueOf(hssfRow.getCell(6)));
+                    }
+
+                    privateData.setDdDataType(DataType);
+                    privateDatalist.add(privateData);
+                    this.privateDataDao.addSingleData(privateData);
                 }
-                brandMobileInfo.setDdDataId(UniqueIdUtil.genId());
-
-
-                brandMobileInfo.setDdDataName(String.valueOf(hssfRow.getCell(2)));
-                brandMobileInfo.setDdDataEngName(String.valueOf(hssfRow.getCell(3)));
-//                brandMobileInfo.setDdDataType(DataType);
-                brandMobileInfo.setDdDataLastestValue(String.valueOf(hssfRow.getCell(6)));
-                brandMobileInfo.setDdDataTaskName(taskname);
-//                   阈值定义问题
-//                    brandMobileInfo.setDdDataSensitiveness(Long.valueOf(String.valueOf(hssfRow.getCell(5))));
-                brandMobileInfo.setDdDataUnit(String.valueOf(hssfRow.getCell(7)));
-                brandMobileInfo.setDdDataTaskId(taskId);
-//                brandMobileInfo.setDdDataNodeId(StructId);
-//                brandMobileInfo.setDdDataPublishType(Long.valueOf(0));
-//                brandMobileInfo.setDdDataSubmiteState(Long.valueOf(0));
-//                brandMobileInfo.setDdDataCreatePerson(sysUser.getUserId());
-                brandMobileInfo.setDdDataCreateTime(now);
-
-
-                brandMobileInfos.add(brandMobileInfo);
-
-//                }
-
             }
         }
 
-        for (int a = 0; a < brandMobileInfos.size(); a++) {
-            this.privateDataDao.add(brandMobileInfos.get(a));
-        }
-
-        for (int a = 0; a < DataStructlist.size(); a++) {
-            this.dataStructDao.addDataStruct(DataStructlist.get(a));
-        }
-
-        return brandMobileInfos;
+        return privateDatalist;
     }
 
-    public int importBrandPeriodSort(InputStream in, Long taskId, Long projectId,String taskname) throws Exception {
-        List<PrivateData> brandMobileInfos = readBrandPeriodSorXls(in, taskId, projectId,taskname);
+    public int importBrandPeriodSort(InputStream in, Long taskId, Long projectId, String taskname) throws Exception {
+        List<PrivateData> brandMobileInfos = readBrandPeriodSorXls(in, taskId, projectId, taskname);
 
         return brandMobileInfos.size();
     }

@@ -3,6 +3,7 @@ package com.casic.datadriver.model.data;
 import com.hotent.core.model.BaseModel;
 
 import java.util.Date;
+import java.util.List;
 
 public class PrivateData extends BaseModel{
 
@@ -55,6 +56,18 @@ public class PrivateData extends BaseModel{
     private Long ddDataReserved1;
 
     private String ddDataReserved2;
+
+    private List<PrivateData> privateDataList;
+
+    public List<PrivateData> getPrivateDataList() {
+        return privateDataList;
+    }
+
+    public void setPrivateDataList(List<PrivateData> privateDataList) {
+        this.privateDataList = privateDataList;
+    }
+
+
 
     public Long getDdDataId() {
         return ddDataId;
