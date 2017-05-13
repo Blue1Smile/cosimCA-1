@@ -3,6 +3,12 @@
  * 任务输出表单js
  */
 var newRowID = null;
+function getWidth() {
+    return $('.container').outerWidth();
+}
+function getHeight() {
+    return $(window).height() - $('.nav-tabs').outerHeight(true) - 80;
+}
 function outputTableInit(path) {
     // prepare the data
     var source =
@@ -52,8 +58,8 @@ function outputTableInit(path) {
     });
     $("#treeGridOut").jqxTreeGrid(
         {
-            width: 850,
-            height: 700,
+            width: getWidth(),
+            height: getHeight(),
             source: dataAdapter,
             pageable: true,
             editable: true,

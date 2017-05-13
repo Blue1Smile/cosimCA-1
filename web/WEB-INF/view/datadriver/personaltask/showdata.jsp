@@ -15,24 +15,14 @@
 <html>
 <head>
     <title>数据看板</title>
-    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css"/>
     <script type="text/javascript" src="${ctx}/jqwidgets/jqx-all.js"></script>
     <script type="text/javascript" src="${ctx}/jqwidgets/table/outputable.js"></script>
     <%--<script type="text/javascript" src="${ctx}/jqwidgets/scripts/demos.js"></script>--%>
-    <style>
-        table {
-            background-color: #ffffff;
-            width: 100% !important;
-        }
-    </style>
 </head>
 <body>
 <div class="row paneldocker" style="height: 100%">
-    <div class="col-xs-6" style="height: 100%">
-
-                <div id="treeGridOut"></div>
-
-    </div>
+    <div id="treeGridOut"></div>
 </div>
 <%--导入数据--%>
 <div class="modal fade" id="importData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -54,10 +44,6 @@
 
 <script type="text/javascript">
     //@ sourceURL=showdata.ht
-    //设置table高度
-    function getHeight() {
-        return $(window).height() - $('.panel-heading').outerHeight(true) - 80;
-    }
 
     window.operateEvents = {
         'click #privatetr': function (e, value, row, index) {
