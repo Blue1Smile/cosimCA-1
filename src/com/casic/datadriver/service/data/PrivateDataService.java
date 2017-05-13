@@ -93,44 +93,6 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
         return null;
     }
-    public static String formatJson(String jsonStr) {
-        if (null == jsonStr || "".equals(jsonStr)) return "";
-        StringBuilder sb = new StringBuilder();
-        char last = '\0';
-        char current = '\0';
-        int indent = 0;
-        for (int i = 0; i < jsonStr.length(); i++) {
-            last = current;
-            current = jsonStr.charAt(i);
-            switch (current) {
-                case '{':
-                case '[':
-                    sb.append(current);
-                    sb.append('\n');
-                    indent++;
-                    addIndentBlank(sb, indent);
-                    break;
-                case '}':
-                case ']':
-                    sb.append('\n');
-                    indent--;
-                    addIndentBlank(sb, indent);
-                    sb.append(current);
-                    break;
-                case ',':
-                    sb.append(current);
-                    if (last != '\\') {
-                        sb.append('\n');
-                        addIndentBlank(sb, indent);
-                    }
-                    break;
-                default:
-                    sb.append(current);
-            }
-        }
-
-        return sb.toString();
-    }
 
     /**
      * 获取任务未发布的数据
@@ -156,41 +118,67 @@ public class PrivateDataService extends BaseService<PrivateData> {
     /**
      * 获取任务输出数据(私有)
      */
-    public String getOutputdataByTaskId(Long taskId) {
-        return ToJson(privateDataDao.getDataListByTaskId(taskId));
+    public String getOutputDataByTaskId(Long taskId) {
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        List<PrivateData> privateDataList = privateDataDao.getDataListByTaskId(taskId);
+        for (int i = 0; i < privateDataList.size(); i++) {
+            PrivateData privateData = privateDataList.get(i);
+            jsonObject.put("dataId",privateData.getDdDataId());
+            jsonObject.put("dataName",privateData.getDdDataName());
+            jsonObject.put("filePath",privateData.getDdDataPath());
+            jsonObject.put("parentId",privateData.getDdDataParentId());
+            jsonObject.put("taskId",privateData.getDdDataTaskId());
+            jsonObject.put("dataType",privateData.getDdDataType());
+            jsonObject.put("dataDescription",privateData.getDdDataDescription());
+            jsonObject.put("publishState",privateData.getDdDataPublishState());
+            jsonObject.put("orderState",privateData.getDdDataOrderState());
+            jsonObject.put("submitState",privateData.getDdDataIsSubmit());
+            jsonObject.put("taskName",privateData.getDdDataTaskName());
+            jsonObject.put("creator",privateData.getDdDataCreator());
+            jsonObject.put("createTime",privateData.getDdDataCreateTime());
+            jsonObject.put("projectId",privateData.getDdDataProjId());
+            jsonObject.put("creatorId",privateData.getDdDataCreatorId());
+            jsonObject.put("dataUnit",privateData.getDdDataUnit());
+            jsonObject.put("dataValue",privateData.getDdDataLastestValue());
+            jsonMembers.add(jsonObject);
+        }
+        String jsonstring = jsonMembers.toString();
+        return jsonstring;
     }
 
     /**
      * 获取任务输入数据(项目)
      */
-    public String getInputdataByprojectId(Long projectId,Long taskId) {
-        List<PrivateData> allPrivateData = privateDataDao.getDataListByProId(projectId);
-        QueryParameters queryParameters = null;
-        JSONObject jsonObject = new JSONObject();
-        JSONObject json = new JSONObject();
-        JSONArray jsonMembers = new JSONArray();
+    public String getInputDataByTaskId(Long projectId,Long taskId) {
+        QueryParameters queryParameters = new QueryParameters();
         queryParameters.setId(taskId);
+        queryParameters.setBackupsL(projectId);
+        List<PrivateData> allPrivateData = privateDataDao.getDataListByProId(queryParameters);
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+
         for(int i = 0; i < allPrivateData.size(); i++)
         {
-            PrivateData mymodel = allPrivateData.get(i);
-            queryParameters.setType(mymodel.getDdDataId());
-            jsonObject.put("dataId",mymodel.getDdDataId());
-            jsonObject.put("dataName",mymodel.getDdDataName());
-            jsonObject.put("filePath",mymodel.getDdDataPath());
-            jsonObject.put("parentId",mymodel.getDdDataParentId());
-            jsonObject.put("taskId",mymodel.getDdDataTaskId());
-            jsonObject.put("dataType",mymodel.getDdDataType());
-            jsonObject.put("dataDescription",mymodel.getDdDataDescription());
-            jsonObject.put("publishState",mymodel.getDdDataPublishState());
-            jsonObject.put("orderState",mymodel.getDdDataOrderState());
-            jsonObject.put("submitState",mymodel.getDdDataIsSubmit());
-            jsonObject.put("taskName",mymodel.getDdDataTaskName());
-            jsonObject.put("creator",mymodel.getDdDataCreator());
-            jsonObject.put("createTime",mymodel.getDdDataCreateTime());
-            jsonObject.put("projectId",mymodel.getDdDataProjId());
-            jsonObject.put("creatorId",mymodel.getDdDataCreatorId());
-            jsonObject.put("dataUnit",mymodel.getDdDataUnit());
-            jsonObject.put("dataValue",mymodel.getDdDataLastestValue());
+            PrivateData privateData = allPrivateData.get(i);
+            queryParameters.setType(privateData.getDdDataId());
+            jsonObject.put("dataId",privateData.getDdDataId());
+            jsonObject.put("dataName",privateData.getDdDataName());
+            jsonObject.put("filePath",privateData.getDdDataPath());
+            jsonObject.put("parentId",privateData.getDdDataParentId());
+            jsonObject.put("taskId",privateData.getDdDataTaskId());
+            jsonObject.put("dataType",privateData.getDdDataType());
+            jsonObject.put("dataDescription",privateData.getDdDataDescription());
+            jsonObject.put("publishState",privateData.getDdDataPublishState());
+            jsonObject.put("orderState",privateData.getDdDataOrderState());
+            jsonObject.put("submitState",privateData.getDdDataIsSubmit());
+            jsonObject.put("taskName",privateData.getDdDataTaskName());
+            jsonObject.put("creator",privateData.getDdDataCreator());
+            jsonObject.put("createTime",privateData.getDdDataCreateTime());
+            jsonObject.put("projectId",privateData.getDdDataProjId());
+            jsonObject.put("creatorId",privateData.getDdDataCreatorId());
+            jsonObject.put("dataUnit",privateData.getDdDataUnit());
+            jsonObject.put("dataValue",privateData.getDdDataLastestValue());
             if(orderDataRelationDao.getDDOrderDataRelation(queryParameters).size()>0)
             {
                 jsonObject.put("torderState",1) ;//已经订阅该数据
@@ -199,7 +187,7 @@ public class PrivateDataService extends BaseService<PrivateData> {
             }
             jsonMembers.add(jsonObject);
         }
-        return formatJson(jsonMembers.toString());
+        return jsonMembers.toString();
     }
 
     /**
@@ -216,42 +204,6 @@ public class PrivateDataService extends BaseService<PrivateData> {
         privateDataDao.delByTaskId(taskId);
     }
 
-    /**
-     * 生成输出json
-     */
-    public String ToJson(List<PrivateData> list)
-    {
-        JSONObject jsonObject = new JSONObject();
-        JSONObject json = new JSONObject();
-        JSONArray jsonMembers = new JSONArray();
-
-        for (int i = 0; i < list.size(); i++) {
-            PrivateData mymodel = list.get(i);
-            jsonObject.put("dataId",mymodel.getDdDataId());
-            jsonObject.put("dataName",mymodel.getDdDataName());
-            jsonObject.put("filePath",mymodel.getDdDataPath());
-            jsonObject.put("parentId",mymodel.getDdDataParentId());
-            jsonObject.put("taskId",mymodel.getDdDataTaskId());
-            jsonObject.put("dataType",mymodel.getDdDataType());
-            jsonObject.put("dataDescription",mymodel.getDdDataDescription());
-            jsonObject.put("publishState",mymodel.getDdDataPublishState());
-            jsonObject.put("orderState",mymodel.getDdDataOrderState());
-            jsonObject.put("submitState",mymodel.getDdDataIsSubmit());
-            jsonObject.put("taskName",mymodel.getDdDataTaskName());
-            jsonObject.put("creator",mymodel.getDdDataCreator());
-            jsonObject.put("createTime",mymodel.getDdDataCreateTime());
-            jsonObject.put("projectId",mymodel.getDdDataProjId());
-            jsonObject.put("creatorId",mymodel.getDdDataCreatorId());
-            jsonObject.put("dataUnit",mymodel.getDdDataUnit());
-            jsonObject.put("dataValue",mymodel.getDdDataLastestValue());
-            jsonMembers.add(jsonObject);
-        }
-//        json.put("rows", jsonMembers);
-//        String jsonstring = "{\n\"total\":800,\n\"rows\":[\n{\n\"id\":0,\n\"name\":\"Item 0\",\n\"price\":\"$0\"\n},\n{\n\"id\":19,\n\"name\":\"Item 19\",\n\"price\":\"$19\"\n}\n]\n}";
-        String jsonstring = formatJson(jsonMembers.toString());
-        System.out.println(jsonstring);
-        return jsonstring;
-    }
     public static String getValue(HSSFCell cell) {
         String value = "";
         if (cell == null) {

@@ -26,8 +26,12 @@
     <%--<link rel="stylesheet" type="text/css" href="${ctx}/styles/check/build.css"/>--%>
     <%--<link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/wizard/bootstro.min.css"/>
+    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css"/>
+
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/jqx-all.js"></script>
+
     <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
     <%--<%@include file="/newtable/tablecontext.jsp" %>--%>
     <%--<script type="text/javascript" src="${ctx}/styles/slide/js/modernizr.custom.js"></script>--%>
@@ -49,7 +53,7 @@
 <body>
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="list.ht">${TaskInfo.ddTaskProjectName}</a></li>
+        <li><a href="list.ht"><span class="glyphicon glyphicon-book"></span> ${TaskInfo.ddTaskProjectName}</a></li>
         <li class="active">${TaskInfo.ddTaskName}</li>
     </ol>
     <ul class="nav nav-tabs" role="tablist" id="myTab">
@@ -59,25 +63,33 @@
             </a>
             <ul class="dropdown-menu" style="overflow: auto">
                 <c:forEach var="taskInfoListItem" items="${taskInfoList}">
-                    <li title="${taskInfoListItem.ddTaskProjectName}">
-                        <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}&projectId=${taskInfoListItem.ddTaskProjectId}">${taskInfoListItem.ddTaskName}</a>
+                    <li>
+                        <a href="todotask.ht?id=${taskInfoListItem.ddTaskId}&projectId=${taskInfoListItem.ddTaskProjectId}">${taskInfoListItem.ddTaskName}
+                            <small> (${taskInfoListItem.ddTaskProjectName})</small>
+                        </a>
                     </li>
                 </c:forEach>
             </ul>
         </li>
         <li role="presentation" class="active reponav-item" id="switch_attr_publish"><a href="#data" data-toggle="tab"
-                                                                           role="tab">输出数据</a>
+                                                                                        role="tab"><span
+                class="glyphicon glyphicon-log-out"></span> 输出数据</a>
         </li>
         <li role="presentation" class="reponav-item" id="switch_attr_order"><a href="#publish" data-toggle="tab"
-                                                          role="tab">输入数据</a>
+                                                                               role="tab"><span
+                class="glyphicon glyphicon-log-in"></span> 输入数据</a>
         </li>
         <%--<li role="presentation" id="switch_attr_order"><a href="#order" data-toggle="tab" role="tab">订阅数据</a>--%>
         <%--</li>--%>
-        <li role="presentation" class="reponav-item" id="switch_attr_index"><a href="#index" data-toggle="tab" role="tab">任务约束</a>
+        <li role="presentation" class="reponav-item" id="switch_attr_index"><a href="#index" data-toggle="tab"
+                                                                               role="tab">任务约束</a>
         </li>
-        <li role="presentation" id="switch_attr_child" class="reponav-item"><a href="#child" data-toggle="tab" role="tab">子任务</a></li>
-        <li role="presentation" id="switch_attr_source" class="reponav-item"><a href="#source" data-toggle="tab" role="tab">设计资源</a></li>
-        <li role="presentation" id="switch_attr_talk" class="reponav-item"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a></li>
+        <li role="presentation" id="switch_attr_child" class="reponav-item"><a href="#child" data-toggle="tab"
+                                                                               role="tab">子任务</a></li>
+        <li role="presentation" id="switch_attr_source" class="reponav-item"><a href="#source" data-toggle="tab"
+                                                                                role="tab">设计资源</a></li>
+        <li role="presentation" id="switch_attr_talk" class="reponav-item"><a href="#talk" data-toggle="tab" role="tab">项目研讨</a>
+        </li>
         <div class="pull-right">
             <a class="btn btn-success" href="javascript:void(0)" id="create_data"
                onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
@@ -85,12 +97,13 @@
             <a class="btn btn-primary" href="javascript:void(0)" id="upload_file" onclick=""><span
                     class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
             <%--<a id="child_btn" href="javascript:void(0)" class="btn btn-primary"><span class="glyphicon glyphicon-stats"></span>--%>
-                <%--创建子任务--%>
+            <%--创建子任务--%>
             <%--</a>--%>
             <a class="btn btn-info" href="javascript:void(0)" data-toggle="modal" id="submit_btn"
                data-remote="submittask.ht?id=${TaskInfo.ddTaskId}"
                data-target="#submittask"><span class="glyphicon glyphicon-ok"></span> 提交审核</a>
-            <a id="statis_btn" href="javascript:void(0)" class="btn btn-warning"><span class="glyphicon glyphicon-stats"></span>
+            <a id="statis_btn" href="javascript:void(0)" class="btn btn-warning"><span
+                    class="glyphicon glyphicon-stats"></span>
                 进程统计
             </a>
             <button class="btn btn-default" onclick="location.reload()"><span
