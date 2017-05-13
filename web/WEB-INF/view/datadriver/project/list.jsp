@@ -13,148 +13,166 @@
     <title>项目基础信息列表</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%--<script src="${ctx}/newtable/jquery.js"></script>--%>
     <%@include file="/commons/datadriver/formbase.jsp" %>
-    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
-    <script src="${ctx}/newtable/bootstrap.js"></script>
+    <%@include file="/newtable/tablecontext.jsp" %>
     <script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 
-    <style>
-        .fl {
-            float: left;
-        }
-
-        .fr {
-            float: right;
-        }
-
-        .pages {
-            float: right;
-        }
-
-        .page_line {
-            display: inline;
-        }
-    </style>
 </head>
 <body>
-<div class="col-xs-10 col-xs-offset-1">
-    <div class="layui-tab layui-tab-card">
-        <ul class="layui-tab-title">
-            <li class="layui-this">项目管理列表</li>
-        </ul>
-        <div class="layui-tab-content">
-            <blockquote class="layui-elem-quote">
-                <div style="height: 34px;">
-                    <form id="searchForm" method="post" action="list.ht">
-                        <div class="fl">
-                            <input type="text" name="Q_name_SL" id="Q_name_SL"class="form-control"
-                                   value="${param['Q_name_SL']}" placeholder="项目名称"/>
-                        </div>
-                        <div class="fr">
-                            <a class="layui-btn layui-btn-small layui-btn-normal" href="javascript:void(0)" onclick="queryProject()" id="Search"><i class="layui-icon">
-                                &#xe615;</i> 查询</a>
-                            <a class="layui-btn layui-btn-small" href="javascript:void(0)" id="create" data-toggle="modal"
-                               data-remote="create.ht"
-                               data-target="#myCreate"><i class="layui-icon">&#xe61f;</i> 创建</a>
-                            <a class="layui-btn layui-btn-small layui-btn-primary" onclick="location.reload()"><i
-                                    class="layui-icon">
-                                &#xe63d;</i> 刷新</a>
-                        </div>
-                    </form>
-                </div>
-            </blockquote>
-            <display:table name="projectList" id="projectList" requestURI="list.ht" sort="external" cellpadding="0"
-                           cellspacing="0" export="false" class="layui-table" pagesize="10">
-                <display:column property="ddProjectName" title="项目名称" sortable="false" sortName="DD_PROJECT_NAME"
-                                maxLength="80"></display:column>
-                <display:column title="项目阶段" media="html" style="width:20%">
-                    <c:choose><c:when test="${projectList.ddProjectPhaseId==-1}">
-                        <i style="font-size: 14px; color: #1E9FFF;">未启动</i>
-                    </c:when>
-                        <c:when test="${projectList.ddProjectPhaseId==0}">
-                            <i style="font-size: 14px; color: #5FB878;">已启动</i>
-                        </c:when>
-                        <c:otherwise>
-                            <i style="font-size: 14px; color: #F7B824;">已完成</i>
-                        </c:otherwise></c:choose>
-                </display:column>
-                <display:column title="操作" media="html" style="width:25%">
-                    <c:choose>
-                        <c:when test="${projectList.ddProjectPhaseId==-1}">
-                            <a class="layui-btn layui-btn-mini" id="setup" href="javascript:void(0)" data-toggle="modal"
-                               data-remote="setup.ht?id=${projectList.ddProjectId}"
-                               data-target="#myModal"><i
-                                    class="layui-icon">
-                                &#xe614;</i> 项目设置
-                            </a>
-                        </c:when>
-                        <c:when test="${projectList.ddProjectPhaseId==1}">
-                            <a class="layui-btn layui-btn-mini" id="setup" href="javascript:void(0)" data-toggle="modal"
-                               data-remote="setup.ht?id=${projectList.ddProjectId}"
-                               data-target="#myModal"><i
-                                    class="layui-icon">
-                                &#xe614;</i> 项目设置
-                            </a>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="layui-btn layui-btn-mini layui-btn-disabled" id="setup" href="javascript:void(0)"
-                               data-toggle="modal"
-                               data-remote="setup.ht?id=${projectList.ddProjectId}"
-                               data-target="#myModal"><i
-                                    class="layui-icon">
-                                &#xe614;</i> 项目设置
-                            </a>
-                        </c:otherwise></c:choose>
-                    <a href="stepinto.ht?id=${projectList.ddProjectId}"
-                       class="layui-btn layui-btn-mini"><i class="layui-icon">&#xe642;</i> 进入</a>
-                    <a class="layui-btn layui-btn-mini layui-btn-warm" target="_blank"
-                       href="${ctx}/datadriver/designflow/flowframe.ht?id=${projectList.ddProjectId}"><i
-                            class="layui-icon">
-                        &#xe641;</i> 流程</a>
-                </display:column>
-            </display:table>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12" id="toolbar">
+            <a class="btn btn-success" href="javascript:void(0)" id="create" data-toggle="modal"
+               data-remote="create.ht"
+               data-target="#myCreate"><span class="glyphicon glyphicon-book"></span> 新建项目</a>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">我的项目</h3>
+        </div>
+        <div class="panel-body">
+            <table id="table_project_task"></table>
         </div>
     </div>
-    <%--项目创建--%>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-            </div>
+
+</div>
+<%--项目创建--%>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
         </div>
     </div>
-    <%--项目设置--%>
-    <div class="modal fade" id="myCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-            </div>
+</div>
+<%--项目设置--%>
+<div class="modal fade" id="myCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
         </div>
     </div>
 </div>
 </body>
-
 <script>
-
-    $(document).ready(function () {
+    var $table_project_task = $('#table_project_task');
+    var curRow = {};
+    function initTable() {
+        $table_project_task.bootstrapTable({
+            showHeader: true,
+            dataType: "json",
+            idField: "projectId",
+//            classes: "table table-hover table-striped",
+            url: "projectList.ht",
+            method: 'get',                      //请求方式（*）
+            toolbar: '#toolbar',                //工具按钮用哪个容器
+            striped: false,                      //是否显示行间隔色
+            cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true,
+            sortable: true,                     //是否启用排序
+            sortOrder: "asc",                   //排序方式
+            sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1,                       //初始化加载第一页，默认第一页
+            pageSize: 10,                       //每页的记录行数（*）
+            queryParamsType: '',
+            pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
+            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            searchAlign: "right",
+            searchOnEnterKey: true,
+            showColumns: true,
+            showToggle: true,
+//            detailView: true,
+            detailFormatter: true,
+            showPaginationSwitch: true,
+            showExport: true,                     //是否显示导出
+            exportDataType: "basic",              //basic', 'all', 'selected'.
+//            strictSearch: true,
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 5,             //当列数小于此值时，将隐藏内容列下拉框。
+            clickToSelect: false,                //是否启用点击选中行
+            height: getHeight(),                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "projectId",                     //每一行的唯一标识，一般为主键列
+            cardView: false,                    //是否显示详细视图
+            columns: [
+                {
+                    field: 'projectId',
+                    title: '项目ID',
+                    sortable: false,
+                    align: 'left',
+                    visible: false
+                }, {
+                    field: 'projectName',
+                    title: '项目名称',
+                    sortable: false,
+                    align: 'left',
+                    visible: true
+                }, {
+                    field: 'phase',
+                    title: '项目阶段',
+                    width: 160,
+                    sortable: true,
+                    align: 'left',
+                    visible: true
+                }
+                , {
+                    field: 'operate',
+                    title: '操作',
+                    align: 'center',
+                    width: 220,
+                    events: operateEvents,
+                    formatter: operateTask
+                }
+            ],
+            onClickRow: function (row, $element) {
+                curRow = row;
+            }
+        });
+    }
+    //刷新列表
+    function refresh(e) {
+        if (e == 0) $table_project_task.bootstrapTable('refresh')
+    }
+    //操作
+    function operateTask(value, row, index) {
+        return [
+            '<a id="stepIntoProject" href="javascript:void(0)" class="btn btn-primary btn-xs" title="点击进入项目"><span class="glyphicon glyphicon-log-in"></span> 进入',
+            '</a>', ' ',
+            '<a id="setupProject" href="javascript:void(0)" class="btn btn-success btn-xs" title="点击设置项目"><span class="glyphicon glyphicon-cog"></span> 设置',
+            '</a>', ' ',
+            '<a id="processFlow" href="javascript:void(0)" class="btn btn-info btn-xs" title="点击进入流程设计"><span class="glyphicon glyphicon-road"></span> 流程',
+            '</a>'
+        ].join('');
+    }
+    //设置table高度
+    function getHeight() {
+        return $(window).height() - $('.panel-heading').outerHeight(true) - 80;
+    }
+    window.operateEvents = {
+        'click #stepIntoProject': function (e, value, row, index) {
+            window.location.href = "stepinto.ht?id=" + row.projectId;
+        },
+        'click #setupProject': function (e, value, row, index) {
+            $('#myCreate').modal({
+                keyboard: true,
+                remote: "setup.ht?id=" + row.projectId
+            })
+        },
+        'click #processFlow': function (e, value, row, index) {
+            window.location.href = "${ctx}/datadriver/designflow/flowframe.ht?id=" + row.projectId;
+        }
+    };
+    $(function () {
+        initTable();
         $("#myCreate").on("hidden.bs.modal", function () {
             $(this).removeData("bs.modal");
         });
         $("#myModal").on("hidden.bs.modal", function () {
             $(this).removeData("bs.modal");
         });
-    })
-    function queryProject(){
-        var name=document.getElementById("Q_name_SL").value;
-        window.location.href = "${ctx}/datadriver/project/list.ht?name=" + name;
-//        $('#Search').modal({
-//            keyboard: true,
-//            remote: "list.ht?name=" + 123
-//        });
-    }
+    });
 </script>
 </html>
 

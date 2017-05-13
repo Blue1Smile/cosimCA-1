@@ -82,6 +82,7 @@ public class ProjectController extends BaseController {
     private PrivateDataService privateDataService;
     @Resource
     private DataStructService dataStructService;
+
     /**
      * 保存项目
      *
@@ -152,13 +153,13 @@ public class ProjectController extends BaseController {
      * @return the list
      * @throws Exception the exception
      */
-    @RequestMapping("list")
+    @RequestMapping("projectList")
     @Action(description = "根据条件查询项目基本信息列表")
-    public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
+    public void projectList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long userId = ContextUtil.getCurrentUserId();
         List<Project> allProjectList = this.projectService.queryProjectBasicInfoList(userId);
-        String projectName=RequestUtil.getString(request, "name");
+        String projectName = RequestUtil.getString(request, "name");
 
         for (int i = 0; i < allProjectList.size(); i++) {
             Project nowProject = allProjectList.get(i);
@@ -185,24 +186,93 @@ public class ProjectController extends BaseController {
             }
         }
         List<Project> projectList = new ArrayList<>();
-//        projectList=allProjectList;
 
-        if(projectName==""){
-            projectList=allProjectList;
+        if (projectName == "") {
+            projectList = allProjectList;
 
-        }
-        else{
-            for(int i=0; i<allProjectList.size();i++){
-                if(allProjectList.get(i).getDdProjectName().contains(projectName)){
+        } else {
+            for (int i = 0; i < allProjectList.size(); i++) {
+                if (allProjectList.get(i).getDdProjectName().contains(projectName)) {
                     projectList.add(allProjectList.get(i));
                 }
             }
         }
-        ModelAndView mv = this.getAutoView().addObject("projectList",
-                projectList);
-        return mv;
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        for (int i = 0; i < projectList.size(); i++) {
+            Project project = projectList.get(i);
+            jsonObject.put("projectId", project.getDdProjectId());
+            jsonObject.put("projectName", project.getDdProjectName());
+            jsonObject.put("projectPhase", project.getDdProjectPhaseId());
+
+            switch (project.getDdProjectPhaseId()){
+                case 2:
+                    jsonObject.put("phase", "未启动");
+                    break;
+                case 0:
+                    jsonObject.put("phase", "已启动");
+                    break;
+                default:
+                    jsonObject.put("phase", "已完成");
+                    break;
+            }
+            jsonMembers.add(jsonObject);
+        }
+        String jsonstring = formatJson(jsonMembers.toString());
+        System.out.println(json.toString());
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.append(jsonstring);
+        out.flush();
+        out.close();
     }
 
+    //格式化json
+    private static String formatJson(String jsonStr) {
+        if (null == jsonStr || "".equals(jsonStr)) return "";
+        StringBuilder sb = new StringBuilder();
+        char last = '\0';
+        char current = '\0';
+        int indent = 0;
+        for (int i = 0; i < jsonStr.length(); i++) {
+            last = current;
+            current = jsonStr.charAt(i);
+            switch (current) {
+                case '{':
+                case '[':
+                    sb.append(current);
+                    sb.append('\n');
+                    indent++;
+                    addIndentBlank(sb, indent);
+                    break;
+                case '}':
+                case ']':
+                    sb.append('\n');
+                    indent--;
+                    addIndentBlank(sb, indent);
+                    sb.append(current);
+                    break;
+                case ',':
+                    sb.append(current);
+                    if (last != '\\') {
+                        sb.append('\n');
+                        addIndentBlank(sb, indent);
+                    }
+                    break;
+                default:
+                    sb.append(current);
+            }
+        }
+        return sb.toString();
+    }
+
+    //添加空格
+    private static void addIndentBlank(StringBuilder sb, int indent) {
+        for (int i = 0; i < indent; i++) {
+            sb.append('\t');
+        }
+    }
 
     /**
      * Del.
@@ -230,35 +300,33 @@ public class ProjectController extends BaseController {
             projectService.delById(projectId);
 
             //删除所有任务
-            List<TaskInfo>  taskInfoList = taskInfoService.queryTaskInfoByProjectId(projectId);
-                for(int i =0;i<taskInfoList.size();i++){
-                    Long taskId = taskInfoList.get(i).getDdTaskId();
+            List<TaskInfo> taskInfoList = taskInfoService.queryTaskInfoByProjectId(projectId);
+            for (int i = 0; i < taskInfoList.size(); i++) {
+                Long taskId = taskInfoList.get(i).getDdTaskId();
 //                    taskStartService.delByTaskId(taskId);
-                    List<DataStruct> dataStructList = dataStructService.getStructByTaskId(taskInfoList.get(i).getDdTaskId());
-                    //删除所有数据结构
-                    for(int j=0;j<dataStructList.size();j++){
-                        Long structId = dataStructList.get(j).getDdStructId();
-                        dataStructService.delById(structId);
+                List<DataStruct> dataStructList = dataStructService.getStructByTaskId(taskInfoList.get(i).getDdTaskId());
+                //删除所有数据结构
+                for (int j = 0; j < dataStructList.size(); j++) {
+                    Long structId = dataStructList.get(j).getDdStructId();
+                    dataStructService.delById(structId);
 //                        List<PrivateData> childDataList = privateDataService.selectByStructid(structId);
 
-                        List<PrivateData> childDataList = null;
+                    List<PrivateData> childDataList = null;
 
-                        //删除所有私有数据
+                    //删除所有私有数据
 //                        for(int k=0;k<childDataList.size();k++){
 //                            privateDataService.delById(childDataList.get(k).getDdDataId());
 //                        }
 
-                    }
-                    //删除所有模型，文件
-
-
-
-
-                    taskInfoService.delById(taskId);
                 }
+                //删除所有模型，文件
+
+
+                taskInfoService.delById(taskId);
+            }
 
             resultMsg = getText("added", "项目信息");
-                writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
+            writeResultMessage(response.getWriter(), resultMsg, ResultMessage.Success);
         } catch (Exception e) {
             writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }

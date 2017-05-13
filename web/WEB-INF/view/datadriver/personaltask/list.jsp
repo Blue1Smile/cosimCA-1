@@ -98,7 +98,7 @@
             searchOnEnterKey: true,
             showColumns: true,
             showToggle: true,
-            detailView: true,
+//            detailView: true,
             detailFormatter: true,
             showPaginationSwitch: true,
             showExport: true,                     //是否显示导出
@@ -179,8 +179,7 @@
     }
     //刷新列表
     function refresh(e) {
-        if (e == 0) $('#table_publish').bootstrapTable('refresh')
-        if (e == 1) $('#table_private').bootstrapTable('refresh')
+        if (e == 0) $table_personal_task.bootstrapTable('refresh')
     }
     //操作
     function operateTask(value, row, index) {

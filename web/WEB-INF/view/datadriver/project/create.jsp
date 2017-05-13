@@ -12,11 +12,6 @@
 <head>
     <title>创建项目</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-    <%--<%@include file="/commons/datadriver/formbase.jsp" %>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/CustomValid.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>--%>
-    <%--<script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>--%>
-    <%--<link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>--%>
 </head>
 <body>
 <div class="modal-header">
@@ -120,8 +115,6 @@
     function showResponse(responseText) {
         var obj = new com.hotent.form.ResultMessage(responseText);
         if (obj.isSuccess()) {
-            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-            parent.layer.close(index); //再执行关闭
             window.location.href = "${ctx}/datadriver/project/list.ht";
         } else {
 

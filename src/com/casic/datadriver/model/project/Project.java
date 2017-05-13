@@ -14,17 +14,14 @@ import java.util.List;
  */
 public class Project {
 
-
 	public static final Short STATUS_RUNNING		=1;
 	public static final Short STATUS_STOP			=2;
-	public static final Short STATUS_EXCEPTION		=-1;
-	public static final Short STATUS_UNSTART        =-3;
+	public static final Short STATUS_EXCEPTION		=3;
+	public static final Short STATUS_UNSTART        =4;
 
-	public static final Long unstart   =  -1L;
-	public static final Long start   =  0L;
-	public static final Long complete   =  1L;
-
-
+	public static final Short unstart   =  2;
+	public static final Short start   =  0;
+	public static final Short complete   =  1;
 
 	/** The dd project id. */
 	private Long ddProjectId;
@@ -36,7 +33,7 @@ public class Project {
 	private String ddProjectResponsibleUnits;
 
 	/** The dd project phase id. */
-	private Long ddProjectPhaseId;
+	private Short ddProjectPhaseId;
 
 	/** The dd project create datatime. */
 	private String ddProjectCreateDatatime;
@@ -164,7 +161,7 @@ public class Project {
 	 *
 	 * @return the dd project phase id
 	 */
-	public Long getDdProjectPhaseId() {
+	public Short getDdProjectPhaseId() {
 		return ddProjectPhaseId;
 	}
 
@@ -174,7 +171,7 @@ public class Project {
 	 * @param ddProjectPhaseId
 	 *            the new dd project phase id
 	 */
-	public void setDdProjectPhaseId(Long ddProjectPhaseId) {
+	public void setDdProjectPhaseId(Short ddProjectPhaseId) {
 		this.ddProjectPhaseId = ddProjectPhaseId;
 	}
 
