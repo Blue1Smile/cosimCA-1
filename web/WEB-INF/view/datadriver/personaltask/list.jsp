@@ -13,102 +13,204 @@
     <title>个人任务</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <script src="${ctx}/newtable/jquery.js"></script>
-
-    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <style>
-        .fl {
-            float: left;
-        }
-
-        .fr {
-            float: right;
-        }
-
-        .pages {
-            float: right;
-        }
-
-        .page_line {
-            display: inline;
-        }
-    </style>
+    <link href="${ctx}/newtable/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <script src="${ctx}/newtable/jquery.js"></script>
+    <%@include file="/newtable/tablecontext.jsp" %>
 </head>
 <body>
-<div class="col-xs-10 col-xs-offset-1">
-    <div class="layui-tab layui-tab-card">
-        <ul class="layui-tab-title">
-            <li class="layui-this">我的任务</li>
-        </ul>
-        <div class="layui-tab-content">
-            <blockquote class="layui-elem-quote">
-                <div style="height: 34px;">
-                    <form id="searchForm" method="post" action="list.ht">
-                        <div class="fl">
-                            <input type="text" name="Q_name_SL " class="form-control"
-                                   value="${param['Q_name_SL']}" placeholder="任务名称"/>
-                        </div>
-                        <div class="fr">
-                            <a class="layui-btn layui-btn-normal layui-btn-small" id="Search"><i class="layui-icon">
-                                &#xe615;</i> 查询</a>
-                            <a class="layui-btn layui-btn-primary layui-btn-small" onclick="location.reload()"><i
-                                    class="layui-icon">
-                                &#xe63d;</i> 刷新</a>
-                        </div>
-                    </form>
-                </div>
-            </blockquote>
-            <%--<c:set var="checkAll">--%>
-            <%--<input type="checkbox" id="chkall"/>--%>
-            <%--</c:set>--%>
-            <display:table name="taskList" id="taskList" requestURI="list.ht" sort="external" cellpadding="0"
-                           cellspacing="0" export="false" class="layui-table" pagesize="10">
-                <%--<display:column title="${checkAll}" media="html" style="width:3%;">--%>
-                <%--<input type="checkbox" class="pk" name="id" value="${taskList.ddTaskId}">--%>
-                <%--</display:column>--%>
-                <display:column property="ddTaskProjectName" title="任务所属项目名称" maxLength="80" sortable="false"
-                                style="width:35%"></display:column>
-                <display:column property="ddTaskName" title="任务名称" sortable="false" maxLength="80"
-                                style="width:35%"></display:column>
-                <display:column title="优先级" media="html" style="width:11%">
-                    <c:choose>
-                        <c:when test="${taskList.ddTaskPriority==3}"><i
-                                style="font-size: 14px; color: #FF5722;">紧急</i></c:when>
-                        <c:when test="${taskList.ddTaskPriority==2}"><i
-                                style="font-size: 14px; color: #F7B824;">重要</i></c:when>
-                        <c:otherwise><i style="font-size: 14px; color: #01AAED;">一般</i></c:otherwise>
-                    </c:choose>
-                </display:column>
+<div class="container">
+    <div class="row" id="toolbar">
+        <%--<div class="col-xs-12">--%>
+            <%--<form>--%>
+                <%--<div class="col-xs-7">--%>
+                    <%--<div class="form-group">--%>
+                        <%--<input type="text" class="form-control" id="taskNameForSearch" placeholder="输入任务名称...">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="col-xs-1">--%>
+                    <%--<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 搜索--%>
+                    <%--</button>--%>
+                <%--</div>--%>
+                <%--<div class="col-xs-4">--%>
+                    <%--<!-- Single button -->--%>
+                    <%--<div class="btn-group">--%>
+                        <%--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"--%>
+                                <%--aria-haspopup="true" aria-expanded="false">--%>
+                            <%--优先级：全部 <span class="caret"></span>--%>
+                        <%--</button>--%>
+                        <%--<ul class="dropdown-menu">--%>
+                            <%--<li><a href="#">一般</a></li>--%>
+                            <%--<li><a href="#">重要</a></li>--%>
+                            <%--<li><a href="#">紧急</a></li>--%>
+                        <%--</ul>--%>
+                    <%--</div>--%>
 
-                <display:column title="任务阶段" media="html" style="width:12%">
-                    <c:choose><c:when test="${taskList.ddTaskState==1}">
-                        <i style="font-size: 14px; color: #F7B824;">待审核</i>
-                    </c:when>
-                        <c:when test="${taskList.ddTaskState==0}">
-                            <i style="font-size: 14px; color: #1E9FFF;">未提交</i>
-                        </c:when>
-                        <c:otherwise>
-                            <i style="font-size: 14px; color: #5FB878;">已完成</i>
-                        </c:otherwise></c:choose>
-                </display:column>
-                <display:column title="操作" media="html" style="width:7%">
-                    <c:choose><c:when test="${taskList.ddTaskState==0}">
-                        <a href="todotask.ht?id=${taskList.ddTaskId}" class="layui-btn layui-btn-normal layui-btn-mini"><i
-                                class="layui-icon">&#xe642;</i> 办理</a>
-                    </c:when>
-                        <c:otherwise>
-                            <a href="${ctx}/datadriver/personaltask/recovertask.ht?id=${taskList.ddTaskId}"
-                               class="layui-btn layui-btn-warm layui-btn-mini"><i
-                                    class="layui-icon">&#xe603;</i> 收回</a>
-                        </c:otherwise></c:choose>
-                </display:column>
-            </display:table>
+                    <%--<div class="btn-group">--%>
+                        <%--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"--%>
+                                <%--aria-haspopup="true" aria-expanded="false">--%>
+                            <%--所属项目：全部 <span class="caret"></span>--%>
+                        <%--</button>--%>
+                        <%--<ul class="dropdown-menu">--%>
+                            <%--<li><a href="#"></a></li>--%>
+                        <%--</ul>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</form>--%>
+        <%--</div>--%>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">待办任务</h3>
+        </div>
+        <div class="panel-body">
+            <table id="table_personal_task"></table>
         </div>
     </div>
+
 </div>
 </body>
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
+<script>
+    var $table_personal_task = $('#table_personal_task');
+    var curRow = {};
+    function initTable() {
+        $table_personal_task.bootstrapTable({
+            showHeader: true,
+            dataType: "json",
+            idField: "ddTaskId",
+//            classes: "table table-hover table-striped",
+            url: "taskList.ht",
+            method: 'get',                      //请求方式（*）
+            toolbar: '#toolbar',                //工具按钮用哪个容器
+            striped: false,                      //是否显示行间隔色
+            cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true,
+            sortable: true,                     //是否启用排序
+            sortOrder: "asc",                   //排序方式
+            sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1,                       //初始化加载第一页，默认第一页
+            pageSize: 10,                       //每页的记录行数（*）
+            queryParamsType: '',
+            pageList: [5, 10, 20, 50],        //可供选择的每页的行数（*）
+            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            searchAlign: "right",
+            searchOnEnterKey: true,
+            showColumns: true,
+            showToggle: true,
+            detailView: true,
+            detailFormatter: true,
+            showPaginationSwitch: true,
+            showExport: true,                     //是否显示导出
+            exportDataType: "basic",              //basic', 'all', 'selected'.
+//            strictSearch: true,
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 5,             //当列数小于此值时，将隐藏内容列下拉框。
+            clickToSelect: false,                //是否启用点击选中行
+            height: getHeight(),                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "ddTaskId",                     //每一行的唯一标识，一般为主键列
+            cardView: false,                    //是否显示详细视图
+            rowStyle: function (row, index) {
+                var style = "";
+                if (row.ddTaskPriority == 3) {
+                    style = 'danger'
+                }
+                if (row.ddTaskPriority == 2) {
+                    style = 'warning'
+                }
+                return {classes: style}
+            },
+            columns: [
+                {
+                    field: 'ddTaskId',
+                    title: '任务ID',
+                    sortable: false,
+                    align: 'left',
+                    visible: false
+                }, {
+                    field: 'ddTaskProjectName',
+                    title: '项目名称',
+                    sortable: false,
+                    align: 'left',
+                    visible: true
+                }, {
+                    field: 'ddTaskName',
+                    title: '任务名称',
+                    sortable: true,
+                    align: 'left',
+                    visible: true
+                }
+                , {
+                    field: 'ddTaskPriority',
+                    title: '优先级码',
+                    sortable: true,
+                    align: 'left',
+                    visible: false
+                }, {
+                    field: 'priority',
+                    title: '优先级',
+                    sortable: true,
+                    align: 'left',
+                    visible: true
+                }, {
+                    field: 'state',
+                    title: '任务状态',
+                    sortable: true,
+                    align: 'left',
+                    visible: true
+                }, {
+                    field: 'ddTaskState',
+                    title: '任务状态码',
+                    sortable: true,
+                    align: 'center',
+                    visible: false
+                }, {
+                    field: 'operate',
+                    title: '操作',
+                    align: 'center',
+                    events: operateEvents,
+                    formatter: operateTask
+                }
+            ],
+            onClickRow: function (row, $element) {
+                curRow = row;
+            }
+        });
+    }
+    //刷新列表
+    function refresh(e) {
+        if (e == 0) $('#table_publish').bootstrapTable('refresh')
+        if (e == 1) $('#table_private').bootstrapTable('refresh')
+    }
+    //操作
+    function operateTask(value, row, index) {
+        if (row.ddTaskState == 0) {
+            return [
+                '<a id="todoTask" href="javascript:void(0)" class="btn btn-primary btn-xs" title="点击办理任务"><span class="glyphicon glyphicon-edit"></span>办理',
+                '</a>'
+            ].join('');
+        }
+        if (row.ddTaskState == 1)
+            return [
+                '<a href="javascript:void(0)" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-repeat"></span> 收回</a>'
+            ].join('');
+    }
+    //设置table高度
+    function getHeight() {
+        return $(window).height() - $('.panel-heading').outerHeight(true) - 80;
+    }
+    window.operateEvents = {
+        'click #todoTask': function (e, value, row, index) {
+            window.location.href = "todotask.ht?id=" + row.ddTaskId;
+        },
+        'click #rebackTask': function (e, value, row, index) {
+            window.location.href = "${ctx}/datadriver/personaltask/recovertask.ht?id=" + row.ddTaskId;
+        }
+    };
+    $(function () {
+        initTable();
+    });
+</script>
 </html>
 
 

@@ -3,24 +3,20 @@
 <%@include file="/commons/cloud/global.jsp" %>
 <%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
-<html lang="zh-CN" style="width: 100%;height: 100%">
+<html lang="zh-CN" style="height: 100%">
 <head>
     <title>协同设计</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
-    <%--<%@include file="/commons/cloud/meta.jsp" %>--%>
-    <link href="${ctx}/styles/layui/css/layui.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="${ctx}/newtable/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-
     <script src="${ctx}/newtable/jquery.js"></script>
-
-
+    <script src="${ctx}/newtable/bootstrap.js"></script>
     <script>
         $(function () {
-            $(".layui-nav li a").each(function (index) {
+            $(".nav li a").each(function (index) {
                 $this = $(this);
                 if ($this[0].href == String(window.location)) {
-                    $this.addClass("layui-this");
+                    $this.addClass("active");
                 }
             });
             $("#mainframe").height(getHeight());
@@ -30,44 +26,25 @@
             return $(window).height() - $('.layui-nav').outerHeight(true) - 80;
         }
     </script>
-
-    <style type="text/css">
-        .head_title {
-            /*position: fixed;*/
-            /*top: 0;*/
-            /*left: 0;*/
-            /*right: 0;*/
-            font-size: 40px;
-            font-weight: 600;
-            float: left;
-            line-height: 36px;
-            margin: 0 8px 10px 30px;
-            color: #1976D2;
+    <style>
+        body {
+            min-height: 2000px;
+            padding-top: 70px;
         }
-
-        /*.row {*/
-        /*margin-right: 0px !important;*/
-        /*margin-left: 0px !important;*/
-        /*}*/
     </style>
 </head>
-<body style="width: 100%;height: 100%">
-<div class="container-fluid" style="width: 100%;height: 100%">
-    <br>
-    <div class="row">
-        <h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>
-    </div>
+<body style="height: 100%">
+<%@include file="/commons/cloud/top_console.jsp" %>
 
-    <%@include file="/commons/cloud/top_console.jsp" %>
+    <%--<br>--%>
+    <%--<div class="row">--%>
+    <%--<h1 class="head_title"><strong style="color: orange">Cosim</strong>协同设计平台</h1>--%>
+    <%--</div>--%>
     <%--<div class="col-xs-2">--%>
     <%--<decorator:body/>--%>
     <%--</div>--%>
-
-
     <iframe src="main.ht" frameborder="0" scrolling="no" id="mainframe" style="width: 100%;"></iframe>
-
     <%--<%@include file="/commons/cloud/foot.jsp" %>--%>
-</div>
+
 </body>
-<script src="${ctx}/styles/layui/lay/dest/layui.all.js"></script>
 </html>

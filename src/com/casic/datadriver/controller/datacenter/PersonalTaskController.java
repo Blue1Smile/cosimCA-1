@@ -63,9 +63,9 @@ public class PersonalTaskController extends AbstractController {
      * @return the list
      * @throws Exception the exception
      */
-    @RequestMapping("list")
+    @RequestMapping("taskList")
     @Action(description = "个人任务列表")
-    public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
+    public void taskList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 //        List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> UserTaskInfo_list = taskInfoService.queryTaskInfoByResponceId(ContextUtil.getCurrentUserId());
@@ -82,8 +82,50 @@ public class PersonalTaskController extends AbstractController {
                 taskInfo_list.add(taskInfo);
             }
         }
-        ModelAndView mv = this.getAutoView().addObject("taskList", taskInfo_list);
-        return mv;
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        for (int i = 0; i < taskInfo_list.size(); i++) {
+            TaskInfo taskInfo = taskInfo_list.get(i);
+            jsonObject.put("ddTaskId", taskInfo.getDdTaskId());
+            jsonObject.put("ddTaskPriority", taskInfo.getDdTaskPriority());
+            jsonObject.put("ddTaskState", taskInfo.getDdTaskState());
+            jsonObject.put("ddTaskProjectName", taskInfo.getDdTaskProjectName());
+            jsonObject.put("ddTaskName", taskInfo.getDdTaskName());
+
+            switch (taskInfo.getDdTaskPriority()){
+                case 3:
+                    jsonObject.put("priority", "紧急");
+                    break;
+                case 2:
+                    jsonObject.put("priority", "重要");
+                    break;
+                default:
+                    jsonObject.put("priority", "一般");
+                    break;
+            }
+            switch (taskInfo.getDdTaskState()) {
+                case 1:
+                    jsonObject.put("state", "已提交");
+                    break;
+                case 2:
+                    jsonObject.put("state", "已完成");
+                    break;
+                default:
+                    jsonObject.put("state", "待办");
+                    break;
+            }
+            jsonMembers.add(jsonObject);
+        }
+//        json.put("total", taskInfo_list.size());
+//        json.put("rows", jsonMembers);
+        String jsonstring = formatJson(jsonMembers.toString());
+        System.out.println(json.toString());
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.append(jsonstring);
+        out.flush();
+        out.close();
     }
 
     @RequestMapping("submitpublish")
