@@ -52,16 +52,16 @@ public class ModelCenterController {
         JSONArray jsonArray = JSONArray.fromObject(buildTree(root));
         //       net.sf.json.JSONArray jsonArray = net.sf.json.JSONArray.fromObject(buildTree(root));
         System.out.println(jsonArray.toString());
-
+//TODO:不应该调用非公共类的函数，需要修改
         PersonalTaskController Tjson = new PersonalTaskController();
         String t = "";
-        t=jsonArray.toString();
+        t = jsonArray.toString();
         Tjson.formatJson(t);
         return t;
     }
 
-    public List<Model> buildTree(List<Model> root){
-        for(int i=0;i<root.size();i++){
+    public List<Model> buildTree(List<Model> root) {
+        for (int i = 0; i < root.size(); i++) {
             List<Model> children = modelservice.findByPid(root.get(i).getDdModeltypeId()); //查询某节点的子节点（获取的是list）
             buildTree(children);
             root.get(i).setChildren(children);
@@ -72,14 +72,14 @@ public class ModelCenterController {
 
     @RequestMapping("save")
     @Action(description = "保存工具")
-    public void  save(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Long Modeltype= RequestUtil.getLong(request, "Modeltype");
-        Long taskid= RequestUtil.getLong(request, "id");
-        String ddModelName= RequestUtil.getString(request, "ddModelName");
-        String ddModelVersion= RequestUtil.getString(request, "ddModelVersion");
-        String ddModelBf= RequestUtil.getString(request, "ddModelBf");
-        Long ddModelBf2= RequestUtil.getLong(request, "ddModelBf2");
-        String DdModelExplain= RequestUtil.getString(request, "DdModelExplain");
+    public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Long Modeltype = RequestUtil.getLong(request, "Modeltype");
+        Long taskid = RequestUtil.getLong(request, "id");
+        String ddModelName = RequestUtil.getString(request, "ddModelName");
+        String ddModelVersion = RequestUtil.getString(request, "ddModelVersion");
+        String ddModelBf = RequestUtil.getString(request, "ddModelBf");
+        Long ddModelBf2 = RequestUtil.getLong(request, "ddModelBf2");
+        String DdModelExplain = RequestUtil.getString(request, "DdModelExplain");
 
         ModelCenterModel m = new ModelCenterModel();
 //        ToolCenterModel ToolData = this.getFormObject(request, ToolCenterModel.class);
@@ -93,7 +93,7 @@ public class ModelCenterController {
         //创建一个通用的多部分解析器
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         //判断 request 是否有文件上传,即多部分请求
-        if(multipartResolver.isMultipart(request)) {
+        if (multipartResolver.isMultipart(request)) {
             //转换成多部分request
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
             //取得request中的所有文件名
@@ -119,9 +119,9 @@ public class ModelCenterController {
 
                         ////
                         String realPath = getServletContext().getRealPath("/");
-                        String path =realPath+ "/ModelCenter/" + ddModelName + "/" + ddModelVersion +"_"+myFileName;
+                        String path = realPath + "/ModelCenter/" + ddModelName + "/" + ddModelVersion + "_" + myFileName;
 //                        String path ="d:"+ "/major/" + major + "/" + ddToolVersion +"_"+myFileName;
-                        m.setDdModelUrl("/ModelCenter/" + ddModelName + "/" + ddModelVersion +"_"+myFileName);
+                        m.setDdModelUrl("/ModelCenter/" + ddModelName + "/" + ddModelVersion + "_" + myFileName);
                         File file = new File(path);
                         //创建目录
 
@@ -141,8 +141,7 @@ public class ModelCenterController {
                     modelcenterservice.add(m);
 
 //                    response.sendRedirect("toollist1.ht?major="+major);//根据实际情况跳转w
-                }
-                else {
+                } else {
 
                 }
                 //记录上传该文件后的时间
@@ -159,48 +158,45 @@ public class ModelCenterController {
     public void querysubmitpublish1(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         request.setCharacterEncoding("UTF-8");
-        JSONObject json=new JSONObject();
+        JSONObject json = new JSONObject();
         JSONArray jsonMembers = new JSONArray();
-        String search= new String(RequestUtil.getString(request, "searchText").getBytes("ISO-8859-1"),"UTF-8");
+        String search = new String(RequestUtil.getString(request, "searchText").getBytes("ISO-8859-1"), "UTF-8");
 
 
-        Long pageSize =RequestUtil.getLong(request, "pageSize");
-        Long  pageNumber = RequestUtil.getLong(request, "pageNumber");
-        int son= RequestUtil.getInt(request, "son");
+        Long pageSize = RequestUtil.getLong(request, "pageSize");
+        Long pageNumber = RequestUtil.getLong(request, "pageNumber");
+        int son = RequestUtil.getInt(request, "son");
         response.setContentType("application/json");
         ModelCenterModel temp;
 
         PageInfo pageinfo = new PageInfo();
 
         pageinfo.setBf2(search);
-        pageinfo.setPageSize((pageNumber-1)*pageSize);
+        pageinfo.setPageSize((pageNumber - 1) * pageSize);
         pageinfo.setPageNumber(pageSize);
         int Allnum = 0;
         try {
-            List<ModelCenterModel> mylist =  new ArrayList<>();
-            List<ModelCenterModel> toolList1 =  new ArrayList<>();
+            List<ModelCenterModel> mylist = new ArrayList<>();
+            List<ModelCenterModel> toolList1 = new ArrayList<>();
 //            List<ModelCenterModel> mylist =  new ArrayList<>();
             JSONObject jsonObject = new JSONObject();
-            if (son==1){
-                long Modeltype= RequestUtil.getLong(request, "Modeltype");
+            if (son == 1) {
+                long Modeltype = RequestUtil.getLong(request, "Modeltype");
                 pageinfo.setId(Modeltype);
                 Allnum = this.modelcenterservice.querytoolBymodeltype(Modeltype).size();
                 //mylist = this.tservice.querytoolBymajor(major);
                 mylist = this.modelcenterservice.querytoolBymodeltypeF(pageinfo);
 
-            }
-            else if(son==2){
-                Long Modeltype= RequestUtil.getLong(request, "Modeltype");
+            } else if (son == 2) {
+                Long Modeltype = RequestUtil.getLong(request, "Modeltype");
 //                String Modeltype= new String(RequestUtil.getString(request, "Modeltype").getBytes("ISO-8859-1"),"UTF-8");
 //                String ModelName= RequestUtil.getString(request, "ModelName");
-                String ModelName= new String(RequestUtil.getString(request, "ModelName").getBytes("ISO-8859-1"));
+                String ModelName = new String(RequestUtil.getString(request, "ModelName").getBytes("ISO-8859-1"));
                 pageinfo.setId(Modeltype);
                 pageinfo.setName(ModelName);
                 mylist = this.modelcenterservice.querytoolBymodelname(pageinfo);
-            }
-            else if(son==3)
-            {
-                Long id= RequestUtil.getLong(request, "id");
+            } else if (son == 3) {
+                Long id = RequestUtil.getLong(request, "id");
                 pageinfo.setId(id);
                 Allnum = this.modelcenterservice.querytoolBytaskid(pageinfo).size();
                 //mylist = this.tservice.querytoolBymajor(major);
@@ -228,7 +224,7 @@ public class ModelCenterController {
             out.append(jsonstring);
             out.flush();
             out.close();
-        }catch (Exception e) {
+        } catch (Exception e) {
             String resultMsg = null;
 //            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
         }
@@ -241,7 +237,7 @@ public class ModelCenterController {
     public void remove(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        Long id= RequestUtil.getLong(request, "id");
+        Long id = RequestUtil.getLong(request, "id");
         this.modelcenterservice.delmodel(id);
     }
 
@@ -252,20 +248,20 @@ public class ModelCenterController {
         //获取网站部署路径(通过ServletContext对象)，用于确定下载文件位置，从而实现下载
 //        String path = servletContext.getRealPath("/");
 //        String major= new String(RequestUtil.getString(request, "major").getBytes("ISO-8859-1"));
-        String major= new String(RequestUtil.getString(request, "modelurl").getBytes("ISO-8859-1"),"UTF-8");
-        String name= new String(RequestUtil.getString(request, "modelname").getBytes("ISO-8859-1"),"UTF-8");
+        String major = new String(RequestUtil.getString(request, "modelurl").getBytes("ISO-8859-1"), "UTF-8");
+        String name = new String(RequestUtil.getString(request, "modelname").getBytes("ISO-8859-1"), "UTF-8");
         String path = getServletContext().getRealPath("/");
-        try{
+        try {
             // path是指欲下载的文件的路径。
-            File file = new File(path+major);
+            File file = new File(path + major);
             // 取得文件名。
             String filename = file.getName();
-            filename = URLEncoder.encode(filename,"UTF-8");
+            filename = URLEncoder.encode(filename, "UTF-8");
             // 取得文件的后缀名。
             String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
 
             // 以流的形式下载文件。
-            InputStream fis = new BufferedInputStream(new FileInputStream(path+major));
+            InputStream fis = new BufferedInputStream(new FileInputStream(path + major));
             byte[] buffer = new byte[fis.available()];
             fis.read(buffer);
             fis.close();
