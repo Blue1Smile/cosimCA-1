@@ -67,6 +67,8 @@ function inputTableInit(path) {
             altRows: true,
             hierarchicalCheckboxes: true,
             checkboxes: true,
+            filterable: true,
+            filterMode: 'advanced',
             theme: "darkblue",
             ready: function () {
                 // called when the DatatreeGrid is loaded.

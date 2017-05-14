@@ -183,13 +183,13 @@
     }
     //操作
     function operateTask(value, row, index) {
-        if (row.ddTaskState == 0) {
+        if (row.ddTaskState == 1) {
             return [
                 '<a id="todoTask" href="javascript:void(0)" class="btn btn-primary btn-xs" title="点击办理任务"><span class="glyphicon glyphicon-edit"></span> 办理',
                 '</a>'
             ].join('');
         }
-        if (row.ddTaskState == 1)
+        if (row.ddTaskState == 2)
             return [
                 '<a href="javascript:void(0)" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-repeat"></span> 收回</a>'
             ].join('');

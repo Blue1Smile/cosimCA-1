@@ -67,9 +67,15 @@ function outputTableInit(path) {
             altRows: true,
             hierarchicalCheckboxes: true,
             checkboxes: true,
+            filterable: true,
+            filterMode: 'advanced',
             theme: "darkblue",
             ready: function () {
                 // called when the DatatreeGrid is loaded.
+                $("#treeGridOut").jqxTreeGrid('expandRow', '2');
+                $("#treeGridOut").jqxTreeGrid('selectRow', '2');
+                // focus jqxTreeGrid.
+                $("#treeGridOut").jqxTreeGrid('focus');
             },
             pagerButtonsCount: 8,
             toolbarHeight: 35,
@@ -97,47 +103,47 @@ function outputTableInit(path) {
                     cursor: "pointer",
                     enableDefault: false,
                     disabled: true,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                addButton.find('div:first').addClass(toTheme('jqx-icon-plus'));
-                addButton.jqxTooltip({position: 'bottom', content: "Add"});
+                addButton.find('div:first').addClass(toTheme('glyphicon glyphicon-plus'));
+                addButton.jqxTooltip({position: 'bottom', content: "添加数据"});
                 editButton.jqxButton({
                     cursor: "pointer",
                     disabled: true,
                     enableDefault: false,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                editButton.find('div:first').addClass(toTheme('jqx-icon-edit'));
-                editButton.jqxTooltip({position: 'bottom', content: "Edit"});
+                editButton.find('div:first').addClass(toTheme('glyphicon glyphicon-pencil'));
+                editButton.jqxTooltip({position: 'bottom', content: "编辑行"});
                 deleteButton.jqxButton({
                     cursor: "pointer",
                     disabled: true,
                     enableDefault: false,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                deleteButton.find('div:first').addClass(toTheme('jqx-icon-delete'));
-                deleteButton.jqxTooltip({position: 'bottom', content: "Delete"});
+                deleteButton.find('div:first').addClass(toTheme('glyphicon glyphicon-trash'));
+                deleteButton.jqxTooltip({position: 'bottom', content: "删除行"});
                 updateButton.jqxButton({
                     cursor: "pointer",
                     disabled: true,
                     enableDefault: false,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                updateButton.find('div:first').addClass(toTheme('jqx-icon-save'));
-                updateButton.jqxTooltip({position: 'bottom', content: "Save Changes"});
+                updateButton.find('div:first').addClass(toTheme('glyphicon glyphicon-floppy-saved'));
+                updateButton.jqxTooltip({position: 'bottom', content: "保存变更"});
                 cancelButton.jqxButton({
                     cursor: "pointer",
                     disabled: true,
                     enableDefault: false,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                cancelButton.find('div:first').addClass(toTheme('jqx-icon-cancel'));
-                cancelButton.jqxTooltip({position: 'bottom', content: "Cancel"});
+                cancelButton.find('div:first').addClass(toTheme('glyphicon glyphicon-remove'));
+                cancelButton.jqxTooltip({position: 'bottom', content: "取消编辑"});
                 var updateButtons = function (action) {
                     switch (action) {
                         case "Select":
@@ -241,4 +247,32 @@ function outputTableInit(path) {
                 {text: '发布状态', dataField: "publishState", align: 'left', width: '20%'}
             ]
         });
+    $("#excelExport").jqxButton();
+    $("#xmlExport").jqxButton();
+    $("#csvExport").jqxButton();
+    // $("#tsvExport").jqxButton();
+    // $("#htmlExport").jqxButton();
+    $("#jsonExport").jqxButton();
+    $("#pdfExport").jqxButton();
+    $("#excelExport").click(function () {
+        $("#treeGridOut").jqxTreeGrid('exportData', 'xls');
+    });
+    $("#xmlExport").click(function () {
+        $("#treeGridOut").jqxTreeGrid('exportData', 'xml');
+    });
+    $("#csvExport").click(function () {
+        $("#treeGridOut").jqxTreeGrid('exportData', 'csv');
+    });
+    // $("#tsvExport").click(function () {
+    //     $("#treeGridOut").jqxTreeGrid('exportData', 'tsv');
+    // });
+    // $("#htmlExport").click(function () {
+    //     $("#treeGridOut").jqxTreeGrid('exportData', 'html');
+    // });
+    $("#jsonExport").click(function () {
+        $("#treeGridOut").jqxTreeGrid('exportData', 'json');
+    });
+    $("#pdfExport").click(function () {
+        $("#treeGridOut").jqxTreeGrid('exportData', 'pdf');
+    });
 }

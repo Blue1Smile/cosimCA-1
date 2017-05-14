@@ -19,7 +19,17 @@
     <%--<script type="text/javascript" src="${ctx}/jqwidgets/scripts/demos.js"></script>--%>
 </head>
 <body>
-    <div id="treeGridOut"></div>
+<div class="row">
+    <div class="pull-right">
+        <input type="button" value="导出Excel" id='excelExport'/>
+        <input type="button" value="导出XML" id='xmlExport'/>
+        <input type="button" value="导出CSV" id='csvExport'/>
+        <input type="button" value="导出JSON" id='jsonExport'/>
+        <input type="button" value="导出PDF" id='pdfExport'/>
+    </div>
+</div>
+<br>
+<div id="treeGridOut"></div>
 <%--导入数据--%>
 <div class="modal fade" id="importData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
