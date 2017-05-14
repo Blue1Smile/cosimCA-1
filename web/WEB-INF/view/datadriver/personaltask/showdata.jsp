@@ -5,6 +5,7 @@
   Time: 下午7:57
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
@@ -12,14 +13,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="ap" uri="/appleTag" %>
-<html>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<html lang="zh-CN">
 <head>
     <title>数据看板</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <script type="text/javascript" src="${ctx}/jqwidgets/table/outputable.js"></script>
     <%--<script type="text/javascript" src="${ctx}/jqwidgets/scripts/demos.js"></script>--%>
 </head>
 <body>
-<div class="row">
+<div class="col-xs-12">
     <div class="pull-right">
         <input type="button" value="导出Excel" id='excelExport'/>
         <input type="button" value="导出XML" id='xmlExport'/>
@@ -28,8 +31,18 @@
         <input type="button" value="导出PDF" id='pdfExport'/>
     </div>
 </div>
+<%--<br>--%>
+<div id="treeGridOut" style="width: 100%"></div>
+<%--<div class="row">--%>
+    <%--<div class="pull-right">--%>
+        <%--<input type="button" value="导出Excel" id='excelExport'/>--%>
+        <%--<input type="button" value="导出XML" id='xmlExport'/>--%>
+        <%--<input type="button" value="导出CSV" id='csvExport'/>--%>
+        <%--<input type="button" value="导出JSON" id='jsonExport'/>--%>
+        <%--<input type="button" value="导出PDF" id='pdfExport'/>--%>
+    <%--</div>--%>
+<%--</div>--%>
 <br>
-<div id="treeGridOut"></div>
 <%--导入数据--%>
 <div class="modal fade" id="importData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
