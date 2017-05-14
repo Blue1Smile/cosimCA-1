@@ -13,7 +13,7 @@
     <script type="text/javascript" src="${ctx}/styles/layui/jquery.dragsort-0.5.2.min.js"></script>
 </head>
 <body id="task_board">
-<div class="row paneldocker" style="height: 100%">
+<div class="row paneldocker">
     <div class="col-xs-3" style="height: 100%">
         <div class="panel panel-default task-panel">
             <div class="panel-heading">
@@ -27,12 +27,6 @@
                     <c:forEach var="taskListbyUserItem" items="${taskListbyUser}">
                         <li class="task task-card ui-sortable-handle "
                             onclick="showTaskContent(${taskListbyUserItem.ddTaskId})">
-                                <%--<div class="checkbox checkbox-primary">--%>
-                                <%--<input id="${taskListbyUserItem.ddTaskId}" type="checkbox">--%>
-                                <%--<label for="${taskListbyUserItem.ddTaskId}">--%>
-                                <%--${taskListbyUserItem.ddTaskName}--%>
-                                <%--</label>--%>
-                                <%--</div>--%>
                                 ${taskListbyUserItem.ddTaskName}
                             <input value="${taskListbyUserItem.ddTaskId}" type="hidden">
                         </li>
@@ -54,12 +48,6 @@
                     <c:forEach var="publishtaskListbyUserItem" items="${publishtaskListbyUser}">
                         <li class="task task-card ui-sortable-handle"
                             onclick="showTaskContent(${publishtaskListbyUserItem.ddTaskId})">
-                                <%--<div class="checkbox checkbox-primary">--%>
-                                <%--<input id="${publishtaskListbyUserItem.ddTaskId}" type="checkbox">--%>
-                                <%--<label for="${publishtaskListbyUserItem.ddTaskId}">--%>
-                                <%--${publishtaskListbyUserItem.ddTaskName}--%>
-                                <%--</label>--%>
-                                <%--</div>--%>
                                 ${publishtaskListbyUserItem.ddTaskName}
                             <input value="${publishtaskListbyUserItem.ddTaskId}" type="hidden">
                         </li>
@@ -78,12 +66,6 @@
                     <c:forEach var="checkTaskInfoListItem" items="${checkTaskInfoList}">
                         <li class="task task-card ui-sortable-handle"
                             onclick="showTaskContent(${checkTaskInfoListItem.ddTaskId})">
-                                <%--<div class="checkbox checkbox-primary">--%>
-                                <%--<input id="${checkTaskInfoListItem.ddTaskId}" type="checkbox">--%>
-                                <%--<label for="${checkTaskInfoListItem.ddTaskId}">--%>
-                                <%--${checkTaskInfoListItem.ddTaskName}--%>
-                                <%--</label>--%>
-                                <%--</div>--%>
                                 ${checkTaskInfoListItem.ddTaskName}
                             <input value="${checkTaskInfoListItem.ddTaskId}" type="hidden">
                         </li>
@@ -102,12 +84,6 @@
                     <c:forEach var="completeTaskInfoListItem" items="${completeTaskInfoList}">
                         <li class="task task-card ui-sortable-handle"
                             onclick="showTaskContent(${completeTaskInfoListItem.ddTaskId})">
-                                <%--<div class="checkbox checkbox-primary">--%>
-                                <%--<input id="${completeTaskInfoListItem.ddTaskId}" type="checkbox">--%>
-                                <%--<label for="${completeTaskInfoListItem.ddTaskId}">--%>
-                                <%--${completeTaskInfoListItem.ddTaskName}--%>
-                                <%--</label>--%>
-                                <%--</div>--%>
                                 ${completeTaskInfoListItem.ddTaskName}
                             <input value="${completeTaskInfoListItem.ddTaskId}" type="hidden">
                         </li>
@@ -118,8 +94,8 @@
     </div>
 </div>
 </body>
-//@ sourceURL=showtask.ht
 <script type="text/javascript">
+    //@ sourceURL=showtask.ht
     function isEmptyValue(value) {
         var type;
         if (value == null || value == '') { // 等同于 value === undefined || value === null
@@ -139,6 +115,8 @@
     }
     ;
     $(document).ready(function () {
+        $(".paneldocker").height($(window).height() - $('.nav-tabs').outerHeight(true)-100);
+        $(".panelheight").height($('.task-panel').innerHeight()-55);
         $("#createpanel,#publishpanel").dragsort({
             itemSelector: "li",
             dragSelector: "li",

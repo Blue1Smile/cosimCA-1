@@ -27,10 +27,14 @@
     <%--<link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/wizard/bootstro.min.css"/>
     <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css"/>
-
+    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.darkblue.css" type="text/css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
+
+
     <script type="text/javascript" src="${ctx}/jqwidgets/jqx-all.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/globalization/globalize.js"></script>
+    <script type="text/javascript" src="${ctx}/jqwidgets/globalization/globalize.culture.ja-JP.js"></script>
 
     <script type="text/javascript" src="${ctx}/timeselect/bootstrap-datetimepicker.min.js"></script>
     <%--<%@include file="/newtable/tablecontext.jsp" %>--%>
@@ -113,9 +117,6 @@
                     class="glyphicon glyphicon-stats"></span>
                 进程统计
             </a>
-            <button class="btn btn-default" onclick="location.reload()"><span
-                    class="glyphicon glyphicon-refresh"></span> 刷新
-            </button>
         </div>
     </ul>
 

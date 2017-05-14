@@ -56,16 +56,16 @@ li {
     border-left-width: 5px;
 }
 
-.board-view {
-    position: fixed;
-    top: 50px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 0;
-    overflow: hidden;
-    transition: all 218ms ease;
-}
+/*.board-view {*/
+    /*position: fixed;*/
+    /*top: 50px;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*padding: 0;*/
+    /*overflow: hidden;*/
+    /*transition: all 218ms ease;*/
+/*}*/
 
 .task-panel {
     position: relative;

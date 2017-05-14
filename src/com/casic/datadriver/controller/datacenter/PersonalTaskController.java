@@ -105,14 +105,20 @@ public class PersonalTaskController extends AbstractController {
                     break;
             }
             switch (taskInfo.getDdTaskState()) {
+                case 0:
+                    jsonObject.put("state", "新建");
+                    break;
                 case 1:
-                    jsonObject.put("state", "已提交");
+                    jsonObject.put("state", "已发布");
                     break;
                 case 2:
+                    jsonObject.put("state", "审核中");
+                    break;
+                case 3:
                     jsonObject.put("state", "已完成");
                     break;
                 default:
-                    jsonObject.put("state", "待办");
+                    jsonObject.put("state", "未知");
                     break;
             }
             jsonMembers.add(jsonObject);

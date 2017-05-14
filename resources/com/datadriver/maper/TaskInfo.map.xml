@@ -67,7 +67,7 @@
         <include refid="Base_Column_List"/>
         FROM dd_task
         WHERE
-        DD_TASK_RESPONSIBLE_PERSON=#{ResponceId}
+        DD_TASK_RESPONSIBLE_PERSON=#{ResponceId} AND DD_TASK_STATE = 1
     </select>
 
 
