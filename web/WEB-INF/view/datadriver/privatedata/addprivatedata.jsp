@@ -217,7 +217,6 @@
             var obj = new com.hotent.form.ResultMessage(responseText);
             if (obj.isSuccess()) {
                 $('#adddata').modal('hide');
-                $('#table_private').bootstrapTable('refresh');
             } else {
             }
         }
@@ -233,66 +232,15 @@
         $("#ddType").change(function () {
             if ($('#ddType option:selected').val() == 2) {
                 $('#subdata').remove();
-//                $('#selectModeltr').show();
-//                $('#selectModel').removeAttr("disabled");
-//                $('#initValue').remove();
             } else if ($('#ddType option:selected').val() == 3) {
                 $('#subdata').hide();
-//                $('#selectModeltr').show();
-//                $('#selectModel').removeAttr("disabled");
-//                $('#initValue').remove();
             } else if ($('#ddType option:selected').val() == 0) {
                 $('#subdata').hide();
-//                $('#selectModeltr').show();
-//                $('#selectModel').removeAttr("disabled");
-//                $('#initValue').remove();
             } else {
                 $('#subdata').show();
-//                $('#selectModeltr').hide();
-//                $('#selectModel').attr("disabled", "disabled");
-//                if ($("#initValue").length <= 0) {
-//                    $('table').append('<tr id="initValue">' +
-//                            '<th width = "20%" > 初始值:</th>' +
-//                            '<td colspan = "5" >' +
-//                            '<input type = "text" id="ddDataLastestValue" name="ddDataLastestValue" value="" class="form-control"/>' +
-//                            '</td>' +
-//                            '</tr>');
-//                }
             }
         });
-
-//        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '展开');
-//        $('.tree li.parent_li > span').on('click', function (e) {
-//            var children = $(this).parent('li.parent_li').find(' > ul > li');
-//            if (children.is(":visible")) {
-//                children.hide('fast');
-//                $(this).attr('title', '展开').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-//            } else {
-//                children.show('fast');
-//                $(this).attr('title', '收敛').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
-//            }
-//            e.stopPropagation();
-//        });
-//
-//        $("#parent").click(function () {
-//            $(this).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/><select class="form-control"><option value="0">类型一</option><option value="1">类型二</option><option value="2">类型三</option></select></span> <a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a><ul></ul></li>');
-//        });
-//
-//        var $inputs = $("#ddDataName");
-//        $inputs.keyup(function () {
-//            $('#parent_input').html($inputs.val());
-//        });
-
     });
-
-    //    function addTreeNode(obj) {
-    //        $(obj).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/><select class="form-control"><option value="0">类型一</option><option value="1">类型二</option><option value="2">类型三</option></select></span><a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a></li>');
-    //    }
-    //
-    //    function confirm(obj) {
-    //        var this_val = $(obj).prev().children("input").val();
-    //        $(obj).parent("li").replaceWith('<li><span>' + this_val + '</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"> <i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
-    //    }
 
     function changeIndex() {
         var i = 1;
