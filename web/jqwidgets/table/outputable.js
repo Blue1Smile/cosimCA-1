@@ -4,10 +4,10 @@
  */
 var newRowID = null;
 function getWidth() {
-    return $('.container').outerWidth();
+    return $('#data').outerWidth();
 }
 function getHeight() {
-    return $(window).height() - $('.nav-tabs').outerHeight(true) - 80;
+    return $(window).height() - $('.nav-tabs').outerHeight(true) - 100;
 }
 function outputTableInit(path) {
     // prepare the data
@@ -87,18 +87,21 @@ function outputTableInit(path) {
                 }
                 // appends buttons to the status bar.
                 var container = $("<div style='overflow: hidden; position: relative; height: 100%; width: 100%;'></div>");
-                var buttonTemplate = "<div style='float: left; padding: 4px; margin: 2px;'><div style='margin: 4px; width: 14px; height: 14px;'></div></div>";
+                var buttonTemplate = "<div style='float: left; padding: 4px; margin: 2px;'><div style='margin: 4px; width: 16px; height: 16px;'></div></div>";
                 var addButton = $(buttonTemplate);
                 var editButton = $(buttonTemplate);
                 var deleteButton = $(buttonTemplate);
                 var cancelButton = $(buttonTemplate);
                 var updateButton = $(buttonTemplate);
+
                 container.append(addButton);
                 container.append(editButton);
                 container.append(deleteButton);
                 container.append(cancelButton);
                 container.append(updateButton);
+
                 toolBar.append(container);
+
                 addButton.jqxButton({
                     cursor: "pointer",
                     enableDefault: false,
@@ -240,7 +243,7 @@ function outputTableInit(path) {
                 });
             },
             columns: [
-                {text: '名称', dataField: "dataName", align: 'left', width: '25%'},
+                {text: '名称', dataField: "dataName", align: 'left', width: '30%'},
                 {
                     text: '类型', dataField: "dataType", align: 'left', width: '10%', columnType: "template",
                     createEditor: function (row, cellvalue, editor, cellText, width, height) {

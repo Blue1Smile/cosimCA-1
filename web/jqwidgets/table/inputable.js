@@ -4,10 +4,10 @@
  */
 var newRowID = null;
 function getWidth() {
-    return $('.container').outerWidth();
+    return $('#publish').outerWidth();
 }
 function getHeight() {
-    return $(window).height() - $('.nav-tabs').outerHeight(true) - 80;
+    return $(window).height() - $('.nav-tabs').outerHeight(true) - 100;
 }
 function inputTableInit(path) {
     // prepare the data
@@ -83,7 +83,7 @@ function inputTableInit(path) {
                 }
                 // appends buttons to the status bar.
                 var container = $("<div style='overflow: hidden; position: relative; height: 100%; width: 100%;'></div>");
-                var buttonTemplate = "<div style='float: left; padding: 3px; margin: 2px;'><div style='margin: 4px; width: 16px; height: 16px;'></div></div>";
+                var buttonTemplate = "<div style='float: left; padding: 4px; margin: 2px;'><div style='margin: 4px; width: 16px; height: 16px;'></div></div>";
                 var addButton = $(buttonTemplate);
                 var editButton = $(buttonTemplate);
                 var deleteButton = $(buttonTemplate);
@@ -99,46 +99,46 @@ function inputTableInit(path) {
                     cursor: "pointer",
                     enableDefault: false,
                     disabled: true,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                addButton.find('div:first').addClass(toTheme('jqx-icon-plus'));
+                addButton.find('div:first').addClass(toTheme('glyphicon glyphicon-plus'));
                 addButton.jqxTooltip({position: 'bottom', content: "Add"});
                 editButton.jqxButton({
                     cursor: "pointer",
                     disabled: true,
                     enableDefault: false,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                editButton.find('div:first').addClass(toTheme('jqx-icon-edit'));
+                editButton.find('div:first').addClass(toTheme('glyphicon glyphicon-pencil'));
                 editButton.jqxTooltip({position: 'bottom', content: "Edit"});
                 deleteButton.jqxButton({
                     cursor: "pointer",
                     disabled: true,
                     enableDefault: false,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                deleteButton.find('div:first').addClass(toTheme('jqx-icon-delete'));
+                deleteButton.find('div:first').addClass(toTheme('glyphicon glyphicon-trash'));
                 deleteButton.jqxTooltip({position: 'bottom', content: "Delete"});
                 updateButton.jqxButton({
                     cursor: "pointer",
                     disabled: true,
                     enableDefault: false,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                updateButton.find('div:first').addClass(toTheme('jqx-icon-save'));
+                updateButton.find('div:first').addClass(toTheme('glyphicon glyphicon-floppy-saved'));
                 updateButton.jqxTooltip({position: 'bottom', content: "Save Changes"});
                 cancelButton.jqxButton({
                     cursor: "pointer",
                     disabled: true,
                     enableDefault: false,
-                    height: 25,
-                    width: 25
+                    height: 30,
+                    width: 30
                 });
-                cancelButton.find('div:first').addClass(toTheme('jqx-icon-cancel'));
+                cancelButton.find('div:first').addClass(toTheme('glyphicon glyphicon-remove'));
                 cancelButton.jqxTooltip({position: 'bottom', content: "Cancel"});
                 var updateButtons = function (action) {
                     switch (action) {
@@ -236,11 +236,39 @@ function inputTableInit(path) {
                 });
             },
             columns: [
-                {text: '名称', dataField: "dataName", align: 'left', width: '25%'},
+                {text: '名称', dataField: "dataName", align: 'left', width: '30%'},
                 {text: '类型', dataField: "dataType", align: 'left', width: '10%'},
                 {text: '最新值', dataField: "dataValue", align: 'left', width: '30%'},
                 {text: '单位', dataField: "dataUnit", align: 'left', width: '10%'},
                 {text: '订阅状态', dataField: "orderState", align: 'left', width: '20%'}
             ]
         });
+    $("#excelExport").jqxButton();
+    $("#xmlExport").jqxButton();
+    $("#csvExport").jqxButton();
+    // $("#tsvExport").jqxButton();
+    // $("#htmlExport").jqxButton();
+    $("#jsonExport").jqxButton();
+    $("#pdfExport").jqxButton();
+    $("#excelExport").click(function () {
+        $("#treeGridIn").jqxTreeGrid('exportData', 'xls');
+    });
+    $("#xmlExport").click(function () {
+        $("#treeGridIn").jqxTreeGrid('exportData', 'xml');
+    });
+    $("#csvExport").click(function () {
+        $("#treeGridIn").jqxTreeGrid('exportData', 'csv');
+    });
+    // $("#tsvExport").click(function () {
+    //     $("#treeGridOut").jqxTreeGrid('exportData', 'tsv');
+    // });
+    // $("#htmlExport").click(function () {
+    //     $("#treeGridOut").jqxTreeGrid('exportData', 'html');
+    // });
+    $("#jsonExport").click(function () {
+        $("#treeGridIn").jqxTreeGrid('exportData', 'json');
+    });
+    $("#pdfExport").click(function () {
+        $("#treeGridIn").jqxTreeGrid('exportData', 'pdf');
+    });
 }
