@@ -87,7 +87,7 @@ function outputTableInit(path) {
                 }
                 // appends buttons to the status bar.
                 var container = $("<div style='overflow: hidden; position: relative; height: 100%; width: 100%;'></div>");
-                var buttonTemplate = "<div style='float: left; padding: 3px; margin: 2px;'><div style='margin: 4px; width: 16px; height: 16px;'></div></div>";
+                var buttonTemplate = "<div style='float: left; padding: 4px; margin: 2px;'><div style='margin: 4px; width: 14px; height: 14px;'></div></div>";
                 var addButton = $(buttonTemplate);
                 var editButton = $(buttonTemplate);
                 var deleteButton = $(buttonTemplate);
@@ -241,9 +241,49 @@ function outputTableInit(path) {
             },
             columns: [
                 {text: '名称', dataField: "dataName", align: 'left', width: '25%'},
-                {text: '类型', dataField: "dataType", align: 'left', width: '10%'},
+                {
+                    text: '类型', dataField: "dataType", align: 'left', width: '10%', columnType: "template",
+                    createEditor: function (row, cellvalue, editor, cellText, width, height) {
+                        // construct the editor.
+                        var source = ["结构型数据", "数值", "文件", "模型"];
+                        editor.jqxDropDownList({
+                            autoDropDownHeight: true,
+                            source: source,
+                            width: '100%',
+                            height: '100%'
+                        });
+                    },
+                    initEditor: function (row, cellvalue, editor, celltext, width, height) {
+                        // set the editor's current value. The callback is called each time the editor is displayed.
+                        editor.jqxDropDownList('selectItem', cellvalue);
+                    },
+                    getEditorValue: function (row, cellvalue, editor) {
+                        // return the editor's value.
+                        return editor.val();
+                    }
+                },
                 {text: '最新值', dataField: "dataValue", align: 'left', width: '30%'},
-                {text: '单位', dataField: "dataUnit", align: 'left', width: '10%'},
+                {
+                    text: '单位', dataField: "dataUnit", align: 'left', width: '10%', columnType: "template",
+                    createEditor: function (row, cellvalue, editor, cellText, width, height) {
+                        // construct the editor.
+                        var source = ["Km/s", "m/s", "s", "km", "m", "kg", "mm", "N", "mm*mm", "μm", "°", "mm*mm", "°/s", "°/h", "Hz", "g", "ppm", "ms", "mm*mm*mm"];
+                        editor.jqxDropDownList({
+                            autoDropDownHeight: true,
+                            source: source,
+                            width: '100%',
+                            height: '100%'
+                        });
+                    },
+                    initEditor: function (row, cellvalue, editor, celltext, width, height) {
+                        // set the editor's current value. The callback is called each time the editor is displayed.
+                        editor.jqxDropDownList('selectItem', cellvalue);
+                    },
+                    getEditorValue: function (row, cellvalue, editor) {
+                        // return the editor's value.
+                        return editor.val();
+                    }
+                },
                 {text: '发布状态', dataField: "publishState", align: 'left', width: '20%'}
             ]
         });
