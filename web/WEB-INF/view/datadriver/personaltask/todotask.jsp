@@ -98,6 +98,9 @@
             <a class="btn btn-success" href="javascript:void(0)" id="create_data"
                onclick="createPrivateData(${TaskInfo.ddTaskId})"><span
                     class="glyphicon glyphicon-plus"></span> 创建私有</a>
+            <a class="btn btn-success" href="javascript:void(0)" id="create_data"
+               onclick="importPrivateData(${TaskInfo.ddTaskId},${TaskInfo.ddTaskProjectId})"><span
+                    class="glyphicon glyphicon-plus"></span> 批量上传</a>
             <a class="btn btn-primary" href="javascript:void(0)" id="upload_file" onclick=""><span
                     class="glyphicon glyphicon-cloud-upload"></span> 上传</a>
             <%--<a id="child_btn" href="javascript:void(0)" class="btn btn-primary"><span class="glyphicon glyphicon-stats"></span>--%>
@@ -229,6 +232,13 @@
         $('#adddata').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/privatedata/addprivatedata.ht?id=" + taskId
+        })
+    }
+    //批量上传私有数据
+    function importPrivateData(taskId,projectId) {
+        $('#adddata').modal({
+            keyboard: true,
+            remote: "${ctx}/datadriver/privatedata/importPrivateData.ht?id=" + taskId + "&projectId=" + projectId
         })
     }
     //对话框关闭清除缓存

@@ -140,6 +140,13 @@
         where DD_DATA_TASK_ID = #{taskId} AND DD_DATA_ORDER_STATE = 0
     </select>
 
+    <select id="getDataIdByTaskIdAndDataName" parameterType="com.casic.datadriver.model.QueryParameters" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dd_private_data
+        where DD_DATA_TASK_ID = #{id} AND DD_DATA_NAME =  #{Name}
+    </select>
+
     <select id="getDataListByProId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

@@ -46,7 +46,7 @@
                 <td height="30" align="center">
                     <input type="text" name="NO" size="1" value="1" class="form-control" readonly/></td>
                 <td align="center">
-                    <input type="text" name="ddDataName" class="form-control"/></td>
+                    <input type="text" id="ddDataName" name="ddDataName" class="form-control"/></td>
                 <td align="center">
                     <select name="ddDataType" class="form-control">
                         <option value="0">数值</option>
@@ -71,13 +71,13 @@
             </tr>
             </tbody>
         </table>
-        <form id="dataStructForm" method="post" action="${ctx}/datadriver/data/save.ht">
+        <form id="dataStructForm" method="post" action="${ctx}/datadriver/privatedata/save.ht">
             <table class="table table-bordered" cellpadding="0" cellspacing="0"
                    border="0"
                    type="main">
                 <tr>
                     <th width="20%">数据名称:</th>
-                    <td><input type="text" id="ddStructName" name="ddStructName"
+                    <td><input type="text" id="ddDataName1" name="ddDataName1"
                                value="" class="form-control" placeholder="请输入数据名称"/></td>
                     <%--<th width="20%">数据所属任务:</th>--%>
                     <%--<td><input type="text" id="ddDataTaskName" name="ddDataTaskName"--%>
@@ -86,7 +86,7 @@
                 <tr id="changemodelfile">
                     <th width="20%">数据类型:</th>
                     <td>
-                        <ap:selectDB name="ddType" id="ddType"
+                        <ap:selectDB name="ddDataType" id="ddDataType"
                                      where="parentId=10000025100454" optionValue="itemValue"
                                      optionText="itemName" table="SYS_DIC"
                                      styleClass="form-control"
@@ -104,7 +104,7 @@
                 <tr id="initUnit">
                     <th width="20%">数据单位:</th>
                     <td>
-                        <ap:selectDB name="ddUnitForPrivate" id="ddUnitForPrivate"
+                        <ap:selectDB name="ddDataUnit" id="ddDataUnit"
                                      where="parentId=10000028500024" optionValue="itemValue"
                                      optionText="itemName" table="SYS_DIC"
                                      styleClass="form-control" selectedValue="">
@@ -183,7 +183,7 @@
                                               rows="3"/></textarea>
                     </td>
                 </tr>
-                <input type="hidden" id="ddTaskId" name="ddTaskId"
+                <input type="hidden" id="ddDataTaskId" name="ddDataTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
         </form>
