@@ -12,6 +12,27 @@ function getWidth() {
 function getHeight() {
     return $(window).height() - $('.nav-tabs').outerHeight(true) - 100;
 }
+function arrayToJson(o) {
+    var r = [];
+    if (typeof o == "string") return "\"" + o.replace(/([\'\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
+    if (typeof o == "object") {
+        if (!o.sort) {
+            for (var i in o)
+                r.push(i + ":" + arrayToJson(o[i]));
+            if (!!document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
+                r.push("toString:" + o.toString.toString());
+            }
+            r = "{" + r.join() + "}";
+        } else {
+            for (var i = 0; i < o.length; i++) {
+                r.push(arrayToJson(o[i]));
+            }
+            r = "[" + r.join() + "]";
+        }
+        return r;
+    }
+    return o.toString();
+}
 function outputTableInit(path) {
     var updateJson = new Array();
     var count = 0;
@@ -227,16 +248,15 @@ function outputTableInit(path) {
                     // save changes.
                     $("#treeGridOut").jqxTreeGrid('endRowEdit', rowKey, false);
                 }
+                 var orderJson = arrayToJson(updateJson)
                 //TODO:添加是否确认提交的判断
                 $.ajax({
                     //json数组
                     type: 'POST',
                     url:"updatePrivateData.ht" ,
-                    data:"orderJson=" + updateJson,
-                    dataType: 'json',
+                    data:"orderJson=" + orderJson,
+                    ContentType: "application/json; charset=utf-8",
                     success:function(data){
-
-
                     }
                 });
             });
@@ -357,13 +377,21 @@ function outputTableInit(path) {
         var value = args.value;
         // if (columnDataField == "ShippedDate")
         //     value = dataAdapter.formatDate(value, 'dd/MM/yyyy');
-        $("#log").html("<br/>cellEndEdit - Row ID: " + rowKey + ", Column: " + columnDataField + ", Value: " + value + "<br/>" + $("#log").html());
         $.each(updateJson, function (index, value) {
             if (rowData.dataId == value.dataId) {
                 updateJson.splice(index, 1)
             }
         });
-        updateJson.push('{"dataId":' + rowData.dataId + ',"dataName":' + rowData.dataName + ',"filePath":' + rowData.filePath + ',"dataType":' + rowData.dataType + ',"dataDescription":' + rowData.dataDescription + ',"dataUnit":' + rowData.dataUnit + ',"dataValue":' + rowData.dataValue + ',"dataSenMin":' + rowData.dataSenMin + ',"dataSenMin":' + rowData.dataSenMin +'}');
+
+         updateJson.push('{"dataId":' + rowData.dataId + ',' +
+             '"dataName":"' + rowData.dataName + '",' +
+             '"filePath":"' + rowData.filePath + '",' +
+             '"dataType":"' + rowData.dataType + '",' +
+             '"dataDescription":"' + rowData.dataDescription + '",' +
+             '"dataUnit":"' + rowData.dataUnit + '",' +
+             '"dataValue":"' + rowData.dataValue + '",' +
+             '"dataSenMin":' + rowData.dataSenMin + ',' +
+             '"dataSenMin":' + rowData.dataSenMax +'}');
         count++;
     });
 }
