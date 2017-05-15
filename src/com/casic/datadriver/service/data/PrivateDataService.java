@@ -148,6 +148,8 @@ public class PrivateDataService extends BaseService<PrivateData> {
             jsonObject.put("projectId", privateData.getDdDataProjId());
             jsonObject.put("creatorId", privateData.getDdDataCreatorId());
             jsonObject.put("dataUnit", privateData.getDdDataUnit());
+            jsonObject.put("dataSenMax", privateData.getDdDataSenMax());
+            jsonObject.put("dataSenMin", privateData.getDdDataSenMin());
             jsonObject.put("dataValue", privateData.getDdDataLastestValue());
             jsonMembers.add(jsonObject);
         }
@@ -186,6 +188,8 @@ public class PrivateDataService extends BaseService<PrivateData> {
             jsonObject.put("creatorId", privateData.getDdDataCreatorId());
             jsonObject.put("dataUnit", privateData.getDdDataUnit());
             jsonObject.put("dataValue", privateData.getDdDataLastestValue());
+            jsonObject.put("dataSenMax", privateData.getDdDataSenMax());
+            jsonObject.put("dataSenMin", privateData.getDdDataSenMin());
             if (orderDataRelationDao.getDDOrderDataRelation(queryParameters).size() > 0) {
                 jsonObject.put("torderState", 1);//已经订阅该数据
             } else {

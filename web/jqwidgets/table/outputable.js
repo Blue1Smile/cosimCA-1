@@ -2,6 +2,7 @@
  * Created by d on 2017/5/9.
  * 任务输出表单js
  */
+//@ sourceURL=outputable.js
 var newRowID = null;
 function getWidth() {
     return $('#data').outerWidth();
@@ -140,6 +141,7 @@ function outputTableInit(path) {
                 updateButton.jqxTooltip({position: 'bottom', content: "保存变更"});
                 cancelButton.jqxButton({
                     cursor: "pointer",
+
                     disabled: true,
                     enableDefault: false,
                     height: 30,
@@ -199,7 +201,7 @@ function outputTableInit(path) {
                         $("#treeGridOut").jqxTreeGrid('expandRow', rowKey);
                         // add new empty row.
                         $("#treeGridOut").jqxTreeGrid('addRow', null, {}, 'first', rowKey);
-                        // select the first row and clear the selection.
+                        // select the- first row and clear the selection.
                         $("#treeGridOut").jqxTreeGrid('clearSelection');
                         $("#treeGridOut").jqxTreeGrid('selectRow', newRowID);
                         // edit the new row.
@@ -216,6 +218,88 @@ function outputTableInit(path) {
                 updateButton.click(function (event) {
                     if (!updateButton.jqxButton('disabled')) {
                         // save changes.
+                        var a={"menu":[
+                            {
+                                "dataId": 10000028730001,
+                                "dataName": "1",
+                                "taskId": 10000028720001,
+                                "dataType": 0,
+                                "publishState": 0,
+                                "taskName": "1",
+                                "dataUnit": "Km/s",
+                                "parentId": 10000028730000,
+                                "orderState": 0,
+                                "submitState": 0,
+                                "createTime": {
+                                    "date": 14,
+                                    "day": 0,
+                                    "hours": 12,
+                                    "minutes": 28,
+                                    "month": 4,
+                                    "seconds": 14,
+                                    "time": 1494736094000,
+                                    "timezoneOffset": -480,
+                                    "year": 117
+                                },
+                                "creatorId": 10000019431705
+                            },
+                            {
+                                "dataId": 10000028730002,
+                                "dataName": "2",
+                                "taskId": 10000028720001,
+                                "dataType": 0,
+                                "publishState": 0,
+                                "taskName": "1",
+                                "dataUnit": "Km/s",
+                                "parentId": 10000028730000,
+                                "orderState": 0,
+                                "submitState": 0,
+                                "createTime": {
+                                    "date": 14,
+                                    "day": 0,
+                                    "hours": 12,
+                                    "minutes": 28,
+                                    "month": 4,
+                                    "seconds": 14,
+                                    "time": 1494736094000,
+                                    "timezoneOffset": -480,
+                                    "year": 117
+                                },
+                                "creatorId": 10000019431705
+                            },
+                            {
+                                "dataId": 10000028730003,
+                                "dataName": "3",
+                                "taskId": 10000028720001,
+                                "dataType": 0,
+                                "publishState": 0,
+                                "taskName": "1",
+                                "dataUnit": "Km/s",
+                                "parentId": 10000028730000,
+                                "orderState": 0,
+                                "submitState": 0,
+                                "createTime": {
+                                    "date": 14,
+                                    "day": 0,
+                                    "hours": 12,
+                                    "minutes": 28,
+                                    "month": 4,
+                                    "seconds": 14,
+                                    "time": 1494736094000,
+                                    "timezoneOffset": -480,
+                                    "year": 117
+                                },
+                                "creatorId": 10000019431705
+                            }
+                        ]};
+                        $.ajax({
+                            //json数组
+                            url:"updataprivatedata.ht" ,
+                            data:"orderJson=" + a,
+                            success:function(data){
+
+                            }
+                        });
                         $("#treeGridOut").jqxTreeGrid('endRowEdit', rowKey, false);
                     }
                 });
