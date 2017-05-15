@@ -3,6 +3,7 @@
  * Created by d on 2017/5/9.
  * 任务输出表单js
  */
+//@ sourceURL=outputable.js
 var newRowID = null;
 
 function getWidth() {
@@ -234,6 +235,7 @@ function outputTableInit(path) {
                     data:"orderJson=" + updateJson,
                     dataType: 'json',
                     success:function(data){
+
 
                     }
                 });
