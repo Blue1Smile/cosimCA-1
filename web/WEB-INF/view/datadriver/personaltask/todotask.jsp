@@ -27,7 +27,7 @@
     <%--<link rel="stylesheet" type="text/css" href="${ctx}/styles/fourpanel/fourpanel.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${ctx}/styles/wizard/bootstro.min.css"/>
     <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css"/>
-    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.darkblue.css" type="text/css"/>
+    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.office.css" type="text/css"/>
     <script src="${ctx}/newtable/jquery.js"></script>
     <script src="${ctx}/newtable/bootstrap.js"></script>
 

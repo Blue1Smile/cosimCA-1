@@ -64,32 +64,32 @@
 <script type="text/javascript">
     //@ sourceURL=showdata.ht
 
-    window.operateEvents = {
-        'click #privatetr': function (e, value, row, index) {
-            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel", function (data, status) {
-                if (status == 'success') {
-                }
-            });
-        },
-        'click #publishtr': function (e, value, row, index) {
-            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
-                if (status == 'success') {
-                }
-            });
-        },
-        'click #privatetr_del': function (e, value, row, index) {
-            $.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {
-                if (status == 'success') {
-                }
-            });
-        },
-        'click #privatetr_file': function (e, value, row, index) {
-            $('#uploadPrivateFile').modal({
-                keyboard: true,
-                remote: "${ctx}/datadriver/privatedata/uploadPrivateFile.ht?id=" + row.ddDataId
-            })
-        }
-    };
+    <%--window.operateEvents = {--%>
+        <%--'click #privatetr': function (e, value, row, index) {--%>
+            <%--$.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel", function (data, status) {--%>
+                <%--if (status == 'success') {--%>
+                <%--}--%>
+            <%--});--%>
+        <%--},--%>
+        <%--'click #publishtr': function (e, value, row, index) {--%>
+            <%--$.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {--%>
+                <%--if (status == 'success') {--%>
+                <%--}--%>
+            <%--});--%>
+        <%--},--%>
+        <%--'click #privatetr_del': function (e, value, row, index) {--%>
+            <%--$.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {--%>
+                <%--if (status == 'success') {--%>
+                <%--}--%>
+            <%--});--%>
+        <%--},--%>
+        <%--'click #privatetr_file': function (e, value, row, index) {--%>
+            <%--$('#uploadPrivateFile').modal({--%>
+                <%--keyboard: true,--%>
+                <%--remote: "${ctx}/datadriver/privatedata/uploadPrivateFile.ht?id=" + row.ddDataId--%>
+            <%--})--%>
+        <%--}--%>
+    <%--};--%>
     $(function () {
         outputTableInit("${ctx}/datadriver/privatedata/outputData.ht?taskId=${taskId}");
     });
