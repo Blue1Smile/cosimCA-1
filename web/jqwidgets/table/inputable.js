@@ -69,7 +69,7 @@ function inputTableInit(path) {
             checkboxes: true,
             filterable: true,
             filterMode: 'advanced',
-            theme: "darkblue",
+            theme: "office",
             ready: function () {
                 // called when the DatatreeGrid is loaded.
             },
