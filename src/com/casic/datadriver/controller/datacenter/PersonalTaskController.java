@@ -1002,14 +1002,14 @@ public class PersonalTaskController extends AbstractController {
             JSONObject myjb = (JSONObject) array.get(i);
             PrivateData privateData = null;
             privateData.setDdDataId((Long) myjb.get(myjb.get("dataId").toString()));
-            privateData.setDdDataName((String) myjb.get(myjb.get("userName").toString()));
-            privateData.setDdDataPath((String) myjb.get(myjb.get("userName").toString()));
-            privateData.setDdDataType((Byte) myjb.get(myjb.get("dataId").toString()));
-            privateData.setDdDataDescription((String) myjb.get(myjb.get("userName").toString()));
-            privateData.setDdDataUnit((String) myjb.get(myjb.get("userName").toString()));
-            privateData.setDdDataLastestValue((String) myjb.get(myjb.get("userName").toString()));
-            privateData.setDdDataSenMax((Long) myjb.get(myjb.get("dataId").toString()));
-            privateData.setDdDataSenMin((Long) myjb.get(myjb.get("dataId").toString()));
+            privateData.setDdDataName((String) myjb.get(myjb.get("dataName").toString()));
+            privateData.setDdDataPath((String) myjb.get(myjb.get("filePath").toString()));
+            privateData.setDdDataType((Byte) myjb.get(myjb.get("dataType").toString()));
+            privateData.setDdDataDescription((String) myjb.get(myjb.get("dataDescription").toString()));
+            privateData.setDdDataUnit((String) myjb.get(myjb.get("dataUnit").toString()));
+            privateData.setDdDataLastestValue((String) myjb.get(myjb.get("dataValue").toString()));
+            privateData.setDdDataSenMax((Long) myjb.get(myjb.get("dataSenMax").toString()));
+            privateData.setDdDataSenMin((Long) myjb.get(myjb.get("dtaSenMin").toString()));
 
             privateDataService.updateData(privateData);
         }
