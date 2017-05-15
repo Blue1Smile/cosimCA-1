@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -14,7 +14,16 @@
     <script type="text/javascript" src="${ctx}/jqwidgets/table/inputable.js"></script>
 </head>
 <body>
-<div id="treeGridIn"></div>
+<div class="col-xs-12">
+    <div class="pull-right">
+        <input type="button" value="导出Excel" id='excelExport'/>
+        <input type="button" value="导出XML" id='xmlExport'/>
+        <input type="button" value="导出CSV" id='csvExport'/>
+        <input type="button" value="导出JSON" id='jsonExport'/>
+        <input type="button" value="导出PDF" id='pdfExport'/>
+    </div>
+</div>
+<div id="treeGridIn" style="width: 100%"></div>
 <%--模型预览--%>
 <div class="modal fade" id="model_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -26,7 +35,7 @@
 
 </body>
 <script type="text/javascript">
-    //@ sourceURL=showdata.ht
+    //@ sourceURL=showorder.ht
 
     window.operateEvents = {
         'click #privatetr': function (e, value, row, index) {
