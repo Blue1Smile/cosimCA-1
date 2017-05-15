@@ -2,6 +2,7 @@
  * Created by d on 2017/5/9.
  * 任务输出表单js
  */
+//@ sourceURL=outputable.js
 var newRowID = null;
 function getWidth() {
     return $('.container').outerWidth();
@@ -137,6 +138,7 @@ function outputTableInit(path) {
                 updateButton.jqxTooltip({position: 'bottom', content: "保存变更"});
                 cancelButton.jqxButton({
                     cursor: "pointer",
+                    // url:"getReleasedatanew.ht",
                     disabled: true,
                     enableDefault: false,
                     height: 30,
@@ -196,7 +198,7 @@ function outputTableInit(path) {
                         $("#treeGridOut").jqxTreeGrid('expandRow', rowKey);
                         // add new empty row.
                         $("#treeGridOut").jqxTreeGrid('addRow', null, {}, 'first', rowKey);
-                        // select the first row and clear the selection.
+                        // select the- first row and clear the selection.
                         $("#treeGridOut").jqxTreeGrid('clearSelection');
                         $("#treeGridOut").jqxTreeGrid('selectRow', newRowID);
                         // edit the new row.
