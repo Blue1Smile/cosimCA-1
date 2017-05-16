@@ -12,8 +12,19 @@ function getWidth() {
 function getHeight() {
     return $(window).height() - $('.nav-tabs').outerHeight(true) - 100;
 }
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function (from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+    this.length = from < 0 ? this.length + from : from;
+    return this.push.apply(this, rest);
+};
+//生成随机整数
+function rd(n, m) {
+    var c = m - n + 1;
+    return Math.floor(Math.random() * c + n);
+}
 function arrayToJson(o) {
-    var total = count;
+    var total = o.length;
     var tempJson = '{"total":' + total + ',' +
         '"rows":[' + o + ']}';
     // if (typeof o == "string") return "\"" + o.replace(/([\'\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
@@ -114,8 +125,8 @@ function outputTableInit(path) {
         theme: "office",
         ready: function () {
             // called when the DatatreeGrid is loaded.
-            $("#treeGridOut").jqxTreeGrid('expandRow', '2');
-            $("#treeGridOut").jqxTreeGrid('selectRow', '2');
+            $("#treeGridOut").jqxTreeGrid('expandRow', '0');
+            $("#treeGridOut").jqxTreeGrid('selectRow', '0');
             // focus jqxTreeGrid.
             $("#treeGridOut").jqxTreeGrid('focus');
         },
@@ -199,14 +210,14 @@ function outputTableInit(path) {
                         updateButton.jqxButton({disabled: false});
                         break;
                     case "Unselect":
-                        addButton.jqxButton({disabled: true});
+                        addButton.jqxButton({disabled: false});
                         deleteButton.jqxButton({disabled: true});
                         editButton.jqxButton({disabled: true});
                         cancelButton.jqxButton({disabled: true});
                         updateButton.jqxButton({disabled: false});
                         break;
                     case "Edit":
-                        addButton.jqxButton({disabled: true});
+                        addButton.jqxButton({disabled: false});
                         deleteButton.jqxButton({disabled: true});
                         editButton.jqxButton({disabled: true});
                         cancelButton.jqxButton({disabled: false});
@@ -222,9 +233,16 @@ function outputTableInit(path) {
                 }
             }
             var rowKey = null;
+            var rowParentId = 0;
+            var dataIdtemp = 0;
+            // var rowDataForParentId = 0;
             $("#treeGridOut").on('rowSelect', function (event) {
                 var args = event.args;
                 rowKey = args.key;
+                if (rowKey != "0") {
+                    // var rowDataForParentId = args.row;
+                    rowParentId = rowKey;
+                }
                 updateButtons('Select');
             });
             $("#treeGridOut").on('rowUnselect', function (event) {
@@ -238,9 +256,29 @@ function outputTableInit(path) {
             });
             addButton.click(function (event) {
                 if (!addButton.jqxButton('disabled')) {
-                    $("#treeGridOut").jqxTreeGrid('expandRow', rowKey);
-                    // add new empty row.
-                    $("#treeGridOut").jqxTreeGrid('addRow', null, {}, 'first', rowKey);
+                    //TODO:判断不完全
+                    if (rowKey != null & rowKey != "0") {
+                        $("#treeGridOut").jqxTreeGrid('expandRow', rowKey);
+                        // add new empty row.
+                        $("#treeGridOut").jqxTreeGrid('addRow', null, {
+                            dataId: rd(1, 999999),
+                            dataName: "未定义子数据名称",
+                            dataSenMax: 10000,
+                            dataSenMin: 0,
+                            publishState: "未发布",
+                            parentId: rowParentId
+                        }, 'first', rowKey);
+                    } else {
+                        $("#treeGridOut").jqxTreeGrid('addRow', null, {
+                            dataId: rd(1, 999999),
+                            dataName: "未定义数据名称",
+                            dataSenMax: 10000,
+                            dataSenMin: 0,
+                            publishState: "未发布",
+                            parentId: rowParentId
+                        }, 'first');
+                    }
+
                     // select the first row and clear the selection.
                     $("#treeGridOut").jqxTreeGrid('clearSelection');
                     $("#treeGridOut").jqxTreeGrid('selectRow', newRowID);
@@ -259,18 +297,18 @@ function outputTableInit(path) {
                 if (!updateButton.jqxButton('disabled')) {
                     // save changes.
                     $("#treeGridOut").jqxTreeGrid('endRowEdit', rowKey, false);
+                    var orderJson = arrayToJson(updateJson)
+                    //TODO:添加是否确认提交的判断
+                    $.ajax({
+                        //json数组
+                        type: 'POST',
+                        url: "updatePrivateData.ht",
+                        data: "orderJson=" + orderJson,
+                        ContentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                        }
+                    });
                 }
-                var orderJson = arrayToJson(updateJson)
-                //TODO:添加是否确认提交的判断
-                $.ajax({
-                    //json数组
-                    type: 'POST',
-                    url: "updatePrivateData.ht",
-                    data: "orderJson=" + orderJson,
-                    ContentType: "application/json; charset=utf-8",
-                    success: function (data) {
-                    }
-                });
             });
             editButton.click(function () {
                 if (!editButton.jqxButton('disabled')) {
@@ -290,6 +328,15 @@ function outputTableInit(path) {
                     }
                     else {
                         $("#treeGridOut").jqxTreeGrid('deleteRow', rowKey);
+                        for (var i = 0; i < updateJson.length; i++) {
+                            var tempJson = $.parseJSON(updateJson[i]);
+
+                            if (selection[0].dataId == tempJson.dataId) {
+                                var num = updateJson.splice(i, 1);   //从i位置开始删除
+                                i = i - 1;    //改变循环变量
+                            }
+                        }
+                        if (selection.dataId>=999999) updateJson.push('{"dataId":' + selection.dataId + ',"isDelete":1}');
                     }
                     updateButtons('delete');
                 }
@@ -439,13 +486,17 @@ function outputTableInit(path) {
         var value = args.value;
         // if (columnDataField == "ShippedDate")
         //     value = dataAdapter.formatDate(value, 'dd/MM/yyyy');
-        $.each(updateJson, function (index, value) {
-            if (rowData.dataId == value.dataId) {
-                updateJson.splice(index, 1)
-                count--
-            }
-        });
 
+        for (var i = 0; i < updateJson.length; i++) {
+            var tempJson = $.parseJSON(updateJson[i]);
+            if (rowData.dataId == tempJson.dataId) {
+                var num = updateJson.splice(i, 1);   //从i位置开始删除
+                i = i - 1;    //改变循环变量
+            }
+        }
+        // if (rowData.dataId == 0 || rowData.dataId == "0") {
+        //     rowData.dataId = rd(1, 999999)
+        // }
         updateJson.push('{"dataId":' + rowData.dataId + ',' +
             '"dataName":"' + rowData.dataName + '",' +
             '"filePath":"' + rowData.filePath + '",' +
@@ -453,8 +504,10 @@ function outputTableInit(path) {
             '"dataDescription":"' + rowData.dataDescription + '",' +
             '"dataUnit":"' + rowData.dataUnit + '",' +
             '"dataValue":"' + rowData.dataValue + '",' +
+            '"parentId":"' + rowData.parentId + '",' +
             '"dataSenMin":"' + rowData.dataSenMin + '",' +
             '"dataSenMin":"' + rowData.dataSenMax + '"}');
-        count++;
+
+
     });
 }
