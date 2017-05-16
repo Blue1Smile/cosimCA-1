@@ -5,7 +5,7 @@
  */
 //@ sourceURL=outputable.js
 var newRowID = null;
-
+var count = 0;
 function getWidth() {
     return $('#data').outerWidth();
 }
@@ -13,29 +13,31 @@ function getHeight() {
     return $(window).height() - $('.nav-tabs').outerHeight(true) - 100;
 }
 function arrayToJson(o) {
-    var r = [];
-    if (typeof o == "string") return "\"" + o.replace(/([\'\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
-    if (typeof o == "object") {
-        if (!o.sort) {
-            for (var i in o)
-                r.push(i + ":" + arrayToJson(o[i]));
-            if (!!document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
-                r.push("toString:" + o.toString.toString());
-            }
-            r = "{" + r.join() + "}";
-        } else {
-            for (var i = 0; i < o.length; i++) {
-                r.push(arrayToJson(o[i]));
-            }
-            r = "[" + r.join() + "]";
-        }
-        return r;
-    }
-    return o.toString();
+    var total = count;
+    var tempJson = '{"total":' + total + ',' +
+        '"rows":[' + o + ']}';
+    // if (typeof o == "string") return "\"" + o.replace(/([\'\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
+    // if (typeof o == "object") {
+    //     if (!o.sort) {
+    //         for (var i in o)
+    //             r.push(i + ":" + arrayToJson(o[i]));
+    //         if (!!document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
+    //             r.push("toString:" + o.toString.toString());
+    //         }
+    //         r = "{" + r.join() + "}";
+    //     } else {
+    //         for (var i = 0; i < o.length; i++) {
+    //             r.push(arrayToJson(o[i]));
+    //         }
+    //         r = "[" + r.join() + "]";
+    //     }
+    //     return r;
+    // }
+    return tempJson;
 }
 function outputTableInit(path) {
     var updateJson = new Array();
-    var count = 0;
+
     // prepare the data
     var source =
         {
@@ -91,8 +93,18 @@ function outputTableInit(path) {
         height: getHeight(),
         source: dataAdapter,
         pageable: true,
+        showHeader: true,
         editable: true,
-        editSettings: { saveOnPageChange: true, saveOnBlur: true, saveOnSelectionChange: true, cancelOnEsc: true, saveOnEnter: true, editSingleCell: true, editOnDoubleClick: true, editOnF2: true },
+        editSettings: {
+            saveOnPageChange: true,
+            saveOnBlur: true,
+            saveOnSelectionChange: true,
+            cancelOnEsc: true,
+            saveOnEnter: true,
+            editSingleCell: true,
+            editOnDoubleClick: true,
+            editOnF2: true
+        },
         showToolbar: true,
         altRows: true,
         hierarchicalCheckboxes: true,
@@ -248,15 +260,15 @@ function outputTableInit(path) {
                     // save changes.
                     $("#treeGridOut").jqxTreeGrid('endRowEdit', rowKey, false);
                 }
-                 var orderJson = arrayToJson(updateJson)
+                var orderJson = arrayToJson(updateJson)
                 //TODO:添加是否确认提交的判断
                 $.ajax({
                     //json数组
                     type: 'POST',
-                    url:"updatePrivateData.ht" ,
-                    data:"orderJson=" + orderJson,
+                    url: "updatePrivateData.ht",
+                    data: "orderJson=" + orderJson,
                     ContentType: "application/json; charset=utf-8",
-                    success:function(data){
+                    success: function (data) {
                     }
                 });
             });
@@ -283,8 +295,44 @@ function outputTableInit(path) {
                 }
             });
         },
+        // 数据表加载完事执行
+        rendered: function () {
+            if ($(".editButtons").length > 0) {
+                $(".cancelButtons").jqxButton();
+                $(".editButtons").jqxButton();
+
+                var editClick = function (event) {
+                    var target = $(event.target);
+                    // get button's value.
+                    var value = target.val();
+                    // get clicked row.
+                    var rowKey = event.target.getAttribute('data-row');
+                    if (value == "Edit") {
+                        // begin edit.
+                        $("#treeGridOut").jqxTreeGrid('beginRowEdit', rowKey);
+                        target.parent().find('.cancelButtons').show();
+                        target.val("Save");
+                    }
+                    else {
+                        // end edit and save changes.
+                        target.parent().find('.cancelButtons').hide();
+                        target.val("Edit");
+                        $("#treeGridOut").jqxTreeGrid('endRowEdit', rowKey);
+                    }
+                }
+                $(".editButtons").on('click', function (event) {
+                    editClick(event);
+                });
+
+                $(".cancelButtons").click(function (event) {
+                    // end edit and cancel changes.
+                    var rowKey = event.target.getAttribute('data-row');
+                    $("#treeGridOut").jqxTreeGrid('endRowEdit', rowKey, true);
+                });
+            }
+        },
         columns: [
-            {text: '名称', dataField: "dataName", align: 'left', width: '20%'},
+            {text: '名称', dataField: "dataName", align: 'left', width: '20%', pinned: true},
             {
                 text: '类型', dataField: "dataType", align: 'left', width: '5%', columnType: "template",
                 createEditor: function (row, cellvalue, editor, cellText, width, height) {
@@ -330,7 +378,21 @@ function outputTableInit(path) {
             },
             {text: '最小值', dataField: "dataSenMin", align: 'left', width: '10%'},
             {text: '最大值', dataField: "dataSenMax", align: 'left', width: '10%'},
-            {text: '发布状态', dataField: "publishState", align: 'left', width: '20%'}
+            {text: '发布状态', dataField: "publishState", align: ' center', width: '10%'},
+            {
+                width: '10%',
+                text: '发布',
+                cellsAlign: 'center',
+                align: "center",
+                columnType: 'none',
+                editable: false,
+                sortable: false,
+                dataField: null,
+                cellsRenderer: function (row, column, value) {
+                    // render custom column.
+                    return "<button data-row='" + row + "' class='editButtons'>发布</button><button style='display: none; margin-left: 5px;' data-row='" + row + "' class='cancelButtons'>Cancel</button>";
+                }
+            }
         ]
     });
     $("#excelExport").jqxButton();
@@ -380,18 +442,19 @@ function outputTableInit(path) {
         $.each(updateJson, function (index, value) {
             if (rowData.dataId == value.dataId) {
                 updateJson.splice(index, 1)
+                count--
             }
         });
 
-         updateJson.push('{"dataId":' + rowData.dataId + ',' +
-             '"dataName":"' + rowData.dataName + '",' +
-             '"filePath":"' + rowData.filePath + '",' +
-             '"dataType":"' + rowData.dataType + '",' +
-             '"dataDescription":"' + rowData.dataDescription + '",' +
-             '"dataUnit":"' + rowData.dataUnit + '",' +
-             '"dataValue":"' + rowData.dataValue + '",' +
-             '"dataSenMin":' + rowData.dataSenMin + ',' +
-             '"dataSenMin":' + rowData.dataSenMax +'}');
+        updateJson.push('{"dataId":' + rowData.dataId + ',' +
+            '"dataName":"' + rowData.dataName + '",' +
+            '"filePath":"' + rowData.filePath + '",' +
+            '"dataType":"' + rowData.dataType + '",' +
+            '"dataDescription":"' + rowData.dataDescription + '",' +
+            '"dataUnit":"' + rowData.dataUnit + '",' +
+            '"dataValue":"' + rowData.dataValue + '",' +
+            '"dataSenMin":"' + rowData.dataSenMin + '",' +
+            '"dataSenMin":"' + rowData.dataSenMax + '"}');
         count++;
     });
 }
