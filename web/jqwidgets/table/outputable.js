@@ -336,7 +336,7 @@ function outputTableInit(path) {
                                 i = i - 1;    //改变循环变量
                             }
                         }
-                        if (selection.dataId>=999999) updateJson.push('{"dataId":' + selection.dataId + ',"isDelete":1}');
+                        if (selection[0].dataId>=999999) updateJson.push('{"dataId":' + selection[0].dataId + ',"isDelete":1}');
                     }
                     updateButtons('delete');
                 }
