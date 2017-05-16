@@ -300,12 +300,12 @@ public class PrivateDataService extends BaseService<PrivateData> {
 
                     if(!String.valueOf(hssfRow.getCell(4)).equals("null"))
                     {
-                        privateData.setDdDataSenMax((long) 1);
+                        privateData.setDdDataSenMax((double) 1);
                     }
 
                     if(!String.valueOf(hssfRow.getCell(3)).equals("null"))
                     {
-                        privateData.setDdDataSenMin((long) 4);
+                        privateData.setDdDataSenMin((double) 4);
                     }
 
                     if(!String.valueOf(hssfRow.getCell(6)).equals("null"))
