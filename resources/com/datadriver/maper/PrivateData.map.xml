@@ -13,8 +13,8 @@
         <result column="DD_DATA_CREATE_TIME" jdbcType="TIMESTAMP" property="ddDataCreateTime" />
         <result column="DD_DATA_CREATOR" jdbcType="VARCHAR" property="ddDataCreator" />
         <result column="DD_DATA_CREATOR_ID" jdbcType="BIGINT" property="ddDataCreatorId" />
-        <result column="DD_DATA_SEN_MIN" jdbcType="BIGINT" property="ddDataSenMin" />
-        <result column="DD_DATA_SEN_MAX" jdbcType="BIGINT" property="ddDataSenMax" />
+        <result column="DD_DATA_SEN_MIN" jdbcType="DOUBLE" property="ddDataSenMin" />
+        <result column="DD_DATA_SEN_MAX" jdbcType="DOUBLE" property="ddDataSenMax" />
         <result column="DD_DATA_PARENT_ID" jdbcType="BIGINT" property="ddDataParentId" />
         <result column="DD_DATA_LASTEST_VALUE" jdbcType="VARCHAR" property="ddDataLastestValue" />
         <result column="DD_DATA_UNIT" jdbcType="VARCHAR" property="ddDataUnit" />
@@ -49,8 +49,8 @@
         values (#{ddDataId,jdbcType=BIGINT}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=TINYINT},
         #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=BIGINT}, #{ddDataPublishState,jdbcType=TINYINT},
         #{ddDataOrderState,jdbcType=SMALLINT}, #{ddDataIsSubmit,jdbcType=SMALLINT}, #{ddDataCreateTime,jdbcType=TIMESTAMP},
-        #{ddDataCreator,jdbcType=VARCHAR}, #{ddDataCreatorId,jdbcType=BIGINT}, #{ddDataSenMin,jdbcType=BIGINT},
-        #{ddDataSenMax,jdbcType=BIGINT}, #{ddDataParentId,jdbcType=BIGINT}, #{ddDataLastestValue,jdbcType=VARCHAR},
+        #{ddDataCreator,jdbcType=VARCHAR}, #{ddDataCreatorId,jdbcType=BIGINT}, #{ddDataSenMin,jdbcType=DOUBLE},
+        #{ddDataSenMax,jdbcType=DOUBLE}, #{ddDataParentId,jdbcType=BIGINT}, #{ddDataLastestValue,jdbcType=VARCHAR},
         #{ddDataUnit,jdbcType=VARCHAR}, #{ddDataTaskName,jdbcType=VARCHAR}, #{ddDataEngName,jdbcType=VARCHAR},
         #{ddDataPath,jdbcType=VARCHAR}, #{ddDataNodePath,jdbcType=VARCHAR}, #{ddDataDepth,jdbcType=SMALLINT},
         #{ddDataIsLeaf,jdbcType=SMALLINT}, #{ddDataProjId,jdbcType=BIGINT}, #{ddDataReserved1,jdbcType=BIGINT},
@@ -76,8 +76,8 @@
             (#{ddDataId,jdbcType=BIGINT}, #{ddDataName,jdbcType=VARCHAR}, #{ddDataType,jdbcType=TINYINT},
             #{ddDataDescription,jdbcType=VARCHAR}, #{ddDataTaskId,jdbcType=BIGINT}, #{ddDataPublishState,jdbcType=TINYINT},
             #{ddDataOrderState,jdbcType=SMALLINT}, #{ddDataIsSubmit,jdbcType=SMALLINT}, #{ddDataCreateTime,jdbcType=TIMESTAMP},
-            #{ddDataCreator,jdbcType=VARCHAR}, #{ddDataCreatorId,jdbcType=BIGINT}, #{ddDataSenMin,jdbcType=BIGINT},
-            #{ddDataSenMax,jdbcType=BIGINT}, #{ddDataParentId,jdbcType=BIGINT}, #{ddDataLastestValue,jdbcType=VARCHAR},
+            #{ddDataCreator,jdbcType=VARCHAR}, #{ddDataCreatorId,jdbcType=BIGINT}, #{ddDataSenMin,jdbcType=DOUBLE},
+            #{ddDataSenMax,jdbcType=DOUBLE}, #{ddDataParentId,jdbcType=BIGINT}, #{ddDataLastestValue,jdbcType=VARCHAR},
             #{ddDataUnit,jdbcType=VARCHAR}, #{ddDataTaskName,jdbcType=VARCHAR}, #{ddDataEngName,jdbcType=VARCHAR},
             #{ddDataPath,jdbcType=VARCHAR}, #{ddDataNodePath,jdbcType=VARCHAR}, #{ddDataDepth,jdbcType=SMALLINT},
             #{ddDataIsLeaf,jdbcType=SMALLINT}, #{ddDataProjId,jdbcType=BIGINT}, #{ddDataReserved1,jdbcType=BIGINT},
@@ -188,10 +188,10 @@
                 DD_DATA_CREATOR_ID = #{ddDataCreatorId,jdbcType=BIGINT},
             </if>
             <if test="ddDataSenMin !=null">
-                DD_DATA_SEN_MIN = #{ddDataSenMin,jdbcType=BIGINT},
+                DD_DATA_SEN_MIN = #{ddDataSenMin,jdbcType=DOUBLE},
             </if>
             <if test="ddDataSenMax !=null">
-                DD_DATA_SEN_MAX = #{ddDataSenMax,jdbcType=BIGINT},
+                DD_DATA_SEN_MAX = #{ddDataSenMax,jdbcType=DOUBLE},
             </if>
             <if test="ddDataParentId !=null">
                 DD_DATA_PARENT_ID = #{ddDataParentId,jdbcType=BIGINT},
