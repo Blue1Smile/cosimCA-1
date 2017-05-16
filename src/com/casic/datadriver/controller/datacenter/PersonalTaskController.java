@@ -978,16 +978,9 @@ public class PersonalTaskController extends AbstractController {
     public void updatePrivateData(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         String orderJson = RequestUtil.getString(request, "orderJson");
-//        Long total = RequestUtil.getLong(request, "total");
-////        JSONObject jsonObject = new JSONObject(json);
-////        BufferedReader reader = request.getReader();
-//        rows = "{'menu':[{'dataId':10000028730001,'dataName':'1','taskId':10000028720001,'dataType':0,'publishState':0,'taskName':'1','dataUnit':'Km/s','parentId':10000028730000,'orderState':0,'submitState':0,'createTime':123,'creatorId':10000019431705},{'dataId':10000028730002,'dataName':'2','taskId':10000028720001,'dataType':0,'publishState':0,'taskName':'1','dataUnit':'Km/s','parentId':10000028730000,'orderState':0,'submitState':0,'createTime':2424,'creatorId':10000019431705},{'dataId':10000028730003,'dataName':'3','taskId':10000028720001,'dataType':0,'publishState':0,'taskName':'1','dataUnit':'Km/s','parentId':10000028730000,'orderState':0,'submitState':0,'createTime':888,'creatorId':10000019431705}]}";////        JSONObject jsonObject = new JSONObject(str);
-//        JSONObject obj =new JSONObject();
-//        JSONArray jsonArray = obj.getJSONArray("json");
         //解码，为了解决中文乱码
 //        String str = URLDecoder.decode(request.getParameter("orderJson"),"UTF-8");
         JSONObject myjson=new JSONObject();
-//        Long total=(long)myjson.fromObject(orderJson).get("total");
         //将json格式的字符串转换为json数组对象
         JSONArray array=(JSONArray)myjson.fromObject(orderJson).get("rows");
         //取得json数组中的第一个对象
@@ -996,7 +989,6 @@ public class PersonalTaskController extends AbstractController {
 //      JSONObject o = (JSONObject) array.get(i);
         //取出json数组中第一个对象的“userName”属性值
 //        String name=o.get("userName").toString();//获得属性值
-//        PrivateData privateData = (PrivateData) JSONObject.toBean(o, PrivateData.class);
         for(int i=0;i<array.size();i++)
         {
             JSONObject myjb = (JSONObject) array.get(i);
@@ -1017,24 +1009,48 @@ public class PersonalTaskController extends AbstractController {
 //            if (myjb.get("dataSenMin").toString().length()>0){
 //                privateData.setDdDataSenMin(Long.valueOf(myjb.get("dataSenMin").toString()));
 //            }
-
-
-
             privateDataService.updateData(privateData);
         }
-        try {
-
-            Map classMap = new HashMap();
-            classMap.put("privateDataList", PrivateData.class);
-//            PrivateData privateData = (PrivateData) JSONObject.toBean(o, PrivateData.class, classMap);
-//            Object pojo = JSONObject.toBean(jsonObject,privateData);
-
-//            return pojo;
-        } catch (Exception e) {
-            String resultMsg = null;
-            writeResultMessage(response.getWriter(), resultMsg + "," + e.getMessage(), ResultMessage.Fail);
+    }
+    /**
+     * 删除私有数据
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("DelPrivateData")
+    @Action(description = "删除私有数据")
+    public void DelPrivateData(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        String orderJson = RequestUtil.getString(request, "orderJson");
+        //解码，为了解决中文乱码
+        JSONObject myjson=new JSONObject();
+        //将json格式的字符串转换为json数组对象
+        JSONArray array=(JSONArray)myjson.fromObject(orderJson).get("rows");
+        //取得json数组中的第一个对象
+        for(int i=0;i<array.size();i++)
+        {
+            JSONObject myjb = (JSONObject) array.get(i);
+            Long dataID = Long.valueOf(myjb.get("dataId").toString());
+            privateDataService.delById(dataID);
         }
+    }
 
+    /**
+     * 增加私有数据
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("AddPrivateData")
+    @Action(description = "更新私有数据")
+    public void AddPrivateData(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+//            privateDataService.add(privateData);
     }
 }
 
