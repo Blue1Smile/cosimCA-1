@@ -81,12 +81,36 @@ public class PrivateDataController extends AbstractController {
     public void save(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String resultMsg = null;
         PrivateData privateData = getFormObject(request);
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Long id = RequestUtil.getLong(request, "id");
+        TaskInfo taskInfo = taskInfoService.getById(privateData.getDdDataTaskId());
+
+        ISysUser sysUser = ContextUtil.getCurrentUser();
+        String sysName = sysUser.getFullname();
+        String dateString = formatter.format(currentTime);
+
         try {
             if (privateData.getDdDataId() == null || privateData.getDdDataId() == 0) {
                 privateData.setDdDataId(UniqueIdUtil.genId());
-
+                privateData.setDdDataTaskName(taskInfo.getDdTaskName());
                 privateData.setDdDataPublishState((byte)0);
                 privateDataService.addSingleData(privateData);
+
+                for(int i=0;i<privateData.getPrivateDataList().size();i++)
+                {
+                    privateData.getPrivateDataList().get(i).setDdDataId(UniqueIdUtil.genId());
+                    privateData.getPrivateDataList().get(i).setDdDataTaskId(privateData.getDdDataTaskId());
+                    privateData.getPrivateDataList().get(i).setDdDataParentId(privateData.getDdDataId());
+                    privateData.getPrivateDataList().get(i).setDdDataPublishState((byte) 0);
+                    privateData.getPrivateDataList().get(i).setDdDataOrderState((short) 0);
+                    privateData.getPrivateDataList().get(i).setDdDataIsSubmit((short) 0);
+                    privateData.getPrivateDataList().get(i).setDdDataCreateTime(currentTime);
+                    privateData.getPrivateDataList().get(i).setDdDataTaskName(taskInfo.getDdTaskName());
+                    privateData.getPrivateDataList().get(i).setDdDataCreatorId(ContextUtil.getCurrentUserId());
+
+                    privateDataService.addSingleData( privateData.getPrivateDataList().get(i));
+                }
                 resultMsg = getText("record.added", "数据信息");
             } else {
                 privateDataService.updateData(privateData);
@@ -100,13 +124,15 @@ public class PrivateDataController extends AbstractController {
 
     private PrivateData getFormObject(HttpServletRequest request) throws Exception {
         JSONUtils.getMorpherRegistry().registerMorpher(new DateMorpher((new String[]{"yyyy-MM-dd"})));
-
+        String name = RequestUtil.getString(request, "ddDataName1");
+//        String name1 = RequestUtil.getString(request, "ddDataName");
         String json = RequestUtil.getString(request, "json");
         JSONObject obj = JSONObject.fromObject(json);
 
-        Map<String, Class> map = new HashMap<String, Class>();
-//        map.put("privateDataList", PrivateData.class);
-        PrivateData privateData = (PrivateData) JSONObject.toBean(obj, PrivateData.class);
+        Map classMap = new HashMap();
+        classMap.put("privateDataList",PrivateData.class);
+        PrivateData privateData = (PrivateData) JSONObject.toBean(obj, PrivateData.class,classMap);
+        privateData.setDdDataName(name);
 
         return privateData;
     }
@@ -524,11 +550,15 @@ public class PrivateDataController extends AbstractController {
      */
     @RequestMapping("inputData")
     @Action(description = "输入数据")
-    public String inputData(HttpServletRequest request, HttpServletResponse response)
+    public void inputData(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long taskId = RequestUtil.getLong(request, "taskId");
         Long projectId = RequestUtil.getLong(request, "projectId");
-        return  privateDataService.getInputdataByprojectId(projectId,taskId);
+        String jsonString = privateDataService.getInputDataByTaskId(projectId,taskId);
+        PrintWriter out = response.getWriter();
+        out.append(jsonString);
+        out.flush();
+        out.close();
     }
 
     /**
@@ -541,9 +571,13 @@ public class PrivateDataController extends AbstractController {
      */
     @RequestMapping("outputData")
     @Action(description = "输出数据")
-    public String outputData(HttpServletRequest request, HttpServletResponse response)
+    public void outputData(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Long taskId = RequestUtil.getLong(request, "taskId");
-        return  privateDataService.getOutputdataByTaskId(taskId);
+        String jsonString = privateDataService.getOutputDataByTaskId(taskId).toString();
+        PrintWriter out = response.getWriter();
+        out.append(jsonString);
+        out.flush();
+        out.close();
     }
 }

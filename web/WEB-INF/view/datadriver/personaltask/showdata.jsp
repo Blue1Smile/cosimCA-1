@@ -5,6 +5,7 @@
   Time: 下午7:57
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://www.jee-soft.cn/functions" %>
@@ -12,28 +13,36 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="ap" uri="/appleTag" %>
-<html>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<html lang="zh-CN">
 <head>
     <title>数据看板</title>
-    <link rel="stylesheet" href="${ctx}/jqwidgets/styles/jqx.base.css" type="text/css" />
-    <script type="text/javascript" src="${ctx}/jqwidgets/jqx-all.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
     <script type="text/javascript" src="${ctx}/jqwidgets/table/outputable.js"></script>
     <%--<script type="text/javascript" src="${ctx}/jqwidgets/scripts/demos.js"></script>--%>
-    <style>
-        table {
-            background-color: #ffffff;
-            width: 100% !important;
-        }
-    </style>
 </head>
 <body>
-<div class="row paneldocker" style="height: 100%">
-    <div class="col-xs-6" style="height: 100%">
-
-                <div id="treeGridOut"></div>
-
+<div class="col-xs-12">
+    <div class="pull-right">
+        <input type="button" value="导出Excel" id='excelExport'/>
+        <input type="button" value="导出XML" id='xmlExport'/>
+        <input type="button" value="导出CSV" id='csvExport'/>
+        <input type="button" value="导出JSON" id='jsonExport'/>
+        <input type="button" value="导出PDF" id='pdfExport'/>
     </div>
 </div>
+<%--<br>--%>
+<div id="treeGridOut" style="width: 100%"></div>
+<%--<div class="row">--%>
+    <%--<div class="pull-right">--%>
+        <%--<input type="button" value="导出Excel" id='excelExport'/>--%>
+        <%--<input type="button" value="导出XML" id='xmlExport'/>--%>
+        <%--<input type="button" value="导出CSV" id='csvExport'/>--%>
+        <%--<input type="button" value="导出JSON" id='jsonExport'/>--%>
+        <%--<input type="button" value="导出PDF" id='pdfExport'/>--%>
+    <%--</div>--%>
+<%--</div>--%>
+<br>
 <%--导入数据--%>
 <div class="modal fade" id="importData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -54,43 +63,33 @@
 
 <script type="text/javascript">
     //@ sourceURL=showdata.ht
-    //设置table高度
-    function getHeight() {
-        return $(window).height() - $('.panel-heading').outerHeight(true) - 80;
-    }
 
-    window.operateEvents = {
-        'click #privatetr': function (e, value, row, index) {
-            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel", function (data, status) {
-                if (status == 'success') {
-                    $table_private.bootstrapTable('refresh')
-                    $table_publish.bootstrapTable('refresh')
-                }
-            });
-        },
-        'click #publishtr': function (e, value, row, index) {
-            $.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {
-                if (status == 'success') {
-                    $table_publish.bootstrapTable('refresh')
-                    $table_private.bootstrapTable('refresh')
-                }
-            });
-        },
-        'click #privatetr_del': function (e, value, row, index) {
-            $.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {
-                if (status == 'success') {
-                    $table_publish.bootstrapTable('refresh')
-                    $table_private.bootstrapTable('refresh')
-                }
-            });
-        },
-        'click #privatetr_file': function (e, value, row, index) {
-            $('#uploadPrivateFile').modal({
-                keyboard: true,
-                remote: "${ctx}/datadriver/privatedata/uploadPrivateFile.ht?id=" + row.ddDataId
-            })
-        }
-    };
+    <%--window.operateEvents = {--%>
+        <%--'click #privatetr': function (e, value, row, index) {--%>
+            <%--$.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=publishpanel", function (data, status) {--%>
+                <%--if (status == 'success') {--%>
+                <%--}--%>
+            <%--});--%>
+        <%--},--%>
+        <%--'click #publishtr': function (e, value, row, index) {--%>
+            <%--$.get("${ctx}/datadriver/personaltask/createtopublish.ht?id=" + row.ddStructId + "&parent=createpanel" + "&taskId=" +${taskId}, function (data, status) {--%>
+                <%--if (status == 'success') {--%>
+                <%--}--%>
+            <%--});--%>
+        <%--},--%>
+        <%--'click #privatetr_del': function (e, value, row, index) {--%>
+            <%--$.get("${ctx}/datadriver/data/del.ht?id=" + row.ddStructId, function (data, status) {--%>
+                <%--if (status == 'success') {--%>
+                <%--}--%>
+            <%--});--%>
+        <%--},--%>
+        <%--'click #privatetr_file': function (e, value, row, index) {--%>
+            <%--$('#uploadPrivateFile').modal({--%>
+                <%--keyboard: true,--%>
+                <%--remote: "${ctx}/datadriver/privatedata/uploadPrivateFile.ht?id=" + row.ddDataId--%>
+            <%--})--%>
+        <%--}--%>
+    <%--};--%>
     $(function () {
         outputTableInit("${ctx}/datadriver/privatedata/outputData.ht?taskId=${taskId}");
     });

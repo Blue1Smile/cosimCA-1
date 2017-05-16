@@ -13,10 +13,10 @@ import java.util.List;
 public class TaskInfo extends BaseModel {
 
 
-    public static final Short checkpanel		=1;
-    public static final Short completepanel	    =2;
-    public static final Short createpanel		=-1;
-    public static final Short publishpanel	    =0;
+    public static final Short checkpanel		=2;
+    public static final Short completepanel	    =3;
+    public static final Short createpanel		=0;
+    public static final Short publishpanel	    =1;
 
     private Long ddTaskId;
 
@@ -34,7 +34,7 @@ public class TaskInfo extends BaseModel {
 
     private String ddTaskChildType;
 
-    private Long ddTaskPriority;
+    private Short ddTaskPriority;
 
     private Long ddTaskMilestone;
 
@@ -153,11 +153,11 @@ public class TaskInfo extends BaseModel {
         this.ddTaskChildType = ddTaskChildType;
     }
 
-    public Long getDdTaskPriority() {
+    public Short getDdTaskPriority() {
         return ddTaskPriority;
     }
 
-    public void setDdTaskPriority(Long ddTaskPriority) {
+    public void setDdTaskPriority(Short ddTaskPriority) {
         this.ddTaskPriority = ddTaskPriority;
     }
 

@@ -1,6 +1,6 @@
 package com.casic.datadriver.dao.data;
 
-import com.casic.datadriver.model.PageInfo;
+import com.casic.datadriver.model.QueryParameters;
 import com.casic.datadriver.model.data.PrivateData;
 import com.hotent.core.db.BaseDao;
 import com.hotent.core.web.query.QueryFilter;
@@ -56,6 +56,13 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
     }
 
     /**
+     * 根据任务ID和数据名称获取数据ID
+     */
+    public PrivateData getDataIdByTaskIdAndDataName(QueryParameters queryParameters){
+        return this.getUnique("getDataIdByTaskIdAndDataName", queryParameters);
+    }
+
+    /**
      * 根据数据ParentID获取数据
      */
     public List<PrivateData> getDataListByPId(Long parentId) {
@@ -94,14 +101,14 @@ public class PrivateDataDao extends BaseDao<PrivateData> {
      * 获取任务所有数据
      */
     public List<PrivateData> getDataListByTaskId(Long taskId) {
-        return this.getBySqlKey("getDataByTaskId", taskId);
+        return this.getBySqlKey("getDataListByTaskId", taskId);
     }
 
     /**
      * 获取项目所有数据
      */
-    public List<PrivateData> getDataListByProId(Long projectId) {
-        return this.getBySqlKey("getDataListByProId", projectId);
+    public List<PrivateData> getDataListByProId(QueryParameters queryParameters) {
+        return this.getBySqlKey("getDataListByProId", queryParameters);
     }
 
     /**

@@ -63,9 +63,9 @@ public class PersonalTaskController extends AbstractController {
      * @return the list
      * @throws Exception the exception
      */
-    @RequestMapping("list")
+    @RequestMapping("taskList")
     @Action(description = "个人任务列表")
-    public ModelAndView queryProjectBasicInfoList(HttpServletRequest request, HttpServletResponse response)
+    public void taskList(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 //        List<TaskStart> taskStartList = taskStartService.queryTaskStartByResponceId(ContextUtil.getCurrentUserId());
         List<TaskInfo> UserTaskInfo_list = taskInfoService.queryTaskInfoByResponceId(ContextUtil.getCurrentUserId());
@@ -82,8 +82,56 @@ public class PersonalTaskController extends AbstractController {
                 taskInfo_list.add(taskInfo);
             }
         }
-        ModelAndView mv = this.getAutoView().addObject("taskList", taskInfo_list);
-        return mv;
+        JSONObject json = new JSONObject();
+        JSONArray jsonMembers = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        for (int i = 0; i < taskInfo_list.size(); i++) {
+            TaskInfo taskInfo = taskInfo_list.get(i);
+            jsonObject.put("ddTaskId", taskInfo.getDdTaskId());
+            jsonObject.put("ddTaskPriority", taskInfo.getDdTaskPriority());
+            jsonObject.put("ddTaskState", taskInfo.getDdTaskState());
+            jsonObject.put("ddTaskProjectName", taskInfo.getDdTaskProjectName());
+            jsonObject.put("ddTaskName", taskInfo.getDdTaskName());
+
+            switch (taskInfo.getDdTaskPriority()){
+                case 3:
+                    jsonObject.put("priority", "紧急");
+                    break;
+                case 2:
+                    jsonObject.put("priority", "重要");
+                    break;
+                default:
+                    jsonObject.put("priority", "一般");
+                    break;
+            }
+            switch (taskInfo.getDdTaskState()) {
+                case 0:
+                    jsonObject.put("state", "新建");
+                    break;
+                case 1:
+                    jsonObject.put("state", "已发布");
+                    break;
+                case 2:
+                    jsonObject.put("state", "审核中");
+                    break;
+                case 3:
+                    jsonObject.put("state", "已完成");
+                    break;
+                default:
+                    jsonObject.put("state", "未知");
+                    break;
+            }
+            jsonMembers.add(jsonObject);
+        }
+//        json.put("total", taskInfo_list.size());
+//        json.put("rows", jsonMembers);
+        String jsonstring = formatJson(jsonMembers.toString());
+        System.out.println(json.toString());
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.append(jsonstring);
+        out.flush();
+        out.close();
     }
 
     @RequestMapping("submitpublish")
@@ -594,6 +642,7 @@ public class PersonalTaskController extends AbstractController {
     }
 
     //格式化json
+    //TODO:需要修改注意在哪些地方用到
     public static String formatJson(String jsonStr) {
         if (null == jsonStr || "".equals(jsonStr)) return "";
         StringBuilder sb = new StringBuilder();
@@ -916,6 +965,92 @@ public class PersonalTaskController extends AbstractController {
         }
     }
 
+    /**
+     * 私有数据更新
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("updatePrivateData")
+    @Action(description = "更新私有数据")
+    public void updatePrivateData(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        String orderJson = RequestUtil.getString(request, "orderJson");
+        //解码，为了解决中文乱码
+//        String str = URLDecoder.decode(request.getParameter("orderJson"),"UTF-8");
+        JSONObject myjson=new JSONObject();
+        //将json格式的字符串转换为json数组对象
+        JSONArray array=(JSONArray)myjson.fromObject(orderJson).get("rows");
+        //取得json数组中的第一个对象
+//        JSONObject o = (JSONObject) array.get(0);
+        //获得第一个array结果
+//      JSONObject o = (JSONObject) array.get(i);
+        //取出json数组中第一个对象的“userName”属性值
+//        String name=o.get("userName").toString();//获得属性值
+        for(int i=0;i<array.size();i++)
+        {
+            JSONObject myjb = (JSONObject) array.get(i);
+            PrivateData privateData = new PrivateData();
+            String name=myjb.get("dataName").toString();//获得属性值
+            Long str = Long.valueOf(myjb.get("dataId").toString());
+            privateData.setDdDataId(Long.valueOf(myjb.get("dataId").toString()));
+            privateData.setDdDataName(myjb.get("dataName").toString());
+            privateData.setDdDataPath(myjb.get("filePath").toString());
+            privateData.setDdDataType(Byte.valueOf(myjb.get("dataType").toString()));
+            privateData.setDdDataDescription(myjb.get("dataDescription").toString());
+            privateData.setDdDataUnit(myjb.get("dataUnit").toString());
+            privateData.setDdDataLastestValue(myjb.get("dataValue").toString());
+            //TO:更改阈值类型
+//            if (myjb.get("dataSenMax").toString().length()>0){
+//                privateData.setDdDataSenMax(Long.valueOf(myjb.get("dataSenMax").toString()));
+//            }
+//            if (myjb.get("dataSenMin").toString().length()>0){
+//                privateData.setDdDataSenMin(Long.valueOf(myjb.get("dataSenMin").toString()));
+//            }
+            privateDataService.updateData(privateData);
+        }
+    }
+    /**
+     * 删除私有数据
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("DelPrivateData")
+    @Action(description = "删除私有数据")
+    public void DelPrivateData(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        String orderJson = RequestUtil.getString(request, "orderJson");
+        //解码，为了解决中文乱码
+        JSONObject myjson=new JSONObject();
+        //将json格式的字符串转换为json数组对象
+        JSONArray array=(JSONArray)myjson.fromObject(orderJson).get("rows");
+        //取得json数组中的第一个对象
+        for(int i=0;i<array.size();i++)
+        {
+            JSONObject myjb = (JSONObject) array.get(i);
+            Long dataID = Long.valueOf(myjb.get("dataId").toString());
+            privateDataService.delById(dataID);
+        }
+    }
 
+    /**
+     * 增加私有数据
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("AddPrivateData")
+    @Action(description = "更新私有数据")
+    public void AddPrivateData(HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+//            privateDataService.add(privateData);
+    }
 }
 

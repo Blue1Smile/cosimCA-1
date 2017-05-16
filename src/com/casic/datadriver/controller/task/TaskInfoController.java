@@ -90,6 +90,7 @@ public class TaskInfoController extends AbstractController {
                 taskInfo.setDdTaskId(UniqueIdUtil.genId());
                 taskInfo.setDdTaskChildType("createpanel");
                 taskInfo.setDdTaskState(taskInfo.createpanel);
+                //TODO:需要添加任务优先级，否则会造成个人任务显示列表出错
                 taskInfoService.addDDTask(taskInfo);
                 proTaskDependance.setDdTaskId(UniqueIdUtil.genId());
                 proTaskDependance.setDdTaskId(taskInfo.getDdTaskId());
@@ -189,41 +190,10 @@ public class TaskInfoController extends AbstractController {
         ResultMessage resultMessage = null;
         ModelAndView mv = new ModelAndView();
         try {
-            List<ISysOrg> sysOrgList=sysOrgService.getAll();
             List<ISysUser> sysUserList = sysUserService.getAll();
-
-//            JSONObject roomObject = new JSONObject();
-//            JSONArray jsonMembers = new JSONArray();
-            String roomString = "[";
-            for(int i =0; i < sysOrgList.size(); i++){
-
-//               roomString.concat("\"");
-//                roomString.concat(sysOrgList.get(i).getOrgName());
-//                roomString.concat("\"");
-                roomString=roomString+("\"");
-                roomString=roomString+(sysOrgList.get(i).getOrgName());
-                roomString=roomString+("\",");
-            }
-//            roomString=roomString.(",");
-            roomString=roomString+("]");
-
-            String userString = "[";
-            for(int i =0; i < sysOrgList.size(); i++) {
-                userString = userString + ("[");
-                for (int j = 0; j < sysUserList.size(); j++) {
-                    if(sysUserList.get(j).getOrgId().equals(sysOrgList.get(i).getOrgId())){
-                        userString = userString + ("\"");
-                        userString = userString + (sysUserList.get(j).getFullname());
-                        userString = userString + ("\",");
-                    }
-                }
-                userString=userString+("],");
-            }
-            userString=userString+("]");
             Long id = RequestUtil.getLong(request, "id");
             Project project = projectService.getById(id);
-            mv = this.getAutoView().addObject("projectItem", project).addObject("sysOrgList", roomString)
-                    .addObject("userList", userString);
+            mv = this.getAutoView().addObject("projectItem", project).addObject("sysUserList", sysUserList);
             resultMessage = new ResultMessage(ResultMessage.Success, "创建成功");
         } catch (Exception ex) {
             resultMessage = new ResultMessage(ResultMessage.Fail, "创建失败" + ex.getMessage());
@@ -654,7 +624,7 @@ public class TaskInfoController extends AbstractController {
                     break;
                 case 1:
                     long temp1 = obj.getLong("1");
-                    taskInfo.setDdTaskPriority(temp1);
+                    taskInfo.setDdTaskPriority((short) temp1);
                     break;
                 case 2:
                     String temp2 = obj.getString("2");

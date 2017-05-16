@@ -18,7 +18,7 @@
 <html lang="zh-CN" style="height: 100%; margin: 0px">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
 
     <title>进入任务页面</title>
 
@@ -43,8 +43,12 @@
     <script type="text/javascript" src="${ctx}/js/hotent/formdata.js"></script>
     <script type="text/javascript" src="${ctx}/js/hotent/subform.js"></script>
 </head>
-<body style="height: 100%; margin: 0px">
-<div class="container-fluid" style="height: 100%">
+<body style="height: 100%">
+<div class="container" style="height: 100%">
+    <ol class="breadcrumb">
+        <li><a href="list.ht"><span class="glyphicon glyphicon-th-list"></span> 项目管理</a></li>
+        <li class="active">${Project.ddProjectName}</li>
+    </ol>
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
@@ -58,14 +62,17 @@
                 </c:forEach>
             </ul>
         </li>
-        <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab">任务</a>
+        <li role="presentation" class="active" id="switch_attr_task"><a href="#task" data-toggle="tab" role="tab"><span class="glyphicon glyphicon-th-large"></span> 任务</a>
         </li>
-        <li role="presentation" id="switch_attr_index"><a href="#indextab" data-toggle="tab" role="tab">指标</a></li>
+        <li role="presentation" id="switch_attr_index"><a href="#indextab" data-toggle="tab" role="tab"><span class="glyphicon glyphicon-list-alt"></span> 指标</a></li>
         <%--<li role="presentation"><a href="#calendar" data-toggle="tab" role="tab" title="暂不可用">日程</a></li>--%>
         <div class="pull-right">
-            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span class="glyphicon glyphicon-stats"></span> 流程统计</a>
-            <a class="btn btn-success" href="javascript:void(0)" id="create_task" onclick="createTask(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>
-            <a class="btn btn-info" href="javascript:void(0)" id="create_index" onclick="createIndex(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建指标</a>
+            <a id="statis_btn" class="btn btn-warning" onclick="showStatis(${Project.ddProjectId})"><span
+                    class="glyphicon glyphicon-stats"></span> 流程统计</a>
+            <a class="btn btn-success" href="javascript:void(0)" id="create_task"
+               onclick="createTask(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建任务</a>
+            <a class="btn btn-info" href="javascript:void(0)" id="create_index"
+               onclick="createIndex(${Project.ddProjectId})"><span class="glyphicon glyphicon-plus"></span> 创建指标</a>
         </div>
     </ul>
 
@@ -122,47 +129,51 @@
         $("#create_task").show();
         $("#create_index").hide();
         //关闭任务详情模态框
-        $("#taskdetail").on("hidden.bs.modal", function() {
+        $("#taskdetail").on("hidden.bs.modal", function () {
             $(this).removeData("bs.modal");
         });
     });
 
     var switch_attr_index = document.getElementById('switch_attr_index'),
-            switch_attr_task = document.getElementById('switch_attr_task');
-//显示任务详情
+        switch_attr_task = document.getElementById('switch_attr_task');
+    //显示任务详情
     function showTaskContent(taskId) {
         $('#taskdetail').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/task/edit.ht?id=" + taskId
-        });}
+        });
+    }
     //创建任务
     function createTask(projectId) {
         $('#addtask').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/task/addtask.ht?id=" + projectId
-        });}
+        });
+    }
     //创建指标
     function createIndex(projectId) {
         $('#addindex1').modal({
             keyboard: true,
             remote: "${ctx}/datadriver/index/indexedit.ht?id=" + projectId
-        });}
+        });
+    }
     //监控信息
-    function showStatis(projectId){
+    function showStatis(projectId) {
         $('#statis').modal({
             keyboard: true,
             remote: "statis.ht?id=" + projectId
-        });}
+        });
+    }
     //关闭任务详情模态框
-    $("#taskdetail").on("hidden.bs.modal", function() {
+    $("#taskdetail").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
     //关闭任务详情模态框
-//    $("#addindex1").on("hidden.bs.modal", function() {
-//        $(this).removeData("bs.modal");
-//    });
+    //    $("#addindex1").on("hidden.bs.modal", function() {
+    //        $(this).removeData("bs.modal");
+    //    });
     //关闭统计模态框
-    $("#statis").on("hidden.bs.modal", function() {
+    $("#statis").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
     switch_attr_index.onclick = function () {

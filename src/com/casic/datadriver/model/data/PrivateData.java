@@ -3,6 +3,7 @@ package com.casic.datadriver.model.data;
 import com.hotent.core.model.BaseModel;
 
 import java.util.Date;
+import java.util.List;
 
 public class PrivateData extends BaseModel{
 
@@ -28,9 +29,9 @@ public class PrivateData extends BaseModel{
 
     private Long ddDataCreatorId;
 
-    private Long ddDataSenMin;
+    private Double ddDataSenMin;
 
-    private Long ddDataSenMax;
+    private Double ddDataSenMax;
 
     private Long ddDataParentId;
 
@@ -55,6 +56,18 @@ public class PrivateData extends BaseModel{
     private Long ddDataReserved1;
 
     private String ddDataReserved2;
+
+    private List<PrivateData> privateDataList;
+
+    public List<PrivateData> getPrivateDataList() {
+        return privateDataList;
+    }
+
+    public void setPrivateDataList(List<PrivateData> privateDataList) {
+        this.privateDataList = privateDataList;
+    }
+
+
 
     public Long getDdDataId() {
         return ddDataId;
@@ -144,19 +157,19 @@ public class PrivateData extends BaseModel{
         this.ddDataCreatorId = ddDataCreatorId;
     }
 
-    public Long getDdDataSenMin() {
+    public Double getDdDataSenMin() {
         return ddDataSenMin;
     }
 
-    public void setDdDataSenMin(Long ddDataSenMin) {
+    public void setDdDataSenMin(Double ddDataSenMin) {
         this.ddDataSenMin = ddDataSenMin;
     }
 
-    public Long getDdDataSenMax() {
+    public Double getDdDataSenMax() {
         return ddDataSenMax;
     }
 
-    public void setDdDataSenMax(Long ddDataSenMax) {
+    public void setDdDataSenMax(Double ddDataSenMax) {
         this.ddDataSenMax = ddDataSenMax;
     }
 

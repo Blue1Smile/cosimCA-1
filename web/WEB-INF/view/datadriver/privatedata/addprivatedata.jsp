@@ -46,7 +46,7 @@
                 <td height="30" align="center">
                     <input type="text" name="NO" size="1" value="1" class="form-control" readonly/></td>
                 <td align="center">
-                    <input type="text" name="ddDataName" class="form-control"/></td>
+                    <input type="text" id="ddDataName" name="ddDataName" class="form-control"/></td>
                 <td align="center">
                     <select name="ddDataType" class="form-control">
                         <option value="0">数值</option>
@@ -71,13 +71,13 @@
             </tr>
             </tbody>
         </table>
-        <form id="dataStructForm" method="post" action="${ctx}/datadriver/data/save.ht">
+        <form id="dataStructForm" method="post" action="${ctx}/datadriver/privatedata/save.ht">
             <table class="table table-bordered" cellpadding="0" cellspacing="0"
                    border="0"
                    type="main">
                 <tr>
                     <th width="20%">数据名称:</th>
-                    <td><input type="text" id="ddStructName" name="ddStructName"
+                    <td><input type="text" id="ddDataName1" name="ddDataName1"
                                value="" class="form-control" placeholder="请输入数据名称"/></td>
                     <%--<th width="20%">数据所属任务:</th>--%>
                     <%--<td><input type="text" id="ddDataTaskName" name="ddDataTaskName"--%>
@@ -86,7 +86,7 @@
                 <tr id="changemodelfile">
                     <th width="20%">数据类型:</th>
                     <td>
-                        <ap:selectDB name="ddType" id="ddType"
+                        <ap:selectDB name="ddDataType" id="ddDataType"
                                      where="parentId=10000025100454" optionValue="itemValue"
                                      optionText="itemName" table="SYS_DIC"
                                      styleClass="form-control"
@@ -104,7 +104,7 @@
                 <tr id="initUnit">
                     <th width="20%">数据单位:</th>
                     <td>
-                        <ap:selectDB name="ddUnitForPrivate" id="ddUnitForPrivate"
+                        <ap:selectDB name="ddDataUnit" id="ddDataUnit"
                                      where="parentId=10000028500024" optionValue="itemValue"
                                      optionText="itemName" table="SYS_DIC"
                                      styleClass="form-control" selectedValue="">
@@ -183,7 +183,7 @@
                                               rows="3"/></textarea>
                     </td>
                 </tr>
-                <input type="hidden" id="ddTaskId" name="ddTaskId"
+                <input type="hidden" id="ddDataTaskId" name="ddDataTaskId"
                        value="${taskInfo.ddTaskId}"/>
             </table>
         </form>
@@ -217,7 +217,6 @@
             var obj = new com.hotent.form.ResultMessage(responseText);
             if (obj.isSuccess()) {
                 $('#adddata').modal('hide');
-                $('#table_private').bootstrapTable('refresh');
             } else {
             }
         }
@@ -233,66 +232,15 @@
         $("#ddType").change(function () {
             if ($('#ddType option:selected').val() == 2) {
                 $('#subdata').remove();
-//                $('#selectModeltr').show();
-//                $('#selectModel').removeAttr("disabled");
-//                $('#initValue').remove();
             } else if ($('#ddType option:selected').val() == 3) {
                 $('#subdata').hide();
-//                $('#selectModeltr').show();
-//                $('#selectModel').removeAttr("disabled");
-//                $('#initValue').remove();
             } else if ($('#ddType option:selected').val() == 0) {
                 $('#subdata').hide();
-//                $('#selectModeltr').show();
-//                $('#selectModel').removeAttr("disabled");
-//                $('#initValue').remove();
             } else {
                 $('#subdata').show();
-//                $('#selectModeltr').hide();
-//                $('#selectModel').attr("disabled", "disabled");
-//                if ($("#initValue").length <= 0) {
-//                    $('table').append('<tr id="initValue">' +
-//                            '<th width = "20%" > 初始值:</th>' +
-//                            '<td colspan = "5" >' +
-//                            '<input type = "text" id="ddDataLastestValue" name="ddDataLastestValue" value="" class="form-control"/>' +
-//                            '</td>' +
-//                            '</tr>');
-//                }
             }
         });
-
-//        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '展开');
-//        $('.tree li.parent_li > span').on('click', function (e) {
-//            var children = $(this).parent('li.parent_li').find(' > ul > li');
-//            if (children.is(":visible")) {
-//                children.hide('fast');
-//                $(this).attr('title', '展开').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-//            } else {
-//                children.show('fast');
-//                $(this).attr('title', '收敛').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
-//            }
-//            e.stopPropagation();
-//        });
-//
-//        $("#parent").click(function () {
-//            $(this).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/><select class="form-control"><option value="0">类型一</option><option value="1">类型二</option><option value="2">类型三</option></select></span> <a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a><ul></ul></li>');
-//        });
-//
-//        var $inputs = $("#ddDataName");
-//        $inputs.keyup(function () {
-//            $('#parent_input').html($inputs.val());
-//        });
-
     });
-
-    //    function addTreeNode(obj) {
-    //        $(obj).parent("li").children("ul").append('<li><span><input type="text" class="form-control" placeholder="请输入数据名称"/><select class="form-control"><option value="0">类型一</option><option value="1">类型二</option><option value="2">类型三</option></select></span><a href="javascript:void(0)" id="child_node" onclick="confirm(this)"> <i class="glyphicon glyphicon-ok"></i></a></li>');
-    //    }
-    //
-    //    function confirm(obj) {
-    //        var this_val = $(obj).prev().children("input").val();
-    //        $(obj).parent("li").replaceWith('<li><span>' + this_val + '</span> <a href="javascript:void(0)" id="child_node" onclick="addTreeNode(this)"> <i class="glyphicon glyphicon-plus"></i></a><ul></ul></li>');
-    //    }
 
     function changeIndex() {
         var i = 1;

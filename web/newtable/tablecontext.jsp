@@ -13,6 +13,7 @@
 <script src="${ctx}/newtable/bootstrap.js"></script>
 <script src="${ctx}/newtable/bootstrap-table.js"></script>
 <script src="${ctx}/newtable/bootstrap-table-zh-CN.js"></script>
+<script src="${ctx}/newtable/bootstrap-table-export.js"></script>
 <script src="${ctx}/newtable/tableExport.js"></script>
 <script src="${ctx}/newtable/bootstrap-editable.js"></script>
 <script src="${ctx}/newtable/bootstrap-table-editable.js"></script>
